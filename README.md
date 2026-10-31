@@ -8,7 +8,7 @@ NutriSphere is an open-source, product-grade visualization and knowledge system 
 
 ## Current Status
 
-Phase 1 web app lives in `src/` (React + Vite + TypeScript + `react-force-graph-3d`). It loads the aligned seed graph, with search, disease/mechanism filters, layperson/expert layers, an evidence drawer, and a permanent disclaimer.
+Phase 1 web app lives in `src/` (React + Vite + TypeScript). The default view is a 2D hierarchical pathway (`react-force-graph-2d`); 3D exploration (`react-force-graph-3d`) is optional. It loads the aligned seed graph, with search, disease/mechanism filters, layperson/expert layers, an evidence drawer, and a permanent disclaimer.
 
 The original single-file viewer remains at `prototype/index.html` for comparison. See `prototype/README.md`.
 

@@ -1,3 +1,4 @@
+import type { GraphView } from './graphView';
 import type { LayoutMode } from './layout';
 import type { ViewLayer } from '../types/graph';
 
@@ -8,6 +9,7 @@ export interface ParsedShare {
   mechanism: string | null;
   layer: ViewLayer | null;
   layout: LayoutMode | null;
+  view: GraphView | null;
   hideUnmatched: boolean;
   node: string | null;
   link: string | null;
@@ -18,6 +20,7 @@ export interface ShareState {
   mechanism: string | null;
   layer: ViewLayer;
   layout: LayoutMode;
+  view: GraphView;
   hideUnmatched: boolean;
   node: string | null;
   link: string | null;
@@ -50,12 +53,14 @@ export function parseViewQuery(search: string): ParsedShare {
   const params = new URLSearchParams(search.startsWith('?') ? search.slice(1) : search);
   const layer = params.get('layer');
   const layout = params.get('layout');
+  const view = params.get('view');
   const link = params.get('link');
   return {
     disease: cleanId(params.get('disease')),
     mechanism: cleanId(params.get('mechanism')),
     layer: layer === 'layperson' || layer === 'expert' ? layer : null,
     layout: layout === 'hierarchy' || layout === 'force' ? layout : null,
+    view: view === '2d' || view === '3d' ? view : null,
     hideUnmatched: params.get('hide') === '1',
     node: cleanId(params.get('node')),
     link: link && /^[a-z0-9_]+~[a-z0-9_]+$/.test(link) ? link : null,
@@ -67,6 +72,7 @@ export function serializeViewQuery(state: ShareState): string {
   if (state.disease) params.set('disease', state.disease);
   if (state.mechanism) params.set('mechanism', state.mechanism);
   params.set('layer', state.layer);
+  params.set('view', state.view);
   if (state.layout === 'force') params.set('layout', 'force');
   if (state.hideUnmatched) params.set('hide', '1');
   if (state.node) params.set('node', state.node);

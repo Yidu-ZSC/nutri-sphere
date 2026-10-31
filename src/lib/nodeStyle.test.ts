@@ -26,6 +26,25 @@ test('label height stays in the readable band unless selected', () => {
   assert.ok(selected > 4);
 });
 
+test('3d explore keeps idle labels on the mechanism column', () => {
+  assert.equal(
+    labelShouldShow({ compact: false, bright: true, selected: false, column: 3, homeColumn: 2, surface: '3d' }),
+    false,
+  );
+  assert.equal(
+    labelShouldShow({ compact: false, bright: true, selected: false, column: 2, homeColumn: 2, surface: '3d' }),
+    true,
+  );
+  assert.equal(
+    labelShouldShow({ compact: false, bright: true, selected: true, column: 0, homeColumn: 2, surface: '3d' }),
+    true,
+  );
+  assert.equal(
+    labelShouldShow({ compact: false, bright: false, selected: false, column: 2, homeColumn: 2, surface: '3d' }),
+    false,
+  );
+});
+
 test('compact screens hide labels outside the home column', () => {
   assert.equal(
     labelShouldShow({ compact: true, bright: true, selected: false, column: 0, homeColumn: 2 }),

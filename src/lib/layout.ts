@@ -1,10 +1,14 @@
+import type { GraphView } from './graphView';
 import type { SimNode } from '../types/graph';
 
 export type LayoutMode = 'hierarchy' | 'force';
 
 /** diet/food → nutrient/compound/metabolite → mechanism → disease/outcome */
 export const COLUMN_X = [-117, -39, 39, 117] as const;
-export const COLUMN_Y_GAP = 18;
+/** Room for a single-line label between rows on the flat pathway. */
+export const COLUMN_Y_GAP = 20;
+/** Narrower than the default 50° so the optional 3D view stays closer to a flat pathway. */
+export const EXPLORE_FOV = 32;
 /** Idle mobile labels stay on the mechanism column, which sits at the camera. */
 export const LABEL_HOME_COLUMN = 2;
 
@@ -58,7 +62,8 @@ export function applyLayout(nodes: SimNode[], mode: LayoutMode): void {
     const x = (COLUMN_X[column] ?? 0) * (mode === 'hierarchy' ? 1 : 0.34);
     list.forEach((node, index) => {
       const y = (mid - index) * (mode === 'hierarchy' ? COLUMN_Y_GAP : 12);
-      const z = ((index % 3) - 1) * (mode === 'hierarchy' ? 5 : 10);
+      // Hierarchy stays on one plane. Depth jitter is what made columns occlude each other.
+      const z = mode === 'hierarchy' ? 0 : ((index % 3) - 1) * 10;
       node.x = x;
       node.y = y;
       node.z = z;
@@ -71,6 +76,21 @@ export function applyLayout(nodes: SimNode[], mode: LayoutMode): void {
       }
     });
   });
+}
+
+/**
+ * Hierarchy Y is up (3D). Canvas Y is down, so the 2D view flips Y and remembers
+ * the layout-space value for label windows.
+ */
+export function placeNodes(nodes: SimNode[], mode: LayoutMode, view: GraphView): void {
+  applyLayout(nodes, mode);
+  for (const node of nodes) {
+    node.layoutY = node.y;
+    if (view === '2d' && node.y != null) {
+      node.y = -node.y;
+      if (node.fy != null) node.fy = -node.fy;
+    }
+  }
 }
 
 /** Camera placement that frames known node coordinates, including label padding. */
@@ -101,4 +121,31 @@ export function cameraDistanceForPixels(viewportHeight: number, pixelsPerUnit: n
   const fov = (fovDegrees * Math.PI) / 180;
   const visibleHeight = height / pixels;
   return visibleHeight / (2 * Math.tan(fov / 2));
+}
+
+/**
+ * Fit a flat pathway into the viewport. Padding is in world units so wrapped
+ * labels and column captions stay inside the frame.
+ */
+export function frameGraph2d(
+  nodes: readonly { x?: number; y?: number }[],
+  width: number,
+  height: number,
+  insets: { top?: number; right?: number; bottom?: number; left?: number } = {},
+): { x: number; y: number; k: number } {
+  const xs = nodes.map((node) => node.x ?? 0);
+  const ys = nodes.map((node) => node.y ?? 0);
+  const labelPadX = 34;
+  const labelPadTop = 40;
+  const labelPadBottom = 16;
+  const minX = Math.min(...xs) - labelPadX;
+  const maxX = Math.max(...xs) + labelPadX;
+  const minY = Math.min(...ys) - labelPadTop;
+  const maxY = Math.max(...ys) + labelPadBottom;
+  const spanX = Math.max(maxX - minX, 48);
+  const spanY = Math.max(maxY - minY, 48);
+  const usableW = Math.max(width - (insets.left ?? 36) - (insets.right ?? 28), 80);
+  const usableH = Math.max(height - (insets.top ?? 118) - (insets.bottom ?? 28), 80);
+  const k = Math.min(usableW / spanX, usableH / spanY);
+  return { x: (minX + maxX) / 2, y: (minY + maxY) / 2, k };
 }
