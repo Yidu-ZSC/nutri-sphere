@@ -31,7 +31,12 @@
             "enum": ["protective", "risk", "neutral", "mixed"]
           },
           "description": {"type": "string"},
-          "aliases": {"type": "array", "items": {"type": "string"}}
+          "aliases": {"type": "array", "items": {"type": "string"}},
+          "mechanism_depth": {
+            "type": "string",
+            "enum": ["summary", "mechanism", "technical"],
+            "description": "Optional narrative depth for a mechanism node. Omitted means summary. Not GRADE, not ViewLayer, and not evidence strength."
+          }
         },
         "additionalProperties": true
       }
@@ -58,6 +63,11 @@
           "note_id": {"type": "string"},
           "excerpt": {"type": "string"},
           "limitations": {"type": "string"},
+          "audience": {
+            "type": "string",
+            "enum": ["general", "deep_reader"],
+            "description": "Optional content fit for this edge. Omitted means general. Not a ViewLayer, not GRADE, and not evidence strength."
+          },
           "citation": {
             "type": "object",
             "additionalProperties": false,

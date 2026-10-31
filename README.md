@@ -13,7 +13,7 @@ Phase 1 web app lives in `src/` (React + Vite + TypeScript). The default view is
 The original single-file viewer remains at `prototype/index.html` for comparison. See `prototype/README.md`.
 
 - Graph schema: `docs/GRAPH_SCHEMA.md` + `data/graph_schema.json`
-- Aligned seed data: `data/seed_triples_v0.3_aligned.json` (70 nodes / 126 links, `data_version` 0.5, `schema_version` 0.2; filename kept for the Vite and CI path)
+- Aligned seed data: `data/seed_triples_v0.3_aligned.json` (70 nodes / 126 links, `data_version` 0.6, `schema_version` 0.3; filename kept for the Vite and CI path)
 
 ## Phase 1 app
 
@@ -28,7 +28,7 @@ npm run build
 npm run preview      # http://localhost:4173
 ```
 
-`npm run validate:data` checks only `data/seed_triples_v0.3_aligned.json` against `data/graph_schema.json`, then checks unique node ids, link `source`/`target` referential integrity, non-empty `limitations`, and `excerpt` length ≤ 300. A link that carries `citation` must satisfy that object (a `doi` or `pmid`) and its `evidence_type` must not start with `book_notes_`. The script does not resolve DOIs over HTTP. It exits non-zero if a link target (or any of those rules) is broken. Older `data/seed_triples_*.json` files are kept and are not gated. `npm test` includes a case that points a link at a missing node and expects failure, and asserts that citation edges number between 5 and 15.
+`npm run validate:data` checks only `data/seed_triples_v0.3_aligned.json` against `data/graph_schema.json`, then checks unique node ids, link `source`/`target` referential integrity, non-empty `limitations`, and `excerpt` length ≤ 300. A link that carries `citation` must satisfy that object (a `doi` or `pmid`) and its `evidence_type` must not start with `book_notes_`. When present, `audience` must be `general` or `deep_reader`, and `mechanism_depth` must be `summary`, `mechanism`, or `technical`. A non-mechanism node with `mechanism_depth` `technical` prints a warning and does not fail the run. The script does not resolve DOIs over HTTP. It exits non-zero if a link target (or any of those rules) is broken. Older `data/seed_triples_*.json` files are kept and are not gated. `npm test` includes a case that points a link at a missing node and expects failure, and asserts that citation edges number between 5 and 15.
 
 ### Data path
 
