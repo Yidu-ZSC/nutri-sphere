@@ -13,7 +13,7 @@ Phase 1 web app lives in `src/` (React + Vite + TypeScript). The default view is
 The original single-file viewer remains at `prototype/index.html` for comparison. See `prototype/README.md`.
 
 - Graph schema: `docs/GRAPH_SCHEMA.md` + `data/graph_schema.json`
-- Aligned seed data: `data/seed_triples_v0.3_aligned.json` (24 nodes / 20 links)
+- Aligned seed data: `data/seed_triples_v0.3_aligned.json` (69 nodes / 117 links, `data_version` 0.4; filename kept for the Vite and CI path)
 
 ## Phase 1 app
 
