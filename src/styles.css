@@ -581,6 +581,34 @@ button { cursor: pointer; }
 }
 
 .badge--evidence { background: #243044; }
+.badge--literature { background: #16343a; color: #d7f6f3; }
+
+.citation-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: #142033;
+  border: 1px solid var(--line);
+}
+
+.citation-block p { margin: 0; }
+
+.citation-title { line-height: 1.45; }
+
+.citation-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 0;
+}
+
+.citation-links .linkish {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+}
 
 .evidence-card {
   margin: 8px 0 12px;

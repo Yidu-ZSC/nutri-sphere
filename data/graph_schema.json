@@ -57,7 +57,23 @@
           "source_file": {"type": "string"},
           "note_id": {"type": "string"},
           "excerpt": {"type": "string"},
-          "limitations": {"type": "string"}
+          "limitations": {"type": "string"},
+          "citation": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "title": {"type": "string", "minLength": 1},
+              "authors": {"type": "string"},
+              "year": {"type": "integer", "minimum": 1900, "maximum": 2100},
+              "doi": {"type": "string", "minLength": 1},
+              "pmid": {"type": "string", "pattern": "^[0-9]+$"},
+              "url": {"type": "string", "minLength": 1}
+            },
+            "anyOf": [
+              {"required": ["doi"]},
+              {"required": ["pmid"]}
+            ]
+          }
         },
         "additionalProperties": true
       }

@@ -6,7 +6,9 @@ import {
   disclaimerSegments,
   evidenceAssurance,
   evidenceBadge,
+  evidenceLabel,
   evidenceStatus,
+  evidenceTrack,
 } from './copy.ts';
 
 const SPEC_TEXT =
@@ -32,4 +34,17 @@ test('evidence chips use plain source names', () => {
   assert.equal(assurance.includes('GRADE'), false);
   assert.equal(evidenceStatus('interventional', {}), '尚未收录该级');
   assert.equal(evidenceStatus('book_notes_mechanistic', { book_notes_mechanistic: 18 }), '已收录 18');
+  assert.equal(evidenceTrack('book_notes_mechanistic'), 'book_notes');
+  assert.equal(evidenceTrack('book_notes_observational_synthesis'), 'book_notes');
+  assert.equal(evidenceTrack('observational'), 'literature');
+  assert.equal(evidenceTrack('expert_synthesis'), 'literature');
+  assert.equal(evidenceTrack('interventional'), 'literature');
+  for (const type of ['observational', 'mechanistic', 'interventional', 'ecological', 'expert_synthesis']) {
+    assert.equal(evidenceLabel(type).includes('后续'), false, type);
+    assert.equal(evidenceBadge(type).includes('书摘'), false, type);
+    assert.equal(evidenceLabel(type).includes('GRADE'), false, type);
+  }
+  const literature = evidenceAssurance('observational', 'moderate');
+  assert.equal(literature.includes('书摘'), false);
+  assert.equal(literature.includes('GRADE'), false);
 });

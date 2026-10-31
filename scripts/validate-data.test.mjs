@@ -46,21 +46,23 @@ const ORIGINAL_EXCERPTS = [
   '肠道细菌失衡的中间产物同样会对线粒体造成直接伤害，转而引发更激烈的炎症反应',
 ];
 
+const STAGE_A_LINKS = 117;
+
 test('aligned seed passes schema and referential checks', () => {
   const result = validateGraphFile();
   assert.equal(result.ok, true, result.errors.join('\n'));
-  assert.equal(result.counts.nodes, 69);
-  assert.equal(result.counts.links, 117);
+  assert.equal(result.counts.nodes, 70);
+  assert.equal(result.counts.links, 126);
 });
 
-test('data 0.4 stays on schema 0.1 and keeps the original book-note excerpts', () => {
+test('data 0.5 uses schema 0.2 and keeps the original book-note excerpts', () => {
   const data = readJson(ALIGNED_SEED);
-  assert.equal(data.meta.schema_version, '0.1');
-  assert.equal(data.meta.data_version, '0.4');
+  assert.equal(data.meta.schema_version, '0.2');
+  assert.equal(data.meta.data_version, '0.5');
   assert.equal(data.meta.disclaimer, 'Educational / research use only. Not medical advice.');
   assert.ok(data.nodes.length >= 60 && data.nodes.length <= 90);
   assert.ok(data.links.length >= 80 && data.links.length <= 140);
-  assert.equal(data.links.length, ORIGINAL_EXCERPTS.length + 97);
+  assert.equal(data.links.slice(0, STAGE_A_LINKS).length, ORIGINAL_EXCERPTS.length + 97);
   ORIGINAL_EXCERPTS.forEach((excerpt, index) => {
     assert.equal(data.links[index].excerpt, excerpt);
   });
@@ -87,11 +89,12 @@ test('data 0.4 stays on schema 0.1 and keeps the original book-note excerpts', (
     });
     assert.equal(cross, true, id);
   }
-  for (const link of data.links.slice(ORIGINAL_EXCERPTS.length)) {
+  for (const link of data.links.slice(ORIGINAL_EXCERPTS.length, STAGE_A_LINKS)) {
     assert.equal(link.evidence_type.startsWith('book_notes_'), true, link.note_id);
     assert.notEqual(link.note_id, 'related');
     assert.notEqual(link.note_id, 'multiple');
     assert.equal(link.evidence_type.includes('interventional'), false);
+    assert.equal(link.citation, undefined);
   }
   const biomarkers = data.nodes.filter((node) => node.type === 'biomarker');
   assert.ok(biomarkers.length >= 1 && biomarkers.length <= 3);
@@ -113,6 +116,65 @@ test('duplicate node ids fail validation', () => {
   const result = validateGraphData(data, schema);
   assert.equal(result.ok, false);
   assert.match(result.errors.join('\n'), /重复/);
+});
+
+test('citation edges stay in range and are not book notes', () => {
+  const data = readJson(ALIGNED_SEED);
+  const schema = readJson(GRAPH_SCHEMA);
+  const cited = data.links.filter((link) => link.citation);
+  assert.ok(cited.length >= 5 && cited.length <= 15, String(cited.length));
+  assert.equal(data.links.length, STAGE_A_LINKS + cited.length);
+  const types = new Set(cited.map((link) => link.evidence_type));
+  assert.ok(cited.filter((link) => link.evidence_type === 'observational').length >= 2);
+  assert.ok(
+    cited.filter((link) => link.evidence_type === 'expert_synthesis' || link.evidence_type === 'interventional')
+      .length >= 2,
+  );
+  assert.equal(types.has('book_notes_mechanistic'), false);
+  const retracted = '10.1056/NEJMoa1200303';
+  for (const link of cited) {
+    assert.equal(link.evidence_type.startsWith('book_notes_'), false, link.id);
+    assert.equal(link.source_file, 'literature', link.id);
+    assert.ok(link.excerpt && link.excerpt.length <= 300, link.id);
+    assert.match(link.limitations, /非书摘/, link.id);
+    assert.ok(link.citation.doi || link.citation.pmid, link.id);
+    assert.notEqual(link.citation.doi, retracted, link.id);
+    assert.equal(String(link.citation.doi).includes('doi.org'), false, link.id);
+  }
+  const result = validateGraphData(data, schema);
+  assert.equal(result.ok, true, result.errors.join('\n'));
+});
+
+test('a citation without doi or pmid fails validation', () => {
+  const data = readJson(ALIGNED_SEED);
+  const schema = readJson(GRAPH_SCHEMA);
+  const link = data.links.find((item) => item.citation);
+  link.citation = { title: 'Missing identifier' };
+  const result = validateGraphData(data, schema);
+  assert.equal(result.ok, false);
+  assert.match(result.errors.join('\n'), /doi|pmid|citation/);
+});
+
+test('a book-note edge with citation fails validation', () => {
+  const data = readJson(ALIGNED_SEED);
+  const schema = readJson(GRAPH_SCHEMA);
+  data.links[0].citation = {
+    title: 'Should not sit on a book note',
+    doi: '10.1136/bmj.l1451',
+  };
+  const result = validateGraphData(data, schema);
+  assert.equal(result.ok, false);
+  assert.match(result.errors.join('\n'), /book_notes_/);
+});
+
+test('an unknown citation key fails validation', () => {
+  const data = readJson(ALIGNED_SEED);
+  const schema = readJson(GRAPH_SCHEMA);
+  const link = data.links.find((item) => item.citation);
+  link.citation.extraNote = 'nope';
+  const result = validateGraphData(data, schema);
+  assert.equal(result.ok, false);
+  assert.match(result.errors.join('\n'), /additional|citation/i);
 });
 
 test('missing limitations fail validation', () => {

@@ -1,10 +1,10 @@
 {
   "meta": {
-    "schema_version": "0.1",
-    "data_version": "0.4",
+    "schema_version": "0.2",
+    "data_version": "0.5",
     "extracted_from": "knowledge-base Project (high relevance files)",
     "extraction_date": "2026-10-31",
-    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 adds curated book-note nodes and edges from the same six source files. Evidence remains book_notes. Educational use only. The original 20 excerpts are unchanged.",
+    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 book-note nodes and excerpts are unchanged. data 0.5 adds schema 0.2 optional citation and nine literature edges with verified DOIs. Educational use only. The original 20 excerpts are unchanged.",
     "disclaimer": "Educational / research use only. Not medical advice."
   },
   "nodes": [
@@ -19,6 +19,17 @@
         "全植物",
         "蔬食",
         "WFPB"
+      ]
+    },
+    {
+      "id": "mediterranean_diet",
+      "type": "diet_pattern",
+      "label": "地中海膳食模式",
+      "group": "protective",
+      "description": "以橄榄油、蔬果、全谷、豆类和鱼类为特征的膳食模式，供文献样例边挂接",
+      "aliases": [
+        "Mediterranean diet",
+        "地中海饮食"
       ]
     },
     {
@@ -2351,6 +2362,204 @@
       "limitations": "书摘观察性综述，不是体重方案。",
       "population": "书摘对观察性资料的转述，非本图谱的新队列，非个体因果。",
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "lit_fiber_cvd_reynolds_2019",
+      "source": "dietary_fiber",
+      "target": "cardiometabolic",
+      "relation": "较高膳食纤维摄入与较低心血管相关死亡风险的综述归纳",
+      "direction": "protective",
+      "evidence_type": "expert_synthesis",
+      "strength": "high",
+      "source_file": "literature",
+      "note_id": "30638909",
+      "excerpt": "系统综述与荟萃归纳：较高的膳食纤维摄入，以及若干反映碳水质量的指标，与较低的全因死亡和心血管死亡风险相关。",
+      "limitations": "非书摘原文。主体是观察性资料的系统综述与荟萃，残余混杂和膳食测量误差仍然存在，不能外推为个体处方。",
+      "population": "多队列与试验资料的汇总，非单一新队列。",
+      "citation": {
+        "title": "Carbohydrate quality and human health: a series of systematic reviews and meta-analyses",
+        "authors": "Reynolds et al.",
+        "year": 2019,
+        "doi": "10.1016/S0140-6736(18)31809-9",
+        "pmid": "30638909",
+        "url": "https://doi.org/10.1016/S0140-6736(18)31809-9"
+      }
+    },
+    {
+      "id": "lit_plant_quality_mortality_baden_2019",
+      "source": "plant_based_diet",
+      "target": "cardiometabolic",
+      "relation": "植物性膳食质量变化与死亡风险的队列观察",
+      "direction": "protective",
+      "evidence_type": "observational",
+      "strength": "moderate",
+      "source_file": "literature",
+      "note_id": "31401846",
+      "excerpt": "前瞻队列观察到，植物性膳食质量的变化与随后的全因及部分死因死亡风险相关；质量更高的植物性模式对应较低风险。",
+      "limitations": "非书摘原文。观察性队列，膳食为自我报告，残余混杂不能排除，不能外推为个体处方。",
+      "population": "美国护士与卫生专业人员队列。",
+      "citation": {
+        "title": "Changes in Plant-Based Diet Quality and Total and Cause-Specific Mortality",
+        "authors": "Baden et al.",
+        "year": 2019,
+        "doi": "10.1161/CIRCULATIONAHA.119.041014",
+        "pmid": "31401846",
+        "url": "https://doi.org/10.1161/CIRCULATIONAHA.119.041014"
+      }
+    },
+    {
+      "id": "lit_upf_cvd_srour_2019",
+      "source": "ultra_processed",
+      "target": "cardiometabolic",
+      "relation": "超加工食品摄入与心血管疾病风险的队列观察",
+      "direction": "risk",
+      "evidence_type": "observational",
+      "strength": "moderate",
+      "source_file": "literature",
+      "note_id": "31142457",
+      "excerpt": "前瞻队列观察到，超加工食品摄入较高与心血管疾病风险较高相关。",
+      "limitations": "非书摘原文。单一网络招募队列，食品分类和自我报告都有误差，不能由关联推出因果，也不能外推为个体处方。",
+      "population": "NutriNet-Santé 成年参与者。",
+      "citation": {
+        "title": "Ultra-processed food intake and risk of cardiovascular disease: prospective cohort study (NutriNet-Santé)",
+        "authors": "Srour et al.",
+        "year": 2019,
+        "doi": "10.1136/bmj.l1451",
+        "pmid": "31142457",
+        "url": "https://doi.org/10.1136/bmj.l1451"
+      }
+    },
+    {
+      "id": "lit_red_meat_mortality_zheng_2019",
+      "source": "red_meat",
+      "target": "cardiometabolic",
+      "relation": "红肉摄入量变化与死亡风险的队列观察",
+      "direction": "mixed",
+      "evidence_type": "observational",
+      "strength": "moderate",
+      "source_file": "literature",
+      "note_id": "31189526",
+      "excerpt": "两个前瞻队列中，红肉摄入量增加与随后更高的全因及心血管死亡风险相关；换成其他食物时的估计并不相同。",
+      "limitations": "非书摘原文。观察性重复测量，替代模型依赖统计假设，残余混杂仍在。不同研究的结论并不整齐，不能外推为个体处方。",
+      "population": "美国女性和男性前瞻队列。",
+      "citation": {
+        "title": "Association of changes in red meat consumption with total and cause specific mortality among US women and men: two prospective cohort studies",
+        "authors": "Zheng et al.",
+        "year": 2019,
+        "doi": "10.1136/bmj.l2110",
+        "pmid": "31189526",
+        "url": "https://doi.org/10.1136/bmj.l2110"
+      }
+    },
+    {
+      "id": "lit_fiber_gi_gill_2021",
+      "source": "dietary_fiber",
+      "target": "gut_microbiome",
+      "relation": "膳食纤维与胃肠道健康及菌群的综述归纳",
+      "direction": "protective",
+      "evidence_type": "expert_synthesis",
+      "strength": "moderate",
+      "source_file": "literature",
+      "note_id": "33208922",
+      "excerpt": "综述归纳膳食纤维在胃肠道健康中的讨论，包括发酵、菌群和肠道功能，不是一条新的试验结果。",
+      "limitations": "非书摘原文。专家综述，机制描述与人群资料放在一起，不能把综述直接当成临床效果，也不能外推为个体处方。",
+      "population": "综述所覆盖的研究，非单一队列。",
+      "citation": {
+        "title": "Dietary fibre in gastrointestinal health and disease",
+        "authors": "Gill et al.",
+        "year": 2021,
+        "doi": "10.1038/s41575-020-00375-4",
+        "pmid": "33208922",
+        "url": "https://doi.org/10.1038/s41575-020-00375-4"
+      }
+    },
+    {
+      "id": "lit_microbiome_colon_okeefe_2016",
+      "source": "gut_microbiome",
+      "target": "digestive_cancer_risk",
+      "relation": "膳食、微生物代谢物与结肠癌的综述讨论",
+      "direction": "mixed",
+      "evidence_type": "expert_synthesis",
+      "strength": "moderate",
+      "source_file": "literature",
+      "note_id": "27848961",
+      "excerpt": "综述讨论膳食、肠道微生物及其代谢物与结肠癌之间的多条通路，其中既有偏保护的代谢物，也有与风险相关的途径。",
+      "limitations": "非书摘原文。以机制综述为主，人群证据不均，不能外推为筛查结论或个体处方。",
+      "population": "综述所讨论的实验与人群资料。",
+      "citation": {
+        "title": "Diet, microorganisms and their metabolites, and colon cancer",
+        "authors": "O'Keefe",
+        "year": 2016,
+        "doi": "10.1038/nrgastro.2016.165",
+        "pmid": "27848961",
+        "url": "https://doi.org/10.1038/nrgastro.2016.165"
+      }
+    },
+    {
+      "id": "lit_predimed_estruch_2018",
+      "source": "mediterranean_diet",
+      "target": "cardiometabolic",
+      "relation": "补充橄榄油或坚果的地中海膳食与心血管事件的试验报告",
+      "direction": "protective",
+      "evidence_type": "interventional",
+      "strength": "moderate",
+      "source_file": "literature",
+      "note_id": "29897866",
+      "excerpt": "更正后发表的试验报告：在心血管风险较高的成年人中，配合特级初榨橄榄油或坚果的地中海膳食指导，主要心血管事件少于对照建议组。",
+      "limitations": "非书摘原文。这是干预试验的更正再发表，原始报告曾因随机化问题撤回。对照是另一套膳食建议，样本来自西班牙高风险成年人，不能外推为个体处方。",
+      "population": "西班牙、心血管风险较高的成年人。",
+      "citation": {
+        "title": "Primary Prevention of Cardiovascular Disease with a Mediterranean Diet Supplemented with Extra-Virgin Olive Oil or Nuts",
+        "authors": "Estruch et al.",
+        "year": 2018,
+        "doi": "10.1056/NEJMoa1800389",
+        "pmid": "29897866",
+        "url": "https://doi.org/10.1056/NEJMoa1800389"
+      }
+    },
+    {
+      "id": "lit_upf_outcomes_elizabeth_2020",
+      "source": "ultra_processed",
+      "target": "obesity_risk",
+      "relation": "超加工食品与多种健康结局的叙述性综述",
+      "direction": "risk",
+      "evidence_type": "expert_synthesis",
+      "strength": "moderate",
+      "source_file": "literature",
+      "note_id": "32630022",
+      "excerpt": "叙述性综述汇总已发表研究：较高的超加工食品摄入与多种不利健康结局相关，其中包括与肥胖相关的观察，研究设计各不相同。",
+      "limitations": "非书摘原文。叙述性综述，不是新的试验；结局不止肥胖一项，本边只挂到肥胖相关主题。不能外推为个体处方。",
+      "population": "综述纳入的健康参与者研究，设计各异。",
+      "citation": {
+        "title": "Ultra-Processed Foods and Health Outcomes: A Narrative Review",
+        "authors": "Elizabeth et al.",
+        "year": 2020,
+        "doi": "10.3390/nu12071955",
+        "pmid": "32630022",
+        "url": "https://doi.org/10.3390/nu12071955"
+      }
+    },
+    {
+      "id": "lit_prebiotic_microbiome_sanders_2019",
+      "source": "dietary_fiber",
+      "target": "gut_microbiome",
+      "relation": "益生元与肠道菌群的综述讨论",
+      "direction": "mixed",
+      "evidence_type": "expert_synthesis",
+      "strength": "low",
+      "source_file": "literature",
+      "note_id": "31296969",
+      "excerpt": "综述从生物学讨论到临床场景，同时涉及益生元与益生菌。本边只连接膳食纤维所代表的益生元一侧与肠道菌群，不覆盖具体产品。",
+      "limitations": "非书摘原文。综述中的实验和临床结果并不一致。益生菌产品不在这条边上，不能据此选择产品，也不能外推为个体处方。",
+      "population": "综述所覆盖的实验与临床资料。",
+      "citation": {
+        "title": "Probiotics and prebiotics in intestinal health and disease: from biology to the clinic",
+        "authors": "Sanders et al.",
+        "year": 2019,
+        "doi": "10.1038/s41575-019-0173-3",
+        "pmid": "31296969",
+        "url": "https://doi.org/10.1038/s41575-019-0173-3"
+      }
     }
   ]
 }

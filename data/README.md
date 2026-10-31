@@ -1,6 +1,17 @@
 # Data Directory
 
-Runtime and CI load one file: `seed_triples_v0.3_aligned.json`. The filename stays on the v0.3 path so `src/lib/loadGraph.ts`, Vite, and `scripts/validate-data.mjs` do not move. The graph inside that file is **data_version 0.4** / **schema_version 0.1**.
+Runtime and CI load one file: `seed_triples_v0.3_aligned.json`. The filename stays on the v0.3 path so `src/lib/loadGraph.ts`, Vite, and `scripts/validate-data.mjs` do not move. The graph inside that file is **data_version 0.5** / **schema_version 0.2**.
+
+## seed_triples_v0.3_aligned.json (data 0.5)
+
+70 nodes / 126 links. The data 0.4 book-note graph stays in place: the original 20 excerpts and the later book-note excerpts are unchanged. Data 0.5 adds optional `citation` and **9** literature edges (`lit_*`). One new node, `mediterranean_diet`, anchors the corrected PREDIMED report. Literature edges use `source_file: "literature"`, a non-`book_notes_*` `evidence_type`, and a verified DOI. They are not an open-data dump.
+
+### 0.5 increment
+
+- Schema 0.2: optional `links[].citation` (`title`, `authors`, `year`, `doi`, `pmid`, `url`). `doi` or `pmid` is required when the object is present. Unknown citation keys are rejected. `evidence_type` is still not an AJV enum.
+- Literature edges: 3 `observational`, 5 `expert_synthesis`, 1 `interventional`. Each `limitations` string states that the edge is not a book note and names the study-design limit.
+- DOIs were checked against Crossref and doi.org on 2026-10-31 (Asia/Shanghai) before they were written. The retracted PREDIMED DOI `10.1056/NEJMoa1200303` is not used; the edge uses the republication `10.1056/NEJMoa1800389`.
+- Not in this increment: crawlers, paid full text, GRADE labels, or a bulk open-data load.
 
 ## seed_triples_v0.3_aligned.json (data 0.4)
 
@@ -34,12 +45,12 @@ Expanded extraction covering the six high-relevance files above. Historical only
 
 ### Schema
 
-See `graph_schema.json` and `../docs/GRAPH_SCHEMA.md` (schema 0.1).
+See `graph_schema.json` and `../docs/GRAPH_SCHEMA.md` (schema 0.2).
 
 ### Important
 
-- Book-note mechanistic and observational synthesis, not clinical trial results.
+- The graph is still mostly book-note mechanistic and observational synthesis. Data 0.5 adds a few literature edges, including one republished trial report. None of them is an individual medical instruction.
 - Visualizations must include the project disclaimer.
-- Open data (GBD, FAO, Nutri-Score/NOVA) is not part of data 0.4.
+- Open data (GBD, FAO, Nutri-Score/NOVA) is not part of data 0.5.
 
 See `../docs/DATA_STRATEGY.md`.
