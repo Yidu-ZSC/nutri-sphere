@@ -52,6 +52,9 @@ export interface SimNode extends GraphNode {
   x?: number;
   y?: number;
   z?: number;
+  fx?: number;
+  fy?: number;
+  fz?: number;
 }
 
 export interface SimLink extends Omit<GraphLink, 'source' | 'target'> {
