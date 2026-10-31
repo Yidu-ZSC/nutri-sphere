@@ -53,7 +53,10 @@ export interface GraphData {
   links: GraphLink[];
 }
 
-export type ViewLayer = 'layperson' | 'expert';
+/** Only layperson and expert. Do not add another layer. */
+export const VIEW_LAYERS = ['layperson', 'expert'] as const;
+
+export type ViewLayer = (typeof VIEW_LAYERS)[number];
 
 export type Selection =
   | { kind: 'node'; id: string }

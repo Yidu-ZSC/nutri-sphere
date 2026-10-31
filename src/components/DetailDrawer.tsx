@@ -32,10 +32,18 @@ function Swatch({ value }: { value: string }) {
   return <i className="swatch" style={{ background: semanticColor(value) }} aria-hidden="true" />;
 }
 
-function Field({ label, children }: { label: string; children: string | null | undefined }) {
+function Field({
+  label,
+  children,
+  testId,
+}: {
+  label: string;
+  children: string | null | undefined;
+  testId?: string;
+}) {
   if (!children) return null;
   return (
-    <div>
+    <div data-testid={testId}>
       <dt>{label}</dt>
       <dd>{children}</dd>
     </div>
@@ -113,7 +121,7 @@ function NodeBody({
       <p className="kicker">节点</p>
       <h2>{node.label}</h2>
       <dl className="fields">
-        {expert && <Field label="id" children={node.id} />}
+        {expert && <Field label="id" testId="node-id" children={node.id} />}
         <div>
           <dt>类型</dt>
           <dd>{withEnum(nodeTypeLabel(node.type), node.type, layer)}</dd>
@@ -194,7 +202,6 @@ function CitationBlock({ citation }: { citation: GraphCitation }) {
   const byline = [citation.authors, citation.year == null ? '' : String(citation.year)].filter(Boolean);
   return (
     <div className="citation-block" data-testid="literature-citation">
-      <p className="muted">文献</p>
       {citation.title ? <p className="citation-title">{citation.title}</p> : null}
       {byline.length > 0 ? <p className="muted">{byline.join(' · ')}</p> : null}
       <p className="citation-links">
@@ -220,6 +227,16 @@ function CitationBlock({ citation }: { citation: GraphCitation }) {
         ) : null}
       </p>
     </div>
+  );
+}
+
+function CitationDisclosure({ citation, layer }: { citation: GraphCitation; layer: ViewLayer }) {
+  const expert = layer === 'expert';
+  return (
+    <details key={layer} className="citation-fold" data-testid="citation-details" open={expert}>
+      <summary>{expert ? '文献' : '文献详情'}</summary>
+      <CitationBlock citation={citation} />
+    </details>
   );
 }
 
@@ -268,11 +285,11 @@ function LinkBody({
           </span>
         </div>
         <p className="assurance">{evidenceAssurance(link.evidence_type, link.strength)}</p>
-        <div className="limitations-callout">
+        <div className="limitations-callout" data-testid="link-limitations">
           <p className="muted">局限</p>
           <p>{link.limitations?.trim() ? link.limitations : '未注明局限'}</p>
         </div>
-        {link.citation ? <CitationBlock citation={link.citation} /> : null}
+        {link.citation ? <CitationDisclosure citation={link.citation} layer={layer} /> : null}
         <dl className="fields">
           <ExcerptBlock text={link.excerpt} full={expert} />
           <SourceFile name={link.source_file ?? '未注明'} />
@@ -298,7 +315,10 @@ function LinkBody({
         </details>
       </div>
       {expert && (
-        <dl className="fields">
+        <dl className="fields" data-testid="expert-link-meta">
+          <Field label="边 id" testId="edge-id" children={link.id} />
+          <Field label="dose_response" testId="dose-response" children={link.dose_response} />
+          <Field label="population" testId="population" children={link.population} />
           <Field label="direction" children={withEnum(directionLabel(link.direction), link.direction, layer)} />
           <Field
             label="strength"
@@ -310,9 +330,6 @@ function LinkBody({
           />
           <Field label="note_id" children={link.note_id} />
           <Field label="citation" children={formatUnknown(link.citation)} />
-          <Field label="边 id" children={link.id} />
-          <Field label="dose_response" children={link.dose_response} />
-          <Field label="population" children={link.population} />
           <Field label="weight" children={link.weight == null ? null : String(link.weight)} />
           <Field label="metadata" children={formatUnknown(link.metadata)} />
         </dl>

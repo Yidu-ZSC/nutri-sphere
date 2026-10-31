@@ -30,7 +30,7 @@ export function ThemeBar({
             <button
               key={theme.id}
               type="button"
-              className="chip"
+              className={theme.kind === 'mechanism_deep' ? 'chip chip--deep' : 'chip'}
               aria-pressed={pressed}
               onClick={() => onTheme(pressed ? null : theme)}
             >

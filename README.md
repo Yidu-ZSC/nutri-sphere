@@ -8,7 +8,7 @@ NutriSphere is an open-source, product-grade visualization and knowledge system 
 
 ## Current Status
 
-Phase 1 web app lives in `src/` (React + Vite + TypeScript). The default view is a 2D hierarchical pathway (`react-force-graph-2d`); 3D exploration (`react-force-graph-3d`) is optional. It loads the aligned seed graph, with search, disease/mechanism filters, layperson/expert layers, an evidence drawer, and a permanent disclaimer.
+Phase 1 web app lives in `src/` (React + Vite + TypeScript). The default first screen is a theme lobby of common health topics. Choosing a topic opens a 2D hierarchical pathway (`react-force-graph-2d`); 3D exploration (`react-force-graph-3d`) stays optional and is not the default. The app loads the aligned seed graph, with search, disease/mechanism filters, layperson/expert layers, an evidence drawer, and a permanent disclaimer.
 
 The original single-file viewer remains at `prototype/index.html` for comparison. See `prototype/README.md`.
 
@@ -43,6 +43,20 @@ The running app fetches `${import.meta.env.BASE_URL}data/seed_triples_v0.3_align
 `.github/workflows/pages.yml` publishes `dist/` to GitHub Pages on pushes to `main`. In the repository settings, set Pages → Build and deployment → Source to **GitHub Actions**. CI (`.github/workflows/ci.yml`) runs `validate-data` and `build-web` on pull requests and on pushes to `main`.
 
 The interface is Simplified Chinese. It is an education and research explorer, not a medical device.
+
+### Screen and share URL
+
+The page has two states. `screen` is not the graph projection; `view` remains `2d` or `3d`.
+
+| Param | Meaning |
+| --- | --- |
+| `screen` | `home` or `explore`. Missing `screen` means `home`, unless `disease`, `mechanism`, `node`, `link`, or a known `theme` is present — those open `explore`. An explicit `screen=home` stays on the lobby. |
+| `theme` | Theme id matching `[a-z0-9_-]+`. It maps to a disease and/or mechanism filter when those params are absent. Unknown ids are ignored. The lobby does not write `theme` back into the URL. |
+| `layer` | `layperson` or `expert` only. Any other value, including a third layer, is ignored. |
+| `view` | `2d` or `3d`. Written on `explore`. Unchanged: this is not the home/explore switch. |
+| `disease`, `mechanism`, `layout`, `hide`, `node`, `link` | Same as before. `layout` defaults to hierarchy (`force` is explicit). `hide=1` hides nodes outside the filter. |
+
+Choosing a card on the lobby opens `explore` at 2D, hierarchy layout, with unmatched nodes hidden. Theme copy lives in frontend constants (`src/lib/themes.ts`), not in the graph schema. Filtering by a future audience or mechanism-depth field waits until that schema work lands; this screen uses the current disease and mechanism ids.
 
 ## Vision
 
