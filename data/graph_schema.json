@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Yidu-ZSC/nutri-sphere/blob/main/data/graph_schema.json",
+  "title": "NutriSphere Graph Data",
+  "description": "Schema for nodes and links conforming to docs/GRAPH_SCHEMA.md",
+  "type": "object",
+  "required": ["meta", "nodes", "links"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "schema_version": {"type": "string"},
+        "data_version": {"type": "string"},
+        "disclaimer": {"type": "string"}
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "label", "group"],
+        "properties": {
+          "id": {"type": "string"},
+          "type": {
+            "type": "string",
+            "enum": ["diet_pattern", "food_category", "food", "nutrient", "compound", "metabolite", "mechanism", "disease", "biomarker"]
+          },
+          "label": {"type": "string"},
+          "group": {
+            "type": "string",
+            "enum": ["protective", "risk", "neutral", "mixed"]
+          },
+          "description": {"type": "string"},
+          "aliases": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": true
+      }
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source", "target", "relation", "direction", "evidence_type"],
+        "properties": {
+          "source": {"type": "string"},
+          "target": {"type": "string"},
+          "relation": {"type": "string"},
+          "direction": {
+            "type": "string",
+            "enum": ["protective", "risk", "neutral", "mixed"]
+          },
+          "evidence_type": {"type": "string"},
+          "strength": {
+            "type": "string",
+            "enum": ["low", "moderate", "high", "quantitative"]
+          },
+          "source_file": {"type": "string"},
+          "note_id": {"type": "string"},
+          "excerpt": {"type": "string"},
+          "limitations": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    }
+  }
+}
