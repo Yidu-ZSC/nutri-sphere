@@ -6,6 +6,11 @@ declare module 'three-spritetext' {
     text: string;
     textHeight: number;
     color: string;
+    backgroundColor: string | false;
+    padding: number | [number, number];
+    borderRadius: number | [number, number, number, number];
+    strokeWidth: number;
+    strokeColor: string;
     fontFace: string;
     fontSize: number;
     fontWeight: string;

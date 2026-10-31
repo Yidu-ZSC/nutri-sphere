@@ -1,16 +1,22 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DetailDrawer } from './components/DetailDrawer';
 import { DisclaimerBar } from './components/DisclaimerBar';
 import { FilterPanel } from './components/FilterPanel';
 import { GraphCanvas } from './components/GraphCanvas';
+import { LayoutToggle } from './components/LayoutToggle';
+import { Legend } from './components/Legend';
 import { SearchBar } from './components/SearchBar';
+import { ThemeBar } from './components/ThemeBar';
 import { ViewLayerToggle } from './components/ViewLayerToggle';
-import { focusedNodeIds, isFocusEmpty } from './lib/focus';
-import { loadGraph } from './lib/loadGraph';
-import { PALETTE } from './lib/palette';
-import { searchGraph, type SearchHit } from './lib/search';
-import { readViewLayer, writeViewLayer } from './lib/viewLayer';
 import { useMediaQuery } from './hooks/useMediaQuery';
+import { evidenceCounts } from './lib/copy';
+import { focusedNodeIds, isFocusEmpty } from './lib/focus';
+import type { LayoutMode } from './lib/layout';
+import { loadGraph } from './lib/loadGraph';
+import { searchGraph, type SearchHit } from './lib/search';
+import { findLinkIndex, linkKey, parseViewQuery, serializeViewQuery, type ParsedShare } from './lib/shareUrl';
+import { EXPLORE_THEMES, type ExploreTheme } from './lib/themes';
+import { readViewLayer, writeViewLayer } from './lib/viewLayer';
 import type { GraphData, Selection, ViewLayer } from './types/graph';
 
 type LoadState =
@@ -18,28 +24,65 @@ type LoadState =
   | { status: 'error'; message: string }
   | { status: 'ready'; graph: GraphData };
 
+function readInitialQuery(): ParsedShare {
+  if (typeof window === 'undefined') {
+    return {
+      disease: null,
+      mechanism: null,
+      layer: null,
+      layout: null,
+      hideUnmatched: false,
+      node: null,
+      link: null,
+    };
+  }
+  return parseViewQuery(window.location.search);
+}
+
 export function App() {
   const mobile = useMediaQuery('(max-width: 768px)');
+  const initialQuery = useRef(readInitialQuery());
   const [load, setLoad] = useState<LoadState>({ status: 'loading' });
   const [attempt, setAttempt] = useState(0);
-  const [layer, setLayer] = useState<ViewLayer>(() => readViewLayer());
+  const [layer, setLayer] = useState<ViewLayer>(() => initialQuery.current.layer ?? readViewLayer());
+  const [layout, setLayout] = useState<LayoutMode>(() => initialQuery.current.layout ?? 'hierarchy');
+  const [hideUnmatched, setHideUnmatched] = useState(() => initialQuery.current.hideUnmatched);
   const [query, setQuery] = useState('');
-  const [diseaseId, setDiseaseId] = useState<string | null>(null);
-  const [mechanismId, setMechanismId] = useState<string | null>(null);
+  const [diseaseId, setDiseaseId] = useState<string | null>(() => initialQuery.current.disease);
+  const [mechanismId, setMechanismId] = useState<string | null>(() => initialQuery.current.mechanism);
   const [selection, setSelection] = useState<Selection | null>(null);
   const [sheet, setSheet] = useState<'search' | 'filter' | null>(null);
   const [aboutOpen, setAboutOpen] = useState(false);
-  const [autoRotate, setAutoRotate] = useState(() => {
-    if (typeof window === 'undefined') return true;
-    return !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  });
+  const [copied, setCopied] = useState(false);
+  const [autoRotate, setAutoRotate] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
     setLoad({ status: 'loading' });
     loadGraph()
       .then((graph) => {
-        if (!cancelled) setLoad({ status: 'ready', graph });
+        if (cancelled) return;
+        const parsed = initialQuery.current;
+        const disease =
+          parsed.disease && graph.nodes.some((node) => node.id === parsed.disease && node.type === 'disease')
+            ? parsed.disease
+            : null;
+        const mechanism =
+          parsed.mechanism &&
+          graph.nodes.some((node) => node.id === parsed.mechanism && node.type === 'mechanism')
+            ? parsed.mechanism
+            : null;
+        let nextSelection: Selection | null = null;
+        if (parsed.node && graph.nodes.some((node) => node.id === parsed.node)) {
+          nextSelection = { kind: 'node', id: parsed.node };
+        } else if (parsed.link) {
+          const index = findLinkIndex(graph.links, parsed.link);
+          if (index != null) nextSelection = { kind: 'link', index };
+        }
+        setDiseaseId(disease);
+        setMechanismId(mechanism);
+        setSelection(nextSelection);
+        setLoad({ status: 'ready', graph });
       })
       .catch((error: unknown) => {
         if (cancelled) return;
@@ -54,6 +97,25 @@ export function App() {
   useEffect(() => {
     writeViewLayer(layer);
   }, [layer]);
+
+  const graph = load.status === 'ready' ? load.graph : null;
+
+  useEffect(() => {
+    if (!graph) return;
+    const link = selection?.kind === 'link' ? graph.links[selection.index] : undefined;
+    const next = serializeViewQuery({
+      disease: diseaseId,
+      mechanism: mechanismId,
+      layer,
+      layout,
+      hideUnmatched,
+      node: selection?.kind === 'node' ? selection.id : null,
+      link: link ? linkKey(link.source, link.target) : null,
+    });
+    const target = `${window.location.pathname}${next}${window.location.hash}`;
+    const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+    if (current !== target) window.history.replaceState(null, '', target);
+  }, [diseaseId, graph, hideUnmatched, layer, layout, mechanismId, selection]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -72,8 +134,6 @@ export function App() {
     return () => window.removeEventListener('keydown', onKey);
   }, [aboutOpen, selection, sheet]);
 
-  const graph = load.status === 'ready' ? load.graph : null;
-
   const diseases = useMemo(
     () => (graph ? graph.nodes.filter((node) => node.type === 'disease') : []),
     [graph],
@@ -83,15 +143,26 @@ export function App() {
     [graph],
   );
 
+  const safeDisease = diseases.some((node) => node.id === diseaseId) ? diseaseId : null;
+  const safeMechanism = mechanisms.some((node) => node.id === mechanismId) ? mechanismId : null;
+
   const focusIds = useMemo(
-    () => (graph ? focusedNodeIds(graph.links, diseaseId, mechanismId) : null),
-    [graph, diseaseId, mechanismId],
+    () => (graph ? focusedNodeIds(graph.links, safeDisease, safeMechanism) : null),
+    [graph, safeDisease, safeMechanism],
   );
 
   const search = useMemo(
     () => (graph ? searchGraph(query, graph) : { hits: [], truncated: false }),
     [graph, query],
   );
+
+  const counts = useMemo(() => (graph ? evidenceCounts(graph.links) : {}), [graph]);
+
+  const anchorId = useMemo(() => {
+    if (!graph || !selection) return safeMechanism ?? safeDisease;
+    if (selection.kind === 'node') return selection.id;
+    return graph.links[selection.index]?.target ?? safeMechanism ?? safeDisease;
+  }, [graph, safeDisease, safeMechanism, selection]);
 
   const onQuery = useCallback((value: string) => setQuery(value), []);
 
@@ -106,29 +177,31 @@ export function App() {
     setMechanismId(null);
   };
 
-  const filterEmpty =
-    graph != null && isFocusEmpty(focusIds, graph.nodes.map((node) => node.id));
+  const onTheme = (theme: ExploreTheme | null) => {
+    if (!theme) {
+      setDiseaseId(null);
+      setMechanismId(null);
+      return;
+    }
+    setDiseaseId(theme.diseaseId);
+    setMechanismId(theme.mechanismId);
+  };
 
-  const legend = (
-    <ul className="legend" aria-label="颜色图例">
-      <li>
-        <i style={{ background: PALETTE.protective }} aria-hidden="true" />
-        保护相关
-      </li>
-      <li>
-        <i style={{ background: PALETTE.risk }} aria-hidden="true" />
-        风险相关
-      </li>
-      <li>
-        <i style={{ background: PALETTE.neutral }} aria-hidden="true" />
-        中性 / 方向不明确
-      </li>
-      <li>
-        <i style={{ background: PALETTE.mixed }} aria-hidden="true" />
-        混合
-      </li>
-    </ul>
-  );
+  const copyViewLink = () => {
+    const href = window.location.href;
+    const done = () => {
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1400);
+    };
+    if (navigator.clipboard?.writeText) {
+      void navigator.clipboard.writeText(href).then(done).catch(done);
+      return;
+    }
+    done();
+  };
+
+  const filterEmpty = graph != null && isFocusEmpty(focusIds, graph.nodes.map((node) => node.id));
+  const versionLabel = graph?.meta.data_version ? `数据 v${graph.meta.data_version}` : null;
 
   return (
     <div className="app">
@@ -151,8 +224,8 @@ export function App() {
             <FilterPanel
               diseases={diseases}
               mechanisms={mechanisms}
-              diseaseId={diseaseId}
-              mechanismId={mechanismId}
+              diseaseId={safeDisease}
+              mechanismId={safeMechanism}
               layer={layer}
               onDisease={setDiseaseId}
               onMechanism={setMechanismId}
@@ -181,6 +254,7 @@ export function App() {
               </button>
             </div>
           )}
+          <LayoutToggle layout={layout} onChange={setLayout} />
           <ViewLayerToggle layer={layer} onChange={setLayer} />
           <button
             type="button"
@@ -189,6 +263,9 @@ export function App() {
             onClick={() => setAutoRotate((value) => !value)}
           >
             旋转{autoRotate ? '开' : '关'}
+          </button>
+          <button type="button" className="btn btn--ghost" onClick={copyViewLink}>
+            {copied ? '已复制' : '复制链接'}
           </button>
         </div>
       </header>
@@ -211,58 +288,76 @@ export function App() {
         {graph && (
           <>
             <div className="stage-main">
-            <GraphCanvas
-              graph={graph}
-              focusIds={focusIds}
-              selection={selection}
-              layer={layer}
-              autoRotate={autoRotate}
-              onSelectNode={(id) => setSelection({ kind: 'node', id })}
-              onSelectLink={(index) => setSelection({ kind: 'link', index })}
-              onBackground={() => setSelection(null)}
-            />
-            <div className="hud">
-              {legend}
-              <p className="counts" data-testid="graph-stats">
-                {graph.nodes.length} 节点 · {graph.links.length} 关联
-                {focusIds ? ` · 聚焦 ${[...focusIds].filter((id) => graph.nodes.some((node) => node.id === id)).length}` : ''}
-              </p>
-              <p className="hud-note">连线更粗表示证据强度更高。颜色与文字同时表示方向。</p>
-            </div>
-            {filterEmpty && (
-              <div className="empty-filter" role="status">
-                <p>无匹配，清除过滤</p>
-                <button type="button" className="btn" onClick={clearFilters}>
-                  清除全部
-                </button>
+              <GraphCanvas
+                graph={graph}
+                focusIds={focusIds}
+                selection={selection}
+                layer={layer}
+                layout={layout}
+                hideUnmatched={hideUnmatched}
+                compact={mobile}
+                autoRotate={autoRotate}
+                anchorId={anchorId}
+                onSelectNode={(id) => setSelection({ kind: 'node', id })}
+                onSelectLink={(index) => setSelection({ kind: 'link', index })}
+                onBackground={() => setSelection(null)}
+              />
+              <div className="stage-overlay">
+                <ThemeBar
+                  themes={EXPLORE_THEMES}
+                  diseaseId={safeDisease}
+                  mechanismId={safeMechanism}
+                  layout={layout}
+                  hideUnmatched={hideUnmatched}
+                  onTheme={onTheme}
+                  onHideUnmatched={setHideUnmatched}
+                />
               </div>
-            )}
-            {mobile && sheet && (
-              <div className="sheet" role="dialog" aria-label={sheet === 'search' ? '搜索' : '筛选'}>
-                {sheet === 'search' ? (
-                  <SearchBar
-                    hits={search.hits}
-                    truncated={search.truncated}
-                    onQuery={onQuery}
-                    onSelect={onSelectHit}
-                  />
-                ) : (
-                  <FilterPanel
-                    diseases={diseases}
-                    mechanisms={mechanisms}
-                    diseaseId={diseaseId}
-                    mechanismId={mechanismId}
-                    layer={layer}
-                    onDisease={setDiseaseId}
-                    onMechanism={setMechanismId}
-                    onClear={clearFilters}
-                  />
-                )}
-                <button type="button" className="btn" onClick={() => setSheet(null)}>
-                  完成
-                </button>
+              <div className="hud">
+                <Legend />
+                <p className="counts" data-testid="graph-stats">
+                  {graph.nodes.length} 节点 · {graph.links.length} 关联
+                  {focusIds
+                    ? ` · 聚焦 ${[...focusIds].filter((id) => graph.nodes.some((node) => node.id === id)).length}`
+                    : ''}
+                  {versionLabel ? ` · ${versionLabel}` : ''}
+                </p>
+                <p className="hud-note">颜色表示关联方向，线越粗表示强度越高。形状区分节点类型。</p>
               </div>
-            )}
+              {filterEmpty && (
+                <div className="empty-filter" role="status">
+                  <p>无匹配，清除过滤</p>
+                  <button type="button" className="btn" onClick={clearFilters}>
+                    清除全部
+                  </button>
+                </div>
+              )}
+              {mobile && sheet && (
+                <div className="sheet" role="dialog" aria-label={sheet === 'search' ? '搜索' : '筛选'}>
+                  {sheet === 'search' ? (
+                    <SearchBar
+                      hits={search.hits}
+                      truncated={search.truncated}
+                      onQuery={onQuery}
+                      onSelect={onSelectHit}
+                    />
+                  ) : (
+                    <FilterPanel
+                      diseases={diseases}
+                      mechanisms={mechanisms}
+                      diseaseId={safeDisease}
+                      mechanismId={safeMechanism}
+                      layer={layer}
+                      onDisease={setDiseaseId}
+                      onMechanism={setMechanismId}
+                      onClear={clearFilters}
+                    />
+                  )}
+                  <button type="button" className="btn" onClick={() => setSheet(null)}>
+                    完成
+                  </button>
+                </div>
+              )}
             </div>
             {selection && (
               <DetailDrawer
@@ -270,6 +365,7 @@ export function App() {
                 selection={selection}
                 layer={layer}
                 mobile={mobile}
+                evidenceCounts={counts}
                 onClose={() => setSelection(null)}
                 onSelectNode={(id) => setSelection({ kind: 'node', id })}
                 onSelectLink={(index) => setSelection({ kind: 'link', index })}
@@ -282,6 +378,9 @@ export function App() {
       <DisclaimerBar
         meta={graph?.meta ?? null}
         aboutOpen={aboutOpen}
+        nodeCount={graph?.nodes.length ?? null}
+        linkCount={graph?.links.length ?? null}
+        evidenceCounts={counts}
         onAboutOpen={() => setAboutOpen(true)}
         onAboutClose={() => setAboutOpen(false)}
       />

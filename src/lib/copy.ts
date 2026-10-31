@@ -104,6 +104,65 @@ export function evidenceLabel(value: string): string {
   return mapped(EVIDENCE, value);
 }
 
+/** Short chip text. Book notes stay visibly "书摘", never a clinical grade. */
+const EVIDENCE_BADGE: Record<string, string> = {
+  book_notes_mechanistic: '书摘·机制',
+  book_notes_observational_synthesis: '书摘·观察综述',
+  observational: '观察研究',
+  mechanistic: '机制/实验',
+  interventional: '干预/试验',
+  ecological: '生态/人群',
+  expert_synthesis: '专家综述',
+};
+
+const EVIDENCE_DETAIL: Record<string, string> = {
+  book_notes_mechanistic: '书摘中的机制描述',
+  book_notes_observational_synthesis: '书摘中对观察资料的归纳',
+  observational: '观察性研究',
+  mechanistic: '实验或实验室机制资料',
+  interventional: '干预研究或对照试验',
+  ecological: '地区或人群层面的相关',
+  expert_synthesis: '综述或共识性归纳',
+};
+
+export const EVIDENCE_LADDER: readonly { id: string; badge: string }[] = [
+  { id: 'book_notes_mechanistic', badge: '书摘·机制' },
+  { id: 'book_notes_observational_synthesis', badge: '书摘·观察综述' },
+  { id: 'observational', badge: '观察研究' },
+  { id: 'mechanistic', badge: '机制/实验' },
+  { id: 'interventional', badge: '干预/试验' },
+  { id: 'ecological', badge: '生态/人群' },
+  { id: 'expert_synthesis', badge: '专家综述' },
+];
+
+export function evidenceBadge(value: string): string {
+  return EVIDENCE_BADGE[value] ?? evidenceLabel(value);
+}
+
+export function evidenceDetail(value: string): string {
+  return EVIDENCE_DETAIL[value] ?? '未映射类型';
+}
+
+export function evidenceCounts(links: readonly { evidence_type: string }[]): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const link of links) {
+    counts[link.evidence_type] = (counts[link.evidence_type] ?? 0) + 1;
+  }
+  return counts;
+}
+
+export function evidenceStatus(id: string, counts: Record<string, number>): string {
+  const count = counts[id] ?? 0;
+  return count > 0 ? `已收录 ${count}` : '尚未收录该级';
+}
+
+export function evidenceAssurance(type: string, strength: string | undefined): string {
+  const badge = evidenceBadge(type);
+  const strengthText = strengthLabel(strength);
+  if (type.startsWith('book_notes_')) return `${strengthText} · ${badge}（非临床试验）`;
+  return `${strengthText} · ${badge}`;
+}
+
 export function withEnum(vernacular: string, raw: string, layer: ViewLayer): string {
   if (layer === 'expert') return `${vernacular} · ${raw}`;
   return vernacular;

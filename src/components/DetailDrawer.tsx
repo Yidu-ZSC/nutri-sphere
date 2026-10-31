@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState, type PointerEvent } from 'react';
 import {
   directionLabel,
+  evidenceAssurance,
+  evidenceBadge,
+  evidenceDetail,
   evidenceLabel,
+  evidenceStatus,
+  EVIDENCE_LADDER,
   groupLabel,
   nodeTypeLabel,
   strengthLabel,
@@ -16,6 +21,7 @@ interface DetailDrawerProps {
   selection: Selection;
   layer: ViewLayer;
   mobile: boolean;
+  evidenceCounts: Record<string, number>;
   onClose: () => void;
   onSelectNode: (id: string) => void;
   onSelectLink: (index: number) => void;
@@ -139,7 +145,8 @@ function NodeBody({
                       {link.relation}
                     </span>
                     <span className="muted">
-                      {directionLabel(link.direction)} · {endpointLabel(graph, otherId, layer)}
+                      {directionLabel(link.direction)} · {evidenceBadge(link.evidence_type)} ·{' '}
+                      {endpointLabel(graph, otherId, layer)}
                     </span>
                   </button>
                 </li>
@@ -152,21 +159,54 @@ function NodeBody({
   );
 }
 
+function SourceFile({ name }: { name: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <div>
+      <dt>来源文件</dt>
+      <dd className="source-line">
+        <code>{name}</code>
+        <button
+          type="button"
+          className="btn btn--ghost"
+          onClick={() => {
+            const finish = () => {
+              setCopied(true);
+              window.setTimeout(() => setCopied(false), 1200);
+            };
+            if (navigator.clipboard?.writeText) {
+              void navigator.clipboard.writeText(name).then(finish).catch(finish);
+              return;
+            }
+            finish();
+          }}
+        >
+          {copied ? '已复制' : '复制'}
+        </button>
+      </dd>
+    </div>
+  );
+}
+
 function LinkBody({
   graph,
   link,
   layer,
+  counts,
   onSelectNode,
 }: {
   graph: GraphData;
   link: GraphLink;
   layer: ViewLayer;
+  counts: Record<string, number>;
   onSelectNode: (id: string) => void;
 }) {
   const expert = layer === 'expert';
+  const known = new Set(EVIDENCE_LADDER.map((step) => step.id));
+  const extras = Object.keys(counts).filter((id) => !known.has(id));
   return (
     <>
-      <p className="kicker">关联</p>
+      <p className="kicker">关联证据</p>
       <h2>{link.relation}</h2>
       <p className="endpoints">
         <button type="button" className="linkish" onClick={() => onSelectNode(link.source)}>
@@ -177,31 +217,66 @@ function LinkBody({
           {endpointLabel(graph, link.target, layer)}
         </button>
       </p>
-      <dl className="fields">
-        <div>
-          <dt>方向</dt>
-          <dd className="inline">
+      <div className="evidence-card" data-testid="evidence-card">
+        <div className="badge-row" data-testid="evidence-badges">
+          <span className="badge badge--direction">
             <Swatch value={link.direction} />
-            {withEnum(directionLabel(link.direction), link.direction, layer)}
-          </dd>
+            {directionLabel(link.direction)}
+          </span>
+          <span className="badge badge--evidence">{evidenceBadge(link.evidence_type)}</span>
+          <span className="badge badge--strength">
+            <span className={`legend-line legend-line--${link.strength === 'high' ? 'high' : link.strength === 'moderate' ? 'mid' : 'low'}`} />
+            {strengthLabel(link.strength)}
+          </span>
         </div>
-        <Field
-          label="强度"
-          children={
-            link.strength ? withEnum(strengthLabel(link.strength), link.strength, layer) : '未注明'
-          }
-        />
-        <Field label="证据类型" children={withEnum(evidenceLabel(link.evidence_type), link.evidence_type, layer)} />
-        <ExcerptBlock text={link.excerpt} full={expert} />
-        <Field label="来源文件" children={link.source_file ?? '未注明'} />
-        <Field label="局限" children={link.limitations?.trim() ? link.limitations : '未注明局限'} />
-        {expert && <Field label="note_id" children={link.note_id} />}
-        {expert && <Field label="边 id" children={link.id} />}
-        {expert && <Field label="dose_response" children={link.dose_response} />}
-        {expert && <Field label="population" children={link.population} />}
-        {expert && <Field label="weight" children={link.weight == null ? null : String(link.weight)} />}
-        {expert && <Field label="metadata" children={formatUnknown(link.metadata)} />}
-      </dl>
+        <p className="assurance">{evidenceAssurance(link.evidence_type, link.strength)}</p>
+        <div className="limitations-callout">
+          <p className="muted">局限</p>
+          <p>{link.limitations?.trim() ? link.limitations : '未注明局限'}</p>
+        </div>
+        <dl className="fields">
+          <ExcerptBlock text={link.excerpt} full={expert} />
+          <SourceFile name={link.source_file ?? '未注明'} />
+          <Field label="证据类型说明" children={evidenceDetail(link.evidence_type)} />
+        </dl>
+        <details className="ladder">
+          <summary>证据类型说明</summary>
+          <ul>
+            {EVIDENCE_LADDER.map((step) => (
+              <li key={step.id} className={step.id === link.evidence_type ? 'is-current' : undefined}>
+                <span>{step.badge}</span>
+                <span className="muted">{evidenceStatus(step.id, counts)}</span>
+              </li>
+            ))}
+            {extras.map((id) => (
+              <li key={id} className={id === link.evidence_type ? 'is-current' : undefined}>
+                <span>{evidenceBadge(id)}</span>
+                <span className="muted">{evidenceStatus(id, counts)}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="muted">这些名称只说明资料来源，不是临床等级。</p>
+        </details>
+      </div>
+      {expert && (
+        <dl className="fields">
+          <Field label="direction" children={withEnum(directionLabel(link.direction), link.direction, layer)} />
+          <Field
+            label="strength"
+            children={link.strength ? withEnum(strengthLabel(link.strength), link.strength, layer) : '未注明'}
+          />
+          <Field
+            label="evidence_type"
+            children={withEnum(evidenceLabel(link.evidence_type), link.evidence_type, layer)}
+          />
+          <Field label="note_id" children={link.note_id} />
+          <Field label="边 id" children={link.id} />
+          <Field label="dose_response" children={link.dose_response} />
+          <Field label="population" children={link.population} />
+          <Field label="weight" children={link.weight == null ? null : String(link.weight)} />
+          <Field label="metadata" children={formatUnknown(link.metadata)} />
+        </dl>
+      )}
     </>
   );
 }
@@ -211,6 +286,7 @@ export function DetailDrawer({
   selection,
   layer,
   mobile,
+  evidenceCounts,
   onClose,
   onSelectNode,
   onSelectLink,
@@ -273,7 +349,13 @@ export function DetailDrawer({
           <NodeBody graph={graph} node={node} layer={layer} onSelectLink={onSelectLink} />
         )}
         {selection.kind === 'link' && link && (
-          <LinkBody graph={graph} link={link} layer={layer} onSelectNode={onSelectNode} />
+          <LinkBody
+            graph={graph}
+            link={link}
+            layer={layer}
+            counts={evidenceCounts}
+            onSelectNode={onSelectNode}
+          />
         )}
         {selection.kind === 'node' && !node && <p>未找到该节点。</p>}
         {selection.kind === 'link' && !link && <p>未找到该关联。</p>}

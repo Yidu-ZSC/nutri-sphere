@@ -5,7 +5,7 @@ import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const banned = ['治愈', '疗效', '处方', '停药', '你患有', '诊断为', '包治', '必死', '替代就医'];
+const banned = ['治愈', '疗效', '处方', '停药', '你患有', '诊断为', '包治', '必死', '替代就医', '防治', 'GRADE'];
 
 function walk(dir, acc = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
