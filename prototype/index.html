@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>NutriSphere Prototype - 3D Graph</title>
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; background: #111; color: #eee; }
+    #graph { width: 100vw; height: 100vh; }
+    #info {
+      position: absolute; top: 12px; left: 12px; max-width: 380px;
+      background: rgba(0,0,0,0.75); padding: 12px; border-radius: 8px;
+      font-size: 14px; line-height: 1.4; pointer-events: none;
+    }
+    #disclaimer {
+      position: absolute; bottom: 12px; left: 12px; right: 12px;
+      font-size: 12px; opacity: 0.7; text-align: center;
+    }
+  </style>
+  <script src="//cdn.jsdelivr.net/npm/3d-force-graph"></script>
+</head>
+<body>
+  <div id="graph"></div>
+  <div id="info">点击节点或边查看详情。绿色=保护方向，红色=风险方向。</div>
+  <div id="disclaimer">
+    教育与研究原型 · 非诊疗工具 · 数据来自书摘机制描述 · 请咨询专业医师
+  </div>
+
+  <script>
+    const colorMap = {
+      protective: '#4ade80',
+      risk: '#f87171',
+      neutral: '#94a3b8',
+      mixed: '#fbbf24'
+    };
+
+    fetch('../data/seed_triples_v0.3_aligned.json')
+      .then(r => r.json())
+      .then(data => {
+        const Graph = ForceGraph3D()
+          (document.getElementById('graph'))
+          .graphData({
+            nodes: data.nodes,
+            links: data.links
+          })
+          .nodeLabel(node => `${node.label}\n(${node.type})`)
+          .nodeColor(node => colorMap[node.group] || '#888')
+          .nodeVal(8)
+          .linkColor(link => colorMap[link.direction] || '#666')
+          .linkWidth(link => link.strength === 'high' ? 2.5 : link.strength === 'moderate' ? 1.5 : 0.8)
+          .linkDirectionalParticles(2)
+          .linkDirectionalParticleWidth(1.5)
+          .onNodeClick(node => {
+            document.getElementById('info').innerHTML =
+              `<strong>${node.label}</strong><br>` +
+              `类型: ${node.type}<br>` +
+              `组: ${node.group}<br>` +
+              (node.description ? node.description : '');
+          })
+          .onLinkClick(link => {
+            document.getElementById('info').innerHTML =
+              `<strong>${link.relation}</strong><br>` +
+              `方向: ${link.direction} · 强度: ${link.strength}<br>` +
+              `证据: ${link.evidence_type}<br>` +
+              `来源: ${link.source_file || ''}<br>` +
+              (link.excerpt ? `<em>${link.excerpt}</em><br>` : '') +
+              (link.limitations ? `局限: ${link.limitations}` : '');
+          });
+
+        // Auto-rotate gently
+        Graph.controls().autoRotate = true;
+        Graph.controls().autoRotateSpeed = 0.5;
+      })
+      .catch(err => {
+        document.getElementById('info').textContent = '加载数据失败: ' + err.message;
+      });
+  </script>
+</body>
+</html>
