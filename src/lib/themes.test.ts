@@ -3,15 +3,18 @@ import fs from 'node:fs';
 import test from 'node:test';
 import { EXPLORE_THEMES, HIERARCHY_HINT } from './themes.ts';
 
-test('explore themes stay on the phase 1 seed and avoid treatment wording', () => {
+test('explore themes still resolve on the aligned seed and avoid treatment wording', () => {
   const seed = JSON.parse(
     fs.readFileSync(new URL('../../data/seed_triples_v0.3_aligned.json', import.meta.url), 'utf8'),
   ) as {
+    meta: { schema_version?: string; data_version?: string };
     nodes: { id: string; type: string }[];
     links: unknown[];
   };
-  assert.equal(seed.nodes.length, 24);
-  assert.equal(seed.links.length, 20);
+  assert.equal(seed.meta.schema_version, '0.1');
+  assert.equal(seed.meta.data_version, '0.4');
+  assert.equal(seed.nodes.length, 69);
+  assert.equal(seed.links.length, 117);
   assert.ok(EXPLORE_THEMES.length >= 3);
   assert.equal(HIERARCHY_HINT.includes('防治'), false);
   for (const theme of EXPLORE_THEMES) {

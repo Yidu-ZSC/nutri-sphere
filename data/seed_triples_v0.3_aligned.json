@@ -1,37 +1,808 @@
 {
   "meta": {
     "schema_version": "0.1",
-    "data_version": "0.3",
+    "data_version": "0.4",
     "extracted_from": "knowledge-base Project (high relevance files)",
-    "extraction_date": "2026-10-30",
-    "note": "Aligned to GRAPH_SCHEMA.md. Evidence primarily book_notes. Educational use only.",
+    "extraction_date": "2026-10-31",
+    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 adds curated book-note nodes and edges from the same six source files. Evidence remains book_notes. Educational use only. The original 20 excerpts are unchanged.",
     "disclaimer": "Educational / research use only. Not medical advice."
   },
   "nodes": [
-    {"id": "plant_based_diet", "type": "diet_pattern", "label": "全食物植物性膳食 / 素食", "group": "protective", "description": "以全食物植物为主的膳食模式"},
-    {"id": "animal_foods", "type": "food_category", "label": "动物性食物 / 动物蛋白", "group": "risk", "description": "肉、蛋、乳制品等"},
-    {"id": "ultra_processed", "type": "food_category", "label": "超加工食品", "group": "risk"},
-    {"id": "dietary_fiber", "type": "nutrient", "label": "膳食纤维 / 益生元", "group": "protective"},
-    {"id": "vegetables_greens", "type": "food", "label": "黄绿色蔬菜", "group": "protective"},
-    {"id": "soy", "type": "food", "label": "大豆食品", "group": "protective"},
-    {"id": "berries_fruits", "type": "food", "label": "浆果 / 核果 / 番茄等", "group": "protective"},
-    {"id": "omega3", "type": "nutrient", "label": "ω-3 多不饱和脂肪酸", "group": "protective"},
-    {"id": "glutathione", "type": "compound", "label": "谷胱甘肽", "group": "protective"},
-    {"id": "scfa", "type": "metabolite", "label": "短链脂肪酸 (SCFA)", "group": "protective"},
-    {"id": "reactive_oxygen", "type": "mechanism", "label": "活性氧 / 氧化应激", "group": "risk"},
-    {"id": "chronic_inflammation", "type": "mechanism", "label": "慢性炎症", "group": "risk"},
-    {"id": "glycation", "type": "mechanism", "label": "糖化反应", "group": "risk"},
-    {"id": "gut_microbiome", "type": "mechanism", "label": "肠道菌群多样性", "group": "protective"},
-    {"id": "gut_barrier_leak", "type": "mechanism", "label": "肠道屏障损伤 / 肠漏", "group": "risk"},
-    {"id": "lps", "type": "mechanism", "label": "脂多糖 (LPS) 入血", "group": "risk"},
-    {"id": "angiogenesis_defense", "type": "mechanism", "label": "血管生成防御", "group": "protective"},
-    {"id": "epigenetic_positive", "type": "mechanism", "label": "有益表观遗传修饰", "group": "protective"},
-    {"id": "immune_balance", "type": "mechanism", "label": "免疫系统平衡", "group": "protective"},
-    {"id": "liver_chronic", "type": "disease", "label": "慢性肝炎相关进展", "group": "risk"},
-    {"id": "digestive_cancer_risk", "type": "disease", "label": "消化系统癌症风险", "group": "risk"},
-    {"id": "cardiometabolic", "type": "disease", "label": "心血管 / 代谢疾病风险", "group": "risk"},
-    {"id": "autoimmune", "type": "disease", "label": "自身免疫相关", "group": "risk"},
-    {"id": "mental_health", "type": "disease", "label": "心理健康 / 抑郁等", "group": "risk"}
+    {
+      "id": "plant_based_diet",
+      "type": "diet_pattern",
+      "label": "全食物植物性膳食 / 素食",
+      "group": "protective",
+      "description": "以全食物植物为主的膳食模式",
+      "aliases": [
+        "植物性膳食",
+        "全植物",
+        "蔬食",
+        "WFPB"
+      ]
+    },
+    {
+      "id": "animal_foods",
+      "type": "food_category",
+      "label": "动物性食物 / 动物蛋白",
+      "group": "risk",
+      "description": "肉、蛋、乳制品等",
+      "aliases": [
+        "动物性食品",
+        "动物蛋白",
+        "肉蛋奶"
+      ]
+    },
+    {
+      "id": "ultra_processed",
+      "type": "food_category",
+      "label": "超加工食品",
+      "group": "risk",
+      "description": "种子里的超加工食品类别。书摘多称高度精制或西式加工饮食，不是 NOVA 分级论文。",
+      "aliases": [
+        "超加工",
+        "高度加工食品",
+        "UPF"
+      ]
+    },
+    {
+      "id": "dietary_fiber",
+      "type": "nutrient",
+      "label": "膳食纤维 / 益生元",
+      "group": "protective",
+      "description": "植物性食物里人体自身酶难以消化、可供菌群利用的碳水化合物。",
+      "aliases": [
+        "膳食纤维",
+        "益生元",
+        "fiber"
+      ]
+    },
+    {
+      "id": "vegetables_greens",
+      "type": "food",
+      "label": "黄绿色蔬菜",
+      "group": "protective",
+      "description": "芹菜、菠菜等黄绿色蔬菜。",
+      "aliases": [
+        "黄绿蔬菜",
+        "绿叶菜",
+        "芹菜",
+        "菠菜"
+      ]
+    },
+    {
+      "id": "soy",
+      "type": "food",
+      "label": "大豆食品",
+      "group": "protective",
+      "description": "豆腐、豆浆、毛豆等大豆食品。",
+      "aliases": [
+        "大豆",
+        "豆腐",
+        "豆浆"
+      ]
+    },
+    {
+      "id": "berries_fruits",
+      "type": "food",
+      "label": "浆果 / 核果 / 番茄等",
+      "group": "protective",
+      "description": "浆果、核果、番茄等富含色素的植物性食物。",
+      "aliases": [
+        "浆果",
+        "番茄",
+        "核果"
+      ]
+    },
+    {
+      "id": "omega3",
+      "type": "nutrient",
+      "label": "ω-3 多不饱和脂肪酸",
+      "group": "protective",
+      "description": "书摘中的 ω-3 多不饱和脂肪酸，包括植物性 ALA 等相关叙述。",
+      "aliases": [
+        "omega-3",
+        "ω-3",
+        "多不饱和脂肪酸"
+      ]
+    },
+    {
+      "id": "glutathione",
+      "type": "compound",
+      "label": "谷胱甘肽",
+      "group": "protective",
+      "description": "书摘从黄绿色蔬菜汤讨论的抗氧化三肽。",
+      "aliases": [
+        "谷胱甘肽",
+        "GSH"
+      ]
+    },
+    {
+      "id": "scfa",
+      "type": "metabolite",
+      "label": "短链脂肪酸 (SCFA)",
+      "group": "protective",
+      "description": "菌群发酵植物纤维后产生的短链脂肪酸，丁酸是其中代表。",
+      "aliases": [
+        "短链脂肪酸",
+        "SCFA"
+      ]
+    },
+    {
+      "id": "reactive_oxygen",
+      "type": "mechanism",
+      "label": "活性氧 / 氧化应激",
+      "group": "risk",
+      "description": "过量活性氧带来的氧化压力。",
+      "aliases": [
+        "活性氧",
+        "氧化应激",
+        "自由基"
+      ]
+    },
+    {
+      "id": "chronic_inflammation",
+      "type": "mechanism",
+      "label": "慢性炎症",
+      "group": "risk",
+      "description": "持续存在的低度炎症状态，是书摘里连接饮食与多种结局的枢纽。",
+      "aliases": [
+        "慢性炎症",
+        "低度炎症"
+      ]
+    },
+    {
+      "id": "glycation",
+      "type": "mechanism",
+      "label": "糖化反应",
+      "group": "risk",
+      "description": "糖与蛋白质等结合并形成糖化产物的过程。",
+      "aliases": [
+        "糖化",
+        "糖化反应"
+      ]
+    },
+    {
+      "id": "gut_microbiome",
+      "type": "mechanism",
+      "label": "肠道菌群多样性",
+      "group": "protective",
+      "description": "肠道微生物的组成与多样性。",
+      "aliases": [
+        "肠道菌群",
+        "微生物组",
+        "菌群多样性"
+      ]
+    },
+    {
+      "id": "gut_barrier_leak",
+      "type": "mechanism",
+      "label": "肠道屏障损伤 / 肠漏",
+      "group": "risk",
+      "description": "肠上皮屏障受损、通透性增加的状态。",
+      "aliases": [
+        "肠漏",
+        "肠道屏障",
+        "肠通透性"
+      ]
+    },
+    {
+      "id": "lps",
+      "type": "mechanism",
+      "label": "脂多糖 (LPS) 入血",
+      "group": "risk",
+      "description": "革兰阴性菌外膜上的脂多糖进入血液的过程。",
+      "aliases": [
+        "脂多糖",
+        "LPS",
+        "内毒素"
+      ]
+    },
+    {
+      "id": "angiogenesis_defense",
+      "type": "mechanism",
+      "label": "血管生成防御",
+      "group": "protective",
+      "description": "调控异常新生血管的防御过程，书摘用来讨论肿瘤血供等话题。",
+      "aliases": [
+        "血管生成",
+        "抗血管生成"
+      ]
+    },
+    {
+      "id": "epigenetic_positive",
+      "type": "mechanism",
+      "label": "有益表观遗传修饰",
+      "group": "protective",
+      "description": "饮食相关生物活性物质对 DNA 与基因表达的有益方向讨论。",
+      "aliases": [
+        "表观遗传",
+        "DNA 保护"
+      ]
+    },
+    {
+      "id": "immune_balance",
+      "type": "mechanism",
+      "label": "免疫系统平衡",
+      "group": "protective",
+      "description": "免疫反应保持在可调节范围内的状态。",
+      "aliases": [
+        "免疫平衡",
+        "免疫调节"
+      ]
+    },
+    {
+      "id": "liver_chronic",
+      "type": "disease",
+      "label": "慢性肝炎相关进展",
+      "group": "risk",
+      "description": "书摘里从慢性肝炎走向肝功能衰竭或肝癌的进展叙述。",
+      "aliases": [
+        "慢性肝炎",
+        "肝癌"
+      ]
+    },
+    {
+      "id": "digestive_cancer_risk",
+      "type": "disease",
+      "label": "消化系统癌症风险",
+      "group": "risk",
+      "description": "消化系统肿瘤相关风险的教育向节点。",
+      "aliases": [
+        "消化系统肿瘤",
+        "胃癌",
+        "肠癌"
+      ]
+    },
+    {
+      "id": "cardiometabolic",
+      "type": "disease",
+      "label": "心血管 / 代谢疾病风险",
+      "group": "risk",
+      "description": "心血管与代谢相关风险的教育向节点。",
+      "aliases": [
+        "心血管",
+        "代谢疾病",
+        "心脏病"
+      ]
+    },
+    {
+      "id": "autoimmune",
+      "type": "disease",
+      "label": "自身免疫相关",
+      "group": "risk",
+      "description": "自身免疫相关风险的教育向节点，不是疾病分类标准。",
+      "aliases": [
+        "自身免疫",
+        "免疫相关疾病"
+      ]
+    },
+    {
+      "id": "mental_health",
+      "type": "disease",
+      "label": "心理健康 / 抑郁等",
+      "group": "risk",
+      "description": "情绪、抑郁等心理相关讨论的教育向节点。",
+      "aliases": [
+        "抑郁",
+        "情绪",
+        "心理健康"
+      ]
+    },
+    {
+      "id": "green_tea",
+      "type": "food",
+      "label": "绿茶",
+      "group": "protective",
+      "description": "书摘中的茶类食物入口，常与茶多酚一并讨论。",
+      "aliases": [
+        "绿茶",
+        "green tea"
+      ]
+    },
+    {
+      "id": "coffee",
+      "type": "food",
+      "label": "咖啡",
+      "group": "protective",
+      "description": "书摘里与茶并列的生物活性饮品入口。",
+      "aliases": [
+        "咖啡",
+        "coffee"
+      ]
+    },
+    {
+      "id": "nuts_seeds",
+      "type": "food",
+      "label": "坚果与种子",
+      "group": "protective",
+      "description": "坚果、核桃等种子类食物。",
+      "aliases": [
+        "坚果",
+        "核桃",
+        "nuts"
+      ]
+    },
+    {
+      "id": "cruciferous",
+      "type": "food",
+      "label": "十字花科蔬菜",
+      "group": "protective",
+      "description": "西兰花、甘蓝等十字花科蔬菜。",
+      "aliases": [
+        "西兰花",
+        "十字花科",
+        "broccoli"
+      ]
+    },
+    {
+      "id": "alliums",
+      "type": "food",
+      "label": "葱蒜类",
+      "group": "protective",
+      "description": "大蒜、洋葱等葱属蔬菜。",
+      "aliases": [
+        "大蒜",
+        "洋葱",
+        "garlic"
+      ]
+    },
+    {
+      "id": "mushrooms",
+      "type": "food",
+      "label": "食用菌菇",
+      "group": "protective",
+      "description": "香菇等食用菌。",
+      "aliases": [
+        "蘑菇",
+        "菌菇",
+        "mushrooms"
+      ]
+    },
+    {
+      "id": "whole_grains",
+      "type": "food",
+      "label": "全谷类",
+      "group": "protective",
+      "description": "保留麸皮与胚芽的谷类主食。",
+      "aliases": [
+        "全谷物",
+        "燕麦",
+        "糙米",
+        "whole grains"
+      ]
+    },
+    {
+      "id": "legumes",
+      "type": "food",
+      "label": "豆类",
+      "group": "protective",
+      "description": "大豆以外的食用豆类，如扁豆、鹰嘴豆。",
+      "aliases": [
+        "扁豆",
+        "鹰嘴豆",
+        "legumes"
+      ]
+    },
+    {
+      "id": "flax_chia",
+      "type": "food",
+      "label": "亚麻籽与奇亚籽",
+      "group": "protective",
+      "description": "书摘里同时作为植物性 ω-3 与纤维例子的种子。",
+      "aliases": [
+        "亚麻籽",
+        "奇亚籽",
+        "flax"
+      ]
+    },
+    {
+      "id": "fermented_foods",
+      "type": "food",
+      "label": "发酵食物",
+      "group": "protective",
+      "description": "发酵蔬菜或豆制品等带有微生物活动的食物。",
+      "aliases": [
+        "发酵食品",
+        "泡菜",
+        "味噌"
+      ]
+    },
+    {
+      "id": "refined_carbs",
+      "type": "food_category",
+      "label": "精制植物性主食",
+      "group": "risk",
+      "description": "书摘所称高度精制的植物性主食，有别于全谷。",
+      "aliases": [
+        "精制主食",
+        "白米饭面",
+        "refined grains"
+      ]
+    },
+    {
+      "id": "processed_meat",
+      "type": "food",
+      "label": "加工肉类",
+      "group": "risk",
+      "description": "经过腌制、烟熏或再制的肉类。",
+      "aliases": [
+        "加工肉",
+        "火腿",
+        "香肠"
+      ]
+    },
+    {
+      "id": "added_sugar",
+      "type": "food_category",
+      "label": "添加糖",
+      "group": "risk",
+      "description": "饮料和食品里额外加入的糖，此处只作为高血糖叙述的膳食入口。",
+      "aliases": [
+        "含糖饮料",
+        "added sugar"
+      ]
+    },
+    {
+      "id": "dairy",
+      "type": "food_category",
+      "label": "乳制品",
+      "group": "risk",
+      "description": "奶与乳制品。书摘多从动物蛋白角度讨论，而不是钙补充建议。",
+      "aliases": [
+        "牛奶",
+        "乳品",
+        "dairy"
+      ]
+    },
+    {
+      "id": "red_meat",
+      "type": "food",
+      "label": "红肉",
+      "group": "risk",
+      "description": "牛、猪、羊等哺乳动物的肌肉。",
+      "aliases": [
+        "牛肉",
+        "猪肉",
+        "red meat"
+      ]
+    },
+    {
+      "id": "herbs_spices",
+      "type": "food",
+      "label": "香草与香料",
+      "group": "protective",
+      "description": "书摘食物名单中的香草和香料。",
+      "aliases": [
+        "香料",
+        "香草",
+        "spices"
+      ]
+    },
+    {
+      "id": "cacao",
+      "type": "food",
+      "label": "可可",
+      "group": "protective",
+      "description": "书摘在血管生成防御食物举例里提到的可可。",
+      "aliases": [
+        "可可",
+        "cacao"
+      ]
+    },
+    {
+      "id": "polyphenols",
+      "type": "nutrient",
+      "label": "多酚",
+      "group": "protective",
+      "description": "植物性食物中的一大类多酚生物活性物质。",
+      "aliases": [
+        "多酚",
+        "polyphenols"
+      ]
+    },
+    {
+      "id": "egcg",
+      "type": "compound",
+      "label": "茶多酚 EGCG",
+      "group": "protective",
+      "description": "绿茶中被书摘点名的儿茶素 EGCG。",
+      "aliases": [
+        "EGCG",
+        "儿茶素"
+      ]
+    },
+    {
+      "id": "carotenoids",
+      "type": "nutrient",
+      "label": "类胡萝卜素",
+      "group": "protective",
+      "description": "黄绿色蔬菜、番茄等食物中的色素类营养素。",
+      "aliases": [
+        "类胡萝卜素",
+        "carotenoids"
+      ]
+    },
+    {
+      "id": "anthocyanins",
+      "type": "compound",
+      "label": "花青素",
+      "group": "protective",
+      "description": "浆果等食物中的花青素类色素。",
+      "aliases": [
+        "花青素",
+        "anthocyanins"
+      ]
+    },
+    {
+      "id": "isoflavones",
+      "type": "compound",
+      "label": "大豆异黄酮",
+      "group": "protective",
+      "description": "大豆中与血管生成防御叙述相关的异黄酮。",
+      "aliases": [
+        "异黄酮",
+        "isoflavones"
+      ]
+    },
+    {
+      "id": "sulforaphane",
+      "type": "compound",
+      "label": "萝卜硫素",
+      "group": "protective",
+      "description": "十字花科蔬菜中与 DNA 防御叙述相关的化合物。",
+      "aliases": [
+        "萝卜硫素",
+        "sulforaphane"
+      ]
+    },
+    {
+      "id": "organosulfur",
+      "type": "compound",
+      "label": "有机硫化物",
+      "group": "protective",
+      "description": "葱蒜类中与免疫叙述相关的含硫化合物。",
+      "aliases": [
+        "有机硫",
+        "大蒜素"
+      ]
+    },
+    {
+      "id": "beta_glucan",
+      "type": "nutrient",
+      "label": "β-葡聚糖",
+      "group": "protective",
+      "description": "菌菇中被书摘与免疫防御一并提到的多糖。",
+      "aliases": [
+        "β-葡聚糖",
+        "beta-glucan"
+      ]
+    },
+    {
+      "id": "resistant_starch",
+      "type": "nutrient",
+      "label": "抗性淀粉",
+      "group": "protective",
+      "description": "在小肠不易消化、可供结肠菌群发酵的淀粉。",
+      "aliases": [
+        "抗性淀粉",
+        "resistant starch"
+      ]
+    },
+    {
+      "id": "butyrate",
+      "type": "metabolite",
+      "label": "丁酸",
+      "group": "protective",
+      "description": "短链脂肪酸中与结肠上皮能量相关的代表组分。",
+      "aliases": [
+        "丁酸",
+        "丁酸盐",
+        "butyrate"
+      ]
+    },
+    {
+      "id": "vitamin_c",
+      "type": "nutrient",
+      "label": "维生素C",
+      "group": "protective",
+      "description": "书摘抗氧化叙述中的维生素 C，不是补充剂剂量。",
+      "aliases": [
+        "维生素C",
+        "抗坏血酸",
+        "vitamin C"
+      ]
+    },
+    {
+      "id": "vitamin_e",
+      "type": "nutrient",
+      "label": "维生素E",
+      "group": "protective",
+      "description": "坚果等食物中被书摘提到的维生素 E。",
+      "aliases": [
+        "维生素E",
+        "vitamin E"
+      ]
+    },
+    {
+      "id": "tmao",
+      "type": "metabolite",
+      "label": "氧化三甲胺",
+      "group": "risk",
+      "description": "书摘转述的菌群相关代谢物，常与红肉前体一并讨论。",
+      "aliases": [
+        "TMAO",
+        "氧化三甲胺"
+      ]
+    },
+    {
+      "id": "tryptophan_metabolites",
+      "type": "metabolite",
+      "label": "色氨酸代谢物",
+      "group": "mixed",
+      "description": "菌群参与色氨酸代谢后的一类信号分子，方向依情境而定。",
+      "aliases": [
+        "色氨酸代谢物",
+        "tryptophan"
+      ]
+    },
+    {
+      "id": "saturated_fat",
+      "type": "nutrient",
+      "label": "饱和脂肪",
+      "group": "risk",
+      "description": "动物性食物中被书摘一并讨论的饱和脂肪。",
+      "aliases": [
+        "饱和脂肪",
+        "饱和脂肪酸"
+      ]
+    },
+    {
+      "id": "heme_iron",
+      "type": "compound",
+      "label": "血红素铁",
+      "group": "risk",
+      "description": "红肉中的血红素铁，书摘将其与氧化损伤综述放在一起。",
+      "aliases": [
+        "血红素铁",
+        "heme iron"
+      ]
+    },
+    {
+      "id": "casein",
+      "type": "compound",
+      "label": "酪蛋白",
+      "group": "risk",
+      "description": "乳中的主要蛋白。书摘用动物实验讨论它与肿瘤促进的关系。",
+      "aliases": [
+        "酪蛋白",
+        "casein"
+      ]
+    },
+    {
+      "id": "insulin_resistance",
+      "type": "mechanism",
+      "label": "胰岛素抵抗",
+      "group": "risk",
+      "description": "胰岛素促进葡萄糖利用的效率下降。",
+      "aliases": [
+        "胰岛素抵抗",
+        "insulin resistance"
+      ]
+    },
+    {
+      "id": "dna_damage",
+      "type": "mechanism",
+      "label": "DNA损伤",
+      "group": "risk",
+      "description": "氧化等因素造成的 DNA 结构损伤。",
+      "aliases": [
+        "DNA损伤",
+        "DNA damage"
+      ]
+    },
+    {
+      "id": "immune_activation",
+      "type": "mechanism",
+      "label": "免疫过度激活",
+      "group": "risk",
+      "description": "免疫反应被持续调动的状态。",
+      "aliases": [
+        "免疫激活",
+        "immune activation"
+      ]
+    },
+    {
+      "id": "mitochondrial_stress",
+      "type": "mechanism",
+      "label": "线粒体应激",
+      "group": "risk",
+      "description": "线粒体功能受扰并牵动下游炎症的过程。",
+      "aliases": [
+        "线粒体",
+        "mitochondrial stress"
+      ]
+    },
+    {
+      "id": "igf1_signaling",
+      "type": "mechanism",
+      "label": "IGF-1信号",
+      "group": "risk",
+      "description": "与胰岛素样生长因子-1 相关的信号讨论，不是化验单解读。",
+      "aliases": [
+        "IGF-1",
+        "胰岛素样生长因子"
+      ]
+    },
+    {
+      "id": "breast_prostate_risk",
+      "type": "disease",
+      "label": "乳腺与前列腺风险",
+      "group": "risk",
+      "description": "书摘中与血管生成、IGF-1 一并讨论的相关风险，不是疾病分类标准。",
+      "aliases": [
+        "乳腺癌",
+        "前列腺癌",
+        "breast",
+        "prostate"
+      ]
+    },
+    {
+      "id": "ibd_related",
+      "type": "disease",
+      "label": "炎症性肠病相关",
+      "group": "risk",
+      "description": "书摘里与屏障和炎症一并提到的肠道炎症相关结局。",
+      "aliases": [
+        "炎症性肠病",
+        "IBD"
+      ]
+    },
+    {
+      "id": "fatty_liver",
+      "type": "disease",
+      "label": "脂肪肝相关风险",
+      "group": "risk",
+      "description": "与代谢和炎症叙述相连的肝脏脂肪相关风险，不同于慢性肝炎进展节点。",
+      "aliases": [
+        "脂肪肝",
+        "NAFLD"
+      ]
+    },
+    {
+      "id": "obesity_risk",
+      "type": "disease",
+      "label": "肥胖相关风险",
+      "group": "risk",
+      "description": "书摘中与纤维、短链脂肪酸和代谢叙述相连的体重相关风险。",
+      "aliases": [
+        "肥胖",
+        "obesity"
+      ]
+    },
+    {
+      "id": "crp",
+      "type": "biomarker",
+      "label": "C反应蛋白",
+      "group": "neutral",
+      "description": "书摘用来参照慢性炎症的可测指标名称，不含参考区间或判读。",
+      "aliases": [
+        "CRP",
+        "C反应蛋白"
+      ]
+    },
+    {
+      "id": "hba1c",
+      "type": "biomarker",
+      "label": "糖化血红蛋白",
+      "group": "neutral",
+      "description": "书摘用来参照长期血糖暴露的可测指标名称，不含目标值或判读。",
+      "aliases": [
+        "HbA1c",
+        "糖化血红蛋白",
+        "A1C"
+      ]
+    }
   ],
   "links": [
     {
@@ -273,6 +1044,1313 @@
       "note_id": "related",
       "excerpt": "肠道细菌失衡的中间产物同样会对线粒体造成直接伤害，转而引发更激烈的炎症反应",
       "limitations": "多书综合"
+    },
+    {
+      "id": "ns009_ultra_microbiome",
+      "source": "ultra_processed",
+      "target": "gut_microbiome",
+      "relation": "西式加工饮食与菌群多样性下降的叙述相连",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id": "ns009_ultra_microbiome",
+      "excerpt": "高度加工的西式饮食在书摘中与菌群多样性下降的叙述连在一起",
+      "limitations": "书摘归纳。节点标签是超加工；书中用语多为西式或加工饮食，不是 NOVA 分类论文。书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_ultra_inflammation",
+      "source": "ultra_processed",
+      "target": "chronic_inflammation",
+      "relation": "作为菌群–屏障–炎症链条的膳食背景",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id": "ns009_ultra_inflammation",
+      "excerpt": "加工饮食在书摘的菌群、屏障与炎症链条里被当作上游膳食背景",
+      "limitations": "书摘归纳，把既有炎症枢纽接到超加工节点，不是新的定量研究。书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_ultra_insulin",
+      "source": "ultra_processed",
+      "target": "insulin_resistance",
+      "relation": "加工膳食与胰岛素相关代谢叙述相连",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_ultra_insulin",
+      "excerpt": "高度加工的膳食模式在书摘的代谢综述里与胰岛素相关问题一并出现",
+      "limitations": "书摘观察性综述，不是血糖管理方案。超加工是种子标签，书中多写加工食品。书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+      "population": "书摘对观察性资料的转述，非本图谱的新队列，非个体因果。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_barrier_autoimmune",
+      "source": "gut_barrier_leak",
+      "target": "autoimmune",
+      "relation": "屏障受损与自身免疫相关讨论被放在同一机制叙述",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id": "ns009_barrier_autoimmune",
+      "excerpt": "书摘把肠道屏障受损、菌群和免疫调控放在同一条叙述里，并延伸到自身免疫相关讨论",
+      "limitations": "书摘机制归纳，不是自身免疫相关问题的判定，也不是病因结论。书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_barrier_immune_activation",
+      "source": "gut_barrier_leak",
+      "target": "immune_activation",
+      "relation": "屏障受损后免疫侧更容易被调动",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id": "ns009_barrier_immune_activation",
+      "excerpt": "屏障受损后，管腔内容物更容易接触免疫侧，书摘用这一点解释下游激活",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_lps_immune_activation",
+      "source": "lps",
+      "target": "immune_activation",
+      "relation": "脂多糖入血作为免疫激活的触发情境",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id": "ns009_lps_immune_activation",
+      "excerpt": "脂多糖入血在书摘中被描述为强烈炎症与免疫激活的触发情境",
+      "limitations": "与既有 LPS→慢性炎症边同一主题；本边补上免疫激活节点，不改原摘录。动物实验语境见原边。"
+    },
+    {
+      "id": "ns009_immune_activation_autoimmune",
+      "source": "immune_activation",
+      "target": "autoimmune",
+      "relation": "持续免疫激活被延伸到自身免疫相关讨论",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id": "ns009_immune_activation_autoimmune",
+      "excerpt": "持续的免疫激活在书摘中被延伸到自身免疫相关风险的机制讨论",
+      "limitations": "书摘机制归纳，不是自身免疫相关问题的判定。书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_greens_vitc",
+      "source": "vegetables_greens",
+      "target": "vitamin_c",
+      "relation": "提供维生素C等抗氧化物",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_greens_vitc",
+      "excerpt": "黄绿色蔬菜在书摘里被当作抗氧化营养素的食物来源，维生素C属于这一类叙述",
+      "limitations": "书摘归纳，非成分表定量，也非补充剂建议。"
+    },
+    {
+      "id": "ns009_greens_carotenoids",
+      "source": "vegetables_greens",
+      "target": "carotenoids",
+      "relation": "含类胡萝卜素等色素",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "ns009_greens_carotenoids",
+      "excerpt": "黄绿色蔬菜的色素物质在书摘的抗氧化叙述中出现，类胡萝卜素是其中一类",
+      "limitations": "书摘归纳，非含量检测。"
+    },
+    {
+      "id": "ns009_greens_fiber",
+      "source": "vegetables_greens",
+      "target": "dietary_fiber",
+      "relation": "提供可发酵的膳食纤维",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_greens_fiber",
+      "excerpt": "黄绿色蔬菜在植物性膳食书摘中同时被写入纤维来源",
+      "limitations": "书摘归纳，非定量摄入建议。"
+    },
+    {
+      "id": "ns009_berry_anthocyanins",
+      "source": "berries_fruits",
+      "target": "anthocyanins",
+      "relation": "含花青素等色素",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_berry_anthocyanins",
+      "excerpt": "浆果、核果、番茄等含类胡萝卜素、花青素等，具有抗血管生成活性",
+      "limitations": "与既有浆果→血管生成边同源书摘，本边拆出花青素。原边摘录未改。"
+    },
+    {
+      "id": "ns009_berry_carotenoids",
+      "source": "berries_fruits",
+      "target": "carotenoids",
+      "relation": "含类胡萝卜素",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_berry_carotenoids",
+      "excerpt": "浆果、核果、番茄等含类胡萝卜素、花青素等，具有抗血管生成活性",
+      "limitations": "与既有浆果→血管生成边同源书摘，本边拆出类胡萝卜素。原边摘录未改。"
+    },
+    {
+      "id": "ns009_berry_polyphenols",
+      "source": "berries_fruits",
+      "target": "polyphenols",
+      "relation": "提供多酚类色素物质",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_berry_polyphenols",
+      "excerpt": "浆果、核果和番茄在书摘中与多酚、花青素一类色素一起出现",
+      "limitations": "书摘归纳。同源原句见花青素与类胡萝卜素边，既有浆果→血管生成摘录未改。"
+    },
+    {
+      "id": "ns009_berry_vitc",
+      "source": "berries_fruits",
+      "target": "vitamin_c",
+      "relation": "同时提供维生素C",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_berry_vitc",
+      "excerpt": "浆果在书摘的抗氧化食物举例里也和维生素C一类营养素一起出现",
+      "limitations": "书摘归纳，非含量检测，非补充剂建议。"
+    },
+    {
+      "id": "ns009_soy_isoflavones",
+      "source": "soy",
+      "target": "isoflavones",
+      "relation": "提供大豆异黄酮",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_soy_isoflavones",
+      "excerpt": "书摘用大豆中的异黄酮来解释其抗血管生成特性",
+      "limitations": "书摘机制归纳，非补充剂剂量。既有大豆→血管生成摘录未改。"
+    },
+    {
+      "id": "ns009_soy_breast_prostate",
+      "source": "soy",
+      "target": "breast_prostate_risk",
+      "relation": "更高摄入与乳腺、前列腺相关风险的书摘叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_soy_breast_prostate",
+      "excerpt": "吃更多大豆食品的人降低了患许多与血管生成相关的疾病的风险，包括乳腺癌、前列腺癌和冠心病",
+      "limitations": "v0.2 书摘分句，v0.3 对齐时未写入大豆→血管生成边。观察性叙述，非干预试验。同句还提到冠心病，另有一条同源边承接，避免一句双计时失去出处。",
+      "population": "书摘对观察性资料的转述，非本图谱的新队列，非个体因果。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_soy_cardiometabolic",
+      "source": "soy",
+      "target": "cardiometabolic",
+      "relation": "同句中的冠心病叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_soy_cardiometabolic",
+      "excerpt": "吃更多大豆食品的人降低了患许多与血管生成相关的疾病的风险，包括乳腺癌、前列腺癌和冠心病",
+      "limitations": "与大豆→乳腺/前列腺边同源一句，此处只承接冠心病部分，不是另一项独立研究。观察性叙述，非个体方案。",
+      "population": "书摘对观察性资料的转述，非本图谱的新队列，非个体因果。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_tea_egcg",
+      "source": "green_tea",
+      "target": "egcg",
+      "relation": "提供茶多酚 EGCG",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_tea_egcg",
+      "excerpt": "绿茶里的 EGCG 在书摘的血管生成与 DNA 防御食物举例中被点名",
+      "limitations": "书摘机制归纳，非茶饮剂量建议。"
+    },
+    {
+      "id": "ns009_tea_polyphenols",
+      "source": "green_tea",
+      "target": "polyphenols",
+      "relation": "茶多酚属于多酚类",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_tea_polyphenols",
+      "excerpt": "EGCG 一类茶多酚在书摘中被归入植物多酚",
+      "limitations": "书摘归纳，这是化合物分类上的桥，不是新的试验结果。"
+    },
+    {
+      "id": "ns009_coffee_polyphenols",
+      "source": "coffee",
+      "target": "polyphenols",
+      "relation": "提供多酚类生物活性物质",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_coffee_polyphenols",
+      "excerpt": "咖啡在书摘中与茶一样，被当作生物活性物质的饮品来源",
+      "limitations": "书摘归纳。既有「茶或咖啡」原句仍留在植物膳食→表观遗传边。"
+    },
+    {
+      "id": "ns009_coffee_epigenetic",
+      "source": "coffee",
+      "target": "epigenetic_positive",
+      "relation": "咖啡中的生物活性物质与 DNA 相关叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_coffee_epigenetic",
+      "excerpt": "在植物性食物、茶或咖啡中发现的生物活性物质可以对你的DNA产生积极的影响",
+      "limitations": "与既有植物膳食→表观遗传边同源书摘。本边把咖啡作为食物入口，原边摘录未改。"
+    },
+    {
+      "id": "ns009_nuts_fiber",
+      "source": "nuts_seeds",
+      "target": "dietary_fiber",
+      "relation": "提供膳食纤维",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_nuts_fiber",
+      "excerpt": "坚果在书摘的纤维食物举例中出现",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_nuts_omega3",
+      "source": "nuts_seeds",
+      "target": "omega3",
+      "relation": "部分坚果提供植物性 ω-3",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_nuts_omega3",
+      "excerpt": "部分坚果（如核桃）在书摘中作为植物性 ω-3 来源被提到",
+      "limitations": "书摘归纳，不是所有坚果都富含 ω-3。"
+    },
+    {
+      "id": "ns009_nuts_vite",
+      "source": "nuts_seeds",
+      "target": "vitamin_e",
+      "relation": "提供维生素E",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_nuts_vite",
+      "excerpt": "坚果在书摘中被列为维生素E的食物来源之一",
+      "limitations": "书摘归纳，非补充剂剂量。"
+    },
+    {
+      "id": "ns009_cruciferous_sulforaphane",
+      "source": "cruciferous",
+      "target": "sulforaphane",
+      "relation": "提供萝卜硫素",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_cruciferous_sulforaphane",
+      "excerpt": "十字花科蔬菜中的萝卜硫素在书摘的 DNA 防御部分被讨论",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_cruciferous_fiber",
+      "source": "cruciferous",
+      "target": "dietary_fiber",
+      "relation": "同时提供膳食纤维",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_cruciferous_fiber",
+      "excerpt": "十字花科蔬菜在书摘里也属于高纤维植物性食物",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_alliums_sulfur",
+      "source": "alliums",
+      "target": "organosulfur",
+      "relation": "提供有机硫化物",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_alliums_sulfur",
+      "excerpt": "葱蒜类的有机硫化物在书摘的免疫相关食物举例中出现",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_mushroom_glucan",
+      "source": "mushrooms",
+      "target": "beta_glucan",
+      "relation": "提供 β-葡聚糖",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_mushroom_glucan",
+      "excerpt": "菌菇中的β-葡聚糖在书摘里与免疫防御一起被提到",
+      "limitations": "书摘机制归纳，非菌菇产品宣称。"
+    },
+    {
+      "id": "ns009_grains_fiber",
+      "source": "whole_grains",
+      "target": "dietary_fiber",
+      "relation": "提供膳食纤维",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_grains_fiber",
+      "excerpt": "全谷类在书摘中作为膳食纤维的主食来源",
+      "limitations": "书摘归纳。精制主食不在本节点内。"
+    },
+    {
+      "id": "ns009_grains_resistant_starch",
+      "source": "whole_grains",
+      "target": "resistant_starch",
+      "relation": "可提供抗性淀粉",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_grains_resistant_starch",
+      "excerpt": "完整谷物在书摘的抗性淀粉与菌群喂养叙述中出现",
+      "limitations": "书摘归纳。抗性淀粉含量随加工和温度变化，这里不给定量。"
+    },
+    {
+      "id": "ns009_legumes_fiber",
+      "source": "legumes",
+      "target": "dietary_fiber",
+      "relation": "提供膳食纤维",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_legumes_fiber",
+      "excerpt": "豆类在书摘中是膳食纤维的主要植物性来源之一",
+      "limitations": "本节点指大豆以外的食用豆类。大豆见 soy。"
+    },
+    {
+      "id": "ns009_legumes_microbiome",
+      "source": "legumes",
+      "target": "gut_microbiome",
+      "relation": "为菌群提供可发酵底物",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "肠道菌群_晓肚知肠.md",
+      "note_id": "ns009_legumes_microbiome",
+      "excerpt": "豆类在肠道菌群书摘中被当作喂养微生物的植物性食物",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_flax_omega3",
+      "source": "flax_chia",
+      "target": "omega3",
+      "relation": "提供植物性 ω-3",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_flax_omega3",
+      "excerpt": "亚麻籽在书摘中作为植物性 ω-3（ALA）的食物例子",
+      "limitations": "书摘归纳，讨论的是食物中的 ALA，不是鱼油产品。"
+    },
+    {
+      "id": "ns009_flax_fiber",
+      "source": "flax_chia",
+      "target": "dietary_fiber",
+      "relation": "同时提供膳食纤维",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_flax_fiber",
+      "excerpt": "亚麻籽在书摘里同时作为纤维和植物 ω-3 的种子食物出现",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_fermented_microbiome",
+      "source": "fermented_foods",
+      "target": "gut_microbiome",
+      "relation": "作为带有微生物活动的食物例子",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "肠道菌群_晓肚知肠.md",
+      "note_id": "ns009_fermented_microbiome",
+      "excerpt": "发酵食物在书摘中被当作向肠道引入微生物活动的食物例子",
+      "limitations": "书摘机制。菌株与数量都没有标准化，不是益生菌产品建议。"
+    },
+    {
+      "id": "ns009_fermented_immune",
+      "source": "fermented_foods",
+      "target": "immune_balance",
+      "relation": "发酵食物与免疫调节叙述相连",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id": "ns009_fermented_immune",
+      "excerpt": "发酵食物在菌群与免疫的书摘叙述里被当作饮食侧例子",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_spices_polyphenols",
+      "source": "herbs_spices",
+      "target": "polyphenols",
+      "relation": "提供多酚类生物活性物质",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_spices_polyphenols",
+      "excerpt": "香草与香料在书摘中作为多酚和生物活性物质的植物性来源被列举",
+      "limitations": "书摘归纳，不是香料补充剂建议。"
+    },
+    {
+      "id": "ns009_cacao_polyphenols",
+      "source": "cacao",
+      "target": "polyphenols",
+      "relation": "提供可可多酚",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_cacao_polyphenols",
+      "excerpt": "可可在书摘中作为多酚类食物例子出现",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_cacao_angiogenesis",
+      "source": "cacao",
+      "target": "angiogenesis_defense",
+      "relation": "进入血管生成防御的食物举例",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_cacao_angiogenesis",
+      "excerpt": "可可在书摘的血管生成防御食物举例中出现",
+      "limitations": "书摘机制归纳，单一食物举例，不是效果承诺。"
+    },
+    {
+      "id": "ns009_plant_vitamins",
+      "source": "plant_based_diet",
+      "target": "vitamin_c",
+      "relation": "书摘称素食模式摄入更多维生素C等",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_plant_vitamins",
+      "excerpt": "素食者所摄取到的所有营养素几乎都比肉食者多，包括膳食纤维、维生素A、C、E等",
+      "limitations": "v0.2 较长分句。v0.3 植物膳食→纤维边保留较短摘录且未改。本边承接维生素C；维生素A 的前体见类胡萝卜素，维生素E 见坚果边。",
+      "population": "书摘对观察性资料的转述，非本图谱的新队列，非个体因果。"
+    },
+    {
+      "id": "ns009_plant_microbiome",
+      "source": "plant_based_diet",
+      "target": "gut_microbiome",
+      "relation": "全食物植物膳食作为喂养菌群的饮食背景",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_plant_microbiome",
+      "excerpt": "以全食物植物为主的膳食在书摘中被描述为喂养肠道菌群的饮食背景",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_plant_cardiometabolic",
+      "source": "plant_based_diet",
+      "target": "cardiometabolic",
+      "relation": "同句中的多吃天然蔬食",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+      "note_id": "ns009_plant_cardiometabolic",
+      "excerpt": "少吃动物性食物和高度精制的植物性食物，并多吃天然蔬食",
+      "limitations": "与动物性食物→心血管代谢边同源一句，本边只承接「多吃天然蔬食」。不是个体方案。原边摘录未改。",
+      "population": "书中生态比较与综述，非个体因果。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_redmeat_heme",
+      "source": "red_meat",
+      "target": "heme_iron",
+      "relation": "提供血红素铁",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_redmeat_heme",
+      "excerpt": "红肉被书摘单列为血红素铁的主要食物来源之一",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_redmeat_tmao",
+      "source": "red_meat",
+      "target": "tmao",
+      "relation": "肉碱等前体经菌群代谢与 TMAO 叙述相连",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_redmeat_tmao",
+      "excerpt": "书摘综述红肉中的肉碱等前体可经肠道菌群代谢，并与氧化三甲胺一并讨论",
+      "limitations": "书摘对文献的归纳，不是本库的新测量。个体菌群差异大，不是风险评分。"
+    },
+    {
+      "id": "ns009_redmeat_cardio",
+      "source": "red_meat",
+      "target": "cardiometabolic",
+      "relation": "红肉与心血管风险的书摘综述",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_redmeat_cardio",
+      "excerpt": "红肉在书摘的动物性食物与心血管风险综述中被单独讨论",
+      "limitations": "书摘观察性综述。动物性食物总类见既有边，本边只标红肉。书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+      "population": "书摘对观察性资料的转述，非本图谱的新队列，非个体因果。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_processed_digestive",
+      "source": "processed_meat",
+      "target": "digestive_cancer_risk",
+      "relation": "加工肉与消化系统肿瘤风险的书摘综述",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_processed_digestive",
+      "excerpt": "加工肉在书摘的消化系统肿瘤章节里与更高风险的观察性综述放在一起",
+      "limitations": "书摘观察性综述，不是本图谱判定的因果，也不是个体预测。",
+      "population": "书摘对观察性资料的转述，非本图谱的新队列，非个体因果。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_processed_cardio",
+      "source": "processed_meat",
+      "target": "cardiometabolic",
+      "relation": "加工肉亦进入心血管风险的饮食综述",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_processed_cardio",
+      "excerpt": "加工肉在书摘中也不只出现于肿瘤章节，还进入心血管风险的饮食综述",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。书摘对观察性资料的转述，非本图谱的新队列，非个体因果。",
+      "population": "书摘对观察性资料的转述，非本图谱的新队列，非个体因果。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_animal_satfat",
+      "source": "animal_foods",
+      "target": "saturated_fat",
+      "relation": "同时作为饱和脂肪的载体",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+      "note_id": "ns009_animal_satfat",
+      "excerpt": "动物性食物在书摘中被同时当作饱和脂肪与动物蛋白的载体来讨论",
+      "limitations": "书中更强调动物蛋白与整体动物性食物。饱和脂肪只是其中一条叙述，不是单一因果。",
+      "population": "书中生态比较与综述，非个体因果。"
+    },
+    {
+      "id": "ns009_animal_igf1",
+      "source": "animal_foods",
+      "target": "igf1_signaling",
+      "relation": "动物性蛋白与 IGF-1 信号的书摘综述",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_animal_igf1",
+      "excerpt": "书摘综述动物性蛋白与 IGF-1 信号的文献讨论",
+      "limitations": "书摘综述，不是激素检测建议，也不是因果证明。"
+    },
+    {
+      "id": "ns009_dairy_casein",
+      "source": "dairy",
+      "target": "casein",
+      "relation": "提供书摘用来讨论的酪蛋白",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+      "note_id": "ns009_dairy_casein",
+      "excerpt": "乳制品在书摘中被用来引入酪蛋白这一动物蛋白例子",
+      "limitations": "书摘归纳。后续动物实验边单独标明模型，不能把乳制品直接写成人体结论。"
+    },
+    {
+      "id": "ns009_dairy_igf1",
+      "source": "dairy",
+      "target": "igf1_signaling",
+      "relation": "乳品与 IGF-1 讨论相连",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_dairy_igf1",
+      "excerpt": "书摘综述动物性乳品与 IGF-1 的讨论",
+      "limitations": "书摘综述，不是检测建议。"
+    },
+    {
+      "id": "ns009_sugar_glycation",
+      "source": "added_sugar",
+      "target": "glycation",
+      "relation": "作为高血糖与糖化叙述的膳食入口",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "ns009_sugar_glycation",
+      "excerpt": "书摘把高血糖与糖化、器官炎症危险放在一起；添加糖在此只作为把这段叙述接回膳食列的入口",
+      "limitations": "书摘讨论的是高血糖与糖化，没有给出添加糖的克数阈值。这是膳食入口映射，不是定量因果。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_sugar_insulin",
+      "source": "added_sugar",
+      "target": "insulin_resistance",
+      "relation": "含糖饮料与胰岛素相关问题的书摘综述",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_sugar_insulin",
+      "excerpt": "含糖饮料和精制糖在书摘的代谢风险综述里与胰岛素相关问题一并出现",
+      "limitations": "书摘观察性综述，不是血糖管理方案。",
+      "population": "书摘对观察性资料的转述，非本图谱的新队列，非个体因果。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_refined_glycation",
+      "source": "refined_carbs",
+      "target": "glycation",
+      "relation": "精制主食作为高血糖叙述的另一膳食入口",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "ns009_refined_glycation",
+      "excerpt": "高度精制的主食在这里被接到书摘已有的高血糖与糖化叙述上",
+      "limitations": "膳食入口映射。书摘原文讨论高血糖与糖化，没有给出主食份量。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_refined_microbiome",
+      "source": "refined_carbs",
+      "target": "gut_microbiome",
+      "relation": "精制主食与纤维不足、菌群底物减少相连",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "肠道菌群_晓肚知肠.md",
+      "note_id": "ns009_refined_microbiome",
+      "excerpt": "高度精制的主食在书摘中与纤维不足、菌群食物减少一起被讨论",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_refined_cardiometabolic",
+      "source": "refined_carbs",
+      "target": "cardiometabolic",
+      "relation": "同句中的少吃高度精制植物性食物",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+      "note_id": "ns009_refined_cardiometabolic",
+      "excerpt": "少吃动物性食物和高度精制的植物性食物，并多吃天然蔬食",
+      "limitations": "与既有动物性食物→心血管代谢边同源书摘。本边只承接「高度精制的植物性食物」，对应精制主食节点，不是 NOVA 超加工分级。原边摘录未改。",
+      "population": "书中生态比较与综述，非个体因果。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_vitc_ros",
+      "source": "vitamin_c",
+      "target": "reactive_oxygen",
+      "relation": "参与抗氧化叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_vitc_ros",
+      "excerpt": "维生素C在蔬菜汤书摘的抗氧化叙述中用来对抗活性氧",
+      "limitations": "书摘机制归纳，非补充剂剂量。"
+    },
+    {
+      "id": "ns009_vite_ros",
+      "source": "vitamin_e",
+      "target": "reactive_oxygen",
+      "relation": "参与抗氧化叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_vite_ros",
+      "excerpt": "维生素E在书摘中被写入对抗氧化压力的营养素",
+      "limitations": "书摘机制归纳，非补充剂剂量。"
+    },
+    {
+      "id": "ns009_carotenoid_ros",
+      "source": "carotenoids",
+      "target": "reactive_oxygen",
+      "relation": "色素类营养素参与抗氧化叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_carotenoid_ros",
+      "excerpt": "类胡萝卜素在书摘的抗氧化食物化学里与活性氧叙述相连",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_carotenoid_angio",
+      "source": "carotenoids",
+      "target": "angiogenesis_defense",
+      "relation": "参与抗血管生成活性叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_carotenoid_angio",
+      "excerpt": "类胡萝卜素在书摘中与浆果、番茄的抗血管生成活性放在一起",
+      "limitations": "与浆果边同源主题。既有浆果→血管生成摘录未改。"
+    },
+    {
+      "id": "ns009_polyphenol_ros",
+      "source": "polyphenols",
+      "target": "reactive_oxygen",
+      "relation": "多酚参与抗氧化叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_polyphenol_ros",
+      "excerpt": "多酚在书摘中被描述为可参与抗氧化的植物化学物",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_polyphenol_epigenetic",
+      "source": "polyphenols",
+      "target": "epigenetic_positive",
+      "relation": "多酚与 DNA 相关生物活性叙述相连",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_polyphenol_epigenetic",
+      "excerpt": "植物多酚在书摘的 DNA 防御部分被当作生物活性物质来讨论",
+      "limitations": "书摘机制归纳。茶与咖啡的原句仍在既有边和咖啡边，本边不替换它们。"
+    },
+    {
+      "id": "ns009_anthocyanin_angio",
+      "source": "anthocyanins",
+      "target": "angiogenesis_defense",
+      "relation": "花青素参与抗血管生成叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_anthocyanin_angio",
+      "excerpt": "花青素在书摘中被写入具有抗血管生成活性的色素",
+      "limitations": "与既有浆果→血管生成边同源主题，原边摘录未改。"
+    },
+    {
+      "id": "ns009_isoflavone_angio",
+      "source": "isoflavones",
+      "target": "angiogenesis_defense",
+      "relation": "异黄酮参与抗血管生成叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_isoflavone_angio",
+      "excerpt": "大豆异黄酮在书摘中被用来说明抗血管生成特性从何而来",
+      "limitations": "书摘机制归纳，非补充剂剂量。既有大豆食品摘录未改。"
+    },
+    {
+      "id": "ns009_egcg_angio",
+      "source": "egcg",
+      "target": "angiogenesis_defense",
+      "relation": "EGCG 参与抗血管生成叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_egcg_angio",
+      "excerpt": "EGCG 在书摘的血管生成防御食物化学里被单独讨论",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_egcg_epigenetic",
+      "source": "egcg",
+      "target": "epigenetic_positive",
+      "relation": "EGCG 参与 DNA 防御叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_egcg_epigenetic",
+      "excerpt": "EGCG 在书摘的 DNA 防御部分与基因表达相关叙述一起出现",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_sulforaphane_epigenetic",
+      "source": "sulforaphane",
+      "target": "epigenetic_positive",
+      "relation": "萝卜硫素参与 DNA 防御叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_sulforaphane_epigenetic",
+      "excerpt": "萝卜硫素在书摘中与保护 DNA、影响基因表达的叙述放在一起",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_sulfur_immune",
+      "source": "organosulfur",
+      "target": "immune_balance",
+      "relation": "有机硫化物与免疫叙述相连",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_sulfur_immune",
+      "excerpt": "葱蒜中的有机硫化物在书摘的免疫防御食物化学里被提到",
+      "limitations": "书摘机制归纳，证据篇幅相对短，强度记为较低。"
+    },
+    {
+      "id": "ns009_glucan_immune",
+      "source": "beta_glucan",
+      "target": "immune_balance",
+      "relation": "β-葡聚糖与免疫防御叙述相连",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_glucan_immune",
+      "excerpt": "β-葡聚糖在书摘中被写入免疫防御的食物化学",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_rs_scfa",
+      "source": "resistant_starch",
+      "target": "scfa",
+      "relation": "发酵产生短链脂肪酸",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "high",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_rs_scfa",
+      "excerpt": "抗性淀粉在书摘中与膳食纤维一样，可被菌群发酵并产生短链脂肪酸",
+      "limitations": "与既有纤维→SCFA 边同一机制主题。本边补上抗性淀粉这一底物，不改原摘录。"
+    },
+    {
+      "id": "ns009_rs_microbiome",
+      "source": "resistant_starch",
+      "target": "gut_microbiome",
+      "relation": "作为菌群可发酵底物",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "肠道菌群_晓肚知肠.md",
+      "note_id": "ns009_rs_microbiome",
+      "excerpt": "抗性淀粉在肠道菌群书摘中被当作结肠微生物的食物",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_scfa_butyrate",
+      "source": "scfa",
+      "target": "butyrate",
+      "relation": "丁酸是短链脂肪酸的代表组分",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "high",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_scfa_butyrate",
+      "excerpt": "丁酸被书摘当作短链脂肪酸里与结肠细胞关系最常被提到的一种",
+      "limitations": "分类桥：丁酸属于 SCFA。不是新的发酵实验。"
+    },
+    {
+      "id": "ns009_butyrate_barrier",
+      "source": "butyrate",
+      "target": "gut_barrier_leak",
+      "relation": "支持结肠上皮与屏障完整性的书摘机制",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_butyrate_barrier",
+      "excerpt": "丁酸被书摘描述为结肠细胞可利用的短链脂肪酸，并与屏障维护一起讨论",
+      "limitations": "书摘机制。方向表示与屏障损伤相对的维护叙述，不是屏障修复承诺。"
+    },
+    {
+      "id": "ns009_satfat_cardio",
+      "source": "saturated_fat",
+      "target": "cardiometabolic",
+      "relation": "饱和脂肪与心血管代谢风险的书摘叙述",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+      "note_id": "ns009_satfat_cardio",
+      "excerpt": "书摘将饱和脂肪摄入与心血管、代谢风险的地区比较和综述联系在一起",
+      "limitations": "书中整体更强调动物性食物而不只是脂肪。本边不把饱和脂肪写成唯一原因。",
+      "population": "书中生态比较与综述，非个体因果。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_heme_dna",
+      "source": "heme_iron",
+      "target": "dna_damage",
+      "relation": "血红素铁与氧化损伤的书摘综述",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_heme_dna",
+      "excerpt": "书摘综述血红素铁与氧化损伤的机制讨论",
+      "limitations": "书摘对文献的归纳，不是本图谱的新实验。"
+    },
+    {
+      "id": "ns009_casein_cancer",
+      "source": "casein",
+      "target": "digestive_cancer_risk",
+      "relation": "酪蛋白动物实验与肝脏肿瘤病灶叙述",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+      "note_id": "ns009_casein_cancer",
+      "excerpt": "书中以黄曲霉毒素大鼠模型讨论酪蛋白水平与肝脏肿瘤病灶的促进",
+      "limitations": "动物实验书摘。模型特殊，不能外推为人体乳制品指令或风险评分。",
+      "population": "动物实验语境（大鼠、黄曲霉毒素模型），非一般人群。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_tmao_cardio",
+      "source": "tmao",
+      "target": "cardiometabolic",
+      "relation": "TMAO 与心血管风险的书摘综述",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_tmao_cardio",
+      "excerpt": "氧化三甲胺在书摘中与心血管风险的文献综述放在一起",
+      "limitations": "书摘观察性综述，不是干预证据，不能写成因果或饮食指令。",
+      "population": "书摘对观察性资料的转述，非本图谱的新队列，非个体因果。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_microbiome_tryptophan",
+      "source": "gut_microbiome",
+      "target": "tryptophan_metabolites",
+      "relation": "菌群参与色氨酸代谢",
+      "direction": "mixed",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id": "ns009_microbiome_tryptophan",
+      "excerpt": "书摘讨论肠道菌群参与色氨酸代谢，并由此进入菌–肠–脑相关叙述",
+      "limitations": "书摘机制，不涉及情绪药物，也不是情绪判定。"
+    },
+    {
+      "id": "ns009_tryptophan_mental",
+      "source": "tryptophan_metabolites",
+      "target": "mental_health",
+      "relation": "色氨酸代谢物作为菌–肠–脑上的一类信号",
+      "direction": "mixed",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id": "ns009_tryptophan_mental",
+      "excerpt": "色氨酸代谢物在书摘中被描述为菌–肠–脑轴上的一类信号，方向依情境而定",
+      "limitations": "书摘机制。方向记为混合，因为书摘没有把它写成单一保护或风险。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_ros_dna",
+      "source": "reactive_oxygen",
+      "target": "dna_damage",
+      "relation": "活性氧可破坏 DNA",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_ros_dna",
+      "excerpt": "活性氧在书摘中被写成可破坏 DNA 的氧化压力",
+      "limitations": "书摘机制归纳。既有 ω-3→表观遗传摘录未改。"
+    },
+    {
+      "id": "ns009_ros_inflammation",
+      "source": "reactive_oxygen",
+      "target": "chronic_inflammation",
+      "relation": "氧化与慢性炎症互相推动",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "ns009_ros_inflammation",
+      "excerpt": "氧化反应与慢性炎症在书摘中被写成互相推动的过程",
+      "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。"
+    },
+    {
+      "id": "ns009_dna_digestive",
+      "source": "dna_damage",
+      "target": "digestive_cancer_risk",
+      "relation": "DNA 损伤位于氧化与肿瘤风险叙述之间",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_dna_digestive",
+      "excerpt": "DNA 损伤在书摘的肿瘤机制叙述里位于氧化压力与消化系统相关风险之间",
+      "limitations": "书摘机制，不是肿瘤发生的充分说明。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_glycation_insulin",
+      "source": "glycation",
+      "target": "insulin_resistance",
+      "relation": "高血糖与糖化作为持续的代谢压力",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "ns009_glycation_insulin",
+      "excerpt": "高血糖与糖化在书摘中被写成持续代谢压力的一部分",
+      "limitations": "书摘机制归纳，不是代谢分期。"
+    },
+    {
+      "id": "ns009_glycation_hba1c",
+      "source": "glycation",
+      "target": "hba1c",
+      "relation": "糖化过程对应的教育向可测参照",
+      "direction": "neutral",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_glycation_hba1c",
+      "excerpt": "糖化血红蛋白在书摘的血糖与糖化讨论中作为长期暴露的教育向参照出现",
+      "limitations": "教育向生物标志试点。不提供目标值、判读规则或方案。书摘归纳，不是逐字长引。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_insulin_cardio",
+      "source": "insulin_resistance",
+      "target": "cardiometabolic",
+      "relation": "胰岛素抵抗位于心血管与代谢风险的机制链上",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_insulin_cardio",
+      "excerpt": "胰岛素抵抗在书摘中位于心血管与代谢风险的机制链上",
+      "limitations": "书摘机制归纳，不是代谢指标判读。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_insulin_fatty_liver",
+      "source": "insulin_resistance",
+      "target": "fatty_liver",
+      "relation": "与肝脏脂肪相关的代谢叙述相连",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_insulin_fatty_liver",
+      "excerpt": "书摘将胰岛素抵抗与肝脏脂肪堆积的代谢叙述连在一起",
+      "limitations": "书摘归纳。此节点不同于已有的慢性肝炎进展。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_igf1_breast",
+      "source": "igf1_signaling",
+      "target": "breast_prostate_risk",
+      "relation": "IGF-1 与乳腺、前列腺相关风险的书摘综述",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_igf1_breast",
+      "excerpt": "IGF-1 信号在书摘中与乳腺、前列腺相关风险的综述放在一起",
+      "limitations": "书摘综述，不是激素检测建议，也不是因果证明。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_angio_breast",
+      "source": "angiogenesis_defense",
+      "target": "breast_prostate_risk",
+      "relation": "抗血管生成防御与乳腺、前列腺相关风险的书摘叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_angio_breast",
+      "excerpt": "书摘把抗血管生成防御和乳腺、前列腺等与血管生成相关的风险放在同一框架里",
+      "limitations": "书摘机制框架，不是风险降低的定量结果。大豆观察性分句另见同源边。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_microbiome_mito",
+      "source": "gut_microbiome",
+      "target": "mitochondrial_stress",
+      "relation": "菌群失衡的中间产物损伤线粒体",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id": "ns009_microbiome_mito",
+      "excerpt": "肠道细菌失衡的中间产物同样会对线粒体造成直接伤害，转而引发更激烈的炎症反应",
+      "limitations": "与既有菌群→慢性炎症边同一书摘。本边把线粒体损伤拆成中间步骤，不替换、不改写原边摘录。"
+    },
+    {
+      "id": "ns009_mito_inflammation",
+      "source": "mitochondrial_stress",
+      "target": "chronic_inflammation",
+      "relation": "线粒体伤害转而推高炎症",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id": "ns009_mito_inflammation",
+      "excerpt": "书摘把这种线粒体伤害写成会转而引发更激烈的炎症反应",
+      "limitations": "由既有菌群→慢性炎症摘录拆出的后半步，原边摘录未改。不是新的实验。"
+    },
+    {
+      "id": "ns009_inflammation_crp",
+      "source": "chronic_inflammation",
+      "target": "crp",
+      "relation": "炎症讨论中的教育向可测参照",
+      "direction": "neutral",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_inflammation_crp",
+      "excerpt": "C反应蛋白在书摘中被当作慢性炎症讨论里的可测参照，而不是个人判读指标",
+      "limitations": "教育向生物标志试点。不提供参考区间或判读规则。书摘归纳。",
+      "population": "书摘对观察性资料的转述，非本图谱的新队列，非个体因果。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_inflammation_fatty_liver",
+      "source": "chronic_inflammation",
+      "target": "fatty_liver",
+      "relation": "慢性炎症与肝脏脂肪相关风险的代谢叙述",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_inflammation_fatty_liver",
+      "excerpt": "书摘把慢性炎症与肝脏脂肪相关风险放在代谢叙述中",
+      "limitations": "不同于既有的慢性肝炎进展边。书摘归纳，不是疾病判定。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_inflammation_mental",
+      "source": "chronic_inflammation",
+      "target": "mental_health",
+      "relation": "炎症信号与情绪相关讨论",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id": "ns009_inflammation_mental",
+      "excerpt": "书摘把炎症信号与情绪、抑郁相关讨论放在菌–肠–脑叙述中",
+      "limitations": "书摘机制，不是抑郁的判定标准，也不是方案说明。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_inflammation_ibd",
+      "source": "chronic_inflammation",
+      "target": "ibd_related",
+      "relation": "炎症叙述延伸到肠道炎症相关结局",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "肠道菌群_晓肚知肠.md",
+      "note_id": "ns009_inflammation_ibd",
+      "excerpt": "肠道炎症相关结局在书摘中与持续炎症叙述放在一起",
+      "limitations": "书摘归纳，不是炎症性肠病的判定。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_barrier_ibd",
+      "source": "gut_barrier_leak",
+      "target": "ibd_related",
+      "relation": "屏障受损与肠道炎症相关结局的书摘叙述",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "肠道菌群_晓肚知肠.md",
+      "note_id": "ns009_barrier_ibd",
+      "excerpt": "肠道屏障受损在菌群书摘中与肠道炎症相关结局一并被讨论",
+      "limitations": "书摘机制归纳，不是疾病判定。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_scfa_obesity",
+      "source": "scfa",
+      "target": "obesity_risk",
+      "relation": "与葡萄糖和脂类代谢能力的书摘描述相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "ns009_scfa_obesity",
+      "excerpt": "它们可以提升你的身体代谢葡萄糖和脂类的能力",
+      "limitations": "v0.2 在 SCFA 抗炎句后的分句，v0.3 既有抗炎边未收录该分句。代谢叙述不是体重方案。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
+    },
+    {
+      "id": "ns009_fiber_obesity",
+      "source": "dietary_fiber",
+      "target": "obesity_risk",
+      "relation": "高纤维膳食与体重相关风险的观察性叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "ns009_fiber_obesity",
+      "excerpt": "高纤维膳食在书摘中与体重及代谢相关风险的观察性叙述一起出现",
+      "limitations": "书摘观察性综述，不是体重方案。",
+      "population": "书摘对观察性资料的转述，非本图谱的新队列，非个体因果。",
+      "dose_response": "书摘未提供可外推到个人的剂量或阈值。"
     }
   ]
 }
