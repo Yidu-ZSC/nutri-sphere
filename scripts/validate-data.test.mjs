@@ -55,10 +55,17 @@ test('aligned seed passes schema and referential checks', () => {
   assert.equal(result.counts.links, 126);
 });
 
-test('data 0.5 uses schema 0.2 and keeps the original book-note excerpts', () => {
+const DEEP_READER_LINKS = [
+  'lit_fiber_gi_gill_2021',
+  'lit_microbiome_colon_okeefe_2016',
+  'lit_prebiotic_microbiome_sanders_2019',
+];
+const TECHNICAL_NODES = ['igf1_signaling', 'lps'];
+
+test('data 0.6 uses schema 0.3 and keeps the original book-note excerpts', () => {
   const data = readJson(ALIGNED_SEED);
-  assert.equal(data.meta.schema_version, '0.2');
-  assert.equal(data.meta.data_version, '0.5');
+  assert.equal(data.meta.schema_version, '0.3');
+  assert.equal(data.meta.data_version, '0.6');
   assert.equal(data.meta.disclaimer, 'Educational / research use only. Not medical advice.');
   assert.ok(data.nodes.length >= 60 && data.nodes.length <= 90);
   assert.ok(data.links.length >= 80 && data.links.length <= 140);
@@ -98,6 +105,37 @@ test('data 0.5 uses schema 0.2 and keeps the original book-note excerpts', () =>
   }
   const biomarkers = data.nodes.filter((node) => node.type === 'biomarker');
   assert.ok(biomarkers.length >= 1 && biomarkers.length <= 3);
+
+  const deepReader = data.links.filter((link) => link.audience === 'deep_reader');
+  assert.deepEqual(
+    deepReader.map((link) => link.id).sort(),
+    [...DEEP_READER_LINKS].sort(),
+  );
+  for (const link of data.links) {
+    assert.equal(link.mechanism_depth, undefined, link.id ?? link.source);
+    if (!DEEP_READER_LINKS.includes(link.id)) assert.equal(link.audience, 'general', link.id ?? link.source);
+  }
+  const mechanisms = data.nodes.filter((node) => node.type === 'mechanism');
+  assert.equal(mechanisms.length, 14);
+  assert.deepEqual(
+    mechanisms
+      .filter((node) => node.mechanism_depth === 'technical')
+      .map((node) => node.id)
+      .sort(),
+    [...TECHNICAL_NODES].sort(),
+  );
+  for (const node of data.nodes) {
+    assert.equal(node.audience, undefined, node.id);
+    if (node.type === 'mechanism') {
+      const expected = TECHNICAL_NODES.includes(node.id) ? 'technical' : 'mechanism';
+      assert.equal(node.mechanism_depth, expected, node.id);
+    } else {
+      assert.equal(node.mechanism_depth, undefined, node.id);
+    }
+  }
+  const cited = data.links.filter((link) => link.citation);
+  assert.equal(cited.filter((link) => link.audience === 'general').length, cited.length - DEEP_READER_LINKS.length);
+  assert.ok(data.links.some((link) => link.strength === 'high' && link.audience === 'general'));
 });
 
 test('a broken link target fails validation', () => {
@@ -175,6 +213,64 @@ test('an unknown citation key fails validation', () => {
   const result = validateGraphData(data, schema);
   assert.equal(result.ok, false);
   assert.match(result.errors.join('\n'), /additional|citation/i);
+});
+
+test('schema 0.3 enums are optional and reject values outside the list', () => {
+  const schema = readJson(GRAPH_SCHEMA);
+  const audience = schema.properties.links.items.properties.audience;
+  const depth = schema.properties.nodes.items.properties.mechanism_depth;
+  assert.deepEqual(audience.enum, ['general', 'deep_reader']);
+  assert.deepEqual(depth.enum, ['summary', 'mechanism', 'technical']);
+  assert.equal(schema.properties.links.items.required.includes('audience'), false);
+  assert.equal(schema.properties.nodes.items.required.includes('mechanism_depth'), false);
+  assert.equal(schema.properties.links.items.additionalProperties, true);
+  assert.equal(schema.properties.nodes.items.additionalProperties, true);
+});
+
+test('an audience outside general or deep_reader fails validation', () => {
+  const data = readJson(ALIGNED_SEED);
+  const schema = readJson(GRAPH_SCHEMA);
+  data.links[0].audience = 'patient';
+  const result = validateGraphData(data, schema);
+  assert.equal(result.ok, false);
+  assert.match(result.errors.join('\n'), /audience/);
+});
+
+test('a mechanism_depth outside the enum fails validation', () => {
+  const data = readJson(ALIGNED_SEED);
+  const schema = readJson(GRAPH_SCHEMA);
+  const node = data.nodes.find((item) => item.type === 'mechanism');
+  node.mechanism_depth = 'grade';
+  const result = validateGraphData(data, schema);
+  assert.equal(result.ok, false);
+  assert.match(result.errors.join('\n'), /mechanism_depth/);
+});
+
+test('omitted audience and mechanism_depth still validate', () => {
+  const data = readJson(ALIGNED_SEED);
+  const schema = readJson(GRAPH_SCHEMA);
+  delete data.links[0].audience;
+  const node = data.nodes.find((item) => item.type === 'mechanism');
+  delete node.mechanism_depth;
+  const result = validateGraphData(data, schema);
+  assert.equal(result.ok, true, result.errors.join('\n'));
+  assert.deepEqual(result.warnings, []);
+});
+
+test('technical on a non-mechanism node warns and does not fail', () => {
+  const data = readJson(ALIGNED_SEED);
+  const schema = readJson(GRAPH_SCHEMA);
+  const node = data.nodes.find((item) => item.type !== 'mechanism');
+  node.mechanism_depth = 'technical';
+  const result = validateGraphData(data, schema);
+  assert.equal(result.ok, true, result.errors.join('\n'));
+  assert.match(result.warnings.join('\n'), /technical/);
+  assert.match(result.warnings.join('\n'), new RegExp(node.id));
+});
+
+test('aligned seed has no audience or depth warnings', () => {
+  const result = validateGraphFile();
+  assert.deepEqual(result.warnings, []);
 });
 
 test('missing limitations fail validation', () => {

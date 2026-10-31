@@ -1,6 +1,20 @@
 # Data Directory
 
-Runtime and CI load one file: `seed_triples_v0.3_aligned.json`. The filename stays on the v0.3 path so `src/lib/loadGraph.ts`, Vite, and `scripts/validate-data.mjs` do not move. The graph inside that file is **data_version 0.5** / **schema_version 0.2**.
+Runtime and CI load one file: `seed_triples_v0.3_aligned.json`. The filename stays on the v0.3 path so `src/lib/loadGraph.ts`, Vite, and `scripts/validate-data.mjs` do not move. The graph inside that file is **data_version 0.6** / **schema_version 0.3**.
+
+## seed_triples_v0.3_aligned.json (data 0.6)
+
+70 nodes / 126 links. The data 0.5 graph is unchanged: same nodes, same links, same excerpts, same `limitations`. Data 0.6 only adds schema 0.3 labels.
+
+### 0.6 increment
+
+Backfill strategy: **write `audience` on every link**. Omission would mean the same thing (`general`), but the seed states the value so a reader can see the choice. Non-mechanism nodes **omit** `mechanism_depth` (that omission means `summary`).
+
+- Schema 0.3: optional `links[].audience` (`general` | `deep_reader`) and optional `nodes[].mechanism_depth` (`summary` | `mechanism` | `technical`). Neither field is required. An omitted `audience` means `general`. An omitted `mechanism_depth` means `summary`.
+- Counts: 126 links carry `audience` (123 `general`, 3 `deep_reader`). All 14 `type=mechanism` nodes carry `mechanism_depth` (12 `mechanism`, 2 `technical`). The other 56 nodes omit `mechanism_depth`.
+- `deep_reader` is a manual sample of mechanism-review literature edges: `lit_fiber_gi_gill_2021`, `lit_microbiome_colon_okeefe_2016`, `lit_prebiotic_microbiome_sanders_2019`. The other six literature edges stay `general`. `strength` and the presence of `citation` were not mapped onto `audience`.
+- `technical` is a manual sample of terminology-dense mechanism nodes: `lps`, `igf1_signaling`. `chronic_inflammation` and `gut_barrier_leak` stay `mechanism`.
+- Not in this increment: a patient audience value, GRADE, a third ViewLayer, UI filtering, shortened `limitations`, or a renamed seed file.
 
 ## seed_triples_v0.3_aligned.json (data 0.5)
 
@@ -45,12 +59,12 @@ Expanded extraction covering the six high-relevance files above. Historical only
 
 ### Schema
 
-See `graph_schema.json` and `../docs/GRAPH_SCHEMA.md` (schema 0.2).
+See `graph_schema.json` and `../docs/GRAPH_SCHEMA.md` (schema 0.3).
 
 ### Important
 
-- The graph is still mostly book-note mechanistic and observational synthesis. Data 0.5 adds a few literature edges, including one republished trial report. None of them is an individual medical instruction.
-- Visualizations must include the project disclaimer.
-- Open data (GBD, FAO, Nutri-Score/NOVA) is not part of data 0.5.
+- The graph is still mostly book-note mechanistic and observational synthesis. Data 0.5 adds a few literature edges, including one republished trial report. Data 0.6 labels audience and mechanism depth on that same graph. None of this is an individual medical instruction. `audience` and `mechanism_depth` are not clinical strata and are not GRADE.
+- Visualizations must include the project disclaimer. A `deep_reader` edge does not drop or shorten `limitations`.
+- Open data (GBD, FAO, Nutri-Score/NOVA) is not part of data 0.6.
 
 See `../docs/DATA_STRATEGY.md`.

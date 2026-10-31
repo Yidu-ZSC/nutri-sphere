@@ -34,10 +34,18 @@ export function validateGraphData(data, schema) {
 
   nodes.forEach((node, index) => {
     if (!node || typeof node !== 'object') return;
-    const id = /** @type {{ id?: unknown }} */ (node).id;
-    if (typeof id !== 'string' || id === '') return;
-    if (ids.has(id)) errors.push(`nodes[${index}].id "${id}" 重复`);
-    ids.add(id);
+    const row = /** @type {{ id?: unknown, type?: unknown, mechanism_depth?: unknown }} */ (node);
+    const id = row.id;
+    if (typeof id === 'string' && id !== '') {
+      if (ids.has(id)) errors.push(`nodes[${index}].id "${id}" 重复`);
+      ids.add(id);
+    }
+    if (row.type !== 'mechanism' && row.mechanism_depth === 'technical') {
+      const label = typeof id === 'string' && id !== '' ? ` "${id}"` : '';
+      warnings.push(
+        `nodes[${index}]${label} type 不是 mechanism，却将 mechanism_depth 标为 technical`,
+      );
+    }
   });
 
   links.forEach((link, index) => {

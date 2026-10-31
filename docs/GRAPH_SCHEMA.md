@@ -1,4 +1,4 @@
-# NutriSphere Graph Schema (v0.2)
+# NutriSphere Graph Schema (v0.3)
 
 This document defines the canonical data model for the knowledge graph. All seed data, future open-data integrations, and the 3D visualization must conform to this schema.
 
@@ -20,6 +20,7 @@ This document defines the canonical data model for the knowledge graph. All seed
   "description": "string (optional, short)",
   "aliases": ["string"],
   "sources": ["string (file or citation)"],
+  "mechanism_depth": "summary | mechanism | technical (optional; omitted means summary)",
   "metadata": {}
 }
 ```
@@ -56,6 +57,7 @@ This document defines the canonical data model for the knowledge graph. All seed
   "limitations": "string",
   "dose_response": "string (optional)",
   "population": "string (optional, e.g. ecological, individual)",
+  "audience": "general | deep_reader (optional; omitted means general)",
   "citation": {
     "title": "string (optional; expected on literature edges)",
     "authors": "string (optional, short form such as Reynolds et al.)",
@@ -111,6 +113,35 @@ Literature edges use a non-`book_notes_*` type together with `citation`. `source
 - `high`: multiple convergent sources or strong mechanistic support
 - `quantitative`: when numeric effect size is available (future)
 
+## Audience and mechanism depth (schema 0.3)
+
+`audience` and `mechanism_depth` say who an edge is written for and how far a mechanism narrative goes. They are not a third `ViewLayer`, not an official GRADE label, and not part of the evidence track. Do not derive either field from `strength` or from the presence of `citation`. Do not read either field as a clinical stratum or as efficacy.
+
+| Concept | Layer | Values | What it is | What it is not |
+|---------|-------|--------|------------|----------------|
+| ViewLayer | UI presentation switch | `layperson` \| `expert` | How much detail the user asked to see | Not a content tag. Not evidence. Unchanged in 0.3. |
+| `audience` | Data, on `links[]` | `general` \| `deep_reader` | Content fit of that edge. Omitted means `general`. | Not ViewLayer. A reader in expert mode may still open a `general` edge. |
+| `mechanism_depth` | Data, on `nodes[]` (meaningful when `type` is `mechanism`) | `summary` \| `mechanism` \| `technical` | Narrative depth. Omitted means `summary`. | Not a DOI, not `strength`, not GRADE. |
+| `evidence_type` | Data, on `links[]` | open string (`book_notes_*`, observational, …) | Where the claim comes from | Not an audience. |
+| `citation` | Data, on `links[]` (schema 0.2) | doi / pmid / … | Literature check | Not a depth tier. |
+| `strength` | Data, on `links[]` | `low` / `moderate` / `high` / `quantitative` | How the association is narrated | Not GRADE. Not `audience`. |
+| GRADE | Not in this schema | — | — | Do not add GRADE labels. |
+
+Stored depth values are the words above, not `0`, `1`, or `2`, so they are not confused with `strength` or `weight`. The intuition is: `summary` is a short account, `mechanism` is a mechanism explanation, `technical` is terminology and experimental detail.
+
+Scope for 0.3:
+
+- `audience` belongs on links. `mechanism_depth` belongs on nodes. The two may both be present in one graph: a `deep_reader` edge may point at a node whose `mechanism_depth` is `technical`.
+- Node-level `audience` and link-level `mechanism_depth` are not part of this schema. Do not park either field inside free-form `metadata` instead of the properties above.
+- Neither property is in `required`. A missing field must not break a client. Interpret a missing `audience` as `general` and a missing `mechanism_depth` as `summary`.
+- The only allowed `audience` strings are `general` and `deep_reader`. A patient label, `patient_curious`, `clinical`, and `consumer` are rejected. Do not add them for compatibility.
+- `type=mechanism` nodes in the aligned seed are written as `mechanism` unless a manual pass marks a denser narrative `technical`. Other node types omit `mechanism_depth`.
+- Any combination of these fields keeps the edge `limitations` text and the product educational disclaimer. Do not shorten `limitations` because an edge is `deep_reader` or a node is `technical`.
+- Validation does not require `audience` to match the current `ViewLayer`.
+- A non-mechanism node may carry `mechanism_depth: "technical"`. That is a warning in `validate:data`, not a hard error. A value outside the enum is a hard error.
+
+`ViewLayer` stays `layperson` | `expert`. These fields do not add a third presentation state.
+
 ## File Format
 
 Current seed files use a single JSON object:
@@ -132,6 +163,9 @@ Future versions may split into separate node and edge files or use a graph datab
 - `direction` is an allowed enum (`protective`, `risk`, `neutral`, `mixed`). `evidence_type` stays an open string in AJV.
 - If `citation` is present, it must match the object above (including `doi` or `pmid`) and `evidence_type` must not start with `book_notes_`.
 - Excerpt length must be ≤ 300 characters.
+- If `audience` is present it must be `general` or `deep_reader`. Any other string fails validation. Omission is valid.
+- If `mechanism_depth` is present it must be `summary`, `mechanism`, or `technical`. Any other string fails validation. Omission is valid.
+- `validate:data` warns, and still exits 0, when a node with `type` other than `mechanism` has `mechanism_depth` `technical`. It does not warn merely because the field is omitted.
 
 ## Mapping to Visualization
 
@@ -142,6 +176,7 @@ Future versions may split into separate node and edge files or use a graph datab
 | strength/weight| Edge thickness                      |
 | type           | Node shape or icon                  |
 | excerpt + source_file + limitations | Tooltip / side panel |
+| audience, mechanism_depth | Not mapped to color, thickness, or a view toggle |
 
 ## Versioning
 
@@ -149,5 +184,6 @@ Future versions may split into separate node and edge files or use a graph datab
 - Data files should declare the schema version they conform to in `meta`.
 - **0.1**: nodes, links, and the evidence fields used by the book-note track.
 - **0.2**: optional `links[].citation`. Book-note edges stay valid without it. `evidence_type` is still not an AJV enum. The aligned seed that first uses this schema is `data_version` 0.5, still stored at `data/seed_triples_v0.3_aligned.json`.
+- **0.3**: optional `links[].audience` (`general` | `deep_reader`) and optional `nodes[].mechanism_depth` (`summary` | `mechanism` | `technical`). Missing `audience` means `general`. Missing `mechanism_depth` means `summary`. These fields are not `ViewLayer`, not GRADE, and not evidence. The aligned seed that first uses this schema is `data_version` 0.6, still stored at `data/seed_triples_v0.3_aligned.json`. Older clients that ignore unknown keys can still read the 0.2 fields.
 
 See also: `DATA_STRATEGY.md`, `ARCHITECTURE.md`.

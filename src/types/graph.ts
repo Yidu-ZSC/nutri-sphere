@@ -7,6 +7,12 @@ export interface GraphMeta {
   note?: string;
 }
 
+/** Content fit of an edge. Not a presentation switch. */
+export type Audience = 'general' | 'deep_reader';
+
+/** Narrative depth of a mechanism node. Stored as words so it is not read as strength. */
+export type MechanismDepth = 'summary' | 'mechanism' | 'technical';
+
 export interface GraphNode {
   id: string;
   type: string;
@@ -15,6 +21,8 @@ export interface GraphNode {
   description?: string;
   aliases?: string[];
   sources?: string[];
+  /** Narrative depth. Omitted means summary. Not an evidence grade and not ViewLayer. */
+  mechanism_depth?: MechanismDepth;
   metadata?: Record<string, unknown>;
 }
 
@@ -43,6 +51,8 @@ export interface GraphLink {
   limitations?: string;
   dose_response?: string;
   population?: string;
+  /** Who this edge is written for. Omitted means general. Not ViewLayer. */
+  audience?: Audience;
   citation?: GraphCitation;
   metadata?: Record<string, unknown>;
 }
