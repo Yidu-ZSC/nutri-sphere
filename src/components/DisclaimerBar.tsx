@@ -52,7 +52,7 @@ export function DisclaimerBar({
             <p>
               本图谱只展示当前种子文件里已经对齐的节点与关联
               {nodeCount != null && linkCount != null ? `（${nodeCount} 个节点，${linkCount} 条关联）` : ''}
-              ：膳食模式、食物与食物类别、营养素、化合物、代谢物、生物机制，以及健康结局或疾病风险主题。材料来自知识库书摘的摘录，不覆盖全部文献，也不包含个人病历。
+              ：膳食模式、食物与食物类别、营养素、化合物、代谢物、生物机制，以及健康结局或疾病风险主题。材料主要来自知识库书摘的摘录，另有少量可外链核验的文献记录，不覆盖全部文献，也不包含个人病历。
             </p>
           </section>
           <section>
@@ -76,7 +76,7 @@ export function DisclaimerBar({
               </div>
               <div>
                 <dt>证据类型 evidence_type</dt>
-                <dd>来源属于哪一种资料。当前种子主要是书摘。名称只说明来源，不是临床等级。</dd>
+                <dd>来源属于哪一种资料。当前种子主要是书摘，另有少量文献边。名称只说明来源，不是临床等级。</dd>
               </div>
               <div>
                 <dt>摘录 excerpt / 局限 limitations / 来源文件 source_file</dt>

@@ -1,4 +1,4 @@
-# NutriSphere Graph Schema (v0.1)
+# NutriSphere Graph Schema (v0.2)
 
 This document defines the canonical data model for the knowledge graph. All seed data, future open-data integrations, and the 3D visualization must conform to this schema.
 
@@ -52,13 +52,34 @@ This document defines the canonical data model for the knowledge graph. All seed
   "weight": "number (0.0–1.0, optional, derived from strength)",
   "source_file": "string (knowledge-base file or external citation)",
   "note_id": "string (weread_note_id or external id, optional)",
-  "excerpt": "string (short quote or summary)",
+  "excerpt": "string (short quote or summary, ≤300 characters)",
   "limitations": "string",
   "dose_response": "string (optional)",
   "population": "string (optional, e.g. ecological, individual)",
+  "citation": {
+    "title": "string (optional; expected on literature edges)",
+    "authors": "string (optional, short form such as Reynolds et al.)",
+    "year": "integer (optional, 1900–2100)",
+    "doi": "string (bare DOI, no https://doi.org/ prefix)",
+    "pmid": "string (digits only)",
+    "url": "string (optional; prefer https://doi.org/{doi})"
+  },
   "metadata": {}
 }
 ```
+
+`citation` is optional on the link. When the object is present it must include `doi` or `pmid` (prefer `doi`). The citation object rejects unknown keys. Book-note edges should omit it. Do not prefix `doi` with `https://doi.org/`.
+
+### Citation (schema 0.2)
+
+| key | required when `citation` is present? | notes |
+|-----|--------------------------------------|-------|
+| `doi` | one of `doi` or `pmid` | bare DOI, registrar casing |
+| `pmid` | one of `doi` or `pmid` | digits only; still useful when a DOI exists |
+| `title` | expected on gold-standard edges | original-language title |
+| `authors` | recommended | short string |
+| `year` | recommended | publication year |
+| `url` | no | if set, prefer `https://doi.org/{doi}` |
 
 ### Evidence Types (initial set)
 
@@ -66,11 +87,15 @@ This document defines the canonical data model for the knowledge graph. All seed
 |------------------------------------|----------------------------------------------|
 | book_notes_mechanistic             | Mechanistic description from book notes      |
 | book_notes_observational_synthesis | Synthesis of observational data in books     |
-| observational                      | Cohort / case-control (future open data)     |
+| observational                      | Cohort / case-control                        |
 | mechanistic                        | Experimental / lab mechanism                 |
 | interventional                     | RCT or intervention trial                    |
 | ecological                         | Country / population-level correlation       |
 | expert_synthesis                   | Review or guideline synthesis                |
+
+These values are suggestions. Schema 0.2 does **not** lock `evidence_type` as an AJV enum.
+
+Literature edges use a non-`book_notes_*` type together with `citation`. `source_file` may be `"literature"` or a short journal name. Their `limitations` must say the edge is not a book-note excerpt and must state the study-design limit. Book-note edges keep `book_notes_*`, omit `citation`, and keep their existing excerpts.
 
 ### Direction Values
 
@@ -104,8 +129,9 @@ Future versions may split into separate node and edge files or use a graph datab
 
 - Every `source` and `target` in links must exist in nodes.
 - Required fields: id/type/label/group for nodes; source/target/relation/direction/evidence_type for links.
-- `direction` and `evidence_type` must be from allowed enums.
-- Excerpt length recommended < 300 characters for tooltips.
+- `direction` is an allowed enum (`protective`, `risk`, `neutral`, `mixed`). `evidence_type` stays an open string in AJV.
+- If `citation` is present, it must match the object above (including `doi` or `pmid`) and `evidence_type` must not start with `book_notes_`.
+- Excerpt length must be ≤ 300 characters.
 
 ## Mapping to Visualization
 
@@ -121,5 +147,7 @@ Future versions may split into separate node and edge files or use a graph datab
 
 - Schema changes require a minor version bump and migration note.
 - Data files should declare the schema version they conform to in `meta`.
+- **0.1**: nodes, links, and the evidence fields used by the book-note track.
+- **0.2**: optional `links[].citation`. Book-note edges stay valid without it. `evidence_type` is still not an AJV enum. The aligned seed that first uses this schema is `data_version` 0.5, still stored at `data/seed_triples_v0.3_aligned.json`.
 
 See also: `DATA_STRATEGY.md`, `ARCHITECTURE.md`.

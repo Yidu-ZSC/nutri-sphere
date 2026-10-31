@@ -6,6 +6,7 @@ import {
   evidenceDetail,
   evidenceLabel,
   evidenceStatus,
+  evidenceTrack,
   EVIDENCE_LADDER,
   groupLabel,
   nodeTypeLabel,
@@ -14,7 +15,7 @@ import {
   DISCLAIMER_SHORT,
 } from '../lib/copy';
 import { semanticColor } from '../lib/palette';
-import type { GraphData, GraphLink, GraphNode, Selection, ViewLayer } from '../types/graph';
+import type { GraphCitation, GraphData, GraphLink, GraphNode, Selection, ViewLayer } from '../types/graph';
 
 interface DetailDrawerProps {
   graph: GraphData;
@@ -145,7 +146,8 @@ function NodeBody({
                       {link.relation}
                     </span>
                     <span className="muted">
-                      {directionLabel(link.direction)} · {evidenceBadge(link.evidence_type)} ·{' '}
+                      {directionLabel(link.direction)} · {evidenceBadge(link.evidence_type)}
+                      {evidenceTrack(link.evidence_type) === 'literature' ? ' · 文献' : ''} ·{' '}
                       {endpointLabel(graph, otherId, layer)}
                     </span>
                   </button>
@@ -188,6 +190,39 @@ function SourceFile({ name }: { name: string }) {
   );
 }
 
+function CitationBlock({ citation }: { citation: GraphCitation }) {
+  const byline = [citation.authors, citation.year == null ? '' : String(citation.year)].filter(Boolean);
+  return (
+    <div className="citation-block" data-testid="literature-citation">
+      <p className="muted">文献</p>
+      {citation.title ? <p className="citation-title">{citation.title}</p> : null}
+      {byline.length > 0 ? <p className="muted">{byline.join(' · ')}</p> : null}
+      <p className="citation-links">
+        {citation.doi ? (
+          <a
+            className="linkish"
+            href={`https://doi.org/${citation.doi}`}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            DOI {citation.doi}
+          </a>
+        ) : null}
+        {citation.pmid ? (
+          <a
+            className="linkish"
+            href={`https://pubmed.ncbi.nlm.nih.gov/${citation.pmid}`}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            PMID {citation.pmid}
+          </a>
+        ) : null}
+      </p>
+    </div>
+  );
+}
+
 function LinkBody({
   graph,
   link,
@@ -224,6 +259,9 @@ function LinkBody({
             {directionLabel(link.direction)}
           </span>
           <span className="badge badge--evidence">{evidenceBadge(link.evidence_type)}</span>
+          {evidenceTrack(link.evidence_type) === 'literature' && (
+            <span className="badge badge--literature">文献</span>
+          )}
           <span className="badge badge--strength">
             <span className={`legend-line legend-line--${link.strength === 'high' ? 'high' : link.strength === 'moderate' ? 'mid' : 'low'}`} />
             {strengthLabel(link.strength)}
@@ -234,6 +272,7 @@ function LinkBody({
           <p className="muted">局限</p>
           <p>{link.limitations?.trim() ? link.limitations : '未注明局限'}</p>
         </div>
+        {link.citation ? <CitationBlock citation={link.citation} /> : null}
         <dl className="fields">
           <ExcerptBlock text={link.excerpt} full={expert} />
           <SourceFile name={link.source_file ?? '未注明'} />
@@ -270,6 +309,7 @@ function LinkBody({
             children={withEnum(evidenceLabel(link.evidence_type), link.evidence_type, layer)}
           />
           <Field label="note_id" children={link.note_id} />
+          <Field label="citation" children={formatUnknown(link.citation)} />
           <Field label="边 id" children={link.id} />
           <Field label="dose_response" children={link.dose_response} />
           <Field label="population" children={link.population} />

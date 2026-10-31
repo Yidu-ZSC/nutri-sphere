@@ -72,12 +72,19 @@ const STRENGTHS: Record<string, string> = {
 const EVIDENCE: Record<string, string> = {
   book_notes_mechanistic: '书摘·机制描述',
   book_notes_observational_synthesis: '书摘·观察性综述',
-  observational: '观察性研究（后续）',
-  mechanistic: '机制/实验（后续）',
-  interventional: '干预/试验（后续）',
-  ecological: '生态/人群相关（后续）',
-  expert_synthesis: '专家综述/指南（后续）',
+  observational: '观察性研究',
+  mechanistic: '机制/实验',
+  interventional: '干预/试验',
+  ecological: '生态/人群相关',
+  expert_synthesis: '专家综述/指南',
 };
+
+export type EvidenceTrack = 'book_notes' | 'literature';
+
+/** Book-note edges stay on the book-notes track. Every other evidence type is literature. */
+export function evidenceTrack(type: string): EvidenceTrack {
+  return type.startsWith('book_notes_') ? 'book_notes' : 'literature';
+}
 
 function mapped(table: Record<string, string>, value: string): string {
   return table[value] ?? `${value}（未映射类型）`;

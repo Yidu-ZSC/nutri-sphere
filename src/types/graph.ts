@@ -18,6 +18,16 @@ export interface GraphNode {
   metadata?: Record<string, unknown>;
 }
 
+/** Optional literature identifier. doi or pmid is required when the object is present. */
+export interface GraphCitation {
+  title?: string;
+  authors?: string;
+  year?: number;
+  doi?: string;
+  pmid?: string;
+  url?: string;
+}
+
 export interface GraphLink {
   id?: string;
   source: string;
@@ -33,6 +43,7 @@ export interface GraphLink {
   limitations?: string;
   dose_response?: string;
   population?: string;
+  citation?: GraphCitation;
   metadata?: Record<string, unknown>;
 }
 

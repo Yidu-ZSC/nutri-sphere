@@ -55,6 +55,23 @@ export function validateGraphData(data, schema) {
     if (typeof row.excerpt === 'string' && row.excerpt.length > EXCERPT_LIMIT) {
       errors.push(`links[${index}].excerpt 长度为 ${row.excerpt.length}，超过 ${EXCERPT_LIMIT}`);
     }
+    if (row.citation != null) {
+      const citation = row.citation;
+      const doi =
+        citation && typeof citation === 'object' && !Array.isArray(citation) && typeof citation.doi === 'string'
+          ? citation.doi.trim()
+          : '';
+      const pmid =
+        citation && typeof citation === 'object' && !Array.isArray(citation) && typeof citation.pmid === 'string'
+          ? citation.pmid.trim()
+          : '';
+      if (!doi && !pmid) {
+        errors.push(`links[${index}].citation 需要非空 doi 或 pmid`);
+      }
+      if (typeof row.evidence_type === 'string' && row.evidence_type.startsWith('book_notes_')) {
+        errors.push(`links[${index}] 带 citation 时 evidence_type 不得以 book_notes_ 开头`);
+      }
+    }
   });
 
   return {
