@@ -1,10 +1,17 @@
 import type { GraphView } from './graphView';
 import type { LayoutMode } from './layout';
+import { themeById } from './themes.ts';
 import type { ViewLayer } from '../types/graph';
 
 const ID = /^[a-z0-9_]+$/;
+const THEME_ID = /^[a-z0-9_-]+$/;
+
+/** Home/explore screen. Distinct from `view`, which stays `2d` | `3d`. */
+export type ScreenMode = 'home' | 'explore';
 
 export interface ParsedShare {
+  screen: ScreenMode | null;
+  theme: string | null;
   disease: string | null;
   mechanism: string | null;
   layer: ViewLayer | null;
@@ -16,6 +23,8 @@ export interface ParsedShare {
 }
 
 export interface ShareState {
+  screen: ScreenMode;
+  theme: string | null;
   disease: string | null;
   mechanism: string | null;
   layer: ViewLayer;
@@ -29,6 +38,33 @@ export interface ShareState {
 function cleanId(value: string | null): string | null {
   if (!value || !ID.test(value)) return null;
   return value;
+}
+
+function parseLayer(value: string | null): ViewLayer | null {
+  if (value === 'layperson' || value === 'expert') return value;
+  return null;
+}
+
+function parseScreen(value: string | null): ScreenMode | null {
+  if (value === 'home' || value === 'explore') return value;
+  return null;
+}
+
+function parseTheme(value: string | null): string | null {
+  if (!value || !THEME_ID.test(value)) return null;
+  return value;
+}
+
+/**
+ * Missing `screen` is home, unless the link already points at a filter,
+ * a node, a link, or a known theme — those open explore.
+ * An explicit `screen` always wins, including `screen=home` beside a disease id.
+ */
+export function resolveScreen(parsed: Pick<ParsedShare, 'screen' | 'theme' | 'disease' | 'mechanism' | 'node' | 'link'>): ScreenMode {
+  if (parsed.screen) return parsed.screen;
+  if (parsed.disease || parsed.mechanism || parsed.node || parsed.link) return 'explore';
+  if (themeById(parsed.theme)) return 'explore';
+  return 'home';
 }
 
 export function linkKey(source: string, target: string): string {
@@ -51,14 +87,15 @@ export function findLinkIndex(
 
 export function parseViewQuery(search: string): ParsedShare {
   const params = new URLSearchParams(search.startsWith('?') ? search.slice(1) : search);
-  const layer = params.get('layer');
   const layout = params.get('layout');
   const view = params.get('view');
   const link = params.get('link');
   return {
+    screen: parseScreen(params.get('screen')),
+    theme: parseTheme(params.get('theme')),
     disease: cleanId(params.get('disease')),
     mechanism: cleanId(params.get('mechanism')),
-    layer: layer === 'layperson' || layer === 'expert' ? layer : null,
+    layer: parseLayer(params.get('layer')),
     layout: layout === 'hierarchy' || layout === 'force' ? layout : null,
     view: view === '2d' || view === '3d' ? view : null,
     hideUnmatched: params.get('hide') === '1',
@@ -69,14 +106,18 @@ export function parseViewQuery(search: string): ParsedShare {
 
 export function serializeViewQuery(state: ShareState): string {
   const params = new URLSearchParams();
-  if (state.disease) params.set('disease', state.disease);
-  if (state.mechanism) params.set('mechanism', state.mechanism);
+  params.set('screen', state.screen);
   params.set('layer', state.layer);
-  params.set('view', state.view);
-  if (state.layout === 'force') params.set('layout', 'force');
-  if (state.hideUnmatched) params.set('hide', '1');
-  if (state.node) params.set('node', state.node);
-  else if (state.link) params.set('link', state.link);
+  if (state.screen === 'explore') {
+    if (state.theme) params.set('theme', state.theme);
+    if (state.disease) params.set('disease', state.disease);
+    if (state.mechanism) params.set('mechanism', state.mechanism);
+    params.set('view', state.view);
+    if (state.layout === 'force') params.set('layout', 'force');
+    if (state.hideUnmatched) params.set('hide', '1');
+    if (state.node) params.set('node', state.node);
+    else if (state.link) params.set('link', state.link);
+  }
   const text = params.toString();
   return text ? `?${text}` : '';
 }

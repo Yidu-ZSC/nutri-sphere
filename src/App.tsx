@@ -7,6 +7,7 @@ import { LayoutToggle } from './components/LayoutToggle';
 import { Legend } from './components/Legend';
 import { SearchBar } from './components/SearchBar';
 import { ThemeBar } from './components/ThemeBar';
+import { ThemeLobby } from './components/ThemeLobby';
 import { ViewLayerToggle } from './components/ViewLayerToggle';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import { evidenceCounts } from './lib/copy';
@@ -15,8 +16,15 @@ import { readGraphView, writeGraphView, type GraphView } from './lib/graphView';
 import type { LayoutMode } from './lib/layout';
 import { loadGraph } from './lib/loadGraph';
 import { searchGraph, type SearchHit } from './lib/search';
-import { findLinkIndex, linkKey, parseViewQuery, serializeViewQuery, type ParsedShare } from './lib/shareUrl';
-import { EXPLORE_THEMES, type ExploreTheme } from './lib/themes';
+import {
+  findLinkIndex,
+  linkKey,
+  parseViewQuery,
+  resolveScreen,
+  serializeViewQuery,
+  type ParsedShare,
+} from './lib/shareUrl';
+import { EXPLORE_THEMES, filtersFromShare, themeForFilters, type ExploreTheme } from './lib/themes';
 import { readViewLayer, writeViewLayer } from './lib/viewLayer';
 import type { GraphData, Selection, ViewLayer } from './types/graph';
 
@@ -26,35 +34,28 @@ type LoadState =
   | { status: 'ready'; graph: GraphData };
 
 function readInitialQuery(): ParsedShare {
-  if (typeof window === 'undefined') {
-    return {
-      disease: null,
-      mechanism: null,
-      layer: null,
-      layout: null,
-      view: null,
-      hideUnmatched: false,
-      node: null,
-      link: null,
-    };
-  }
+  if (typeof window === 'undefined') return parseViewQuery('');
   return parseViewQuery(window.location.search);
 }
 
 export function App() {
   const mobile = useMediaQuery('(max-width: 768px)');
   const initialQuery = useRef(readInitialQuery());
+  const initialFilters = useRef(filtersFromShare(initialQuery.current));
   const [load, setLoad] = useState<LoadState>({ status: 'loading' });
   const [attempt, setAttempt] = useState(0);
+  const [screen, setScreen] = useState(() => resolveScreen(initialQuery.current));
   const [layer, setLayer] = useState<ViewLayer>(() => initialQuery.current.layer ?? readViewLayer());
   const [layout, setLayout] = useState<LayoutMode>(() => initialQuery.current.layout ?? 'hierarchy');
-  const [graphView, setGraphView] = useState<GraphView>(
-    () => initialQuery.current.view ?? readGraphView(),
-  );
+  const [graphView, setGraphView] = useState<GraphView>(() => {
+    if (initialQuery.current.view) return initialQuery.current.view;
+    if (initialQuery.current.theme && resolveScreen(initialQuery.current) === 'explore') return '2d';
+    return readGraphView();
+  });
   const [hideUnmatched, setHideUnmatched] = useState(() => initialQuery.current.hideUnmatched);
   const [query, setQuery] = useState('');
-  const [diseaseId, setDiseaseId] = useState<string | null>(() => initialQuery.current.disease);
-  const [mechanismId, setMechanismId] = useState<string | null>(() => initialQuery.current.mechanism);
+  const [diseaseId, setDiseaseId] = useState<string | null>(() => initialFilters.current.disease);
+  const [mechanismId, setMechanismId] = useState<string | null>(() => initialFilters.current.mechanism);
   const [selection, setSelection] = useState<Selection | null>(null);
   const [sheet, setSheet] = useState<'search' | 'filter' | null>(null);
   const [aboutOpen, setAboutOpen] = useState(false);
@@ -68,14 +69,15 @@ export function App() {
       .then((graph) => {
         if (cancelled) return;
         const parsed = initialQuery.current;
+        const shared = filtersFromShare(parsed);
         const disease =
-          parsed.disease && graph.nodes.some((node) => node.id === parsed.disease && node.type === 'disease')
-            ? parsed.disease
+          shared.disease && graph.nodes.some((node) => node.id === shared.disease && node.type === 'disease')
+            ? shared.disease
             : null;
         const mechanism =
-          parsed.mechanism &&
-          graph.nodes.some((node) => node.id === parsed.mechanism && node.type === 'mechanism')
-            ? parsed.mechanism
+          shared.mechanism &&
+          graph.nodes.some((node) => node.id === shared.mechanism && node.type === 'mechanism')
+            ? shared.mechanism
             : null;
         let nextSelection: Selection | null = null;
         if (parsed.node && graph.nodes.some((node) => node.id === parsed.node)) {
@@ -110,24 +112,6 @@ export function App() {
   const graph = load.status === 'ready' ? load.graph : null;
 
   useEffect(() => {
-    if (!graph) return;
-    const link = selection?.kind === 'link' ? graph.links[selection.index] : undefined;
-    const next = serializeViewQuery({
-      disease: diseaseId,
-      mechanism: mechanismId,
-      layer,
-      layout,
-      view: graphView,
-      hideUnmatched,
-      node: selection?.kind === 'node' ? selection.id : null,
-      link: link ? linkKey(link.source, link.target) : null,
-    });
-    const target = `${window.location.pathname}${next}${window.location.hash}`;
-    const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
-    if (current !== target) window.history.replaceState(null, '', target);
-  }, [diseaseId, graph, graphView, hideUnmatched, layer, layout, mechanismId, selection]);
-
-  useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return;
       if (sheet) {
@@ -155,6 +139,27 @@ export function App() {
 
   const safeDisease = diseases.some((node) => node.id === diseaseId) ? diseaseId : null;
   const safeMechanism = mechanisms.some((node) => node.id === mechanismId) ? mechanismId : null;
+
+  useEffect(() => {
+    if (screen === 'explore' && !graph) return;
+    const exploring = screen === 'explore' && graph != null;
+    const link = exploring && selection?.kind === 'link' ? graph.links[selection.index] : undefined;
+    const next = serializeViewQuery({
+      screen,
+      theme: exploring ? (themeForFilters(safeDisease, safeMechanism)?.id ?? null) : null,
+      disease: exploring ? safeDisease : null,
+      mechanism: exploring ? safeMechanism : null,
+      layer,
+      layout,
+      view: graphView,
+      hideUnmatched: exploring ? hideUnmatched : false,
+      node: exploring && selection?.kind === 'node' ? selection.id : null,
+      link: link ? linkKey(link.source, link.target) : null,
+    });
+    const target = `${window.location.pathname}${next}${window.location.hash}`;
+    const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+    if (current !== target) window.history.replaceState(null, '', target);
+  }, [graph, graphView, hideUnmatched, layer, layout, safeDisease, safeMechanism, screen, selection]);
 
   const focusIds = useMemo(
     () => (graph ? focusedNodeIds(graph.links, safeDisease, safeMechanism) : null),
@@ -197,6 +202,25 @@ export function App() {
     setMechanismId(theme.mechanismId);
   };
 
+  const enterTheme = (theme: ExploreTheme) => {
+    setDiseaseId(theme.diseaseId);
+    setMechanismId(theme.mechanismId);
+    setLayout('hierarchy');
+    setGraphView('2d');
+    setHideUnmatched(true);
+    setSelection(null);
+    setSheet(null);
+    setScreen('explore');
+  };
+
+  const goHome = () => {
+    setSelection(null);
+    setSheet(null);
+    setScreen('home');
+  };
+
+  const exploring = screen === 'explore';
+
   const copyViewLink = () => {
     const href = window.location.href;
     const done = () => {
@@ -223,7 +247,7 @@ export function App() {
             <p className="brand-sub">仅供学习：饮食、机制与健康结局的关联图谱</p>
           </div>
         </div>
-        {!mobile && graph && (
+        {exploring && !mobile && graph && (
           <div className="header-tools">
             <SearchBar
               hits={search.hits}
@@ -244,7 +268,12 @@ export function App() {
           </div>
         )}
         <div className="header-actions">
-          {mobile && (
+          {exploring && (
+            <button type="button" className="btn" data-testid="back-to-home" onClick={goHome}>
+              返回主题大厅
+            </button>
+          )}
+          {exploring && mobile && (
             <div className="mobile-tools">
               <button
                 type="button"
@@ -264,15 +293,17 @@ export function App() {
               </button>
             </div>
           )}
-          <LayoutToggle
-            view={graphView}
-            onChange={(next) => {
-              setGraphView(next);
-              setLayout('hierarchy');
-            }}
-          />
+          {exploring && (
+            <LayoutToggle
+              view={graphView}
+              onChange={(next) => {
+                setGraphView(next);
+                setLayout('hierarchy');
+              }}
+            />
+          )}
           <ViewLayerToggle layer={layer} onChange={setLayer} />
-          {graphView === '3d' && (
+          {exploring && graphView === '3d' && (
             <button
               type="button"
               className="btn btn--ghost"
@@ -288,8 +319,8 @@ export function App() {
         </div>
       </header>
 
-      <div className={selection ? 'stage stage--detail' : 'stage'}>
-        {load.status === 'loading' && (
+      <div className={exploring && selection ? 'stage stage--detail' : 'stage'}>
+        {exploring && load.status === 'loading' && (
           <p className="banner" role="status">
             正在加载知识图谱…
           </p>
@@ -303,9 +334,10 @@ export function App() {
             </button>
           </div>
         )}
-        {graph && (
+        {!exploring && <ThemeLobby onEnter={enterTheme} />}
+        {exploring && graph && (
           <>
-            <div className="stage-main">
+            <div className="stage-main" data-testid="explore-screen">
               <GraphCanvas
                 graph={graph}
                 focusIds={focusIds}
