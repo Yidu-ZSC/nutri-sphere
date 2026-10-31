@@ -1,0 +1,172 @@
+{
+  "meta": {
+    "version": "0.1",
+    "extracted_from": "knowledge-base Project (high relevance files)",
+    "extraction_date": "2026-10-30",
+    "note": "Seed set only. Claims are faithful to book notes; not clinical evidence. Evidence_type is mostly mechanistic or book-synthesis. Future versions will add open data (GBD, FAO, etc.) and stronger evidence grading.",
+    "disclaimer": "Educational / research use only. Not medical advice."
+  },
+  "nodes": [
+    {"id": "plant_based_diet", "type": "diet_pattern", "label": "全食物植物性膳食 / 素食", "group": "protective"},
+    {"id": "animal_protein", "type": "food_component", "label": "动物蛋白 / 动物性食物", "group": "risk"},
+    {"id": "dietary_fiber", "type": "nutrient", "label": "膳食纤维 / 益生元", "group": "protective"},
+    {"id": "vegetables_greens", "type": "food", "label": "黄绿色蔬菜（芹菜、菠菜等）", "group": "protective"},
+    {"id": "glutathione", "type": "compound", "label": "谷胱甘肽", "group": "protective"},
+    {"id": "scfa", "type": "metabolite", "label": "短链脂肪酸 (SCFA)", "group": "protective"},
+    {"id": "reactive_oxygen", "type": "mechanism", "label": "活性氧 / 氧化应激", "group": "risk"},
+    {"id": "chronic_inflammation", "type": "mechanism", "label": "慢性炎症", "group": "risk"},
+    {"id": "glycation", "type": "mechanism", "label": "糖化反应", "group": "risk"},
+    {"id": "gut_microbiome", "type": "mechanism", "label": "肠道菌群多样性 / 健康菌群", "group": "protective"},
+    {"id": "gut_barrier", "type": "mechanism", "label": "肠道屏障 / 肠漏风险", "group": "risk"},
+    {"id": "liver_chronic", "type": "disease", "label": "慢性肝炎 / 肝相关风险", "group": "risk"},
+    {"id": "digestive_cancer_risk", "type": "disease", "label": "消化系统癌症风险（胃、肝等）", "group": "risk"},
+    {"id": "autoimmune", "type": "disease", "label": "自身免疫相关状态", "group": "risk"},
+    {"id": "cardiometabolic", "type": "disease", "label": "心血管 / 代谢相关风险", "group": "risk"}
+  ],
+  "links": [
+    {
+      "source": "vegetables_greens",
+      "target": "glutathione",
+      "relation": "富含 / 可提供",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "35903999_7UumHuIZG",
+      "excerpt": "谷胱甘肽多存在于芹菜、菠菜等黄绿色蔬菜中…从蔬菜汤中获取的谷胱甘肽…可以起到抗氧化和抗炎的作用",
+      "limitations": "书摘机制描述，非临床试验数据"
+    },
+    {
+      "source": "glutathione",
+      "target": "reactive_oxygen",
+      "relation": "清除 / 抗氧化",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "35903999_7UumHuIZG",
+      "excerpt": "谷胱甘肽能消除毒性最强的脂质自由基，预防癌症和炎症",
+      "limitations": "书摘"
+    },
+    {
+      "source": "plant_based_diet",
+      "target": "chronic_inflammation",
+      "relation": "抗氧化作用可阻止氧化反应、降低慢性炎症",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "35903999_7UujZPd3G",
+      "excerpt": "植物性饮食的抗氧化作用能够阻止氧化反应。这确实说明了植物性饮食能够治愈慢性病。（想法部分）",
+      "limitations": "想法部分为读者推断；原文为机制描述"
+    },
+    {
+      "source": "chronic_inflammation",
+      "target": "liver_chronic",
+      "relation": "长期持续可导致肠相关进展",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "35903999_7UujZPd3G",
+      "excerpt": "从慢性肝炎发展成肝功能衰竭、肝癌",
+      "limitations": "书摘机制描述"
+    },
+    {
+      "source": "chronic_inflammation",
+      "target": "digestive_cancer_risk",
+      "relation": "长期慢性炎症与消化系统癌症相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "35903999_7UulQClmx",
+      "excerpt": "癌症是没有终止的炎症，长期持续的炎症状态（慢性炎症）是引发肝脏、胃、胆囊、胆管、胰脏等消化系统器官癌症的原因",
+      "limitations": "书摘"
+    },
+    {
+      "source": "glycation",
+      "target": "chronic_inflammation",
+      "relation": "高血糖引发糖化并促进炎症",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "35903999_7Uum2bdvM",
+      "excerpt": "高血糖也会引起慢性炎症。当葡萄糖在血液中达到高浓度时，会和血液里以及机体里的蛋白质结合，发生糖化的化学反应",
+      "limitations": "书摘机制"
+    },
+    {
+      "source": "dietary_fiber",
+      "target": "scfa",
+      "relation": "菌群发酵产生短链脂肪酸",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "high",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "39484588_10_5172-5447",
+      "excerpt": "短链脂肪酸（SCFA）…是细菌消化植物性纤维所产生的副产品…它们的抗炎特性能够保护你的肠道和整体健康",
+      "limitations": "书摘"
+    },
+    {
+      "source": "scfa",
+      "target": "chronic_inflammation",
+      "relation": "抗炎作用",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "high",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "39484588_10_5172-5447",
+      "excerpt": "它们的抗炎特性能够保护你的肠道和整体健康",
+      "limitations": "书摘机制"
+    },
+    {
+      "source": "dietary_fiber",
+      "target": "gut_microbiome",
+      "relation": "作为益生元支持健康菌群",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "high",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "39484588_10_9655-9804",
+      "excerpt": "益生元是一种人体无法消化的食物，却能给我们肠道中的健康细菌提供食物…通常，益生元是一些膳食纤维",
+      "limitations": "书摘"
+    },
+    {
+      "source": "animal_protein",
+      "target": "cardiometabolic",
+      "relation": "高摄取与慢性病风险升高相关（中国研究等）",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+      "note_id": "3300047535 related",
+      "excerpt": "政府如果要防止人民承受更多痛苦，最好的做法就是明确告诉他们少吃动物性食物和高度精制的植物性食物，并多吃“天然蔬食”",
+      "limitations": "export_may_be_truncated: true；为书中对中国健康调查的综述，非原始数据"
+    },
+    {
+      "source": "plant_based_diet",
+      "target": "dietary_fiber",
+      "relation": "更高摄入膳食纤维及多种微量营养素",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id": "3300017717_13_11428-11518",
+      "excerpt": "在摄取同样热量的条件下，素食者所摄取到的所有营养素几乎都比肉食者多，包括膳食纤维、维生素A、维生素C、维生素E…",
+      "limitations": "书摘综述"
+    },
+    {
+      "source": "gut_microbiome",
+      "target": "chronic_inflammation",
+      "relation": "健康菌群与低炎症相关；菌群失衡可促进炎症与自身免疫",
+      "direction": "mixed",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "肠道菌群_菌群大脑.md / 植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "multiple",
+      "excerpt": "菌群相关文件覆盖肠漏、炎症、自身免疫等；吃出自愈力微生物组章节强调 SCFA 抗炎",
+      "limitations": "多书综合，需后续精细化单条来源"
+    }
+  ]
+}
