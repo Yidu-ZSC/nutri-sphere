@@ -1,6 +1,13 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { applyLayout, cameraDistanceForPixels, columnIndex, framingDistance } from './layout.ts';
+import {
+  applyLayout,
+  cameraDistanceForPixels,
+  columnIndex,
+  frameGraph2d,
+  framingDistance,
+  placeNodes,
+} from './layout.ts';
 import type { SimNode } from '../types/graph.ts';
 
 function node(id: string, type: string, label = id): SimNode {
@@ -36,6 +43,29 @@ test('hierarchy pins a column and spreads rows', () => {
   assert.ok((byId.m1?.x ?? 0) < (byId.d1?.x ?? 0));
 });
 
+test('hierarchy stays on one plane', () => {
+  const nodes = [node('a', 'food', '甲'), node('b', 'food', '乙'), node('c', 'food', '丙')];
+  applyLayout(nodes, 'hierarchy');
+  for (const item of nodes) {
+    assert.equal(item.z, 0);
+    assert.equal(item.fz, 0);
+  }
+});
+
+test('2d placement flips canvas y and keeps layout y', () => {
+  const nodes = [node('a', 'mechanism', '甲'), node('b', 'mechanism', '乙')];
+  placeNodes(nodes, 'hierarchy', '2d');
+  for (const item of nodes) {
+    assert.equal(item.y, -(item.layoutY ?? 0));
+    assert.equal(item.z, 0);
+  }
+  placeNodes(nodes, 'hierarchy', '3d');
+  for (const item of nodes) {
+    assert.equal(item.y, item.layoutY);
+    assert.equal(item.z, 0);
+  }
+});
+
 test('force layout clears pins', () => {
   const nodes = [node('f1', 'food'), node('d1', 'disease')];
   applyLayout(nodes, 'hierarchy');
@@ -64,6 +94,27 @@ test('a wider graph is framed from farther away', () => {
   );
   assert.ok(near.z > 40);
   assert.ok(far.z > near.z);
+});
+
+test('a wider flat pathway zooms out', () => {
+  const tight = frameGraph2d(
+    [
+      { x: 0, y: 0 },
+      { x: 40, y: 20 },
+    ],
+    1200,
+    800,
+  );
+  const wide = frameGraph2d(
+    [
+      { x: -140, y: -80 },
+      { x: 140, y: 80 },
+    ],
+    1200,
+    800,
+  );
+  assert.ok(tight.k > wide.k);
+  assert.ok(tight.k > 0);
 });
 
 test('camera distance grows when pixels per unit shrink', () => {

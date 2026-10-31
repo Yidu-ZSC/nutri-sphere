@@ -37,6 +37,21 @@ export function labelTextHeight(selected: boolean, bright: boolean): number {
   return 3.3;
 }
 
+function insideLabelWindow(options: {
+  nodeY?: number;
+  focusY?: number;
+  above?: number;
+  below?: number;
+  yWindow?: number;
+}): boolean {
+  if (options.nodeY == null || options.focusY == null) return true;
+  const above = options.above ?? options.yWindow;
+  const below = options.below ?? options.yWindow;
+  if (above == null || below == null) return true;
+  const delta = options.nodeY - options.focusY;
+  return delta <= above && delta >= -below;
+}
+
 export function labelShouldShow(options: {
   compact: boolean;
   bright: boolean;
@@ -50,15 +65,18 @@ export function labelShouldShow(options: {
   /** How far below the focus a label may sit. Kept shorter on phones so the legend stays clear. */
   below?: number;
   yWindow?: number;
+  /** 3D explore keeps labels on the mechanism column unless a node is selected. */
+  surface?: '2d' | '3d';
 }): boolean {
-  if (!options.compact) return true;
   if (options.selected) return true;
+  if (options.surface === '3d') {
+    if (!options.bright) return false;
+    if (options.column !== options.homeColumn) return false;
+    if (!options.compact) return true;
+    return insideLabelWindow(options);
+  }
+  if (!options.compact) return true;
   if (!options.bright) return false;
   if (options.column !== options.homeColumn) return false;
-  if (options.nodeY == null || options.focusY == null) return true;
-  const above = options.above ?? options.yWindow;
-  const below = options.below ?? options.yWindow;
-  if (above == null || below == null) return true;
-  const delta = options.nodeY - options.focusY;
-  return delta <= above && delta >= -below;
+  return insideLabelWindow(options);
 }

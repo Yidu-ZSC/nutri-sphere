@@ -143,6 +143,8 @@ button { cursor: pointer; }
   color: white;
 }
 
+.layout-toggle button { white-space: nowrap; }
+
 .search {
   position: relative;
   flex: 1;

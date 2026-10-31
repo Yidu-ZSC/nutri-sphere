@@ -8,6 +8,7 @@ test('share query round-trips the minimal filters', () => {
     mechanism: 'chronic_inflammation',
     layer: 'expert',
     layout: 'hierarchy',
+    view: '2d',
     hideUnmatched: true,
     node: 'dietary_fiber',
     link: null,
@@ -17,9 +18,11 @@ test('share query round-trips the minimal filters', () => {
   assert.equal(parsed.mechanism, 'chronic_inflammation');
   assert.equal(parsed.layer, 'expert');
   assert.equal(parsed.layout, null);
+  assert.equal(parsed.view, '2d');
   assert.equal(parsed.hideUnmatched, true);
   assert.equal(parsed.node, 'dietary_fiber');
   assert.equal(query.includes('layout='), false);
+  assert.match(query, /view=2d/);
 });
 
 test('force layout is explicit and bad ids are dropped', () => {
@@ -38,6 +41,7 @@ test('a node selection wins over a link in the serialized query', () => {
     mechanism: null,
     layer: 'layperson',
     layout: 'force',
+    view: '3d',
     hideUnmatched: false,
     node: 'soy',
     link: 'soy~angiogenesis_defense',
@@ -45,4 +49,11 @@ test('a node selection wins over a link in the serialized query', () => {
   assert.equal(parseViewQuery(query).node, 'soy');
   assert.equal(parseViewQuery(query).link, null);
   assert.match(query, /layout=force/);
+  assert.match(query, /view=3d/);
+});
+
+test('unknown view values are dropped', () => {
+  const parsed = parseViewQuery('?view=table&layer=layperson');
+  assert.equal(parsed.view, null);
+  assert.equal(parsed.layer, 'layperson');
 });

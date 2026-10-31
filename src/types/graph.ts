@@ -55,6 +55,8 @@ export interface SimNode extends GraphNode {
   fx?: number;
   fy?: number;
   fz?: number;
+  /** Layout Y before a canvas-down flip. Label windows stay in this space. */
+  layoutY?: number;
 }
 
 export interface SimLink extends Omit<GraphLink, 'source' | 'target'> {

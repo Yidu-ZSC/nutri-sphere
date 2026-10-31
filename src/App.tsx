@@ -11,6 +11,7 @@ import { ViewLayerToggle } from './components/ViewLayerToggle';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import { evidenceCounts } from './lib/copy';
 import { focusedNodeIds, isFocusEmpty } from './lib/focus';
+import { readGraphView, writeGraphView, type GraphView } from './lib/graphView';
 import type { LayoutMode } from './lib/layout';
 import { loadGraph } from './lib/loadGraph';
 import { searchGraph, type SearchHit } from './lib/search';
@@ -31,6 +32,7 @@ function readInitialQuery(): ParsedShare {
       mechanism: null,
       layer: null,
       layout: null,
+      view: null,
       hideUnmatched: false,
       node: null,
       link: null,
@@ -46,6 +48,9 @@ export function App() {
   const [attempt, setAttempt] = useState(0);
   const [layer, setLayer] = useState<ViewLayer>(() => initialQuery.current.layer ?? readViewLayer());
   const [layout, setLayout] = useState<LayoutMode>(() => initialQuery.current.layout ?? 'hierarchy');
+  const [graphView, setGraphView] = useState<GraphView>(
+    () => initialQuery.current.view ?? readGraphView(),
+  );
   const [hideUnmatched, setHideUnmatched] = useState(() => initialQuery.current.hideUnmatched);
   const [query, setQuery] = useState('');
   const [diseaseId, setDiseaseId] = useState<string | null>(() => initialQuery.current.disease);
@@ -98,6 +103,10 @@ export function App() {
     writeViewLayer(layer);
   }, [layer]);
 
+  useEffect(() => {
+    writeGraphView(graphView);
+  }, [graphView]);
+
   const graph = load.status === 'ready' ? load.graph : null;
 
   useEffect(() => {
@@ -108,6 +117,7 @@ export function App() {
       mechanism: mechanismId,
       layer,
       layout,
+      view: graphView,
       hideUnmatched,
       node: selection?.kind === 'node' ? selection.id : null,
       link: link ? linkKey(link.source, link.target) : null,
@@ -115,7 +125,7 @@ export function App() {
     const target = `${window.location.pathname}${next}${window.location.hash}`;
     const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
     if (current !== target) window.history.replaceState(null, '', target);
-  }, [diseaseId, graph, hideUnmatched, layer, layout, mechanismId, selection]);
+  }, [diseaseId, graph, graphView, hideUnmatched, layer, layout, mechanismId, selection]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -254,16 +264,24 @@ export function App() {
               </button>
             </div>
           )}
-          <LayoutToggle layout={layout} onChange={setLayout} />
+          <LayoutToggle
+            view={graphView}
+            onChange={(next) => {
+              setGraphView(next);
+              setLayout('hierarchy');
+            }}
+          />
           <ViewLayerToggle layer={layer} onChange={setLayer} />
-          <button
-            type="button"
-            className="btn btn--ghost"
-            aria-pressed={autoRotate}
-            onClick={() => setAutoRotate((value) => !value)}
-          >
-            旋转{autoRotate ? '开' : '关'}
-          </button>
+          {graphView === '3d' && (
+            <button
+              type="button"
+              className="btn btn--ghost"
+              aria-pressed={autoRotate}
+              onClick={() => setAutoRotate((value) => !value)}
+            >
+              旋转{autoRotate ? '开' : '关'}
+            </button>
+          )}
           <button type="button" className="btn btn--ghost" onClick={copyViewLink}>
             {copied ? '已复制' : '复制链接'}
           </button>
@@ -294,6 +312,7 @@ export function App() {
                 selection={selection}
                 layer={layer}
                 layout={layout}
+                graphView={graphView}
                 hideUnmatched={hideUnmatched}
                 compact={mobile}
                 autoRotate={autoRotate}
