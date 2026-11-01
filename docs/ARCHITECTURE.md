@@ -1,4 +1,4 @@
-# NutriSphere Architecture (Initial)
+# 明膳知源 Architecture (Initial)
 
 ## Design Principles
 

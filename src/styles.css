@@ -92,6 +92,13 @@ button { cursor: pointer; }
   letter-spacing: 0.02em;
 }
 
+.brand-title-short { display: none; }
+
+@media (max-width: 639px) {
+  .brand-title-full { display: none; }
+  .brand-title-short { display: inline; }
+}
+
 .brand-sub {
   margin: 2px 0 0;
   color: var(--muted);
@@ -787,6 +794,12 @@ button { cursor: pointer; }
 
 .about-head { display: flex; justify-content: space-between; align-items: center; }
 
+.about-brand {
+  margin: 10px 0 0;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
 .about h2 { margin: 0; font-size: 16px; }
 
 .about p { line-height: 1.5; }
@@ -824,6 +837,15 @@ code {
   max-width: 66ch;
   color: var(--muted);
   line-height: 1.55;
+}
+
+.lobby-intro .lobby-tagline {
+  margin: 0 0 8px;
+  max-width: none;
+  color: var(--text);
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
 }
 
 .lobby-primary h2 {

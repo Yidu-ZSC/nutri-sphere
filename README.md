@@ -1,8 +1,12 @@
-# NutriSphere
+# 明膳知源
+
+（原 NutriSphere）
+
+看清膳食，知道来源。英文副名 DietSphere。
 
 **An educational knowledge graph for ordinary people to explore diet ↔ health and diet ↔ disease relationships.**
 
-NutriSphere helps the general public conveniently look up and understand how dietary patterns, foods, and biological mechanisms are discussed in relation to common health topics. Data comes from public books, published research, and other credible open sources. The project does not conduct original nutrition or disease research.
+明膳知源 helps the general public conveniently look up and understand how dietary patterns, foods, and biological mechanisms are discussed in relation to common health topics. Data comes from public books, published research, and other credible open sources. The project does not conduct original nutrition or disease research.
 
 > **Disclaimer**: This is a research and educational tool. It does not provide medical diagnosis, treatment recommendations, or personalized clinical advice. Always consult qualified healthcare professionals.
 
