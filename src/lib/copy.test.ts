@@ -9,6 +9,7 @@ import {
   evidenceLabel,
   evidenceStatus,
   evidenceTrack,
+  visibleGraphStats,
 } from './copy.ts';
 
 const SPEC_TEXT =
@@ -23,6 +24,11 @@ test('disclaimer copy matches the Phase 1 spec exactly', () => {
     disclaimerSegments(DISCLAIMER_TEXT).some((segment) => segment.strong && segment.value === '不提供'),
     true,
   );
+});
+
+test('visible graph stats name the rendered set', () => {
+  assert.equal(visibleGraphStats(12, 7), '当前可见 12 节点 · 7 关联');
+  assert.ok([...visibleGraphStats(0, 0)].length <= 20);
 });
 
 test('evidence chips use plain source names', () => {

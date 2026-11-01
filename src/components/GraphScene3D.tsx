@@ -381,7 +381,7 @@ export function GraphScene3D(props: GraphScene3DProps) {
       graphData={{ nodes: props.nodes, links: props.links }}
       width={props.size.w}
       height={props.size.h}
-      backgroundColor="#0c1016"
+      backgroundColor="#0f1115"
       showNavInfo={false}
       enableNodeDrag={props.layout === 'force'}
       nodeRelSize={4}

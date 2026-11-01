@@ -10,7 +10,7 @@ import { ThemeBar } from './components/ThemeBar';
 import { ThemeLobby } from './components/ThemeLobby';
 import { ViewLayerToggle } from './components/ViewLayerToggle';
 import { useMediaQuery } from './hooks/useMediaQuery';
-import { evidenceCounts } from './lib/copy';
+import { evidenceCounts, visibleGraphStats } from './lib/copy';
 import { focusedNodeIds, isFocusEmpty } from './lib/focus';
 import { readGraphView, writeGraphView, type GraphView } from './lib/graphView';
 import {
@@ -68,6 +68,8 @@ export function App() {
   const [aboutOpen, setAboutOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [autoRotate, setAutoRotate] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreRoot = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -121,6 +123,10 @@ export function App() {
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return;
+      if (moreOpen) {
+        setMoreOpen(false);
+        return;
+      }
       if (sheet) {
         setSheet(null);
         return;
@@ -133,7 +139,23 @@ export function App() {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [aboutOpen, selection, sheet]);
+  }, [aboutOpen, moreOpen, selection, sheet]);
+
+  useEffect(() => {
+    if (!moreOpen) return;
+    const onPointer = (event: PointerEvent) => {
+      const root = moreRoot.current;
+      if (root && event.target instanceof Node && !root.contains(event.target)) {
+        setMoreOpen(false);
+      }
+    };
+    window.addEventListener('pointerdown', onPointer);
+    return () => window.removeEventListener('pointerdown', onPointer);
+  }, [moreOpen]);
+
+  useEffect(() => {
+    if (!mobile) setMoreOpen(false);
+  }, [mobile]);
 
   const diseases = useMemo(
     () => (graph ? graph.nodes.filter((node) => node.type === 'disease') : []),
@@ -220,6 +242,16 @@ export function App() {
 
   const onQuery = useCallback((value: string) => setQuery(value), []);
 
+  const onGraphView = (next: GraphView) => {
+    setGraphView(next);
+    setLayout('hierarchy');
+  };
+
+  const openMobileSheet = (next: 'search' | 'filter') => {
+    setMoreOpen(false);
+    setSheet((current) => (current === next ? null : next));
+  };
+
   const onSelectHit = (hit: SearchHit) => {
     if (hit.kind === 'node' && hit.id) setSelection({ kind: 'node', id: hit.id });
     if (hit.kind === 'link' && hit.index != null) setSelection({ kind: 'link', index: hit.index });
@@ -249,12 +281,14 @@ export function App() {
     setHideUnmatched(true);
     setSelection(null);
     setSheet(null);
+    setMoreOpen(false);
     setScreen('explore');
   };
 
   const goHome = () => {
     setSelection(null);
     setSheet(null);
+    setMoreOpen(false);
     setScreen('home');
   };
 
@@ -283,7 +317,24 @@ export function App() {
       rendered.nodeIds,
       graph.nodes.map((node) => node.id),
     );
-  const versionLabel = graph?.meta.data_version ? `数据 v${graph.meta.data_version}` : null;
+
+  const viewControls = exploring ? <LayoutToggle view={graphView} onChange={onGraphView} /> : null;
+  const rotateControl =
+    exploring && graphView === '3d' ? (
+      <button
+        type="button"
+        className="btn btn--ghost"
+        aria-pressed={autoRotate}
+        onClick={() => setAutoRotate((value) => !value)}
+      >
+        旋转{autoRotate ? '开' : '关'}
+      </button>
+    ) : null;
+  const copyControl = (
+    <button type="button" className="btn btn--ghost" onClick={copyViewLink}>
+      {copied ? '已复制' : '复制链接'}
+    </button>
+  );
 
   return (
     <div className="app">
@@ -321,49 +372,55 @@ export function App() {
               返回主题大厅
             </button>
           )}
-          {exploring && mobile && (
-            <div className="mobile-tools">
+          {mobile ? (
+            <div className="more-menu" ref={moreRoot}>
               <button
                 type="button"
                 className="btn btn--ghost"
-                aria-expanded={sheet === 'search'}
-                onClick={() => setSheet((current) => (current === 'search' ? null : 'search'))}
+                aria-expanded={moreOpen}
+                aria-controls="more-panel"
+                data-testid="more-menu"
+                onClick={() => setMoreOpen((open) => !open)}
               >
-                搜索
+                更多
               </button>
-              <button
-                type="button"
-                className="btn btn--ghost"
-                aria-expanded={sheet === 'filter'}
-                onClick={() => setSheet((current) => (current === 'filter' ? null : 'filter'))}
-              >
-                筛选
-              </button>
+              {moreOpen && (
+                <div id="more-panel" className="more-panel" data-testid="more-panel" role="menu">
+                  {exploring && (
+                    <>
+                      <button
+                        type="button"
+                        className="btn btn--ghost"
+                        aria-expanded={sheet === 'search'}
+                        onClick={() => openMobileSheet('search')}
+                      >
+                        搜索
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn--ghost"
+                        aria-expanded={sheet === 'filter'}
+                        onClick={() => openMobileSheet('filter')}
+                      >
+                        筛选
+                      </button>
+                      {viewControls}
+                    </>
+                  )}
+                  <ViewLayerToggle layer={layer} onChange={setLayer} />
+                  {rotateControl}
+                  {copyControl}
+                </div>
+              )}
             </div>
+          ) : (
+            <>
+              {viewControls}
+              <ViewLayerToggle layer={layer} onChange={setLayer} />
+              {rotateControl}
+              {copyControl}
+            </>
           )}
-          {exploring && (
-            <LayoutToggle
-              view={graphView}
-              onChange={(next) => {
-                setGraphView(next);
-                setLayout('hierarchy');
-              }}
-            />
-          )}
-          <ViewLayerToggle layer={layer} onChange={setLayer} />
-          {exploring && graphView === '3d' && (
-            <button
-              type="button"
-              className="btn btn--ghost"
-              aria-pressed={autoRotate}
-              onClick={() => setAutoRotate((value) => !value)}
-            >
-              旋转{autoRotate ? '开' : '关'}
-            </button>
-          )}
-          <button type="button" className="btn btn--ghost" onClick={copyViewLink}>
-            {copied ? '已复制' : '复制链接'}
-          </button>
         </div>
         <p className="layer-hint" data-testid="layer-hint" role="status">
           {layerHint(layer)}
@@ -419,11 +476,7 @@ export function App() {
               <div className="hud">
                 <Legend />
                 <p className="counts" data-testid="graph-stats">
-                  {graph.nodes.length} 节点 · {graph.links.length} 关联
-                  {focusIds
-                    ? ` · 聚焦 ${[...focusIds].filter((id) => graph.nodes.some((node) => node.id === id)).length}`
-                    : ''}
-                  {versionLabel ? ` · ${versionLabel}` : ''}
+                  {visibleGraphStats(rendered.nodeIds.size, rendered.links.length)}
                 </p>
                 <p className="hud-note">颜色表示关联方向，线越粗表示强度越高。形状区分节点类型。</p>
               </div>
@@ -436,8 +489,16 @@ export function App() {
                 </div>
               )}
               {laypersonThemeEmpty && (
-                <div className="empty-filter" role="status" data-testid="layperson-empty">
+                <div className="empty-layperson" role="status" data-testid="layperson-empty">
                   <p>{LAYPERSON_THEME_EMPTY}</p>
+                  <button
+                    type="button"
+                    className="btn"
+                    data-testid="switch-expert"
+                    onClick={() => setLayer('expert')}
+                  >
+                    切换专家层
+                  </button>
                 </div>
               )}
               {mobile && sheet && (

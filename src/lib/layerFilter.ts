@@ -2,13 +2,13 @@ import type { ViewLayer } from '../types/graph';
 import { visibleNodeIds } from './visibility.ts';
 
 /** Layperson status shown beside the layer control. */
-export const LAYPERSON_LAYER_HINT = '已简化：仅显示通俗说明';
+export const LAYPERSON_LAYER_HINT = '已简化显示';
 
 /** Expert status shown beside the layer control. */
-export const EXPERT_LAYER_HINT = '已展开全部证据层';
+export const EXPERT_LAYER_HINT = '已展开全部证据';
 
 /** Shown when the active theme survives focus but not the layperson layer. */
-export const LAYPERSON_THEME_EMPTY = '当前主题在普通层暂无匹配，可切换专家层查看';
+export const LAYPERSON_THEME_EMPTY = '暂无匹配，可切专家层';
 
 export function layerHint(layer: ViewLayer): string {
   return layer === 'expert' ? EXPERT_LAYER_HINT : LAYPERSON_LAYER_HINT;
