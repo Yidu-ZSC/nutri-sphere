@@ -1,8 +1,25 @@
+import { useEffect } from 'react';
 import { DIET_PATTERN_CARDS, type DietPatternCard } from '../lib/dietPatterns';
-import { HOME_HEALTH_THEMES, HOME_MECHANISM_THEMES, themeById, type ExploreTheme } from '../lib/themes';
+import {
+  HOME_FOOD_THEMES,
+  HOME_HEALTH_THEMES,
+  HOME_MECHANISM_THEMES,
+  themeById,
+  type ExploreTheme,
+  type ThemeKind,
+} from '../lib/themes';
 
 interface ThemeLobbyProps {
   onEnter: (theme: ExploreTheme) => void;
+  highlightedPatterns?: readonly string[];
+  patternSourceTheme?: string | null;
+  onReturnToGraph?: () => void;
+}
+
+function kickerFor(kind: ThemeKind): string {
+  if (kind === 'food_pattern') return '食物/模式';
+  if (kind === 'mechanism_deep') return '机制向';
+  return '健康主题';
 }
 
 function ThemeCard({ theme, onEnter }: { theme: ExploreTheme; onEnter: (theme: ExploreTheme) => void }) {
@@ -14,7 +31,7 @@ function ThemeCard({ theme, onEnter }: { theme: ExploreTheme; onEnter: (theme: E
       data-kind={theme.kind}
       onClick={() => onEnter(theme)}
     >
-      <span className="kicker">{theme.kind === 'health_topic' ? '健康主题' : '机制向'}</span>
+      <span className="kicker">{kickerFor(theme.kind)}</span>
       <strong>{theme.title}</strong>
       <span className="theme-prompt">{theme.prompt}</span>
       <span className="theme-blurb">{theme.blurb}</span>
@@ -22,13 +39,26 @@ function ThemeCard({ theme, onEnter }: { theme: ExploreTheme; onEnter: (theme: E
   );
 }
 
-function PatternCard({ card, onEnter }: { card: DietPatternCard; onEnter: (theme: ExploreTheme) => void }) {
+function PatternCard({
+  card,
+  highlighted,
+  onEnter,
+}: {
+  card: DietPatternCard;
+  highlighted: boolean;
+  onEnter: (theme: ExploreTheme) => void;
+}) {
   const related = card.related_themes
     .map((id) => themeById(id))
     .filter((theme): theme is ExploreTheme => theme !== null);
 
   return (
-    <article className="pattern-card" data-testid={`pattern-card-${card.id}`}>
+    <article
+      className="pattern-card"
+      data-testid={`pattern-card-${card.id}`}
+      data-highlighted={highlighted ? 'true' : undefined}
+    >
+      {highlighted && <span className="pattern-badge">与当前主题相关</span>}
       <h3>{card.title}</h3>
       <p className="pattern-summary">{card.summary}</p>
       <dl className="pattern-fields">
@@ -68,7 +98,21 @@ function PatternCard({ card, onEnter }: { card: DietPatternCard; onEnter: (theme
   );
 }
 
-export function ThemeLobby({ onEnter }: ThemeLobbyProps) {
+export function ThemeLobby({
+  onEnter,
+  highlightedPatterns = [],
+  patternSourceTheme = null,
+  onReturnToGraph,
+}: ThemeLobbyProps) {
+  const highlighted = new Set(highlightedPatterns);
+  const showReturn = highlightedPatterns.length > 0 && themeById(patternSourceTheme) != null && Boolean(onReturnToGraph);
+  const highlightKey = highlightedPatterns.join(',');
+
+  useEffect(() => {
+    if (!highlightKey) return;
+    document.getElementById('diet-patterns')?.scrollIntoView({ block: 'start' });
+  }, [highlightKey]);
+
   return (
     <main className="lobby" data-testid="theme-lobby">
       <header className="lobby-intro">
@@ -88,13 +132,36 @@ export function ThemeLobby({ onEnter }: ThemeLobbyProps) {
           ))}
         </ul>
       </section>
-      <section className="lobby-patterns" aria-labelledby="diet-pattern-heading" data-testid="diet-patterns">
-        <h2 id="diet-pattern-heading">健康饮食方式</h2>
+      <section className="lobby-food" aria-labelledby="food-theme-heading" data-testid="food-theme-grid">
+        <h2 id="food-theme-heading">从食物/模式看</h2>
+        <p className="food-note">从一种食物或吃法出发，看资料怎么说。</p>
+        <ul className="theme-grid">
+          {HOME_FOOD_THEMES.map((theme) => (
+            <li key={theme.id}>
+              <ThemeCard theme={theme} onEnter={onEnter} />
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section className="lobby-patterns" id="diet-patterns" aria-labelledby="diet-pattern-heading" data-testid="diet-patterns">
+        <div className="pattern-head">
+          <h2 id="diet-pattern-heading">健康饮食方式</h2>
+          {showReturn && (
+            <button
+              type="button"
+              className="btn btn--ghost pattern-return"
+              data-testid="return-to-graph"
+              onClick={onReturnToGraph}
+            >
+              返回图谱
+            </button>
+          )}
+        </div>
         <p className="pattern-note">公开资料里常被描述的饮食模式，供学习核对，不是个人方案。</p>
         <ul className="pattern-grid">
           {DIET_PATTERN_CARDS.map((card) => (
             <li key={card.id}>
-              <PatternCard card={card} onEnter={onEnter} />
+              <PatternCard card={card} highlighted={highlighted.has(card.id)} onEnter={onEnter} />
             </li>
           ))}
         </ul>

@@ -21,6 +21,7 @@ import {
 } from './lib/layerFilter';
 import type { LayoutMode } from './lib/layout';
 import { loadGraph } from './lib/loadGraph';
+import { patternsForTheme } from './lib/patternLinks';
 import { searchGraph, type SearchHit } from './lib/search';
 import {
   findLinkIndex,
@@ -30,10 +31,21 @@ import {
   serializeViewQuery,
   type ParsedShare,
 } from './lib/shareUrl';
-import { EXPLORE_THEMES, filtersFromShare, themeForFilters, type ExploreTheme } from './lib/themes';
+import { EXPLORE_THEMES, filtersFromShare, themeById, themeForFilters, type ExploreTheme } from './lib/themes';
 import { selectionPinIds } from './lib/visibility';
 import { readViewLayer, writeViewLayer } from './lib/viewLayer';
 import type { GraphData, Selection, ViewLayer } from './types/graph';
+
+interface ExploreSnapshot {
+  diseaseId: string | null;
+  mechanismId: string | null;
+  foodId: string | null;
+  layer: ViewLayer;
+  layout: LayoutMode;
+  graphView: GraphView;
+  hideUnmatched: boolean;
+  selection: Selection | null;
+}
 
 type LoadState =
   | { status: 'loading' }
@@ -63,6 +75,16 @@ export function App() {
   const [query, setQuery] = useState('');
   const [diseaseId, setDiseaseId] = useState<string | null>(() => initialFilters.current.disease);
   const [mechanismId, setMechanismId] = useState<string | null>(() => initialFilters.current.mechanism);
+  const [foodId, setFoodId] = useState<string | null>(() => initialFilters.current.food);
+  const [patterns, setPatterns] = useState<string[]>(() => {
+    const parsed = initialQuery.current;
+    return resolveScreen(parsed) === 'home' ? parsed.patterns : [];
+  });
+  const [patternSourceTheme, setPatternSourceTheme] = useState<string | null>(() => {
+    const parsed = initialQuery.current;
+    return resolveScreen(parsed) === 'home' && parsed.patterns.length > 0 ? parsed.theme : null;
+  });
+  const [returnSnapshot, setReturnSnapshot] = useState<ExploreSnapshot | null>(null);
   const [selection, setSelection] = useState<Selection | null>(null);
   const [sheet, setSheet] = useState<'search' | 'filter' | null>(null);
   const [aboutOpen, setAboutOpen] = useState(false);
@@ -88,6 +110,7 @@ export function App() {
           graph.nodes.some((node) => node.id === shared.mechanism && node.type === 'mechanism')
             ? shared.mechanism
             : null;
+        const food = shared.food && graph.nodes.some((node) => node.id === shared.food) ? shared.food : null;
         let nextSelection: Selection | null = null;
         if (parsed.node && graph.nodes.some((node) => node.id === parsed.node)) {
           nextSelection = { kind: 'node', id: parsed.node };
@@ -97,6 +120,7 @@ export function App() {
         }
         setDiseaseId(disease);
         setMechanismId(mechanism);
+        setFoodId(food);
         setSelection(nextSelection);
         setLoad({ status: 'ready', graph });
       })
@@ -168,6 +192,7 @@ export function App() {
 
   const safeDisease = diseases.some((node) => node.id === diseaseId) ? diseaseId : null;
   const safeMechanism = mechanisms.some((node) => node.id === mechanismId) ? mechanismId : null;
+  const safeFood = graph?.nodes.some((node) => node.id === foodId) ? foodId : null;
 
   useEffect(() => {
     if (screen === 'explore' && !graph) return;
@@ -175,9 +200,15 @@ export function App() {
     const link = exploring && selection?.kind === 'link' ? graph.links[selection.index] : undefined;
     const next = serializeViewQuery({
       screen,
-      theme: exploring ? (themeForFilters(safeDisease, safeMechanism)?.id ?? null) : null,
+      theme: exploring
+        ? (themeForFilters(safeDisease, safeMechanism, safeFood)?.id ?? null)
+        : patterns.length > 0
+          ? patternSourceTheme
+          : null,
       disease: exploring ? safeDisease : null,
       mechanism: exploring ? safeMechanism : null,
+      food: exploring ? safeFood : null,
+      patterns: exploring ? [] : patterns,
       layer,
       layout,
       view: graphView,
@@ -188,11 +219,24 @@ export function App() {
     const target = `${window.location.pathname}${next}${window.location.hash}`;
     const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
     if (current !== target) window.history.replaceState(null, '', target);
-  }, [graph, graphView, hideUnmatched, layer, layout, safeDisease, safeMechanism, screen, selection]);
+  }, [
+    graph,
+    graphView,
+    hideUnmatched,
+    layer,
+    layout,
+    patternSourceTheme,
+    patterns,
+    safeDisease,
+    safeFood,
+    safeMechanism,
+    screen,
+    selection,
+  ]);
 
   const focusIds = useMemo(
-    () => (graph ? focusedNodeIds(graph.links, safeDisease, safeMechanism) : null),
-    [graph, safeDisease, safeMechanism],
+    () => (graph ? focusedNodeIds(graph.links, safeDisease, safeMechanism, safeFood) : null),
+    [graph, safeDisease, safeFood, safeMechanism],
   );
 
   const rendered = useMemo(() => {
@@ -235,10 +279,10 @@ export function App() {
   const counts = useMemo(() => (graph ? evidenceCounts(graph.links) : {}), [graph]);
 
   const anchorId = useMemo(() => {
-    if (!graph || !selection) return safeMechanism ?? safeDisease;
+    if (!graph || !selection) return safeMechanism ?? safeDisease ?? safeFood;
     if (selection.kind === 'node') return selection.id;
-    return graph.links[selection.index]?.target ?? safeMechanism ?? safeDisease;
-  }, [graph, safeDisease, safeMechanism, selection]);
+    return graph.links[selection.index]?.target ?? safeMechanism ?? safeDisease ?? safeFood;
+  }, [graph, safeDisease, safeFood, safeMechanism, selection]);
 
   const onQuery = useCallback((value: string) => setQuery(value), []);
 
@@ -261,21 +305,41 @@ export function App() {
   const clearFilters = () => {
     setDiseaseId(null);
     setMechanismId(null);
+    setFoodId(null);
+  };
+
+  const selectDisease = (id: string | null) => {
+    setDiseaseId(id);
+    if (id) setFoodId(null);
+  };
+
+  const selectMechanism = (id: string | null) => {
+    setMechanismId(id);
+    if (id) setFoodId(null);
   };
 
   const onTheme = (theme: ExploreTheme | null) => {
     if (!theme) {
       setDiseaseId(null);
       setMechanismId(null);
+      setFoodId(null);
       return;
     }
     setDiseaseId(theme.diseaseId);
     setMechanismId(theme.mechanismId);
+    setFoodId(theme.foodId);
+  };
+
+  const clearPatternHighlight = () => {
+    setPatterns([]);
+    setPatternSourceTheme(null);
+    setReturnSnapshot(null);
   };
 
   const enterTheme = (theme: ExploreTheme) => {
     setDiseaseId(theme.diseaseId);
     setMechanismId(theme.mechanismId);
+    setFoodId(theme.foodId);
     setLayout('hierarchy');
     setGraphView('2d');
     setHideUnmatched(true);
@@ -283,6 +347,7 @@ export function App() {
     setSheet(null);
     setMoreOpen(false);
     setScreen('explore');
+    clearPatternHighlight();
   };
 
   const goHome = () => {
@@ -290,6 +355,50 @@ export function App() {
     setSheet(null);
     setMoreOpen(false);
     setScreen('home');
+    clearPatternHighlight();
+  };
+
+  const showRelatedPatterns = () => {
+    const theme = themeForFilters(safeDisease, safeMechanism, safeFood);
+    const linked = patternsForTheme(theme?.id);
+    if (!theme || linked.length === 0) return;
+    setReturnSnapshot({
+      diseaseId: safeDisease,
+      mechanismId: safeMechanism,
+      foodId: safeFood,
+      layer,
+      layout,
+      graphView,
+      hideUnmatched,
+      selection,
+    });
+    setPatternSourceTheme(theme.id);
+    setPatterns([...linked]);
+    setSelection(null);
+    setSheet(null);
+    setMoreOpen(false);
+    setScreen('home');
+  };
+
+  const returnToGraph = () => {
+    const snapshot = returnSnapshot;
+    const source = themeById(patternSourceTheme);
+    clearPatternHighlight();
+    if (snapshot) {
+      setDiseaseId(snapshot.diseaseId);
+      setMechanismId(snapshot.mechanismId);
+      setFoodId(snapshot.foodId);
+      setLayer(snapshot.layer);
+      setLayout(snapshot.layout);
+      setGraphView(snapshot.graphView);
+      setHideUnmatched(snapshot.hideUnmatched);
+      setSelection(snapshot.selection);
+      setSheet(null);
+      setMoreOpen(false);
+      setScreen('explore');
+      return;
+    }
+    if (source) enterTheme(source);
   };
 
   const exploring = screen === 'explore';
@@ -360,8 +469,8 @@ export function App() {
               diseaseId={safeDisease}
               mechanismId={safeMechanism}
               layer={layer}
-              onDisease={setDiseaseId}
-              onMechanism={setMechanismId}
+              onDisease={selectDisease}
+              onMechanism={selectMechanism}
               onClear={clearFilters}
             />
           </div>
@@ -442,7 +551,14 @@ export function App() {
             </button>
           </div>
         )}
-        {!exploring && <ThemeLobby onEnter={enterTheme} />}
+        {!exploring && (
+          <ThemeLobby
+            onEnter={enterTheme}
+            highlightedPatterns={patterns}
+            patternSourceTheme={patternSourceTheme}
+            onReturnToGraph={returnToGraph}
+          />
+        )}
         {exploring && graph && rendered && (
           <>
             <div className="stage-main" data-testid="explore-screen">
@@ -467,6 +583,7 @@ export function App() {
                   themes={EXPLORE_THEMES}
                   diseaseId={safeDisease}
                   mechanismId={safeMechanism}
+                  foodId={safeFood}
                   layout={layout}
                   hideUnmatched={hideUnmatched}
                   onTheme={onTheme}
@@ -517,8 +634,8 @@ export function App() {
                       diseaseId={safeDisease}
                       mechanismId={safeMechanism}
                       layer={layer}
-                      onDisease={setDiseaseId}
-                      onMechanism={setMechanismId}
+                      onDisease={selectDisease}
+                      onMechanism={selectMechanism}
                       onClear={clearFilters}
                     />
                   )}
@@ -539,6 +656,11 @@ export function App() {
                 onClose={() => setSelection(null)}
                 onSelectNode={(id) => setSelection({ kind: 'node', id })}
                 onSelectLink={(index) => setSelection({ kind: 'link', index })}
+                onShowPatterns={
+                  patternsForTheme(themeForFilters(safeDisease, safeMechanism, safeFood)?.id).length > 0
+                    ? showRelatedPatterns
+                    : undefined
+                }
               />
             )}
           </>

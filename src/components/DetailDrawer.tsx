@@ -27,6 +27,7 @@ interface DetailDrawerProps {
   onClose: () => void;
   onSelectNode: (id: string) => void;
   onSelectLink: (index: number) => void;
+  onShowPatterns?: () => void;
 }
 
 function Swatch({ value }: { value: string }) {
@@ -357,6 +358,7 @@ export function DetailDrawer({
   onClose,
   onSelectNode,
   onSelectLink,
+  onShowPatterns,
 }: DetailDrawerProps) {
   const closeRef = useRef<HTMLButtonElement>(null);
   const [dragY, setDragY] = useState(0);
@@ -433,6 +435,19 @@ export function DetailDrawer({
         {selection.kind === 'node' && !node && <p>未找到该节点。</p>}
         {selection.kind === 'link' && !link && <p>未找到该关联。</p>}
       </div>
+      {onShowPatterns && (
+        <div className="drawer-patterns">
+          <button
+            type="button"
+            className="btn btn--ghost drawer-pattern-btn"
+            data-testid="show-related-patterns"
+            onClick={onShowPatterns}
+          >
+            查看相关饮食模式
+          </button>
+          <p className="drawer-pattern-note">资料里常被一起提到的吃法，不是个人方案。</p>
+        </div>
+      )}
     </aside>
   );
 }
