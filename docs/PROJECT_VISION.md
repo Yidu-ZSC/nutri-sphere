@@ -1,8 +1,8 @@
-# NutriSphere Project Vision
+# 明膳知源（DietSphere）Project Vision
 
 ## Product Positioning
 
-**NutriSphere** is an educational knowledge graph for ordinary people.
+**明膳知源**（DietSphere；原 NutriSphere）is an educational knowledge graph for ordinary people.
 
 It helps the general public conveniently look up and understand relationships between **diet and health**, and between **diet and disease**, in a clear, visual way.
 
@@ -35,7 +35,7 @@ This is **not** a quick demo or academic prototype that will be abandoned. From 
 - Clear disclaimers (not a medical device)
 
 ## Why This Exists
-Most people choose food by habit and taste because the links between diet and health are hard to grasp. Existing tools tend to serve professional users with dense tables or specialist interfaces. NutriSphere occupies a different space: an interactive view where ordinary users can see pathways such as “animal protein / ultra-processed foods → chronic inflammation / oxidative stress → elevated risk of certain chronic conditions” and explore alternatives, without needing domain expertise.
+Most people choose food by habit and taste because the links between diet and health are hard to grasp. Existing tools tend to serve professional users with dense tables or specialist interfaces. DietSphere occupies a different space: an interactive view where ordinary users can see pathways such as “animal protein / ultra-processed foods → chronic inflammation / oxidative stress → elevated risk of certain chronic conditions” and explore alternatives, without needing domain expertise.
 
 ## Quality Bar (Non-Negotiable)
 

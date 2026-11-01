@@ -1,4 +1,4 @@
-# NutriSphere Roadmap
+# 明膳知源 Roadmap
 
 ## Phase 0 — Foundation
 - [x] Repository created and product vision locked

@@ -1,4 +1,4 @@
-# NutriSphere Graph Schema (v0.3)
+# 明膳知源 Graph Schema (v0.3)
 
 This document defines the canonical data model for the knowledge graph. All seed data, future open-data integrations, and the 3D visualization must conform to this schema.
 
