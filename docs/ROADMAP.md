@@ -1,39 +1,39 @@
 # NutriSphere Roadmap
 
-## Phase 0 — Foundation (Current)
+## Phase 0 — Foundation
 - [x] Repository created and product vision locked
-- [x] Data strategy (knowledge-base Project vs repo Docs/data) defined
-- [x] High-level architecture documented
-- [ ] Canonical graph schema finalized
-- [ ] Contribution and evidence-metadata guidelines polished
+- [x] Data strategy defined
+- [x] Architecture and graph schema documented
+- [x] Seed data and validation pipeline in place
 
-## Phase 1 — Professional MVP (Product-usable, not just demo)
-- Seed structured triples (foods, mechanisms, outcomes) with evidence metadata
-- Interactive 3D force-directed graph (desktop + mobile)
-- Click node/edge → source, evidence type, short excerpt, limitations
-- Search and filter by disease, mechanism, or food category
-- Clear public disclaimers and layered simple/expert views
-- Basic data validation pipeline
+## Phase 1 — Professional MVP
+- [x] Interactive explorer (theme lobby + 2D hierarchy default, optional 3D)
+- [x] Search, filters, layperson/expert layers, evidence drawer, permanent disclaimer
+- [x] Data expanded to 70 nodes / 126 links (book notes + selected literature edges)
+- [x] CI validation, tests, GitHub Pages workflow
+- [x] Mobile-friendly layout
+
+## Phase 1.5 — Usability & Density (Current focus)
+- Default hide non-matching nodes on theme entry
+- Ordinary layer filters by `audience=general` and lower `mechanism_depth`
+- User path validation with 2–3 non-expert observers
+- Small controlled open-data attributes (Nutri-Score / NOVA bands as node metadata only)
 
 ## Phase 2 — Richer Exploration
-- Risk surface / pathway visualizations
-- Integration of open data (GBD, FAO, Nutri-Score/NOVA)
+- Risk surface / pathway visualizations (educational)
 - Guided narrative storylines
-- “What-if” path highlighting (e.g., replace meat with legumes)
-- Export / share views
+- “What-if” path highlighting (strictly labeled as model)
+- Broader open data with full evidence metadata
 
-## Phase 3 — Personalization & Scale
-- Questionnaire-driven educational simulations (strictly labeled)
-- Larger graph support and progressive loading
-- Dimensionality-reduction views
-- Community data contribution workflow with review
-- Performance, accessibility, and internationalization polish
+## Phase 3 — Scale & Community
+- Progressive loading for larger graphs
+- Community contribution workflow with review
+- Accessibility and internationalization polish
 
-## Success Criteria for “Product-Level”
-- A non-expert can open the site, select a health topic of interest, explore related diet pathways, understand the direction and evidence strength of associations, and leave with clearer mental models — without being misled into thinking it is medical advice.
-- All visualized claims are traceable.
-- Code, data, and docs are maintainable by a small team or open contributors.
-- The system can absorb new evidence without architectural rewrites.
+## Success Criteria
+- Non-expert can select a topic, explore pathways, understand direction + evidence strength + limitations, and leave without mistaking the tool for medical advice.
+- All claims remain traceable.
+- System absorbs new evidence without architectural rewrites.
 
 ## Coordination
-Development issues, PRs, and data-gap tracking live in this repository. Research note curation continues in the knowledge-base Project and is referenced from triples.
+Issues, PRs, and data gaps live in this repository. Book-note curation stays in the knowledge-base Project.
