@@ -1,4 +1,4 @@
-# NutriSphere Minimal 3D Prototype
+# 明膳知源 Minimal 3D Prototype
 
 A single-file browser prototype that visualizes the seed graph using [3d-force-graph](https://github.com/vasturiano/3d-force-graph).
 

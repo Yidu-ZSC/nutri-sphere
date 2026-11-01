@@ -132,6 +132,7 @@ export function ThemeLobby({
       <header className="lobby-intro">
         <p className="kicker">教育与研究</p>
         <h1>想先了解哪个问题？</h1>
+        <p className="lobby-tagline" data-testid="lobby-tagline">看清膳食，知道来源</p>
         <p>
           先选一个你想了解的问题，再看公开资料里饮食与它常被怎么一起讨论。供学习与核对来源，不是医疗建议。
         </p>

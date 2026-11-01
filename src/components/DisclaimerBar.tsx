@@ -47,6 +47,7 @@ export function DisclaimerBar({
               关闭
             </button>
           </div>
+          <p className="about-brand" data-testid="about-brand">明膳知源 · DietSphere</p>
           <section>
             <h3>收录范围</h3>
             <p>
