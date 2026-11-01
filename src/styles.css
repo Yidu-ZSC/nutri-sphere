@@ -652,7 +652,7 @@ button { cursor: pointer; }
   border: 1px solid var(--line);
   border-radius: 12px;
   box-shadow: var(--shadow);
-  padding: 12px 14px;
+  padding: 0;
 }
 
 .about h3 {
@@ -792,17 +792,74 @@ button { cursor: pointer; }
   font-size: 12px;
 }
 
-.about-head { display: flex; justify-content: space-between; align-items: center; }
+.about-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  gap: 12px;
+  padding: 12px 14px 8px;
+  background: var(--panel-solid);
+  border-bottom: 1px solid var(--line);
+}
 
-.about-brand {
+.about-body { padding: 0 14px 14px; }
+
+.about p.about-brand {
   margin: 10px 0 0;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
 
+.about-lead { margin-top: 8px; }
+
 .about h2 { margin: 0; font-size: 16px; }
 
-.about p { line-height: 1.5; }
+.about p { margin: 6px 0 0; line-height: 1.5; }
+
+.about p.about-legal { margin-top: 12px; }
+
+.about-list,
+.about-steps {
+  margin: 6px 0 0;
+  padding-left: 1.25em;
+}
+
+.about-list li + li,
+.about-steps li + li { margin-top: 8px; }
+
+.about-read {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.about-read li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.about-read strong { font-size: 13px; }
+
+.about-dev {
+  margin-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.about-dev > summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.4;
+  padding: 10px 0;
+  min-height: 44px;
+}
 
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
