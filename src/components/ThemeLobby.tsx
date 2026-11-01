@@ -16,7 +16,7 @@ function ThemeCard({ theme, onEnter }: { theme: ExploreTheme; onEnter: (theme: E
       <span className="kicker">{theme.kind === 'health_topic' ? '健康主题' : '机制向'}</span>
       <strong>{theme.title}</strong>
       <span className="theme-prompt">{theme.prompt}</span>
-      <span className="muted">{theme.blurb}</span>
+      <span className="theme-blurb">{theme.blurb}</span>
     </button>
   );
 }
@@ -42,7 +42,7 @@ export function ThemeLobby({ onEnter }: ThemeLobbyProps) {
         </ul>
       </section>
       <details className="mechanism-fold" data-testid="mechanism-fold">
-        <summary>深读 · 机制（次要入口，默认收起）</summary>
+        <summary>进阶机制主题（可选）</summary>
         <p className="mechanism-note">
           机制主题放在次要位置，供愿意深读的人选用。展开后不会替换上面的健康主题。
         </p>

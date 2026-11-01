@@ -86,7 +86,6 @@ function ExcerptBlock({ text, full }: { text: string | undefined; full: boolean 
             {expanded ? '收起摘录' : '展开摘录'}
           </button>
         )}
-        <p className="muted">摘录与局限来自数据字段，界面未改写原文。</p>
       </dd>
     </div>
   );

@@ -64,6 +64,8 @@ test('explore themes still resolve on the aligned seed and avoid treatment wordi
       );
     }
     assert.ok([...theme.blurb].length > 0 && [...theme.blurb].length <= 40, theme.id);
+    assert.equal(theme.blurb.includes('教育向整理'), false, theme.id);
+    assert.equal(theme.blurb.includes('机制向深读'), false, theme.id);
     const copy = `${theme.label} ${theme.title} ${theme.prompt} ${theme.blurb}`;
     for (const word of banned) {
       assert.equal(copy.includes(word), false, `${theme.id} ${word}`);

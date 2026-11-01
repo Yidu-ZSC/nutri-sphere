@@ -145,9 +145,12 @@ test('layperson theme with only non-summary mechanisms is empty', () => {
   assert.equal(isLaypersonThemeEmpty('expert', focus, expert.nodeIds, ['lps', 'inflam']), false);
   assert.equal(isLaypersonThemeEmpty('layperson', null, new Set(), ['lps']), false);
   assert.equal(isLaypersonThemeEmpty('layperson', new Set(['missing']), new Set(), ['soy']), false);
-  assert.equal(LAYPERSON_LAYER_HINT, '已简化：仅显示通俗说明');
-  assert.equal(EXPERT_LAYER_HINT, '已展开全部证据层');
-  assert.equal(LAYPERSON_THEME_EMPTY, '当前主题在普通层暂无匹配，可切换专家层查看');
+  assert.equal(LAYPERSON_LAYER_HINT, '已简化显示');
+  assert.equal(EXPERT_LAYER_HINT, '已展开全部证据');
+  assert.equal(LAYPERSON_THEME_EMPTY, '暂无匹配，可切专家层');
+  assert.ok([...LAYPERSON_LAYER_HINT].length <= 20);
+  assert.ok([...EXPERT_LAYER_HINT].length <= 20);
+  assert.ok([...LAYPERSON_THEME_EMPTY].length <= 20);
 });
 
 test('seed layperson view drops non-summary mechanisms and deep_reader edges', () => {

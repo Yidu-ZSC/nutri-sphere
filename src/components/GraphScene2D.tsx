@@ -142,7 +142,7 @@ export function GraphScene2D(props: SceneCommonProps) {
       graphData={{ nodes: props.nodes, links: props.links }}
       width={props.size.w}
       height={props.size.h}
-      backgroundColor="#0c1016"
+      backgroundColor="#0f1115"
       enableNodeDrag={props.layout === 'force'}
       nodeRelSize={0}
       nodeVal={1}

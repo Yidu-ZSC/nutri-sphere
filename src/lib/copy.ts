@@ -6,6 +6,11 @@ export const DISCLAIMER_TEXT =
 
 export const DISCLAIMER_SHORT = '教育/研究工具 · 非诊疗 · 非医疗建议 · 请咨询专业人员';
 
+/** Explore HUD line. Counts are the rendered visible set, not the full seed. */
+export function visibleGraphStats(nodeCount: number, linkCount: number): string {
+  return `当前可见 ${nodeCount} 节点 · ${linkCount} 关联`;
+}
+
 export const DISCLAIMER_EN = 'Educational / research use only. Not medical advice.';
 
 const STRONG_TOKENS = ['免责声明', '不是', '不提供'] as const;
