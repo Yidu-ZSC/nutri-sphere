@@ -1,5 +1,6 @@
 import type { GraphView } from './graphView';
 import type { LayoutMode } from './layout';
+import { parsePatternList } from './patternLinks.ts';
 import { themeById } from './themes.ts';
 import type { ViewLayer } from '../types/graph';
 
@@ -14,6 +15,8 @@ export interface ParsedShare {
   theme: string | null;
   disease: string | null;
   mechanism: string | null;
+  food: string | null;
+  patterns: string[];
   layer: ViewLayer | null;
   layout: LayoutMode | null;
   view: GraphView | null;
@@ -27,6 +30,8 @@ export interface ShareState {
   theme: string | null;
   disease: string | null;
   mechanism: string | null;
+  food: string | null;
+  patterns: readonly string[];
   layer: ViewLayer;
   layout: LayoutMode;
   view: GraphView;
@@ -57,12 +62,14 @@ function parseTheme(value: string | null): string | null {
 
 /**
  * Missing `screen` is home, unless the link already points at a filter,
- * a node, a link, or a known theme — those open explore.
+ * a food anchor, a node, a link, or a known theme — those open explore.
  * An explicit `screen` always wins, including `screen=home` beside a disease id.
  */
-export function resolveScreen(parsed: Pick<ParsedShare, 'screen' | 'theme' | 'disease' | 'mechanism' | 'node' | 'link'>): ScreenMode {
+export function resolveScreen(
+  parsed: Pick<ParsedShare, 'screen' | 'theme' | 'disease' | 'mechanism' | 'food' | 'node' | 'link'>,
+): ScreenMode {
   if (parsed.screen) return parsed.screen;
-  if (parsed.disease || parsed.mechanism || parsed.node || parsed.link) return 'explore';
+  if (parsed.disease || parsed.mechanism || parsed.food || parsed.node || parsed.link) return 'explore';
   if (themeById(parsed.theme)) return 'explore';
   return 'home';
 }
@@ -95,6 +102,8 @@ export function parseViewQuery(search: string): ParsedShare {
     theme: parseTheme(params.get('theme')),
     disease: cleanId(params.get('disease')),
     mechanism: cleanId(params.get('mechanism')),
+    food: cleanId(params.get('food')),
+    patterns: parsePatternList(params.get('patterns')),
     layer: parseLayer(params.get('layer')),
     layout: layout === 'hierarchy' || layout === 'force' ? layout : null,
     view: view === '2d' || view === '3d' ? view : null,
@@ -108,16 +117,16 @@ export function parseViewQuery(search: string): ParsedShare {
 
 /**
  * `hide=1` on, `hide=0` explicitly off.
- * Omitted on explore with a theme, disease, or mechanism anchor defaults on.
+ * Omitted on explore with a theme, disease, mechanism, or food anchor defaults on.
  * Home never uses the flag. Explore without an anchor stays off.
  */
 export function resolveHideUnmatched(
   hideParam: string | null,
-  parsed: Pick<ParsedShare, 'screen' | 'theme' | 'disease' | 'mechanism' | 'node' | 'link'>,
+  parsed: Pick<ParsedShare, 'screen' | 'theme' | 'disease' | 'mechanism' | 'food' | 'node' | 'link'>,
 ): boolean {
   if (hideParam === '1') return true;
   if (hideParam === '0') return false;
-  if (resolveScreen(parsed) === 'explore' && (parsed.theme || parsed.disease || parsed.mechanism)) {
+  if (resolveScreen(parsed) === 'explore' && (parsed.theme || parsed.disease || parsed.mechanism || parsed.food)) {
     return true;
   }
   return false;
@@ -131,12 +140,20 @@ export function serializeViewQuery(state: ShareState): string {
     if (state.theme) params.set('theme', state.theme);
     if (state.disease) params.set('disease', state.disease);
     if (state.mechanism) params.set('mechanism', state.mechanism);
+    if (state.food) params.set('food', state.food);
     params.set('view', state.view);
     if (state.layout === 'force') params.set('layout', 'force');
     params.set('hide', state.hideUnmatched ? '1' : '0');
     if (state.node) params.set('node', state.node);
     else if (state.link) params.set('link', state.link);
+  } else if (state.patterns.length > 0) {
+    if (state.theme) params.set('theme', state.theme);
   }
   const text = params.toString();
-  return text ? `?${text}` : '';
+  const query = text ? `?${text}` : '';
+  if (state.screen === 'home' && state.patterns.length > 0) {
+    const patterns = state.patterns.map((id) => encodeURIComponent(id)).join(',');
+    return `${query}${query ? '&' : '?'}patterns=${patterns}`;
+  }
+  return query;
 }

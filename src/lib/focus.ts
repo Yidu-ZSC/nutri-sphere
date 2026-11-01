@@ -15,17 +15,19 @@ function neighborhood(nodeId: string, links: readonly FocusLink[]): Set<string> 
 /**
  * No filters → null (everything stays fully visible).
  * One filter → that node plus its one-hop neighbors.
- * Disease and mechanism together → intersection (AND across types).
+ * Disease, mechanism, and food together → intersection (AND across anchors).
  */
 export function focusedNodeIds(
   links: readonly FocusLink[],
   diseaseId: string | null,
   mechanismId: string | null,
+  foodId: string | null = null,
 ): ReadonlySet<string> | null {
-  if (!diseaseId && !mechanismId) return null;
+  if (!diseaseId && !mechanismId && !foodId) return null;
   const sets: Set<string>[] = [];
   if (diseaseId) sets.push(neighborhood(diseaseId, links));
   if (mechanismId) sets.push(neighborhood(mechanismId, links));
+  if (foodId) sets.push(neighborhood(foodId, links));
   return sets.reduce((acc, set) => {
     const next = new Set<string>();
     for (const id of acc) {

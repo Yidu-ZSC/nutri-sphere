@@ -531,6 +531,28 @@ button { cursor: pointer; }
   overscroll-behavior: contain;
   padding: 4px 16px 20px;
   min-height: 0;
+  flex: 1;
+}
+
+.drawer-patterns {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 16px 16px;
+  border-top: 1px solid var(--line);
+}
+
+.drawer-pattern-btn {
+  width: 100%;
+  min-height: 44px;
+}
+
+.drawer-pattern-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
 }
 
 .drawer-short { display: none; margin: 0; }
@@ -783,6 +805,7 @@ code {
 
 .lobby-intro,
 .lobby-primary,
+.lobby-food,
 .lobby-patterns,
 .mechanism-fold {
   width: min(1080px, 100%);
@@ -868,13 +891,49 @@ code {
   text-overflow: ellipsis;
 }
 
+.lobby-food,
 .lobby-patterns {
   margin-top: 28px;
 }
 
+.lobby-food h2,
 .lobby-patterns h2 {
   margin: 0;
   font-size: 16px;
+}
+
+.food-note {
+  margin: 8px 0 0;
+  max-width: 66ch;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.pattern-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.pattern-return {
+  min-height: 44px;
+}
+
+.pattern-card[data-highlighted='true'] {
+  border-color: var(--green);
+  box-shadow: inset 0 0 0 1px var(--green);
+}
+
+.pattern-badge {
+  align-self: flex-start;
+  border: 1px solid rgba(74, 222, 128, 0.7);
+  color: var(--green);
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 12px;
+  line-height: 1.4;
 }
 
 .pattern-note {
@@ -1069,6 +1128,8 @@ code {
   .related-btn,
   .linkish,
   .pattern-jump,
+  .pattern-return,
+  .drawer-pattern-btn,
   .citation-fold summary {
     min-height: 44px;
   }

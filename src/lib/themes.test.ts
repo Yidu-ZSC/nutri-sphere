@@ -3,10 +3,14 @@ import fs from 'node:fs';
 import test from 'node:test';
 import {
   EXPLORE_THEMES,
+  HOME_FOOD_THEMES,
   HOME_HEALTH_THEMES,
   HOME_MECHANISM_THEMES,
   HIERARCHY_HINT,
+  filtersFromShare,
   themeById,
+  themeForFilters,
+  themeMatches,
 } from './themes.ts';
 
 test('explore themes still resolve on the aligned seed and avoid treatment wording', () => {
@@ -37,13 +41,20 @@ test('explore themes still resolve on the aligned seed and avoid treatment wordi
       'breast_prostate_risk',
     ],
   );
-  assert.equal(HOME_HEALTH_THEMES.every((theme) => theme.kind === 'health_topic' && theme.mechanismId === null), true);
+  assert.equal(
+    HOME_HEALTH_THEMES.every(
+      (theme) => theme.kind === 'health_topic' && theme.mechanismId === null && theme.foodId === null,
+    ),
+    true,
+  );
   assert.deepEqual(
     HOME_MECHANISM_THEMES.map((theme) => theme.id),
     ['chronic-inflammation', 'gut-barrier', 'glycation'],
   );
   assert.equal(
-    HOME_MECHANISM_THEMES.every((theme) => theme.kind === 'mechanism_deep' && theme.diseaseId === null),
+    HOME_MECHANISM_THEMES.every(
+      (theme) => theme.kind === 'mechanism_deep' && theme.diseaseId === null && theme.foodId === null,
+    ),
     true,
   );
   assert.equal(themeById('fatty_liver')?.diseaseId, 'fatty_liver');
@@ -145,6 +156,13 @@ test('explore themes still resolve on the aligned seed and avoid treatment wordi
         true,
       );
     }
+    if (theme.foodId) {
+      assert.equal(
+        seed.nodes.some((node) => node.id === theme.foodId),
+        true,
+        theme.id,
+      );
+    }
     assert.ok([...theme.blurb].length > 0 && [...theme.blurb].length <= 40, theme.id);
     assert.equal(theme.blurb.includes('教育向整理'), false, theme.id);
     assert.equal(theme.blurb.includes('机制向深读'), false, theme.id);
@@ -153,4 +171,80 @@ test('explore themes still resolve on the aligned seed and avoid treatment wordi
       assert.equal(copy.includes(word), false, `${theme.id} ${word}`);
     }
   }
+});
+
+test('food themes anchor existing nodes and match only that food id', () => {
+  assert.deepEqual(
+    HOME_FOOD_THEMES.map((theme) => ({
+      id: theme.id,
+      label: theme.label,
+      title: theme.title,
+      prompt: theme.prompt,
+      blurb: theme.blurb,
+      diseaseId: theme.diseaseId,
+      mechanismId: theme.mechanismId,
+      foodId: theme.foodId,
+      kind: theme.kind,
+    })),
+    [
+      {
+        id: 'ultra-processed',
+        label: '超加工食品',
+        title: '想看看超加工食品常被怎么描述',
+        prompt: '这类食物和健康常被怎样一起讨论？',
+        blurb: '公开资料里常把它和某些健康主题放在一起说。',
+        diseaseId: null,
+        mechanismId: null,
+        foodId: 'ultra_processed',
+        kind: 'food_pattern',
+      },
+      {
+        id: 'plant-based',
+        label: '植物性饮食',
+        title: '想知道植物性饮食与炎症常怎么一起出现',
+        prompt: '这类食物和健康常被怎样一起讨论？',
+        blurb: '书摘与资料里常提到这条路径。',
+        diseaseId: null,
+        mechanismId: null,
+        foodId: 'plant_based_diet',
+        kind: 'food_pattern',
+      },
+      {
+        id: 'dietary-fiber',
+        label: '膳食纤维',
+        title: '想了解膳食纤维常被怎么说',
+        prompt: '这类食物和健康常被怎样一起讨论？',
+        blurb: '与菌群、炎症叙述常一起出现。',
+        diseaseId: null,
+        mechanismId: null,
+        foodId: 'dietary_fiber',
+        kind: 'food_pattern',
+      },
+    ],
+  );
+  assert.deepEqual(
+    EXPLORE_THEMES.map((theme) => theme.id),
+    [...HOME_HEALTH_THEMES, ...HOME_MECHANISM_THEMES, ...HOME_FOOD_THEMES].map((theme) => theme.id),
+  );
+  const ultra = themeById('ultra-processed');
+  assert.ok(ultra);
+  assert.equal(themeMatches(ultra, null, null, 'ultra_processed'), true);
+  assert.equal(themeMatches(ultra, 'cardiometabolic', null, 'ultra_processed'), false);
+  assert.equal(themeMatches(ultra, null, null, null), false);
+  assert.equal(themeForFilters('cardiometabolic', null)?.id, 'cardiometabolic');
+  assert.equal(themeForFilters(null, 'chronic_inflammation')?.id, 'chronic-inflammation');
+  assert.equal(themeForFilters(null, null, 'ultra_processed')?.id, 'ultra-processed');
+  assert.equal(themeForFilters(null, null, 'plant_based_diet')?.id, 'plant-based');
+  assert.equal(themeForFilters(null, null, 'dietary_fiber')?.id, 'dietary-fiber');
+  assert.equal(themeForFilters('cardiometabolic', null, 'ultra_processed'), null);
+  assert.equal(themeForFilters(null, null, null), null);
+  assert.deepEqual(filtersFromShare({ disease: null, mechanism: null, theme: 'plant-based' }), {
+    disease: null,
+    mechanism: null,
+    food: 'plant_based_diet',
+  });
+  assert.deepEqual(
+    filtersFromShare({ disease: 'fatty_liver', mechanism: null, food: 'ultra_processed', theme: 'plant-based' }),
+    { disease: 'fatty_liver', mechanism: null, food: 'ultra_processed' },
+  );
 });

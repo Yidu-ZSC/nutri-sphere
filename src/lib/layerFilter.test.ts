@@ -13,7 +13,7 @@ import {
   nodeKeptOnLayperson,
   renderVisibleGraph,
 } from './layerFilter.ts';
-import { HOME_HEALTH_THEMES, HOME_MECHANISM_THEMES } from './themes.ts';
+import { HOME_FOOD_THEMES, HOME_HEALTH_THEMES, HOME_MECHANISM_THEMES } from './themes.ts';
 
 const food = { id: 'soy', type: 'food', mechanism_depth: 'technical' };
 const summary = { id: 'barrier', type: 'mechanism', mechanism_depth: 'summary' };
@@ -253,4 +253,82 @@ test('seed layperson view drops non-summary mechanisms and deep_reader edges', (
     ),
     true,
   );
+});
+
+test('food themes reuse layperson filtering and keep the anchor visible', () => {
+  const seed = JSON.parse(
+    fs.readFileSync(new URL('../../data/seed_triples_v0.3_aligned.json', import.meta.url), 'utf8'),
+  ) as GraphData;
+
+  for (const theme of HOME_FOOD_THEMES) {
+    assert.ok(theme.foodId, theme.id);
+    const focusIds = focusedNodeIds(seed.links, null, null, theme.foodId);
+    assert.equal(focusIds?.has(theme.foodId), true, theme.id);
+    const lay = renderVisibleGraph({
+      nodes: seed.nodes,
+      links: seed.links,
+      focusIds,
+      hideUnmatched: true,
+      pinnedIds: new Set(),
+      layer: 'layperson',
+    });
+    const expert = renderVisibleGraph({
+      nodes: seed.nodes,
+      links: seed.links,
+      focusIds,
+      hideUnmatched: true,
+      pinnedIds: new Set(),
+      layer: 'expert',
+    });
+    assert.equal(lay.nodeIds.has(theme.foodId), true, theme.id);
+    assert.ok(lay.links.length > 0, theme.id);
+    assert.ok(lay.nodeIds.size <= 15, `${theme.id} layperson nodes ${lay.nodeIds.size}`);
+    assert.ok(expert.links.length >= lay.links.length, theme.id);
+    for (const link of lay.links) {
+      assert.ok(link.audience == null || link.audience === 'general', theme.id);
+    }
+    assert.equal(
+      isLaypersonThemeEmpty(
+        'layperson',
+        focusIds,
+        lay.nodeIds,
+        seed.nodes.map((node) => node.id),
+      ),
+      false,
+      theme.id,
+    );
+  }
+
+  const fiber = HOME_FOOD_THEMES.find((theme) => theme.id === 'dietary-fiber');
+  assert.ok(fiber?.foodId);
+  const focusIds = focusedNodeIds(seed.links, null, null, fiber.foodId);
+  const lay = renderVisibleGraph({
+    nodes: seed.nodes,
+    links: seed.links,
+    focusIds,
+    hideUnmatched: true,
+    pinnedIds: new Set(),
+    layer: 'layperson',
+  });
+  const expert = renderVisibleGraph({
+    nodes: seed.nodes,
+    links: seed.links,
+    focusIds,
+    hideUnmatched: true,
+    pinnedIds: new Set(),
+    layer: 'expert',
+  });
+  // Two deep_reader edges, plus the general edge into expert-only gut_microbiome.
+  // That mechanism's other in-neighborhood edges drop with it, so the full view differs by 5.
+  const touchesFiber = (link: { source: string; target: string }) =>
+    link.source === 'dietary_fiber' || link.target === 'dietary_fiber';
+  const layFiber = lay.links.filter(touchesFiber);
+  const expertFiber = expert.links.filter(touchesFiber);
+  assert.equal(expertFiber.filter((link) => link.audience === 'deep_reader').length, 2);
+  assert.equal(layFiber.some((link) => link.audience === 'deep_reader'), false);
+  assert.equal(layFiber.length, 10);
+  assert.equal(expertFiber.length, 13);
+  assert.equal(lay.nodeIds.has('gut_microbiome'), false);
+  assert.equal(expert.nodeIds.has('gut_microbiome'), true);
+  assert.equal(expert.links.length - lay.links.length, 5);
 });

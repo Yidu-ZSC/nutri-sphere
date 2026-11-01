@@ -27,6 +27,32 @@ test('disease and mechanism filters intersect', () => {
   assert.equal(focus?.has('glycation'), false);
 });
 
+test('a food anchor keeps the node and its one-hop neighbors', () => {
+  const foodLinks = [
+    { source: 'ultra_processed', target: 'cardiometabolic' },
+    { source: 'ultra_processed', target: 'obesity_risk' },
+    { source: 'dietary_fiber', target: 'scfa' },
+  ];
+  const focus = focusedNodeIds(foodLinks, null, null, 'ultra_processed');
+  assert.deepEqual([...(focus ?? [])].sort(), ['cardiometabolic', 'obesity_risk', 'ultra_processed']);
+  assert.equal(linkIsFocused(foodLinks[0], focus), true);
+  assert.equal(linkIsFocused(foodLinks[2], focus), false);
+  assert.equal(focusedNodeIds(foodLinks, null, null, null), null);
+});
+
+test('food intersects with a disease anchor', () => {
+  const foodLinks = [
+    { source: 'ultra_processed', target: 'cardiometabolic' },
+    { source: 'ultra_processed', target: 'obesity_risk' },
+    { source: 'dietary_fiber', target: 'cardiometabolic' },
+  ];
+  const focus = focusedNodeIds(foodLinks, 'cardiometabolic', null, 'ultra_processed');
+  assert.equal(focus?.has('cardiometabolic'), true);
+  assert.equal(focus?.has('ultra_processed'), true);
+  assert.equal(focus?.has('obesity_risk'), false);
+  assert.equal(focus?.has('dietary_fiber'), false);
+});
+
 test('filters with no shared neighborhood are empty', () => {
   const focus = focusedNodeIds(links, 'mental_health', 'glycation');
   assert.equal(

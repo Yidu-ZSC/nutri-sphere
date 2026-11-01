@@ -5,6 +5,7 @@ interface ThemeBarProps {
   themes: readonly ExploreTheme[];
   diseaseId: string | null;
   mechanismId: string | null;
+  foodId: string | null;
   layout: LayoutMode;
   hideUnmatched: boolean;
   onTheme: (theme: ExploreTheme | null) => void;
@@ -15,6 +16,7 @@ export function ThemeBar({
   themes,
   diseaseId,
   mechanismId,
+  foodId,
   layout,
   hideUnmatched,
   onTheme,
@@ -25,7 +27,7 @@ export function ThemeBar({
       <div className="themes" role="group" aria-label="探索主题" data-testid="theme-chips">
         <span className="themes-label">探索主题</span>
         {themes.map((theme) => {
-          const pressed = themeMatches(theme, diseaseId, mechanismId);
+          const pressed = themeMatches(theme, diseaseId, mechanismId, foodId);
           return (
             <button
               key={theme.id}
