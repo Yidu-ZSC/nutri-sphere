@@ -783,6 +783,7 @@ code {
 
 .lobby-intro,
 .lobby-primary,
+.lobby-patterns,
 .mechanism-fold {
   width: min(1080px, 100%);
   margin-left: auto;
@@ -867,6 +868,110 @@ code {
   text-overflow: ellipsis;
 }
 
+.lobby-patterns {
+  margin-top: 28px;
+}
+
+.lobby-patterns h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.pattern-note {
+  margin: 8px 0 0;
+  max-width: 66ch;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.pattern-grid {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.pattern-grid > li {
+  display: flex;
+  min-width: 0;
+}
+
+.pattern-card {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--panel-solid);
+}
+
+.pattern-card h3 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.pattern-card p,
+.pattern-fields dd {
+  margin: 0;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.pattern-fields {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pattern-fields dt {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.pattern-fields dd {
+  margin-top: 2px;
+}
+
+.pattern-related {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.pattern-jump {
+  width: 100%;
+  min-height: 44px;
+  text-align: left;
+  border: 1px solid var(--line);
+  background: var(--btn);
+  border-radius: 8px;
+  padding: 8px 12px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.pattern-jump:hover,
+.pattern-jump:focus-visible {
+  background: var(--btn-hover);
+  border-color: rgba(74, 222, 128, 0.7);
+}
+
 .mechanism-fold {
   margin-top: 22px;
   border: 1px solid var(--line);
@@ -895,14 +1000,16 @@ code {
 
 @media (min-width: 640px) {
   .theme-grid,
-  .mechanism-list {
+  .mechanism-list,
+  .pattern-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
   .theme-grid,
-  .mechanism-list {
+  .mechanism-list,
+  .pattern-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
@@ -961,6 +1068,7 @@ code {
   .filters select,
   .related-btn,
   .linkish,
+  .pattern-jump,
   .citation-fold summary {
     min-height: 44px;
   }
