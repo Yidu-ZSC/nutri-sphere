@@ -14,15 +14,22 @@ export interface SearchHit {
   subtitle: string;
 }
 
+export interface SearchScope {
+  nodeIds: ReadonlySet<string>;
+  linkIndices: ReadonlySet<number>;
+}
+
 export function searchGraph(
   query: string,
   graph: GraphData,
+  scope?: SearchScope,
 ): { hits: SearchHit[]; truncated: boolean } {
   const needle = query.trim().toLowerCase();
   if (!needle) return { hits: [], truncated: false };
 
   const nodeHits: SearchHit[] = [];
   for (const node of graph.nodes) {
+    if (scope && !scope.nodeIds.has(node.id)) continue;
     const haystack = [node.label, node.id, ...(node.aliases ?? [])];
     const matched = haystack.some((field) => field.toLowerCase().includes(needle));
     if (!matched) continue;
@@ -36,6 +43,7 @@ export function searchGraph(
 
   const linkHits: SearchHit[] = [];
   graph.links.forEach((link, index) => {
+    if (scope && !scope.linkIndices.has(index)) return;
     if (!link.relation.toLowerCase().includes(needle)) return;
     linkHits.push({
       kind: 'link',

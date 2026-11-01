@@ -54,9 +54,9 @@ The page has two states. `screen` is not the graph projection; `view` remains `2
 | `theme` | Theme id matching `[a-z0-9_-]+`. It maps to a disease and/or mechanism filter when those params are absent. Unknown ids are ignored. The lobby does not write `theme` back into the URL. |
 | `layer` | `layperson` or `expert` only. Any other value, including a third layer, is ignored. |
 | `view` | `2d` or `3d`. Written on `explore`. Unchanged: this is not the home/explore switch. |
-| `disease`, `mechanism`, `layout`, `hide`, `node`, `link` | Same as before. `layout` defaults to hierarchy (`force` is explicit). `hide=1` hides nodes outside the filter. |
+| `disease`, `mechanism`, `layout`, `hide`, `node`, `link` | `layout` defaults to hierarchy (`force` is explicit). `hide=1` hides nodes outside the theme filter. `hide=0` is the explicit off state. When explore has a `theme`, `disease`, or `mechanism` anchor and `hide` is omitted, hide defaults on. The home URL does not include `hide`. |
 
-Choosing a card on the lobby opens `explore` at 2D, hierarchy layout, with unmatched nodes hidden. Theme copy lives in frontend constants (`src/lib/themes.ts`), not in the graph schema. Filtering by a future audience or mechanism-depth field waits until that schema work lands; this screen uses the current disease and mechanism ids.
+Choosing a card on the lobby opens `explore` at 2D, hierarchy layout, with unmatched nodes hidden (`hide=1`). Theme copy lives in frontend constants (`src/lib/themes.ts`), not in the graph schema. The layperson layer keeps general edges (omitted audience counts as general) and summary mechanism nodes (omitted depth counts as summary). The expert layer shows every edge and mechanism depth. The default graph view stays 2D.
 
 ## Vision
 

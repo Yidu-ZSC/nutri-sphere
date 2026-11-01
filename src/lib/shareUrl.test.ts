@@ -58,6 +58,8 @@ test('a node selection wins over a link in the serialized query', () => {
   assert.equal(parseViewQuery(query).link, null);
   assert.match(query, /layout=force/);
   assert.match(query, /view=3d/);
+  assert.match(query, /hide=0/);
+  assert.equal(parseViewQuery(query).hideUnmatched, false);
 });
 
 test('unknown view values are dropped', () => {
@@ -88,6 +90,7 @@ test('default screen is home when the query has no deep link', () => {
   assert.equal(home.includes('theme='), false);
   assert.equal(home.includes('disease='), false);
   assert.equal(home.includes('view='), false);
+  assert.equal(home.includes('hide='), false);
   assert.equal(resolveScreen(parseViewQuery(home)), 'home');
 });
 
@@ -143,4 +146,39 @@ test('theme maps to a disease or mechanism filter and does not reuse view', () =
   });
   assert.equal(resolveScreen(parseViewQuery('?screen=home&disease=fatty_liver')), 'home');
   assert.equal(parseViewQuery('?screen=atlas').screen, null);
+});
+
+test('hide=1 stays on and hide=0 stays off', () => {
+  assert.equal(parseViewQuery('?screen=explore&theme=fatty_liver&hide=1').hideUnmatched, true);
+  const off = parseViewQuery('?screen=explore&theme=fatty_liver&hide=0');
+  assert.equal(off.hideUnmatched, false);
+  assert.equal(off.theme, 'fatty_liver');
+  const serialized = serializeViewQuery({
+    screen: 'explore',
+    theme: 'fatty_liver',
+    disease: 'fatty_liver',
+    mechanism: null,
+    layer: 'layperson',
+    layout: 'hierarchy',
+    view: '2d',
+    hideUnmatched: false,
+    node: null,
+    link: null,
+  });
+  assert.match(serialized, /hide=0/);
+  assert.equal(parseViewQuery(serialized).hideUnmatched, false);
+});
+
+test('omitted hide defaults on only for explore with a theme anchor', () => {
+  assert.equal(parseViewQuery('?screen=explore&theme=fatty_liver&layer=layperson').hideUnmatched, true);
+  assert.equal(parseViewQuery('?theme=gut-barrier').hideUnmatched, true);
+  assert.equal(parseViewQuery('?disease=cardiometabolic').hideUnmatched, true);
+  assert.equal(parseViewQuery('?mechanism=chronic_inflammation').hideUnmatched, true);
+  assert.equal(parseViewQuery('?screen=explore&node=soy').hideUnmatched, false);
+  assert.equal(parseViewQuery('?screen=explore&link=gut_barrier_leak~lps').hideUnmatched, false);
+  assert.equal(parseViewQuery('?screen=home').hideUnmatched, false);
+  assert.equal(parseViewQuery('?screen=home&disease=fatty_liver').hideUnmatched, false);
+  assert.equal(parseViewQuery('?theme=not_a_theme').hideUnmatched, false);
+  assert.equal(parseViewQuery('?disease=cardiometabolic&hide=0').hideUnmatched, false);
+  assert.equal(parseViewQuery('?hide=1').hideUnmatched, true);
 });
