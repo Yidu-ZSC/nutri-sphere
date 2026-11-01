@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { DIET_PATTERN_CARDS } from './dietPatterns.ts';
-import { parsePatternList, patternsForTheme, THEME_PATTERN_LINKS } from './patternLinks.ts';
+import { knownPatternId, parsePatternList, patternsForTheme, THEME_PATTERN_LINKS } from './patternLinks.ts';
 
 test('pattern links follow the locked theme map and ignore related_themes inversion', () => {
   assert.deepEqual(THEME_PATTERN_LINKS.cardiometabolic, ['mediterranean', 'dash']);
@@ -32,4 +32,7 @@ test('pattern lists keep known ids and drop unknown ones', () => {
   assert.deepEqual(parsePatternList('Mediterranean,not a id,plant_forward'), ['plant_forward']);
   assert.deepEqual(parsePatternList(' , ,dash'), ['dash']);
   assert.deepEqual(parsePatternList('ultra-processed'), []);
+  assert.equal(knownPatternId('dash'), 'dash');
+  assert.equal(knownPatternId('nope'), null);
+  assert.equal(knownPatternId('Mediterranean'), null);
 });

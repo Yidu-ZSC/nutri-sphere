@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { DIET_PATTERN_CARDS, type DietPatternCard } from '../lib/dietPatterns';
+import { PATTERN_SHELL } from '../lib/dietPatternDetails';
 import {
   HOME_FOOD_THEMES,
   HOME_HEALTH_THEMES,
@@ -11,6 +12,8 @@ import {
 
 interface ThemeLobbyProps {
   onEnter: (theme: ExploreTheme) => void;
+  onOpenPattern: (id: string) => void;
+  onOpenCompare: () => void;
   highlightedPatterns?: readonly string[];
   patternSourceTheme?: string | null;
   onReturnToGraph?: () => void;
@@ -43,10 +46,12 @@ function PatternCard({
   card,
   highlighted,
   onEnter,
+  onOpenPattern,
 }: {
   card: DietPatternCard;
   highlighted: boolean;
   onEnter: (theme: ExploreTheme) => void;
+  onOpenPattern: (id: string) => void;
 }) {
   const related = card.related_themes
     .map((id) => themeById(id))
@@ -58,7 +63,7 @@ function PatternCard({
       data-testid={`pattern-card-${card.id}`}
       data-highlighted={highlighted ? 'true' : undefined}
     >
-      {highlighted && <span className="pattern-badge">与当前主题相关</span>}
+      {highlighted && <span className="pattern-badge">{PATTERN_SHELL.highlightBadge}</span>}
       <h3>{card.title}</h3>
       <p className="pattern-summary">{card.summary}</p>
       <dl className="pattern-fields">
@@ -79,9 +84,17 @@ function PatternCard({
           <dd data-testid={`pattern-limitations-${card.id}`}>{card.limitations}</dd>
         </div>
       </dl>
-      {related.length > 0 && (
-        <div className="pattern-related">
-          {related.map((theme) => (
+      <div className="pattern-related">
+        <button
+          type="button"
+          className="pattern-jump"
+          data-testid="open-pattern-detail"
+          data-pattern={card.id}
+          onClick={() => onOpenPattern(card.id)}
+        >
+          {PATTERN_SHELL.openDetail}
+        </button>
+        {related.map((theme) => (
             <button
               key={theme.id}
               type="button"
@@ -91,15 +104,16 @@ function PatternCard({
             >
               查看相关主题：{theme.label}
             </button>
-          ))}
-        </div>
-      )}
+        ))}
+      </div>
     </article>
   );
 }
 
 export function ThemeLobby({
   onEnter,
+  onOpenPattern,
+  onOpenCompare,
   highlightedPatterns = [],
   patternSourceTheme = null,
   onReturnToGraph,
@@ -157,14 +171,27 @@ export function ThemeLobby({
             </button>
           )}
         </div>
-        <p className="pattern-note">公开资料里常被描述的饮食模式，供学习核对，不是个人方案。</p>
+        <p className="pattern-note">{PATTERN_SHELL.lobbyNote}</p>
         <ul className="pattern-grid">
           {DIET_PATTERN_CARDS.map((card) => (
             <li key={card.id}>
-              <PatternCard card={card} highlighted={highlighted.has(card.id)} onEnter={onEnter} />
+              <PatternCard
+                card={card}
+                highlighted={highlighted.has(card.id)}
+                onEnter={onEnter}
+                onOpenPattern={onOpenPattern}
+              />
             </li>
           ))}
         </ul>
+        <button
+          type="button"
+          className="pattern-jump pattern-compare-entry"
+          data-testid="open-pattern-compare"
+          onClick={onOpenCompare}
+        >
+          {PATTERN_SHELL.openCompare}
+        </button>
       </section>
       <details className="mechanism-fold" data-testid="mechanism-fold">
         <summary>进阶机制主题（可选）</summary>

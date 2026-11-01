@@ -5,6 +5,8 @@ import { FilterPanel } from './components/FilterPanel';
 import { GraphCanvas } from './components/GraphCanvas';
 import { LayoutToggle } from './components/LayoutToggle';
 import { Legend } from './components/Legend';
+import { PatternCompare } from './components/PatternCompare';
+import { PatternDetail } from './components/PatternDetail';
 import { SearchBar } from './components/SearchBar';
 import { ThemeBar } from './components/ThemeBar';
 import { ThemeLobby } from './components/ThemeLobby';
@@ -21,6 +23,7 @@ import {
 } from './lib/layerFilter';
 import type { LayoutMode } from './lib/layout';
 import { loadGraph } from './lib/loadGraph';
+import { dietPatternById } from './lib/dietPatternDetails';
 import { patternsForTheme } from './lib/patternLinks';
 import { searchGraph, type SearchHit } from './lib/search';
 import {
@@ -85,6 +88,11 @@ export function App() {
     return resolveScreen(parsed) === 'home' && parsed.patterns.length > 0 ? parsed.theme : null;
   });
   const [returnSnapshot, setReturnSnapshot] = useState<ExploreSnapshot | null>(null);
+  const [patternId, setPatternId] = useState<string | null>(() => {
+    const parsed = initialQuery.current;
+    return resolveScreen(parsed) === 'pattern' ? parsed.pattern : null;
+  });
+  const [patternReturnSnapshot, setPatternReturnSnapshot] = useState<ExploreSnapshot | null>(null);
   const [selection, setSelection] = useState<Selection | null>(null);
   const [sheet, setSheet] = useState<'search' | 'filter' | null>(null);
   const [aboutOpen, setAboutOpen] = useState(false);
@@ -195,6 +203,13 @@ export function App() {
   const safeFood = graph?.nodes.some((node) => node.id === foodId) ? foodId : null;
 
   useEffect(() => {
+    if (screen === 'pattern' && !dietPatternById(patternId)) {
+      setPatternId(null);
+      setScreen('home');
+    }
+  }, [patternId, screen]);
+
+  useEffect(() => {
     if (screen === 'explore' && !graph) return;
     const exploring = screen === 'explore' && graph != null;
     const link = exploring && selection?.kind === 'link' ? graph.links[selection.index] : undefined;
@@ -202,13 +217,14 @@ export function App() {
       screen,
       theme: exploring
         ? (themeForFilters(safeDisease, safeMechanism, safeFood)?.id ?? null)
-        : patterns.length > 0
+        : screen === 'home' && patterns.length > 0
           ? patternSourceTheme
           : null,
       disease: exploring ? safeDisease : null,
       mechanism: exploring ? safeMechanism : null,
       food: exploring ? safeFood : null,
-      patterns: exploring ? [] : patterns,
+      pattern: screen === 'pattern' ? patternId : null,
+      patterns: screen === 'home' ? patterns : [],
       layer,
       layout,
       view: graphView,
@@ -225,6 +241,7 @@ export function App() {
     hideUnmatched,
     layer,
     layout,
+    patternId,
     patternSourceTheme,
     patterns,
     safeDisease,
@@ -346,6 +363,8 @@ export function App() {
     setSelection(null);
     setSheet(null);
     setMoreOpen(false);
+    setPatternId(null);
+    setPatternReturnSnapshot(null);
     setScreen('explore');
     clearPatternHighlight();
   };
@@ -354,7 +373,78 @@ export function App() {
     setSelection(null);
     setSheet(null);
     setMoreOpen(false);
+    setPatternId(null);
+    setPatternReturnSnapshot(null);
     setScreen('home');
+    clearPatternHighlight();
+  };
+
+  const captureExplore = (): ExploreSnapshot => ({
+    diseaseId: safeDisease,
+    mechanismId: safeMechanism,
+    foodId: safeFood,
+    layer,
+    layout,
+    graphView,
+    hideUnmatched,
+    selection,
+  });
+
+  const openPatternFromLobby = (id: string) => {
+    if (!dietPatternById(id)) return;
+    setPatternReturnSnapshot(null);
+    setPatternId(id);
+    setSelection(null);
+    setSheet(null);
+    setMoreOpen(false);
+    setScreen('pattern');
+    clearPatternHighlight();
+  };
+
+  const openPatternFromCompare = (id: string) => {
+    if (!dietPatternById(id)) return;
+    setPatternId(id);
+    setSelection(null);
+    setSheet(null);
+    setMoreOpen(false);
+    setScreen('pattern');
+  };
+
+  const openPatternFromExplore = (id: string) => {
+    if (!dietPatternById(id)) return;
+    setPatternReturnSnapshot(captureExplore());
+    setPatternId(id);
+    setSelection(null);
+    setSheet(null);
+    setMoreOpen(false);
+    setScreen('pattern');
+    clearPatternHighlight();
+  };
+
+  const openCompare = () => {
+    setSelection(null);
+    setSheet(null);
+    setMoreOpen(false);
+    setScreen('compare');
+    clearPatternHighlight();
+  };
+
+  const returnFromPatternToGraph = () => {
+    const snapshot = patternReturnSnapshot;
+    if (!snapshot) return;
+    setPatternReturnSnapshot(null);
+    setPatternId(null);
+    setDiseaseId(snapshot.diseaseId);
+    setMechanismId(snapshot.mechanismId);
+    setFoodId(snapshot.foodId);
+    setLayer(snapshot.layer);
+    setLayout(snapshot.layout);
+    setGraphView(snapshot.graphView);
+    setHideUnmatched(snapshot.hideUnmatched);
+    setSelection(snapshot.selection);
+    setSheet(null);
+    setMoreOpen(false);
+    setScreen('explore');
     clearPatternHighlight();
   };
 
@@ -374,6 +464,8 @@ export function App() {
     });
     setPatternSourceTheme(theme.id);
     setPatterns([...linked]);
+    setPatternId(null);
+    setPatternReturnSnapshot(null);
     setSelection(null);
     setSheet(null);
     setMoreOpen(false);
@@ -402,6 +494,8 @@ export function App() {
   };
 
   const exploring = screen === 'explore';
+  const activePattern = screen === 'pattern' ? dietPatternById(patternId) : null;
+  const relatedPatternIds = patternsForTheme(themeForFilters(safeDisease, safeMechanism, safeFood)?.id);
 
   const copyViewLink = () => {
     const href = window.location.href;
@@ -551,14 +645,26 @@ export function App() {
             </button>
           </div>
         )}
-        {!exploring && (
+        {(screen === 'home' || (screen === 'pattern' && !activePattern)) && (
           <ThemeLobby
             onEnter={enterTheme}
+            onOpenPattern={openPatternFromLobby}
+            onOpenCompare={openCompare}
             highlightedPatterns={patterns}
             patternSourceTheme={patternSourceTheme}
             onReturnToGraph={returnToGraph}
           />
         )}
+        {activePattern && (
+          <PatternDetail
+            detail={activePattern}
+            onBack={goHome}
+            onCompare={openCompare}
+            onEnterTheme={enterTheme}
+            onReturnToGraph={patternReturnSnapshot ? returnFromPatternToGraph : undefined}
+          />
+        )}
+        {screen === 'compare' && <PatternCompare onBack={goHome} onOpenPattern={openPatternFromCompare} />}
         {exploring && graph && rendered && (
           <>
             <div className="stage-main" data-testid="explore-screen">
@@ -656,11 +762,9 @@ export function App() {
                 onClose={() => setSelection(null)}
                 onSelectNode={(id) => setSelection({ kind: 'node', id })}
                 onSelectLink={(index) => setSelection({ kind: 'link', index })}
-                onShowPatterns={
-                  patternsForTheme(themeForFilters(safeDisease, safeMechanism, safeFood)?.id).length > 0
-                    ? showRelatedPatterns
-                    : undefined
-                }
+                onShowPatterns={relatedPatternIds.length > 0 ? showRelatedPatterns : undefined}
+                relatedPatternIds={relatedPatternIds}
+                onOpenPattern={relatedPatternIds.length > 0 ? openPatternFromExplore : undefined}
               />
             )}
           </>

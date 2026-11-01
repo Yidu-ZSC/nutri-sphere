@@ -19,6 +19,11 @@ export function patternsForTheme(themeId: string | null | undefined): readonly s
   return THEME_PATTERN_LINKS[themeId] ?? [];
 }
 
+export function knownPatternId(value: string | null | undefined): string | null {
+  if (!value || !PATTERN_ID.test(value) || !KNOWN_PATTERN_IDS.has(value)) return null;
+  return value;
+}
+
 /** Keep known pattern ids, drop unknown or malformed ones, and preserve first-seen order. */
 export function parsePatternList(value: string | null | undefined): string[] {
   if (!value) return [];
