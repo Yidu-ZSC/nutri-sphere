@@ -13,6 +13,12 @@ import { useMediaQuery } from './hooks/useMediaQuery';
 import { evidenceCounts } from './lib/copy';
 import { focusedNodeIds, isFocusEmpty } from './lib/focus';
 import { readGraphView, writeGraphView, type GraphView } from './lib/graphView';
+import {
+  isLaypersonThemeEmpty,
+  layerHint,
+  LAYPERSON_THEME_EMPTY,
+  renderVisibleGraph,
+} from './lib/layerFilter';
 import type { LayoutMode } from './lib/layout';
 import { loadGraph } from './lib/loadGraph';
 import { searchGraph, type SearchHit } from './lib/search';
@@ -25,6 +31,7 @@ import {
   type ParsedShare,
 } from './lib/shareUrl';
 import { EXPLORE_THEMES, filtersFromShare, themeForFilters, type ExploreTheme } from './lib/themes';
+import { selectionPinIds } from './lib/visibility';
 import { readViewLayer, writeViewLayer } from './lib/viewLayer';
 import type { GraphData, Selection, ViewLayer } from './types/graph';
 
@@ -166,10 +173,42 @@ export function App() {
     [graph, safeDisease, safeMechanism],
   );
 
-  const search = useMemo(
-    () => (graph ? searchGraph(query, graph) : { hits: [], truncated: false }),
-    [graph, query],
-  );
+  const rendered = useMemo(() => {
+    if (!graph) return null;
+    const pinned = selectionPinIds(selection, graph.links, hideUnmatched, focusIds);
+    const view = renderVisibleGraph({
+      nodes: graph.nodes,
+      links: graph.links,
+      focusIds,
+      hideUnmatched,
+      pinnedIds: pinned,
+      layer,
+    });
+    return {
+      nodeIds: view.nodeIds,
+      links: view.links,
+      linkIndices: new Set(view.links.map((link) => link.graphIndex)),
+    };
+  }, [focusIds, graph, hideUnmatched, layer, selection]);
+
+  useEffect(() => {
+    if (!graph || !rendered || !selection) return;
+    if (selection.kind === 'node' && !rendered.nodeIds.has(selection.id)) {
+      setSelection(null);
+      return;
+    }
+    if (selection.kind === 'link' && !rendered.linkIndices.has(selection.index)) {
+      setSelection(null);
+    }
+  }, [graph, rendered, selection]);
+
+  const search = useMemo(() => {
+    if (!graph || !rendered) return { hits: [], truncated: false };
+    return searchGraph(query, graph, {
+      nodeIds: rendered.nodeIds,
+      linkIndices: rendered.linkIndices,
+    });
+  }, [graph, query, rendered]);
 
   const counts = useMemo(() => (graph ? evidenceCounts(graph.links) : {}), [graph]);
 
@@ -235,6 +274,15 @@ export function App() {
   };
 
   const filterEmpty = graph != null && isFocusEmpty(focusIds, graph.nodes.map((node) => node.id));
+  const laypersonThemeEmpty =
+    graph != null &&
+    rendered != null &&
+    isLaypersonThemeEmpty(
+      layer,
+      focusIds,
+      rendered.nodeIds,
+      graph.nodes.map((node) => node.id),
+    );
   const versionLabel = graph?.meta.data_version ? `数据 v${graph.meta.data_version}` : null;
 
   return (
@@ -317,6 +365,9 @@ export function App() {
             {copied ? '已复制' : '复制链接'}
           </button>
         </div>
+        <p className="layer-hint" data-testid="layer-hint" role="status">
+          {layerHint(layer)}
+        </p>
       </header>
 
       <div className={exploring && selection ? 'stage stage--detail' : 'stage'}>
@@ -335,7 +386,7 @@ export function App() {
           </div>
         )}
         {!exploring && <ThemeLobby onEnter={enterTheme} />}
-        {exploring && graph && (
+        {exploring && graph && rendered && (
           <>
             <div className="stage-main" data-testid="explore-screen">
               <GraphCanvas
@@ -345,7 +396,8 @@ export function App() {
                 layer={layer}
                 layout={layout}
                 graphView={graphView}
-                hideUnmatched={hideUnmatched}
+                shownNodeIds={rendered.nodeIds}
+                shownLinks={rendered.links}
                 compact={mobile}
                 autoRotate={autoRotate}
                 anchorId={anchorId}
@@ -383,6 +435,11 @@ export function App() {
                   </button>
                 </div>
               )}
+              {laypersonThemeEmpty && (
+                <div className="empty-filter" role="status" data-testid="layperson-empty">
+                  <p>{LAYPERSON_THEME_EMPTY}</p>
+                </div>
+              )}
               {mobile && sheet && (
                 <div className="sheet" role="dialog" aria-label={sheet === 'search' ? '搜索' : '筛选'}>
                   {sheet === 'search' ? (
@@ -417,6 +474,7 @@ export function App() {
                 layer={layer}
                 mobile={mobile}
                 evidenceCounts={counts}
+                visibleLinkIndices={rendered.linkIndices}
                 onClose={() => setSelection(null)}
                 onSelectNode={(id) => setSelection({ kind: 'node', id })}
                 onSelectLink={(index) => setSelection({ kind: 'link', index })}

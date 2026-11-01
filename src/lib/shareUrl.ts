@@ -90,7 +90,7 @@ export function parseViewQuery(search: string): ParsedShare {
   const layout = params.get('layout');
   const view = params.get('view');
   const link = params.get('link');
-  return {
+  const parsed: ParsedShare = {
     screen: parseScreen(params.get('screen')),
     theme: parseTheme(params.get('theme')),
     disease: cleanId(params.get('disease')),
@@ -98,10 +98,29 @@ export function parseViewQuery(search: string): ParsedShare {
     layer: parseLayer(params.get('layer')),
     layout: layout === 'hierarchy' || layout === 'force' ? layout : null,
     view: view === '2d' || view === '3d' ? view : null,
-    hideUnmatched: params.get('hide') === '1',
+    hideUnmatched: false,
     node: cleanId(params.get('node')),
     link: link && /^[a-z0-9_]+~[a-z0-9_]+$/.test(link) ? link : null,
   };
+  parsed.hideUnmatched = resolveHideUnmatched(params.get('hide'), parsed);
+  return parsed;
+}
+
+/**
+ * `hide=1` on, `hide=0` explicitly off.
+ * Omitted on explore with a theme, disease, or mechanism anchor defaults on.
+ * Home never uses the flag. Explore without an anchor stays off.
+ */
+export function resolveHideUnmatched(
+  hideParam: string | null,
+  parsed: Pick<ParsedShare, 'screen' | 'theme' | 'disease' | 'mechanism' | 'node' | 'link'>,
+): boolean {
+  if (hideParam === '1') return true;
+  if (hideParam === '0') return false;
+  if (resolveScreen(parsed) === 'explore' && (parsed.theme || parsed.disease || parsed.mechanism)) {
+    return true;
+  }
+  return false;
 }
 
 export function serializeViewQuery(state: ShareState): string {
@@ -114,7 +133,7 @@ export function serializeViewQuery(state: ShareState): string {
     if (state.mechanism) params.set('mechanism', state.mechanism);
     params.set('view', state.view);
     if (state.layout === 'force') params.set('layout', 'force');
-    if (state.hideUnmatched) params.set('hide', '1');
+    params.set('hide', state.hideUnmatched ? '1' : '0');
     if (state.node) params.set('node', state.node);
     else if (state.link) params.set('link', state.link);
   }

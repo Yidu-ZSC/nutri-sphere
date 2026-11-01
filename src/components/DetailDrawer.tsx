@@ -23,6 +23,7 @@ interface DetailDrawerProps {
   layer: ViewLayer;
   mobile: boolean;
   evidenceCounts: Record<string, number>;
+  visibleLinkIndices: ReadonlySet<number>;
   onClose: () => void;
   onSelectNode: (id: string) => void;
   onSelectLink: (index: number) => void;
@@ -97,25 +98,34 @@ function endpointLabel(graph: GraphData, id: string, layer: ViewLayer): string {
   return layer === 'expert' ? `${node.label} · ${node.id}` : node.label;
 }
 
-function relatedLinks(graph: GraphData, nodeId: string): { link: GraphLink; index: number }[] {
+function relatedLinks(
+  graph: GraphData,
+  nodeId: string,
+  visibleLinkIndices: ReadonlySet<number>,
+): { link: GraphLink; index: number }[] {
   return graph.links
     .map((link, index) => ({ link, index }))
-    .filter(({ link }) => link.source === nodeId || link.target === nodeId);
+    .filter(
+      ({ link, index }) =>
+        (link.source === nodeId || link.target === nodeId) && visibleLinkIndices.has(index),
+    );
 }
 
 function NodeBody({
   graph,
   node,
   layer,
+  visibleLinkIndices,
   onSelectLink,
 }: {
   graph: GraphData;
   node: GraphNode;
   layer: ViewLayer;
+  visibleLinkIndices: ReadonlySet<number>;
   onSelectLink: (index: number) => void;
 }) {
   const expert = layer === 'expert';
-  const links = relatedLinks(graph, node.id);
+  const links = relatedLinks(graph, node.id, visibleLinkIndices);
   return (
     <>
       <p className="kicker">节点</p>
@@ -344,6 +354,7 @@ export function DetailDrawer({
   layer,
   mobile,
   evidenceCounts,
+  visibleLinkIndices,
   onClose,
   onSelectNode,
   onSelectLink,
@@ -403,7 +414,13 @@ export function DetailDrawer({
       </div>
       <div className="drawer-body">
         {selection.kind === 'node' && node && (
-          <NodeBody graph={graph} node={node} layer={layer} onSelectLink={onSelectLink} />
+          <NodeBody
+            graph={graph}
+            node={node}
+            layer={layer}
+            visibleLinkIndices={visibleLinkIndices}
+            onSelectLink={onSelectLink}
+          />
         )}
         {selection.kind === 'link' && link && (
           <LinkBody

@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { LABEL_HOME_COLUMN, columnIndex, linkDegrees, placeNodes } from '../lib/layout';
-import { visibleNodeIds } from '../lib/visibility';
 import type { GraphView } from '../lib/graphView';
-import type { GraphData, Selection, SimNode, ViewLayer } from '../types/graph';
+import type { GraphData, GraphLink, Selection, SimNode, ViewLayer } from '../types/graph';
 import type { LayoutMode } from '../lib/layout';
 import { GraphScene2D } from './GraphScene2D';
 import { GraphScene3D } from './GraphScene3D';
@@ -15,7 +14,8 @@ interface GraphCanvasProps {
   layer: ViewLayer;
   layout: LayoutMode;
   graphView: GraphView;
-  hideUnmatched: boolean;
+  shownNodeIds: ReadonlySet<string>;
+  shownLinks: readonly (GraphLink & { graphIndex: number })[];
   compact: boolean;
   autoRotate: boolean;
   anchorId: string | null;
@@ -31,7 +31,8 @@ export function GraphCanvas({
   layer,
   layout,
   graphView,
-  hideUnmatched,
+  shownNodeIds,
+  shownLinks,
   compact,
   autoRotate,
   anchorId,
@@ -44,35 +45,22 @@ export function GraphCanvas({
   const [webgl, setWebgl] = useState(true);
   const [coarse, setCoarse] = useState(false);
 
-  const degrees = useMemo(() => linkDegrees(graph.links), [graph]);
-
-  const pinKey = useMemo(() => {
-    if (!hideUnmatched || focusIds == null || !selection) return '';
-    if (selection.kind === 'node') return selection.id;
-    const link = graph.links[selection.index];
-    return link ? `${link.source}|${link.target}` : '';
-  }, [focusIds, graph.links, hideUnmatched, selection]);
+  const degrees = useMemo(() => linkDegrees(shownLinks), [shownLinks]);
 
   const visibleKey = useMemo(() => {
-    const pinned = new Set(pinKey ? pinKey.split('|').filter(Boolean) : []);
-    const ids = visibleNodeIds(
-      graph.nodes.map((node) => node.id),
-      focusIds,
-      hideUnmatched,
-      pinned,
-    );
-    return [...ids].sort().join('|');
-  }, [focusIds, graph.nodes, hideUnmatched, pinKey]);
+    const ids = [...shownNodeIds].sort().join('|');
+    const links = shownLinks.map((link) => link.graphIndex).join(',');
+    return `${ids}|${links}`;
+  }, [shownLinks, shownNodeIds]);
 
   const simData = useMemo(() => {
-    const ids = new Set(visibleKey ? visibleKey.split('|') : []);
-    const nodes: SimNode[] = graph.nodes.filter((node) => ids.has(node.id)).map((node) => ({ ...node }));
+    const nodes: SimNode[] = graph.nodes
+      .filter((node) => shownNodeIds.has(node.id))
+      .map((node) => ({ ...node }));
     placeNodes(nodes, layout, graphView);
-    const links: DrawLink[] = graph.links
-      .map((link, index) => ({ ...link, graphIndex: index }))
-      .filter((link) => ids.has(link.source) && ids.has(link.target));
+    const links: DrawLink[] = shownLinks.map((link) => ({ ...link }));
     return { nodes, links };
-  }, [graph, graphView, layout, visibleKey]);
+  }, [graph.nodes, graphView, layout, shownLinks, shownNodeIds]);
 
   const framedNode = useMemo(
     () => pickFramedNode(simData.nodes, anchorId),
