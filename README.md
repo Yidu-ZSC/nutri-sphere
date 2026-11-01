@@ -1,10 +1,12 @@
 # NutriSphere
 
-**Professional 3D Interactive Platform for Diet ↔ Health / Disease Relationships**
+**An educational knowledge graph for ordinary people to explore diet ↔ health and diet ↔ disease relationships.**
 
-NutriSphere is an open-source, product-grade visualization and knowledge system that helps ordinary people, researchers, and educators explore how dietary patterns, food processing, nutrients, biological mechanisms (inflammation, microbiome, oxidative stress, etc.), and health outcomes interconnect in an intuitive three-dimensional space.
+NutriSphere helps the general public conveniently look up and understand how dietary patterns, foods, and biological mechanisms are discussed in relation to common health topics. Data comes from public books, published research, and other credible open sources. The project does not conduct original nutrition or disease research.
 
 > **Disclaimer**: This is a research and educational tool. It does not provide medical diagnosis, treatment recommendations, or personalized clinical advice. Always consult qualified healthcare professionals.
+
+See `docs/PROJECT_VISION.md` for the full product positioning.
 
 ## Current Status
 
@@ -42,7 +44,7 @@ The running app fetches `${import.meta.env.BASE_URL}data/seed_triples_v0.3_align
 
 `.github/workflows/pages.yml` publishes `dist/` to GitHub Pages on pushes to `main`. In the repository settings, set Pages → Build and deployment → Source to **GitHub Actions**. CI (`.github/workflows/ci.yml`) runs `validate-data` and `build-web` on pull requests and on pushes to `main`.
 
-The interface is Simplified Chinese. It is an education and research explorer, not a medical device.
+The interface is Simplified Chinese. It is an education and research explorer for ordinary users, not a medical device.
 
 ### Screen and share URL
 
@@ -60,19 +62,19 @@ Choosing a card on the lobby opens `explore` at 2D, hierarchy layout, with unmat
 
 ## Vision
 
-Turn complex multi-dimensional scientific knowledge about diet and health into an interactive, explorable 3D experience that ordinary users can understand and use to make better-informed lifestyle choices, while remaining scientifically rigorous and transparent about evidence levels.
+Help ordinary people conveniently explore and understand diet ↔ health and diet ↔ disease relationships through a clear, evidence-transparent knowledge graph. Data is drawn from public books and credible open sources; the project does not perform original clinical research.
 
 ## Core Features (Planned / In Progress)
 
-- 3D force-directed knowledge graph of foods / mechanisms / diseases
-- Risk surface and pathway visualizations
-- Evidence-weighted edges
-- Layered views and search
-- Continuous data integration from open sources
+- Theme lobby and hierarchical pathway views for non-experts
+- Evidence-weighted edges with sources and limitations
+- Layperson / expert layers
+- Search and filters
+- Continuous integration of public data sources
 
 ## Project Structure
 
-- `/docs` — Planning, architecture, schema, roadmap
+- `/docs` — Planning, architecture, schema, roadmap, product vision
 - `/data` — Structured triples and JSON Schema
 - `/prototype` — Original single-file 3D viewer
 - `/src` — Phase 1 web app (production entry)
@@ -81,11 +83,11 @@ Turn complex multi-dimensional scientific knowledge about diet and health into a
 
 1. Install and run the Phase 1 app (`npm ci` then `npm run dev`). See **Phase 1 app** above.
 2. Or run the prototype (see `prototype/README.md`).
-3. Review `docs/ROADMAP.md` and `docs/ARCHITECTURE.md`.
+3. Review `docs/PROJECT_VISION.md`, `docs/ROADMAP.md` and `docs/ARCHITECTURE.md`.
 
 ## Contributing
 
-This project aims for professional, product-level quality from the start. The Phase 1 app in `src/` is the production entry; keep `prototype/` as the original reference viewer.
+This project aims for professional, product-level quality from the start. The Phase 1 app in `src/` is the production entry; keep `prototype/` as the original reference viewer. All contributions should respect the ordinary-user positioning and educational boundary.
 
 ## License
 
