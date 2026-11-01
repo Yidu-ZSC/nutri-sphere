@@ -10,6 +10,7 @@ test('share query round-trips the minimal filters', () => {
     disease: 'cardiometabolic',
     mechanism: 'chronic_inflammation',
     food: null,
+    pattern: null,
     patterns: [],
     layer: 'expert',
     layout: 'hierarchy',
@@ -50,6 +51,7 @@ test('a node selection wins over a link in the serialized query', () => {
     disease: null,
     mechanism: null,
     food: null,
+    pattern: null,
     patterns: [],
     layer: 'layperson',
     layout: 'force',
@@ -84,6 +86,7 @@ test('default screen is home when the query has no deep link', () => {
     disease: 'fatty_liver',
     mechanism: null,
     food: null,
+    pattern: null,
     patterns: [],
     layer: 'layperson',
     layout: 'hierarchy',
@@ -128,6 +131,7 @@ test('theme maps to a disease or mechanism filter and does not reuse view', () =
     disease: 'fatty_liver',
     mechanism: null,
     food: null,
+    pattern: null,
     patterns: [],
     layer: 'layperson',
     layout: 'hierarchy',
@@ -168,6 +172,7 @@ test('hide=1 stays on and hide=0 stays off', () => {
     disease: 'fatty_liver',
     mechanism: null,
     food: null,
+    pattern: null,
     patterns: [],
     layer: 'layperson',
     layout: 'hierarchy',
@@ -235,6 +240,7 @@ test('food themes serialize a food anchor and default hide on', () => {
     disease: null,
     mechanism: null,
     food: 'ultra_processed',
+    pattern: null,
     patterns: ['mediterranean'],
     layer: 'layperson',
     layout: 'hierarchy',
@@ -282,6 +288,7 @@ test('home pattern links keep the source theme and drop unknown ids', () => {
     disease: 'cardiometabolic',
     mechanism: null,
     food: null,
+    pattern: null,
     patterns: parsed.patterns,
     layer: 'layperson',
     layout: 'hierarchy',
@@ -298,4 +305,119 @@ test('home pattern links keep the source theme and drop unknown ids', () => {
   assert.match(query, /patterns=mediterranean,dash/);
   assert.deepEqual(parseViewQuery('?screen=home&patterns=foo,dash').patterns, ['dash']);
   assert.equal(parseViewQuery('?screen=home&theme=cardiometabolic&patterns=nope').patterns.length, 0);
+});
+
+function shareState(partial: Partial<import('./shareUrl.ts').ShareState> & { screen: import('./shareUrl.ts').ShareState['screen'] }): import('./shareUrl.ts').ShareState {
+  return {
+    theme: null,
+    disease: null,
+    mechanism: null,
+    food: null,
+    pattern: null,
+    patterns: [],
+    layer: 'layperson',
+    layout: 'hierarchy',
+    view: '2d',
+    hideUnmatched: false,
+    node: null,
+    link: null,
+    ...partial,
+  };
+}
+
+test('pattern and compare screens serialize only screen, pattern, and layer', () => {
+  const patternQuery = serializeViewQuery(
+    shareState({
+      screen: 'pattern',
+      pattern: 'plant_forward',
+      layer: 'expert',
+      theme: 'cardiometabolic',
+      disease: 'cardiometabolic',
+      food: 'ultra_processed',
+      patterns: ['dash'],
+      view: '3d',
+      layout: 'force',
+      hideUnmatched: true,
+      node: 'soy',
+      link: 'soy~angiogenesis_defense',
+    }),
+  );
+  assert.equal(patternQuery, '?screen=pattern&pattern=plant_forward&layer=expert');
+  const parsed = parseViewQuery(patternQuery);
+  assert.equal(parsed.screen, 'pattern');
+  assert.equal(parsed.pattern, 'plant_forward');
+  assert.equal(parsed.layer, 'expert');
+  assert.equal(parsed.hideUnmatched, false);
+  assert.equal(parsed.disease, null);
+  assert.equal(parsed.node, null);
+  assert.deepEqual(parsed.patterns, []);
+  assert.equal(resolveScreen(parsed), 'pattern');
+
+  const compareQuery = serializeViewQuery(
+    shareState({
+      screen: 'compare',
+      pattern: 'dash',
+      layer: 'layperson',
+      patterns: ['mediterranean'],
+      theme: 'cardiometabolic',
+      hideUnmatched: true,
+      disease: 'cardiometabolic',
+    }),
+  );
+  assert.equal(compareQuery, '?screen=compare&layer=layperson');
+  const compare = parseViewQuery(compareQuery);
+  assert.equal(resolveScreen(compare), 'compare');
+  assert.equal(compare.pattern, null);
+  assert.equal(compare.hideUnmatched, false);
+  assert.equal(compare.disease, null);
+});
+
+test('pattern links open a detail only without explore anchors', () => {
+  assert.equal(resolveScreen(parseViewQuery('?pattern=mediterranean')), 'pattern');
+  assert.equal(parseViewQuery('?pattern=mediterranean').pattern, 'mediterranean');
+  assert.equal(parseViewQuery('?pattern=mediterranean').hideUnmatched, false);
+  assert.equal(parseViewQuery('?pattern=mediterranean&hide=1').hideUnmatched, false);
+  assert.equal(resolveScreen(parseViewQuery('?screen=pattern&pattern=dash')), 'pattern');
+  assert.equal(resolveScreen(parseViewQuery('?screen=pattern&pattern=nope')), 'home');
+  assert.equal(resolveScreen(parseViewQuery('?screen=pattern')), 'home');
+  assert.equal(parseViewQuery('?pattern=nope').pattern, null);
+  assert.equal(parseViewQuery('?pattern=../dash').pattern, null);
+  assert.equal(resolveScreen(parseViewQuery('?pattern=NOT')), 'home');
+  assert.equal(resolveScreen(parseViewQuery('?pattern=mediterranean&disease=cardiometabolic')), 'explore');
+  assert.equal(resolveScreen(parseViewQuery('?pattern=mediterranean&theme=cardiometabolic')), 'explore');
+  assert.equal(resolveScreen(parseViewQuery('?pattern=mediterranean&food=ultra_processed')), 'explore');
+  assert.equal(resolveScreen(parseViewQuery('?pattern=mediterranean&node=soy')), 'explore');
+  assert.equal(resolveScreen(parseViewQuery('?pattern=mediterranean&mechanism=chronic_inflammation')), 'explore');
+  assert.equal(resolveScreen(parseViewQuery('?screen=compare&pattern=dash&hide=1')), 'compare');
+  assert.equal(parseViewQuery('?screen=compare&hide=1').hideUnmatched, false);
+  assert.equal(parseViewQuery('?screen=pattern&pattern=dash&hide=1&disease=cardiometabolic').hideUnmatched, false);
+  assert.equal(parseViewQuery('?screen=pattern&pattern=dash&disease=cardiometabolic').disease, 'cardiometabolic');
+  const home = serializeViewQuery(
+    shareState({
+      screen: 'home',
+      pattern: 'dash',
+      patterns: ['dash'],
+      theme: 'cardiometabolic',
+      hideUnmatched: true,
+      disease: 'cardiometabolic',
+    }),
+  );
+  assert.equal(/(^|[?&])pattern=/.test(home), false);
+  assert.match(home, /patterns=dash/);
+  assert.match(home, /screen=home/);
+  assert.equal(home.includes('hide='), false);
+  const explore = serializeViewQuery(
+    shareState({
+      screen: 'explore',
+      pattern: 'dash',
+      theme: 'fatty_liver',
+      disease: 'fatty_liver',
+      hideUnmatched: true,
+    }),
+  );
+  assert.equal(/(^|[?&])pattern=/.test(explore), false);
+  assert.match(explore, /screen=explore/);
+  assert.match(explore, /hide=1/);
+  assert.equal(resolveScreen(parseViewQuery('?screen=home&patterns=mediterranean,dash')), 'home');
+  assert.deepEqual(parseViewQuery('?screen=home&patterns=mediterranean,dash').patterns, ['mediterranean', 'dash']);
 });

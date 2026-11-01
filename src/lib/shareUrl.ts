@@ -1,14 +1,14 @@
 import type { GraphView } from './graphView';
 import type { LayoutMode } from './layout';
-import { parsePatternList } from './patternLinks.ts';
+import { knownPatternId, parsePatternList } from './patternLinks.ts';
 import { themeById } from './themes.ts';
 import type { ViewLayer } from '../types/graph';
 
 const ID = /^[a-z0-9_]+$/;
 const THEME_ID = /^[a-z0-9_-]+$/;
 
-/** Home/explore screen. Distinct from `view`, which stays `2d` | `3d`. */
-export type ScreenMode = 'home' | 'explore';
+/** Home, explore, pattern detail, or compare. Distinct from `view`, which stays `2d` | `3d`. */
+export type ScreenMode = 'home' | 'explore' | 'pattern' | 'compare';
 
 export interface ParsedShare {
   screen: ScreenMode | null;
@@ -16,6 +16,7 @@ export interface ParsedShare {
   disease: string | null;
   mechanism: string | null;
   food: string | null;
+  pattern: string | null;
   patterns: string[];
   layer: ViewLayer | null;
   layout: LayoutMode | null;
@@ -31,6 +32,7 @@ export interface ShareState {
   disease: string | null;
   mechanism: string | null;
   food: string | null;
+  pattern: string | null;
   patterns: readonly string[];
   layer: ViewLayer;
   layout: LayoutMode;
@@ -51,7 +53,7 @@ function parseLayer(value: string | null): ViewLayer | null {
 }
 
 function parseScreen(value: string | null): ScreenMode | null {
-  if (value === 'home' || value === 'explore') return value;
+  if (value === 'home' || value === 'explore' || value === 'pattern' || value === 'compare') return value;
   return null;
 }
 
@@ -63,14 +65,17 @@ function parseTheme(value: string | null): string | null {
 /**
  * Missing `screen` is home, unless the link already points at a filter,
  * a food anchor, a node, a link, or a known theme — those open explore.
- * An explicit `screen` always wins, including `screen=home` beside a disease id.
+ * A lone known `pattern` id opens that detail. An explicit `screen` still wins,
+ * except `screen=pattern` without a known id, which falls back to home.
  */
 export function resolveScreen(
-  parsed: Pick<ParsedShare, 'screen' | 'theme' | 'disease' | 'mechanism' | 'food' | 'node' | 'link'>,
+  parsed: Pick<ParsedShare, 'screen' | 'theme' | 'disease' | 'mechanism' | 'food' | 'pattern' | 'node' | 'link'>,
 ): ScreenMode {
+  if (parsed.screen === 'pattern') return parsed.pattern ? 'pattern' : 'home';
   if (parsed.screen) return parsed.screen;
   if (parsed.disease || parsed.mechanism || parsed.food || parsed.node || parsed.link) return 'explore';
   if (themeById(parsed.theme)) return 'explore';
+  if (parsed.pattern) return 'pattern';
   return 'home';
 }
 
@@ -103,6 +108,7 @@ export function parseViewQuery(search: string): ParsedShare {
     disease: cleanId(params.get('disease')),
     mechanism: cleanId(params.get('mechanism')),
     food: cleanId(params.get('food')),
+    pattern: knownPatternId(params.get('pattern')),
     patterns: parsePatternList(params.get('patterns')),
     layer: parseLayer(params.get('layer')),
     layout: layout === 'hierarchy' || layout === 'force' ? layout : null,
@@ -119,20 +125,30 @@ export function parseViewQuery(search: string): ParsedShare {
  * `hide=1` on, `hide=0` explicitly off.
  * Omitted on explore with a theme, disease, mechanism, or food anchor defaults on.
  * Home never uses the flag. Explore without an anchor stays off.
+ * Pattern and compare screens stay off even if `hide` is present.
  */
 export function resolveHideUnmatched(
   hideParam: string | null,
-  parsed: Pick<ParsedShare, 'screen' | 'theme' | 'disease' | 'mechanism' | 'food' | 'node' | 'link'>,
+  parsed: Pick<ParsedShare, 'screen' | 'theme' | 'disease' | 'mechanism' | 'food' | 'pattern' | 'node' | 'link'>,
 ): boolean {
+  const screen = resolveScreen(parsed);
+  if (screen === 'pattern' || screen === 'compare') return false;
   if (hideParam === '1') return true;
   if (hideParam === '0') return false;
-  if (resolveScreen(parsed) === 'explore' && (parsed.theme || parsed.disease || parsed.mechanism || parsed.food)) {
+  if (screen === 'explore' && (parsed.theme || parsed.disease || parsed.mechanism || parsed.food)) {
     return true;
   }
   return false;
 }
 
 export function serializeViewQuery(state: ShareState): string {
+  if (state.screen === 'pattern' || state.screen === 'compare') {
+    const params = new URLSearchParams();
+    params.set('screen', state.screen);
+    if (state.screen === 'pattern' && state.pattern) params.set('pattern', state.pattern);
+    params.set('layer', state.layer);
+    return `?${params.toString()}`;
+  }
   const params = new URLSearchParams();
   params.set('screen', state.screen);
   params.set('layer', state.layer);

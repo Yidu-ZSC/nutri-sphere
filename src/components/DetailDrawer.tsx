@@ -14,6 +14,8 @@ import {
   withEnum,
   DISCLAIMER_SHORT,
 } from '../lib/copy';
+import { DIET_PATTERN_CARDS, type DietPatternCard } from '../lib/dietPatterns';
+import { PATTERN_SHELL, patternSidebarDetailLabel } from '../lib/dietPatternDetails';
 import { semanticColor } from '../lib/palette';
 import type { GraphCitation, GraphData, GraphLink, GraphNode, Selection, ViewLayer } from '../types/graph';
 
@@ -28,6 +30,8 @@ interface DetailDrawerProps {
   onSelectNode: (id: string) => void;
   onSelectLink: (index: number) => void;
   onShowPatterns?: () => void;
+  relatedPatternIds?: readonly string[];
+  onOpenPattern?: (id: string) => void;
 }
 
 function Swatch({ value }: { value: string }) {
@@ -359,6 +363,8 @@ export function DetailDrawer({
   onSelectNode,
   onSelectLink,
   onShowPatterns,
+  relatedPatternIds = [],
+  onOpenPattern,
 }: DetailDrawerProps) {
   const closeRef = useRef<HTMLButtonElement>(null);
   const [dragY, setDragY] = useState(0);
@@ -389,6 +395,10 @@ export function DetailDrawer({
 
   const node = selection.kind === 'node' ? graph.nodes.find((item) => item.id === selection.id) : undefined;
   const link = selection.kind === 'link' ? graph.links[selection.index] : undefined;
+  const relatedPatterns = relatedPatternIds
+    .map((id) => DIET_PATTERN_CARDS.find((card) => card.id === id))
+    .filter((card): card is DietPatternCard => card != null);
+  const openRelatedPattern = onOpenPattern;
 
   return (
     <aside
@@ -435,16 +445,34 @@ export function DetailDrawer({
         {selection.kind === 'node' && !node && <p>未找到该节点。</p>}
         {selection.kind === 'link' && !link && <p>未找到该关联。</p>}
       </div>
-      {onShowPatterns && (
+      {(onShowPatterns || (openRelatedPattern && relatedPatterns.length > 0)) && (
         <div className="drawer-patterns">
-          <button
-            type="button"
-            className="btn btn--ghost drawer-pattern-btn"
-            data-testid="show-related-patterns"
-            onClick={onShowPatterns}
-          >
-            查看相关饮食模式
-          </button>
+          {onShowPatterns && (
+            <button
+              type="button"
+              className="btn btn--ghost drawer-pattern-btn"
+              data-testid="show-related-patterns"
+              onClick={onShowPatterns}
+            >
+              查看相关饮食模式
+            </button>
+          )}
+          {openRelatedPattern && relatedPatterns.length > 0 && (
+            <div className="drawer-pattern-actions" data-testid="pattern-detail-actions">
+              {relatedPatterns.map((card) => (
+                <button
+                  key={card.id}
+                  type="button"
+                  className="btn btn--ghost drawer-pattern-btn"
+                  data-testid={relatedPatterns.length === 1 ? 'show-pattern-detail' : `show-pattern-detail-${card.id}`}
+                  data-pattern={card.id}
+                  onClick={() => openRelatedPattern(card.id)}
+                >
+                  {relatedPatterns.length === 1 ? PATTERN_SHELL.sidebarOne : patternSidebarDetailLabel(card.title)}
+                </button>
+              ))}
+            </div>
+          )}
           <p className="drawer-pattern-note">资料里常被一起提到的吃法，不是个人方案。</p>
         </div>
       )}
