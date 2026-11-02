@@ -30,28 +30,42 @@ function kickerFor(kind: ThemeKind): string {
   return '健康主题';
 }
 
+function CardHeading({ title }: { title: string }) {
+  return (
+    <span className="theme-card-heading">
+      <strong>{title}</strong>
+      <span className="theme-card-chevron" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" focusable="false">
+          <path
+            d="M6 3.5 10.5 8 6 12.5"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </span>
+    </span>
+  );
+}
+
 function ThemeCard({ theme, onEnter }: { theme: ExploreTheme; onEnter: (theme: ExploreTheme) => void }) {
   return (
-    <article
+    <button
+      type="button"
       className="theme-card"
       data-testid={`theme-card-${theme.id}`}
       data-kind={theme.kind}
       data-direction={themeAccent(theme)}
+      aria-label={theme.title}
       style={{ ['--card-accent' as string]: PALETTE[themeAccent(theme)] }}
+      onClick={() => onEnter(theme)}
     >
-      <span className="dir-bar" aria-hidden="true" />
+      <span className="dir-top" aria-hidden="true" />
       <span className="kicker">{kickerFor(theme.kind)}</span>
-      <strong>{theme.title}</strong>
+      <CardHeading title={theme.title} />
       <span className="theme-blurb">{theme.blurb}</span>
-      <button
-        type="button"
-        className="btn btn--primary theme-cta"
-        data-testid={`theme-cta-${theme.id}`}
-        onClick={() => onEnter(theme)}
-      >
-        {THEME_CTA}
-      </button>
-    </article>
+    </button>
   );
 }
 
@@ -161,7 +175,7 @@ export function ThemeLobby({
           onClick={onOpenTwin}
         >
           <span className="kicker">{DIET_TWIN_COPY.entryKicker}</span>
-          <strong>{DIET_TWIN_COPY.entryTitle}</strong>
+          <CardHeading title={DIET_TWIN_COPY.entryTitle} />
           <span className="theme-prompt">{DIET_TWIN_COPY.entryPrompt}</span>
           <span className="theme-blurb">{DIET_TWIN_COPY.entryBlurb}</span>
         </button>
