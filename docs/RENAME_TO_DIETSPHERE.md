@@ -1,6 +1,8 @@
 # 更名任务：NutriSphere → 明膳知源（ClearDiet）
 
 > 已采纳：中文主名明膳知源；英文名 ClearDiet；仓库名保留 nutri-sphere。
+>
+> TASK-NS-023：界面/README/现行 docs 英文副名 DietSphere→ClearDiet。
 
 ## 决定
 
