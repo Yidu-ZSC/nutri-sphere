@@ -14,6 +14,12 @@ import { ThemeLobby } from './components/ThemeLobby';
 import { ViewLayerToggle } from './components/ViewLayerToggle';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import { evidenceCounts, visibleGraphStats } from './lib/copy';
+import {
+  BACK_TO_LOBBY,
+  EXPLORE_EMPTY_ACTION,
+  EXPLORE_EMPTY_COPY,
+  RAIL_TOGGLE_LABEL,
+} from './lib/exploreShell';
 import { focusedNodeIds, isFocusEmpty } from './lib/focus';
 import { readGraphView, writeGraphView, type GraphView } from './lib/graphView';
 import { twinExploreTarget, type TwinIndicatorId } from './lib/dietTwin';
@@ -105,6 +111,7 @@ export function App() {
   const [copied, setCopied] = useState(false);
   const [autoRotate, setAutoRotate] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
+  const [sideOpen, setSideOpen] = useState(false);
   const moreRoot = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -183,11 +190,15 @@ export function App() {
         setAboutOpen(false);
         return;
       }
+      if (mobile && sideOpen) {
+        setSideOpen(false);
+        return;
+      }
       if (selection) setSelection(null);
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [aboutOpen, moreOpen, selection, sheet]);
+  }, [aboutOpen, mobile, moreOpen, selection, sheet, sideOpen]);
 
   useEffect(() => {
     if (!moreOpen) return;
@@ -202,7 +213,10 @@ export function App() {
   }, [moreOpen]);
 
   useEffect(() => {
-    if (!mobile) setMoreOpen(false);
+    if (!mobile) {
+      setMoreOpen(false);
+      setSideOpen(false);
+    }
   }, [mobile]);
 
   const diseases = useMemo(
@@ -351,16 +365,30 @@ export function App() {
     if (id) setFoodId(null);
   };
 
+  const focusThemeList = () => {
+    const root = document.querySelector('[data-testid="theme-chips"]');
+    const target =
+      root?.querySelector<HTMLElement>('[aria-pressed="true"]') ??
+      root?.querySelector<HTMLElement>('button');
+    target?.focus();
+  };
+
+  const chooseTheme = () => {
+    setSideOpen(true);
+    window.setTimeout(focusThemeList, 0);
+  };
+
   const onTheme = (theme: ExploreTheme | null) => {
     if (!theme) {
       setDiseaseId(null);
       setMechanismId(null);
       setFoodId(null);
-      return;
+    } else {
+      setDiseaseId(theme.diseaseId);
+      setMechanismId(theme.mechanismId);
+      setFoodId(theme.foodId);
     }
-    setDiseaseId(theme.diseaseId);
-    setMechanismId(theme.mechanismId);
-    setFoodId(theme.foodId);
+    if (mobile) setSideOpen(false);
   };
 
   const clearPatternHighlight = () => {
@@ -574,6 +602,7 @@ export function App() {
   };
 
   const filterEmpty = graph != null && isFocusEmpty(focusIds, graph.nodes.map((node) => node.id));
+  const showThemeEmpty = !safeDisease && !safeMechanism && !safeFood;
   const laypersonThemeEmpty =
     graph != null &&
     rendered != null &&
@@ -605,7 +634,7 @@ export function App() {
 
   return (
     <div className="app">
-      <header className="topbar">
+      <header className={exploring && !mobile ? 'topbar topbar--compact' : 'topbar'}>
         <div className="brand">
           <span className="mark" aria-hidden="true" />
           <div>
@@ -627,22 +656,19 @@ export function App() {
               onQuery={onQuery}
               onSelect={onSelectHit}
             />
-            <FilterPanel
-              diseases={diseases}
-              mechanisms={mechanisms}
-              diseaseId={safeDisease}
-              mechanismId={safeMechanism}
-              layer={layer}
-              onDisease={selectDisease}
-              onMechanism={selectMechanism}
-              onClear={clearFilters}
-            />
           </div>
         )}
         <div className="header-actions">
+          {exploring && !mobile && <ViewLayerToggle layer={layer} onChange={setLayer} />}
           {exploring && (
-            <button type="button" className="btn" data-testid="back-to-home" onClick={goHome}>
-              返回主题大厅
+            <button
+              type="button"
+              className="btn btn--ghost"
+              data-testid="back-to-home"
+              aria-label="返回主题大厅"
+              onClick={goHome}
+            >
+              {BACK_TO_LOBBY}
             </button>
           )}
           {mobile ? (
@@ -686,21 +712,29 @@ export function App() {
                 </div>
               )}
             </div>
-          ) : (
+          ) : exploring ? null : (
             <>
-              {viewControls}
               <ViewLayerToggle layer={layer} onChange={setLayer} />
-              {rotateControl}
               {copyControl}
             </>
           )}
         </div>
-        <p className="layer-hint" data-testid="layer-hint" role="status">
-          {layerHint(layer)}
-        </p>
+        {!(exploring && graph) && (
+          <p className="layer-hint" data-testid="layer-hint" role="status">
+            {layerHint(layer)}
+          </p>
+        )}
       </header>
 
-      <div className={exploring && selection ? 'stage stage--detail' : 'stage'}>
+      <div
+        className={
+          exploring && graph && rendered
+            ? selection
+              ? 'stage stage--explore stage--detail'
+              : 'stage stage--explore'
+            : 'stage'
+        }
+      >
         {exploring && load.status === 'loading' && (
           <p className="banner" role="status">
             正在加载知识图谱…
@@ -739,6 +773,42 @@ export function App() {
         {screen === 'compare' && <PatternCompare onBack={goHome} onOpenPattern={openPatternFromCompare} />}
         {exploring && graph && rendered && (
           <>
+            <aside
+              id="explore-rail"
+              className={sideOpen ? 'explore-rail is-open' : 'explore-rail'}
+              data-testid="explore-rail"
+              aria-label="主题与筛选"
+              hidden={mobile && !sideOpen}
+            >
+              <ThemeBar
+                themes={EXPLORE_THEMES}
+                diseaseId={safeDisease}
+                mechanismId={safeMechanism}
+                foodId={safeFood}
+                layout={layout}
+                hideUnmatched={hideUnmatched}
+                onTheme={onTheme}
+                onHideUnmatched={setHideUnmatched}
+              />
+              <FilterPanel
+                diseases={diseases}
+                mechanisms={mechanisms}
+                diseaseId={safeDisease}
+                mechanismId={safeMechanism}
+                layer={layer}
+                onDisease={selectDisease}
+                onMechanism={selectMechanism}
+                onClear={clearFilters}
+              />
+              <div className="rail-tools">
+                {viewControls}
+                {rotateControl}
+                {copyControl}
+                <p className="layer-hint" data-testid="layer-hint" role="status">
+                  {layerHint(layer)}
+                </p>
+              </div>
+            </aside>
             <div className="stage-main" data-testid="explore-screen">
               <GraphCanvas
                 graph={graph}
@@ -756,18 +826,24 @@ export function App() {
                 onSelectLink={(index) => setSelection({ kind: 'link', index })}
                 onBackground={() => setSelection(null)}
               />
-              <div className="stage-overlay">
-                <ThemeBar
-                  themes={EXPLORE_THEMES}
-                  diseaseId={safeDisease}
-                  mechanismId={safeMechanism}
-                  foodId={safeFood}
-                  layout={layout}
-                  hideUnmatched={hideUnmatched}
-                  onTheme={onTheme}
-                  onHideUnmatched={setHideUnmatched}
+              <button
+                type="button"
+                className="btn btn--ghost rail-toggle"
+                data-testid="rail-toggle"
+                aria-expanded={sideOpen}
+                aria-controls="explore-rail"
+                onClick={() => setSideOpen((open) => !open)}
+              >
+                {RAIL_TOGGLE_LABEL}
+              </button>
+              {mobile && sideOpen && (
+                <button
+                  type="button"
+                  className="rail-backdrop"
+                  aria-label="关闭主题筛选"
+                  onClick={() => setSideOpen(false)}
                 />
-              </div>
+              )}
               <div className="hud">
                 <Legend />
                 <p className="counts" data-testid="graph-stats">
@@ -775,10 +851,18 @@ export function App() {
                 </p>
                 <p className="hud-note">颜色表示关联方向，线越粗表示强度越高。形状区分节点类型。</p>
               </div>
+              {showThemeEmpty && !filterEmpty && !laypersonThemeEmpty && (
+                <div className="empty-theme" role="status" data-testid="theme-empty">
+                  <p>{EXPLORE_EMPTY_COPY}</p>
+                  <button type="button" className="btn btn--primary" data-testid="choose-theme" onClick={chooseTheme}>
+                    {EXPLORE_EMPTY_ACTION}
+                  </button>
+                </div>
+              )}
               {filterEmpty && (
                 <div className="empty-filter" role="status">
                   <p>无匹配，清除过滤</p>
-                  <button type="button" className="btn" onClick={clearFilters}>
+                  <button type="button" className="btn btn--ghost" onClick={clearFilters}>
                     清除全部
                   </button>
                 </div>
@@ -788,7 +872,7 @@ export function App() {
                   <p>{LAYPERSON_THEME_EMPTY}</p>
                   <button
                     type="button"
-                    className="btn"
+                    className="btn btn--primary"
                     data-testid="switch-expert"
                     onClick={() => setLayer('expert')}
                   >
