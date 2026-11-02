@@ -524,6 +524,79 @@ button { cursor: pointer; }
 
 .more-panel .segment button { flex: 1; }
 
+.theme-switch { position: relative; }
+
+.theme-switch-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  padding: 0;
+}
+
+.theme-switch-btn svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.theme-menu,
+.more-theme {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+}
+
+.theme-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 30;
+  min-width: 148px;
+  padding: 8px;
+  background: var(--panel-solid);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.more-theme {
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+.more-theme-label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 36px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: var(--radius-btn);
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+}
+
+.theme-option:hover,
+.theme-option[aria-checked='true'] {
+  background: var(--panel-hover);
+}
+
+.theme-option-check {
+  width: 1em;
+  color: var(--brand);
+  font-weight: 700;
+}
+
 .drawer {
   min-height: 0;
   width: 360px;
@@ -1153,7 +1226,7 @@ code {
 
 .pattern-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.22);
+  border-color: var(--border-hover);
   background: var(--panel-hover);
 }
 
@@ -1247,7 +1320,7 @@ code {
 .pattern-jump:hover,
 .pattern-jump:focus-visible {
   background: var(--panel-hover);
-  border-color: rgba(255, 255, 255, 0.22);
+  border-color: var(--border-hover);
 }
 
 .pattern-compare-entry {
@@ -1363,7 +1436,7 @@ code {
 
 .pattern-item:hover {
   transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.22);
+  border-color: var(--border-hover);
   background: var(--panel-hover);
 }
 
@@ -1423,7 +1496,7 @@ code {
 .compare-open:not(.btn--primary):hover,
 .compare-open:not(.btn--primary):focus-visible {
   background: var(--panel-hover);
-  border-color: rgba(255, 255, 255, 0.22);
+  border-color: var(--border-hover);
 }
 
 .pattern-sources {
@@ -1739,7 +1812,7 @@ code {
 .twin-bar:hover,
 .twin-bar:focus-visible {
   transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.22);
+  border-color: var(--border-hover);
   background: var(--panel-hover);
 }
 
@@ -1886,7 +1959,7 @@ code {
 
 .twin-record:hover {
   transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.22);
+  border-color: var(--border-hover);
   background: var(--panel-hover);
 }
 
@@ -2151,6 +2224,7 @@ code {
   .linkish,
   .pattern-jump,
   .pattern-return,
+  .theme-option,
   .pattern-main-btn,
   .pattern-action,
   .compare-open,
