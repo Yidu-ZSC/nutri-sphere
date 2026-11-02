@@ -3,6 +3,8 @@
 > 已采纳：中文主名明膳知源；英文名 ClearDiet；仓库名保留 nutri-sphere。
 >
 > TASK-NS-023：界面/README/现行 docs 英文副名 DietSphere→ClearDiet。
+>
+> TASK-NS-026：免责品牌字/schema title/storage/package/meta 正式站 URL 已按 ClearDiet 落地。
 
 ## 决定
 
@@ -11,7 +13,7 @@
 - 域名：cleardiet.org
 - 仓库名保留 **nutri-sphere**（暂不重命名）
 
-保留教育/研究工具边界与免责声明原文不变。
+保留教育/研究工具边界。免责仅允许品牌字 NutriSphere→ClearDiet（NS-026）；其余教育边界句不动。
 
 ## 意象说明
 
@@ -39,16 +41,18 @@
 - 顶栏品牌文案、页面 title、meta 描述。
 - 任何硬编码的「NutriSphere」「DietSphere」字符串替换为 ClearDiet 或明膳知源。
 - 分享链接、复制提示等用户可见文案。
-- 不改变功能逻辑、数据字段、免责声明正文。
+- 不改变功能逻辑、数据字段。免责仅允许品牌字 NutriSphere→ClearDiet（NS-026）；其余教育边界句不动。
 
 ### 3. 仓库与部署
 - 仓库名保留 `nutri-sphere`。
-- package.json 名称、构建产物中的标题更新为 ClearDiet。
-- 若后续部署到 cleardiet.org，仅更新部署配置，不改仓库名。
+- package.json 名称已为 `cleardiet`（NS-026）；构建产物中的标题为 ClearDiet。
+- schema title 为 `ClearDiet Graph Data`；`$id` 仍指向本仓库 `nutri-sphere` 路径。
+- localStorage 键为 `cleardiet.graphView` / `cleardiet.viewLayer`（直接换键，不迁移）。
+- 分享预览 `og:url` / `og:image` / `twitter:image` 指向 `https://cleardiet.org/`（及 `/og.png`）。GitHub Pages 项目路径与仓库名不改。
 
 ### 4. 不改的内容
 - 数据文件内的证据摘录与字段。
-- 免责声明原文。
+- 免责声明除品牌字外的教育边界句（NS-026 仅 NutriSphere→ClearDiet）。
 - 现有任务卡编号与历史提交说明。
 
 ## 验收
