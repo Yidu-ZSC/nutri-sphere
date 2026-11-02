@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import {
   DISCLAIMER_EN,
   DISCLAIMER_TEXT,
@@ -37,10 +38,21 @@ export function DisclaimerBar({
     if (aboutOpen) closeRef.current?.focus();
   }, [aboutOpen]);
 
-  return (
-    <footer className="disclaimer" role="note" aria-label="免责声明" data-testid="disclaimer">
-      {aboutOpen && (
-        <div className="about" role="dialog" aria-label="方法说明" data-testid="methods-dialog">
+  const aboutDialog = aboutOpen ? (
+    <div
+      className="about-layer"
+      data-testid="about-backdrop"
+      onClick={(event) => {
+        if (event.target === event.currentTarget) onAboutClose();
+      }}
+    >
+      <div
+        className="about"
+        role="dialog"
+        aria-modal="true"
+        aria-label="方法说明"
+        data-testid="methods-dialog"
+      >
           <div className="about-head">
             <h2>方法说明</h2>
             <button ref={closeRef} type="button" className="btn btn--ghost" onClick={onAboutClose}>
@@ -203,7 +215,12 @@ export function DisclaimerBar({
             </details>
           </div>
         </div>
-      )}
+      </div>
+  ) : null;
+
+  return (
+    <footer className="disclaimer" role="note" aria-label="免责声明" data-testid="disclaimer">
+      {aboutDialog && createPortal(aboutDialog, document.body)}
       <div className="disclaimer-copy">
         <p className="disclaimer-long" data-testid="disclaimer-text">
           {segments.map((segment, index) =>

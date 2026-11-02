@@ -106,7 +106,6 @@ export function App() {
   });
   const [patternReturnSnapshot, setPatternReturnSnapshot] = useState<ExploreSnapshot | null>(null);
   const [selection, setSelection] = useState<Selection | null>(null);
-  const [sheet, setSheet] = useState<'search' | 'filter' | null>(null);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [autoRotate, setAutoRotate] = useState(false);
@@ -182,10 +181,6 @@ export function App() {
         setMoreOpen(false);
         return;
       }
-      if (sheet) {
-        setSheet(null);
-        return;
-      }
       if (aboutOpen) {
         setAboutOpen(false);
         return;
@@ -198,7 +193,7 @@ export function App() {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [aboutOpen, mobile, moreOpen, selection, sheet, sideOpen]);
+  }, [aboutOpen, mobile, moreOpen, selection, sideOpen]);
 
   useEffect(() => {
     if (!moreOpen) return;
@@ -338,15 +333,10 @@ export function App() {
     setLayout('hierarchy');
   };
 
-  const openMobileSheet = (next: 'search' | 'filter') => {
-    setMoreOpen(false);
-    setSheet((current) => (current === next ? null : next));
-  };
-
   const onSelectHit = (hit: SearchHit) => {
     if (hit.kind === 'node' && hit.id) setSelection({ kind: 'node', id: hit.id });
     if (hit.kind === 'link' && hit.index != null) setSelection({ kind: 'link', index: hit.index });
-    setSheet(null);
+    setMoreOpen(false);
   };
 
   const clearFilters = () => {
@@ -405,7 +395,6 @@ export function App() {
     setGraphView('2d');
     setHideUnmatched(true);
     setSelection(null);
-    setSheet(null);
     setMoreOpen(false);
     setPatternId(null);
     setPatternReturnSnapshot(null);
@@ -415,7 +404,6 @@ export function App() {
 
   const goHome = () => {
     setSelection(null);
-    setSheet(null);
     setMoreOpen(false);
     setPatternId(null);
     setPatternReturnSnapshot(null);
@@ -439,7 +427,6 @@ export function App() {
     setPatternReturnSnapshot(null);
     setPatternId(id);
     setSelection(null);
-    setSheet(null);
     setMoreOpen(false);
     setScreen('pattern');
     clearPatternHighlight();
@@ -449,7 +436,6 @@ export function App() {
     if (!dietPatternById(id)) return;
     setPatternId(id);
     setSelection(null);
-    setSheet(null);
     setMoreOpen(false);
     setScreen('pattern');
   };
@@ -459,7 +445,6 @@ export function App() {
     setPatternReturnSnapshot(captureExplore());
     setPatternId(id);
     setSelection(null);
-    setSheet(null);
     setMoreOpen(false);
     setScreen('pattern');
     clearPatternHighlight();
@@ -467,7 +452,6 @@ export function App() {
 
   const openCompare = () => {
     setSelection(null);
-    setSheet(null);
     setMoreOpen(false);
     setScreen('compare');
     clearPatternHighlight();
@@ -475,7 +459,6 @@ export function App() {
 
   const openTwin = () => {
     setSelection(null);
-    setSheet(null);
     setMoreOpen(false);
     setPatternId(null);
     setPatternReturnSnapshot(null);
@@ -509,7 +492,6 @@ export function App() {
       setLayout('hierarchy');
       setGraphView('2d');
       setSelection({ kind: 'node', id: target.nodeId });
-      setSheet(null);
       setMoreOpen(false);
       setPatternId(null);
       setPatternReturnSnapshot(null);
@@ -533,7 +515,6 @@ export function App() {
     setGraphView(snapshot.graphView);
     setHideUnmatched(snapshot.hideUnmatched);
     setSelection(snapshot.selection);
-    setSheet(null);
     setMoreOpen(false);
     setScreen('explore');
     clearPatternHighlight();
@@ -558,7 +539,6 @@ export function App() {
     setPatternId(null);
     setPatternReturnSnapshot(null);
     setSelection(null);
-    setSheet(null);
     setMoreOpen(false);
     setScreen('home');
   };
@@ -576,7 +556,6 @@ export function App() {
       setGraphView(snapshot.graphView);
       setHideUnmatched(snapshot.hideUnmatched);
       setSelection(snapshot.selection);
-      setSheet(null);
       setMoreOpen(false);
       setScreen('explore');
       return;
@@ -634,7 +613,11 @@ export function App() {
 
   return (
     <div className="app">
-      <header className={exploring && !mobile ? 'topbar topbar--compact' : 'topbar'}>
+      <header
+        className={
+          exploring && mobile ? 'topbar topbar--narrow' : exploring ? 'topbar topbar--compact' : 'topbar'
+        }
+      >
         <div className="brand">
           <span className="mark" aria-hidden="true" />
           <div>
@@ -648,7 +631,7 @@ export function App() {
             <p className="brand-sub">仅供学习：饮食、机制与健康结局的关联图谱</p>
           </div>
         </div>
-        {exploring && !mobile && graph && (
+        {exploring && graph && (
           <div className="header-tools">
             <SearchBar
               hits={search.hits}
@@ -685,27 +668,7 @@ export function App() {
               </button>
               {moreOpen && (
                 <div id="more-panel" className="more-panel" data-testid="more-panel" role="menu">
-                  {exploring && (
-                    <>
-                      <button
-                        type="button"
-                        className="btn btn--ghost"
-                        aria-expanded={sheet === 'search'}
-                        onClick={() => openMobileSheet('search')}
-                      >
-                        搜索
-                      </button>
-                      <button
-                        type="button"
-                        className="btn btn--ghost"
-                        aria-expanded={sheet === 'filter'}
-                        onClick={() => openMobileSheet('filter')}
-                      >
-                        筛选
-                      </button>
-                      {viewControls}
-                    </>
-                  )}
+                  {exploring && viewControls}
                   <ViewLayerToggle layer={layer} onChange={setLayer} />
                   {rotateControl}
                   {copyControl}
@@ -862,7 +825,7 @@ export function App() {
               {filterEmpty && (
                 <div className="empty-filter" role="status">
                   <p>无匹配，清除过滤</p>
-                  <button type="button" className="btn btn--ghost" onClick={clearFilters}>
+                  <button type="button" className="btn btn--primary" onClick={clearFilters}>
                     清除全部
                   </button>
                 </div>
@@ -877,32 +840,6 @@ export function App() {
                     onClick={() => setLayer('expert')}
                   >
                     切换专家层
-                  </button>
-                </div>
-              )}
-              {mobile && sheet && (
-                <div className="sheet" role="dialog" aria-label={sheet === 'search' ? '搜索' : '筛选'}>
-                  {sheet === 'search' ? (
-                    <SearchBar
-                      hits={search.hits}
-                      truncated={search.truncated}
-                      onQuery={onQuery}
-                      onSelect={onSelectHit}
-                    />
-                  ) : (
-                    <FilterPanel
-                      diseases={diseases}
-                      mechanisms={mechanisms}
-                      diseaseId={safeDisease}
-                      mechanismId={safeMechanism}
-                      layer={layer}
-                      onDisease={selectDisease}
-                      onMechanism={selectMechanism}
-                      onClear={clearFilters}
-                    />
-                  )}
-                  <button type="button" className="btn" onClick={() => setSheet(null)}>
-                    完成
                   </button>
                 </div>
               )}
