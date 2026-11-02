@@ -13,11 +13,11 @@ import {
 } from './copy.ts';
 
 const SPEC_TEXT =
-  '免责声明：ClearDiet 是教育与研究用途的知识图谱可视化工具，不是医疗器械，不提供诊断、治疗方案或个性化医疗建议。图中关联多来自书摘与公开资料中的机制/观察描述，存在局限，不能替代执业医师或注册营养专业人员的意见。健康决策请咨询具备资质的专业人员。';
+  '免责声明：ClearDiet 是帮助了解日常饮食与健康主题之间关系的教育工具，不提供诊断、治疗方案或个性化医疗建议。系统中信息主要来自正版图书与公开资料中的机制/观察描述，存在局限，不能替代执业医师或注册营养专业人员的意见。健康决策请咨询具备资质的专业人员。';
 
 test('disclaimer copy matches the Phase 1 spec exactly', () => {
   assert.equal(DISCLAIMER_TEXT, SPEC_TEXT);
-  assert.equal(DISCLAIMER_SHORT, '教育/研究工具 · 非诊疗 · 非医疗建议 · 请咨询专业人员');
+  assert.equal(DISCLAIMER_SHORT, '教育工具 · 非诊疗 · 非医疗建议 · 请咨询专业人员');
   const joined = disclaimerSegments(DISCLAIMER_TEXT).map((segment) => segment.value).join('');
   assert.equal(joined, DISCLAIMER_TEXT);
   assert.equal(
