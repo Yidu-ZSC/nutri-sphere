@@ -1544,6 +1544,110 @@ code {
 .twin-fill[data-level='mid'] { width: 66%; }
 .twin-fill[data-level='high'] { width: 100%; }
 
+.twin-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.twin-section h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.twin-record-form,
+.twin-paste {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-solid);
+}
+
+.twin-fields {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.twin-record-form label,
+.twin-paste label,
+.twin-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.twin-fields label {
+  flex: 1 1 140px;
+}
+
+.twin-record-form input,
+.twin-record-form select,
+.twin-record-form textarea,
+.twin-paste textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  min-height: 40px;
+  padding: 8px;
+}
+
+.twin-paste textarea,
+.twin-record-form textarea {
+  min-height: 72px;
+  resize: vertical;
+}
+
+.twin-segment {
+  width: fit-content;
+  align-self: flex-start;
+}
+
+.twin-list {
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.twin-record {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-solid);
+}
+
+.twin-record-text {
+  flex: 1 1 160px;
+  overflow-wrap: anywhere;
+}
+
+.twin-notice {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
 @media (max-width: 768px) {
   .lobby { padding: 18px 12px 24px; }
   .pattern-screen,
@@ -1608,6 +1712,11 @@ code {
   .compare-open,
   .twin-option,
   .twin-bar,
+  .twin-record-form input,
+  .twin-record-form select,
+  .twin-record-form textarea,
+  .twin-paste textarea,
+  .twin-delete,
   .drawer-pattern-btn,
   .citation-fold summary {
     min-height: 44px;
