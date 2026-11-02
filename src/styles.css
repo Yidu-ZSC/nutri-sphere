@@ -987,11 +987,14 @@ code {
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-2);
-  padding: var(--space-4) var(--space-4) var(--space-4) calc(var(--space-4) + 4px);
-  border-radius: var(--radius-card);
+  padding: var(--space-4) var(--space-4) var(--space-4) calc(var(--space-4) + 3px);
+  border-radius: var(--radius-theme-card);
   border: var(--border);
-  background: var(--panel);
-  transition: transform 150ms ease, border-color 150ms ease, background 150ms ease;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--panel) 92%, transparent), var(--panel));
+  background-color: var(--panel);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-card);
+  transition: transform 150ms ease, border-color 150ms ease, background-color 150ms ease, background-image 150ms ease;
 }
 
 .dir-bar {
@@ -999,21 +1002,35 @@ code {
   left: 0;
   top: 0;
   bottom: 0;
-  width: 4px;
+  width: 3px;
   background: var(--card-accent, var(--dir-neutral));
   pointer-events: none;
 }
 
 .theme-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.22);
-  background: var(--panel-hover);
+  border-color: var(--border-hover);
+  background-color: var(--panel-hover);
+  background-image: linear-gradient(180deg, color-mix(in srgb, var(--panel-hover) 92%, transparent), var(--panel-hover));
+}
+
+.theme-card:hover .dir-bar {
+  filter: brightness(1.15);
 }
 
 .theme-cta {
   margin-top: auto;
   align-self: stretch;
+  width: 100%;
+  height: 36px;
+  min-height: 36px;
   text-align: center;
+  border-radius: var(--radius-theme-cta);
+}
+
+.theme-cta:active,
+.diet-twin-entry:active {
+  transform: scale(0.99);
 }
 
 .theme-card strong {
@@ -1517,10 +1534,6 @@ code {
   color: var(--muted);
   font-size: 12px;
   line-height: 1.5;
-}
-
-.mechanism-list .theme-card {
-  background: var(--panel-hover);
 }
 
 @media (min-width: 640px) {
@@ -2160,6 +2173,10 @@ code {
   }
   .layout-toggle button { padding: 0 12px; }
   .header-actions .btn { padding: 0 12px; }
+  .theme-cta {
+    height: 36px;
+    min-height: 36px;
+  }
   .empty-filter {
     flex-direction: column;
     width: calc(100% - 24px);
@@ -2171,6 +2188,10 @@ code {
   * { scroll-behavior: auto !important; }
   .theme-card,
   .theme-card:hover,
+  .theme-card:active,
+  .theme-cta,
+  .theme-cta:active,
+  .diet-twin-entry:active,
   .pattern-card,
   .pattern-card:hover,
   .pattern-item,
@@ -2184,6 +2205,11 @@ code {
   }
   .theme-card,
   .theme-card:hover,
+  .theme-card:active,
+  .theme-cta,
+  .theme-cta:active,
+  .diet-twin-entry,
+  .diet-twin-entry:active,
   .pattern-card,
   .pattern-card:hover,
   .pattern-item,

@@ -24,7 +24,12 @@
   --radius-btn: 6px;
   --radius-card: 10px;
   --radius-panel: 16px;
+  /* Lobby theme cards and their CTAs only. Do not retune the global radii above. */
+  --radius-theme-card: 12px;
+  --radius-theme-cta: 8px;
+  --border-hover: rgba(255, 255, 255, 0.22);
   --shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
   --btn: transparent;
   --btn-hover: var(--panel-hover);
   --font: system-ui, "Segoe UI", "WenQuanYi Micro Hei", "Droid Sans Fallback", "PingFang SC",
