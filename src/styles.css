@@ -813,6 +813,14 @@ button { cursor: pointer; }
   letter-spacing: 0.02em;
 }
 
+.about p.about-lang-note {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.45;
+  overflow-wrap: break-word;
+}
+
 .about-lead { margin-top: 8px; }
 
 .about h2 { margin: 0; font-size: 16px; }
