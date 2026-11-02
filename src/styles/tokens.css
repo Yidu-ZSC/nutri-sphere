@@ -1,0 +1,34 @@
+:root {
+  color-scheme: dark;
+  --bg: #0b0d12;
+  --panel: #16181d;
+  --panel-solid: var(--panel);
+  --panel-hover: #1e2128;
+  --text: #f1f3f5;
+  --muted: #a1a8b3;
+  --faint: #6b7280;
+  --brand: #10b981;
+  --dir-protective: #34d399;
+  --dir-risk: #f87171;
+  --dir-mixed: #fbbf24;
+  --dir-neutral: #94a3b8;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border: 1px solid var(--border-color);
+  --line: var(--border-color);
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --radius-btn: 6px;
+  --radius-card: 10px;
+  --radius-panel: 16px;
+  --shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  --btn: transparent;
+  --btn-hover: var(--panel-hover);
+  --font: system-ui, "Segoe UI", "WenQuanYi Micro Hei", "Droid Sans Fallback", "PingFang SC",
+    "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  font-family: var(--font);
+  line-height: 1.5;
+}

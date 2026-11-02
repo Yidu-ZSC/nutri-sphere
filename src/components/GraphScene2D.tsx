@@ -4,7 +4,7 @@ import { directionLabel, evidenceLabel, nodeTypeLabel } from '../lib/copy';
 import { COLUMN_Y_GAP, frameGraph2d, columnIndex } from '../lib/layout';
 import { particleCount, styledLinkWidth } from '../lib/linkStyle';
 import { labelShouldShow } from '../lib/nodeStyle';
-import { colorWithAlpha, semanticColor } from '../lib/palette';
+import { CANVAS_BG, colorWithAlpha, semanticColor } from '../lib/palette';
 import type { SimNode } from '../types/graph';
 import { linkIsBright, nodeIsBright, nodeIsSelected, type DrawLink, type SceneCommonProps } from './graphShared';
 import { paintColumnCaptions, paintGraphNode, paintGraphNodeHit, type PaintedNode } from './paintNode2d';
@@ -142,7 +142,7 @@ export function GraphScene2D(props: SceneCommonProps) {
       graphData={{ nodes: props.nodes, links: props.links }}
       width={props.size.w}
       height={props.size.h}
-      backgroundColor="#0f1115"
+      backgroundColor={CANVAS_BG}
       enableNodeDrag={props.layout === 'force'}
       nodeRelSize={0}
       nodeVal={1}

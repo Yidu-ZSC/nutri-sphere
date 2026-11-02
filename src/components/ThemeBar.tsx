@@ -1,5 +1,8 @@
-import { HIERARCHY_HINT, themeMatches, type ExploreTheme } from '../lib/themes';
+import { useEffect, useRef } from 'react';
 import type { LayoutMode } from '../lib/layout';
+import { PALETTE } from '../lib/palette';
+import { themeAccent } from '../lib/themeAccent';
+import { HIERARCHY_HINT, themeMatches, type ExploreTheme } from '../lib/themes';
 
 interface ThemeBarProps {
   themes: readonly ExploreTheme[];
@@ -22,9 +25,16 @@ export function ThemeBar({
   onTheme,
   onHideUnmatched,
 }: ThemeBarProps) {
+  const listRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const active = listRef.current?.querySelector<HTMLElement>('[aria-pressed="true"]');
+    active?.scrollIntoView({ block: 'nearest' });
+  }, [diseaseId, mechanismId, foodId]);
+
   return (
     <div className="theme-bar">
-      <div className="themes" role="group" aria-label="探索主题" data-testid="theme-chips">
+      <div ref={listRef} className="themes" role="group" aria-label="探索主题" data-testid="theme-chips">
         <span className="themes-label">探索主题</span>
         {themes.map((theme) => {
           const pressed = themeMatches(theme, diseaseId, mechanismId, foodId);
@@ -33,9 +43,13 @@ export function ThemeBar({
               key={theme.id}
               type="button"
               className={theme.kind === 'mechanism_deep' ? 'chip chip--deep' : 'chip'}
+              data-testid={`theme-chip-${theme.id}`}
+              data-direction={themeAccent(theme)}
               aria-pressed={pressed}
+              style={{ ['--card-accent' as string]: PALETTE[themeAccent(theme)] }}
               onClick={() => onTheme(pressed ? null : theme)}
             >
+              <span className="dir-bar" aria-hidden="true" />
               {theme.label}
             </button>
           );

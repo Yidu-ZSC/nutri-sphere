@@ -1,9 +1,12 @@
 export const PALETTE = {
-  protective: '#4ade80',
+  protective: '#34d399',
   risk: '#f87171',
   neutral: '#94a3b8',
   mixed: '#fbbf24',
 } as const;
+
+/** Canvas clear color. Keep in sync with `--bg` in styles/tokens.css. */
+export const CANVAS_BG = '#0b0d12';
 
 export function semanticColor(value: string | undefined): string {
   if (value === 'protective' || value === 'risk' || value === 'neutral' || value === 'mixed') {

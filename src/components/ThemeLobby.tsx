@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 import { DIET_TWIN_COPY } from '../lib/dietTwin';
 import { DIET_PATTERN_CARDS, type DietPatternCard } from '../lib/dietPatterns';
 import { PATTERN_SHELL } from '../lib/dietPatternDetails';
+import { LOBBY_TAGLINE, THEME_CTA } from '../lib/exploreShell';
+import { PALETTE } from '../lib/palette';
+import { themeAccent } from '../lib/themeAccent';
 import {
   HOME_FOOD_THEMES,
   HOME_HEALTH_THEMES,
@@ -29,18 +32,26 @@ function kickerFor(kind: ThemeKind): string {
 
 function ThemeCard({ theme, onEnter }: { theme: ExploreTheme; onEnter: (theme: ExploreTheme) => void }) {
   return (
-    <button
-      type="button"
+    <article
       className="theme-card"
       data-testid={`theme-card-${theme.id}`}
       data-kind={theme.kind}
-      onClick={() => onEnter(theme)}
+      data-direction={themeAccent(theme)}
+      style={{ ['--card-accent' as string]: PALETTE[themeAccent(theme)] }}
     >
+      <span className="dir-bar" aria-hidden="true" />
       <span className="kicker">{kickerFor(theme.kind)}</span>
       <strong>{theme.title}</strong>
-      <span className="theme-prompt">{theme.prompt}</span>
       <span className="theme-blurb">{theme.blurb}</span>
-    </button>
+      <button
+        type="button"
+        className="btn btn--primary theme-cta"
+        data-testid={`theme-cta-${theme.id}`}
+        onClick={() => onEnter(theme)}
+      >
+        {THEME_CTA}
+      </button>
+    </article>
   );
 }
 
@@ -89,7 +100,7 @@ function PatternCard({
       <div className="pattern-related">
         <button
           type="button"
-          className="pattern-jump"
+          className="btn btn--primary pattern-jump"
           data-testid="open-pattern-detail"
           data-pattern={card.id}
           onClick={() => onOpenPattern(card.id)}
@@ -102,9 +113,11 @@ function PatternCard({
               type="button"
               className="pattern-jump"
               data-testid={`pattern-jump-${card.id}-${theme.id}`}
+              aria-label={`${THEME_CTA}：${theme.label}`}
               onClick={() => onEnter(theme)}
             >
-              查看相关主题：{theme.label}
+              {THEME_CTA}
+              <span className="muted">{theme.label}</span>
             </button>
         ))}
       </div>
@@ -135,7 +148,7 @@ export function ThemeLobby({
       <header className="lobby-intro">
         <p className="kicker">教育与研究</p>
         <h1>想先了解哪个问题？</h1>
-        <p className="lobby-tagline" data-testid="lobby-tagline">看清膳食，知道来源</p>
+        <p className="lobby-tagline" data-testid="lobby-tagline">{LOBBY_TAGLINE}</p>
         <p>
           先选一个你想了解的问题，再看公开资料里饮食与它常被怎么一起讨论。供学习与核对来源，不是医疗建议。
         </p>

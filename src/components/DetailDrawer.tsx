@@ -285,7 +285,7 @@ function LinkBody({
       </p>
       <div className="evidence-card" data-testid="evidence-card">
         <div className="badge-row" data-testid="evidence-badges">
-          <span className="badge badge--direction">
+          <span className="badge badge--direction" style={{ borderLeftColor: semanticColor(link.direction) }}>
             <Swatch value={link.direction} />
             {directionLabel(link.direction)}
           </span>

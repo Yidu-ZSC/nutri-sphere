@@ -13,7 +13,7 @@ import {
 } from '../lib/layout';
 import { LINK_OPACITY_3D, LINK_PARTICLE_WIDTH_3D, particleCount, styledLinkWidth } from '../lib/linkStyle';
 import { labelShouldShow, labelTextHeight, nodeScale, shapeKindForType } from '../lib/nodeStyle';
-import { colorWithAlpha, semanticColor } from '../lib/palette';
+import { CANVAS_BG, colorWithAlpha, semanticColor } from '../lib/palette';
 import type { SimNode } from '../types/graph';
 import { geometryFor } from './nodeGeometry';
 import { linkIsBright, nodeIsBright, nodeIsSelected, type DrawLink, type SceneCommonProps } from './graphShared';
@@ -381,7 +381,7 @@ export function GraphScene3D(props: GraphScene3DProps) {
       graphData={{ nodes: props.nodes, links: props.links }}
       width={props.size.w}
       height={props.size.h}
-      backgroundColor="#0f1115"
+      backgroundColor={CANVAS_BG}
       showNavInfo={false}
       enableNodeDrag={props.layout === 'force'}
       nodeRelSize={4}
