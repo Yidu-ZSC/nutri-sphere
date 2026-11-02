@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { DIET_TWIN_COPY } from '../lib/dietTwin';
 import { DIET_PATTERN_CARDS, type DietPatternCard } from '../lib/dietPatterns';
 import { PATTERN_SHELL } from '../lib/dietPatternDetails';
 import {
@@ -14,6 +15,7 @@ interface ThemeLobbyProps {
   onEnter: (theme: ExploreTheme) => void;
   onOpenPattern: (id: string) => void;
   onOpenCompare: () => void;
+  onOpenTwin: () => void;
   highlightedPatterns?: readonly string[];
   patternSourceTheme?: string | null;
   onReturnToGraph?: () => void;
@@ -114,6 +116,7 @@ export function ThemeLobby({
   onEnter,
   onOpenPattern,
   onOpenCompare,
+  onOpenTwin,
   highlightedPatterns = [],
   patternSourceTheme = null,
   onReturnToGraph,
@@ -137,6 +140,19 @@ export function ThemeLobby({
           先选一个你想了解的问题，再看公开资料里饮食与它常被怎么一起讨论。供学习与核对来源，不是医疗建议。
         </p>
       </header>
+      <section className="lobby-twin" aria-label={DIET_TWIN_COPY.entryTitle}>
+        <button
+          type="button"
+          className="theme-card diet-twin-entry"
+          data-testid="diet-twin-entry"
+          onClick={onOpenTwin}
+        >
+          <span className="kicker">{DIET_TWIN_COPY.entryKicker}</span>
+          <strong>{DIET_TWIN_COPY.entryTitle}</strong>
+          <span className="theme-prompt">{DIET_TWIN_COPY.entryPrompt}</span>
+          <span className="theme-blurb">{DIET_TWIN_COPY.entryBlurb}</span>
+        </button>
+      </section>
       <section className="lobby-primary" aria-labelledby="health-theme-heading">
         <h2 id="health-theme-heading">常见健康主题</h2>
         <ul className="theme-grid" data-testid="health-theme-grid">

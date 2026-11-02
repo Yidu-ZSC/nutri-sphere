@@ -7,8 +7,8 @@ import type { ViewLayer } from '../types/graph';
 const ID = /^[a-z0-9_]+$/;
 const THEME_ID = /^[a-z0-9_-]+$/;
 
-/** Home, explore, pattern detail, or compare. Distinct from `view`, which stays `2d` | `3d`. */
-export type ScreenMode = 'home' | 'explore' | 'pattern' | 'compare';
+/** Home, explore, pattern detail, compare, or the diet twin screen. Distinct from `view`, which stays `2d` | `3d`. */
+export type ScreenMode = 'home' | 'explore' | 'pattern' | 'compare' | 'twin';
 
 export interface ParsedShare {
   screen: ScreenMode | null;
@@ -53,7 +53,9 @@ function parseLayer(value: string | null): ViewLayer | null {
 }
 
 function parseScreen(value: string | null): ScreenMode | null {
-  if (value === 'home' || value === 'explore' || value === 'pattern' || value === 'compare') return value;
+  if (value === 'home' || value === 'explore' || value === 'pattern' || value === 'compare' || value === 'twin') {
+    return value;
+  }
   return null;
 }
 
@@ -125,14 +127,14 @@ export function parseViewQuery(search: string): ParsedShare {
  * `hide=1` on, `hide=0` explicitly off.
  * Omitted on explore with a theme, disease, mechanism, or food anchor defaults on.
  * Home never uses the flag. Explore without an anchor stays off.
- * Pattern and compare screens stay off even if `hide` is present.
+ * Pattern, compare, and twin screens stay off even if `hide` is present.
  */
 export function resolveHideUnmatched(
   hideParam: string | null,
   parsed: Pick<ParsedShare, 'screen' | 'theme' | 'disease' | 'mechanism' | 'food' | 'pattern' | 'node' | 'link'>,
 ): boolean {
   const screen = resolveScreen(parsed);
-  if (screen === 'pattern' || screen === 'compare') return false;
+  if (screen === 'pattern' || screen === 'compare' || screen === 'twin') return false;
   if (hideParam === '1') return true;
   if (hideParam === '0') return false;
   if (screen === 'explore' && (parsed.theme || parsed.disease || parsed.mechanism || parsed.food)) {
@@ -142,7 +144,7 @@ export function resolveHideUnmatched(
 }
 
 export function serializeViewQuery(state: ShareState): string {
-  if (state.screen === 'pattern' || state.screen === 'compare') {
+  if (state.screen === 'pattern' || state.screen === 'compare' || state.screen === 'twin') {
     const params = new URLSearchParams();
     params.set('screen', state.screen);
     if (state.screen === 'pattern' && state.pattern) params.set('pattern', state.pattern);

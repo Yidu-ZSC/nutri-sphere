@@ -421,3 +421,32 @@ test('pattern links open a detail only without explore anchors', () => {
   assert.equal(resolveScreen(parseViewQuery('?screen=home&patterns=mediterranean,dash')), 'home');
   assert.deepEqual(parseViewQuery('?screen=home&patterns=mediterranean,dash').patterns, ['mediterranean', 'dash']);
 });
+
+test('twin screen is explicit and does not carry explore anchors', () => {
+  const parsed = parseViewQuery('?screen=twin&layer=expert&node=soy&theme=plant-based&hide=1&disease=cardiometabolic');
+  assert.equal(parsed.screen, 'twin');
+  assert.equal(resolveScreen(parsed), 'twin');
+  assert.equal(parsed.layer, 'expert');
+  assert.equal(parsed.hideUnmatched, false);
+  assert.equal(parsed.node, 'soy');
+  const query = serializeViewQuery(
+    shareState({
+      screen: 'twin',
+      layer: 'layperson',
+      theme: 'plant-based',
+      disease: 'cardiometabolic',
+      food: 'ultra_processed',
+      pattern: 'dash',
+      patterns: ['dash'],
+      hideUnmatched: true,
+      node: 'plant_based_diet',
+      link: 'soy~angiogenesis_defense',
+      view: '3d',
+      layout: 'force',
+    }),
+  );
+  assert.equal(query, '?screen=twin&layer=layperson');
+  assert.equal(resolveScreen(parseViewQuery(query)), 'twin');
+  assert.equal(parseViewQuery('?screen=twin').hideUnmatched, false);
+  assert.equal(resolveScreen(parseViewQuery('?screen=twin&pattern=mediterranean')), 'twin');
+});
