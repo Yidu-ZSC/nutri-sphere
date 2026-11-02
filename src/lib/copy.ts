@@ -1,19 +1,19 @@
 import type { ViewLayer } from '../types/graph';
 
-/** Exact Simplified Chinese disclaimer from the Phase 1 spec. Do not paraphrase. */
+/** Educational disclaimer. Do not add diagnostic or treatment claims. */
 export const DISCLAIMER_TEXT =
-  '免责声明：ClearDiet 是教育与研究用途的知识图谱可视化工具，不是医疗器械，不提供诊断、治疗方案或个性化医疗建议。图中关联多来自书摘与公开资料中的机制/观察描述，存在局限，不能替代执业医师或注册营养专业人员的意见。健康决策请咨询具备资质的专业人员。';
+  '免责声明：ClearDiet 是帮助了解日常饮食与健康主题之间关系的教育工具，不提供诊断、治疗方案或个性化医疗建议。系统中信息主要来自正版图书与公开资料中的机制/观察描述，存在局限，不能替代执业医师或注册营养专业人员的意见。健康决策请咨询具备资质的专业人员。';
 
-export const DISCLAIMER_SHORT = '教育/研究工具 · 非诊疗 · 非医疗建议 · 请咨询专业人员';
+export const DISCLAIMER_SHORT = '教育工具 · 非诊疗 · 非医疗建议 · 请咨询专业人员';
 
 /** Explore HUD line. Counts are the rendered visible set, not the full seed. */
 export function visibleGraphStats(nodeCount: number, linkCount: number): string {
   return `当前可见 ${nodeCount} 节点 · ${linkCount} 关联`;
 }
 
-export const DISCLAIMER_EN = 'Educational / research use only. Not medical advice.';
+export const DISCLAIMER_EN = 'Educational use only. Not medical advice.';
 
-const STRONG_TOKENS = ['免责声明', '不是', '不提供'] as const;
+const STRONG_TOKENS = ['免责声明', '不提供', '存在局限'] as const;
 
 export function disclaimerSegments(text: string): { strong: boolean; value: string }[] {
   const segments: { strong: boolean; value: string }[] = [];
