@@ -371,6 +371,42 @@ export function deleteRecord(store: DietTwinStore, id: string): DietTwinStore {
   return { ...store, records };
 }
 
+export interface UpdateRecordResult {
+  store: DietTwinStore;
+  updated: DietRecord | null;
+  reason: RejectReason | 'missing' | null;
+}
+
+export function updateRecord(
+  store: DietTwinStore,
+  id: string,
+  input: RecordInput,
+): UpdateRecordResult {
+  const index = store.records.findIndex((record) => record.id === id);
+  if (index < 0) return { store, updated: null, reason: 'missing' };
+  const text = normalizeRecordText(input.text);
+  if (!text) return { store, updated: null, reason: 'text' };
+  if (!isIsoDate(input.date)) return { store, updated: null, reason: 'date' };
+  if (!isMeal(input.meal)) return { store, updated: null, reason: 'meal' };
+  const previous = store.records[index];
+  if (
+    previous.date === input.date &&
+    previous.meal === input.meal &&
+    previous.text === text
+  ) {
+    return { store, updated: previous, reason: null };
+  }
+  const updated: DietRecord = {
+    ...previous,
+    date: input.date,
+    meal: input.meal,
+    text,
+  };
+  const records = store.records.slice();
+  records[index] = updated;
+  return { store: { ...store, records }, updated, reason: null };
+}
+
 export function parseDietTwinStore(raw: string | null): DietTwinStore | null {
   if (!raw) return null;
   try {

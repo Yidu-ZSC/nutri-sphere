@@ -33,13 +33,13 @@ export interface TwinExploreTarget {
 }
 
 export const DIET_TWIN_COPY = {
-  entryKicker: '教育模拟 · 非诊断',
+  entryKicker: '饮食观察 · 非诊断',
   entryTitle: '我的饮食孪生',
   entryPrompt: '用三道短问对照公开资料里的饮食叙述',
   entryBlurb: '模拟对照，不是个人检测',
   title: '我的饮食孪生',
   badge: '模拟，非诊断',
-  persistent: '这是教育模拟，不是你个人的健康检测或诊断。',
+  persistent: '这是个人饮食记录与观察，不是你个人的健康监测或诊断。',
   intro: '记下饮食原文，或改一档假设。结果只是公开资料叙事的教育对照。',
   submit: '查看对照',
   assumptionHint: '改这里的档位会写入假设。',
@@ -63,6 +63,9 @@ export const DIET_TWIN_COPY = {
   mealLabel: '餐次',
   textLabel: '原文',
   add: '添加',
+  saveEdit: '保存修改',
+  cancelEdit: '取消编辑',
+  edit: '编辑',
   pasteLabel: '多行粘贴',
   pasteHint: '每行一条，记为今天的加餐。',
   pasteSubmit: '粘贴并添加',
@@ -74,6 +77,7 @@ export const DIET_TWIN_COPY = {
   limitReached: '记录已满 200 条，请先删除再添加。',
   rejected: '有内容未保存：原文需为 1 到 200 个字，日期和餐次需有效。',
   added: '已添加。',
+  updated: '已更新。',
   statusTitle: '当前状态',
   hypothesisTitle: '假设',
   modeRecords: '基于记录',

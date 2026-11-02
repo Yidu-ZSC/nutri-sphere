@@ -22,7 +22,7 @@ import {
   type DietTwinAnswers,
 } from './dietTwin.ts';
 
-const LOCKED_SENTENCE = '这是教育模拟，不是你个人的健康检测或诊断。';
+const LOCKED_SENTENCE = '这是个人饮食记录与观察，不是你个人的健康监测或诊断。';
 
 const LOW_ASSOCIATION: DietTwinAnswers = {
   plant: 'plant_high',

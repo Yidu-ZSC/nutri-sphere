@@ -30,6 +30,7 @@ import {
   saveDietTwin,
   shiftIsoDate,
   textHitsAny,
+  updateRecord,
   withSnapshot,
   type DietHypothesis,
   type DietRecord,
@@ -292,6 +293,23 @@ test('adding, pasting, and deleting honor text, date, meal, and the 200 cap', ()
   const removed = deleteRecord(trimmed.store, trimmed.added[0]?.id ?? '');
   assert.equal(removed.records.length, 0);
   assert.equal(deleteRecord(removed, 'missing'), removed);
+
+  const base = addRecords(empty, [{ date: TODAY, meal: 'breakfast', text: '燕麦粥' }], NOW, ids);
+  const editedId = base.added[0]?.id ?? '';
+  const edited = updateRecord(base.store, editedId, {
+    date: TODAY,
+    meal: 'lunch',
+    text: '  蔬菜沙拉  ',
+  });
+  assert.equal(edited.reason, null);
+  assert.equal(edited.updated?.meal, 'lunch');
+  assert.equal(edited.updated?.text, '蔬菜沙拉');
+  assert.equal(edited.updated?.createdAt, base.added[0]?.createdAt);
+  assert.equal(edited.store.records[0]?.text, '蔬菜沙拉');
+  assert.equal(updateRecord(base.store, 'missing', { date: TODAY, meal: 'lunch', text: '燕麦' }).reason, 'missing');
+  assert.equal(updateRecord(base.store, editedId, { date: TODAY, meal: 'lunch', text: '  ' }).reason, 'text');
+  assert.equal(updateRecord(base.store, editedId, { date: 'today', meal: 'lunch', text: '燕麦' }).reason, 'date');
+  assert.equal(updateRecord(base.store, editedId, { date: TODAY, meal: 'brunch', text: '燕麦' }).reason, 'meal');
 });
 
 test('seven-day windows, list ranges, and ratio cutoffs', () => {

@@ -24,9 +24,11 @@ import {
   recordsInRange,
   saveDietTwin,
   snapshotBand,
+  updateRecord,
   withHypothesis,
   withSnapshot,
   type BasedOn,
+  type DietRecord,
   type DietTwinStore,
   type Meal,
   type RejectedRecord,
@@ -41,7 +43,7 @@ type Draft = Partial<DietTwinAnswers>;
 type ListRange = 7 | 30;
 
 /** Permanent short mark. The NS-028 sentence stays on screen beside it. */
-const TWIN_SHORT_BADGE = '教育模拟，非诊断';
+const TWIN_SHORT_BADGE = '饮食观察，非诊断';
 
 const MEAL_OPTIONS: readonly { value: Meal; label: string }[] = [
   { value: 'breakfast', label: DIET_TWIN_COPY.mealBreakfast },
@@ -75,6 +77,7 @@ export function DietTwin({ onBack, onOpenIndicator }: DietTwinProps) {
   const [paste, setPaste] = useState('');
   const [range, setRange] = useState<ListRange>(7);
   const [notice, setNotice] = useState<string | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
   const { store, mode } = session;
   const today = formatLocalDate(new Date());
   const selected = store.hypothesis ? answersFromHypothesis(store.hypothesis) : null;
@@ -82,6 +85,7 @@ export function DietTwin({ onBack, onOpenIndicator }: DietTwinProps) {
   const ready = Boolean(active.plant && active.upf && active.fiber);
   const visibleRecords = recordsInRange(store.records, today, range);
   const atLimit = store.records.length >= DIET_TWIN_RECORD_LIMIT;
+  const editing = editingId != null;
 
   const commit = (nextStore: DietTwinStore, nextMode: BasedOn, now = new Date()) => {
     const refreshed = withSnapshot(nextStore, nextMode, now);
@@ -94,6 +98,11 @@ export function DietTwin({ onBack, onOpenIndicator }: DietTwinProps) {
     return defaultBasedOn(nextStore, formatLocalDate(now));
   };
 
+  const clearForm = () => {
+    setText('');
+    setEditingId(null);
+  };
+
   const applyRecords = (nextStore: DietTwinStore, added: number, rejected: readonly RejectedRecord[], now: Date) => {
     commit(nextStore, modeAfterEdit(nextStore, now), now);
     setNotice(resultNotice(added, rejected));
@@ -103,7 +112,25 @@ export function DietTwin({ onBack, onOpenIndicator }: DietTwinProps) {
     const now = new Date();
     const result = addRecords(store, [{ date, meal, text }], now);
     applyRecords(result.store, result.added.length, result.rejected, now);
-    if (result.added.length > 0) setText('');
+    if (result.added.length > 0) clearForm();
+  };
+
+  const onSaveEdit = () => {
+    if (!editingId) return;
+    const now = new Date();
+    const result = updateRecord(store, editingId, { date, meal, text });
+    if (result.reason != null && result.reason !== 'missing') {
+      setNotice(DIET_TWIN_COPY.rejected);
+      return;
+    }
+    if (result.reason === 'missing' || !result.updated) {
+      clearForm();
+      setNotice(DIET_TWIN_COPY.rejected);
+      return;
+    }
+    commit(result.store, modeAfterEdit(result.store, now), now);
+    clearForm();
+    setNotice(DIET_TWIN_COPY.updated);
   };
 
   const onPaste = () => {
@@ -119,9 +146,29 @@ export function DietTwin({ onBack, onOpenIndicator }: DietTwinProps) {
     if (result.added.length > 0) setPaste('');
   };
 
+  const onEdit = (record: DietRecord) => {
+    setEditingId(record.id);
+    setDate(record.date);
+    setMeal(record.meal);
+    setText(record.text);
+    setNotice(null);
+  };
+
+  const onCancelEdit = () => {
+    clearForm();
+    setDate(today);
+    setMeal('breakfast');
+    setNotice(null);
+  };
+
   const onDelete = (id: string) => {
     const now = new Date();
     const next = deleteRecord(store, id);
+    if (editingId === id) {
+      clearForm();
+      setDate(today);
+      setMeal('breakfast');
+    }
     commit(next, modeAfterEdit(next, now), now);
   };
 
@@ -215,9 +262,11 @@ export function DietTwin({ onBack, onOpenIndicator }: DietTwinProps) {
           <form
             className="twin-record-form"
             data-testid="diet-twin-add-form"
+            data-editing={editing ? 'true' : 'false'}
             onSubmit={(event) => {
               event.preventDefault();
-              onAdd();
+              if (editing) onSaveEdit();
+              else onAdd();
             }}
           >
             <div className="twin-fields">
@@ -256,9 +305,25 @@ export function DietTwin({ onBack, onOpenIndicator }: DietTwinProps) {
                 onChange={(event) => setText(event.target.value)}
               />
             </label>
-            <button type="submit" className="btn btn--primary pattern-main-btn" data-testid="diet-twin-add">
-              {DIET_TWIN_COPY.add}
-            </button>
+            <div className="twin-record-actions">
+              <button
+                type="submit"
+                className="btn btn--primary pattern-main-btn"
+                data-testid={editing ? 'diet-twin-save-edit' : 'diet-twin-add'}
+              >
+                {editing ? DIET_TWIN_COPY.saveEdit : DIET_TWIN_COPY.add}
+              </button>
+              {editing && (
+                <button
+                  type="button"
+                  className="btn btn--ghost pattern-main-btn"
+                  data-testid="diet-twin-cancel-edit"
+                  onClick={onCancelEdit}
+                >
+                  {DIET_TWIN_COPY.cancelEdit}
+                </button>
+              )}
+            </div>
           </form>
           <div className="twin-paste">
             <label>
@@ -308,10 +373,24 @@ export function DietTwin({ onBack, onOpenIndicator }: DietTwinProps) {
           ) : (
             <ul className="twin-list" data-testid="diet-twin-list">
               {visibleRecords.map((record) => (
-                <li key={record.id} className="twin-record" data-testid={`diet-twin-record-${record.id}`}>
+                <li
+                  key={record.id}
+                  className="twin-record"
+                  data-testid={`diet-twin-record-${record.id}`}
+                  data-editing={editingId === record.id ? 'true' : 'false'}
+                >
                   <span>{record.date}</span>
                   <span>{MEAL_OPTIONS.find((option) => option.value === record.meal)?.label}</span>
                   <span className="twin-record-text">{record.text}</span>
+                  <button
+                    type="button"
+                    className="btn btn--ghost twin-edit"
+                    data-testid={`diet-twin-edit-${record.id}`}
+                    aria-pressed={editingId === record.id}
+                    onClick={() => onEdit(record)}
+                  >
+                    {DIET_TWIN_COPY.edit}
+                  </button>
                   <button
                     type="button"
                     className="btn btn--ghost twin-delete"
