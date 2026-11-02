@@ -1,0 +1,30 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // Assets-only SPA. No Worker script, so there is no `main` and no ASSETS binding.
+  "name": "cleardiet",
+  // Account identifier for cleardiet.org. Not an API token.
+  "account_id": "565034bac4772fe5dfbe6d73d6cb5f3d",
+  "compatibility_date": "2026-11-02",
+  // First deploy is the workers.dev hostname. Custom domains stay unbound until that succeeds.
+  "workers_dev": true,
+  "assets": {
+    // Vite default outDir. `vite.config.ts` does not override it.
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  },
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true
+    },
+    "traces": {
+      "enabled": true
+    }
+  }
+  // Do not add routes until the workers.dev deploy works. `custom_domain: true`
+  // creates DNS records and fails when the hostname already has a CNAME.
+  // "routes": [
+  //   { "pattern": "cleardiet.org", "custom_domain": true },
+  //   { "pattern": "www.cleardiet.org", "custom_domain": true }
+  // ]
+}
