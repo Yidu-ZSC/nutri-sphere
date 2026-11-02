@@ -5,7 +5,7 @@ export const PALETTE = {
   mixed: '#fbbf24',
 } as const;
 
-/** Canvas clear color. Keep in sync with `--bg` in styles/tokens.css. */
+/** Graph canvas clear color. Stays #0b0d12 in every UI theme; do not follow `--bg`. */
 export const CANVAS_BG = '#0b0d12';
 
 export function semanticColor(value: string | undefined): string {

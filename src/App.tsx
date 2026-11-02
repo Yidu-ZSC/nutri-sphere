@@ -11,6 +11,7 @@ import { PatternDetail } from './components/PatternDetail';
 import { SearchBar } from './components/SearchBar';
 import { ThemeBar } from './components/ThemeBar';
 import { ThemeLobby } from './components/ThemeLobby';
+import { ThemeOptions, ThemeSwitcher } from './components/ThemeSwitcher';
 import { ViewLayerToggle } from './components/ViewLayerToggle';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import { evidenceCounts, visibleGraphStats } from './lib/copy';
@@ -45,6 +46,7 @@ import {
 } from './lib/shareUrl';
 import { EXPLORE_THEMES, filtersFromShare, themeById, themeForFilters, type ExploreTheme } from './lib/themes';
 import { selectionPinIds } from './lib/visibility';
+import { applyTheme, readTheme, writeTheme, type AppTheme } from './lib/themePreference';
 import { readViewLayer, writeViewLayer } from './lib/viewLayer';
 import type { GraphData, Selection, ViewLayer } from './types/graph';
 
@@ -110,6 +112,7 @@ export function App() {
   const [copied, setCopied] = useState(false);
   const [autoRotate, setAutoRotate] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
+  const [appTheme, setAppTheme] = useState<AppTheme>(() => readTheme());
   const [sideOpen, setSideOpen] = useState(false);
   const moreRoot = useRef<HTMLDivElement>(null);
 
@@ -592,6 +595,12 @@ export function App() {
       graph.nodes.map((node) => node.id),
     );
 
+  const onAppTheme = useCallback((next: AppTheme) => {
+    setAppTheme(next);
+    applyTheme(next);
+    writeTheme(next);
+  }, []);
+
   const viewControls = exploring ? <LayoutToggle view={graphView} onChange={onGraphView} /> : null;
   const rotateControl =
     exploring && graphView === '3d' ? (
@@ -672,6 +681,7 @@ export function App() {
                   <ViewLayerToggle layer={layer} onChange={setLayer} />
                   {rotateControl}
                   {copyControl}
+                  <ThemeOptions theme={appTheme} onChange={onAppTheme} />
                 </div>
               )}
             </div>
@@ -681,6 +691,7 @@ export function App() {
               {copyControl}
             </>
           )}
+          {!mobile && <ThemeSwitcher theme={appTheme} onChange={onAppTheme} />}
         </div>
         {!(exploring && graph) && (
           <p className="layer-hint" data-testid="layer-hint" role="status">
