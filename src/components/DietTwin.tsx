@@ -40,6 +40,9 @@ interface DietTwinProps {
 type Draft = Partial<DietTwinAnswers>;
 type ListRange = 7 | 30;
 
+/** Permanent short mark. The NS-028 sentence stays on screen beside it. */
+const TWIN_SHORT_BADGE = '教育模拟，非诊断';
+
 const MEAL_OPTIONS: readonly { value: Meal; label: string }[] = [
   { value: 'breakfast', label: DIET_TWIN_COPY.mealBreakfast },
   { value: 'lunch', label: DIET_TWIN_COPY.mealLunch },
@@ -166,22 +169,48 @@ export function DietTwin({ onBack, onOpenIndicator }: DietTwinProps) {
 
   return (
     <main className="pattern-screen twin-screen" data-testid="diet-twin-screen">
-      <p className="twin-persistent" data-testid="diet-twin-disclaimer">
-        {DIET_TWIN_COPY.persistent}
-      </p>
-      <div className="pattern-screen-inner">
+      <div className="twin-chrome">
         <div className="pattern-toolbar">
           <button type="button" className="btn btn--ghost pattern-main-btn" onClick={onBack}>
             {DIET_TWIN_COPY.back}
           </button>
         </div>
+        <div className="twin-chrome-mark">
+          <p className="twin-edu-badge" data-testid="diet-twin-edu-badge">
+            {TWIN_SHORT_BADGE}
+          </p>
+          <p className="twin-persistent" data-testid="diet-twin-disclaimer">
+            {DIET_TWIN_COPY.persistent}
+          </p>
+        </div>
+        <div className="segment twin-segment twin-mode" role="group" aria-label={DIET_TWIN_COPY.hypothesisTitle}>
+          <button
+            type="button"
+            data-testid="diet-twin-mode-records"
+            aria-pressed={mode === 'records'}
+            onClick={() => onMode('records')}
+          >
+            {DIET_TWIN_COPY.modeRecords}
+          </button>
+          <button
+            type="button"
+            data-testid="diet-twin-mode-hypothesis"
+            aria-pressed={mode === 'hypothesis'}
+            onClick={() => onMode('hypothesis')}
+          >
+            {DIET_TWIN_COPY.modeHypothesis}
+          </button>
+        </div>
+      </div>
+      <div className="pattern-screen-inner">
         <header className="pattern-hero">
           <p className="kicker">{DIET_TWIN_COPY.badge}</p>
           <h1>{DIET_TWIN_COPY.title}</h1>
           <p>{DIET_TWIN_COPY.intro}</p>
         </header>
 
-        <section className="twin-section" data-testid="diet-twin-records" aria-labelledby="diet-twin-records-heading">
+        <div className="twin-columns">
+        <section className="twin-section twin-col twin-col--records" data-testid="diet-twin-records" aria-labelledby="diet-twin-records-heading">
           <h2 id="diet-twin-records-heading">{DIET_TWIN_COPY.recordsTitle}</h2>
           <form
             className="twin-record-form"
@@ -227,7 +256,7 @@ export function DietTwin({ onBack, onOpenIndicator }: DietTwinProps) {
                 onChange={(event) => setText(event.target.value)}
               />
             </label>
-            <button type="submit" className="btn pattern-main-btn" data-testid="diet-twin-add">
+            <button type="submit" className="btn btn--primary pattern-main-btn" data-testid="diet-twin-add">
               {DIET_TWIN_COPY.add}
             </button>
           </form>
@@ -242,7 +271,7 @@ export function DietTwin({ onBack, onOpenIndicator }: DietTwinProps) {
               />
             </label>
             <p className="twin-hint">{DIET_TWIN_COPY.pasteHint}</p>
-            <button type="button" className="btn pattern-main-btn" data-testid="diet-twin-paste-submit" onClick={onPaste}>
+            <button type="button" className="btn btn--primary pattern-main-btn" data-testid="diet-twin-paste-submit" onClick={onPaste}>
               {DIET_TWIN_COPY.pasteSubmit}
             </button>
           </div>
@@ -297,6 +326,7 @@ export function DietTwin({ onBack, onOpenIndicator }: DietTwinProps) {
           )}
         </section>
 
+        <div className="twin-col twin-col--status">
         {snapshot ? (
           <section
             className="twin-section twin-bars"
@@ -345,24 +375,6 @@ export function DietTwin({ onBack, onOpenIndicator }: DietTwinProps) {
 
         <section className="twin-section" data-testid="diet-twin-hypothesis" aria-labelledby="diet-twin-hypothesis-heading">
           <h2 id="diet-twin-hypothesis-heading">{DIET_TWIN_COPY.hypothesisTitle}</h2>
-          <div className="segment twin-segment" role="group" aria-label={DIET_TWIN_COPY.hypothesisTitle}>
-            <button
-              type="button"
-              data-testid="diet-twin-mode-records"
-              aria-pressed={mode === 'records'}
-              onClick={() => onMode('records')}
-            >
-              {DIET_TWIN_COPY.modeRecords}
-            </button>
-            <button
-              type="button"
-              data-testid="diet-twin-mode-hypothesis"
-              aria-pressed={mode === 'hypothesis'}
-              onClick={() => onMode('hypothesis')}
-            >
-              {DIET_TWIN_COPY.modeHypothesis}
-            </button>
-          </div>
           {mode === 'hypothesis' ? (
             <form
               className="twin-questions"
@@ -401,7 +413,7 @@ export function DietTwin({ onBack, onOpenIndicator }: DietTwinProps) {
                 </fieldset>
               ))}
               {!selected && (
-                <button type="submit" className="btn pattern-main-btn" data-testid="diet-twin-submit" disabled={!ready}>
+                <button type="submit" className="btn btn--primary pattern-main-btn" data-testid="diet-twin-submit" disabled={!ready}>
                   {DIET_TWIN_COPY.submit}
                 </button>
               )}
@@ -410,6 +422,8 @@ export function DietTwin({ onBack, onOpenIndicator }: DietTwinProps) {
             <p className="twin-hint">{DIET_TWIN_COPY.switchHint}</p>
           )}
         </section>
+        </div>
+        </div>
       </div>
     </main>
   );

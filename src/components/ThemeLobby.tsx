@@ -78,7 +78,7 @@ function PatternCard({
     >
       {highlighted && <span className="pattern-badge">{PATTERN_SHELL.highlightBadge}</span>}
       <h3>{card.title}</h3>
-      <p className="pattern-summary">{card.summary}</p>
+      <p className="pattern-summary" title={card.summary}>{card.summary}</p>
       <dl className="pattern-fields">
         <div>
           <dt>资料中常提到的多吃要点</dt>
