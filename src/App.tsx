@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DetailDrawer } from './components/DetailDrawer';
+import { DietTwin } from './components/DietTwin';
 import { DisclaimerBar } from './components/DisclaimerBar';
 import { FilterPanel } from './components/FilterPanel';
 import { GraphCanvas } from './components/GraphCanvas';
@@ -15,10 +16,12 @@ import { useMediaQuery } from './hooks/useMediaQuery';
 import { evidenceCounts, visibleGraphStats } from './lib/copy';
 import { focusedNodeIds, isFocusEmpty } from './lib/focus';
 import { readGraphView, writeGraphView, type GraphView } from './lib/graphView';
+import { twinExploreTarget, type TwinIndicatorId } from './lib/dietTwin';
 import {
   isLaypersonThemeEmpty,
   layerHint,
   LAYPERSON_THEME_EMPTY,
+  nodeKeptOnLayperson,
   renderVisibleGraph,
 } from './lib/layerFilter';
 import type { LayoutMode } from './lib/layout';
@@ -67,6 +70,9 @@ export function App() {
   const [load, setLoad] = useState<LoadState>({ status: 'loading' });
   const [attempt, setAttempt] = useState(0);
   const [screen, setScreen] = useState(() => resolveScreen(initialQuery.current));
+  const screenRef = useRef(screen);
+  screenRef.current = screen;
+  const pendingTwin = useRef<TwinIndicatorId | null>(null);
   const [layer, setLayer] = useState<ViewLayer>(() => initialQuery.current.layer ?? readViewLayer());
   const [layout, setLayout] = useState<LayoutMode>(() => initialQuery.current.layout ?? 'hierarchy');
   const [graphView, setGraphView] = useState<GraphView>(() => {
@@ -108,28 +114,30 @@ export function App() {
       .then((graph) => {
         if (cancelled) return;
         const parsed = initialQuery.current;
-        const shared = filtersFromShare(parsed);
-        const disease =
-          shared.disease && graph.nodes.some((node) => node.id === shared.disease && node.type === 'disease')
-            ? shared.disease
-            : null;
-        const mechanism =
-          shared.mechanism &&
-          graph.nodes.some((node) => node.id === shared.mechanism && node.type === 'mechanism')
-            ? shared.mechanism
-            : null;
-        const food = shared.food && graph.nodes.some((node) => node.id === shared.food) ? shared.food : null;
-        let nextSelection: Selection | null = null;
-        if (parsed.node && graph.nodes.some((node) => node.id === parsed.node)) {
-          nextSelection = { kind: 'node', id: parsed.node };
-        } else if (parsed.link) {
-          const index = findLinkIndex(graph.links, parsed.link);
-          if (index != null) nextSelection = { kind: 'link', index };
+        if (screenRef.current === resolveScreen(parsed)) {
+          const shared = filtersFromShare(parsed);
+          const disease =
+            shared.disease && graph.nodes.some((node) => node.id === shared.disease && node.type === 'disease')
+              ? shared.disease
+              : null;
+          const mechanism =
+            shared.mechanism &&
+            graph.nodes.some((node) => node.id === shared.mechanism && node.type === 'mechanism')
+              ? shared.mechanism
+              : null;
+          const food = shared.food && graph.nodes.some((node) => node.id === shared.food) ? shared.food : null;
+          let nextSelection: Selection | null = null;
+          if (parsed.node && graph.nodes.some((node) => node.id === parsed.node)) {
+            nextSelection = { kind: 'node', id: parsed.node };
+          } else if (parsed.link) {
+            const index = findLinkIndex(graph.links, parsed.link);
+            if (index != null) nextSelection = { kind: 'link', index };
+          }
+          setDiseaseId(disease);
+          setMechanismId(mechanism);
+          setFoodId(food);
+          setSelection(nextSelection);
         }
-        setDiseaseId(disease);
-        setMechanismId(mechanism);
-        setFoodId(food);
-        setSelection(nextSelection);
         setLoad({ status: 'ready', graph });
       })
       .catch((error: unknown) => {
@@ -151,6 +159,14 @@ export function App() {
   }, [graphView]);
 
   const graph = load.status === 'ready' ? load.graph : null;
+
+  useEffect(() => {
+    // A bar click can land before the seed fetch resolves. Hold it and open the node once the graph exists.
+    if (!graph || !pendingTwin.current) return;
+    const indicator = pendingTwin.current;
+    pendingTwin.current = null;
+    openTwinIndicator(indicator);
+  }, [graph]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -429,6 +445,53 @@ export function App() {
     clearPatternHighlight();
   };
 
+  const openTwin = () => {
+    setSelection(null);
+    setSheet(null);
+    setMoreOpen(false);
+    setPatternId(null);
+    setPatternReturnSnapshot(null);
+    setScreen('twin');
+    clearPatternHighlight();
+  };
+
+  const openTwinIndicator = (indicator: TwinIndicatorId) => {
+    if (!graph) {
+      pendingTwin.current = indicator;
+      return;
+    }
+    const known = new Set(graph.nodes.map((node) => node.id));
+    const target = twinExploreTarget(indicator, known);
+    const theme = themeById(target.themeId);
+    if (!theme && !target.nodeId) return;
+    if (target.nodeId) {
+      if (theme) {
+        setDiseaseId(theme.diseaseId);
+        setMechanismId(theme.mechanismId);
+        setFoodId(theme.foodId);
+        setHideUnmatched(true);
+      } else {
+        setDiseaseId(null);
+        setMechanismId(null);
+        setFoodId(null);
+        setHideUnmatched(false);
+      }
+      const node = graph?.nodes.find((item) => item.id === target.nodeId);
+      if (node && !nodeKeptOnLayperson(node)) setLayer('expert');
+      setLayout('hierarchy');
+      setGraphView('2d');
+      setSelection({ kind: 'node', id: target.nodeId });
+      setSheet(null);
+      setMoreOpen(false);
+      setPatternId(null);
+      setPatternReturnSnapshot(null);
+      setScreen('explore');
+      clearPatternHighlight();
+      return;
+    }
+    if (theme) enterTheme(theme);
+  };
+
   const returnFromPatternToGraph = () => {
     const snapshot = patternReturnSnapshot;
     if (!snapshot) return;
@@ -533,11 +596,12 @@ export function App() {
         旋转{autoRotate ? '开' : '关'}
       </button>
     ) : null;
-  const copyControl = (
-    <button type="button" className="btn btn--ghost" onClick={copyViewLink}>
-      {copied ? '已复制' : '复制链接'}
-    </button>
-  );
+  const copyControl =
+    screen === 'twin' ? null : (
+      <button type="button" className="btn btn--ghost" onClick={copyViewLink}>
+        {copied ? '已复制' : '复制链接'}
+      </button>
+    );
 
   return (
     <div className="app">
@@ -656,11 +720,13 @@ export function App() {
             onEnter={enterTheme}
             onOpenPattern={openPatternFromLobby}
             onOpenCompare={openCompare}
+            onOpenTwin={openTwin}
             highlightedPatterns={patterns}
             patternSourceTheme={patternSourceTheme}
             onReturnToGraph={returnToGraph}
           />
         )}
+        {screen === 'twin' && <DietTwin onBack={goHome} onOpenIndicator={openTwinIndicator} />}
         {activePattern && (
           <PatternDetail
             detail={activePattern}
