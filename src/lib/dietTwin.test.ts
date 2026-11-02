@@ -1,9 +1,13 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import test from 'node:test';
+import { themeById } from './themes.ts';
 import {
+  DIET_TWIN_BASED_ON,
   DIET_TWIN_COPY,
   DIET_TWIN_INDICATORS,
   DIET_TWIN_QUESTIONS,
+  DIET_TWIN_READINGS,
   DIET_TWIN_STORAGE_KEY,
   TWIN_LINKS,
   bandLabel,
@@ -49,6 +53,8 @@ test('twin copy stays educational and hides score language', () => {
   assert.equal(DIET_TWIN_STORAGE_KEY, 'cleardiet.dietTwin');
   const visible = [
     ...Object.values(DIET_TWIN_COPY),
+    ...Object.values(DIET_TWIN_READINGS),
+    ...Object.values(DIET_TWIN_BASED_ON),
     ...DIET_TWIN_QUESTIONS.flatMap((question) => [question.prompt, ...question.options.map((option) => option.label)]),
     ...DIET_TWIN_INDICATORS.flatMap((indicator) => [indicator.label, indicator.caption ?? '']),
   ];
@@ -64,6 +70,28 @@ test('twin copy stays educational and hides score language', () => {
     DIET_TWIN_QUESTIONS.map((question) => question.options.length),
     [3, 3, 3],
   );
+});
+
+test('locked readings and record notes stay exact', () => {
+  assert.equal(DIET_TWIN_COPY.persistent, LOCKED_SENTENCE);
+  assert.equal(DIET_TWIN_COPY.openGraph, '查看图谱里的相关讨论');
+  assert.equal(DIET_TWIN_READINGS.plant, '公开资料中常把更高比例的植物性食物选择与膳食模式讨论联系起来。');
+  assert.equal(DIET_TWIN_READINGS.upf, '公开资料中常把更频繁的超加工食品选择与相关机制/观察描述联系起来。');
+  assert.equal(DIET_TWIN_READINGS.fiber, '公开资料中常把膳食纤维摄入感受与消化及代谢相关讨论联系起来。');
+  assert.equal(DIET_TWIN_READINGS.inflammation, '公开资料中常把多种饮食选择的组合与慢性炎症相关讨论联系起来。');
+  assert.equal(DIET_TWIN_BASED_ON.records, '基于你的本地记录（教育模拟）');
+  assert.equal(DIET_TWIN_BASED_ON.hypothesis, '基于假设（教育模拟）');
+});
+
+test('chain-back targets still exist in the aligned seed and theme list', () => {
+  const seed = JSON.parse(
+    fs.readFileSync(new URL('../../data/seed_triples_v0.3_aligned.json', import.meta.url), 'utf8'),
+  ) as { nodes: { id: string }[] };
+  const ids = new Set(seed.nodes.map((node) => node.id));
+  for (const link of Object.values(TWIN_LINKS)) {
+    assert.equal(ids.has(link.nodeId), true, link.nodeId);
+    assert.equal(themeById(link.themeId)?.id, link.themeId);
+  }
 });
 
 test('direct bars follow one question and inflammation is a three-band weight', () => {

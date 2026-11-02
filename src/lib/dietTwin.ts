@@ -1,8 +1,8 @@
 /**
- * Personal diet twin MVP (TASK-NS-028).
- * Questionnaire plus static bands only.
+ * Personal diet twin questionnaire and locked copy (TASK-NS-028, extended by TASK-NS-029).
+ * The screen still shows the original three-way labels. The v1 store maps them to low / mid / high.
+ * Record storage and the record-window bands live in dietTwinStore.ts.
  * 基于公开资料的教育模拟，非个人生理测量。
- * The inflammation table only yields a low / mid / high band.
  */
 
 export const DIET_TWIN_STORAGE_KEY = 'cleardiet.dietTwin';
@@ -40,9 +40,10 @@ export const DIET_TWIN_COPY = {
   title: '我的饮食孪生',
   badge: '模拟，非诊断',
   persistent: '这是教育模拟，不是你个人的健康检测或诊断。',
-  intro: '按近期感受选择一档。结果只是公开资料叙事的教育对照。',
+  intro: '记下饮食原文，或改一档假设。结果只是公开资料叙事的教育对照。',
   submit: '查看对照',
-  assumptionHint: '可改上面的档位，条会立刻重算。',
+  assumptionHint: '改这里的档位会写入假设。',
+  switchHint: '切换到假设后可改三问。',
   barNote: '教育模拟 · 非个人检测',
   openGraph: '查看图谱里的相关讨论',
   plantQuestion: '近期植物性食物比例',
@@ -57,6 +58,49 @@ export const DIET_TWIN_COPY = {
   bandMid: '中',
   bandHigh: '高',
   back: '返回大厅',
+  recordsTitle: '饮食记录',
+  dateLabel: '日期',
+  mealLabel: '餐次',
+  textLabel: '原文',
+  add: '添加',
+  pasteLabel: '多行粘贴',
+  pasteHint: '每行一条，记为今天的加餐。',
+  pasteSubmit: '粘贴并添加',
+  pasteEmpty: '先贴上至少一行原文。',
+  range7: '最近 7 天',
+  range30: '最近 30 天',
+  remove: '删除',
+  emptyList: '这几天还没有记录。',
+  limitReached: '记录已满 200 条，请先删除再添加。',
+  rejected: '有内容未保存：原文需为 1 到 200 个字，日期和餐次需有效。',
+  added: '已添加。',
+  statusTitle: '当前状态',
+  hypothesisTitle: '假设',
+  modeRecords: '基于记录',
+  modeHypothesis: '假设',
+  guide: '先记一笔饮食，或完成下面的假设三问。',
+  mealBreakfast: '早餐',
+  mealLunch: '午餐',
+  mealDinner: '晚餐',
+  mealSnack: '加餐',
+  basedOnRecords: '基于你的本地记录（教育模拟）',
+  basedOnHypothesis: '基于假设（教育模拟）',
+  readingPlant: '公开资料中常把更高比例的植物性食物选择与膳食模式讨论联系起来。',
+  readingUpf: '公开资料中常把更频繁的超加工食品选择与相关机制/观察描述联系起来。',
+  readingFiber: '公开资料中常把膳食纤维摄入感受与消化及代谢相关讨论联系起来。',
+  readingInflammation: '公开资料中常把多种饮食选择的组合与慢性炎症相关讨论联系起来。',
+} as const;
+
+export const DIET_TWIN_READINGS: Record<TwinIndicatorId, string> = {
+  plant: DIET_TWIN_COPY.readingPlant,
+  upf: DIET_TWIN_COPY.readingUpf,
+  fiber: DIET_TWIN_COPY.readingFiber,
+  inflammation: DIET_TWIN_COPY.readingInflammation,
+};
+
+export const DIET_TWIN_BASED_ON = {
+  records: DIET_TWIN_COPY.basedOnRecords,
+  hypothesis: DIET_TWIN_COPY.basedOnHypothesis,
 } as const;
 
 const PLANT_OPTIONS = [
