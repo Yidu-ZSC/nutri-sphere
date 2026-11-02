@@ -3,7 +3,7 @@
 （原 NutriSphere）
 
 看清膳食，知道来源。英文副名 ClearDiet。
-计划站点：cleardiet.org（尚未切换）。
+分享预览 URL 已指向 cleardiet.org；自定义域绑定另案。
 
 **An educational knowledge graph for ordinary people to explore diet ↔ health and diet ↔ disease relationships.**
 

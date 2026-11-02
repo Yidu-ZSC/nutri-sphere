@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/Yidu-ZSC/nutri-sphere/blob/main/data/graph_schema.json",
-  "title": "NutriSphere Graph Data",
+  "title": "ClearDiet Graph Data",
   "description": "Schema for nodes and links conforming to docs/GRAPH_SCHEMA.md",
   "type": "object",
   "required": ["meta", "nodes", "links"],

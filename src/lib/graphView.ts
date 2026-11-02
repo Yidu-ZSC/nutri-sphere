@@ -1,6 +1,6 @@
 export type GraphView = '2d' | '3d';
 
-export const GRAPH_VIEW_STORAGE_KEY = 'nutrisphere.graphView';
+export const GRAPH_VIEW_STORAGE_KEY = 'cleardiet.graphView';
 
 function browserStorage(): Pick<Storage, 'getItem' | 'setItem'> | null {
   try {

@@ -1,6 +1,6 @@
 import type { ViewLayer } from '../types/graph';
 
-export const VIEW_LAYER_STORAGE_KEY = 'nutrisphere.viewLayer';
+export const VIEW_LAYER_STORAGE_KEY = 'cleardiet.viewLayer';
 
 export function readViewLayer(): ViewLayer {
   try {
