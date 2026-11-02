@@ -55,36 +55,40 @@ export function PatternDetail({ detail, onBack, onCompare, onEnterTheme, onRetur
             </button>
           )}
         </div>
-        <header className="pattern-hero">
+        <header className="pattern-hero pattern-section">
           <p className="kicker">健康饮食方式</p>
           <h1>{detail.title}</h1>
-          <p>{detail.summary}</p>
+          <p className="pattern-summary" title={detail.summary}>
+            {detail.summary}
+          </p>
           <p className="pattern-evidence-badge" data-testid="pattern-evidence-badge">
             {detail.evidence_badge}
           </p>
         </header>
-        <section className="pattern-section" aria-labelledby="pattern-emphasize-heading">
-          <h2 id="pattern-emphasize-heading">{PATTERN_SHELL.emphasizeTitle}</h2>
-          <ul className="pattern-items">
-            {detail.emphasize_items.map((item) => (
-              <li key={item.label} className="pattern-item">
-                <strong>{item.label}</strong>
-                <span>{item.note}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-        <section className="pattern-section" aria-labelledby="pattern-limit-heading">
-          <h2 id="pattern-limit-heading">{PATTERN_SHELL.limitTitle}</h2>
-          <ul className="pattern-items">
-            {detail.limit_items.map((item) => (
-              <li key={item.label} className="pattern-item">
-                <strong>{item.label}</strong>
-                <span>{item.note}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
+        <div className="pattern-split">
+          <section className="pattern-section" aria-labelledby="pattern-emphasize-heading">
+            <h2 id="pattern-emphasize-heading">{PATTERN_SHELL.emphasizeTitle}</h2>
+            <ul className="pattern-items">
+              {detail.emphasize_items.map((item) => (
+                <li key={item.label} className="pattern-item">
+                  <strong>{item.label}</strong>
+                  <span>{item.note}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section className="pattern-section" aria-labelledby="pattern-limit-heading">
+            <h2 id="pattern-limit-heading">{PATTERN_SHELL.limitTitle}</h2>
+            <ul className="pattern-items">
+              {detail.limit_items.map((item) => (
+                <li key={item.label} className="pattern-item">
+                  <strong>{item.label}</strong>
+                  <span>{item.note}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
         <section className="pattern-section" aria-labelledby="pattern-sample-heading">
           <h2 id="pattern-sample-heading">{PATTERN_SHELL.sampleTitle}</h2>
           <p className="sample-disclaimer" data-testid="pattern-sample-disclaimer">
@@ -99,27 +103,6 @@ export function PatternDetail({ detail, onBack, onCompare, onEnterTheme, onRetur
             ))}
           </dl>
         </section>
-        <section className="pattern-section" aria-labelledby="pattern-graph-heading">
-          <h2 id="pattern-graph-heading">{PATTERN_SHELL.graphTitle}</h2>
-          <div className="pattern-actions">
-            {graphActions(detail).map((action) => {
-              const theme = themeById(action.themeId);
-              if (!theme) return null;
-              return (
-                <button
-                  key={action.themeId}
-                  type="button"
-                  className="pattern-action"
-                  data-testid={`pattern-graph-${action.themeId}`}
-                  onClick={() => onEnterTheme(theme)}
-                >
-                  {PATTERN_SHELL.graphPrefix}
-                  {action.label}
-                </button>
-              );
-            })}
-          </div>
-        </section>
         <section className="pattern-section" aria-labelledby="pattern-evidence-heading">
           <h2 id="pattern-evidence-heading">{PATTERN_SHELL.evidenceTitle}</h2>
           <p>{detail.evidence_note}</p>
@@ -130,7 +113,28 @@ export function PatternDetail({ detail, onBack, onCompare, onEnterTheme, onRetur
           </ul>
           <p data-testid="pattern-detail-limitations">{detail.limitations}</p>
         </section>
-        <button type="button" className="pattern-action" data-testid="pattern-detail-compare" onClick={onCompare}>
+        <section className="pattern-section" aria-labelledby="pattern-graph-heading">
+          <h2 id="pattern-graph-heading">{PATTERN_SHELL.graphTitle}</h2>
+          <div className="pattern-actions">
+            {graphActions(detail).map((action) => {
+              const theme = themeById(action.themeId);
+              if (!theme) return null;
+              return (
+                <button
+                  key={action.themeId}
+                  type="button"
+                  className="btn btn--primary pattern-action"
+                  data-testid={`pattern-graph-${action.themeId}`}
+                  onClick={() => onEnterTheme(theme)}
+                >
+                  {PATTERN_SHELL.graphPrefix}
+                  {action.label}
+                </button>
+              );
+            })}
+          </div>
+        </section>
+        <button type="button" className="btn btn--ghost pattern-action" data-testid="pattern-detail-compare" onClick={onCompare}>
           {PATTERN_SHELL.compareEntry}
         </button>
       </div>
