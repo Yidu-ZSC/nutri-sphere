@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "deploy": "npm run build && wrangler deploy",
     "preview": "vite preview",
     "validate:data": "node scripts/validate-data.mjs",
     "test": "node --experimental-strip-types --test scripts/validate-data.test.mjs scripts/copy-guard.test.mjs src/lib/*.test.ts"
@@ -28,6 +29,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "ajv": "^8.17.1",
     "typescript": "^5.8.2",
-    "vite": "^6.2.2"
+    "vite": "^6.2.2",
+    "wrangler": "4.156.1"
   }
 }

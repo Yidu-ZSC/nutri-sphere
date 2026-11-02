@@ -48,6 +48,10 @@ The running app fetches `${import.meta.env.BASE_URL}data/seed_triples_v0.3_align
 
 `.github/workflows/pages.yml` publishes `dist/` to GitHub Pages on pushes to `main`. In the repository settings, set Pages → Build and deployment → Source to **GitHub Actions**. CI (`.github/workflows/ci.yml`) runs `validate-data` and `build-web` on pull requests and on pushes to `main`.
 
+Planned hosting for cleardiet.org is [Cloudflare Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/) (not Cloudflare Pages). `wrangler.jsonc` publishes the Vite `dist/` build as an assets-only Worker named `cleardiet`. There is no Worker script. `assets.not_found_handling` is `single-page-application`, and Vite `base` stays `./`, which works at the domain root. `npm run deploy` builds and runs `wrangler deploy`.
+
+`cleardiet.org` and `www.cleardiet.org` are not attached yet. The first deploy should be the `*.workers.dev` hostname (`workers_dev` is on). Bind those custom domains only after that deploy succeeds. This README does not claim the custom domain is live. Do not commit a Cloudflare API token. `.github/workflows/cloudflare.yml` deploys on pushes to `main` only when both `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets are set; otherwise that job exits successfully and the Pages workflow is unchanged. The account id in `wrangler.jsonc` is `565034bac4772fe5dfbe6d73d6cb5f3d`.
+
 The interface is Simplified Chinese. It is an education and research explorer for ordinary users, not a medical device.
 
 ### Screen and share URL
