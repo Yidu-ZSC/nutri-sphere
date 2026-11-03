@@ -101,7 +101,8 @@ test('lobby theme cards use the locked surface without retuning global radii', (
   const twinMark = lobby.indexOf('className="theme-card diet-twin-entry"');
   const twin = lobby.slice(lobby.lastIndexOf('<button', twinMark), lobby.indexOf('</button>', twinMark));
   assert.match(twin, /type="button"/);
-  assert.match(twin, /<CardHeading /);
+  assert.match(twin, /<CardHeading heading="h2"/);
+  assert.equal(/\.diet-twin-entry\s*\{[^}]*max-width:\s*520px/.test(css), false);
   assert.equal(twin.includes('dir-top'), false);
   assert.equal(twin.includes('theme-cta'), false);
   assert.equal(twin.includes('data-direction'), false);
