@@ -68,6 +68,7 @@ export const DIET_TWIN_COPY = {
   cancelEdit: '取消编辑',
   edit: '编辑',
   pasteLabel: '多行粘贴',
+  pasteFoldSummary: '批量粘贴（可选）',
   pasteHint: '每行一条，记为今天的加餐。',
   pasteSubmit: '粘贴并添加',
   pasteEmpty: '先贴上至少一行原文。',
@@ -95,6 +96,10 @@ export const DIET_TWIN_COPY = {
   readingFiber: '公开资料中常把膳食纤维摄入感受与消化及代谢相关讨论联系起来。',
   readingInflammation: '公开资料中常把多种饮食选择的组合与慢性炎症相关讨论联系起来。',
 } as const;
+
+export function dietTwinHistoryMeta(count: number): string {
+  return `共 ${count} 条`;
+}
 
 export const DIET_TWIN_READINGS: Record<TwinIndicatorId, string> = {
   plant: DIET_TWIN_COPY.readingPlant,
