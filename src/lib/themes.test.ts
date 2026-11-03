@@ -136,9 +136,9 @@ test('explore themes still resolve on the aligned seed and avoid treatment wordi
   assert.deepEqual(
     HOME_MECHANISM_THEMES.map((theme) => ({ id: theme.id, title: theme.title, blurb: theme.blurb })),
     [
-      { id: 'chronic-inflammation', title: '慢性炎症', blurb: '慢性炎症在资料里常被一起讨论。' },
-      { id: 'gut-barrier', title: '肠道屏障', blurb: '屏障相关叙述与饮食常被讨论。' },
-      { id: 'glycation', title: '糖化', blurb: '糖化叙述与饮食常被一起讨论。' },
+      { id: 'chronic-inflammation', title: '想了解慢性炎症与饮食的讨论', blurb: '机制叙述与饮食在资料里常被一起讨论。' },
+      { id: 'gut-barrier', title: '想了解肠道屏障与饮食的讨论', blurb: '屏障相关叙述与饮食在资料里常被讨论。' },
+      { id: 'glycation', title: '想了解糖化与饮食的讨论', blurb: '糖化相关叙述与饮食在资料里常被一起讨论。' },
     ],
   );
   const banned = ['治疗', '治愈', '处方', '请服用', '停药', '替代医生', 'GRADE', '降低', '预防', '逆转', '疗效', '防治', '患者'];

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { DIET_TWIN_COPY } from '../lib/dietTwin';
 import { DIET_PATTERN_CARDS, type DietPatternCard } from '../lib/dietPatterns';
 import { PATTERN_SHELL } from '../lib/dietPatternDetails';
-import { LOBBY_TAGLINE, THEME_CTA } from '../lib/exploreShell';
+import { LOBBY_INTRO, LOBBY_KICKER, LOBBY_TAGLINE, LOBBY_TITLE, THEME_CTA } from '../lib/exploreShell';
 import { PALETTE } from '../lib/palette';
 import { themeAccent } from '../lib/themeAccent';
 import {
@@ -160,12 +160,10 @@ export function ThemeLobby({
   return (
     <main className="lobby" data-testid="theme-lobby">
       <header className="lobby-intro">
-        <p className="kicker">教育与研究</p>
-        <h1>想先了解哪个问题？</h1>
+        <p className="kicker">{LOBBY_KICKER}</p>
+        <h1>{LOBBY_TITLE}</h1>
         <p className="lobby-tagline" data-testid="lobby-tagline">{LOBBY_TAGLINE}</p>
-        <p>
-          先选一个你想了解的问题，再看公开资料里饮食与它常被怎么一起讨论。供学习与核对来源，不是医疗建议。
-        </p>
+        <p data-testid="lobby-intro">{LOBBY_INTRO}</p>
       </header>
       <section className="lobby-twin" aria-label={DIET_TWIN_COPY.entryTitle}>
         <button
@@ -192,7 +190,7 @@ export function ThemeLobby({
       </section>
       <section className="lobby-food" aria-labelledby="food-theme-heading" data-testid="food-theme-grid">
         <h2 id="food-theme-heading">从食物/模式看</h2>
-        <p className="food-note">从一种食物或吃法出发，看资料怎么说。</p>
+        <p className="food-note">从一种食物或吃法出发，看公开资料里常被怎么描述。</p>
         <ul className="theme-grid">
           {HOME_FOOD_THEMES.map((theme) => (
             <li key={theme.id}>
@@ -238,9 +236,9 @@ export function ThemeLobby({
         </button>
       </section>
       <details className="mechanism-fold" data-testid="mechanism-fold">
-        <summary>进阶机制主题（可选）</summary>
+        <summary>进阶：机制与饮食（可选）</summary>
         <p className="mechanism-note">
-          机制主题放在次要位置，供愿意深读的人选用。展开后不会替换上面的健康主题。
+          机制向主题供愿意深读的人选用，默认收起，不会替代上面的健康主题入口。
         </p>
         <ul className="mechanism-list">
           {HOME_MECHANISM_THEMES.map((theme) => (

@@ -8,6 +8,7 @@ import {
   evidenceDetail,
   evidenceStatus,
 } from '../lib/copy';
+import { LOBBY_EDU_FOOTER, LOBBY_TAGLINE } from '../lib/exploreShell';
 import type { GraphMeta } from '../types/graph';
 
 interface DisclaimerBarProps {
@@ -63,9 +64,10 @@ export function DisclaimerBar({
             <p className="about-brand" data-testid="about-brand">明膳知源 · ClearDiet</p>
             <p className="about-lang-note" lang="en" data-testid="about-lang-note">ClearDiet is currently available in Chinese. An English version is planned.</p>
             <div className="about-lead">
-              <p>明膳知源帮你看清膳食与健康主题。</p>
-              <p>看公开资料里它们常被怎么一起讨论。</p>
-              <p>供学习与核对来源，不是医疗建议。</p>
+              <p>
+                明膳知源：{LOBBY_TAGLINE}。
+              </p>
+              <p>{LOBBY_EDU_FOOTER}</p>
             </div>
             <section>
               <h3>你能得到什么</h3>
@@ -73,7 +75,7 @@ export function DisclaimerBar({
                 <li>从一个健康主题入手。看饮食与它常被怎么联系起来。</li>
                 <li>看到关联方向（保护相关 / 风险相关）和证据强度。</li>
                 <li>查看每条说明的来源与局限性。</li>
-                <li>从「健康饮食方式」了解模式特征。内容按公开资料中的常见描述整理。</li>
+                <li>从「健康饮食方式」了解公开资料中常被描述的模式特征。</li>
               </ul>
             </section>
             <section>
@@ -82,7 +84,7 @@ export function DisclaimerBar({
                 <li>在大厅选一个你想了解的主题。</li>
                 <li>进入图后，点击线条或节点查看详细说明。</li>
                 <li>用顶部切换「普通视图 / 专家视图」。普通视图更简洁。</li>
-                <li>想看「怎么做」，可进入「健康饮食方式」。也可从侧栏跳转。</li>
+                <li>想看「怎么做」，可进入「健康饮食方式」，或从侧栏跳转。</li>
               </ol>
             </section>
             <section>

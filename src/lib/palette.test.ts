@@ -3,7 +3,15 @@ import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { EXPLORE_EMPTY_ACTION, EXPLORE_EMPTY_COPY, LOBBY_TAGLINE, THEME_CTA } from './exploreShell.ts';
+import {
+  EXPLORE_EMPTY_ACTION,
+  EXPLORE_EMPTY_COPY,
+  LOBBY_INTRO,
+  LOBBY_KICKER,
+  LOBBY_TAGLINE,
+  LOBBY_TITLE,
+  THEME_CTA,
+} from './exploreShell.ts';
 import { CANVAS_BG, PALETTE } from './palette.ts';
 import { EXPLORE_THEMES } from './themes.ts';
 import { themeAccent } from './themeAccent.ts';
@@ -41,7 +49,13 @@ test('protective color is the PRO token and the retired green is gone from src',
 });
 
 test('locked lobby and explore shell strings stay short and non-clinical', () => {
-  assert.equal(LOBBY_TAGLINE, '看清膳食与健康主题在公开资料里常被怎么一起讨论');
+  assert.equal(LOBBY_KICKER, '饮食自我探索之路');
+  assert.equal(LOBBY_TITLE, '从饮食科普开始～');
+  assert.equal(LOBBY_TAGLINE, '了解饮食与健康主题在图书与公开资料里都做了哪些描述');
+  assert.equal(
+    LOBBY_INTRO,
+    '先选一个你想了解的问题，再看图书与公开资料里饮食与它常被怎么一起讨论。供科普学习与核对来源，不是医疗建议。',
+  );
   assert.equal(THEME_CTA, '查看关联');
   assert.equal(EXPLORE_EMPTY_ACTION, '选择主题');
   assert.ok([...EXPLORE_EMPTY_COPY].length <= 20);
@@ -50,6 +64,9 @@ test('locked lobby and explore shell strings stay short and non-clinical', () =>
   assert.equal(lobby.includes('看清膳食，知道来源'), false);
   assert.equal(lobby.includes('查看相关主题'), false);
   assert.ok(lobby.includes('LOBBY_TAGLINE'));
+  assert.ok(lobby.includes('LOBBY_KICKER'));
+  assert.ok(lobby.includes('LOBBY_TITLE'));
+  assert.ok(lobby.includes('LOBBY_INTRO'));
   assert.ok(lobby.includes('THEME_CTA'));
   const app = fs.readFileSync(path.join(root, 'src/App.tsx'), 'utf8');
   assert.ok(app.includes('explore-rail'));
