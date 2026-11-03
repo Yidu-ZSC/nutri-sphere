@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { DietTwinPortal } from './DietTwinPortal';
 import { DIET_TWIN_COPY } from '../lib/dietTwin';
 import { DIET_PATTERN_CARDS, type DietPatternCard } from '../lib/dietPatterns';
 import { PATTERN_SHELL } from '../lib/dietPatternDetails';
@@ -169,17 +170,7 @@ export function ThemeLobby({
           <p data-testid="lobby-intro">{LOBBY_INTRO}</p>
         </header>
         <section className="lobby-twin" aria-label={DIET_TWIN_COPY.entryTitle}>
-          <button
-            type="button"
-            className="theme-card diet-twin-entry"
-            data-testid="diet-twin-entry"
-            onClick={onOpenTwin}
-          >
-            <span className="kicker">{DIET_TWIN_COPY.entryKicker}</span>
-            <CardHeading heading="h2" title={DIET_TWIN_COPY.entryTitle} />
-            <span className="theme-prompt">{DIET_TWIN_COPY.entryPrompt}</span>
-            <span className="theme-blurb">{DIET_TWIN_COPY.entryBlurb}</span>
-          </button>
+          <DietTwinPortal onOpen={onOpenTwin} />
         </section>
       </div>
       <section className="lobby-primary" aria-labelledby="health-theme-heading">

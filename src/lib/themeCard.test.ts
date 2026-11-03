@@ -98,16 +98,21 @@ test('lobby theme cards use the locked surface without retuning global radii', (
   assert.equal(themeCard.includes('dir-bar'), false);
   assert.equal(themeCard.includes('THEME_CTA'), false);
 
-  const twinMark = lobby.indexOf('className="theme-card diet-twin-entry"');
-  const twin = lobby.slice(lobby.lastIndexOf('<button', twinMark), lobby.indexOf('</button>', twinMark));
-  assert.match(twin, /type="button"/);
-  assert.match(twin, /<CardHeading heading="h2"/);
+  const portal = fs.readFileSync(path.join(root, 'src/components/DietTwinPortal.tsx'), 'utf8');
+  assert.equal(lobby.includes('className="theme-card diet-twin-entry"'), false);
+  assert.match(lobby, /<DietTwinPortal onOpen=\{onOpenTwin\} \/>/);
+  assert.match(portal, /className="diet-twin-entry"/);
+  assert.match(portal, /type="button"/);
+  assert.match(portal, /<h2 className="diet-twin-title">/);
+  assert.equal(portal.includes('theme-card'), false);
+  assert.equal(portal.includes('CardHeading'), false);
+  assert.equal(portal.includes('dir-top'), false);
+  assert.equal(portal.includes('theme-cta'), false);
+  assert.equal(portal.includes('theme-card-chevron'), false);
+  assert.equal(portal.includes('data-direction'), false);
+  assert.equal(portal.includes('--card-accent'), false);
+  assert.equal(portal.includes('btn--primary'), false);
   assert.equal(/\.diet-twin-entry\s*\{[^}]*max-width:\s*520px/.test(css), false);
-  assert.equal(twin.includes('dir-top'), false);
-  assert.equal(twin.includes('theme-cta'), false);
-  assert.equal(twin.includes('data-direction'), false);
-  assert.equal(twin.includes('--card-accent'), false);
-  assert.equal(twin.includes('btn--primary'), false);
 
   assert.equal(lobby.includes('theme-cta'), false);
   assert.equal(lobby.includes('dir-bar'), false);
