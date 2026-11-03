@@ -1199,12 +1199,12 @@ code {
 
 @keyframes diet-twin-arm {
   0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(-10deg); }
+  50% { transform: rotate(16deg); }
 }
 
 @keyframes diet-twin-arm-right {
   0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(10deg); }
+  50% { transform: rotate(-16deg); }
 }
 
 @keyframes diet-twin-ring {
