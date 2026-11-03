@@ -2044,15 +2044,131 @@ code {
   background: var(--panel);
 }
 
+.twin-col--records {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.twin-records-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  min-width: 0;
+}
+
+.twin-records-compose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: none;
+}
+
+.twin-paste-fold {
+  width: 100%;
+  border: var(--border);
+  border-radius: var(--radius-card);
+  background: var(--bg);
+}
+
+.twin-paste-fold > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: var(--space-2) var(--space-3);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.twin-paste-fold > summary::-webkit-details-marker {
+  display: none;
+}
+
+.twin-paste-fold > summary::before {
+  content: '▸';
+  display: inline-block;
+  margin-right: var(--space-2);
+  transition: transform 150ms ease;
+}
+
+.twin-paste-fold[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.twin-paste-fold[open] > summary {
+  border-bottom: var(--border);
+}
+
+.twin-paste-fold .twin-paste {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+.twin-records-history {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-height: 0;
+  padding: var(--space-3);
+  border: var(--border);
+  border-radius: var(--radius-card);
+  background: var(--bg);
+}
+
+.twin-records-history-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex: none;
+}
+
+.twin-history-meta {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.twin-records-history-scroll {
+  max-height: min(42vh, 360px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 2px;
+}
+
+.twin-records-history-empty {
+  margin: 0;
+}
+
 .twin-col--status {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
 }
 
+@media (min-width: 391px) {
+  .twin-col--status {
+    position: sticky;
+    top: var(--space-2);
+    align-self: start;
+    max-height: calc(100dvh - var(--space-6));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
 @media (max-width: 390px) {
   .twin-columns {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .twin-records-history-scroll {
+    max-height: min(36vh, 280px);
   }
 
   .topbar.topbar--narrow { gap: 6px; padding: 8px; }

@@ -6,6 +6,7 @@ import {
   DIET_TWIN_QUESTIONS,
   DIET_TWIN_READINGS,
   bandLabel,
+  dietTwinHistoryMeta,
   type DietTwinAnswers,
   type DietTwinQuestion,
   type TwinIndicatorId,
@@ -259,150 +260,171 @@ export function DietTwin({ onBack, onOpenIndicator }: DietTwinProps) {
         <div className="twin-columns">
         <section className="twin-section twin-col twin-col--records" data-testid="diet-twin-records" aria-labelledby="diet-twin-records-heading">
           <h2 id="diet-twin-records-heading">{DIET_TWIN_COPY.recordsTitle}</h2>
-          <form
-            className="twin-record-form"
-            data-testid="diet-twin-add-form"
-            data-editing={editing ? 'true' : 'false'}
-            onSubmit={(event) => {
-              event.preventDefault();
-              if (editing) onSaveEdit();
-              else onAdd();
-            }}
-          >
-            <div className="twin-fields">
-              <label>
-                {DIET_TWIN_COPY.dateLabel}
-                <input
-                  type="date"
-                  value={date}
-                  data-testid="diet-twin-date"
-                  onChange={(event) => setDate(event.target.value)}
-                />
-              </label>
-              <label>
-                {DIET_TWIN_COPY.mealLabel}
-                <select
-                  value={meal}
-                  data-testid="diet-twin-meal"
-                  onChange={(event) => {
-                    if (isMeal(event.target.value)) setMeal(event.target.value);
-                  }}
-                >
-                  {MEAL_OPTIONS.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
-            <label>
-              {DIET_TWIN_COPY.textLabel}
-              <textarea
-                value={text}
-                rows={2}
-                data-testid="diet-twin-text"
-                onChange={(event) => setText(event.target.value)}
-              />
-            </label>
-            <div className="twin-record-actions">
-              <button
-                type="submit"
-                className="btn btn--primary pattern-main-btn"
-                data-testid={editing ? 'diet-twin-save-edit' : 'diet-twin-add'}
+          <div className="twin-records-layout">
+            <div className="twin-records-compose">
+              <form
+                className="twin-record-form"
+                data-testid="diet-twin-add-form"
+                data-editing={editing ? 'true' : 'false'}
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  if (editing) onSaveEdit();
+                  else onAdd();
+                }}
               >
-                {editing ? DIET_TWIN_COPY.saveEdit : DIET_TWIN_COPY.add}
-              </button>
-              {editing && (
-                <button
-                  type="button"
-                  className="btn btn--ghost pattern-main-btn"
-                  data-testid="diet-twin-cancel-edit"
-                  onClick={onCancelEdit}
-                >
-                  {DIET_TWIN_COPY.cancelEdit}
-                </button>
+                <div className="twin-fields">
+                  <label>
+                    {DIET_TWIN_COPY.dateLabel}
+                    <input
+                      type="date"
+                      value={date}
+                      data-testid="diet-twin-date"
+                      onChange={(event) => setDate(event.target.value)}
+                    />
+                  </label>
+                  <label>
+                    {DIET_TWIN_COPY.mealLabel}
+                    <select
+                      value={meal}
+                      data-testid="diet-twin-meal"
+                      onChange={(event) => {
+                        if (isMeal(event.target.value)) setMeal(event.target.value);
+                      }}
+                    >
+                      {MEAL_OPTIONS.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+                <label>
+                  {DIET_TWIN_COPY.textLabel}
+                  <textarea
+                    value={text}
+                    rows={2}
+                    data-testid="diet-twin-text"
+                    onChange={(event) => setText(event.target.value)}
+                  />
+                </label>
+                <div className="twin-record-actions">
+                  <button
+                    type="submit"
+                    className="btn btn--primary pattern-main-btn"
+                    data-testid={editing ? 'diet-twin-save-edit' : 'diet-twin-add'}
+                  >
+                    {editing ? DIET_TWIN_COPY.saveEdit : DIET_TWIN_COPY.add}
+                  </button>
+                  {editing && (
+                    <button
+                      type="button"
+                      className="btn btn--ghost pattern-main-btn"
+                      data-testid="diet-twin-cancel-edit"
+                      onClick={onCancelEdit}
+                    >
+                      {DIET_TWIN_COPY.cancelEdit}
+                    </button>
+                  )}
+                </div>
+              </form>
+              <details className="twin-paste-fold" data-testid="diet-twin-paste-fold">
+                <summary>{DIET_TWIN_COPY.pasteFoldSummary}</summary>
+                <div className="twin-paste">
+                  <label>
+                    {DIET_TWIN_COPY.pasteLabel}
+                    <textarea
+                      value={paste}
+                      rows={4}
+                      data-testid="diet-twin-paste"
+                      onChange={(event) => setPaste(event.target.value)}
+                    />
+                  </label>
+                  <p className="twin-hint">{DIET_TWIN_COPY.pasteHint}</p>
+                  <button
+                    type="button"
+                    className="btn btn--primary pattern-main-btn"
+                    data-testid="diet-twin-paste-submit"
+                    onClick={onPaste}
+                  >
+                    {DIET_TWIN_COPY.pasteSubmit}
+                  </button>
+                </div>
+              </details>
+              <p className="twin-notice" data-testid="diet-twin-notice" role="status">
+                {notice ?? ''}
+              </p>
+              {atLimit && (
+                <p className="twin-notice" data-testid="diet-twin-limit">
+                  {DIET_TWIN_COPY.limitReached}
+                </p>
               )}
             </div>
-          </form>
-          <div className="twin-paste">
-            <label>
-              {DIET_TWIN_COPY.pasteLabel}
-              <textarea
-                value={paste}
-                rows={4}
-                data-testid="diet-twin-paste"
-                onChange={(event) => setPaste(event.target.value)}
-              />
-            </label>
-            <p className="twin-hint">{DIET_TWIN_COPY.pasteHint}</p>
-            <button type="button" className="btn btn--primary pattern-main-btn" data-testid="diet-twin-paste-submit" onClick={onPaste}>
-              {DIET_TWIN_COPY.pasteSubmit}
-            </button>
-          </div>
-          <p className="twin-notice" data-testid="diet-twin-notice" role="status">
-            {notice ?? ''}
-          </p>
-          {atLimit && (
-            <p className="twin-notice" data-testid="diet-twin-limit">
-              {DIET_TWIN_COPY.limitReached}
-            </p>
-          )}
-          <div className="segment twin-segment" role="group" aria-label={DIET_TWIN_COPY.recordsTitle}>
-            <button
-              type="button"
-              data-testid="diet-twin-range-7"
-              aria-pressed={range === 7}
-              onClick={() => setRange(7)}
-            >
-              {DIET_TWIN_COPY.range7}
-            </button>
-            <button
-              type="button"
-              data-testid="diet-twin-range-30"
-              aria-pressed={range === 30}
-              onClick={() => setRange(30)}
-            >
-              {DIET_TWIN_COPY.range30}
-            </button>
-          </div>
-          {visibleRecords.length === 0 ? (
-            <p className="twin-hint" data-testid="diet-twin-empty">
-              {DIET_TWIN_COPY.emptyList}
-            </p>
-          ) : (
-            <ul className="twin-list" data-testid="diet-twin-list">
-              {visibleRecords.map((record) => (
-                <li
-                  key={record.id}
-                  className="twin-record"
-                  data-testid={`diet-twin-record-${record.id}`}
-                  data-editing={editingId === record.id ? 'true' : 'false'}
-                >
-                  <span>{record.date}</span>
-                  <span>{MEAL_OPTIONS.find((option) => option.value === record.meal)?.label}</span>
-                  <span className="twin-record-text">{record.text}</span>
+            <div className="twin-records-history" aria-labelledby="diet-twin-history-heading">
+              <div className="twin-records-history-head">
+                <p id="diet-twin-history-heading" className="twin-history-meta" data-testid="diet-twin-history-count">
+                  {dietTwinHistoryMeta(visibleRecords.length)}
+                </p>
+                <div className="segment twin-segment" role="group" aria-label={DIET_TWIN_COPY.recordsTitle}>
                   <button
                     type="button"
-                    className="btn btn--ghost twin-edit"
-                    data-testid={`diet-twin-edit-${record.id}`}
-                    aria-pressed={editingId === record.id}
-                    onClick={() => onEdit(record)}
+                    data-testid="diet-twin-range-7"
+                    aria-pressed={range === 7}
+                    onClick={() => setRange(7)}
                   >
-                    {DIET_TWIN_COPY.edit}
+                    {DIET_TWIN_COPY.range7}
                   </button>
                   <button
                     type="button"
-                    className="btn btn--ghost twin-delete"
-                    data-testid={`diet-twin-delete-${record.id}`}
-                    onClick={() => onDelete(record.id)}
+                    data-testid="diet-twin-range-30"
+                    aria-pressed={range === 30}
+                    onClick={() => setRange(30)}
                   >
-                    {DIET_TWIN_COPY.remove}
+                    {DIET_TWIN_COPY.range30}
                   </button>
-                </li>
-              ))}
-            </ul>
-          )}
+                </div>
+              </div>
+              {visibleRecords.length === 0 ? (
+                <p className="twin-hint twin-records-history-empty" data-testid="diet-twin-empty">
+                  {DIET_TWIN_COPY.emptyList}
+                </p>
+              ) : (
+                <div className="twin-records-history-scroll" data-testid="diet-twin-history-scroll">
+                  <ul className="twin-list" data-testid="diet-twin-list">
+                    {visibleRecords.map((record) => (
+                      <li
+                        key={record.id}
+                        className="twin-record"
+                        data-testid={`diet-twin-record-${record.id}`}
+                        data-editing={editingId === record.id ? 'true' : 'false'}
+                      >
+                        <span>{record.date}</span>
+                        <span>{MEAL_OPTIONS.find((option) => option.value === record.meal)?.label}</span>
+                        <span className="twin-record-text">{record.text}</span>
+                        <button
+                          type="button"
+                          className="btn btn--ghost twin-edit"
+                          data-testid={`diet-twin-edit-${record.id}`}
+                          aria-pressed={editingId === record.id}
+                          onClick={() => onEdit(record)}
+                        >
+                          {DIET_TWIN_COPY.edit}
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn--ghost twin-delete"
+                          data-testid={`diet-twin-delete-${record.id}`}
+                          onClick={() => onDelete(record.id)}
+                        >
+                          {DIET_TWIN_COPY.remove}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
         </section>
 
         <div className="twin-col twin-col--status">
