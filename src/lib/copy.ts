@@ -8,7 +8,7 @@ export const DISCLAIMER_SHORT = '教育工具 · 非诊疗 · 非医疗建议 ·
 
 /** Explore HUD line. Counts are the rendered visible set, not the full seed. */
 export function visibleGraphStats(nodeCount: number, linkCount: number): string {
-  return `当前可见 ${nodeCount} 节点 · ${linkCount} 关联`;
+  return `当前可见 ${nodeCount} 个概念 · ${linkCount} 条关联`;
 }
 
 export const DISCLAIMER_EN = 'Educational use only. Not medical advice.';

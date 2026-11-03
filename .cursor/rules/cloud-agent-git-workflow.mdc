@@ -1,0 +1,30 @@
+---
+description: Align local and Cloud Agent work with main → cursor/* → PR
+alwaysApply: true
+---
+
+# Git workflow (Cloud Agent aligned)
+
+Match how this repo has shipped since Phase 1: **never commit feature work directly on `main`.**
+
+## Branch
+
+1. Start from up-to-date `main`: `git fetch origin && git checkout main && git pull origin main`
+2. Create a task branch: `cursor/<short-kebab-description>` (same prefix as historical Cloud Agent PRs, e.g. `cursor/task-ns-033-lobby-card-density-2de4`)
+3. Do **not** use `develop` or personal long-lived branches for deliverables unless the user explicitly asks.
+
+## Finish
+
+1. Run `npm test` and `npm run validate:data` when the change touches app or seed data.
+2. Commit on the `cursor/*` branch with a message that names the TASK id when there is one (e.g. `ui: TASK-NS-0xx …`).
+3. Push: `git push -u origin HEAD`
+4. Open a PR to **`main`** with `gh pr create` (summary + test plan). Wait for CI; merge via PR, not direct push to `main`.
+
+## Scope
+
+- One coherent task per branch/PR when possible; large UI efforts may split PR-A / PR-B / PR-C like TASK-NS-030.
+- Delivery notes under `nutri-sphere-tasks/` may say **未合并到 main** until the PR is merged—keep code on the feature branch until then.
+
+## Product copy
+
+- Lobby and method-help lead strings live in `src/lib/exploreShell.ts` (`LOBBY_*`). Update tests in `src/lib/palette.test.ts` when changing them. Keep educational tone; no clinical claims.

@@ -27,7 +27,7 @@ test('disclaimer copy matches the Phase 1 spec exactly', () => {
 });
 
 test('visible graph stats name the rendered set', () => {
-  assert.equal(visibleGraphStats(12, 7), '当前可见 12 节点 · 7 关联');
+  assert.equal(visibleGraphStats(12, 7), '当前可见 12 个概念 · 7 条关联');
   assert.ok([...visibleGraphStats(0, 0)].length <= 20);
 });
 
