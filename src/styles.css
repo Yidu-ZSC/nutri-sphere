@@ -1153,16 +1153,54 @@ code {
   opacity: var(--twin-figure);
 }
 
-.diet-twin-arm {
+.diet-twin-arm,
+.diet-twin-forearm,
+.diet-twin-leg,
+.diet-twin-shin {
   transform-box: view-box;
-  animation: diet-twin-arm 3.6s ease-in-out infinite;
+  animation-duration: 8.4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
-.diet-twin-arm--left { transform-origin: 82px 76px; }
+.diet-twin-arm--left {
+  transform-origin: 82px 76px;
+  animation-name: twin-shoulder-left;
+}
 
 .diet-twin-arm--right {
   transform-origin: 118px 76px;
-  animation-name: diet-twin-arm-right;
+  animation-name: twin-shoulder-right;
+}
+
+.diet-twin-forearm--left {
+  transform-origin: 71px 53px;
+  animation-name: twin-elbow-left;
+}
+
+.diet-twin-forearm--right {
+  transform-origin: 129px 53px;
+  animation-name: twin-elbow-right;
+}
+
+.diet-twin-leg--left {
+  transform-origin: 94px 122px;
+  animation-name: twin-hip-left;
+}
+
+.diet-twin-leg--right {
+  transform-origin: 106px 122px;
+  animation-name: twin-hip-right;
+}
+
+.diet-twin-shin--left {
+  transform-origin: 91px 143px;
+  animation-name: twin-knee-left;
+}
+
+.diet-twin-shin--right {
+  transform-origin: 109px 143px;
+  animation-name: twin-knee-right;
 }
 
 .diet-twin-figure {
@@ -1197,14 +1235,56 @@ code {
   50% { opacity: calc(var(--twin-hotspot) * 0.5); }
 }
 
-@keyframes diet-twin-arm {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(16deg); }
+@keyframes twin-shoulder-left {
+  0%, 8%, 34%, 58%, 78%, 100% { transform: rotate(0deg); }
+  18% { transform: rotate(14deg); }
+  46% { transform: rotate(4deg); }
+  70% { transform: rotate(8deg); }
 }
 
-@keyframes diet-twin-arm-right {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(-16deg); }
+@keyframes twin-shoulder-right {
+  0%, 8%, 34%, 58%, 78%, 100% { transform: rotate(0deg); }
+  18% { transform: rotate(-14deg); }
+  46% { transform: rotate(-8deg); }
+  70% { transform: rotate(-4deg); }
+}
+
+@keyframes twin-elbow-left {
+  0%, 8%, 46%, 58%, 100% { transform: rotate(0deg); }
+  26% { transform: rotate(42deg); }
+  34% { transform: rotate(8deg); }
+  74% { transform: rotate(36deg); }
+}
+
+@keyframes twin-elbow-right {
+  0%, 8%, 70%, 82%, 100% { transform: rotate(0deg); }
+  26% { transform: rotate(-42deg); }
+  34% { transform: rotate(-8deg); }
+  50% { transform: rotate(-36deg); }
+}
+
+@keyframes twin-hip-left {
+  0%, 36%, 62%, 100% { transform: rotate(0deg); }
+  24% { transform: rotate(8deg); }
+  50% { transform: rotate(34deg); }
+}
+
+@keyframes twin-hip-right {
+  0%, 36%, 62%, 100% { transform: rotate(0deg); }
+  24% { transform: rotate(-8deg); }
+  74% { transform: rotate(-34deg); }
+}
+
+@keyframes twin-knee-left {
+  0%, 36%, 62%, 100% { transform: rotate(0deg); }
+  24% { transform: rotate(16deg); }
+  50% { transform: rotate(32deg); }
+}
+
+@keyframes twin-knee-right {
+  0%, 36%, 62%, 100% { transform: rotate(0deg); }
+  24% { transform: rotate(-16deg); }
+  74% { transform: rotate(-32deg); }
 }
 
 @keyframes diet-twin-ring {
@@ -2569,6 +2649,11 @@ code {
   }
   .diet-twin-arm,
   .diet-twin-ring {
+    animation: none;
+  }
+  .diet-twin-forearm,
+  .diet-twin-leg,
+  .diet-twin-shin {
     animation: none;
   }
 }

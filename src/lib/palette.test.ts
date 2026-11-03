@@ -177,6 +177,12 @@ test('diet twin lobby entry is a silhouette portal with only the title visible',
   assert.match(portal, /<circle className="diet-twin-ring"/);
   assert.match(portal, /diet-twin-arm--left/);
   assert.match(portal, /diet-twin-arm--right/);
+  assert.match(portal, /diet-twin-forearm--left/);
+  assert.match(portal, /diet-twin-forearm--right/);
+  assert.match(portal, /diet-twin-leg--left/);
+  assert.match(portal, /diet-twin-leg--right/);
+  assert.match(portal, /diet-twin-shin--left/);
+  assert.match(portal, /diet-twin-shin--right/);
   assert.equal(portal.includes('diet-twin-meridian'), false);
   assert.equal(portal.includes('entryKicker'), false);
   assert.equal(portal.includes('entryPrompt'), false);
@@ -233,6 +239,7 @@ test('diet twin lobby entry is a silhouette portal with only the title visible',
   const reduced = css.slice(css.indexOf('@media (prefers-reduced-motion: reduce)'));
   assert.match(reduced, /\.diet-twin-hotspot,\s*\.diet-twin-glow\s*\{[^}]*animation:\s*none/);
   assert.match(reduced, /\.diet-twin-arm,\s*\.diet-twin-ring\s*\{[^}]*animation:\s*none/);
+  assert.match(reduced, /\.diet-twin-forearm,\s*\.diet-twin-leg,\s*\.diet-twin-shin\s*\{[^}]*animation:\s*none/);
 
   assert.match(copy, /export const DISCLAIMER_TEXT/);
   assert.match(copy, /export const DISCLAIMER_SHORT/);
