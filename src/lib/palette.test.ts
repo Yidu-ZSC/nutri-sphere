@@ -174,6 +174,10 @@ test('diet twin lobby entry is a silhouette portal with only the title visible',
   assert.match(portal, /aria-label=\{DIET_TWIN_COPY\.entryAria\}/);
   assert.match(portal, /<h2 className="diet-twin-title">\{DIET_TWIN_COPY\.entryTitle\}<\/h2>/);
   assert.match(portal, /<svg className="diet-twin-silhouette"/);
+  assert.match(portal, /<circle className="diet-twin-ring"/);
+  assert.match(portal, /diet-twin-arm--left/);
+  assert.match(portal, /diet-twin-arm--right/);
+  assert.equal(portal.includes('diet-twin-meridian'), false);
   assert.equal(portal.includes('entryKicker'), false);
   assert.equal(portal.includes('entryPrompt'), false);
   assert.equal(portal.includes('entryBlurb'), false);
@@ -192,13 +196,16 @@ test('diet twin lobby entry is a silhouette portal with only the title visible',
   assert.match(entry, /min-height:\s*44px/);
   assert.match(entry, /--twin-glow:\s*0\.32/);
   assert.match(entry, /background:\s*transparent/);
+  assert.match(entry, /border:\s*0/);
   assert.equal(entry.includes('var(--shadow-card)'), false);
   assert.equal(entry.includes('backdrop-filter'), false);
 
   const stage = css.match(/\.diet-twin-stage\s*\{([^}]*)\}/)?.[1] ?? '';
-  assert.match(stage, /height:\s*160px/);
+  assert.match(stage, /height:\s*168px/);
   const figure = css.match(/\.diet-twin-figure-wrap\s*\{([^}]*)\}/)?.[1] ?? '';
-  assert.match(figure, /height:\s*128px/);
+  assert.match(figure, /height:\s*148px/);
+  const ring = css.match(/\.diet-twin-ring\s*\{([^}]*)\}/)?.[1] ?? '';
+  assert.equal(ring.includes('stroke-dasharray'), false);
   const spot = css.match(/\.diet-twin-hotspot\s*\{([^}]*)\}/)?.[1] ?? '';
   assert.match(spot, /width:\s*8px/);
   assert.match(spot, /height:\s*8px/);
@@ -220,11 +227,12 @@ test('diet twin lobby entry is a silhouette portal with only the title visible',
     css.indexOf('@media (max-width: 768px)'),
     css.indexOf('@media (prefers-reduced-motion: reduce)'),
   );
-  assert.match(mobile, /\.diet-twin-stage\s*\{[^}]*height:\s*128px/);
-  assert.match(mobile, /\.diet-twin-figure-wrap\s*\{[^}]*height:\s*96px/);
+  assert.match(mobile, /\.diet-twin-stage\s*\{[^}]*height:\s*136px/);
+  assert.match(mobile, /\.diet-twin-figure-wrap\s*\{[^}]*height:\s*112px/);
 
   const reduced = css.slice(css.indexOf('@media (prefers-reduced-motion: reduce)'));
   assert.match(reduced, /\.diet-twin-hotspot,\s*\.diet-twin-glow\s*\{[^}]*animation:\s*none/);
+  assert.match(reduced, /\.diet-twin-arm,\s*\.diet-twin-ring\s*\{[^}]*animation:\s*none/);
 
   assert.match(copy, /export const DISCLAIMER_TEXT/);
   assert.match(copy, /export const DISCLAIMER_SHORT/);
