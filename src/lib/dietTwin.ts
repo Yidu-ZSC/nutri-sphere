@@ -35,6 +35,7 @@ export interface TwinExploreTarget {
 export const DIET_TWIN_COPY = {
   entryKicker: '饮食观察 · 非诊断',
   entryTitle: '我的饮食孪生',
+  entryAria: '我的饮食孪生，教育模拟，非诊断',
   entryPrompt: '用三道短问对照公开资料里的饮食叙述',
   entryBlurb: '模拟对照，不是个人检测',
   title: '我的饮食孪生',

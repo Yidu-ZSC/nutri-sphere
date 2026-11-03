@@ -15,6 +15,7 @@ import {
 } from './exploreShell.ts';
 import { CANVAS_BG, PALETTE } from './palette.ts';
 import { EXPLORE_THEMES } from './themes.ts';
+import { DIET_TWIN_COPY } from './dietTwin.ts';
 import { themeAccent } from './themeAccent.ts';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
@@ -92,8 +93,8 @@ test('lobby pillars place science and diet twin as peers above the full-width gr
     'className="lobby-pillars"',
     'className="lobby-intro"',
     '<h2>{LOBBY_TITLE}</h2>',
-    'className="theme-card diet-twin-entry"',
-    'heading="h2"',
+    'className="lobby-twin"',
+    '<DietTwinPortal onOpen={onOpenTwin} />',
     '常见健康主题',
     '从食物/模式看',
     '健康饮食方式',
@@ -116,7 +117,7 @@ test('lobby pillars place science and diet twin as peers above the full-width gr
   assert.match(pillars, /gap:\s*16px/);
   assert.equal(/\.diet-twin-entry\s*\{[^}]*max-width:\s*520px/.test(css), false);
 
-  const peer = css.match(/\.lobby-intro h2,\s*\.diet-twin-entry \.theme-card-heading h2\s*\{([^}]*)\}/)?.[1] ?? '';
+  const peer = css.match(/\.lobby-intro h2,\s*\.diet-twin-title\s*\{([^}]*)\}/)?.[1] ?? '';
   assert.match(peer, /font-size:\s*20px/);
   assert.match(peer, /font-weight:\s*600/);
 
@@ -148,6 +149,87 @@ test('lobby pillars place science and diet twin as peers above the full-width gr
   };
   walk(path.join(root, 'src'));
   assert.deepEqual(hits, []);
+});
+
+test('diet twin lobby entry is a silhouette portal with only the title visible', () => {
+  const lobby = fs.readFileSync(path.join(root, 'src/components/ThemeLobby.tsx'), 'utf8');
+  const portal = fs.readFileSync(path.join(root, 'src/components/DietTwinPortal.tsx'), 'utf8');
+  const css = fs.readFileSync(path.join(root, 'src/styles.css'), 'utf8');
+  const copy = fs.readFileSync(path.join(root, 'src/lib/copy.ts'), 'utf8');
+
+  assert.equal(DIET_TWIN_COPY.entryTitle, '我的饮食孪生');
+  assert.equal(DIET_TWIN_COPY.entryAria, '我的饮食孪生，教育模拟，非诊断');
+  assert.equal(DIET_TWIN_COPY.entryKicker, '饮食观察 · 非诊断');
+  assert.equal(DIET_TWIN_COPY.entryPrompt, '用三道短问对照公开资料里的饮食叙述');
+  assert.equal(DIET_TWIN_COPY.entryBlurb, '模拟对照，不是个人检测');
+
+  assert.equal(lobby.includes('entryKicker'), false);
+  assert.equal(lobby.includes('entryPrompt'), false);
+  assert.equal(lobby.includes('entryBlurb'), false);
+  assert.equal(lobby.includes('theme-card diet-twin-entry'), false);
+  assert.match(lobby, /<section className="lobby-twin"/);
+  assert.match(lobby, /<DietTwinPortal onOpen=\{onOpenTwin\} \/>/);
+
+  assert.match(portal, /data-testid="diet-twin-entry"/);
+  assert.match(portal, /aria-label=\{DIET_TWIN_COPY\.entryAria\}/);
+  assert.match(portal, /<h2 className="diet-twin-title">\{DIET_TWIN_COPY\.entryTitle\}<\/h2>/);
+  assert.match(portal, /<svg className="diet-twin-silhouette"/);
+  assert.equal(portal.includes('entryKicker'), false);
+  assert.equal(portal.includes('entryPrompt'), false);
+  assert.equal(portal.includes('entryBlurb'), false);
+  assert.equal(portal.includes('饮食观察 · 非诊断'), false);
+  assert.equal(portal.includes(DIET_TWIN_COPY.entryPrompt), false);
+  assert.equal(portal.includes(DIET_TWIN_COPY.entryBlurb), false);
+  assert.equal(portal.includes('theme-card'), false);
+  assert.equal(portal.includes('theme-prompt'), false);
+  assert.equal(portal.includes('theme-blurb'), false);
+  assert.equal(portal.includes('title='), false);
+  assert.equal(portal.includes('from \'three\''), false);
+  assert.equal(portal.includes('WebGL'), false);
+  assert.equal((portal.match(/className="diet-twin-hotspot/g) ?? []).length, 3);
+
+  const entry = css.match(/\.diet-twin-entry\s*\{([^}]*)\}/)?.[1] ?? '';
+  assert.match(entry, /min-height:\s*44px/);
+  assert.match(entry, /--twin-glow:\s*0\.32/);
+  assert.match(entry, /background:\s*transparent/);
+  assert.equal(entry.includes('var(--shadow-card)'), false);
+  assert.equal(entry.includes('backdrop-filter'), false);
+
+  const stage = css.match(/\.diet-twin-stage\s*\{([^}]*)\}/)?.[1] ?? '';
+  assert.match(stage, /height:\s*160px/);
+  const figure = css.match(/\.diet-twin-figure-wrap\s*\{([^}]*)\}/)?.[1] ?? '';
+  assert.match(figure, /height:\s*128px/);
+  const spot = css.match(/\.diet-twin-hotspot\s*\{([^}]*)\}/)?.[1] ?? '';
+  assert.match(spot, /width:\s*8px/);
+  assert.match(spot, /height:\s*8px/);
+  assert.match(spot, /#22c55e/);
+  assert.match(spot, /pointer-events:\s*none/);
+  assert.equal(spot.includes('#f87171'), false);
+  assert.equal(css.includes('.diet-twin-hotspot:hover'), false);
+
+  for (const theme of ['fresh', 'soft', 'eye']) {
+    const block = css.match(new RegExp(`:root\\[data-theme='${theme}'\\] \\.diet-twin-entry\\s*\\{([^}]*)\\}`))?.[1] ?? '';
+    assert.match(block, /--twin-glow:/, theme);
+    assert.match(block, /--twin-figure:/, theme);
+    assert.match(block, /--twin-hotspot:/, theme);
+    assert.equal(/#[0-9a-fA-F]{3,8}/.test(block), false, theme);
+    assert.equal(block.includes('d='), false, theme);
+  }
+
+  const mobile = css.slice(
+    css.indexOf('@media (max-width: 768px)'),
+    css.indexOf('@media (prefers-reduced-motion: reduce)'),
+  );
+  assert.match(mobile, /\.diet-twin-stage\s*\{[^}]*height:\s*128px/);
+  assert.match(mobile, /\.diet-twin-figure-wrap\s*\{[^}]*height:\s*96px/);
+
+  const reduced = css.slice(css.indexOf('@media (prefers-reduced-motion: reduce)'));
+  assert.match(reduced, /\.diet-twin-hotspot,\s*\.diet-twin-glow\s*\{[^}]*animation:\s*none/);
+
+  assert.match(copy, /export const DISCLAIMER_TEXT/);
+  assert.match(copy, /export const DISCLAIMER_SHORT/);
+  assert.match(copy, /export const DISCLAIMER_EN/);
+  assert.equal(portal.includes('DISCLAIMER_'), false);
 });
 
 test('theme accent bars follow the seed anchor group', () => {
