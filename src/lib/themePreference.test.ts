@@ -119,7 +119,8 @@ test('theme tokens keep direction colors and brand shared, and canvas stays dark
   assert.match(rootBlock, /--bg:\s*#0b0d12/);
   assert.match(rootBlock, /--panel:\s*#16181d/);
   assert.match(rootBlock, /--text:\s*#f1f3f5/);
-  assert.match(rootBlock, /--brand:\s*#10b981/);
+  assert.match(rootBlock, /--brand:\s*#22c55e/);
+  assert.match(rootBlock, /--brand-hover:\s*#16a34a/);
   assert.match(rootBlock, /--dir-protective:\s*#34d399/);
   assert.match(rootBlock, /--dir-risk:\s*#f87171/);
   assert.match(rootBlock, /--dir-mixed:\s*#fbbf24/);

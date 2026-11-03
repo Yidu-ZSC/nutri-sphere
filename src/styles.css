@@ -76,7 +76,7 @@ button { cursor: pointer; }
 .brand-title {
   margin: 0;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.02em;
 }
 
@@ -155,10 +155,10 @@ button { cursor: pointer; }
   background: var(--brand);
   border-color: transparent;
   color: #04241a;
-  font-weight: 600;
+  font-weight: 500;
 }
 
-.btn--primary:hover { background: color-mix(in srgb, var(--brand) 82%, #000); }
+.btn--primary:hover { background: var(--brand-hover); }
 
 .btn--ghost {
   background: transparent;
@@ -594,7 +594,7 @@ button { cursor: pointer; }
 .theme-option-check {
   width: 1em;
   color: var(--brand);
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .drawer {
@@ -654,7 +654,7 @@ button { cursor: pointer; }
   letter-spacing: 0.08em;
 }
 
-.drawer h2 { margin: 4px 0 12px; font-size: 18px; line-height: 1.35; font-weight: 700; }
+.drawer h2 { margin: 4px 0 12px; font-size: 18px; line-height: 1.35; font-weight: 600; }
 
 .drawer h3 { margin: 16px 0 8px; font-size: 14px; }
 
@@ -909,7 +909,7 @@ button { cursor: pointer; }
 
 .about p.about-brand {
   margin: 10px 0 0;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.02em;
 }
 
@@ -962,7 +962,7 @@ button { cursor: pointer; }
 
 .about-dev > summary {
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 13px;
   line-height: 1.4;
   padding: 10px 0;
@@ -1011,7 +1011,7 @@ code {
   max-width: 40em;
   color: var(--text);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.5;
   letter-spacing: 0;
   white-space: normal;
@@ -1142,7 +1142,7 @@ code {
 
 .theme-card strong {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.5;
 }
 
@@ -1268,7 +1268,7 @@ code {
 .pattern-card h3 {
   margin: 0;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.35;
 }
 
@@ -1342,12 +1342,12 @@ code {
   background: var(--brand);
   color: #04241a;
   border-color: transparent;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .pattern-jump.btn--primary:hover,
 .pattern-jump.btn--primary:focus-visible {
-  background: color-mix(in srgb, var(--brand) 82%, #000);
+  background: var(--brand-hover);
   border-color: transparent;
 }
 
@@ -1436,7 +1436,7 @@ code {
 .pattern-section h2 {
   margin: 0 0 var(--space-3);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .pattern-items,
@@ -1494,7 +1494,7 @@ code {
 
 .sample-meals dt {
   color: var(--text);
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .sample-meals dd {
@@ -1579,7 +1579,7 @@ code {
 }
 
 .compare-table tbody th {
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .compare-table td {
@@ -1735,7 +1735,7 @@ code {
   margin: 0;
   padding: 0;
   background: transparent;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.5;
 }
 
@@ -1788,7 +1788,7 @@ code {
 
 .twin-question legend {
   padding: 0 4px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .twin-options {
@@ -1859,7 +1859,7 @@ code {
 
 .twin-bar-label,
 .twin-bar-band {
-  font-weight: 700;
+  font-weight: 500;
   color: var(--text);
 }
 
@@ -1984,7 +1984,13 @@ code {
   background: var(--brand);
   color: #04241a;
   box-shadow: none;
-  font-weight: 600;
+  font-weight: 500;
+}
+
+.twin-segment button[aria-pressed='true']:hover,
+.twin-segment button[aria-pressed='true']:focus-visible {
+  background: var(--brand-hover);
+  color: #04241a;
 }
 
 .twin-list {

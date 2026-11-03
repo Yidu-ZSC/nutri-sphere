@@ -7,7 +7,8 @@
   --text: #f1f3f5;
   --muted: #a1a8b3;
   --faint: #6b7280;
-  --brand: #10b981;
+  --brand: #22c55e;
+  --brand-hover: #16a34a;
   --dir-protective: #34d399;
   --dir-risk: #f87171;
   --dir-mixed: #fbbf24;
@@ -39,7 +40,7 @@
 }
 
 /* Panel surface token is `--panel` (`--panel-solid` follows it). Do not add a `--card` token. */
-/* Direction colors and `--brand` stay on :root so every theme shares the same values. */
+/* Direction colors, `--brand`, and `--brand-hover` stay on :root so every theme shares the same values. */
 /* Missing `data-theme` or `data-theme="dark"` uses the :root values above. */
 
 :root[data-theme='fresh'] {
