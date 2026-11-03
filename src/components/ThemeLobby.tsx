@@ -30,10 +30,11 @@ function kickerFor(kind: ThemeKind): string {
   return '健康主题';
 }
 
-function CardHeading({ title }: { title: string }) {
+function CardHeading({ title, heading = 'strong' }: { title: string; heading?: 'strong' | 'h2' }) {
+  const Title = heading === 'h2' ? 'h2' : 'strong';
   return (
-    <span className="theme-card-heading">
-      <strong>{title}</strong>
+    <div className="theme-card-heading">
+      <Title>{title}</Title>
       <span className="theme-card-chevron" aria-hidden="true">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" focusable="false">
           <path
@@ -45,7 +46,7 @@ function CardHeading({ title }: { title: string }) {
           />
         </svg>
       </span>
-    </span>
+    </div>
   );
 }
 
@@ -159,25 +160,28 @@ export function ThemeLobby({
 
   return (
     <main className="lobby" data-testid="theme-lobby">
-      <header className="lobby-intro">
-        <p className="kicker">{LOBBY_KICKER}</p>
-        <h1>{LOBBY_TITLE}</h1>
-        <p className="lobby-tagline" data-testid="lobby-tagline">{LOBBY_TAGLINE}</p>
-        <p data-testid="lobby-intro">{LOBBY_INTRO}</p>
-      </header>
-      <section className="lobby-twin" aria-label={DIET_TWIN_COPY.entryTitle}>
-        <button
-          type="button"
-          className="theme-card diet-twin-entry"
-          data-testid="diet-twin-entry"
-          onClick={onOpenTwin}
-        >
-          <span className="kicker">{DIET_TWIN_COPY.entryKicker}</span>
-          <CardHeading title={DIET_TWIN_COPY.entryTitle} />
-          <span className="theme-prompt">{DIET_TWIN_COPY.entryPrompt}</span>
-          <span className="theme-blurb">{DIET_TWIN_COPY.entryBlurb}</span>
-        </button>
-      </section>
+      <h1 className="sr-only">{LOBBY_KICKER}</h1>
+      <p className="kicker lobby-lead" aria-hidden="true">{LOBBY_KICKER}</p>
+      <div className="lobby-pillars">
+        <header className="lobby-intro">
+          <h2>{LOBBY_TITLE}</h2>
+          <p className="lobby-tagline" data-testid="lobby-tagline">{LOBBY_TAGLINE}</p>
+          <p data-testid="lobby-intro">{LOBBY_INTRO}</p>
+        </header>
+        <section className="lobby-twin" aria-label={DIET_TWIN_COPY.entryTitle}>
+          <button
+            type="button"
+            className="theme-card diet-twin-entry"
+            data-testid="diet-twin-entry"
+            onClick={onOpenTwin}
+          >
+            <span className="kicker">{DIET_TWIN_COPY.entryKicker}</span>
+            <CardHeading heading="h2" title={DIET_TWIN_COPY.entryTitle} />
+            <span className="theme-prompt">{DIET_TWIN_COPY.entryPrompt}</span>
+            <span className="theme-blurb">{DIET_TWIN_COPY.entryBlurb}</span>
+          </button>
+        </section>
+      </div>
       <section className="lobby-primary" aria-labelledby="health-theme-heading">
         <h2 id="health-theme-heading">常见健康主题</h2>
         <ul className="theme-grid" data-testid="health-theme-grid">

@@ -981,8 +981,8 @@ code {
   padding: 28px 20px 36px;
 }
 
-.lobby-intro,
-.lobby-twin,
+.lobby-lead,
+.lobby-pillars,
 .lobby-primary,
 .lobby-food,
 .lobby-patterns,
@@ -992,11 +992,33 @@ code {
   margin-right: auto;
 }
 
-.lobby-intro h1 {
-  margin: var(--space-1) 0 var(--space-2);
+.lobby-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: stretch;
+  margin-top: var(--space-2);
+}
+
+.lobby-intro,
+.lobby-twin {
+  min-width: 0;
+}
+
+.lobby-twin {
+  display: flex;
+}
+
+.lobby-intro h2,
+.diet-twin-entry .theme-card-heading h2 {
+  margin: 0;
   font-size: 20px;
   font-weight: 600;
   line-height: 1.5;
+}
+
+.lobby-intro h2 {
+  margin-bottom: var(--space-2);
 }
 
 .lobby-intro p {
@@ -1020,14 +1042,6 @@ code {
 .lobby-primary h2 {
   margin: 22px 0 0;
   font-size: 16px;
-}
-
-.lobby-twin {
-  margin-top: 22px;
-}
-
-.diet-twin-entry {
-  max-width: 520px;
 }
 
 .theme-grid,
@@ -1122,7 +1136,8 @@ code {
   width: 100%;
 }
 
-.theme-card-heading strong {
+.theme-card-heading strong,
+.theme-card-heading h2 {
   flex: 1 1 auto;
   min-width: 0;
 }
@@ -2190,7 +2205,9 @@ code {
   .pattern-screen,
   .twin-screen { padding: 18px 12px 24px; }
   .pattern-hero h1 { font-size: 20px; }
-  .lobby-intro h1 { font-size: 20px; }
+  .lobby-pillars { grid-template-columns: 1fr; }
+  .lobby-intro h2,
+  .diet-twin-entry .theme-card-heading h2 { font-size: 20px; }
   .topbar { align-items: flex-start; padding: 8px 10px; gap: 8px; }
   .brand-sub { display: none; }
   .header-actions { flex-wrap: wrap; justify-content: flex-end; }
