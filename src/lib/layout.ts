@@ -24,7 +24,7 @@ const COLUMN_BY_TYPE: Record<string, number> = {
   biomarker: 3,
 };
 
-export const COLUMN_CAPTIONS = ['膳食/食物', '营养素/代谢物', '机制', '疾病/结局'] as const;
+export const COLUMN_CAPTIONS = ['膳食/食物', '营养素/代谢物', '机制', '健康/疾病'] as const;
 
 export function columnIndex(type: string): number {
   return COLUMN_BY_TYPE[type] ?? 1;

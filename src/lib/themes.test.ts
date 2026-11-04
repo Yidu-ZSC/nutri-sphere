@@ -22,8 +22,8 @@ test('explore themes still resolve on the aligned seed and avoid treatment wordi
     links: unknown[];
   };
   assert.equal(seed.meta.schema_version, '0.3');
-  assert.equal(seed.meta.data_version, '0.7');
-  assert.equal(seed.nodes.length, 79);
+  assert.equal(seed.meta.data_version, '0.8');
+  assert.equal(seed.nodes.length, 87);
   assert.equal(seed.links.length, 125);
   assert.ok(EXPLORE_THEMES.length >= 3);
   assert.equal(HIERARCHY_HINT.includes('防治'), false);
@@ -70,63 +70,63 @@ test('explore themes still resolve on the aligned seed and avoid treatment wordi
     [
       {
         id: 'cardiometabolic',
-        label: '心血管 / 代谢',
+        label: '心血管与代谢问题',
         title: '想了解心血管与代谢相关饮食讨论',
         prompt: '这个主题和饮食常被怎样一起讨论？',
         blurb: '公开资料里常把饮食与这些主题放在一起说。',
       },
       {
         id: 'fatty_liver',
-        label: '脂肪肝相关',
+        label: '脂肪肝',
         title: '想了解脂肪肝相关饮食讨论',
         prompt: '这个主题和饮食常被怎样一起讨论？',
         blurb: '与代谢、炎症叙述常一起出现。',
       },
       {
         id: 'obesity_risk',
-        label: '肥胖相关风险',
+        label: '肥胖',
         title: '想看看体重相关饮食讨论',
         prompt: '这个主题和饮食常被怎样一起讨论？',
         blurb: '体重主题与饮食叙述常一起出现。',
       },
       {
         id: 'ibd_related',
-        label: '炎症性肠病相关',
+        label: '肠道炎症',
         title: '想了解炎症性肠病相关饮食讨论',
         prompt: '这个主题和饮食常被怎样一起讨论？',
         blurb: '屏障与炎症叙述里常被一起讨论。',
       },
       {
         id: 'liver_chronic',
-        label: '慢性肝炎相关进展',
+        label: '慢性肝炎进展',
         title: '想了解肝脏相关饮食讨论',
         prompt: '这个主题和饮食常被怎样一起讨论？',
         blurb: '书摘与资料里与饮食、肝脏叙述常一起出现。',
       },
       {
         id: 'digestive_cancer_risk',
-        label: '消化系统癌症风险',
+        label: '消化系统肿瘤',
         title: '想了解消化系统风险与饮食讨论',
         prompt: '这个主题和饮食常被怎样一起讨论？',
         blurb: '消化系统主题与饮食常被一起讨论。',
       },
       {
         id: 'autoimmune',
-        label: '自身免疫相关',
+        label: '自身免疫问题',
         title: '想了解自身免疫相关饮食讨论',
         prompt: '这个主题和饮食常被怎样一起讨论？',
         blurb: '自身免疫主题与饮食叙述常被讨论。',
       },
       {
         id: 'mental_health',
-        label: '心理健康 / 抑郁等',
+        label: '情绪低落',
         title: '想了解情绪与饮食的讨论',
         prompt: '这个主题和饮食常被怎样一起讨论？',
         blurb: '情绪相关主题与饮食常被一起讨论。',
       },
       {
         id: 'breast_prostate_risk',
-        label: '乳腺与前列腺风险',
+        label: '乳腺与前列腺问题',
         title: '想了解这些风险与饮食的讨论',
         prompt: '这个主题和饮食常被怎样一起讨论？',
         blurb: '这些风险主题与饮食叙述常被讨论。',

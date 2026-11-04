@@ -51,7 +51,7 @@ const STAGE_A_LINKS = 117;
 test('aligned seed passes schema and referential checks', () => {
   const result = validateGraphFile();
   assert.equal(result.ok, true, result.errors.join('\n'));
-  assert.equal(result.counts.nodes, 79);
+  assert.equal(result.counts.nodes, 87);
   assert.equal(result.counts.links, 125);
 });
 
@@ -62,10 +62,10 @@ const DEEP_READER_LINKS = [
 ];
 const TECHNICAL_NODES = ['igf1_signaling', 'lps'];
 
-test('data 0.7 uses schema 0.3 and keeps the original book-note excerpts', () => {
+test('data 0.8 uses schema 0.3 and keeps the original book-note excerpts', () => {
   const data = readJson(ALIGNED_SEED);
   assert.equal(data.meta.schema_version, '0.3');
-  assert.equal(data.meta.data_version, '0.7');
+  assert.equal(data.meta.data_version, '0.8');
   assert.equal(data.meta.disclaimer, 'Educational / research use only. Not medical advice.');
   assert.ok(data.nodes.length >= 60 && data.nodes.length <= 90);
   assert.ok(data.links.length >= 80 && data.links.length <= 140);
@@ -82,8 +82,11 @@ test('data 0.7 uses schema 0.3 and keeps the original book-note excerpts', () =>
   }
   for (const node of data.nodes) {
     const deg = degree.get(node.id) ?? 0;
-    // NS-053: dictionary-only mechanisms may ship with degree 0 (no forced edges).
-    if (!(node.type === 'mechanism' && deg === 0)) {
+    // NS-053/054: dictionary-only mechanisms or protective disease nodes may ship with degree 0 (no forced edges).
+    const orphanAllowed =
+      (node.type === 'mechanism' && deg === 0) ||
+      (node.type === 'disease' && node.group === 'protective' && deg === 0);
+    if (!orphanAllowed) {
       assert.ok(deg > 0, node.id);
     } else {
       assert.ok(node.description, node.id);
@@ -124,6 +127,10 @@ test('data 0.7 uses schema 0.3 and keeps the original book-note excerpts', () =>
   }
   const mechanisms = data.nodes.filter((node) => node.type === 'mechanism');
   assert.equal(mechanisms.length, 24);
+  const diseases = data.nodes.filter((node) => node.type === 'disease');
+  assert.equal(diseases.length, 17);
+  assert.equal(diseases.filter((node) => node.group === 'protective').length, 8);
+  assert.equal(biomarkers.length, 2);
   assert.deepEqual(
     mechanisms
       .filter((node) => node.mechanism_depth === 'technical')

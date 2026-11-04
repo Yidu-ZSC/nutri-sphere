@@ -7,7 +7,7 @@ function graph(): GraphData {
   return {
     meta: {},
     nodes: [
-      { id: 'liver_chronic', type: 'disease', label: '慢性肝炎相关进展', group: 'risk' },
+      { id: 'liver_chronic', type: 'disease', label: '慢性肝炎进展', group: 'risk' },
       { id: 'soy', type: 'food', label: '大豆食品', group: 'protective', aliases: ['Soy'] },
       ...Array.from({ length: 24 }, (_, index) => ({
         id: `extra_${index}`,
