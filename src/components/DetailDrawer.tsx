@@ -30,6 +30,7 @@ interface DetailDrawerProps {
   onClose: () => void;
   onSelectNode: (id: string) => void;
   onSelectLink: (index: number) => void;
+  onOpenSource?: (sourceId: string) => void;
   onShowPatterns?: () => void;
   relatedPatternIds?: readonly string[];
   onOpenPattern?: (id: string) => void;
@@ -84,12 +85,12 @@ function ExcerptBlock({ text }: { text: string | undefined }) {
   const shown = folded ? `${text.slice(0, limit)}…` : text;
   return (
     <div data-testid="link-excerpt">
-      <dt>摘录</dt>
+      <dt>原文摘录</dt>
       <dd>
         <p className="excerpt">{shown}</p>
         {text.length > limit && (
           <button type="button" className="linkish" onClick={() => setExpanded((value) => !value)}>
-            {expanded ? '收起摘录' : '展开摘录'}
+            {expanded ? '收起原文摘录' : '展开原文摘录'}
           </button>
         )}
       </dd>
@@ -221,6 +222,55 @@ function NodeBody({
   );
 }
 
+function SourceTitleLink({
+  link,
+  onOpenSource,
+}: {
+  link: GraphLink;
+  onOpenSource?: (sourceId: string) => void;
+}) {
+  const title = link.source_title?.trim() || '未注明来源';
+  const sourceId = link.source_id?.trim() || '';
+  const doi = link.citation?.doi?.trim() || '';
+  const pmid = link.citation?.pmid?.trim() || '';
+  let href: string | null = null;
+  let external = false;
+  let action: (() => void) | null = null;
+  if (sourceId && onOpenSource) {
+    action = () => onOpenSource(sourceId);
+  } else if (doi) {
+    href = `https://doi.org/${doi}`;
+    external = true;
+  } else if (pmid) {
+    href = `https://pubmed.ncbi.nlm.nih.gov/${pmid}`;
+    external = true;
+  }
+  return (
+    <div data-testid="link-source-title">
+      <dt>来源</dt>
+      <dd>
+        {action ? (
+          <button type="button" className="linkish" data-testid="open-source-page" onClick={action}>
+            {title}
+          </button>
+        ) : href ? (
+          <a
+            className="linkish"
+            href={href}
+            target="_blank"
+            rel="noreferrer noopener"
+            data-testid="open-source-external"
+          >
+            {title}
+          </a>
+        ) : (
+          <span>{title}</span>
+        )}
+      </dd>
+    </div>
+  );
+}
+
 function SourceFile({ name }: { name: string }) {
   const [copied, setCopied] = useState(false);
   return (
@@ -287,11 +337,13 @@ function LinkBody({
   link,
   counts,
   onSelectNode,
+  onOpenSource,
 }: {
   graph: GraphData;
   link: GraphLink;
   counts: Record<string, number>;
   onSelectNode: (id: string) => void;
+  onOpenSource?: (sourceId: string) => void;
 }) {
   const known = new Set(EVIDENCE_LADDER.map((step) => step.id));
   const extras = Object.keys(counts).filter((id) => !known.has(id));
@@ -313,8 +365,7 @@ function LinkBody({
       <div className="evidence-card" data-testid="evidence-card">
         <dl className="fields">
           <ExcerptBlock text={link.excerpt} />
-          <SourceFile name={link.source_file ?? '未注明'} />
-          {link.citation?.title ? <Field label="文献标题" children={link.citation.title} /> : null}
+          <SourceTitleLink link={link} onOpenSource={onOpenSource} />
         </dl>
         <div className="limitations-callout" data-testid="link-limitations">
           <p className="muted">局限</p>
@@ -335,6 +386,9 @@ function LinkBody({
           </span>
         </div>
         <MoreDetail>
+          <dl className="fields">
+            <SourceFile name={link.source_file ?? '未注明'} />
+          </dl>
           <p className="assurance">{evidenceAssurance(link.evidence_type, link.strength)}</p>
           <dl className="fields">
             <Field label="证据类型说明" children={evidenceDetail(link.evidence_type)} />
@@ -412,6 +466,7 @@ export function DetailDrawer({
   onClose,
   onSelectNode,
   onSelectLink,
+  onOpenSource,
   onShowPatterns,
   relatedPatternIds = [],
   onOpenPattern,
@@ -488,6 +543,7 @@ export function DetailDrawer({
             link={link}
             counts={evidenceCounts}
             onSelectNode={onSelectNode}
+            onOpenSource={onOpenSource}
           />
         )}
         {selection.kind === 'node' && !node && <p>未找到该节点。</p>}

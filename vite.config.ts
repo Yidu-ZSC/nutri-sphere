@@ -4,25 +4,30 @@ import { defineConfig, type Connect, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 
 const SEED_FILE = 'data/seed_triples_v0.3_aligned.json';
+const SOURCES_FILE = 'data/sources.json';
 
-function isSeedRequest(url: string | undefined): boolean {
+function isDataRequest(url: string | undefined, fileName: string): boolean {
   if (!url) return false;
   const pathname = url.split('?')[0] ?? '';
-  return pathname === `/${SEED_FILE}` || pathname.endsWith(`/${SEED_FILE}`);
+  return pathname === `/${fileName}` || pathname.endsWith(`/${fileName}`);
 }
 
-/** Serve and publish the repo seed file without copying it into `public/`. */
+/** Serve and publish seed + sources JSON without copying into `public/`. */
 function nutriSeedPlugin(): Plugin {
   const seedPath = path.resolve(SEED_FILE);
+  const sourcesPath = path.resolve(SOURCES_FILE);
   const attach = (middlewares: Connect.Server) => {
     middlewares.use((req, res, next) => {
-      if (!isSeedRequest(req.url)) {
+      let filePath: string | null = null;
+      if (isDataRequest(req.url, SEED_FILE)) filePath = seedPath;
+      else if (isDataRequest(req.url, SOURCES_FILE)) filePath = sourcesPath;
+      if (!filePath) {
         next();
         return;
       }
       res.setHeader('Content-Type', 'application/json; charset=utf-8');
       res.setHeader('Cache-Control', 'no-cache');
-      fs.createReadStream(seedPath).pipe(res);
+      fs.createReadStream(filePath).pipe(res);
     });
   };
 
@@ -39,6 +44,11 @@ function nutriSeedPlugin(): Plugin {
         type: 'asset',
         fileName: SEED_FILE,
         source: fs.readFileSync(seedPath),
+      });
+      this.emitFile({
+        type: 'asset',
+        fileName: SOURCES_FILE,
+        source: fs.readFileSync(sourcesPath),
       });
       this.emitFile({
         type: 'asset',

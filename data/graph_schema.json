@@ -4,37 +4,82 @@
   "title": "ClearDiet Graph Data",
   "description": "Schema for nodes and links conforming to docs/GRAPH_SCHEMA.md",
   "type": "object",
-  "required": ["meta", "nodes", "links"],
+  "required": [
+    "meta",
+    "nodes",
+    "links"
+  ],
   "properties": {
     "meta": {
       "type": "object",
       "properties": {
-        "schema_version": {"type": "string"},
-        "data_version": {"type": "string"},
-        "disclaimer": {"type": "string"}
+        "schema_version": {
+          "type": "string"
+        },
+        "data_version": {
+          "type": "string"
+        },
+        "disclaimer": {
+          "type": "string"
+        }
       }
     },
     "nodes": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "type", "label", "group"],
+        "required": [
+          "id",
+          "type",
+          "label",
+          "group"
+        ],
         "properties": {
-          "id": {"type": "string"},
+          "id": {
+            "type": "string"
+          },
           "type": {
             "type": "string",
-            "enum": ["diet_pattern", "food_category", "food", "nutrient", "compound", "metabolite", "mechanism", "disease", "biomarker"]
+            "enum": [
+              "diet_pattern",
+              "food_category",
+              "food",
+              "nutrient",
+              "compound",
+              "metabolite",
+              "mechanism",
+              "disease",
+              "biomarker"
+            ]
           },
-          "label": {"type": "string"},
+          "label": {
+            "type": "string"
+          },
           "group": {
             "type": "string",
-            "enum": ["protective", "risk", "neutral", "mixed"]
+            "enum": [
+              "protective",
+              "risk",
+              "neutral",
+              "mixed"
+            ]
           },
-          "description": {"type": "string"},
-          "aliases": {"type": "array", "items": {"type": "string"}},
+          "description": {
+            "type": "string"
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "mechanism_depth": {
             "type": "string",
-            "enum": ["summary", "mechanism", "technical"],
+            "enum": [
+              "summary",
+              "mechanism",
+              "technical"
+            ],
             "description": "Optional narrative depth for a mechanism node. Omitted means summary. Not GRADE, not ViewLayer, and not evidence strength."
           }
         },
@@ -45,44 +90,115 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["source", "target", "relation", "direction", "evidence_type"],
+        "required": [
+          "source",
+          "target",
+          "relation",
+          "direction",
+          "evidence_type"
+        ],
         "properties": {
-          "source": {"type": "string"},
-          "target": {"type": "string"},
-          "relation": {"type": "string"},
+          "source": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          },
+          "relation": {
+            "type": "string"
+          },
           "direction": {
             "type": "string",
-            "enum": ["protective", "risk", "neutral", "mixed"]
+            "enum": [
+              "protective",
+              "risk",
+              "neutral",
+              "mixed"
+            ]
           },
-          "evidence_type": {"type": "string"},
+          "evidence_type": {
+            "type": "string"
+          },
           "strength": {
             "type": "string",
-            "enum": ["low", "moderate", "high", "quantitative"]
+            "enum": [
+              "low",
+              "moderate",
+              "high",
+              "quantitative"
+            ]
           },
-          "source_file": {"type": "string"},
-          "note_id": {"type": "string"},
-          "excerpt": {"type": "string"},
-          "limitations": {"type": "string"},
+          "source_file": {
+            "type": "string"
+          },
+          "note_id": {
+            "type": "string"
+          },
+          "excerpt": {
+            "type": "string"
+          },
+          "limitations": {
+            "type": "string"
+          },
           "audience": {
             "type": "string",
-            "enum": ["general", "deep_reader"],
+            "enum": [
+              "general",
+              "deep_reader"
+            ],
             "description": "Optional content fit for this edge. Omitted means general. Not a ViewLayer, not GRADE, and not evidence strength."
           },
           "citation": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "title": {"type": "string", "minLength": 1},
-              "authors": {"type": "string"},
-              "year": {"type": "integer", "minimum": 1900, "maximum": 2100},
-              "doi": {"type": "string", "minLength": 1},
-              "pmid": {"type": "string", "pattern": "^[0-9]+$"},
-              "url": {"type": "string", "minLength": 1}
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "authors": {
+                "type": "string"
+              },
+              "year": {
+                "type": "integer",
+                "minimum": 1900,
+                "maximum": 2100
+              },
+              "doi": {
+                "type": "string",
+                "minLength": 1
+              },
+              "pmid": {
+                "type": "string",
+                "pattern": "^[0-9]+$"
+              },
+              "url": {
+                "type": "string",
+                "minLength": 1
+              }
             },
             "anyOf": [
-              {"required": ["doi"]},
-              {"required": ["pmid"]}
+              {
+                "required": [
+                  "doi"
+                ]
+              },
+              {
+                "required": [
+                  "pmid"
+                ]
+              }
             ]
+          },
+          "source_title": {
+            "type": "string",
+            "minLength": 1,
+            "description": "User-visible book or literature title. Required by validate-data for every link in schema 0.4."
+          },
+          "source_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$",
+            "description": "Book source id into data/sources.json. Required on non-literature links; forbidden on literature links."
           }
         },
         "additionalProperties": true
