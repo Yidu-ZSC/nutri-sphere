@@ -1,5 +1,6 @@
 import type { GraphView } from './graphView';
 import type { LayoutMode } from './layout';
+import { normalizeVeganDietPatternId, VEGAN_DIET_HUB_ID } from './dietPatternDetails.ts';
 import { knownPatternId, parsePatternList } from './patternLinks.ts';
 import { themeById } from './themes.ts';
 import type { ViewLayer } from '../types/graph';
@@ -120,6 +121,10 @@ export function parseViewQuery(search: string): ParsedShare {
     link: link && /^[a-z0-9_]+~[a-z0-9_]+$/.test(link) ? link : null,
   };
   parsed.hideUnmatched = resolveHideUnmatched(params.get('hide'), parsed);
+  if (parsed.screen === 'compare') {
+    parsed.screen = 'pattern';
+    parsed.pattern = VEGAN_DIET_HUB_ID;
+  }
   return parsed;
 }
 
@@ -146,8 +151,11 @@ export function resolveHideUnmatched(
 export function serializeViewQuery(state: ShareState): string {
   if (state.screen === 'pattern' || state.screen === 'compare' || state.screen === 'twin') {
     const params = new URLSearchParams();
-    params.set('screen', state.screen);
-    if (state.screen === 'pattern' && state.pattern) params.set('pattern', state.pattern);
+    const screen = state.screen === 'compare' ? 'pattern' : state.screen;
+    params.set('screen', screen);
+    if (screen === 'pattern') {
+      params.set('pattern', normalizeVeganDietPatternId(state.pattern) ?? VEGAN_DIET_HUB_ID);
+    }
     params.set('layer', state.layer);
     return `?${params.toString()}`;
   }

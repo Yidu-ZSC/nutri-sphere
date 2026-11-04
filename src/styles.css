@@ -1582,6 +1582,33 @@ code {
   text-align: left;
 }
 
+.pattern-intro--detail {
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+.vegan-journey-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.vegan-journey-step {
+  padding: 16px;
+  border-radius: var(--radius-card);
+  border: var(--border);
+  background: var(--panel);
+}
+
+.vegan-journey-step h3 {
+  margin: 8px 0 0;
+  font-size: 17px;
+  font-weight: 500;
+}
+
 .pattern-stage {
   display: inline-block;
   margin: 0 0 6px;

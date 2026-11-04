@@ -15,7 +15,7 @@ import {
   DISCLAIMER_SHORT,
 } from '../lib/copy';
 import { DIET_PATTERN_CARDS, type DietPatternCard } from '../lib/dietPatterns';
-import { PATTERN_SHELL, patternSidebarDetailLabel } from '../lib/dietPatternDetails';
+import { PATTERN_SHELL } from '../lib/dietPatternDetails';
 import { semanticColor } from '../lib/palette';
 import type { GraphCitation, GraphData, GraphLink, GraphNode, Selection, ViewLayer } from '../types/graph';
 
@@ -459,18 +459,14 @@ export function DetailDrawer({
           )}
           {openRelatedPattern && relatedPatterns.length > 0 && (
             <div className="drawer-pattern-actions" data-testid="pattern-detail-actions">
-              {relatedPatterns.map((card) => (
-                <button
-                  key={card.id}
-                  type="button"
-                  className="btn btn--ghost drawer-pattern-btn"
-                  data-testid={relatedPatterns.length === 1 ? 'show-pattern-detail' : `show-pattern-detail-${card.id}`}
-                  data-pattern={card.id}
-                  onClick={() => openRelatedPattern(card.id)}
-                >
-                  {relatedPatterns.length === 1 ? PATTERN_SHELL.sidebarOne : patternSidebarDetailLabel(card.title)}
-                </button>
-              ))}
+              <button
+                type="button"
+                className="btn btn--ghost drawer-pattern-btn"
+                data-testid="show-pattern-detail"
+                onClick={() => openRelatedPattern('vegan_diet')}
+              >
+                {PATTERN_SHELL.sidebarOne}
+              </button>
             </div>
           )}
           <p className="drawer-pattern-note">资料里常被一起提到的吃法，不是个人方案。</p>

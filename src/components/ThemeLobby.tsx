@@ -27,7 +27,6 @@ import {
 
 interface ThemeLobbyProps {
   onEnter: (theme: ExploreTheme) => void;
-  onOpenPattern: (id: string) => void;
   onOpenCompare: () => void;
   onOpenTwin: () => void;
   highlightedPatterns?: readonly string[];
@@ -113,7 +112,6 @@ function PatternCard({
 
 export function ThemeLobby({
   onEnter,
-  onOpenPattern: _onOpenPattern,
   onOpenCompare,
   onOpenTwin,
   highlightedPatterns = [],

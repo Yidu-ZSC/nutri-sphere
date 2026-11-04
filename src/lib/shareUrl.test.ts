@@ -342,10 +342,10 @@ test('pattern and compare screens serialize only screen, pattern, and layer', ()
       link: 'soy~angiogenesis_defense',
     }),
   );
-  assert.equal(patternQuery, '?screen=pattern&pattern=plant_forward&layer=expert');
+  assert.equal(patternQuery, '?screen=pattern&pattern=vegan_diet&layer=expert');
   const parsed = parseViewQuery(patternQuery);
   assert.equal(parsed.screen, 'pattern');
-  assert.equal(parsed.pattern, 'plant_forward');
+  assert.equal(parsed.pattern, 'vegan_diet');
   assert.equal(parsed.layer, 'expert');
   assert.equal(parsed.hideUnmatched, false);
   assert.equal(parsed.disease, null);
@@ -364,17 +364,17 @@ test('pattern and compare screens serialize only screen, pattern, and layer', ()
       disease: 'cardiometabolic',
     }),
   );
-  assert.equal(compareQuery, '?screen=compare&layer=layperson');
+  assert.equal(compareQuery, '?screen=pattern&pattern=vegan_diet&layer=layperson');
   const compare = parseViewQuery(compareQuery);
-  assert.equal(resolveScreen(compare), 'compare');
-  assert.equal(compare.pattern, null);
+  assert.equal(resolveScreen(compare), 'pattern');
+  assert.equal(compare.pattern, 'vegan_diet');
   assert.equal(compare.hideUnmatched, false);
   assert.equal(compare.disease, null);
 });
 
 test('pattern links open a detail only without explore anchors', () => {
   assert.equal(resolveScreen(parseViewQuery('?pattern=plant_forward')), 'pattern');
-  assert.equal(parseViewQuery('?pattern=plant_forward').pattern, 'plant_forward');
+  assert.equal(parseViewQuery('?pattern=plant_forward').pattern, 'vegan_diet');
   assert.equal(parseViewQuery('?pattern=plant_forward').hideUnmatched, false);
   assert.equal(parseViewQuery('?pattern=plant_forward&hide=1').hideUnmatched, false);
   assert.equal(resolveScreen(parseViewQuery('?screen=pattern&pattern=lacto_ovo')), 'pattern');
@@ -391,7 +391,8 @@ test('pattern links open a detail only without explore anchors', () => {
   assert.equal(resolveScreen(parseViewQuery('?pattern=plant_forward&food=ultra_processed')), 'explore');
   assert.equal(resolveScreen(parseViewQuery('?pattern=plant_forward&node=soy')), 'explore');
   assert.equal(resolveScreen(parseViewQuery('?pattern=plant_forward&mechanism=chronic_inflammation')), 'explore');
-  assert.equal(resolveScreen(parseViewQuery('?screen=compare&pattern=lacto_ovo&hide=1')), 'compare');
+  assert.equal(resolveScreen(parseViewQuery('?screen=compare&pattern=lacto_ovo&hide=1')), 'pattern');
+  assert.equal(parseViewQuery('?screen=compare&hide=1').pattern, 'vegan_diet');
   assert.equal(parseViewQuery('?screen=compare&hide=1').hideUnmatched, false);
   assert.equal(parseViewQuery('?screen=pattern&pattern=lacto_ovo&hide=1&disease=cardiometabolic').hideUnmatched, false);
   assert.equal(parseViewQuery('?screen=pattern&pattern=lacto_ovo&disease=cardiometabolic').disease, 'cardiometabolic');
