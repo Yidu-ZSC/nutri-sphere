@@ -1,6 +1,6 @@
 import { linkIsFocused } from '../lib/focus';
 import { LABEL_HOME_COLUMN, columnIndex, type LayoutMode } from '../lib/layout';
-import type { GraphData, Selection, SimLink, SimNode, ViewLayer } from '../types/graph';
+import type { GraphData, Selection, SimLink, SimNode } from '../types/graph';
 
 export type DrawLink = SimLink & { graphIndex: number };
 
@@ -10,7 +10,6 @@ export interface SceneCommonProps {
   links: DrawLink[];
   focusIds: ReadonlySet<string> | null;
   selection: Selection | null;
-  layer: ViewLayer;
   layout: LayoutMode;
   compact: boolean;
   anchorId: string | null;

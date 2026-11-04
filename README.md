@@ -15,7 +15,7 @@ See `docs/PROJECT_VISION.md` for the full product positioning.
 
 ## Current Status
 
-Phase 1 web app lives in `src/` (React + Vite + TypeScript). The default first screen is a theme lobby of common health topics. Choosing a topic opens a 2D hierarchical pathway (`react-force-graph-2d`); 3D exploration (`react-force-graph-3d`) stays optional and is not the default. The app loads the aligned seed graph, with search, disease/mechanism filters, layperson/expert layers, an evidence drawer, and a permanent disclaimer.
+Phase 1 web app lives in `src/` (React + Vite + TypeScript). The default first screen is a theme lobby of common health topics. Choosing a topic opens a 2D hierarchical pathway (`react-force-graph-2d`); 3D exploration (`react-force-graph-3d`) stays optional and is not the default. The app loads the aligned seed graph, with search, disease/mechanism filters, an evidence drawer (technical details under 「更多说明」), and a permanent disclaimer.
 
 The original single-file viewer remains at `prototype/index.html` for comparison. See `prototype/README.md`.
 
@@ -63,11 +63,10 @@ The page has two states. `screen` is not the graph projection; `view` remains `2
 | --- | --- |
 | `screen` | `home` or `explore`. Missing `screen` means `home`, unless `disease`, `mechanism`, `node`, `link`, or a known `theme` is present — those open `explore`. An explicit `screen=home` stays on the lobby. |
 | `theme` | Theme id matching `[a-z0-9_-]+`. It maps to a disease and/or mechanism filter when those params are absent. Unknown ids are ignored. The lobby does not write `theme` back into the URL. |
-| `layer` | `layperson` or `expert` only. Any other value, including a third layer, is ignored. |
 | `view` | `2d` or `3d`. Written on `explore`. Unchanged: this is not the home/explore switch. |
 | `disease`, `mechanism`, `layout`, `hide`, `node`, `link` | `layout` defaults to hierarchy (`force` is explicit). `hide=1` hides nodes outside the theme filter. `hide=0` is the explicit off state. When explore has a `theme`, `disease`, or `mechanism` anchor and `hide` is omitted, hide defaults on. The home URL does not include `hide`. |
 
-Choosing a card on the lobby opens `explore` at 2D, hierarchy layout, with unmatched nodes hidden (`hide=1`). Theme copy lives in frontend constants (`src/lib/themes.ts`), not in the graph schema. The layperson layer keeps general edges (omitted audience counts as general) and summary mechanism nodes (omitted depth counts as summary). The expert layer shows every edge and mechanism depth. The default graph view stays 2D.
+Choosing a card on the lobby opens `explore` at 2D, hierarchy layout, with unmatched nodes hidden (`hide=1`). Theme copy lives in frontend constants (`src/lib/themes.ts`), not in the graph schema. All four columns (including mechanisms) stay visible; technical details live under the drawer 「更多说明」. Legacy `?layer=` share params are ignored. The default graph view stays 2D.
 
 ## Vision
 
@@ -77,7 +76,7 @@ Help ordinary people conveniently explore and understand diet ↔ health and die
 
 - Theme lobby and hierarchical pathway views for non-experts
 - Evidence-weighted edges with sources and limitations
-- Layperson / expert layers
+- Drawer 「更多说明」 for technical details
 - Search and filters
 - Continuous integration of public data sources
 

@@ -3,6 +3,28 @@ import test from 'node:test';
 import { findLinkIndex, parseViewQuery, resolveScreen, serializeViewQuery } from './shareUrl.ts';
 import { filtersFromShare, themeById } from './themes.ts';
 
+test('serialize never emits layer=; parse ignores legacy layer=', () => {
+  const query = serializeViewQuery({
+    screen: 'explore',
+    theme: 'fatty_liver',
+    disease: 'fatty_liver',
+    mechanism: null,
+    food: null,
+    pattern: null,
+    patterns: [],
+    layout: 'hierarchy',
+    view: '2d',
+    hideUnmatched: true,
+    node: null,
+    link: null,
+  });
+  assert.equal(query.includes('layer='), false);
+  const withLegacy = parseViewQuery(query + '&layer=expert');
+  assert.equal('layer' in withLegacy, false);
+  assert.equal(resolveScreen(withLegacy), 'explore');
+});
+
+
 test('share query round-trips the minimal filters', () => {
   const query = serializeViewQuery({
     screen: 'explore',
@@ -12,7 +34,6 @@ test('share query round-trips the minimal filters', () => {
     food: null,
     pattern: null,
     patterns: [],
-    layer: 'expert',
     layout: 'hierarchy',
     view: '2d',
     hideUnmatched: true,
@@ -24,8 +45,7 @@ test('share query round-trips the minimal filters', () => {
   assert.equal(parsed.theme, null);
   assert.equal(parsed.disease, 'cardiometabolic');
   assert.equal(parsed.mechanism, 'chronic_inflammation');
-  assert.equal(parsed.layer, 'expert');
-  assert.equal(parsed.layout, null);
+    assert.equal(parsed.layout, null);
   assert.equal(parsed.view, '2d');
   assert.equal(parsed.hideUnmatched, true);
   assert.equal(parsed.node, 'dietary_fiber');
@@ -38,8 +58,7 @@ test('force layout is explicit and bad ids are dropped', () => {
   const parsed = parseViewQuery('?layout=force&disease=../etc&layer=nope&link=gut_barrier_leak~lps');
   assert.equal(parsed.layout, 'force');
   assert.equal(parsed.disease, null);
-  assert.equal(parsed.layer, null);
-  assert.equal(parsed.link, 'gut_barrier_leak~lps');
+    assert.equal(parsed.link, 'gut_barrier_leak~lps');
   assert.equal(findLinkIndex([{ source: 'gut_barrier_leak', target: 'lps' }], parsed.link), 0);
   assert.equal(findLinkIndex([{ source: 'a', target: 'b' }], parsed.link), null);
 });
@@ -53,7 +72,6 @@ test('a node selection wins over a link in the serialized query', () => {
     food: null,
     pattern: null,
     patterns: [],
-    layer: 'layperson',
     layout: 'force',
     view: '3d',
     hideUnmatched: false,
@@ -71,8 +89,7 @@ test('a node selection wins over a link in the serialized query', () => {
 test('unknown view values are dropped', () => {
   const parsed = parseViewQuery('?view=table&layer=layperson');
   assert.equal(parsed.view, null);
-  assert.equal(parsed.layer, 'layperson');
-  assert.equal(resolveScreen(parsed), 'home');
+    assert.equal(resolveScreen(parsed), 'home');
 });
 
 test('default screen is home when the query has no deep link', () => {
@@ -88,7 +105,6 @@ test('default screen is home when the query has no deep link', () => {
     food: null,
     pattern: null,
     patterns: [],
-    layer: 'layperson',
     layout: 'hierarchy',
     view: '2d',
     hideUnmatched: true,
@@ -103,20 +119,20 @@ test('default screen is home when the query has no deep link', () => {
   assert.equal(resolveScreen(parseViewQuery(home)), 'home');
 });
 
-test('legacy layer=expert stays on layperson/expert and does not open the graph', () => {
+test('legacy ?layer= is ignored and does not restore a mode', () => {
   const parsed = parseViewQuery('?layer=expert');
-  assert.equal(parsed.layer, 'expert');
   assert.equal(parsed.view, null);
   assert.equal(parsed.screen, null);
   assert.equal(resolveScreen(parsed), 'home');
-  assert.equal(parseViewQuery('?layer=glance').layer, null);
+  assert.equal('layer' in parsed, false);
+  assert.equal(resolveScreen(parseViewQuery('?layer=glance')), 'home');
+  assert.equal(resolveScreen(parseViewQuery('?layer=layperson')), 'home');
 });
 
 test('legacy disease, node, and link deep links infer explore', () => {
   const disease = parseViewQuery('?disease=cardiometabolic&layer=expert');
   assert.equal(disease.disease, 'cardiometabolic');
-  assert.equal(disease.layer, 'expert');
-  assert.equal(disease.screen, null);
+    assert.equal(disease.screen, null);
   assert.equal(disease.view, null);
   assert.equal(resolveScreen(disease), 'explore');
   assert.equal(resolveScreen(parseViewQuery('?node=soy')), 'explore');
@@ -133,7 +149,6 @@ test('theme maps to a disease or mechanism filter and does not reuse view', () =
     food: null,
     pattern: null,
     patterns: [],
-    layer: 'layperson',
     layout: 'hierarchy',
     view: '2d',
     hideUnmatched: true,
@@ -174,7 +189,6 @@ test('hide=1 stays on and hide=0 stays off', () => {
     food: null,
     pattern: null,
     patterns: [],
-    layer: 'layperson',
     layout: 'hierarchy',
     view: '2d',
     hideUnmatched: false,
@@ -242,7 +256,6 @@ test('food themes serialize a food anchor and default hide on', () => {
     food: 'ultra_processed',
     pattern: null,
     patterns: ['plant_forward'],
-    layer: 'layperson',
     layout: 'hierarchy',
     view: '2d',
     hideUnmatched: true,
@@ -276,7 +289,7 @@ test('food themes serialize a food anchor and default hide on', () => {
 
 test('home pattern links keep the source theme and drop unknown ids', () => {
   const parsed = parseViewQuery(
-    '?screen=home&layer=layperson&theme=cardiometabolic&patterns=foo,plant_forward,lacto_ovo,plant_forward',
+    '?screen=home&theme=cardiometabolic&patterns=foo,plant_forward,lacto_ovo,plant_forward',
   );
   assert.equal(resolveScreen(parsed), 'home');
   assert.equal(parsed.hideUnmatched, false);
@@ -290,7 +303,6 @@ test('home pattern links keep the source theme and drop unknown ids', () => {
     food: null,
     pattern: null,
     patterns: parsed.patterns,
-    layer: 'layperson',
     layout: 'hierarchy',
     view: '2d',
     hideUnmatched: true,
@@ -315,7 +327,6 @@ function shareState(partial: Partial<import('./shareUrl.ts').ShareState> & { scr
     food: null,
     pattern: null,
     patterns: [],
-    layer: 'layperson',
     layout: 'hierarchy',
     view: '2d',
     hideUnmatched: false,
@@ -325,12 +336,11 @@ function shareState(partial: Partial<import('./shareUrl.ts').ShareState> & { scr
   };
 }
 
-test('pattern and compare screens serialize only screen, pattern, and layer', () => {
+test('pattern and compare screens serialize only screen and pattern', () => {
   const patternQuery = serializeViewQuery(
     shareState({
       screen: 'pattern',
       pattern: 'plant_forward',
-      layer: 'expert',
       theme: 'cardiometabolic',
       disease: 'cardiometabolic',
       food: 'ultra_processed',
@@ -342,12 +352,11 @@ test('pattern and compare screens serialize only screen, pattern, and layer', ()
       link: 'soy~angiogenesis_defense',
     }),
   );
-  assert.equal(patternQuery, '?screen=pattern&pattern=vegan_diet&layer=expert');
+  assert.equal(patternQuery, '?screen=pattern&pattern=vegan_diet');
   const parsed = parseViewQuery(patternQuery);
   assert.equal(parsed.screen, 'pattern');
   assert.equal(parsed.pattern, 'vegan_diet');
-  assert.equal(parsed.layer, 'expert');
-  assert.equal(parsed.hideUnmatched, false);
+    assert.equal(parsed.hideUnmatched, false);
   assert.equal(parsed.disease, null);
   assert.equal(parsed.node, null);
   assert.deepEqual(parsed.patterns, []);
@@ -357,14 +366,13 @@ test('pattern and compare screens serialize only screen, pattern, and layer', ()
     shareState({
       screen: 'compare',
       pattern: 'lacto_ovo',
-      layer: 'layperson',
       patterns: ['plant_forward'],
       theme: 'cardiometabolic',
       hideUnmatched: true,
       disease: 'cardiometabolic',
     }),
   );
-  assert.equal(compareQuery, '?screen=pattern&pattern=vegan_diet&layer=layperson');
+  assert.equal(compareQuery, '?screen=pattern&pattern=vegan_diet');
   const compare = parseViewQuery(compareQuery);
   assert.equal(resolveScreen(compare), 'pattern');
   assert.equal(compare.pattern, 'vegan_diet');
@@ -433,13 +441,11 @@ test('twin screen is explicit and does not carry explore anchors', () => {
   const parsed = parseViewQuery('?screen=twin&layer=expert&node=soy&theme=plant-based&hide=1&disease=cardiometabolic');
   assert.equal(parsed.screen, 'twin');
   assert.equal(resolveScreen(parsed), 'twin');
-  assert.equal(parsed.layer, 'expert');
-  assert.equal(parsed.hideUnmatched, false);
+    assert.equal(parsed.hideUnmatched, false);
   assert.equal(parsed.node, 'soy');
   const query = serializeViewQuery(
     shareState({
       screen: 'twin',
-      layer: 'layperson',
       theme: 'plant-based',
       disease: 'cardiometabolic',
       food: 'ultra_processed',
@@ -452,7 +458,7 @@ test('twin screen is explicit and does not carry explore anchors', () => {
       layout: 'force',
     }),
   );
-  assert.equal(query, '?screen=twin&layer=layperson');
+  assert.equal(query, '?screen=twin');
   assert.equal(resolveScreen(parseViewQuery(query)), 'twin');
   assert.equal(parseViewQuery('?screen=twin').hideUnmatched, false);
   assert.equal(resolveScreen(parseViewQuery('?screen=twin&pattern=plant_forward')), 'twin');

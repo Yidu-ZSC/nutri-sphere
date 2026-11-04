@@ -11,7 +11,6 @@ import { SearchBar } from './components/SearchBar';
 import { ThemeBar } from './components/ThemeBar';
 import { ThemeLobby } from './components/ThemeLobby';
 import { ThemeOptions, ThemeSwitcher } from './components/ThemeSwitcher';
-import { ViewLayerToggle } from './components/ViewLayerToggle';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import { evidenceCounts, visibleGraphStats } from './lib/copy';
 import {
@@ -28,10 +27,6 @@ import { effectiveFocusIds, focusedNodeIds, isFocusEmpty } from './lib/focus';
 import { readGraphView, writeGraphView, type GraphView } from './lib/graphView';
 import { twinExploreTarget, type TwinIndicatorId } from './lib/dietTwin';
 import {
-  isLaypersonThemeEmpty,
-  layerHint,
-  LAYPERSON_THEME_EMPTY,
-  nodeKeptOnLayperson,
   renderVisibleGraph,
 } from './lib/layerFilter';
 import type { LayoutMode } from './lib/layout';
@@ -50,14 +45,12 @@ import {
 import { EXPLORE_THEMES, filtersFromShare, themeById, themeForFilters, type ExploreTheme } from './lib/themes';
 import { selectionPinIds } from './lib/visibility';
 import { applyTheme, readTheme, writeTheme, type AppTheme } from './lib/themePreference';
-import { readViewLayer, writeViewLayer } from './lib/viewLayer';
-import type { GraphData, Selection, ViewLayer } from './types/graph';
+import type { GraphData, Selection } from './types/graph';
 
 interface ExploreSnapshot {
   diseaseId: string | null;
   mechanismId: string | null;
   foodId: string | null;
-  layer: ViewLayer;
   layout: LayoutMode;
   graphView: GraphView;
   hideUnmatched: boolean;
@@ -84,7 +77,6 @@ export function App() {
   const screenRef = useRef(screen);
   screenRef.current = screen;
   const pendingTwin = useRef<TwinIndicatorId | null>(null);
-  const [layer, setLayer] = useState<ViewLayer>(() => initialQuery.current.layer ?? readViewLayer());
   const [layout, setLayout] = useState<LayoutMode>(() => initialQuery.current.layout ?? 'hierarchy');
   const [graphView, setGraphView] = useState<GraphView>(() => {
     if (initialQuery.current.view) return initialQuery.current.view;
@@ -164,10 +156,6 @@ export function App() {
       cancelled = true;
     };
   }, [attempt]);
-
-  useEffect(() => {
-    writeViewLayer(layer);
-  }, [layer]);
 
   useEffect(() => {
     writeGraphView(graphView);
@@ -263,7 +251,6 @@ export function App() {
       food: exploring ? safeFood : null,
       pattern: screen === 'pattern' ? patternId : null,
       patterns: screen === 'home' ? patterns : [],
-      layer,
       layout,
       view: graphView,
       hideUnmatched: exploring ? hideUnmatched : false,
@@ -277,7 +264,6 @@ export function App() {
     graph,
     graphView,
     hideUnmatched,
-    layer,
     layout,
     patternId,
     patternSourceTheme,
@@ -314,14 +300,13 @@ export function App() {
       focusIds,
       hideUnmatched,
       pinnedIds: pinned,
-      layer,
     });
     return {
       nodeIds: view.nodeIds,
       links: view.links,
       linkIndices: new Set(view.links.map((link) => link.graphIndex)),
     };
-  }, [focusIds, graph, hideUnmatched, layer, selection]);
+  }, [focusIds, graph, hideUnmatched, selection]);
 
   useEffect(() => {
     if (!graph || !rendered || !selection) return;
@@ -472,7 +457,6 @@ export function App() {
     diseaseId: safeDisease,
     mechanismId: safeMechanism,
     foodId: safeFood,
-    layer,
     layout,
     graphView,
     hideUnmatched,
@@ -525,8 +509,6 @@ export function App() {
         setFoodId(null);
         setHideUnmatched(false);
       }
-      const node = graph?.nodes.find((item) => item.id === target.nodeId);
-      if (node && !nodeKeptOnLayperson(node)) setLayer('expert');
       setLayout('hierarchy');
       setGraphView('2d');
       selectNode(target.nodeId);
@@ -548,7 +530,6 @@ export function App() {
     setDiseaseId(snapshot.diseaseId);
     setMechanismId(snapshot.mechanismId);
     setFoodId(snapshot.foodId);
-    setLayer(snapshot.layer);
     setLayout(snapshot.layout);
     setGraphView(snapshot.graphView);
     setHideUnmatched(snapshot.hideUnmatched);
@@ -567,7 +548,6 @@ export function App() {
       diseaseId: safeDisease,
       mechanismId: safeMechanism,
       foodId: safeFood,
-      layer,
       layout,
       graphView,
       hideUnmatched,
@@ -590,8 +570,7 @@ export function App() {
       setDiseaseId(snapshot.diseaseId);
       setMechanismId(snapshot.mechanismId);
       setFoodId(snapshot.foodId);
-      setLayer(snapshot.layer);
-      setLayout(snapshot.layout);
+        setLayout(snapshot.layout);
       setGraphView(snapshot.graphView);
       setHideUnmatched(snapshot.hideUnmatched);
       setClickFocusId(null);
@@ -622,19 +601,9 @@ export function App() {
 
   const filterEmpty = graph != null && isFocusEmpty(focusIds, graph.nodes.map((node) => node.id));
   const showThemeEmpty = !safeDisease && !safeMechanism && !safeFood;
-  const laypersonThemeEmpty =
-    graph != null &&
-    rendered != null &&
-    isLaypersonThemeEmpty(
-      layer,
-      focusIds,
-      rendered.nodeIds,
-      graph.nodes.map((node) => node.id),
-    );
   const themeHintShown = themeHintVisible({
     noTheme: showThemeEmpty,
     filterEmpty,
-    laypersonThemeEmpty,
     clickFocusId,
     hasSelection: selection != null,
     dismissed: themeHintDismissed,
@@ -701,7 +670,6 @@ export function App() {
           </div>
         )}
         <div className="header-actions">
-          {exploring && !mobile && <ViewLayerToggle layer={layer} onChange={setLayer} />}
           {exploring && (
             <button
               type="button"
@@ -728,7 +696,6 @@ export function App() {
               {moreOpen && (
                 <div id="more-panel" className="more-panel" data-testid="more-panel" role="menu">
                   {exploring && viewControls}
-                  <ViewLayerToggle layer={layer} onChange={setLayer} />
                   {rotateControl}
                   {copyControl}
                   <ThemeOptions theme={appTheme} onChange={onAppTheme} />
@@ -737,17 +704,11 @@ export function App() {
             </div>
           ) : exploring ? null : (
             <>
-              <ViewLayerToggle layer={layer} onChange={setLayer} />
               {copyControl}
             </>
           )}
           {!mobile && <ThemeSwitcher theme={appTheme} onChange={onAppTheme} />}
         </div>
-        {!(exploring && graph) && (
-          <p className="layer-hint" data-testid="layer-hint" role="status">
-            {layerHint(layer)}
-          </p>
-        )}
       </header>
 
       <div
@@ -816,7 +777,6 @@ export function App() {
                 mechanisms={mechanisms}
                 diseaseId={safeDisease}
                 mechanismId={safeMechanism}
-                layer={layer}
                 onDisease={selectDisease}
                 onMechanism={selectMechanism}
                 onClear={clearFilters}
@@ -825,9 +785,6 @@ export function App() {
                 {viewControls}
                 {rotateControl}
                 {copyControl}
-                <p className="layer-hint" data-testid="layer-hint" role="status">
-                  {layerHint(layer)}
-                </p>
               </div>
             </aside>
             <div className="stage-main" data-testid="explore-screen">
@@ -835,7 +792,6 @@ export function App() {
                 graph={graph}
                 focusIds={brightFocusIds}
                 selection={selection}
-                layer={layer}
                 layout={layout}
                 graphView={graphView}
                 shownNodeIds={rendered.nodeIds}
@@ -913,25 +869,11 @@ export function App() {
                   </button>
                 </div>
               )}
-              {laypersonThemeEmpty && (
-                <div className="empty-layperson" role="status" data-testid="layperson-empty">
-                  <p>{LAYPERSON_THEME_EMPTY}</p>
-                  <button
-                    type="button"
-                    className="btn btn--primary"
-                    data-testid="switch-expert"
-                    onClick={() => setLayer('expert')}
-                  >
-                    切换专家层
-                  </button>
-                </div>
-              )}
             </div>
             {selection && (
               <DetailDrawer
                 graph={graph}
                 selection={selection}
-                layer={layer}
                 mobile={mobile}
                 evidenceCounts={counts}
                 visibleLinkIndices={rendered.linkIndices}

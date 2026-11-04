@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { LABEL_HOME_COLUMN, columnIndex, linkDegrees, placeNodes } from '../lib/layout';
 import type { GraphView } from '../lib/graphView';
-import type { GraphData, GraphLink, Selection, SimNode, ViewLayer } from '../types/graph';
+import type { GraphData, GraphLink, Selection, SimNode } from '../types/graph';
 import type { LayoutMode } from '../lib/layout';
 import { GraphScene2D } from './GraphScene2D';
 import { GraphScene3D } from './GraphScene3D';
@@ -11,7 +11,6 @@ interface GraphCanvasProps {
   graph: GraphData;
   focusIds: ReadonlySet<string> | null;
   selection: Selection | null;
-  layer: ViewLayer;
   layout: LayoutMode;
   graphView: GraphView;
   shownNodeIds: ReadonlySet<string>;
@@ -28,7 +27,6 @@ export function GraphCanvas({
   graph,
   focusIds,
   selection,
-  layer,
   layout,
   graphView,
   shownNodeIds,
@@ -106,8 +104,7 @@ export function GraphCanvas({
     links: simData.links,
     focusIds,
     selection,
-    layer,
-    layout,
+      layout,
     compact,
     anchorId,
     framedNode,

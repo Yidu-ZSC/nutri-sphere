@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import ForceGraph3D, { type ForceGraphMethods } from 'react-force-graph-3d';
 import * as THREE from 'three';
 import SpriteText from 'three-spritetext';
-import { directionLabel, evidenceLabel, nodeTypeLabel } from '../lib/copy';
 import { LABEL_FONT } from '../lib/labelText';
 import {
   COLUMN_Y_GAP,
@@ -84,7 +83,6 @@ export function GraphScene3D(props: GraphScene3DProps) {
   const framedKey = useRef('');
   const [hold, setHold] = useState(false);
 
-  const layerRef = useRef(props.layer);
   const selectionRef = useRef(props.selection);
   const compactRef = useRef(props.compact);
   const layoutRef = useRef(props.layout);
@@ -93,7 +91,6 @@ export function GraphScene3D(props: GraphScene3DProps) {
   const paintNodeRef = useRef<(id: string) => void>(() => {});
   const degreeRef = useRef(props.degrees);
   const nodeByIdRef = useRef(new Map<string, SimNode>());
-  layerRef.current = props.layer;
   selectionRef.current = props.selection;
   compactRef.current = props.compact;
   layoutRef.current = props.layout;
@@ -119,7 +116,6 @@ export function GraphScene3D(props: GraphScene3DProps) {
       if (!visual || !node) return;
       const bright = brightNodeRef.current(id);
       const selected = selectedNode(id);
-      const expert = props.layer === 'expert';
       const scale = nodeScale(degreeRef.current.get(id) ?? 0, node.type, selected);
       visual.mesh.scale.setScalar(scale);
       const color = semanticColor(node.group);
@@ -128,8 +124,8 @@ export function GraphScene3D(props: GraphScene3DProps) {
       visual.material.opacity = bright ? 0.96 : DIM_3D_NODE;
       visual.material.emissiveIntensity = selected ? 0.42 : bright ? 0.12 : 0.03;
       const height = labelTextHeight(selected, bright) * 0.92;
-      const text = expert ? `${node.label}\n${node.type}` : node.label;
-      const lines = expert ? 2 : 1;
+      const text = node.label;
+      const lines = 1;
       const focusY = props.framedNode?.layoutY ?? props.framedNode?.y;
       const show = labelShouldShow({
         compact: props.compact,
@@ -150,7 +146,7 @@ export function GraphScene3D(props: GraphScene3DProps) {
       const worldHeight = height * lines + 0.7;
       visual.sprite.position.y = scale * 1.05 + worldHeight * 0.5 + 0.35;
     },
-    [props.compact, props.framedNode, props.homeColumn, props.layer, selectedNode],
+    [props.compact, props.framedNode, props.homeColumn, selectedNode],
   );
   paintNodeRef.current = paintNode;
 
@@ -194,8 +190,7 @@ export function GraphScene3D(props: GraphScene3DProps) {
     mesh.frustumCulled = false;
     group.add(mesh);
 
-    const expert = layerRef.current === 'expert';
-    const sprite = new SpriteText(expert ? `${node.label}\n${node.type}` : node.label);
+    const sprite = new SpriteText(node.label);
     sprite.color = '#f4f7fb';
     sprite.backgroundColor = 'rgba(8, 12, 18, 0.9)';
     sprite.padding = 0.55;
@@ -390,9 +385,6 @@ export function GraphScene3D(props: GraphScene3DProps) {
       nodeOpacity={1}
       nodeLabel={(node) => {
         const typed = node as SimNode;
-        if (layerRef.current === 'expert') {
-          return `${typed.label}\n${nodeTypeLabel(typed.type)} · ${typed.type}\n分组 ${typed.group}`;
-        }
         return typed.label;
       }}
       nodeThreeObject={(node) => nodeThreeObject(node as SimNode)}
@@ -412,9 +404,6 @@ export function GraphScene3D(props: GraphScene3DProps) {
       linkOpacity={LINK_OPACITY_3D}
       linkLabel={(link) => {
         const typed = link as DrawLink;
-        if (layerRef.current === 'expert') {
-          return `${typed.relation}\n${directionLabel(typed.direction)} · ${typed.direction}\n${evidenceLabel(typed.evidence_type)}`;
-        }
         return typed.relation;
       }}
       linkDirectionalParticles={(link) => {

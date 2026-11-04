@@ -1,5 +1,3 @@
-import type { ViewLayer } from '../types/graph';
-
 /** Educational disclaimer. Do not add diagnostic or treatment claims. */
 export const DISCLAIMER_TEXT =
   '免责声明：ClearDiet 是帮助了解日常饮食与健康主题之间关系的教育工具，不提供诊断、治疗方案或个性化医疗建议。系统中信息主要来自正版图书与公开资料中的机制/观察描述，存在局限，不能替代执业医师或注册营养专业人员的意见。健康决策请咨询具备资质的专业人员。';
@@ -175,7 +173,26 @@ export function evidenceAssurance(type: string, strength: string | undefined): s
   return `${strengthText} · ${badge}`;
 }
 
-export function withEnum(vernacular: string, raw: string, layer: ViewLayer): string {
-  if (layer === 'expert') return `${vernacular} · ${raw}`;
+const AUDIENCES: Record<string, string> = {
+  general: '通俗说明',
+  deep_reader: '深入阅读',
+};
+
+const DEPTHS: Record<string, string> = {
+  summary: '概要',
+  mechanism: '机制',
+  technical: '技术细节',
+};
+
+export function audienceLabel(value: string): string {
+  return AUDIENCES[value] ?? value;
+}
+
+export function mechanismDepthLabel(value: string): string {
+  return DEPTHS[value] ?? value;
+}
+
+/** Labels stay vernacular-only; raw enum is not appended (ViewLayer retired). */
+export function withEnum(vernacular: string, _raw?: string): string {
   return vernacular;
 }

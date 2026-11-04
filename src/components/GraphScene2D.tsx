@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef } from 'react';
 import ForceGraph2D, { type ForceGraphMethods } from 'react-force-graph-2d';
-import { directionLabel, evidenceLabel, nodeTypeLabel } from '../lib/copy';
 import { COLUMN_Y_GAP, frameGraph2d, columnIndex } from '../lib/layout';
 import { particleCount, styledLinkWidth } from '../lib/linkStyle';
 import { labelShouldShow } from '../lib/nodeStyle';
@@ -33,8 +32,6 @@ export function GraphScene2D(props: SceneCommonProps) {
       degree: props.degrees.get(node.id) ?? 0,
       selected,
       bright,
-      expert: props.layer === 'expert',
-      typeLabel: nodeTypeLabel(node.type),
       showLabel: labelShouldShow({
         compact: props.compact,
         bright,
@@ -119,22 +116,12 @@ export function GraphScene2D(props: SceneCommonProps) {
   }, [props.layout, props.nodes, props.links]);
 
   const nodeLabel = useMemo(() => {
-    return (node: SimNode) => {
-      if (props.layer === 'expert') {
-        return `${node.label}\n${nodeTypeLabel(node.type)} · ${node.type}\n分组 ${node.group}`;
-      }
-      return node.label;
-    };
-  }, [props.layer]);
+    return (node: SimNode) => node.label;
+  }, []);
 
   const linkLabel = useMemo(() => {
-    return (link: DrawLink) => {
-      if (props.layer === 'expert') {
-        return `${link.relation}\n${directionLabel(link.direction)} · ${link.direction}\n${evidenceLabel(link.evidence_type)}`;
-      }
-      return link.relation;
-    };
-  }, [props.layer]);
+    return (link: DrawLink) => link.relation;
+  }, []);
 
   return (
     <ForceGraph2D

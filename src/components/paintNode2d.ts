@@ -16,8 +16,6 @@ export interface PaintedNode {
   selected: boolean;
   bright: boolean;
   showLabel: boolean;
-  expert: boolean;
-  typeLabel: string;
 }
 
 export function nodeRadius(degree: number, type: string, selected: boolean): number {
@@ -101,7 +99,6 @@ function measureLabel(ctx: CanvasRenderingContext2D, node: PaintedNode): LabelBo
   const fontPx = fittedFont(ctx, node.label, node.selected ? FONT * 1.12 : FONT);
   ctx.font = `600 ${fontPx}px ${LABEL_FONT}`;
   const lines = [node.label];
-  if (node.expert) lines.push(node.typeLabel);
   const lineH = fontPx * 1.2;
   const padX = fontPx * 0.46;
   const padY = fontPx * 0.32;

@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState, type PointerEvent } from 'react';
+import { useEffect, useRef, useState, type PointerEvent, type ReactNode } from 'react';
 import {
+  audienceLabel,
   directionLabel,
   evidenceAssurance,
   evidenceBadge,
@@ -9,6 +10,7 @@ import {
   evidenceTrack,
   EVIDENCE_LADDER,
   groupLabel,
+  mechanismDepthLabel,
   nodeTypeLabel,
   strengthLabel,
   withEnum,
@@ -17,12 +19,11 @@ import {
 import { DIET_PATTERN_CARDS, type DietPatternCard } from '../lib/dietPatterns';
 import { PATTERN_SHELL } from '../lib/dietPatternDetails';
 import { semanticColor } from '../lib/palette';
-import type { GraphCitation, GraphData, GraphLink, GraphNode, Selection, ViewLayer } from '../types/graph';
+import type { GraphCitation, GraphData, GraphLink, GraphNode, Selection } from '../types/graph';
 
 interface DetailDrawerProps {
   graph: GraphData;
   selection: Selection;
-  layer: ViewLayer;
   mobile: boolean;
   evidenceCounts: Record<string, number>;
   visibleLinkIndices: ReadonlySet<number>;
@@ -74,19 +75,19 @@ function formatUnknown(value: unknown): string | null {
   }
 }
 
-function ExcerptBlock({ text, full }: { text: string | undefined; full: boolean }) {
+function ExcerptBlock({ text }: { text: string | undefined }) {
   const [expanded, setExpanded] = useState(false);
-  useEffect(() => setExpanded(false), [text, full]);
+  useEffect(() => setExpanded(false), [text]);
   if (!text) return null;
   const limit = 48;
-  const folded = !full && text.length > limit && !expanded;
+  const folded = text.length > limit && !expanded;
   const shown = folded ? `${text.slice(0, limit)}…` : text;
   return (
     <div data-testid="link-excerpt">
       <dt>摘录</dt>
       <dd>
         <p className="excerpt">{shown}</p>
-        {!full && text.length > limit && (
+        {text.length > limit && (
           <button type="button" className="linkish" onClick={() => setExpanded((value) => !value)}>
             {expanded ? '收起摘录' : '展开摘录'}
           </button>
@@ -96,10 +97,10 @@ function ExcerptBlock({ text, full }: { text: string | undefined; full: boolean 
   );
 }
 
-function endpointLabel(graph: GraphData, id: string, layer: ViewLayer): string {
+function endpointLabel(graph: GraphData, id: string): string {
   const node = graph.nodes.find((item) => item.id === id);
   if (!node) return id;
-  return layer === 'expert' ? `${node.label} · ${node.id}` : node.label;
+  return node.label;
 }
 
 function relatedLinks(
@@ -115,45 +116,68 @@ function relatedLinks(
     );
 }
 
+function MoreDetail({ children }: { children: ReactNode }) {
+  return (
+    <details className="more-detail" data-testid="more-detail">
+      <summary>更多说明</summary>
+      {children}
+    </details>
+  );
+}
+
 function NodeBody({
   graph,
   node,
-  layer,
   visibleLinkIndices,
   onSelectLink,
 }: {
   graph: GraphData;
   node: GraphNode;
-  layer: ViewLayer;
   visibleLinkIndices: ReadonlySet<number>;
   onSelectLink: (index: number) => void;
 }) {
-  const expert = layer === 'expert';
   const links = relatedLinks(graph, node.id, visibleLinkIndices);
+  const depth = node.mechanism_depth;
+  const sources = formatUnknown(node.sources);
+  const metadata = formatUnknown(node.metadata);
+  const hasMore = Boolean(node.id) || Boolean(sources) || Boolean(metadata) || Boolean(depth);
   return (
     <>
       <p className="kicker">节点</p>
       <h2>{node.label}</h2>
       <dl className="fields">
-        {expert && <Field label="id" testId="node-id" children={node.id} />}
         <div>
           <dt>类型</dt>
-          <dd>{withEnum(nodeTypeLabel(node.type), node.type, layer)}</dd>
+          <dd>{withEnum(nodeTypeLabel(node.type), node.type)}</dd>
         </div>
         <div>
           <dt>分组</dt>
           <dd className="inline">
             <Swatch value={node.group} />
-            {withEnum(groupLabel(node.group), node.group, layer)}
+            {withEnum(groupLabel(node.group), node.group)}
           </dd>
         </div>
         <Field label="说明" children={node.description} />
-        {(expert || (node.aliases && node.aliases.length > 0)) && (
-          <Field label="别名" children={node.aliases?.join('、')} />
+        {node.aliases && node.aliases.length > 0 && (
+          <Field label="别名" children={node.aliases.join('、')} />
         )}
-        {expert && <Field label="来源" children={formatUnknown(node.sources)} />}
-        {expert && <Field label="metadata" children={formatUnknown(node.metadata)} />}
       </dl>
+      {hasMore && (
+        <MoreDetail>
+          <dl className="fields">
+            <Field label="id" testId="node-id" children={node.id} />
+            <Field label="来源" children={sources} />
+            <Field label="metadata" children={metadata} />
+            {depth ? (
+              <Field
+                label="说明深度"
+                testId="node-mechanism-depth"
+                children={mechanismDepthLabel(depth)}
+              />
+            ) : null}
+          </dl>
+        </MoreDetail>
+      )}
       {links.length > 0 && (
         <section className="related" aria-label="相关关联">
           <h3>相关关联</h3>
@@ -170,7 +194,7 @@ function NodeBody({
                     <span className="muted">
                       {directionLabel(link.direction)} · {evidenceBadge(link.evidence_type)}
                       {evidenceTrack(link.evidence_type) === 'literature' ? ' · 文献' : ''} ·{' '}
-                      {endpointLabel(graph, otherId, layer)}
+                      {endpointLabel(graph, otherId)}
                     </span>
                   </button>
                 </li>
@@ -244,48 +268,37 @@ function CitationBlock({ citation }: { citation: GraphCitation }) {
   );
 }
 
-function CitationDisclosure({ citation, layer }: { citation: GraphCitation; layer: ViewLayer }) {
-  const expert = layer === 'expert';
-  return (
-    <details key={layer} className="citation-fold" data-testid="citation-details" open={expert}>
-      <summary>{expert ? '文献' : '文献详情'}</summary>
-      <CitationBlock citation={citation} />
-    </details>
-  );
-}
-
 function LinkBody({
   graph,
   link,
-  layer,
   counts,
   onSelectNode,
 }: {
   graph: GraphData;
   link: GraphLink;
-  layer: ViewLayer;
   counts: Record<string, number>;
   onSelectNode: (id: string) => void;
 }) {
-  const expert = layer === 'expert';
   const known = new Set(EVIDENCE_LADDER.map((step) => step.id));
   const extras = Object.keys(counts).filter((id) => !known.has(id));
+  const sourceNode = graph.nodes.find((item) => item.id === link.source);
+  const targetNode = graph.nodes.find((item) => item.id === link.target);
   return (
     <>
       <p className="kicker">关联证据</p>
       <h2>{link.relation}</h2>
       <p className="endpoints">
         <button type="button" className="linkish" onClick={() => onSelectNode(link.source)}>
-          {endpointLabel(graph, link.source, layer)}
+          {endpointLabel(graph, link.source)}
         </button>
         <span aria-hidden="true"> → </span>
         <button type="button" className="linkish" onClick={() => onSelectNode(link.target)}>
-          {endpointLabel(graph, link.target, layer)}
+          {endpointLabel(graph, link.target)}
         </button>
       </p>
       <div className="evidence-card" data-testid="evidence-card">
         <dl className="fields">
-          <ExcerptBlock text={link.excerpt} full={expert} />
+          <ExcerptBlock text={link.excerpt} />
           <SourceFile name={link.source_file ?? '未注明'} />
           {link.citation?.title ? <Field label="文献标题" children={link.citation.title} /> : null}
         </dl>
@@ -307,52 +320,71 @@ function LinkBody({
             {strengthLabel(link.strength)}
           </span>
         </div>
-        <p className="assurance">{evidenceAssurance(link.evidence_type, link.strength)}</p>
-        {link.citation ? <CitationDisclosure citation={link.citation} layer={layer} /> : null}
-        {expert && (
+        <MoreDetail>
+          <p className="assurance">{evidenceAssurance(link.evidence_type, link.strength)}</p>
           <dl className="fields">
             <Field label="证据类型说明" children={evidenceDetail(link.evidence_type)} />
           </dl>
-        )}
-        <details className="ladder">
-          <summary>证据类型说明</summary>
-          <ul>
-            {EVIDENCE_LADDER.map((step) => (
-              <li key={step.id} className={step.id === link.evidence_type ? 'is-current' : undefined}>
-                <span>{step.badge}</span>
-                <span className="muted">{evidenceStatus(step.id, counts)}</span>
-              </li>
-            ))}
-            {extras.map((id) => (
-              <li key={id} className={id === link.evidence_type ? 'is-current' : undefined}>
-                <span>{evidenceBadge(id)}</span>
-                <span className="muted">{evidenceStatus(id, counts)}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="muted">这些名称只说明资料来源，不是临床等级。</p>
-        </details>
+          {link.citation ? <CitationBlock citation={link.citation} /> : null}
+          {link.audience ? (
+            <dl className="fields">
+              <Field label="读者对象" children={audienceLabel(link.audience)} />
+            </dl>
+          ) : null}
+          {(sourceNode?.mechanism_depth || targetNode?.mechanism_depth) && (
+            <dl className="fields">
+              {sourceNode?.mechanism_depth ? (
+                <Field
+                  label={`${sourceNode.label} · 说明深度`}
+                  children={mechanismDepthLabel(sourceNode.mechanism_depth)}
+                />
+              ) : null}
+              {targetNode?.mechanism_depth ? (
+                <Field
+                  label={`${targetNode.label} · 说明深度`}
+                  children={mechanismDepthLabel(targetNode.mechanism_depth)}
+                />
+              ) : null}
+            </dl>
+          )}
+          <details className="ladder">
+            <summary>证据类型一览</summary>
+            <ul>
+              {EVIDENCE_LADDER.map((step) => (
+                <li key={step.id} className={step.id === link.evidence_type ? 'is-current' : undefined}>
+                  <span>{step.badge}</span>
+                  <span className="muted">{evidenceStatus(step.id, counts)}</span>
+                </li>
+              ))}
+              {extras.map((id) => (
+                <li key={id} className={id === link.evidence_type ? 'is-current' : undefined}>
+                  <span>{evidenceBadge(id)}</span>
+                  <span className="muted">{evidenceStatus(id, counts)}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="muted">这些名称只说明资料来源，不是临床等级。</p>
+          </details>
+          <dl className="fields" data-testid="expert-link-meta">
+            <Field label="边 id" testId="edge-id" children={link.id} />
+            <Field label="dose_response" testId="dose-response" children={link.dose_response} />
+            <Field label="population" testId="population" children={link.population} />
+            <Field label="direction" children={withEnum(directionLabel(link.direction), link.direction)} />
+            <Field
+              label="strength"
+              children={link.strength ? withEnum(strengthLabel(link.strength), link.strength) : '未注明'}
+            />
+            <Field
+              label="evidence_type"
+              children={withEnum(evidenceLabel(link.evidence_type), link.evidence_type)}
+            />
+            <Field label="note_id" children={link.note_id} />
+            <Field label="citation" children={formatUnknown(link.citation)} />
+            <Field label="weight" children={link.weight == null ? null : String(link.weight)} />
+            <Field label="metadata" children={formatUnknown(link.metadata)} />
+          </dl>
+        </MoreDetail>
       </div>
-      {expert && (
-        <dl className="fields" data-testid="expert-link-meta">
-          <Field label="边 id" testId="edge-id" children={link.id} />
-          <Field label="dose_response" testId="dose-response" children={link.dose_response} />
-          <Field label="population" testId="population" children={link.population} />
-          <Field label="direction" children={withEnum(directionLabel(link.direction), link.direction, layer)} />
-          <Field
-            label="strength"
-            children={link.strength ? withEnum(strengthLabel(link.strength), link.strength, layer) : '未注明'}
-          />
-          <Field
-            label="evidence_type"
-            children={withEnum(evidenceLabel(link.evidence_type), link.evidence_type, layer)}
-          />
-          <Field label="note_id" children={link.note_id} />
-          <Field label="citation" children={formatUnknown(link.citation)} />
-          <Field label="weight" children={link.weight == null ? null : String(link.weight)} />
-          <Field label="metadata" children={formatUnknown(link.metadata)} />
-        </dl>
-      )}
     </>
   );
 }
@@ -360,7 +392,6 @@ function LinkBody({
 export function DetailDrawer({
   graph,
   selection,
-  layer,
   mobile,
   evidenceCounts,
   visibleLinkIndices,
@@ -433,7 +464,6 @@ export function DetailDrawer({
           <NodeBody
             graph={graph}
             node={node}
-            layer={layer}
             visibleLinkIndices={visibleLinkIndices}
             onSelectLink={onSelectLink}
           />
@@ -442,7 +472,6 @@ export function DetailDrawer({
           <LinkBody
             graph={graph}
             link={link}
-            layer={layer}
             counts={evidenceCounts}
             onSelectNode={onSelectNode}
           />

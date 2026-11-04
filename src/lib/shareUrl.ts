@@ -3,7 +3,6 @@ import type { LayoutMode } from './layout';
 import { normalizeVeganDietPatternId, VEGAN_DIET_HUB_ID } from './dietPatternDetails.ts';
 import { knownPatternId, parsePatternList } from './patternLinks.ts';
 import { themeById } from './themes.ts';
-import type { ViewLayer } from '../types/graph';
 
 const ID = /^[a-z0-9_]+$/;
 const THEME_ID = /^[a-z0-9_-]+$/;
@@ -19,7 +18,6 @@ export interface ParsedShare {
   food: string | null;
   pattern: string | null;
   patterns: string[];
-  layer: ViewLayer | null;
   layout: LayoutMode | null;
   view: GraphView | null;
   hideUnmatched: boolean;
@@ -35,7 +33,6 @@ export interface ShareState {
   food: string | null;
   pattern: string | null;
   patterns: readonly string[];
-  layer: ViewLayer;
   layout: LayoutMode;
   view: GraphView;
   hideUnmatched: boolean;
@@ -46,11 +43,6 @@ export interface ShareState {
 function cleanId(value: string | null): string | null {
   if (!value || !ID.test(value)) return null;
   return value;
-}
-
-function parseLayer(value: string | null): ViewLayer | null {
-  if (value === 'layperson' || value === 'expert') return value;
-  return null;
 }
 
 function parseScreen(value: string | null): ScreenMode | null {
@@ -113,7 +105,6 @@ export function parseViewQuery(search: string): ParsedShare {
     food: cleanId(params.get('food')),
     pattern: knownPatternId(params.get('pattern')),
     patterns: parsePatternList(params.get('patterns')),
-    layer: parseLayer(params.get('layer')),
     layout: layout === 'hierarchy' || layout === 'force' ? layout : null,
     view: view === '2d' || view === '3d' ? view : null,
     hideUnmatched: false,
@@ -156,12 +147,10 @@ export function serializeViewQuery(state: ShareState): string {
     if (screen === 'pattern') {
       params.set('pattern', normalizeVeganDietPatternId(state.pattern) ?? VEGAN_DIET_HUB_ID);
     }
-    params.set('layer', state.layer);
     return `?${params.toString()}`;
   }
   const params = new URLSearchParams();
   params.set('screen', state.screen);
-  params.set('layer', state.layer);
   if (state.screen === 'explore') {
     if (state.theme) params.set('theme', state.theme);
     if (state.disease) params.set('disease', state.disease);
