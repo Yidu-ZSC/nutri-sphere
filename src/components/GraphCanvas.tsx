@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { LABEL_HOME_COLUMN, columnIndex, linkDegrees, placeNodes } from '../lib/layout';
 import type { GraphView } from '../lib/graphView';
 import type { GraphData, GraphLink, Selection, SimNode } from '../types/graph';
+import { canvasStageForTheme } from '../lib/canvasStage';
+import type { AppTheme } from '../lib/themePreference';
 import type { LayoutMode } from '../lib/layout';
 import { GraphScene2D } from './GraphScene2D';
 import { GraphScene3D } from './GraphScene3D';
@@ -21,6 +23,7 @@ interface GraphCanvasProps {
   onSelectNode: (id: string) => void;
   onSelectLink: (index: number) => void;
   onBackground: () => void;
+  appTheme: AppTheme;
 }
 
 export function GraphCanvas({
@@ -37,7 +40,9 @@ export function GraphCanvas({
   onSelectNode,
   onSelectLink,
   onBackground,
+  appTheme,
 }: GraphCanvasProps) {
+  const canvasStage = useMemo(() => canvasStageForTheme(appTheme), [appTheme]);
   const wrapRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ w: 0, h: 0 });
   const [webgl, setWebgl] = useState(true);
@@ -116,6 +121,7 @@ export function GraphCanvas({
     onSelectNode,
     onSelectLink,
     onBackground,
+    canvasStage,
   };
 
   const ready = size.w > 0 && size.h > 0 && simData.nodes.length > 0;
@@ -128,6 +134,8 @@ export function GraphCanvas({
       data-layout={layout}
       data-view={graphView}
       data-frame="columns"
+      data-canvas-theme={appTheme}
+      style={{ background: canvasStage.bg }}
     >
       {graphView === '3d' && !webgl && (
         <div className="banner banner--error" role="alert">

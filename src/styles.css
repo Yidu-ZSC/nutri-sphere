@@ -442,7 +442,11 @@ button { cursor: pointer; }
 .stage--explore .canvas-wrap {
   border-radius: var(--radius-panel);
   overflow: hidden;
-  box-shadow: var(--shadow-inset-canvas), 0 12px 40px rgba(0, 0, 0, 0.28);
+  background: var(--canvas-bg, #0a0c11);
+  box-shadow:
+    var(--shadow-inset-canvas),
+    0 12px 40px rgba(0, 0, 0, 0.28),
+    inset 0 0 100px var(--canvas-frame-glow, transparent);
 }
 
 .canvas-wrap, .canvas-wrap canvas { touch-action: none; }

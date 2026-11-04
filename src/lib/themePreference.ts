@@ -1,3 +1,5 @@
+import { applyCanvasStageCss } from './canvasStage.ts';
+
 export const THEME_STORAGE_KEY = 'cleardiet.theme';
 
 export const THEME_IDS = ['light', 'paper', 'stone', 'contrast'] as const;
@@ -72,9 +74,12 @@ export function writeTheme(theme: AppTheme, storage?: ThemeStorage | null): void
 
 export function applyTheme(
   theme: AppTheme,
-  root?: { setAttribute(name: string, value: string): void } | null,
+  root?: { setAttribute(name: string, value: string): void; style?: { setProperty(name: string, value: string): void } } | null,
 ): void {
   const target =
     root === undefined ? (typeof document !== 'undefined' ? document.documentElement : null) : root;
   target?.setAttribute('data-theme', theme);
+  if (target && 'style' in target && target.style) {
+    applyCanvasStageCss(theme, target as HTMLElement);
+  }
 }

@@ -41,7 +41,24 @@
             localStorage.setItem(key, 'light');
           }
         } catch (e) {}
+        var canvasBg = {
+          light: '#0a0c11',
+          paper: '#100e0b',
+          stone: '#08090f',
+          contrast: '#030304',
+        };
+        var canvasGlow = {
+          light: 'rgba(61, 110, 168, 0.14)',
+          paper: 'rgba(140, 100, 60, 0.12)',
+          stone: 'rgba(70, 95, 150, 0.16)',
+          contrast: 'rgba(255, 255, 255, 0.06)',
+        };
         document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.style.setProperty('--canvas-bg', canvasBg[theme] || canvasBg.light);
+        document.documentElement.style.setProperty(
+          '--canvas-frame-glow',
+          canvasGlow[theme] || canvasGlow.light,
+        );
       })();
     </script>
     <link

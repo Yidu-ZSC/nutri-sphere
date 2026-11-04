@@ -1,5 +1,6 @@
 import { linkIsFocused } from '../lib/focus';
 import { LABEL_HOME_COLUMN, columnIndex, type LayoutMode } from '../lib/layout';
+import type { CanvasStage } from '../lib/canvasStage';
 import type { GraphData, Selection, SimLink, SimNode } from '../types/graph';
 
 export type DrawLink = SimLink & { graphIndex: number };
@@ -19,6 +20,7 @@ export interface SceneCommonProps {
   size: { w: number; h: number };
   coarse: boolean;
   visibleKey: string;
+  canvasStage: CanvasStage;
   onSelectNode: (id: string) => void;
   onSelectLink: (index: number) => void;
   onBackground: () => void;

@@ -1,6 +1,8 @@
 :root {
   color-scheme: light;
-  /* UI shell only — graph canvas stays #0b0d12 via CANVAS_BG in palette.ts */
+  /* UI shell; graph canvas uses --canvas-bg from canvasStage.ts per data-theme */
+  --canvas-bg: #0a0c11;
+  --canvas-frame-glow: rgba(61, 110, 168, 0.14);
   --bg: #f4f4f5;
   --panel: #ffffff;
   --panel-solid: var(--panel);

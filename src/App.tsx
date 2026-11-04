@@ -1011,6 +1011,7 @@ export function App() {
                 onSelectNode={selectNode}
                 onSelectLink={selectLink}
                 onBackground={clearSelectionAndClickFocus}
+                appTheme={appTheme}
               />
               <button
                 type="button"

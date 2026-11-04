@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
+import { canvasStageForTheme } from './canvasStage.ts';
 import {
   THEME_IDS,
   THEME_OPTIONS,
@@ -77,14 +78,21 @@ test('illegal theme values fall back to light and are written back', () => {
 
 test('applyTheme sets data-theme on the document root', () => {
   const attrs = new Map<string, string>();
+  const cssProps = new Map<string, string>();
   const node = {
     setAttribute(name: string, value: string) {
       attrs.set(name, value);
+    },
+    style: {
+      setProperty(name: string, value: string) {
+        cssProps.set(name, value);
+      },
     },
   };
   for (const theme of THEME_IDS) {
     applyTheme(theme as AppTheme, node);
     assert.equal(attrs.get('data-theme'), theme);
+    assert.equal(cssProps.get('--canvas-bg'), canvasStageForTheme(theme as AppTheme).bg);
   }
 });
 
@@ -126,9 +134,10 @@ test('theme tokens keep direction colors and brand shared, and canvas stays dark
   assert.match(rootBlock, /--panel-solid:\s*var\(--panel\)/);
   assert.equal(tokens.includes('--card:'), false);
 
-  const palette = fs.readFileSync(path.join(root, 'src/lib/palette.ts'), 'utf8');
-  assert.match(palette, /export const CANVAS_BG = '#0b0d12'/);
-  assert.equal(palette.includes("CANVAS_BG = '#f8fafc'"), false);
+  const canvasStage = fs.readFileSync(path.join(root, 'src/lib/canvasStage.ts'), 'utf8');
+  assert.match(canvasStage, /export const CANVAS_BG = STAGES\.light\.bg/);
+  assert.match(canvasStage, /light:\s*\{[^}]*bg:\s*'#0a0c11'/);
+  assert.match(canvasStage, /paper:\s*\{[^}]*bg:\s*'#100e0b'/);
 
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   assert.match(html, /cleardiet\.theme/);

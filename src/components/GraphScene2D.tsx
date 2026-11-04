@@ -3,7 +3,7 @@ import ForceGraph2D, { type ForceGraphMethods } from 'react-force-graph-2d';
 import { COLUMN_Y_GAP, frameGraph2d, columnIndex } from '../lib/layout';
 import { particleCount, styledLinkWidth } from '../lib/linkStyle';
 import { labelShouldShow } from '../lib/nodeStyle';
-import { CANVAS_BG, colorWithAlpha, DIM_2D_LINK, semanticColor } from '../lib/palette';
+import { colorWithAlpha, DIM_2D_LINK, semanticColor } from '../lib/palette';
 import type { SimNode } from '../types/graph';
 import { linkIsBright, nodeIsBright, nodeIsSelected, type DrawLink, type SceneCommonProps } from './graphShared';
 import { paintColumnCaptions, paintGraphNode, paintGraphNodeHit, type PaintedNode } from './paintNode2d';
@@ -16,8 +16,10 @@ export function GraphScene2D(props: SceneCommonProps) {
   const fgRef = useRef<GraphApi | undefined>(undefined);
   const layoutRef = useRef(props.layout);
   const compactRef = useRef(props.compact);
+  const stageRef = useRef(props.canvasStage);
   layoutRef.current = props.layout;
   compactRef.current = props.compact;
+  stageRef.current = props.canvasStage;
 
   const describe = (node: SimNode): PaintedNode => {
     const bright = nodeIsBright(node.id, props.selection, props.graph.links, props.focusIds);
@@ -48,7 +50,7 @@ export function GraphScene2D(props: SceneCommonProps) {
   };
 
   const nodeCanvasObject = (node: SimNode, ctx: CanvasRenderingContext2D, globalScale: number) => {
-    paintGraphNode(ctx, describe(node), globalScale);
+    paintGraphNode(ctx, describe(node), globalScale, stageRef.current);
   };
 
   const nodePointerAreaPaint = (node: SimNode, color: string, ctx: CanvasRenderingContext2D) => {
@@ -129,7 +131,8 @@ export function GraphScene2D(props: SceneCommonProps) {
       graphData={{ nodes: props.nodes, links: props.links }}
       width={props.size.w}
       height={props.size.h}
-      backgroundColor={CANVAS_BG}
+      backgroundColor={props.canvasStage.bg}
+      key={props.canvasStage.bg}
       enableNodeDrag={props.layout === 'force'}
       nodeRelSize={0}
       nodeVal={1}
@@ -170,7 +173,7 @@ export function GraphScene2D(props: SceneCommonProps) {
       onBackgroundClick={props.onBackground}
       onRenderFramePost={(ctx, globalScale) => {
         if (layoutRef.current !== 'hierarchy') return;
-        paintColumnCaptions(ctx, props.nodes, globalScale);
+        paintColumnCaptions(ctx, props.nodes, globalScale, stageRef.current);
       }}
       onEngineStop={() => {
         if (layoutRef.current !== 'force' || compactRef.current) return;
