@@ -46,6 +46,10 @@ export interface GraphLink {
   strength?: string;
   weight?: number;
   source_file?: string;
+  /** User-visible book or literature title (schema 0.4). */
+  source_title?: string;
+  /** Book id into data/sources.json. Absent on literature edges. */
+  source_id?: string;
   note_id?: string;
   excerpt?: string;
   limitations?: string;
@@ -55,6 +59,20 @@ export interface GraphLink {
   audience?: Audience;
   citation?: GraphCitation;
   metadata?: Record<string, unknown>;
+}
+
+export interface SourceRecord {
+  id: string;
+  title: string;
+  authors: string;
+  year: number;
+  description: string;
+  file: string;
+}
+
+export interface SourcesData {
+  schema_version: string;
+  sources: SourceRecord[];
 }
 
 export interface GraphData {

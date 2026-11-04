@@ -3174,3 +3174,15 @@ code {
 }
 .more-detail[open] > summary::before { transform: rotate(90deg); }
 .more-detail[open] > summary { margin-bottom: 8px; color: var(--fg); }
+
+.source-screen .source-cite-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.source-cite-btn {
+  width: 100%;
+  text-align: left;
+}

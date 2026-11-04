@@ -12,6 +12,7 @@ test('serialize never emits layer=; parse ignores legacy layer=', () => {
     food: null,
     pattern: null,
     patterns: [],
+    source: null,
     layout: 'hierarchy',
     view: '2d',
     hideUnmatched: true,
@@ -34,6 +35,7 @@ test('share query round-trips the minimal filters', () => {
     food: null,
     pattern: null,
     patterns: [],
+    source: null,
     layout: 'hierarchy',
     view: '2d',
     hideUnmatched: true,
@@ -72,6 +74,7 @@ test('a node selection wins over a link in the serialized query', () => {
     food: null,
     pattern: null,
     patterns: [],
+    source: null,
     layout: 'force',
     view: '3d',
     hideUnmatched: false,
@@ -105,6 +108,7 @@ test('default screen is home when the query has no deep link', () => {
     food: null,
     pattern: null,
     patterns: [],
+    source: null,
     layout: 'hierarchy',
     view: '2d',
     hideUnmatched: true,
@@ -149,6 +153,7 @@ test('theme maps to a disease or mechanism filter and does not reuse view', () =
     food: null,
     pattern: null,
     patterns: [],
+    source: null,
     layout: 'hierarchy',
     view: '2d',
     hideUnmatched: true,
@@ -189,6 +194,7 @@ test('hide=1 stays on and hide=0 stays off', () => {
     food: null,
     pattern: null,
     patterns: [],
+    source: null,
     layout: 'hierarchy',
     view: '2d',
     hideUnmatched: false,
@@ -256,6 +262,7 @@ test('food themes serialize a food anchor and default hide on', () => {
     food: 'ultra_processed',
     pattern: null,
     patterns: ['plant_forward'],
+    source: null,
     layout: 'hierarchy',
     view: '2d',
     hideUnmatched: true,
@@ -303,6 +310,7 @@ test('home pattern links keep the source theme and drop unknown ids', () => {
     food: null,
     pattern: null,
     patterns: parsed.patterns,
+    source: null,
     layout: 'hierarchy',
     view: '2d',
     hideUnmatched: true,
@@ -327,6 +335,7 @@ function shareState(partial: Partial<import('./shareUrl.ts').ShareState> & { scr
     food: null,
     pattern: null,
     patterns: [],
+    source: null,
     layout: 'hierarchy',
     view: '2d',
     hideUnmatched: false,
@@ -462,4 +471,38 @@ test('twin screen is explicit and does not carry explore anchors', () => {
   assert.equal(resolveScreen(parseViewQuery(query)), 'twin');
   assert.equal(parseViewQuery('?screen=twin').hideUnmatched, false);
   assert.equal(resolveScreen(parseViewQuery('?screen=twin&pattern=plant_forward')), 'twin');
+});
+
+
+test('source screen round-trips and unknown source falls back to home', () => {
+  const query = serializeViewQuery({
+    screen: 'source',
+    theme: null,
+    disease: null,
+    mechanism: null,
+    food: null,
+    pattern: null,
+    patterns: [],
+    source: 'china_study',
+    layout: 'hierarchy',
+    view: '2d',
+    hideUnmatched: false,
+    node: null,
+    link: null,
+  });
+  assert.match(query, /screen=source/);
+  assert.match(query, /source=china_study/);
+  const parsed = parseViewQuery(query);
+  assert.equal(parsed.screen, 'source');
+  assert.equal(parsed.source, 'china_study');
+  assert.equal(resolveScreen(parsed), 'source');
+
+  const missing = parseViewQuery('?screen=source');
+  assert.equal(missing.screen, 'source');
+  assert.equal(missing.source, null);
+  assert.equal(resolveScreen(missing), 'home');
+
+  const bad = parseViewQuery('?screen=source&source=../etc');
+  assert.equal(bad.source, null);
+  assert.equal(resolveScreen(bad), 'home');
 });

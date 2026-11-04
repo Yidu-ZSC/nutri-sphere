@@ -8,7 +8,7 @@ const ID = /^[a-z0-9_]+$/;
 const THEME_ID = /^[a-z0-9_-]+$/;
 
 /** Home, explore, pattern detail, compare, or the diet twin screen. Distinct from `view`, which stays `2d` | `3d`. */
-export type ScreenMode = 'home' | 'explore' | 'pattern' | 'compare' | 'twin';
+export type ScreenMode = 'home' | 'explore' | 'pattern' | 'compare' | 'twin' | 'source';
 
 export interface ParsedShare {
   screen: ScreenMode | null;
@@ -18,6 +18,7 @@ export interface ParsedShare {
   food: string | null;
   pattern: string | null;
   patterns: string[];
+  source: string | null;
   layout: LayoutMode | null;
   view: GraphView | null;
   hideUnmatched: boolean;
@@ -33,6 +34,7 @@ export interface ShareState {
   food: string | null;
   pattern: string | null;
   patterns: readonly string[];
+  source: string | null;
   layout: LayoutMode;
   view: GraphView;
   hideUnmatched: boolean;
@@ -46,7 +48,14 @@ function cleanId(value: string | null): string | null {
 }
 
 function parseScreen(value: string | null): ScreenMode | null {
-  if (value === 'home' || value === 'explore' || value === 'pattern' || value === 'compare' || value === 'twin') {
+  if (
+    value === 'home' ||
+    value === 'explore' ||
+    value === 'pattern' ||
+    value === 'compare' ||
+    value === 'twin' ||
+    value === 'source'
+  ) {
     return value;
   }
   return null;
@@ -64,9 +73,13 @@ function parseTheme(value: string | null): string | null {
  * except `screen=pattern` without a known id, which falls back to home.
  */
 export function resolveScreen(
-  parsed: Pick<ParsedShare, 'screen' | 'theme' | 'disease' | 'mechanism' | 'food' | 'pattern' | 'node' | 'link'>,
+  parsed: Pick<
+    ParsedShare,
+    'screen' | 'theme' | 'disease' | 'mechanism' | 'food' | 'pattern' | 'source' | 'node' | 'link'
+  >,
 ): ScreenMode {
   if (parsed.screen === 'pattern') return parsed.pattern ? 'pattern' : 'home';
+  if (parsed.screen === 'source') return parsed.source ? 'source' : 'home';
   if (parsed.screen) return parsed.screen;
   if (parsed.disease || parsed.mechanism || parsed.food || parsed.node || parsed.link) return 'explore';
   if (themeById(parsed.theme)) return 'explore';
@@ -105,6 +118,7 @@ export function parseViewQuery(search: string): ParsedShare {
     food: cleanId(params.get('food')),
     pattern: knownPatternId(params.get('pattern')),
     patterns: parsePatternList(params.get('patterns')),
+    source: cleanId(params.get('source')),
     layout: layout === 'hierarchy' || layout === 'force' ? layout : null,
     view: view === '2d' || view === '3d' ? view : null,
     hideUnmatched: false,
@@ -127,10 +141,13 @@ export function parseViewQuery(search: string): ParsedShare {
  */
 export function resolveHideUnmatched(
   hideParam: string | null,
-  parsed: Pick<ParsedShare, 'screen' | 'theme' | 'disease' | 'mechanism' | 'food' | 'pattern' | 'node' | 'link'>,
+  parsed: Pick<
+    ParsedShare,
+    'screen' | 'theme' | 'disease' | 'mechanism' | 'food' | 'pattern' | 'source' | 'node' | 'link'
+  >,
 ): boolean {
   const screen = resolveScreen(parsed);
-  if (screen === 'pattern' || screen === 'compare' || screen === 'twin') return false;
+  if (screen === 'pattern' || screen === 'compare' || screen === 'twin' || screen === 'source') return false;
   if (hideParam === '1') return true;
   if (hideParam === '0') return false;
   if (screen === 'explore' && (parsed.theme || parsed.disease || parsed.mechanism || parsed.food)) {
@@ -147,6 +164,12 @@ export function serializeViewQuery(state: ShareState): string {
     if (screen === 'pattern') {
       params.set('pattern', normalizeVeganDietPatternId(state.pattern) ?? VEGAN_DIET_HUB_ID);
     }
+    return `?${params.toString()}`;
+  }
+  if (state.screen === 'source') {
+    const params = new URLSearchParams();
+    params.set('screen', 'source');
+    if (state.source) params.set('source', state.source);
     return `?${params.toString()}`;
   }
   const params = new URLSearchParams();

@@ -7,6 +7,7 @@ import { GraphCanvas } from './components/GraphCanvas';
 import { LayoutToggle } from './components/LayoutToggle';
 import { Legend } from './components/Legend';
 import { readLegendExpanded } from './lib/legendChrome';
+import { SourceDetail } from './components/SourceDetail';
 import { VeganDietDetail } from './components/VeganDietDetail';
 import { SearchBar } from './components/SearchBar';
 import { ThemeBar } from './components/ThemeBar';
@@ -32,6 +33,7 @@ import {
 } from './lib/layerFilter';
 import type { LayoutMode } from './lib/layout';
 import { loadGraph } from './lib/loadGraph';
+import { loadSources, sourceById } from './lib/loadSources';
 import { isVeganDietHubPattern, normalizeVeganDietPatternId, VEGAN_DIET_HUB_ID } from './lib/dietPatternDetails';
 import { patternsForTheme } from './lib/patternLinks';
 import { searchGraph, type SearchHit } from './lib/search';
@@ -46,7 +48,7 @@ import {
 import { EXPLORE_THEMES, filtersFromShare, themeById, themeForFilters, type ExploreTheme } from './lib/themes';
 import { selectionPinIds } from './lib/visibility';
 import { applyTheme, readTheme, writeTheme, type AppTheme } from './lib/themePreference';
-import type { GraphData, Selection } from './types/graph';
+import type { GraphData, Selection, SourcesData } from './types/graph';
 
 interface ExploreSnapshot {
   diseaseId: string | null;
@@ -107,6 +109,12 @@ export function App() {
     return resolveScreen(parsed) === 'pattern' ? parsed.pattern : null;
   });
   const [patternReturnSnapshot, setPatternReturnSnapshot] = useState<ExploreSnapshot | null>(null);
+  const [sourceId, setSourceId] = useState<string | null>(() => {
+    const parsed = initialQuery.current;
+    return resolveScreen(parsed) === 'source' ? parsed.source : null;
+  });
+  const [sourceReturnSnapshot, setSourceReturnSnapshot] = useState<ExploreSnapshot | null>(null);
+  const [sources, setSources] = useState<SourcesData | null>(null);
   const [selection, setSelection] = useState<Selection | null>(null);
   const [clickFocusId, setClickFocusId] = useState<string | null>(null);
   const [themeHintDismissed, setThemeHintDismissed] = useState(false);
@@ -122,9 +130,10 @@ export function App() {
   useEffect(() => {
     let cancelled = false;
     setLoad({ status: 'loading' });
-    loadGraph()
-      .then((graph) => {
+    Promise.all([loadGraph(), loadSources()])
+      .then(([graph, sourcesData]) => {
         if (cancelled) return;
+        setSources(sourcesData);
         const parsed = initialQuery.current;
         if (screenRef.current === resolveScreen(parsed)) {
           const shared = filtersFromShare(parsed);
@@ -149,6 +158,16 @@ export function App() {
           setMechanismId(mechanism);
           setFoodId(food);
           setSelection(nextSelection);
+          if (parsed.screen === 'source') {
+            const known = sourceById(sourcesData, parsed.source);
+            if (known) {
+              setSourceId(known.id);
+              setScreen('source');
+            } else {
+              setSourceId(null);
+              setScreen('home');
+            }
+          }
         }
         setLoad({ status: 'ready', graph });
       })
@@ -241,6 +260,16 @@ export function App() {
   }, [patternId, screen]);
 
   useEffect(() => {
+    if (screen !== 'source') return;
+    if (!sources) return;
+    if (!sourceId || !sourceById(sources, sourceId)) {
+      setSourceId(null);
+      setSourceReturnSnapshot(null);
+      setScreen('home');
+    }
+  }, [screen, sourceId, sources]);
+
+  useEffect(() => {
     if (screen === 'explore' && !graph) return;
     const exploring = screen === 'explore' && graph != null;
     const link = exploring && selection?.kind === 'link' ? graph.links[selection.index] : undefined;
@@ -256,6 +285,7 @@ export function App() {
       food: exploring ? safeFood : null,
       pattern: screen === 'pattern' ? patternId : null,
       patterns: screen === 'home' ? patterns : [],
+      source: screen === 'source' ? sourceId : null,
       layout,
       view: graphView,
       hideUnmatched: exploring ? hideUnmatched : false,
@@ -278,6 +308,7 @@ export function App() {
     safeMechanism,
     screen,
     selection,
+    sourceId,
   ]);
 
   const focusIds = useMemo(
@@ -454,6 +485,8 @@ export function App() {
     setMoreOpen(false);
     setPatternId(null);
     setPatternReturnSnapshot(null);
+    setSourceId(null);
+    setSourceReturnSnapshot(null);
     setScreen('home');
     clearPatternHighlight();
   };
@@ -587,8 +620,62 @@ export function App() {
     if (source) enterTheme(source);
   };
 
+  const openSourcePage = (id: string) => {
+    if (!sourceById(sources, id)) return;
+    if (screen === 'explore') setSourceReturnSnapshot(captureExplore());
+    else setSourceReturnSnapshot(null);
+    setSourceId(id);
+    setClickFocusId(null);
+    setSelection(null);
+    setMoreOpen(false);
+    setPatternId(null);
+    setScreen('source');
+    clearPatternHighlight();
+  };
+
+  const returnFromSource = () => {
+    const snapshot = sourceReturnSnapshot;
+    setSourceReturnSnapshot(null);
+    setSourceId(null);
+    if (!snapshot) {
+      setScreen('explore');
+      return;
+    }
+    setDiseaseId(snapshot.diseaseId);
+    setMechanismId(snapshot.mechanismId);
+    setFoodId(snapshot.foodId);
+    setLayout(snapshot.layout);
+    setGraphView(snapshot.graphView);
+    setHideUnmatched(snapshot.hideUnmatched);
+    setClickFocusId(null);
+    setSelection(snapshot.selection);
+    setMoreOpen(false);
+    setScreen('explore');
+  };
+
+  const openCitedLink = (index: number) => {
+    if (!graph) return;
+    const link = graph.links[index];
+    if (!link) return;
+    setSourceReturnSnapshot(null);
+    setSourceId(null);
+    setDiseaseId(null);
+    setMechanismId(null);
+    setFoodId(null);
+    setHideUnmatched(false);
+    setLayout('hierarchy');
+    setGraphView('2d');
+    setClickFocusId(null);
+    setSelection({ kind: 'link', index });
+    setMoreOpen(false);
+    setScreen('explore');
+    clearPatternHighlight();
+  };
+
   const exploring = screen === 'explore';
   const showVeganDietDetail = screen === 'pattern' && isVeganDietHubPattern(patternId);
+  const activeSource = sourceById(sources, sourceId);
+  const showSourceDetail = screen === 'source' && activeSource != null && graph != null;
   const relatedPatternIds = patternsForTheme(themeForFilters(safeDisease, safeMechanism, safeFood)?.id);
 
   const copyViewLink = () => {
@@ -638,7 +725,7 @@ export function App() {
       </button>
     ) : null;
   const copyControl =
-    screen === 'twin' ? null : (
+    screen === 'twin' || screen === 'source' ? null : (
       <button type="button" className="btn btn--ghost" onClick={copyViewLink}>
         {copied ? '已复制' : '复制链接'}
       </button>
@@ -751,6 +838,14 @@ export function App() {
             onBack={goHome}
             onEnterTheme={enterTheme}
             onReturnToGraph={patternReturnSnapshot ? returnFromPatternToGraph : undefined}
+          />
+        )}
+        {showSourceDetail && activeSource && graph && (
+          <SourceDetail
+            source={activeSource}
+            graph={graph}
+            onBack={sourceReturnSnapshot ? returnFromSource : () => { setSourceId(null); setScreen('explore'); }}
+            onOpenLink={openCitedLink}
           />
         )}
         {exploring && graph && rendered && (
@@ -881,6 +976,7 @@ export function App() {
                 onClose={() => setSelection(null)}
                 onSelectNode={selectNode}
                 onSelectLink={selectLink}
+                onOpenSource={openSourcePage}
                 onShowPatterns={relatedPatternIds.length > 0 ? showRelatedPatterns : undefined}
                 relatedPatternIds={relatedPatternIds}
                 onOpenPattern={relatedPatternIds.length > 0 ? () => openVeganDietDetail(true) : undefined}

@@ -17,7 +17,7 @@ test('NS-047 LinkBody keeps excerpt before source, limitations, badges, then mor
   const card = evidenceCardSource();
   const marks = [
     'ExcerptBlock',
-    'SourceFile',
+    'SourceTitleLink',
     'link-limitations',
     'evidence-badges',
     'MoreDetail',
@@ -36,6 +36,10 @@ test('NS-047 LinkBody keeps excerpt before source, limitations, badges, then mor
   assert.ok(card.indexOf('证据类型说明') > card.indexOf('MoreDetail'));
   assert.ok(card.indexOf('CitationBlock') > card.indexOf('MoreDetail'));
   assert.ok(card.indexOf('ladder') > card.indexOf('MoreDetail'));
+  assert.ok(card.indexOf('SourceFile') > card.indexOf('MoreDetail'), 'SourceFile must sit inside MoreDetail');
+  assert.match(source, /原文摘录/);
+  assert.match(source, /展开原文摘录/);
+  assert.match(source, /收起原文摘录/);
 });
 
 test('NS-047 more-detail is a single collapsed details block; limitations stay outside', () => {

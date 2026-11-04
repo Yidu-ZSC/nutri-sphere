@@ -62,10 +62,10 @@ const DEEP_READER_LINKS = [
 ];
 const TECHNICAL_NODES = ['igf1_signaling', 'lps'];
 
-test('data 0.8 uses schema 0.3 and keeps the original book-note excerpts', () => {
+test('data 0.9 uses schema 0.4 with source_title coverage and keeps the original book-note excerpts', () => {
   const data = readJson(ALIGNED_SEED);
-  assert.equal(data.meta.schema_version, '0.3');
-  assert.equal(data.meta.data_version, '0.8');
+  assert.equal(data.meta.schema_version, '0.4');
+  assert.equal(data.meta.data_version, '0.9');
   assert.equal(data.meta.disclaimer, 'Educational / research use only. Not medical advice.');
   assert.ok(data.nodes.length >= 60 && data.nodes.length <= 90);
   assert.ok(data.links.length >= 80 && data.links.length <= 140);
@@ -115,6 +115,26 @@ test('data 0.8 uses schema 0.3 and keeps the original book-note excerpts', () =>
   }
   const biomarkers = data.nodes.filter((node) => node.type === 'biomarker');
   assert.ok(biomarkers.length >= 1 && biomarkers.length <= 3);
+
+  for (const link of data.links) {
+    assert.equal(typeof link.source_title, 'string', link.id);
+    assert.ok(link.source_title.trim().length > 0, link.id);
+    assert.equal('evidences' in link, false, link.id);
+    if (link.source_file === 'literature') {
+      assert.equal('source_id' in link && link.source_id != null, false, link.id);
+      assert.equal(link.source_title, link.citation.title, link.id);
+    } else {
+      assert.equal(typeof link.source_id, 'string', link.id);
+      assert.ok(link.source_id.trim().length > 0, link.id);
+    }
+  }
+  const bookIds = new Set(
+    data.links.filter((link) => link.source_file !== 'literature').map((link) => link.source_id),
+  );
+  assert.deepEqual(
+    [...bookIds].sort(),
+    ['amazing_veggie_soup', 'china_study', 'eat_to_heal', 'gut_brain', 'how_not_to_die', 'know_your_gut'],
+  );
 
   const deepReader = data.links.filter((link) => link.audience === 'deep_reader');
   assert.deepEqual(
@@ -294,4 +314,63 @@ test('missing limitations fail validation', () => {
   const result = validateGraphData(data, schema);
   assert.equal(result.ok, false);
   assert.match(result.errors.join('\n'), /limitations/);
+});
+
+
+test('sources.json lists exactly the six cited books', () => {
+  const sources = readJson('data/sources.json');
+  assert.equal(sources.schema_version, '1.0');
+  assert.equal(sources.sources.length, 6);
+  const ids = sources.sources.map((row) => row.id).sort();
+  assert.deepEqual(ids, [
+    'amazing_veggie_soup',
+    'china_study',
+    'eat_to_heal',
+    'gut_brain',
+    'how_not_to_die',
+    'know_your_gut',
+  ]);
+  for (const row of sources.sources) {
+    assert.ok(row.title && row.authors && row.file);
+    assert.equal(typeof row.year, 'number');
+    assert.ok(row.description.length > 10);
+  }
+});
+
+test('missing source_title fails validation', () => {
+  const data = readJson(ALIGNED_SEED);
+  const schema = readJson(GRAPH_SCHEMA);
+  delete data.links[0].source_title;
+  const result = validateGraphData(data, schema);
+  assert.equal(result.ok, false);
+  assert.match(result.errors.join('\n'), /source_title/);
+});
+
+test('literature edges must not carry source_id', () => {
+  const data = readJson(ALIGNED_SEED);
+  const schema = readJson(GRAPH_SCHEMA);
+  const link = data.links.find((item) => item.source_file === 'literature');
+  link.source_id = 'china_study';
+  const result = validateGraphData(data, schema);
+  assert.equal(result.ok, false);
+  assert.match(result.errors.join('\n'), /source_id/);
+});
+
+test('book edges require a known source_id', () => {
+  const data = readJson(ALIGNED_SEED);
+  const schema = readJson(GRAPH_SCHEMA);
+  const link = data.links.find((item) => item.source_file !== 'literature');
+  link.source_id = 'not_a_book';
+  const result = validateGraphData(data, schema);
+  assert.equal(result.ok, false);
+  assert.match(result.errors.join('\n'), /source_id|sources/i);
+});
+
+test('evidences key on a link is rejected', () => {
+  const data = readJson(ALIGNED_SEED);
+  const schema = readJson(GRAPH_SCHEMA);
+  data.links[0].evidences = [{ excerpt: 'x' }];
+  const result = validateGraphData(data, schema);
+  assert.equal(result.ok, false);
+  assert.match(result.errors.join('\n'), /evidences/);
 });

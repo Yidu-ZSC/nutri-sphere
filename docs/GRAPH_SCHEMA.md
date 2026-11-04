@@ -1,4 +1,4 @@
-# 明膳知源 Graph Schema (v0.3)
+# 明膳知源 Graph Schema (v0.4)
 
 This document defines the canonical data model for the knowledge graph. All seed data, future open-data integrations, and the 3D visualization must conform to this schema.
 
@@ -52,6 +52,8 @@ This document defines the canonical data model for the knowledge graph. All seed
   "strength": "low | moderate | high | quantitative",
   "weight": "number (0.0–1.0, optional, derived from strength)",
   "source_file": "string (knowledge-base file or external citation)",
+  "source_title": "string (user-visible book or literature title; required in aligned seed)",
+  "source_id": "string (book id into data/sources.json; omit on literature edges)",
   "note_id": "string (weread_note_id or external id, optional)",
   "excerpt": "string (short quote or summary, ≤300 characters)",
   "limitations": "string",
@@ -187,3 +189,5 @@ Future versions may split into separate node and edge files or use a graph datab
 - **0.3**: optional `links[].audience` (`general` | `deep_reader`) and optional `nodes[].mechanism_depth` (`summary` | `mechanism` | `technical`). Missing `audience` means `general`. Missing `mechanism_depth` means `summary`. These fields are not `ViewLayer`, not GRADE, and not evidence. The aligned seed that first uses this schema is `data_version` 0.6, still stored at `data/seed_triples_v0.3_aligned.json`. Older clients that ignore unknown keys can still read the 0.2 fields.
 
 See also: `DATA_STRATEGY.md`, `ARCHITECTURE.md`.
+
+- **0.4**: documents `links[].source_title` (display name) and optional `links[].source_id` (book → `data/sources.json`). Literature edges set `source_title` from `citation.title` and omit `source_id`. Aligned seed `data_version` 0.9. Stage-1 validate rejects missing titles, unknown book ids, literature `source_id`, and any `evidences` key.
