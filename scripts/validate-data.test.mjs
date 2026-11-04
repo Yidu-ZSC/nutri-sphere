@@ -52,26 +52,28 @@ test('aligned seed passes schema and referential checks', () => {
   const result = validateGraphFile();
   assert.equal(result.ok, true, result.errors.join('\n'));
   assert.equal(result.counts.nodes, 87);
-  assert.equal(result.counts.links, 125);
+  assert.equal(result.counts.links, 121);
 });
 
-const DEEP_READER_LINKS = [
-  'lit_fiber_gi_gill_2021',
-  'lit_microbiome_colon_okeefe_2016',
-  'lit_prebiotic_microbiome_sanders_2019',
-];
 const TECHNICAL_NODES = ['igf1_signaling', 'lps'];
 
-test('data 0.9 uses schema 0.4 with source_title coverage and keeps the original book-note excerpts', () => {
+test('data 1.0 uses schema 0.5 with evidences mirrors and keeps short book-note excerpts where not lengthened', () => {
   const data = readJson(ALIGNED_SEED);
-  assert.equal(data.meta.schema_version, '0.4');
-  assert.equal(data.meta.data_version, '0.9');
+  assert.equal(data.meta.schema_version, '0.5');
+  assert.equal(data.meta.data_version, '1.0');
   assert.equal(data.meta.disclaimer, 'Educational / research use only. Not medical advice.');
   assert.ok(data.nodes.length >= 60 && data.nodes.length <= 90);
   assert.ok(data.links.length >= 80 && data.links.length <= 140);
+  assert.equal(data.links.length, 121);
   assert.equal(data.links.slice(0, STAGE_A_LINKS).length, ORIGINAL_EXCERPTS.length + 97);
+  const lengthenedOriginalIdx = new Set([11, 18, 19]);
   ORIGINAL_EXCERPTS.forEach((excerpt, index) => {
-    assert.equal(data.links[index].excerpt, excerpt);
+    if (lengthenedOriginalIdx.has(index)) {
+      assert.ok(data.links[index].excerpt.includes(excerpt.slice(0, 12)), `idx ${index}`);
+      assert.ok(data.links[index].excerpt.length >= 800 && data.links[index].excerpt.length <= 1200);
+    } else {
+      assert.equal(data.links[index].excerpt, excerpt);
+    }
   });
 
   const byId = new Map(data.nodes.map((node) => [node.id, node]));
@@ -119,7 +121,11 @@ test('data 0.9 uses schema 0.4 with source_title coverage and keeps the original
   for (const link of data.links) {
     assert.equal(typeof link.source_title, 'string', link.id);
     assert.ok(link.source_title.trim().length > 0, link.id);
-    assert.equal('evidences' in link, false, link.id);
+    assert.ok(Array.isArray(link.evidences) && link.evidences.length >= 1, link.id);
+    assert.equal(link.excerpt, link.evidences[0].excerpt, link.id);
+    assert.equal(link.source_title, link.evidences[0].source_title, link.id);
+    assert.equal(link.source_file, link.evidences[0].source_file, link.id);
+    assert.equal(link.limitations, link.evidences[0].limitations, link.id);
     if (link.source_file === 'literature') {
       assert.equal('source_id' in link && link.source_id != null, false, link.id);
       assert.equal(link.source_title, link.citation.title, link.id);
@@ -128,6 +134,14 @@ test('data 0.9 uses schema 0.4 with source_title coverage and keeps the original
       assert.ok(link.source_id.trim().length > 0, link.id);
     }
   }
+  const longPrimaries = data.links.filter((link) => {
+    const n = link.evidences[0].excerpt.length;
+    return n >= 800 && n <= 1200;
+  });
+  assert.ok(longPrimaries.length >= 8 && longPrimaries.length <= 12, String(longPrimaries.length));
+  const multi = data.links.filter((link) => link.evidences.length > 1);
+  assert.equal(multi.length, 3);
+  assert.ok(multi.some((link) => link.source === 'dietary_fiber' && link.target === 'gut_microbiome' && link.evidences.length === 3));
   const bookIds = new Set(
     data.links.filter((link) => link.source_file !== 'literature').map((link) => link.source_id),
   );
@@ -137,13 +151,17 @@ test('data 0.9 uses schema 0.4 with source_title coverage and keeps the original
   );
 
   const deepReader = data.links.filter((link) => link.audience === 'deep_reader');
-  assert.deepEqual(
-    deepReader.map((link) => link.id).sort(),
-    [...DEEP_READER_LINKS].sort(),
+  assert.ok(deepReader.some((link) => link.id === 'lit_microbiome_colon_okeefe_2016'));
+  assert.ok(
+    deepReader.some((link) => link.source === 'dietary_fiber' && link.target === 'gut_microbiome'),
   );
+  assert.equal(deepReader.length, 2, String(deepReader.map((l) => l.id ?? `${l.source}->${l.target}`)));
   for (const link of data.links) {
     assert.equal(link.mechanism_depth, undefined, link.id ?? link.source);
-    if (!DEEP_READER_LINKS.includes(link.id)) assert.equal(link.audience, 'general', link.id ?? link.source);
+    const isDeep =
+      link.id === 'lit_microbiome_colon_okeefe_2016' ||
+      (link.source === 'dietary_fiber' && link.target === 'gut_microbiome');
+    if (!isDeep) assert.equal(link.audience, 'general', link.id ?? link.source);
   }
   const mechanisms = data.nodes.filter((node) => node.type === 'mechanism');
   assert.equal(mechanisms.length, 24);
@@ -168,7 +186,7 @@ test('data 0.9 uses schema 0.4 with source_title coverage and keeps the original
     }
   }
   const cited = data.links.filter((link) => link.citation);
-  assert.equal(cited.filter((link) => link.audience === 'general').length, cited.length - DEEP_READER_LINKS.length);
+  assert.equal(cited.filter((link) => link.audience === 'general').length, cited.length - 1);
   assert.ok(data.links.some((link) => link.strength === 'high' && link.audience === 'general'));
 });
 
@@ -194,24 +212,38 @@ test('citation edges stay in range and are not book notes', () => {
   const data = readJson(ALIGNED_SEED);
   const schema = readJson(GRAPH_SCHEMA);
   const cited = data.links.filter((link) => link.citation);
-  assert.ok(cited.length >= 5 && cited.length <= 15, String(cited.length));
-  assert.equal(data.links.length, STAGE_A_LINKS + cited.length);
-  const types = new Set(cited.map((link) => link.evidence_type));
-  assert.ok(cited.filter((link) => link.evidence_type === 'observational').length >= 2);
-  assert.ok(
-    cited.filter((link) => link.evidence_type === 'expert_synthesis' || link.evidence_type === 'interventional')
-      .length >= 2,
+  const citedEvidences = data.links.flatMap((link) =>
+    (link.evidences ?? []).filter((ev) => ev.citation),
   );
-  assert.equal(types.has('book_notes_mechanistic'), false);
+  assert.ok(citedEvidences.length >= 5 && citedEvidences.length <= 15, String(citedEvidences.length));
+  assert.equal(data.links.length, 121);
+  assert.ok(cited.length >= 4 && cited.length <= citedEvidences.length, String(cited.length));
+  // Top-level literature types (post-merge) plus nested observational evidences
+  const observationalPmids = new Set(
+    citedEvidences
+      .filter((ev) => ['31401846', '31142457', '31189526'].includes(String(ev.citation?.pmid ?? '')))
+      .map((ev) => ev.citation.pmid),
+  );
+  assert.ok(observationalPmids.size >= 2, String(observationalPmids.size));
+  const synthesisOrInterventional = cited.filter(
+    (link) => link.evidence_type === 'expert_synthesis' || link.evidence_type === 'interventional',
+  );
+  assert.ok(synthesisOrInterventional.length >= 2);
   const retracted = '10.1056/NEJMoa1200303';
   for (const link of cited) {
     assert.equal(link.evidence_type.startsWith('book_notes_'), false, link.id);
     assert.equal(link.source_file, 'literature', link.id);
-    assert.ok(link.excerpt && link.excerpt.length <= 300, link.id);
+    assert.ok(link.excerpt && link.excerpt.length <= 1200, link.id);
     assert.match(link.limitations, /非书摘/, link.id);
     assert.ok(link.citation.doi || link.citation.pmid, link.id);
     assert.notEqual(link.citation.doi, retracted, link.id);
     assert.equal(String(link.citation.doi).includes('doi.org'), false, link.id);
+  }
+  for (const ev of citedEvidences) {
+    assert.ok(ev.excerpt && ev.excerpt.length <= 1200);
+    assert.match(ev.limitations, /非书摘/);
+    assert.ok(ev.citation.doi || ev.citation.pmid);
+    assert.equal('source_id' in ev && ev.source_id != null, false);
   }
   const result = validateGraphData(data, schema);
   assert.equal(result.ok, true, result.errors.join('\n'));
@@ -341,6 +373,7 @@ test('missing source_title fails validation', () => {
   const data = readJson(ALIGNED_SEED);
   const schema = readJson(GRAPH_SCHEMA);
   delete data.links[0].source_title;
+  delete data.links[0].evidences[0].source_title;
   const result = validateGraphData(data, schema);
   assert.equal(result.ok, false);
   assert.match(result.errors.join('\n'), /source_title/);
@@ -351,6 +384,7 @@ test('literature edges must not carry source_id', () => {
   const schema = readJson(GRAPH_SCHEMA);
   const link = data.links.find((item) => item.source_file === 'literature');
   link.source_id = 'china_study';
+  link.evidences[0].source_id = 'china_study';
   const result = validateGraphData(data, schema);
   assert.equal(result.ok, false);
   assert.match(result.errors.join('\n'), /source_id/);
@@ -361,16 +395,26 @@ test('book edges require a known source_id', () => {
   const schema = readJson(GRAPH_SCHEMA);
   const link = data.links.find((item) => item.source_file !== 'literature');
   link.source_id = 'not_a_book';
+  link.evidences[0].source_id = 'not_a_book';
   const result = validateGraphData(data, schema);
   assert.equal(result.ok, false);
   assert.match(result.errors.join('\n'), /source_id|sources/i);
 });
 
-test('evidences key on a link is rejected', () => {
+test('missing evidences fails validation', () => {
   const data = readJson(ALIGNED_SEED);
   const schema = readJson(GRAPH_SCHEMA);
-  data.links[0].evidences = [{ excerpt: 'x' }];
+  delete data.links[0].evidences;
   const result = validateGraphData(data, schema);
   assert.equal(result.ok, false);
   assert.match(result.errors.join('\n'), /evidences/);
+});
+
+test('top-level excerpt must mirror evidences[0]', () => {
+  const data = readJson(ALIGNED_SEED);
+  const schema = readJson(GRAPH_SCHEMA);
+  data.links[0].excerpt = '镜像被破坏的摘录';
+  const result = validateGraphData(data, schema);
+  assert.equal(result.ok, false);
+  assert.match(result.errors.join('\n'), /镜像/);
 });

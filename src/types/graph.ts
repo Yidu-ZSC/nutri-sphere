@@ -36,6 +36,18 @@ export interface GraphCitation {
   url?: string;
 }
 
+/** One evidence item on an edge (schema 0.5). Top-level link fields mirror evidences[0]. */
+export interface GraphEvidence {
+  excerpt: string;
+  limitations: string;
+  source_title: string;
+  source_file: string;
+  /** Book id into data/sources.json. Absent on literature evidence. */
+  source_id?: string;
+  note_id?: string;
+  citation?: GraphCitation;
+}
+
 export interface GraphLink {
   id?: string;
   source: string;
@@ -46,7 +58,7 @@ export interface GraphLink {
   strength?: string;
   weight?: number;
   source_file?: string;
-  /** User-visible book or literature title (schema 0.4). */
+  /** User-visible book or literature title (schema 0.4+). */
   source_title?: string;
   /** Book id into data/sources.json. Absent on literature edges. */
   source_id?: string;
@@ -58,6 +70,8 @@ export interface GraphLink {
   /** Who this edge is written for. Omitted means general. Not ViewLayer. */
   audience?: Audience;
   citation?: GraphCitation;
+  /** Multi-evidence array (schema 0.5). Required; top-level fields mirror [0]. */
+  evidences?: GraphEvidence[];
   metadata?: Record<string, unknown>;
 }
 

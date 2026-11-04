@@ -10,7 +10,7 @@ export const ALIGNED_SEED = 'data/seed_triples_v0.3_aligned.json';
 export const GRAPH_SCHEMA = 'data/graph_schema.json';
 export const SOURCES_FILE = 'data/sources.json';
 
-const EXCERPT_LIMIT = 300;
+const EXCERPT_LIMIT = 1200;
 const STAGE1_SOURCE_IDS = [
   'eat_to_heal',
   'how_not_to_die',
@@ -121,64 +121,65 @@ export function validateGraphData(data, schema, options = {}) {
     }
   }
 
-  links.forEach((link, index) => {
-    if (!link || typeof link !== 'object') return;
-    const row = /** @type {Record<string, unknown>} */ (link);
-    if (Object.prototype.hasOwnProperty.call(row, 'evidences')) {
-      errors.push(`links[${index}] 不得含 evidences（阶段 1）`);
+  /**
+   * @param {Record<string, unknown>} ev
+   * @param {string} path
+   * @param {{ enforceBookNotesType?: boolean }} [opts]
+   */
+  function validateEvidenceFields(ev, path, opts = {}) {
+    if (typeof ev.excerpt !== 'string' || ev.excerpt.trim() === '') {
+      errors.push(`${path} 缺少 excerpt`);
+    } else if (ev.excerpt.length > EXCERPT_LIMIT) {
+      errors.push(`${path}.excerpt 长度为 ${ev.excerpt.length}，超过 ${EXCERPT_LIMIT}`);
     }
-    if (typeof row.source === 'string' && !ids.has(row.source)) {
-      errors.push(`links[${index}].source "${row.source}" 不存在于 nodes[].id`);
+    if (typeof ev.limitations !== 'string' || ev.limitations.trim() === '') {
+      errors.push(`${path} 缺少 limitations`);
     }
-    if (typeof row.target === 'string' && !ids.has(row.target)) {
-      errors.push(`links[${index}].target "${row.target}" 不存在于 nodes[].id`);
+    if (typeof ev.source_title !== 'string' || ev.source_title.trim() === '') {
+      errors.push(`${path} 缺少 source_title`);
     }
-    if (typeof row.limitations !== 'string' || row.limitations.trim() === '') {
-      errors.push(`links[${index}] 缺少 limitations`);
-    }
-    if (typeof row.excerpt === 'string' && row.excerpt.length > EXCERPT_LIMIT) {
-      errors.push(`links[${index}].excerpt 长度为 ${row.excerpt.length}，超过 ${EXCERPT_LIMIT}`);
-    }
-    if (typeof row.source_title !== 'string' || row.source_title.trim() === '') {
-      errors.push(`links[${index}] 缺少 source_title`);
-    }
-    const sourceFile = typeof row.source_file === 'string' ? row.source_file : '';
-    if (sourceFile === 'literature') {
-      if (row.source_id != null) {
-        errors.push(`links[${index}] literature 不得带 source_id`);
+    const sourceFile = typeof ev.source_file === 'string' ? ev.source_file : '';
+    if (!sourceFile) {
+      errors.push(`${path} 缺少 source_file`);
+    } else if (sourceFile === 'literature') {
+      if (ev.source_id != null) {
+        errors.push(`${path} literature 不得带 source_id`);
       }
-      if (row.citation == null) {
-        errors.push(`links[${index}] literature 需要 citation`);
+      if (ev.citation == null) {
+        errors.push(`${path} literature 需要 citation`);
       } else {
-        const citation = row.citation;
+        const citation = ev.citation;
         const title =
           citation && typeof citation === 'object' && !Array.isArray(citation) && typeof citation.title === 'string'
             ? citation.title
             : '';
-        if (typeof row.source_title === 'string' && title && row.source_title !== title) {
-          errors.push(`links[${index}].source_title 必须等于 citation.title`);
+        if (typeof ev.source_title === 'string' && title && ev.source_title !== title) {
+          errors.push(`${path}.source_title 必须等于 citation.title`);
         }
       }
     } else {
-      const sourceId = typeof row.source_id === 'string' ? row.source_id : '';
+      const sourceId = typeof ev.source_id === 'string' ? ev.source_id : '';
       if (!sourceId) {
-        errors.push(`links[${index}] 图书边缺少 source_id`);
+        errors.push(`${path} 图书证据缺少 source_id`);
       } else {
         const book = sourcesById.get(sourceId);
         if (!book) {
-          errors.push(`links[${index}].source_id "${sourceId}" 不在 sources.json`);
+          errors.push(`${path}.source_id "${sourceId}" 不在 sources.json`);
         } else {
-          if (typeof row.source_title === 'string' && row.source_title !== book.title) {
-            errors.push(`links[${index}].source_title 须与 sources[].title 一致`);
+          if (typeof ev.source_title === 'string' && ev.source_title !== book.title) {
+            errors.push(`${path}.source_title 须与 sources[].title 一致`);
           }
-          if (sourceFile && sourceFile !== book.file) {
-            errors.push(`links[${index}].source_file 须与 sources[].file 一致`);
+          if (sourceFile !== book.file) {
+            errors.push(`${path}.source_file 须与 sources[].file 一致`);
           }
         }
       }
+      if (ev.citation != null) {
+        errors.push(`${path} 图书证据不得带 citation`);
+      }
     }
-    if (row.citation != null) {
-      const citation = row.citation;
+    if (ev.citation != null) {
+      const citation = ev.citation;
       const doi =
         citation && typeof citation === 'object' && !Array.isArray(citation) && typeof citation.doi === 'string'
           ? citation.doi.trim()
@@ -188,8 +189,53 @@ export function validateGraphData(data, schema, options = {}) {
           ? citation.pmid.trim()
           : '';
       if (!doi && !pmid) {
-        errors.push(`links[${index}].citation 需要非空 doi 或 pmid`);
+        errors.push(`${path}.citation 需要非空 doi 或 pmid`);
       }
+    }
+  }
+
+  links.forEach((link, index) => {
+    if (!link || typeof link !== 'object') return;
+    const row = /** @type {Record<string, unknown>} */ (link);
+    if (typeof row.source === 'string' && !ids.has(row.source)) {
+      errors.push(`links[${index}].source "${row.source}" 不存在于 nodes[].id`);
+    }
+    if (typeof row.target === 'string' && !ids.has(row.target)) {
+      errors.push(`links[${index}].target "${row.target}" 不存在于 nodes[].id`);
+    }
+    if (!Array.isArray(row.evidences) || row.evidences.length < 1) {
+      errors.push(`links[${index}] 需要 evidences 数组（长度 ≥ 1）`);
+      return;
+    }
+    row.evidences.forEach((raw, ei) => {
+      if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
+        errors.push(`links[${index}].evidences[${ei}] 非法`);
+        return;
+      }
+      validateEvidenceFields(/** @type {Record<string, unknown>} */ (raw), `links[${index}].evidences[${ei}]`);
+    });
+    const ev0 = /** @type {Record<string, unknown>} */ (row.evidences[0]);
+    // top-level mirror of evidences[0]
+    for (const key of ['excerpt', 'limitations', 'source_title', 'source_file']) {
+      if (row[key] !== ev0[key]) {
+        errors.push(`links[${index}].${key} 须与 evidences[0].${key} 镜像一致`);
+      }
+    }
+    if (ev0.source_id != null) {
+      if (row.source_id !== ev0.source_id) {
+        errors.push(`links[${index}].source_id 须与 evidences[0].source_id 镜像一致`);
+      }
+    } else if (row.source_id != null) {
+      errors.push(`links[${index}] evidences[0] 无 source_id 时顶层不得有 source_id`);
+    }
+    if (ev0.citation != null) {
+      if (JSON.stringify(row.citation) !== JSON.stringify(ev0.citation)) {
+        errors.push(`links[${index}].citation 须与 evidences[0].citation 镜像一致`);
+      }
+    } else if (row.citation != null) {
+      errors.push(`links[${index}] evidences[0] 无 citation 时顶层不得有 citation`);
+    }
+    if (row.citation != null) {
       if (typeof row.evidence_type === 'string' && row.evidence_type.startsWith('book_notes_')) {
         errors.push(`links[${index}] 带 citation 时 evidence_type 不得以 book_notes_ 开头`);
       }

@@ -13,12 +13,13 @@ function evidenceCardSource(): string {
   return source.slice(start, end);
 }
 
-test('NS-047 LinkBody keeps excerpt before source, limitations, badges, then more-detail', () => {
+test('NS-047/056 LinkBody keeps excerpt → source → limitations → more-evidences → badges → more-detail', () => {
   const card = evidenceCardSource();
   const marks = [
     'ExcerptBlock',
     'SourceTitleLink',
     'link-limitations',
+    'MoreEvidences',
     'evidence-badges',
     'MoreDetail',
   ];
@@ -132,4 +133,10 @@ test('NS-052 related cards use left direction color bar and 12px padding class',
   assert.match(css, /\.related-btn\s*\{[\s\S]*?padding:\s*12px/);
   assert.match(css, /\.related-btn:hover\s*\{/);
   assert.match(css, /border-left-width:\s*4px/);
+});
+
+test('NS-056 ExcerptBlock preview is 120 chars; more-evidences summary uses N', () => {
+  assert.match(source, /const limit = 120/);
+  assert.match(source, /还有 \{extras\.length\} 处相关描述/);
+  assert.match(source, /data-testid="more-evidences"/);
 });
