@@ -55,8 +55,19 @@ This document defines the canonical data model for the knowledge graph. All seed
   "source_title": "string (user-visible book or literature title; required in aligned seed)",
   "source_id": "string (book id into data/sources.json; omit on literature edges)",
   "note_id": "string (weread_note_id or external id, optional)",
-  "excerpt": "string (short quote or summary, ≤300 characters)",
-  "limitations": "string",
+  "excerpt": "string (quote or summary; ≤1200 characters; mirrors evidences[0].excerpt)",
+  "limitations": "string (mirrors evidences[0].limitations)",
+  "evidences": [
+    {
+      "excerpt": "string (≤1200)",
+      "limitations": "string",
+      "source_title": "string",
+      "source_file": "string",
+      "source_id": "string (books only)",
+      "note_id": "string (optional)",
+      "citation": { "...same as top-level citation..." }
+    }
+  ],
   "dose_response": "string (optional)",
   "population": "string (optional, e.g. ecological, individual)",
   "audience": "general | deep_reader (optional; omitted means general)",
@@ -164,7 +175,8 @@ Future versions may split into separate node and edge files or use a graph datab
 - Required fields: id/type/label/group for nodes; source/target/relation/direction/evidence_type for links.
 - `direction` is an allowed enum (`protective`, `risk`, `neutral`, `mixed`). `evidence_type` stays an open string in AJV.
 - If `citation` is present, it must match the object above (including `doi` or `pmid`) and `evidence_type` must not start with `book_notes_`.
-- Excerpt length must be ≤ 300 characters.
+- Every link must have `evidences` (length ≥ 1). Top-level `excerpt` / `limitations` / `source_title` / `source_file` / `source_id` / `citation` must mirror `evidences[0]`.
+- Excerpt length (top-level and each evidence) must be ≤ 1200 characters.
 - If `audience` is present it must be `general` or `deep_reader`. Any other string fails validation. Omission is valid.
 - If `mechanism_depth` is present it must be `summary`, `mechanism`, or `technical`. Any other string fails validation. Omission is valid.
 - `validate:data` warns, and still exits 0, when a node with `type` other than `mechanism` has `mechanism_depth` `technical`. It does not warn merely because the field is omitted.
@@ -191,3 +203,5 @@ Future versions may split into separate node and edge files or use a graph datab
 See also: `DATA_STRATEGY.md`, `ARCHITECTURE.md`.
 
 - **0.4**: documents `links[].source_title` (display name) and optional `links[].source_id` (book → `data/sources.json`). Literature edges set `source_title` from `citation.title` and omit `source_id`. Aligned seed `data_version` 0.9. Stage-1 validate rejects missing titles, unknown book ids, literature `source_id`, and any `evidences` key.
+
+- **0.5**: documents `links[].evidences[]` (multi-evidence). Top-level source fields remain as mirrors of `evidences[0]`. Excerpt limit 1200. Aligned seed `data_version` 1.0. Validate requires evidences, mirror equality, and per-evidence book/literature rules; stage-1 reject-evidences rule is removed.

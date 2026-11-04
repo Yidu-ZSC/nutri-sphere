@@ -14,7 +14,10 @@ function endpointLabel(graph: GraphData, id: string): string {
 function citingLinks(graph: GraphData, sourceId: string): { link: GraphLink; index: number }[] {
   return graph.links
     .map((link, index) => ({ link, index }))
-    .filter(({ link }) => link.source_id === sourceId);
+    .filter(({ link }) => {
+      if (link.source_id === sourceId) return true;
+      return (link.evidences ?? []).some((ev) => ev.source_id === sourceId);
+    });
 }
 
 export function SourceDetail({ source, graph, onBack, onOpenLink }: SourceDetailProps) {

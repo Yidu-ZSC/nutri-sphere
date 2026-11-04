@@ -1,10 +1,10 @@
 {
   "meta": {
-    "schema_version": "0.4",
-    "data_version": "0.9",
+    "schema_version": "0.5",
+    "data_version": "1.0",
     "extracted_from": "knowledge-base Project (high relevance files)",
     "extraction_date": "2026-10-31",
-    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 book-note nodes and excerpts are unchanged. data 0.5 adds schema 0.2 optional citation and nine literature edges with verified DOIs. data 0.6 / schema 0.3 writes audience on every link and mechanism_depth on mechanism nodes. These labels are not an evidence grade and not a view toggle. Educational use only. The original 20 excerpts are unchanged. data 0.7 aligns the 14 existing mechanism descriptions to MECHANISM_DICTIONARY.md v0.2 concept sentences and adds 10 dictionary mechanism nodes (aliases empty; mechanism_depth mechanism). Mechanism nodes still carry no source or limitations fields. Educational use only; schema_version remains 0.3. data 0.8 aligns 11 existing disease/biomarker labels and descriptions to HEALTH_DISEASE_DICTIONARY.md v0.2 concept sentences and adds 8 protective health-direction disease nodes (aliases empty). Column caption becomes 健康/疾病. Status nodes still carry no source or limitations fields. No new edges in this increment. Educational use only; schema_version remains 0.3. data 0.9 / schema 0.4 adds source_title on every link, source_id on book-note links, and data/sources.json (six cited books) for the source intro screen. Literature links set source_title from citation.title and omit source_id. Excerpt bodies and limitations are unchanged; evidences arrays are not introduced. Educational use only.",
+    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 book-note nodes and excerpts are unchanged. data 0.5 adds schema 0.2 optional citation and nine literature edges with verified DOIs. data 0.6 / schema 0.3 writes audience on every link and mechanism_depth on mechanism nodes. These labels are not an evidence grade and not a view toggle. Educational use only. The original 20 excerpts are unchanged. data 0.7 aligns the 14 existing mechanism descriptions to MECHANISM_DICTIONARY.md v0.2 concept sentences and adds 10 dictionary mechanism nodes (aliases empty; mechanism_depth mechanism). Mechanism nodes still carry no source or limitations fields. Educational use only; schema_version remains 0.3. data 0.8 aligns 11 existing disease/biomarker labels and descriptions to HEALTH_DISEASE_DICTIONARY.md v0.2 concept sentences and adds 8 protective health-direction disease nodes (aliases empty). Column caption becomes 健康/疾病. Status nodes still carry no source or limitations fields. No new edges in this increment. Educational use only; schema_version remains 0.3. data 0.9 / schema 0.4 adds source_title on every link, source_id on book-note links, and data/sources.json (six cited books) for the source intro screen. Literature links set source_title from citation.title and omit source_id. Excerpt bodies and limitations are unchanged; evidences arrays are not introduced. Educational use only. NS-056：evidences[]+顶层镜像；合并同端点 125→121；EXCERPT_LIMIT 1200；加长主摘录（微信读书书摘/PubMed 摘要，未编造）。",
     "disclaimer": "Educational / research use only. Not medical advice."
   },
   "nodes": [
@@ -986,7 +986,17 @@
       "limitations": "书摘机制",
       "audience": "general",
       "source_id": "amazing_veggie_soup",
-      "source_title": "惊人的蔬菜汤"
+      "source_title": "惊人的蔬菜汤",
+      "evidences": [
+        {
+          "excerpt": "谷胱甘肽多存在于芹菜、菠菜等黄绿色蔬菜中…从蔬菜汤中获取的谷胱甘肽被肠道吸收后…可以起到抗氧化和抗炎的作用",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "limitations": "书摘机制",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "35903999_7UumHuIZG"
+        }
+      ]
     },
     {
       "source": "glutathione",
@@ -1001,7 +1011,17 @@
       "limitations": "书摘",
       "audience": "general",
       "source_id": "amazing_veggie_soup",
-      "source_title": "惊人的蔬菜汤"
+      "source_title": "惊人的蔬菜汤",
+      "evidences": [
+        {
+          "excerpt": "谷胱甘肽能消除毒性最强的脂质自由基，预防癌症和炎症",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "limitations": "书摘",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "35903999_7UumHuIZG"
+        }
+      ]
     },
     {
       "source": "plant_based_diet",
@@ -1016,7 +1036,17 @@
       "limitations": "想法部分有读者推断",
       "audience": "general",
       "source_id": "amazing_veggie_soup",
-      "source_title": "惊人的蔬菜汤"
+      "source_title": "惊人的蔬菜汤",
+      "evidences": [
+        {
+          "excerpt": "植物性饮食的抗氧化作用能够阻止氧化反应",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "limitations": "想法部分有读者推断",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "35903999_7UujZPd3G"
+        }
+      ]
     },
     {
       "source": "chronic_inflammation",
@@ -1031,7 +1061,17 @@
       "limitations": "书摘",
       "audience": "general",
       "source_id": "amazing_veggie_soup",
-      "source_title": "惊人的蔬菜汤"
+      "source_title": "惊人的蔬菜汤",
+      "evidences": [
+        {
+          "excerpt": "从慢性肝炎发展成肝功能衰竭、肝癌",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "limitations": "书摘",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "35903999_7UujZPd3G"
+        }
+      ]
     },
     {
       "source": "chronic_inflammation",
@@ -1046,7 +1086,17 @@
       "limitations": "书摘",
       "audience": "general",
       "source_id": "amazing_veggie_soup",
-      "source_title": "惊人的蔬菜汤"
+      "source_title": "惊人的蔬菜汤",
+      "evidences": [
+        {
+          "excerpt": "癌症是没有终止的炎症，长期持续的炎症状态是引发肝脏、胃等消化系统器官癌症的原因",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "limitations": "书摘",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "35903999_7UulQClmx"
+        }
+      ]
     },
     {
       "source": "glycation",
@@ -1061,7 +1111,17 @@
       "limitations": "书摘",
       "audience": "general",
       "source_id": "amazing_veggie_soup",
-      "source_title": "惊人的蔬菜汤"
+      "source_title": "惊人的蔬菜汤",
+      "evidences": [
+        {
+          "excerpt": "高血糖也会引起慢性炎症…糖化程度越强，大脑、心脏、肾脏等器官受到损伤而引发炎症的危险性就越大",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "limitations": "书摘",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "35903999_7Uum2bdvM"
+        }
+      ]
     },
     {
       "source": "dietary_fiber",
@@ -1076,7 +1136,17 @@
       "limitations": "书摘",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "短链脂肪酸（SCFA）是细菌消化植物性纤维所产生的副产品…抗炎特性能够保护你的肠道和整体健康",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘",
+          "source_id": "eat_to_heal",
+          "note_id": "39484588_10_5172-5447"
+        }
+      ]
     },
     {
       "source": "scfa",
@@ -1091,7 +1161,17 @@
       "limitations": "书摘",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "它们的抗炎特性能够保护你的肠道和整体健康",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘",
+          "source_id": "eat_to_heal",
+          "note_id": "39484588_10_5172-5447"
+        }
+      ]
     },
     {
       "source": "dietary_fiber",
@@ -1104,9 +1184,49 @@
       "note_id": "39484588_10_9655-9804",
       "excerpt": "益生元是一种人体无法消化的食物，却能给我们肠道中的健康细菌提供食物",
       "limitations": "书摘",
-      "audience": "general",
+      "audience": "deep_reader",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "益生元是一种人体无法消化的食物，却能给我们肠道中的健康细菌提供食物",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘",
+          "source_id": "eat_to_heal",
+          "note_id": "39484588_10_9655-9804"
+        },
+        {
+          "excerpt": "综述归纳膳食纤维在胃肠道健康中的讨论，包括发酵、菌群和肠道功能，不是一条新的试验结果。",
+          "source_title": "Dietary fibre in gastrointestinal health and disease",
+          "source_file": "literature",
+          "limitations": "非书摘原文。专家综述，机制描述与人群资料放在一起，不能把综述直接当成临床效果，也不能外推为个体处方。",
+          "note_id": "33208922",
+          "citation": {
+            "title": "Dietary fibre in gastrointestinal health and disease",
+            "authors": "Gill et al.",
+            "year": 2021,
+            "doi": "10.1038/s41575-020-00375-4",
+            "pmid": "33208922",
+            "url": "https://doi.org/10.1038/s41575-020-00375-4"
+          }
+        },
+        {
+          "excerpt": "综述从生物学讨论到临床场景，同时涉及益生元与益生菌。本边只连接膳食纤维所代表的益生元一侧与肠道菌群，不覆盖具体产品。",
+          "source_title": "Probiotics and prebiotics in intestinal health and disease: from biology to the clinic",
+          "source_file": "literature",
+          "limitations": "非书摘原文。综述中的实验和临床结果并不一致。益生菌产品不在这条边上，不能据此选择产品，也不能外推为个体处方。",
+          "note_id": "31296969",
+          "citation": {
+            "title": "Probiotics and prebiotics in intestinal health and disease: from biology to the clinic",
+            "authors": "Sanders et al.",
+            "year": 2019,
+            "doi": "10.1038/s41575-019-0173-3",
+            "pmid": "31296969",
+            "url": "https://doi.org/10.1038/s41575-019-0173-3"
+          }
+        }
+      ]
     },
     {
       "source": "soy",
@@ -1121,7 +1241,17 @@
       "limitations": "书摘综述",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "大豆食品含有强效的抗血管生成特性",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘综述",
+          "source_id": "eat_to_heal",
+          "note_id": "39484588_14_3969-4088"
+        }
+      ]
     },
     {
       "source": "berries_fruits",
@@ -1136,7 +1266,17 @@
       "limitations": "书摘多处提及",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "浆果、核果、番茄等含类胡萝卜素、花青素等，具有抗血管生成活性",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘多处提及",
+          "source_id": "eat_to_heal",
+          "note_id": "multiple"
+        }
+      ]
     },
     {
       "source": "plant_based_diet",
@@ -1147,11 +1287,21 @@
       "strength": "moderate",
       "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
       "note_id": "3300017717_13_11428-11518",
-      "excerpt": "素食者所摄取到的所有营养素几乎都比肉食者多，包括膳食纤维",
+      "excerpt": "过去，亚洲人的糖尿病发病率一直很低。然而，近年来，糖尿病的扩散程度已经接近流行病情形，这与亚洲饮食的西化情况相吻合。\n如果完全规避肉类，不管是糖尿病前期还是糖尿病，患病风险都明显低于蔬食为主、偶尔吃鱼和肉的人。而那些采用更严格蔬食的人，他们的糖尿病患病率是0[66]。\n研究人员发现，比起身材消瘦的受试者，这些毒性化学物质和糖尿病之间的关联性，在肥胖的受试者身上更强，因此体内脂肪，很可能就是这些污染物质的温床[72]。超重的人，极可能将有毒的废弃物质储存在臀部，就像随身携带着一个毒物垃圾场。如果没有减掉足够的重量，身上带有鲑鱼污染物质的人，可能需要50～70年的时间才能清除掉体内的这些化学物质[73]。\n在摄取同样热量的条件下，素食者所摄取到的所有营养素几乎都比肉食者多，包括膳食纤维、维生素A、维生素C、维生素E、B族维生素、硫胺素、核黄素、叶酸，以及更多的钙、镁、铁和钾等矿物质。此外，蔬食中许多特别丰富的营养素，是大多数美国人平常摄取不足的，比如维生素A、维生素C、维生素E，更别提膳食纤维、钙、镁和钾了。此外，完全不吃肉的人吃进有害物质的机会也较少，比如钠、饱和脂肪及胆固醇等[74]。\n那些采用蔬食的人，静止代谢率可以比一般人高出11%。[76]这意味着素食者甚至在睡梦中也能燃烧更多的热量。为什么会这样？可能是因为素食者身上有一种“肉碱酰基转移酶”（carnitine acyltransferase），这是脂肪分解酶的更高基因表现，可以有效地将脂肪运送到细胞的线粒体（这是脂肪的燃烧体）[77]。\n糖尿病专家早就知道，意志坚定、成功减掉体重1/5的病人能够逆转糖尿病，让代谢功能重新恢复正常。[94]\n研究人员发现，那些吃肉（甚至吃奶蛋素）的人，皮下脂肪有很大的比例是由反式脂肪组成的；而一直采用严格全蔬食的人，他们的身体组织中没有检验出任何反式脂肪。[110]\n有证据显示，通过控制食量来达到减肥目标的人，最终都会反弹。让自己挨饿的减肥法，几乎从来没有长期的效果。因此，假如我们能找到一种方法，可以多吃食物来获得同样的减重结果，不就太棒了吗？\n我们在20岁左右时，身体就会停止制造新的B细胞（beta细胞或胰岛B细胞）。此后，一旦失去胰岛B细胞，就可能再也回不来了。[49]解剖研究显示，当Ⅱ型糖尿病在年龄稍长时被诊断出来时，胰岛B细胞可能已经被杀死一半了。[50]\n糖尿病患者更容易发生中风及心脏衰竭[60]。",
       "limitations": "书摘",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "过去，亚洲人的糖尿病发病率一直很低。然而，近年来，糖尿病的扩散程度已经接近流行病情形，这与亚洲饮食的西化情况相吻合。\n如果完全规避肉类，不管是糖尿病前期还是糖尿病，患病风险都明显低于蔬食为主、偶尔吃鱼和肉的人。而那些采用更严格蔬食的人，他们的糖尿病患病率是0[66]。\n研究人员发现，比起身材消瘦的受试者，这些毒性化学物质和糖尿病之间的关联性，在肥胖的受试者身上更强，因此体内脂肪，很可能就是这些污染物质的温床[72]。超重的人，极可能将有毒的废弃物质储存在臀部，就像随身携带着一个毒物垃圾场。如果没有减掉足够的重量，身上带有鲑鱼污染物质的人，可能需要50～70年的时间才能清除掉体内的这些化学物质[73]。\n在摄取同样热量的条件下，素食者所摄取到的所有营养素几乎都比肉食者多，包括膳食纤维、维生素A、维生素C、维生素E、B族维生素、硫胺素、核黄素、叶酸，以及更多的钙、镁、铁和钾等矿物质。此外，蔬食中许多特别丰富的营养素，是大多数美国人平常摄取不足的，比如维生素A、维生素C、维生素E，更别提膳食纤维、钙、镁和钾了。此外，完全不吃肉的人吃进有害物质的机会也较少，比如钠、饱和脂肪及胆固醇等[74]。\n那些采用蔬食的人，静止代谢率可以比一般人高出11%。[76]这意味着素食者甚至在睡梦中也能燃烧更多的热量。为什么会这样？可能是因为素食者身上有一种“肉碱酰基转移酶”（carnitine acyltransferase），这是脂肪分解酶的更高基因表现，可以有效地将脂肪运送到细胞的线粒体（这是脂肪的燃烧体）[77]。\n糖尿病专家早就知道，意志坚定、成功减掉体重1/5的病人能够逆转糖尿病，让代谢功能重新恢复正常。[94]\n研究人员发现，那些吃肉（甚至吃奶蛋素）的人，皮下脂肪有很大的比例是由反式脂肪组成的；而一直采用严格全蔬食的人，他们的身体组织中没有检验出任何反式脂肪。[110]\n有证据显示，通过控制食量来达到减肥目标的人，最终都会反弹。让自己挨饿的减肥法，几乎从来没有长期的效果。因此，假如我们能找到一种方法，可以多吃食物来获得同样的减重结果，不就太棒了吗？\n我们在20岁左右时，身体就会停止制造新的B细胞（beta细胞或胰岛B细胞）。此后，一旦失去胰岛B细胞，就可能再也回不来了。[49]解剖研究显示，当Ⅱ型糖尿病在年龄稍长时被诊断出来时，胰岛B细胞可能已经被杀死一半了。[50]\n糖尿病患者更容易发生中风及心脏衰竭[60]。",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘",
+          "source_id": "how_not_to_die",
+          "note_id": "3300017717_13_11428-11518"
+        }
+      ]
     },
     {
       "source": "animal_foods",
@@ -1166,7 +1316,17 @@
       "limitations": "export_may_be_truncated: true；书中综述",
       "audience": "general",
       "source_id": "china_study",
-      "source_title": "救命饮食：中国健康调查报告"
+      "source_title": "救命饮食：中国健康调查报告",
+      "evidences": [
+        {
+          "excerpt": "少吃动物性食物和高度精制的植物性食物，并多吃天然蔬食",
+          "source_title": "救命饮食：中国健康调查报告",
+          "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+          "limitations": "export_may_be_truncated: true；书中综述",
+          "source_id": "china_study",
+          "note_id": "related"
+        }
+      ]
     },
     {
       "source": "lps",
@@ -1181,7 +1341,17 @@
       "limitations": "书摘",
       "audience": "general",
       "source_id": "gut_brain",
-      "source_title": "菌群大脑"
+      "source_title": "菌群大脑",
+      "evidences": [
+        {
+          "excerpt": "如果脂多糖进入到血液，就会在动物体内诱发强烈的炎症反应",
+          "source_title": "菌群大脑",
+          "source_file": "肠道菌群_菌群大脑.md",
+          "limitations": "书摘",
+          "source_id": "gut_brain",
+          "note_id": "related"
+        }
+      ]
     },
     {
       "source": "gut_barrier_leak",
@@ -1196,7 +1366,17 @@
       "limitations": "书摘",
       "audience": "general",
       "source_id": "gut_brain",
-      "source_title": "菌群大脑"
+      "source_title": "菌群大脑",
+      "evidences": [
+        {
+          "excerpt": "血液中的脂多糖水平能对肠道渗漏起到指示作用",
+          "source_title": "菌群大脑",
+          "source_file": "肠道菌群_菌群大脑.md",
+          "limitations": "书摘",
+          "source_id": "gut_brain",
+          "note_id": "related"
+        }
+      ]
     },
     {
       "source": "gut_microbiome",
@@ -1211,7 +1391,17 @@
       "limitations": "书摘",
       "audience": "general",
       "source_id": "gut_brain",
-      "source_title": "菌群大脑"
+      "source_title": "菌群大脑",
+      "evidences": [
+        {
+          "excerpt": "微生物组可以调控或管理免疫反应",
+          "source_title": "菌群大脑",
+          "source_file": "肠道菌群_菌群大脑.md",
+          "limitations": "书摘",
+          "source_id": "gut_brain",
+          "note_id": "related"
+        }
+      ]
     },
     {
       "source": "gut_microbiome",
@@ -1226,7 +1416,17 @@
       "limitations": "多书书摘",
       "audience": "general",
       "source_id": "know_your_gut",
-      "source_title": "晓肚知肠"
+      "source_title": "晓肚知肠",
+      "evidences": [
+        {
+          "excerpt": "菌-肠-脑轴调节心理和行为",
+          "source_title": "晓肚知肠",
+          "source_file": "肠道菌群_晓肚知肠.md",
+          "limitations": "多书书摘",
+          "source_id": "know_your_gut",
+          "note_id": "multiple"
+        }
+      ]
     },
     {
       "source": "omega3",
@@ -1241,7 +1441,17 @@
       "limitations": "书摘",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "ω-3多不饱和脂肪酸具有抗氧化作用，可以对抗自由基造成的DNA破坏",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘",
+          "source_id": "eat_to_heal",
+          "note_id": "related"
+        }
+      ]
     },
     {
       "source": "plant_based_diet",
@@ -1252,11 +1462,21 @@
       "strength": "moderate",
       "source_file": "植物性饮食与慢病_吃出自愈力.md",
       "note_id": "related",
-      "excerpt": "在植物性食物、茶或咖啡中发现的生物活性物质可以对你的DNA产生积极的影响",
+      "excerpt": "要想知道基因组如何保持健康，首先要考虑自己体内令人惊诧的DNA数量。每个细胞都含有约6英尺长的DNA，它们缠绕成一团，形成被称作染色体的紧密包裹体。每个细胞的细胞核内有46条染色体（23条来自母亲，23条来自父亲）。如果你把体内所有细胞（目前估计有37.2万亿个）的DNA拉直，并让它们首尾相连，你将拥有一条420亿英里长的基因高速公路。5这是从地球到冥王星距离的近10倍！真正有趣的是：这条DNA超级高速公路中只有3%真正构成我们的基因，另外97%的DNA是作为空中交通管制员，指导身体如何使用这些基因。\n你的DNA对来自身体内外的外部影响做出反应，这种反应取决于环境。压力、专注力、睡眠、锻炼和怀孕只是少数有表观遗传影响的内部环境。无论是好是坏，你吃的食物和喝的饮料都属于能从表观遗传学的角度改变你DNA活动的外部影响。在植物性食物、茶或咖啡中发现的生物活性物质可以对你的DNA产生积极的影响。在高度加工的食品中发现的化学物质也会影响你的DNA，但产生的却是负面的影响。正是由于表观遗传学，有益基因才可以被扩增，有害基因才得以被阻断。\n大多数健康的活动都会产生积极的表观遗传变化，我们现在意识到它们正是通过我们的基因给我们带来好处的。例如，运动能引起表观遗传改变，使我们的基因释放出来，生成有用的蛋白质，用于构建肌肉，提高心脏的泵血能力，生长出新的血管来帮助肌肉扩张，并降低血脂。16运动引起的其他表观遗传变化可以阻止有害基因。游泳、短跑、间歇训练和高强度步行后可以看到这些变化。17\n有益于健康的ω-3多不饱和脂肪酸具有抗氧化作用，可以对抗自由基造成的DNA破坏。15但它也能改善细胞内的DNA修复，而这些细胞如果不加以控制的话，有可能会继续发展，引发癌变。\n英国诺里奇食品研究所的科学家发现，当结肠癌细胞暴露于萝卜硫素中时，该细胞内的基因活性发生了巨大的变化。萝卜硫素使这种癌症中63个基因的活性降低了一半。26其他研究表明，十字花科蔬菜中的萝卜硫素会使肿瘤抑制基因的活性出现一种表观遗传上的增强，这一点与大豆很相似，因为它能够激活一种对抗癌症的固有防御机制。\n这意味着姜黄素这种香料所含的表观遗传能力可以起到三重作用：预防癌症，减少血管炎症，帮助神经元生长。",
       "limitations": "书摘",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "要想知道基因组如何保持健康，首先要考虑自己体内令人惊诧的DNA数量。每个细胞都含有约6英尺长的DNA，它们缠绕成一团，形成被称作染色体的紧密包裹体。每个细胞的细胞核内有46条染色体（23条来自母亲，23条来自父亲）。如果你把体内所有细胞（目前估计有37.2万亿个）的DNA拉直，并让它们首尾相连，你将拥有一条420亿英里长的基因高速公路。5这是从地球到冥王星距离的近10倍！真正有趣的是：这条DNA超级高速公路中只有3%真正构成我们的基因，另外97%的DNA是作为空中交通管制员，指导身体如何使用这些基因。\n你的DNA对来自身体内外的外部影响做出反应，这种反应取决于环境。压力、专注力、睡眠、锻炼和怀孕只是少数有表观遗传影响的内部环境。无论是好是坏，你吃的食物和喝的饮料都属于能从表观遗传学的角度改变你DNA活动的外部影响。在植物性食物、茶或咖啡中发现的生物活性物质可以对你的DNA产生积极的影响。在高度加工的食品中发现的化学物质也会影响你的DNA，但产生的却是负面的影响。正是由于表观遗传学，有益基因才可以被扩增，有害基因才得以被阻断。\n大多数健康的活动都会产生积极的表观遗传变化，我们现在意识到它们正是通过我们的基因给我们带来好处的。例如，运动能引起表观遗传改变，使我们的基因释放出来，生成有用的蛋白质，用于构建肌肉，提高心脏的泵血能力，生长出新的血管来帮助肌肉扩张，并降低血脂。16运动引起的其他表观遗传变化可以阻止有害基因。游泳、短跑、间歇训练和高强度步行后可以看到这些变化。17\n有益于健康的ω-3多不饱和脂肪酸具有抗氧化作用，可以对抗自由基造成的DNA破坏。15但它也能改善细胞内的DNA修复，而这些细胞如果不加以控制的话，有可能会继续发展，引发癌变。\n英国诺里奇食品研究所的科学家发现，当结肠癌细胞暴露于萝卜硫素中时，该细胞内的基因活性发生了巨大的变化。萝卜硫素使这种癌症中63个基因的活性降低了一半。26其他研究表明，十字花科蔬菜中的萝卜硫素会使肿瘤抑制基因的活性出现一种表观遗传上的增强，这一点与大豆很相似，因为它能够激活一种对抗癌症的固有防御机制。\n这意味着姜黄素这种香料所含的表观遗传能力可以起到三重作用：预防癌症，减少血管炎症，帮助神经元生长。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘",
+          "source_id": "eat_to_heal",
+          "note_id": "related"
+        }
+      ]
     },
     {
       "source": "gut_microbiome",
@@ -1267,11 +1487,21 @@
       "strength": "moderate",
       "source_file": "肠道菌群_菌群大脑.md",
       "note_id": "related",
-      "excerpt": "肠道细菌失衡的中间产物同样会对线粒体造成直接伤害，转而引发更激烈的炎症反应",
+      "excerpt": "所有疾病都源于炎症反应的胡作非为，而免疫系统控制着炎症过程。微生物组又在其中发挥着怎样的作用呢？微生物组可以调控或管理免疫反应。它就是这样参与身体炎症过程的。\n携带不健康微生物组的人群可能会对疼痛更敏感。\n线粒体是人体中微小的细胞器，它们存在于除红细胞外的所有细胞中，并以三磷腺苷(ATP)的形式为人供给化学能量。线粒体具有自身的DNA，而当前科学认为线粒体来源于细菌的内共生，也就是说，线粒体曾经是独立生存的细菌，而这种细菌最终寄居在人体细胞中并为细胞提供能量。线粒体DNA和细菌DNA一样呈环状，这和细胞核中的遗传物质大不相同。\n鉴于线粒体的细菌来源及其独特的DNA，它也应当被视为人类微生物组的一部分。\n直到1949年，美国科学家尤金·肯尼迪(Eugene Kennedy)和阿尔伯特·伦宁格(Albert Lehninger)才发现了线粒体“能量工厂”的作用。基本来说，线粒体可以利用碳水化合物作为燃料并将其转化为能量，从而驱动大多数细胞功能。通过这种反应产生的能量叫作有氧代谢，因为在这一过程中氧气已被耗尽，就像点火燃烧一样。\n细胞凋亡至关重要，它令人体得以摆脱大量持续出现的癌细胞。每天都有100亿个细胞终止生命，为更新、更健康的细胞让路。而线粒体在生产能量过程中制造的自由基就在细胞凋亡过程中发挥着作用。\n肠道细菌失衡的中间产物同样会对线粒体造成直接伤害，转而引发更激烈的炎症反应。\n线粒体疾病包括线粒体功能失调造成的一系列神经、肌肉和代谢紊乱。糖尿病、自闭症和阿尔茨海默病等多种疾病均可能与线粒体问题有关。\n数量最多的两种细菌是厚壁菌和拟杆菌；这两种细菌占肠道细菌的90%以上。这两种细菌的相对比例决定了炎症水平，并且与肥胖、糖尿病、冠状动脉疾病和整体炎症直接相关。\n自闭症、精神分裂症、躁郁症、帕金森病和阿尔茨海默病等神经系统疾病都与线粒体缺陷有关。\n肠道菌群与线粒体有着复杂的相互作用，除了细胞核DNA外，它们就像是我们体内的第二套和第三套DNA。肠道细菌的活动不仅支持着线粒体的健康，而且当肠道微生物失去平衡或受到致病菌株的支配时，它们也会对线粒体造成直接的损害。\n高糖分和低纤维的食物会为有害细菌提供燃料，增加肠道渗漏、线粒体损伤、免疫系统危害以及直达大脑的系统炎症的机会。这是一个恶性循环，因为这一切都会进一步影响微生物的平衡。\n《谷物大脑》书中的一个重要前提就是，脂肪（不是碳水化合物）是人类新陈代谢的首选燃料，它是人类进化的全部。我自己坚持选择优质脂肪，并且从不担心所谓的“高胆固醇”食品。让我在这里总结一下重点，好让大家从微生物组的角度理解这些内容。",
       "limitations": "多书综合",
       "audience": "general",
       "source_id": "gut_brain",
-      "source_title": "菌群大脑"
+      "source_title": "菌群大脑",
+      "evidences": [
+        {
+          "excerpt": "所有疾病都源于炎症反应的胡作非为，而免疫系统控制着炎症过程。微生物组又在其中发挥着怎样的作用呢？微生物组可以调控或管理免疫反应。它就是这样参与身体炎症过程的。\n携带不健康微生物组的人群可能会对疼痛更敏感。\n线粒体是人体中微小的细胞器，它们存在于除红细胞外的所有细胞中，并以三磷腺苷(ATP)的形式为人供给化学能量。线粒体具有自身的DNA，而当前科学认为线粒体来源于细菌的内共生，也就是说，线粒体曾经是独立生存的细菌，而这种细菌最终寄居在人体细胞中并为细胞提供能量。线粒体DNA和细菌DNA一样呈环状，这和细胞核中的遗传物质大不相同。\n鉴于线粒体的细菌来源及其独特的DNA，它也应当被视为人类微生物组的一部分。\n直到1949年，美国科学家尤金·肯尼迪(Eugene Kennedy)和阿尔伯特·伦宁格(Albert Lehninger)才发现了线粒体“能量工厂”的作用。基本来说，线粒体可以利用碳水化合物作为燃料并将其转化为能量，从而驱动大多数细胞功能。通过这种反应产生的能量叫作有氧代谢，因为在这一过程中氧气已被耗尽，就像点火燃烧一样。\n细胞凋亡至关重要，它令人体得以摆脱大量持续出现的癌细胞。每天都有100亿个细胞终止生命，为更新、更健康的细胞让路。而线粒体在生产能量过程中制造的自由基就在细胞凋亡过程中发挥着作用。\n肠道细菌失衡的中间产物同样会对线粒体造成直接伤害，转而引发更激烈的炎症反应。\n线粒体疾病包括线粒体功能失调造成的一系列神经、肌肉和代谢紊乱。糖尿病、自闭症和阿尔茨海默病等多种疾病均可能与线粒体问题有关。\n数量最多的两种细菌是厚壁菌和拟杆菌；这两种细菌占肠道细菌的90%以上。这两种细菌的相对比例决定了炎症水平，并且与肥胖、糖尿病、冠状动脉疾病和整体炎症直接相关。\n自闭症、精神分裂症、躁郁症、帕金森病和阿尔茨海默病等神经系统疾病都与线粒体缺陷有关。\n肠道菌群与线粒体有着复杂的相互作用，除了细胞核DNA外，它们就像是我们体内的第二套和第三套DNA。肠道细菌的活动不仅支持着线粒体的健康，而且当肠道微生物失去平衡或受到致病菌株的支配时，它们也会对线粒体造成直接的损害。\n高糖分和低纤维的食物会为有害细菌提供燃料，增加肠道渗漏、线粒体损伤、免疫系统危害以及直达大脑的系统炎症的机会。这是一个恶性循环，因为这一切都会进一步影响微生物的平衡。\n《谷物大脑》书中的一个重要前提就是，脂肪（不是碳水化合物）是人类新陈代谢的首选燃料，它是人类进化的全部。我自己坚持选择优质脂肪，并且从不担心所谓的“高胆固醇”食品。让我在这里总结一下重点，好让大家从微生物组的角度理解这些内容。",
+          "source_title": "菌群大脑",
+          "source_file": "肠道菌群_菌群大脑.md",
+          "limitations": "多书综合",
+          "source_id": "gut_brain",
+          "note_id": "related"
+        }
+      ]
     },
     {
       "id": "ns009_ultra_microbiome",
@@ -1287,7 +1517,17 @@
       "limitations": "书摘归纳。节点标签是超加工；书中用语多为西式或加工饮食，不是 NOVA 分类论文。书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "gut_brain",
-      "source_title": "菌群大脑"
+      "source_title": "菌群大脑",
+      "evidences": [
+        {
+          "excerpt": "高度加工的西式饮食在书摘中与菌群多样性下降的叙述连在一起",
+          "source_title": "菌群大脑",
+          "source_file": "肠道菌群_菌群大脑.md",
+          "limitations": "书摘归纳。节点标签是超加工；书中用语多为西式或加工饮食，不是 NOVA 分类论文。书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "gut_brain",
+          "note_id": "ns009_ultra_microbiome"
+        }
+      ]
     },
     {
       "id": "ns009_ultra_inflammation",
@@ -1303,7 +1543,17 @@
       "limitations": "书摘归纳，把既有炎症枢纽接到超加工节点，不是新的定量研究。书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "gut_brain",
-      "source_title": "菌群大脑"
+      "source_title": "菌群大脑",
+      "evidences": [
+        {
+          "excerpt": "加工饮食在书摘的菌群、屏障与炎症链条里被当作上游膳食背景",
+          "source_title": "菌群大脑",
+          "source_file": "肠道菌群_菌群大脑.md",
+          "limitations": "书摘归纳，把既有炎症枢纽接到超加工节点，不是新的定量研究。书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "gut_brain",
+          "note_id": "ns009_ultra_inflammation"
+        }
+      ]
     },
     {
       "id": "ns009_ultra_insulin",
@@ -1321,7 +1571,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "高度加工的膳食模式在书摘的代谢综述里与胰岛素相关问题一并出现",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘观察性综述，不是血糖管理方案。超加工是种子标签，书中多写加工食品。书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_ultra_insulin"
+        }
+      ]
     },
     {
       "id": "ns009_barrier_autoimmune",
@@ -1338,7 +1598,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "gut_brain",
-      "source_title": "菌群大脑"
+      "source_title": "菌群大脑",
+      "evidences": [
+        {
+          "excerpt": "书摘把肠道屏障受损、菌群和免疫调控放在同一条叙述里，并延伸到自身免疫相关讨论",
+          "source_title": "菌群大脑",
+          "source_file": "肠道菌群_菌群大脑.md",
+          "limitations": "书摘机制归纳，不是自身免疫相关问题的判定，也不是病因结论。书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "gut_brain",
+          "note_id": "ns009_barrier_autoimmune"
+        }
+      ]
     },
     {
       "id": "ns009_barrier_immune_activation",
@@ -1354,7 +1624,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "gut_brain",
-      "source_title": "菌群大脑"
+      "source_title": "菌群大脑",
+      "evidences": [
+        {
+          "excerpt": "屏障受损后，管腔内容物更容易接触免疫侧，书摘用这一点解释下游激活",
+          "source_title": "菌群大脑",
+          "source_file": "肠道菌群_菌群大脑.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "gut_brain",
+          "note_id": "ns009_barrier_immune_activation"
+        }
+      ]
     },
     {
       "id": "ns009_lps_immune_activation",
@@ -1370,7 +1650,17 @@
       "limitations": "与既有 LPS→慢性炎症边同一主题；本边补上免疫激活节点，不改原摘录。动物实验语境见原边。",
       "audience": "general",
       "source_id": "gut_brain",
-      "source_title": "菌群大脑"
+      "source_title": "菌群大脑",
+      "evidences": [
+        {
+          "excerpt": "脂多糖入血在书摘中被描述为强烈炎症与免疫激活的触发情境",
+          "source_title": "菌群大脑",
+          "source_file": "肠道菌群_菌群大脑.md",
+          "limitations": "与既有 LPS→慢性炎症边同一主题；本边补上免疫激活节点，不改原摘录。动物实验语境见原边。",
+          "source_id": "gut_brain",
+          "note_id": "ns009_lps_immune_activation"
+        }
+      ]
     },
     {
       "id": "ns009_immune_activation_autoimmune",
@@ -1387,7 +1677,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "gut_brain",
-      "source_title": "菌群大脑"
+      "source_title": "菌群大脑",
+      "evidences": [
+        {
+          "excerpt": "持续的免疫激活在书摘中被延伸到自身免疫相关风险的机制讨论",
+          "source_title": "菌群大脑",
+          "source_file": "肠道菌群_菌群大脑.md",
+          "limitations": "书摘机制归纳，不是自身免疫相关问题的判定。书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "gut_brain",
+          "note_id": "ns009_immune_activation_autoimmune"
+        }
+      ]
     },
     {
       "id": "ns009_greens_vitc",
@@ -1403,7 +1703,17 @@
       "limitations": "书摘归纳，非成分表定量，也非补充剂建议。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "黄绿色蔬菜在书摘里被当作抗氧化营养素的食物来源，维生素C属于这一类叙述",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘归纳，非成分表定量，也非补充剂建议。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_greens_vitc"
+        }
+      ]
     },
     {
       "id": "ns009_greens_carotenoids",
@@ -1419,7 +1729,17 @@
       "limitations": "书摘归纳，非含量检测。",
       "audience": "general",
       "source_id": "amazing_veggie_soup",
-      "source_title": "惊人的蔬菜汤"
+      "source_title": "惊人的蔬菜汤",
+      "evidences": [
+        {
+          "excerpt": "黄绿色蔬菜的色素物质在书摘的抗氧化叙述中出现，类胡萝卜素是其中一类",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "limitations": "书摘归纳，非含量检测。",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "ns009_greens_carotenoids"
+        }
+      ]
     },
     {
       "id": "ns009_greens_fiber",
@@ -1435,7 +1755,17 @@
       "limitations": "书摘归纳，非定量摄入建议。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "黄绿色蔬菜在植物性膳食书摘中同时被写入纤维来源",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘归纳，非定量摄入建议。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_greens_fiber"
+        }
+      ]
     },
     {
       "id": "ns009_berry_anthocyanins",
@@ -1451,7 +1781,17 @@
       "limitations": "与既有浆果→血管生成边同源书摘，本边拆出花青素。原边摘录未改。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "浆果、核果、番茄等含类胡萝卜素、花青素等，具有抗血管生成活性",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "与既有浆果→血管生成边同源书摘，本边拆出花青素。原边摘录未改。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_berry_anthocyanins"
+        }
+      ]
     },
     {
       "id": "ns009_berry_carotenoids",
@@ -1467,7 +1807,17 @@
       "limitations": "与既有浆果→血管生成边同源书摘，本边拆出类胡萝卜素。原边摘录未改。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "浆果、核果、番茄等含类胡萝卜素、花青素等，具有抗血管生成活性",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "与既有浆果→血管生成边同源书摘，本边拆出类胡萝卜素。原边摘录未改。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_berry_carotenoids"
+        }
+      ]
     },
     {
       "id": "ns009_berry_polyphenols",
@@ -1483,7 +1833,17 @@
       "limitations": "书摘归纳。同源原句见花青素与类胡萝卜素边，既有浆果→血管生成摘录未改。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "浆果、核果和番茄在书摘中与多酚、花青素一类色素一起出现",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘归纳。同源原句见花青素与类胡萝卜素边，既有浆果→血管生成摘录未改。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_berry_polyphenols"
+        }
+      ]
     },
     {
       "id": "ns009_berry_vitc",
@@ -1499,7 +1859,17 @@
       "limitations": "书摘归纳，非含量检测，非补充剂建议。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "浆果在书摘的抗氧化食物举例里也和维生素C一类营养素一起出现",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘归纳，非含量检测，非补充剂建议。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_berry_vitc"
+        }
+      ]
     },
     {
       "id": "ns009_soy_isoflavones",
@@ -1515,7 +1885,17 @@
       "limitations": "书摘机制归纳，非补充剂剂量。既有大豆→血管生成摘录未改。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "书摘用大豆中的异黄酮来解释其抗血管生成特性",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘机制归纳，非补充剂剂量。既有大豆→血管生成摘录未改。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_soy_isoflavones"
+        }
+      ]
     },
     {
       "id": "ns009_soy_breast_prostate",
@@ -1533,7 +1913,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "吃更多大豆食品的人降低了患许多与血管生成相关的疾病的风险，包括乳腺癌、前列腺癌和冠心病",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "v0.2 书摘分句，v0.3 对齐时未写入大豆→血管生成边。观察性叙述，非干预试验。同句还提到冠心病，另有一条同源边承接，避免一句双计时失去出处。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_soy_breast_prostate"
+        }
+      ]
     },
     {
       "id": "ns009_soy_cardiometabolic",
@@ -1551,7 +1941,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "吃更多大豆食品的人降低了患许多与血管生成相关的疾病的风险，包括乳腺癌、前列腺癌和冠心病",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "与大豆→乳腺/前列腺边同源一句，此处只承接冠心病部分，不是另一项独立研究。观察性叙述，非个体方案。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_soy_cardiometabolic"
+        }
+      ]
     },
     {
       "id": "ns009_tea_egcg",
@@ -1567,7 +1967,17 @@
       "limitations": "书摘机制归纳，非茶饮剂量建议。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "绿茶里的 EGCG 在书摘的血管生成与 DNA 防御食物举例中被点名",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘机制归纳，非茶饮剂量建议。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_tea_egcg"
+        }
+      ]
     },
     {
       "id": "ns009_tea_polyphenols",
@@ -1583,7 +1993,17 @@
       "limitations": "书摘归纳，这是化合物分类上的桥，不是新的试验结果。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "EGCG 一类茶多酚在书摘中被归入植物多酚",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘归纳，这是化合物分类上的桥，不是新的试验结果。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_tea_polyphenols"
+        }
+      ]
     },
     {
       "id": "ns009_coffee_polyphenols",
@@ -1599,7 +2019,17 @@
       "limitations": "书摘归纳。既有「茶或咖啡」原句仍留在植物膳食→表观遗传边。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "咖啡在书摘中与茶一样，被当作生物活性物质的饮品来源",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘归纳。既有「茶或咖啡」原句仍留在植物膳食→表观遗传边。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_coffee_polyphenols"
+        }
+      ]
     },
     {
       "id": "ns009_coffee_epigenetic",
@@ -1615,7 +2045,17 @@
       "limitations": "与既有植物膳食→表观遗传边同源书摘。本边把咖啡作为食物入口，原边摘录未改。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "在植物性食物、茶或咖啡中发现的生物活性物质可以对你的DNA产生积极的影响",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "与既有植物膳食→表观遗传边同源书摘。本边把咖啡作为食物入口，原边摘录未改。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_coffee_epigenetic"
+        }
+      ]
     },
     {
       "id": "ns009_nuts_fiber",
@@ -1631,7 +2071,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "坚果在书摘的纤维食物举例中出现",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_nuts_fiber"
+        }
+      ]
     },
     {
       "id": "ns009_nuts_omega3",
@@ -1647,7 +2097,17 @@
       "limitations": "书摘归纳，不是所有坚果都富含 ω-3。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "部分坚果（如核桃）在书摘中作为植物性 ω-3 来源被提到",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘归纳，不是所有坚果都富含 ω-3。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_nuts_omega3"
+        }
+      ]
     },
     {
       "id": "ns009_nuts_vite",
@@ -1663,7 +2123,17 @@
       "limitations": "书摘归纳，非补充剂剂量。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "坚果在书摘中被列为维生素E的食物来源之一",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘归纳，非补充剂剂量。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_nuts_vite"
+        }
+      ]
     },
     {
       "id": "ns009_cruciferous_sulforaphane",
@@ -1679,7 +2149,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "十字花科蔬菜中的萝卜硫素在书摘的 DNA 防御部分被讨论",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_cruciferous_sulforaphane"
+        }
+      ]
     },
     {
       "id": "ns009_cruciferous_fiber",
@@ -1695,7 +2175,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "十字花科蔬菜在书摘里也属于高纤维植物性食物",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_cruciferous_fiber"
+        }
+      ]
     },
     {
       "id": "ns009_alliums_sulfur",
@@ -1711,7 +2201,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "葱蒜类的有机硫化物在书摘的免疫相关食物举例中出现",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_alliums_sulfur"
+        }
+      ]
     },
     {
       "id": "ns009_mushroom_glucan",
@@ -1727,7 +2227,17 @@
       "limitations": "书摘机制归纳，非菌菇产品宣称。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "菌菇中的β-葡聚糖在书摘里与免疫防御一起被提到",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘机制归纳，非菌菇产品宣称。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_mushroom_glucan"
+        }
+      ]
     },
     {
       "id": "ns009_grains_fiber",
@@ -1743,7 +2253,17 @@
       "limitations": "书摘归纳。精制主食不在本节点内。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "全谷类在书摘中作为膳食纤维的主食来源",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘归纳。精制主食不在本节点内。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_grains_fiber"
+        }
+      ]
     },
     {
       "id": "ns009_grains_resistant_starch",
@@ -1759,7 +2279,17 @@
       "limitations": "书摘归纳。抗性淀粉含量随加工和温度变化，这里不给定量。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "完整谷物在书摘的抗性淀粉与菌群喂养叙述中出现",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘归纳。抗性淀粉含量随加工和温度变化，这里不给定量。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_grains_resistant_starch"
+        }
+      ]
     },
     {
       "id": "ns009_legumes_fiber",
@@ -1775,7 +2305,17 @@
       "limitations": "本节点指大豆以外的食用豆类。大豆见 soy。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "豆类在书摘中是膳食纤维的主要植物性来源之一",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "本节点指大豆以外的食用豆类。大豆见 soy。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_legumes_fiber"
+        }
+      ]
     },
     {
       "id": "ns009_legumes_microbiome",
@@ -1791,7 +2331,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "know_your_gut",
-      "source_title": "晓肚知肠"
+      "source_title": "晓肚知肠",
+      "evidences": [
+        {
+          "excerpt": "豆类在肠道菌群书摘中被当作喂养微生物的植物性食物",
+          "source_title": "晓肚知肠",
+          "source_file": "肠道菌群_晓肚知肠.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "know_your_gut",
+          "note_id": "ns009_legumes_microbiome"
+        }
+      ]
     },
     {
       "id": "ns009_flax_omega3",
@@ -1807,7 +2357,17 @@
       "limitations": "书摘归纳，讨论的是食物中的 ALA，不是鱼油产品。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "亚麻籽在书摘中作为植物性 ω-3（ALA）的食物例子",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘归纳，讨论的是食物中的 ALA，不是鱼油产品。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_flax_omega3"
+        }
+      ]
     },
     {
       "id": "ns009_flax_fiber",
@@ -1823,7 +2383,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "亚麻籽在书摘里同时作为纤维和植物 ω-3 的种子食物出现",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_flax_fiber"
+        }
+      ]
     },
     {
       "id": "ns009_fermented_microbiome",
@@ -1839,7 +2409,17 @@
       "limitations": "书摘机制。菌株与数量都没有标准化，不是益生菌产品建议。",
       "audience": "general",
       "source_id": "know_your_gut",
-      "source_title": "晓肚知肠"
+      "source_title": "晓肚知肠",
+      "evidences": [
+        {
+          "excerpt": "发酵食物在书摘中被当作向肠道引入微生物活动的食物例子",
+          "source_title": "晓肚知肠",
+          "source_file": "肠道菌群_晓肚知肠.md",
+          "limitations": "书摘机制。菌株与数量都没有标准化，不是益生菌产品建议。",
+          "source_id": "know_your_gut",
+          "note_id": "ns009_fermented_microbiome"
+        }
+      ]
     },
     {
       "id": "ns009_fermented_immune",
@@ -1855,7 +2435,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "gut_brain",
-      "source_title": "菌群大脑"
+      "source_title": "菌群大脑",
+      "evidences": [
+        {
+          "excerpt": "发酵食物在菌群与免疫的书摘叙述里被当作饮食侧例子",
+          "source_title": "菌群大脑",
+          "source_file": "肠道菌群_菌群大脑.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "gut_brain",
+          "note_id": "ns009_fermented_immune"
+        }
+      ]
     },
     {
       "id": "ns009_spices_polyphenols",
@@ -1871,7 +2461,17 @@
       "limitations": "书摘归纳，不是香料补充剂建议。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "香草与香料在书摘中作为多酚和生物活性物质的植物性来源被列举",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘归纳，不是香料补充剂建议。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_spices_polyphenols"
+        }
+      ]
     },
     {
       "id": "ns009_cacao_polyphenols",
@@ -1887,7 +2487,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "可可在书摘中作为多酚类食物例子出现",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_cacao_polyphenols"
+        }
+      ]
     },
     {
       "id": "ns009_cacao_angiogenesis",
@@ -1903,7 +2513,17 @@
       "limitations": "书摘机制归纳，单一食物举例，不是效果承诺。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "可可在书摘的血管生成防御食物举例中出现",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘机制归纳，单一食物举例，不是效果承诺。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_cacao_angiogenesis"
+        }
+      ]
     },
     {
       "id": "ns009_plant_vitamins",
@@ -1920,7 +2540,17 @@
       "population": "书摘对观察性资料的转述，非本图谱的新队列，非个体因果。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "素食者所摄取到的所有营养素几乎都比肉食者多，包括膳食纤维、维生素A、C、E等",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "v0.2 较长分句。v0.3 植物膳食→纤维边保留较短摘录且未改。本边承接维生素C；维生素A 的前体见类胡萝卜素，维生素E 见坚果边。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_plant_vitamins"
+        }
+      ]
     },
     {
       "id": "ns009_plant_microbiome",
@@ -1936,7 +2566,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "以全食物植物为主的膳食在书摘中被描述为喂养肠道菌群的饮食背景",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_plant_microbiome"
+        }
+      ]
     },
     {
       "id": "ns009_plant_cardiometabolic",
@@ -1954,7 +2594,32 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "china_study",
-      "source_title": "救命饮食：中国健康调查报告"
+      "source_title": "救命饮食：中国健康调查报告",
+      "evidences": [
+        {
+          "excerpt": "少吃动物性食物和高度精制的植物性食物，并多吃天然蔬食",
+          "source_title": "救命饮食：中国健康调查报告",
+          "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+          "limitations": "与动物性食物→心血管代谢边同源一句，本边只承接「多吃天然蔬食」。不是个体方案。原边摘录未改。",
+          "source_id": "china_study",
+          "note_id": "ns009_plant_cardiometabolic"
+        },
+        {
+          "excerpt": "前瞻队列观察到，植物性膳食质量的变化与随后的全因及部分死因死亡风险相关；质量更高的植物性模式对应较低风险。",
+          "source_title": "Changes in Plant-Based Diet Quality and Total and Cause-Specific Mortality",
+          "source_file": "literature",
+          "limitations": "非书摘原文。观察性队列，膳食为自我报告，残余混杂不能排除，不能外推为个体处方。",
+          "note_id": "31401846",
+          "citation": {
+            "title": "Changes in Plant-Based Diet Quality and Total and Cause-Specific Mortality",
+            "authors": "Baden et al.",
+            "year": 2019,
+            "doi": "10.1161/CIRCULATIONAHA.119.041014",
+            "pmid": "31401846",
+            "url": "https://doi.org/10.1161/CIRCULATIONAHA.119.041014"
+          }
+        }
+      ]
     },
     {
       "id": "ns009_redmeat_heme",
@@ -1970,7 +2635,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "红肉被书摘单列为血红素铁的主要食物来源之一",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_redmeat_heme"
+        }
+      ]
     },
     {
       "id": "ns009_redmeat_tmao",
@@ -1986,7 +2661,17 @@
       "limitations": "书摘对文献的归纳，不是本库的新测量。个体菌群差异大，不是风险评分。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "书摘综述红肉中的肉碱等前体可经肠道菌群代谢，并与氧化三甲胺一并讨论",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘对文献的归纳，不是本库的新测量。个体菌群差异大，不是风险评分。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_redmeat_tmao"
+        }
+      ]
     },
     {
       "id": "ns009_redmeat_cardio",
@@ -1998,13 +2683,38 @@
       "strength": "moderate",
       "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
       "note_id": "ns009_redmeat_cardio",
-      "excerpt": "红肉在书摘的动物性食物与心血管风险综述中被单独讨论",
+      "excerpt": "在1900年的美国，三大头号死因都是感染性疾病：肺炎、肺结核和腹泻疾病。如今的主要死因，大致都是生活方式病：心脏病、癌症和慢性肺病。\n中国或许是个最好的研究例子。在中国，由于饮食习惯背离传统蔬食，与饮食有关的慢性病发生率急剧上升，比如肥胖症、糖尿病、心血管疾病和癌症。\n饮食质量指数（Dietary Quality Index）就应运而生了，该指数反映的是从营养丰富、未经加工的植物性食物所获得的热量百分比，分数从0到100。得分越高，随时间能减掉的体脂肪就越多，患腹部肥胖、高血压、高胆固醇和高甘油三酯的风险就越低。在比较100名患有乳腺癌的妇女与175名健康女性的饮食后，研究人员的结论是，在全蔬食的饮食质量指数上得分较高的人，乳腺癌患病率可降低90%以上。\n遗憾的是，大多数美国人所获得的分数仅过10而已。至于典型的美国饮食，在100分中的得分是11。根据来自美国农业部的估计，美国人的热量有32%来自动物性食物、57%来自加工过的植物性食物，而只有11%来自全谷物类、豆类、水果、蔬菜和坚果。这意味着，如果是10分制的计分，美国人的饮食习惯只能拿到1分。\n有多少比例的美国人，完全符合美国心脏协会建议的“简单七要素”？\n事实上，就算只做到以下4个简单要素，就可能对预防慢性病有很大的影响：不抽烟、不肥胖、每天运动半小时，以及吃得更健康（摄取更多蔬果和全谷物，少吃肉类）。研究发现，仅仅做到这4个要素，就能降低78%的慢性病患病风险。如果你从现在开始，尽量去做到这4个要素，就可以减少90%以上患糖尿病的风险、80%以上患心脏病的风险、50%的中风风险，以及降低至少1/3的患癌风险。对于某些癌症，比如第二大癌症杀手大肠癌，通过简单的饮食和生活方式的改变，有71%以上是可以预防的。\n“任何分量的反式脂肪酸，都会增加患冠状动脉心脏病的风险”。[21]而反式脂肪天然存在于肉品和乳制品之中[22]，这点让他们很为难：“因为普通的非全素饮食无法避免反式脂肪，若想要反式脂肪零摄取，大幅改变饮食结构势在必行。”[23]",
       "limitations": "书摘观察性综述。动物性食物总类见既有边，本边只标红肉。书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "population": "书摘对观察性资料的转述，非本图谱的新队列，非个体因果。",
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "在1900年的美国，三大头号死因都是感染性疾病：肺炎、肺结核和腹泻疾病。如今的主要死因，大致都是生活方式病：心脏病、癌症和慢性肺病。\n中国或许是个最好的研究例子。在中国，由于饮食习惯背离传统蔬食，与饮食有关的慢性病发生率急剧上升，比如肥胖症、糖尿病、心血管疾病和癌症。\n饮食质量指数（Dietary Quality Index）就应运而生了，该指数反映的是从营养丰富、未经加工的植物性食物所获得的热量百分比，分数从0到100。得分越高，随时间能减掉的体脂肪就越多，患腹部肥胖、高血压、高胆固醇和高甘油三酯的风险就越低。在比较100名患有乳腺癌的妇女与175名健康女性的饮食后，研究人员的结论是，在全蔬食的饮食质量指数上得分较高的人，乳腺癌患病率可降低90%以上。\n遗憾的是，大多数美国人所获得的分数仅过10而已。至于典型的美国饮食，在100分中的得分是11。根据来自美国农业部的估计，美国人的热量有32%来自动物性食物、57%来自加工过的植物性食物，而只有11%来自全谷物类、豆类、水果、蔬菜和坚果。这意味着，如果是10分制的计分，美国人的饮食习惯只能拿到1分。\n有多少比例的美国人，完全符合美国心脏协会建议的“简单七要素”？\n事实上，就算只做到以下4个简单要素，就可能对预防慢性病有很大的影响：不抽烟、不肥胖、每天运动半小时，以及吃得更健康（摄取更多蔬果和全谷物，少吃肉类）。研究发现，仅仅做到这4个要素，就能降低78%的慢性病患病风险。如果你从现在开始，尽量去做到这4个要素，就可以减少90%以上患糖尿病的风险、80%以上患心脏病的风险、50%的中风风险，以及降低至少1/3的患癌风险。对于某些癌症，比如第二大癌症杀手大肠癌，通过简单的饮食和生活方式的改变，有71%以上是可以预防的。\n“任何分量的反式脂肪酸，都会增加患冠状动脉心脏病的风险”。[21]而反式脂肪天然存在于肉品和乳制品之中[22]，这点让他们很为难：“因为普通的非全素饮食无法避免反式脂肪，若想要反式脂肪零摄取，大幅改变饮食结构势在必行。”[23]",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘观察性综述。动物性食物总类见既有边，本边只标红肉。书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_redmeat_cardio"
+        },
+        {
+          "excerpt": "两个前瞻队列中，红肉摄入量增加与随后更高的全因及心血管死亡风险相关；换成其他食物时的估计并不相同。",
+          "source_title": "Association of changes in red meat consumption with total and cause specific mortality among US women and men: two prospective cohort studies",
+          "source_file": "literature",
+          "limitations": "非书摘原文。观察性重复测量，替代模型依赖统计假设，残余混杂仍在。不同研究的结论并不整齐，不能外推为个体处方。",
+          "note_id": "31189526",
+          "citation": {
+            "title": "Association of changes in red meat consumption with total and cause specific mortality among US women and men: two prospective cohort studies",
+            "authors": "Zheng et al.",
+            "year": 2019,
+            "doi": "10.1136/bmj.l2110",
+            "pmid": "31189526",
+            "url": "https://doi.org/10.1136/bmj.l2110"
+          }
+        }
+      ]
     },
     {
       "id": "ns009_processed_digestive",
@@ -2022,7 +2732,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "加工肉在书摘的消化系统肿瘤章节里与更高风险的观察性综述放在一起",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘观察性综述，不是本图谱判定的因果，也不是个体预测。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_processed_digestive"
+        }
+      ]
     },
     {
       "id": "ns009_processed_cardio",
@@ -2034,13 +2754,23 @@
       "strength": "low",
       "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
       "note_id": "ns009_processed_cardio",
-      "excerpt": "加工肉在书摘中也不只出现于肿瘤章节，还进入心血管风险的饮食综述",
+      "excerpt": "饮食质量指数（Dietary Quality Index）就应运而生了，该指数反映的是从营养丰富、未经加工的植物性食物所获得的热量百分比，分数从0到100。得分越高，随时间能减掉的体脂肪就越多，患腹部肥胖、高血压、高胆固醇和高甘油三酯的风险就越低。在比较100名患有乳腺癌的妇女与175名健康女性的饮食后，研究人员的结论是，在全蔬食的饮食质量指数上得分较高的人，乳腺癌患病率可降低90%以上。\n遗憾的是，大多数美国人所获得的分数仅过10而已。至于典型的美国饮食，在100分中的得分是11。根据来自美国农业部的估计，美国人的热量有32%来自动物性食物、57%来自加工过的植物性食物，而只有11%来自全谷物类、豆类、水果、蔬菜和坚果。这意味着，如果是10分制的计分，美国人的饮食习惯只能拿到1分。\n我们在20岁左右时，身体就会停止制造新的B细胞（beta细胞或胰岛B细胞）。此后，一旦失去胰岛B细胞，就可能再也回不来了。[49]解剖研究显示，当Ⅱ型糖尿病在年龄稍长时被诊断出来时，胰岛B细胞可能已经被杀死一半了。[50]\n糖尿病患者更容易发生中风及心脏衰竭[60]。\n如果完全规避肉类，不管是糖尿病前期还是糖尿病，患病风险都明显低于蔬食为主、偶尔吃鱼和肉的人。而那些采用更严格蔬食的人，他们的糖尿病患病率是0[66]。\n糖尿病专家早就知道，意志坚定、成功减掉体重1/5的病人能够逆转糖尿病，让代谢功能重新恢复正常。[94]\n高达50%的糖尿病患者，最终会发展出神经病变或神经受损。[102]神经病变非常疼痛，且传统治疗通常起不了作用。没有任何治疗对减轻这种症状有效。\n研究人员发现，那些吃肉（甚至吃奶蛋素）的人，皮下脂肪有很大的比例是由反式脂肪组成的；而一直采用严格全蔬食的人，他们的身体组织中没有检验出任何反式脂肪。[110]\n我们的医学教育还没有意识到，疾病模式的本质已经变化，现在需要把重点放在预防和生活方式的改变上面[126]。\n“任何分量的反式脂肪酸，都会增加患冠状动脉心脏病的风险”。[21]而反式脂肪天然存在于肉品和乳制品之中[22]，这点让他们很为难：“因为普通的非全素饮食无法避免反式脂肪，若想要反式脂肪零摄取，大幅改变饮食结构势在必行。”[23]",
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。书摘对观察性资料的转述，非本图谱的新队列，非个体因果。",
       "population": "书摘对观察性资料的转述，非本图谱的新队列，非个体因果。",
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "饮食质量指数（Dietary Quality Index）就应运而生了，该指数反映的是从营养丰富、未经加工的植物性食物所获得的热量百分比，分数从0到100。得分越高，随时间能减掉的体脂肪就越多，患腹部肥胖、高血压、高胆固醇和高甘油三酯的风险就越低。在比较100名患有乳腺癌的妇女与175名健康女性的饮食后，研究人员的结论是，在全蔬食的饮食质量指数上得分较高的人，乳腺癌患病率可降低90%以上。\n遗憾的是，大多数美国人所获得的分数仅过10而已。至于典型的美国饮食，在100分中的得分是11。根据来自美国农业部的估计，美国人的热量有32%来自动物性食物、57%来自加工过的植物性食物，而只有11%来自全谷物类、豆类、水果、蔬菜和坚果。这意味着，如果是10分制的计分，美国人的饮食习惯只能拿到1分。\n我们在20岁左右时，身体就会停止制造新的B细胞（beta细胞或胰岛B细胞）。此后，一旦失去胰岛B细胞，就可能再也回不来了。[49]解剖研究显示，当Ⅱ型糖尿病在年龄稍长时被诊断出来时，胰岛B细胞可能已经被杀死一半了。[50]\n糖尿病患者更容易发生中风及心脏衰竭[60]。\n如果完全规避肉类，不管是糖尿病前期还是糖尿病，患病风险都明显低于蔬食为主、偶尔吃鱼和肉的人。而那些采用更严格蔬食的人，他们的糖尿病患病率是0[66]。\n糖尿病专家早就知道，意志坚定、成功减掉体重1/5的病人能够逆转糖尿病，让代谢功能重新恢复正常。[94]\n高达50%的糖尿病患者，最终会发展出神经病变或神经受损。[102]神经病变非常疼痛，且传统治疗通常起不了作用。没有任何治疗对减轻这种症状有效。\n研究人员发现，那些吃肉（甚至吃奶蛋素）的人，皮下脂肪有很大的比例是由反式脂肪组成的；而一直采用严格全蔬食的人，他们的身体组织中没有检验出任何反式脂肪。[110]\n我们的医学教育还没有意识到，疾病模式的本质已经变化，现在需要把重点放在预防和生活方式的改变上面[126]。\n“任何分量的反式脂肪酸，都会增加患冠状动脉心脏病的风险”。[21]而反式脂肪天然存在于肉品和乳制品之中[22]，这点让他们很为难：“因为普通的非全素饮食无法避免反式脂肪，若想要反式脂肪零摄取，大幅改变饮食结构势在必行。”[23]",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。书摘对观察性资料的转述，非本图谱的新队列，非个体因果。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_processed_cardio"
+        }
+      ]
     },
     {
       "id": "ns009_animal_satfat",
@@ -2057,7 +2787,17 @@
       "population": "书中生态比较与综述，非个体因果。",
       "audience": "general",
       "source_id": "china_study",
-      "source_title": "救命饮食：中国健康调查报告"
+      "source_title": "救命饮食：中国健康调查报告",
+      "evidences": [
+        {
+          "excerpt": "动物性食物在书摘中被同时当作饱和脂肪与动物蛋白的载体来讨论",
+          "source_title": "救命饮食：中国健康调查报告",
+          "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+          "limitations": "书中更强调动物蛋白与整体动物性食物。饱和脂肪只是其中一条叙述，不是单一因果。",
+          "source_id": "china_study",
+          "note_id": "ns009_animal_satfat"
+        }
+      ]
     },
     {
       "id": "ns009_animal_igf1",
@@ -2073,7 +2813,17 @@
       "limitations": "书摘综述，不是激素检测建议，也不是因果证明。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "书摘综述动物性蛋白与 IGF-1 信号的文献讨论",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘综述，不是激素检测建议，也不是因果证明。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_animal_igf1"
+        }
+      ]
     },
     {
       "id": "ns009_dairy_casein",
@@ -2089,7 +2839,17 @@
       "limitations": "书摘归纳。后续动物实验边单独标明模型，不能把乳制品直接写成人体结论。",
       "audience": "general",
       "source_id": "china_study",
-      "source_title": "救命饮食：中国健康调查报告"
+      "source_title": "救命饮食：中国健康调查报告",
+      "evidences": [
+        {
+          "excerpt": "乳制品在书摘中被用来引入酪蛋白这一动物蛋白例子",
+          "source_title": "救命饮食：中国健康调查报告",
+          "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+          "limitations": "书摘归纳。后续动物实验边单独标明模型，不能把乳制品直接写成人体结论。",
+          "source_id": "china_study",
+          "note_id": "ns009_dairy_casein"
+        }
+      ]
     },
     {
       "id": "ns009_dairy_igf1",
@@ -2105,7 +2865,17 @@
       "limitations": "书摘综述，不是检测建议。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "书摘综述动物性乳品与 IGF-1 的讨论",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘综述，不是检测建议。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_dairy_igf1"
+        }
+      ]
     },
     {
       "id": "ns009_sugar_glycation",
@@ -2122,7 +2892,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "amazing_veggie_soup",
-      "source_title": "惊人的蔬菜汤"
+      "source_title": "惊人的蔬菜汤",
+      "evidences": [
+        {
+          "excerpt": "书摘把高血糖与糖化、器官炎症危险放在一起；添加糖在此只作为把这段叙述接回膳食列的入口",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "limitations": "书摘讨论的是高血糖与糖化，没有给出添加糖的克数阈值。这是膳食入口映射，不是定量因果。",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "ns009_sugar_glycation"
+        }
+      ]
     },
     {
       "id": "ns009_sugar_insulin",
@@ -2140,7 +2920,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "含糖饮料和精制糖在书摘的代谢风险综述里与胰岛素相关问题一并出现",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘观察性综述，不是血糖管理方案。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_sugar_insulin"
+        }
+      ]
     },
     {
       "id": "ns009_refined_glycation",
@@ -2157,7 +2947,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "amazing_veggie_soup",
-      "source_title": "惊人的蔬菜汤"
+      "source_title": "惊人的蔬菜汤",
+      "evidences": [
+        {
+          "excerpt": "高度精制的主食在这里被接到书摘已有的高血糖与糖化叙述上",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "limitations": "膳食入口映射。书摘原文讨论高血糖与糖化，没有给出主食份量。",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "ns009_refined_glycation"
+        }
+      ]
     },
     {
       "id": "ns009_refined_microbiome",
@@ -2173,7 +2973,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "know_your_gut",
-      "source_title": "晓肚知肠"
+      "source_title": "晓肚知肠",
+      "evidences": [
+        {
+          "excerpt": "高度精制的主食在书摘中与纤维不足、菌群食物减少一起被讨论",
+          "source_title": "晓肚知肠",
+          "source_file": "肠道菌群_晓肚知肠.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "know_your_gut",
+          "note_id": "ns009_refined_microbiome"
+        }
+      ]
     },
     {
       "id": "ns009_refined_cardiometabolic",
@@ -2191,7 +3001,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "china_study",
-      "source_title": "救命饮食：中国健康调查报告"
+      "source_title": "救命饮食：中国健康调查报告",
+      "evidences": [
+        {
+          "excerpt": "少吃动物性食物和高度精制的植物性食物，并多吃天然蔬食",
+          "source_title": "救命饮食：中国健康调查报告",
+          "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+          "limitations": "与既有动物性食物→心血管代谢边同源书摘。本边只承接「高度精制的植物性食物」，对应精制主食节点，不是 NOVA 超加工分级。原边摘录未改。",
+          "source_id": "china_study",
+          "note_id": "ns009_refined_cardiometabolic"
+        }
+      ]
     },
     {
       "id": "ns009_vitc_ros",
@@ -2207,7 +3027,17 @@
       "limitations": "书摘机制归纳，非补充剂剂量。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "维生素C在蔬菜汤书摘的抗氧化叙述中用来对抗活性氧",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘机制归纳，非补充剂剂量。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_vitc_ros"
+        }
+      ]
     },
     {
       "id": "ns009_vite_ros",
@@ -2223,7 +3053,17 @@
       "limitations": "书摘机制归纳，非补充剂剂量。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "维生素E在书摘中被写入对抗氧化压力的营养素",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘机制归纳，非补充剂剂量。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_vite_ros"
+        }
+      ]
     },
     {
       "id": "ns009_carotenoid_ros",
@@ -2239,7 +3079,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "类胡萝卜素在书摘的抗氧化食物化学里与活性氧叙述相连",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_carotenoid_ros"
+        }
+      ]
     },
     {
       "id": "ns009_carotenoid_angio",
@@ -2255,7 +3105,17 @@
       "limitations": "与浆果边同源主题。既有浆果→血管生成摘录未改。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "类胡萝卜素在书摘中与浆果、番茄的抗血管生成活性放在一起",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "与浆果边同源主题。既有浆果→血管生成摘录未改。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_carotenoid_angio"
+        }
+      ]
     },
     {
       "id": "ns009_polyphenol_ros",
@@ -2271,7 +3131,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "多酚在书摘中被描述为可参与抗氧化的植物化学物",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_polyphenol_ros"
+        }
+      ]
     },
     {
       "id": "ns009_polyphenol_epigenetic",
@@ -2287,7 +3157,17 @@
       "limitations": "书摘机制归纳。茶与咖啡的原句仍在既有边和咖啡边，本边不替换它们。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "植物多酚在书摘的 DNA 防御部分被当作生物活性物质来讨论",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘机制归纳。茶与咖啡的原句仍在既有边和咖啡边，本边不替换它们。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_polyphenol_epigenetic"
+        }
+      ]
     },
     {
       "id": "ns009_anthocyanin_angio",
@@ -2303,7 +3183,17 @@
       "limitations": "与既有浆果→血管生成边同源主题，原边摘录未改。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "花青素在书摘中被写入具有抗血管生成活性的色素",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "与既有浆果→血管生成边同源主题，原边摘录未改。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_anthocyanin_angio"
+        }
+      ]
     },
     {
       "id": "ns009_isoflavone_angio",
@@ -2319,7 +3209,17 @@
       "limitations": "书摘机制归纳，非补充剂剂量。既有大豆食品摘录未改。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "大豆异黄酮在书摘中被用来说明抗血管生成特性从何而来",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘机制归纳，非补充剂剂量。既有大豆食品摘录未改。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_isoflavone_angio"
+        }
+      ]
     },
     {
       "id": "ns009_egcg_angio",
@@ -2335,7 +3235,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "EGCG 在书摘的血管生成防御食物化学里被单独讨论",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_egcg_angio"
+        }
+      ]
     },
     {
       "id": "ns009_egcg_epigenetic",
@@ -2351,7 +3261,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "EGCG 在书摘的 DNA 防御部分与基因表达相关叙述一起出现",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_egcg_epigenetic"
+        }
+      ]
     },
     {
       "id": "ns009_sulforaphane_epigenetic",
@@ -2367,7 +3287,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "萝卜硫素在书摘中与保护 DNA、影响基因表达的叙述放在一起",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_sulforaphane_epigenetic"
+        }
+      ]
     },
     {
       "id": "ns009_sulfur_immune",
@@ -2383,7 +3313,17 @@
       "limitations": "书摘机制归纳，证据篇幅相对短，强度记为较低。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "葱蒜中的有机硫化物在书摘的免疫防御食物化学里被提到",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘机制归纳，证据篇幅相对短，强度记为较低。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_sulfur_immune"
+        }
+      ]
     },
     {
       "id": "ns009_glucan_immune",
@@ -2399,7 +3339,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "β-葡聚糖在书摘中被写入免疫防御的食物化学",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_glucan_immune"
+        }
+      ]
     },
     {
       "id": "ns009_rs_scfa",
@@ -2415,7 +3365,17 @@
       "limitations": "与既有纤维→SCFA 边同一机制主题。本边补上抗性淀粉这一底物，不改原摘录。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "抗性淀粉在书摘中与膳食纤维一样，可被菌群发酵并产生短链脂肪酸",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "与既有纤维→SCFA 边同一机制主题。本边补上抗性淀粉这一底物，不改原摘录。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_rs_scfa"
+        }
+      ]
     },
     {
       "id": "ns009_rs_microbiome",
@@ -2431,7 +3391,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "know_your_gut",
-      "source_title": "晓肚知肠"
+      "source_title": "晓肚知肠",
+      "evidences": [
+        {
+          "excerpt": "抗性淀粉在肠道菌群书摘中被当作结肠微生物的食物",
+          "source_title": "晓肚知肠",
+          "source_file": "肠道菌群_晓肚知肠.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "know_your_gut",
+          "note_id": "ns009_rs_microbiome"
+        }
+      ]
     },
     {
       "id": "ns009_scfa_butyrate",
@@ -2447,7 +3417,17 @@
       "limitations": "分类桥：丁酸属于 SCFA。不是新的发酵实验。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "丁酸被书摘当作短链脂肪酸里与结肠细胞关系最常被提到的一种",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "分类桥：丁酸属于 SCFA。不是新的发酵实验。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_scfa_butyrate"
+        }
+      ]
     },
     {
       "id": "ns009_butyrate_barrier",
@@ -2463,7 +3443,17 @@
       "limitations": "书摘机制。方向表示与屏障损伤相对的维护叙述，不是屏障修复承诺。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "丁酸被书摘描述为结肠细胞可利用的短链脂肪酸，并与屏障维护一起讨论",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘机制。方向表示与屏障损伤相对的维护叙述，不是屏障修复承诺。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_butyrate_barrier"
+        }
+      ]
     },
     {
       "id": "ns009_satfat_cardio",
@@ -2481,7 +3471,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "china_study",
-      "source_title": "救命饮食：中国健康调查报告"
+      "source_title": "救命饮食：中国健康调查报告",
+      "evidences": [
+        {
+          "excerpt": "书摘将饱和脂肪摄入与心血管、代谢风险的地区比较和综述联系在一起",
+          "source_title": "救命饮食：中国健康调查报告",
+          "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+          "limitations": "书中整体更强调动物性食物而不只是脂肪。本边不把饱和脂肪写成唯一原因。",
+          "source_id": "china_study",
+          "note_id": "ns009_satfat_cardio"
+        }
+      ]
     },
     {
       "id": "ns009_heme_dna",
@@ -2497,7 +3497,17 @@
       "limitations": "书摘对文献的归纳，不是本图谱的新实验。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "书摘综述血红素铁与氧化损伤的机制讨论",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘对文献的归纳，不是本图谱的新实验。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_heme_dna"
+        }
+      ]
     },
     {
       "id": "ns009_casein_cancer",
@@ -2515,7 +3525,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "china_study",
-      "source_title": "救命饮食：中国健康调查报告"
+      "source_title": "救命饮食：中国健康调查报告",
+      "evidences": [
+        {
+          "excerpt": "书中以黄曲霉毒素大鼠模型讨论酪蛋白水平与肝脏肿瘤病灶的促进",
+          "source_title": "救命饮食：中国健康调查报告",
+          "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+          "limitations": "动物实验书摘。模型特殊，不能外推为人体乳制品指令或风险评分。",
+          "source_id": "china_study",
+          "note_id": "ns009_casein_cancer"
+        }
+      ]
     },
     {
       "id": "ns009_tmao_cardio",
@@ -2533,7 +3553,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "氧化三甲胺在书摘中与心血管风险的文献综述放在一起",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘观察性综述，不是干预证据，不能写成因果或饮食指令。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_tmao_cardio"
+        }
+      ]
     },
     {
       "id": "ns009_microbiome_tryptophan",
@@ -2549,7 +3579,17 @@
       "limitations": "书摘机制，不涉及情绪药物，也不是情绪判定。",
       "audience": "general",
       "source_id": "gut_brain",
-      "source_title": "菌群大脑"
+      "source_title": "菌群大脑",
+      "evidences": [
+        {
+          "excerpt": "书摘讨论肠道菌群参与色氨酸代谢，并由此进入菌–肠–脑相关叙述",
+          "source_title": "菌群大脑",
+          "source_file": "肠道菌群_菌群大脑.md",
+          "limitations": "书摘机制，不涉及情绪药物，也不是情绪判定。",
+          "source_id": "gut_brain",
+          "note_id": "ns009_microbiome_tryptophan"
+        }
+      ]
     },
     {
       "id": "ns009_tryptophan_mental",
@@ -2566,7 +3606,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "gut_brain",
-      "source_title": "菌群大脑"
+      "source_title": "菌群大脑",
+      "evidences": [
+        {
+          "excerpt": "色氨酸代谢物在书摘中被描述为菌–肠–脑轴上的一类信号，方向依情境而定",
+          "source_title": "菌群大脑",
+          "source_file": "肠道菌群_菌群大脑.md",
+          "limitations": "书摘机制。方向记为混合，因为书摘没有把它写成单一保护或风险。",
+          "source_id": "gut_brain",
+          "note_id": "ns009_tryptophan_mental"
+        }
+      ]
     },
     {
       "id": "ns009_ros_dna",
@@ -2582,7 +3632,17 @@
       "limitations": "书摘机制归纳。既有 ω-3→表观遗传摘录未改。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "活性氧在书摘中被写成可破坏 DNA 的氧化压力",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘机制归纳。既有 ω-3→表观遗传摘录未改。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_ros_dna"
+        }
+      ]
     },
     {
       "id": "ns009_ros_inflammation",
@@ -2598,7 +3658,17 @@
       "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
       "audience": "general",
       "source_id": "amazing_veggie_soup",
-      "source_title": "惊人的蔬菜汤"
+      "source_title": "惊人的蔬菜汤",
+      "evidences": [
+        {
+          "excerpt": "氧化反应与慢性炎症在书摘中被写成互相推动的过程",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "limitations": "书摘归纳，非逐字长引，非临床试验，不能外推为个人方案。",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "ns009_ros_inflammation"
+        }
+      ]
     },
     {
       "id": "ns009_dna_digestive",
@@ -2615,7 +3685,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "DNA 损伤在书摘的肿瘤机制叙述里位于氧化压力与消化系统相关风险之间",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘机制，不是肿瘤发生的充分说明。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_dna_digestive"
+        }
+      ]
     },
     {
       "id": "ns009_glycation_insulin",
@@ -2631,7 +3711,17 @@
       "limitations": "书摘机制归纳，不是代谢分期。",
       "audience": "general",
       "source_id": "amazing_veggie_soup",
-      "source_title": "惊人的蔬菜汤"
+      "source_title": "惊人的蔬菜汤",
+      "evidences": [
+        {
+          "excerpt": "高血糖与糖化在书摘中被写成持续代谢压力的一部分",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "limitations": "书摘机制归纳，不是代谢分期。",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "ns009_glycation_insulin"
+        }
+      ]
     },
     {
       "id": "ns009_glycation_hba1c",
@@ -2648,7 +3738,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "糖化血红蛋白在书摘的血糖与糖化讨论中作为长期暴露的教育向参照出现",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "教育向生物标志试点。不提供目标值、判读规则或方案。书摘归纳，不是逐字长引。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_glycation_hba1c"
+        }
+      ]
     },
     {
       "id": "ns009_insulin_cardio",
@@ -2665,7 +3765,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "胰岛素抵抗在书摘中位于心血管与代谢风险的机制链上",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘机制归纳，不是代谢指标判读。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_insulin_cardio"
+        }
+      ]
     },
     {
       "id": "ns009_insulin_fatty_liver",
@@ -2682,7 +3792,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "书摘将胰岛素抵抗与肝脏脂肪堆积的代谢叙述连在一起",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘归纳。此节点不同于已有的慢性肝炎进展。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_insulin_fatty_liver"
+        }
+      ]
     },
     {
       "id": "ns009_igf1_breast",
@@ -2699,7 +3819,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "IGF-1 信号在书摘中与乳腺、前列腺相关风险的综述放在一起",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘综述，不是激素检测建议，也不是因果证明。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_igf1_breast"
+        }
+      ]
     },
     {
       "id": "ns009_angio_breast",
@@ -2716,7 +3846,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "书摘把抗血管生成防御和乳腺、前列腺等与血管生成相关的风险放在同一框架里",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "书摘机制框架，不是风险降低的定量结果。大豆观察性分句另见同源边。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_angio_breast"
+        }
+      ]
     },
     {
       "id": "ns009_microbiome_mito",
@@ -2732,7 +3872,17 @@
       "limitations": "与既有菌群→慢性炎症边同一书摘。本边把线粒体损伤拆成中间步骤，不替换、不改写原边摘录。",
       "audience": "general",
       "source_id": "gut_brain",
-      "source_title": "菌群大脑"
+      "source_title": "菌群大脑",
+      "evidences": [
+        {
+          "excerpt": "肠道细菌失衡的中间产物同样会对线粒体造成直接伤害，转而引发更激烈的炎症反应",
+          "source_title": "菌群大脑",
+          "source_file": "肠道菌群_菌群大脑.md",
+          "limitations": "与既有菌群→慢性炎症边同一书摘。本边把线粒体损伤拆成中间步骤，不替换、不改写原边摘录。",
+          "source_id": "gut_brain",
+          "note_id": "ns009_microbiome_mito"
+        }
+      ]
     },
     {
       "id": "ns009_mito_inflammation",
@@ -2748,7 +3898,17 @@
       "limitations": "由既有菌群→慢性炎症摘录拆出的后半步，原边摘录未改。不是新的实验。",
       "audience": "general",
       "source_id": "gut_brain",
-      "source_title": "菌群大脑"
+      "source_title": "菌群大脑",
+      "evidences": [
+        {
+          "excerpt": "书摘把这种线粒体伤害写成会转而引发更激烈的炎症反应",
+          "source_title": "菌群大脑",
+          "source_file": "肠道菌群_菌群大脑.md",
+          "limitations": "由既有菌群→慢性炎症摘录拆出的后半步，原边摘录未改。不是新的实验。",
+          "source_id": "gut_brain",
+          "note_id": "ns009_mito_inflammation"
+        }
+      ]
     },
     {
       "id": "ns009_inflammation_crp",
@@ -2766,7 +3926,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "C反应蛋白在书摘中被当作慢性炎症讨论里的可测参照，而不是个人判读指标",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "教育向生物标志试点。不提供参考区间或判读规则。书摘归纳。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_inflammation_crp"
+        }
+      ]
     },
     {
       "id": "ns009_inflammation_fatty_liver",
@@ -2783,7 +3953,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "书摘把慢性炎症与肝脏脂肪相关风险放在代谢叙述中",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "不同于既有的慢性肝炎进展边。书摘归纳，不是疾病判定。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_inflammation_fatty_liver"
+        }
+      ]
     },
     {
       "id": "ns009_inflammation_mental",
@@ -2800,7 +3980,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "gut_brain",
-      "source_title": "菌群大脑"
+      "source_title": "菌群大脑",
+      "evidences": [
+        {
+          "excerpt": "书摘把炎症信号与情绪、抑郁相关讨论放在菌–肠–脑叙述中",
+          "source_title": "菌群大脑",
+          "source_file": "肠道菌群_菌群大脑.md",
+          "limitations": "书摘机制，不是抑郁的判定标准，也不是方案说明。",
+          "source_id": "gut_brain",
+          "note_id": "ns009_inflammation_mental"
+        }
+      ]
     },
     {
       "id": "ns009_inflammation_ibd",
@@ -2817,7 +4007,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "know_your_gut",
-      "source_title": "晓肚知肠"
+      "source_title": "晓肚知肠",
+      "evidences": [
+        {
+          "excerpt": "肠道炎症相关结局在书摘中与持续炎症叙述放在一起",
+          "source_title": "晓肚知肠",
+          "source_file": "肠道菌群_晓肚知肠.md",
+          "limitations": "书摘归纳，不是炎症性肠病的判定。",
+          "source_id": "know_your_gut",
+          "note_id": "ns009_inflammation_ibd"
+        }
+      ]
     },
     {
       "id": "ns009_barrier_ibd",
@@ -2834,7 +4034,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "know_your_gut",
-      "source_title": "晓肚知肠"
+      "source_title": "晓肚知肠",
+      "evidences": [
+        {
+          "excerpt": "肠道屏障受损在菌群书摘中与肠道炎症相关结局一并被讨论",
+          "source_title": "晓肚知肠",
+          "source_file": "肠道菌群_晓肚知肠.md",
+          "limitations": "书摘机制归纳，不是疾病判定。",
+          "source_id": "know_your_gut",
+          "note_id": "ns009_barrier_ibd"
+        }
+      ]
     },
     {
       "id": "ns009_scfa_obesity",
@@ -2851,7 +4061,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "eat_to_heal",
-      "source_title": "吃出自愈力"
+      "source_title": "吃出自愈力",
+      "evidences": [
+        {
+          "excerpt": "它们可以提升你的身体代谢葡萄糖和脂类的能力",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "limitations": "v0.2 在 SCFA 抗炎句后的分句，v0.3 既有抗炎边未收录该分句。代谢叙述不是体重方案。",
+          "source_id": "eat_to_heal",
+          "note_id": "ns009_scfa_obesity"
+        }
+      ]
     },
     {
       "id": "ns009_fiber_obesity",
@@ -2869,7 +4089,17 @@
       "dose_response": "书摘未提供可外推到个人的剂量或阈值。",
       "audience": "general",
       "source_id": "how_not_to_die",
-      "source_title": "救命：逆转和预防致命疾病的科学饮食"
+      "source_title": "救命：逆转和预防致命疾病的科学饮食",
+      "evidences": [
+        {
+          "excerpt": "高纤维膳食在书摘中与体重及代谢相关风险的观察性叙述一起出现",
+          "source_title": "救命：逆转和预防致命疾病的科学饮食",
+          "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+          "limitations": "书摘观察性综述，不是体重方案。",
+          "source_id": "how_not_to_die",
+          "note_id": "ns009_fiber_obesity"
+        }
+      ]
     },
     {
       "id": "lit_fiber_cvd_reynolds_2019",
@@ -2881,7 +4111,7 @@
       "strength": "high",
       "source_file": "literature",
       "note_id": "30638909",
-      "excerpt": "系统综述与荟萃归纳：较高的膳食纤维摄入，以及若干反映碳水质量的指标，与较低的全因死亡和心血管死亡风险相关。",
+      "excerpt": "BACKGROUND: Previous systematic reviews and meta-analyses explaining the relationship between carbohydrate quality and health have usually examined a single marker and a limited number of clinical outcomes. We aimed to more precisely quantify the predictive potential of several markers, to determine which markers are most useful, and to establish an evidence base for quantitative recommendations for intakes of dietary fibre. METHODS: We did a series of systematic reviews and meta-analyses of prospective studies published from database inception to April 30, 2017, and randomised controlled trials published from database inception to Feb 28, 2018, which reported on indicators of carbohydrate quality and non-communicable disease incidence, mortality, and risk factors. Studies were identified by searches in PubMed, Ovid MEDLINE, Embase, and the Cochrane Central Register of Controlled Trials, and by hand searching of previous publications. We excluded prospective studies and trials reporting on participants with a chronic disease, and weight loss trials or trials involving supplements. Searches, data extraction, and bias assessment were duplicated independently.",
       "limitations": "非书摘原文。主体是观察性资料的系统综述与荟萃，残余混杂和膳食测量误差仍然存在，不能外推为个体处方。",
       "population": "多队列与试验资料的汇总，非单一新队列。",
       "citation": {
@@ -2893,31 +4123,24 @@
         "url": "https://doi.org/10.1016/S0140-6736(18)31809-9"
       },
       "audience": "general",
-      "source_title": "Carbohydrate quality and human health: a series of systematic reviews and meta-analyses"
-    },
-    {
-      "id": "lit_plant_quality_mortality_baden_2019",
-      "source": "plant_based_diet",
-      "target": "cardiometabolic",
-      "relation": "植物性膳食质量变化与死亡风险的队列观察",
-      "direction": "protective",
-      "evidence_type": "observational",
-      "strength": "moderate",
-      "source_file": "literature",
-      "note_id": "31401846",
-      "excerpt": "前瞻队列观察到，植物性膳食质量的变化与随后的全因及部分死因死亡风险相关；质量更高的植物性模式对应较低风险。",
-      "limitations": "非书摘原文。观察性队列，膳食为自我报告，残余混杂不能排除，不能外推为个体处方。",
-      "population": "美国护士与卫生专业人员队列。",
-      "citation": {
-        "title": "Changes in Plant-Based Diet Quality and Total and Cause-Specific Mortality",
-        "authors": "Baden et al.",
-        "year": 2019,
-        "doi": "10.1161/CIRCULATIONAHA.119.041014",
-        "pmid": "31401846",
-        "url": "https://doi.org/10.1161/CIRCULATIONAHA.119.041014"
-      },
-      "audience": "general",
-      "source_title": "Changes in Plant-Based Diet Quality and Total and Cause-Specific Mortality"
+      "source_title": "Carbohydrate quality and human health: a series of systematic reviews and meta-analyses",
+      "evidences": [
+        {
+          "excerpt": "BACKGROUND: Previous systematic reviews and meta-analyses explaining the relationship between carbohydrate quality and health have usually examined a single marker and a limited number of clinical outcomes. We aimed to more precisely quantify the predictive potential of several markers, to determine which markers are most useful, and to establish an evidence base for quantitative recommendations for intakes of dietary fibre. METHODS: We did a series of systematic reviews and meta-analyses of prospective studies published from database inception to April 30, 2017, and randomised controlled trials published from database inception to Feb 28, 2018, which reported on indicators of carbohydrate quality and non-communicable disease incidence, mortality, and risk factors. Studies were identified by searches in PubMed, Ovid MEDLINE, Embase, and the Cochrane Central Register of Controlled Trials, and by hand searching of previous publications. We excluded prospective studies and trials reporting on participants with a chronic disease, and weight loss trials or trials involving supplements. Searches, data extraction, and bias assessment were duplicated independently.",
+          "source_title": "Carbohydrate quality and human health: a series of systematic reviews and meta-analyses",
+          "source_file": "literature",
+          "limitations": "非书摘原文。主体是观察性资料的系统综述与荟萃，残余混杂和膳食测量误差仍然存在，不能外推为个体处方。",
+          "note_id": "30638909",
+          "citation": {
+            "title": "Carbohydrate quality and human health: a series of systematic reviews and meta-analyses",
+            "authors": "Reynolds et al.",
+            "year": 2019,
+            "doi": "10.1016/S0140-6736(18)31809-9",
+            "pmid": "30638909",
+            "url": "https://doi.org/10.1016/S0140-6736(18)31809-9"
+          }
+        }
+      ]
     },
     {
       "id": "lit_upf_cvd_srour_2019",
@@ -2929,7 +4152,7 @@
       "strength": "moderate",
       "source_file": "literature",
       "note_id": "31142457",
-      "excerpt": "前瞻队列观察到，超加工食品摄入较高与心血管疾病风险较高相关。",
+      "excerpt": "OBJECTIVE: To assess the prospective associations between consumption of ultra-processed foods and risk of cardiovascular diseases. DESIGN: Population based cohort study. SETTING: NutriNet-Santé cohort, France 2009-18. PARTICIPANTS: 105 159 participants aged at least 18 years. Dietary intakes were collected using repeated 24 hour dietary records (5.7 for each participant on average), designed to register participants' usual consumption of 3300 food items. These foods were categorised using the NOVA classification according to degree of processing. MAIN OUTCOME MEASURES: Associations between intake of ultra-processed food and overall risk of cardiovascular, coronary heart, and cerebrovascular diseases assessed by multivariable Cox proportional hazard models adjusted for known risk factors. RESULTS: During a median follow-up of 5.2 years, intake of ultra-processed food was associated with a higher risk of overall cardiovascular disease (1409 cases; hazard ratio for an absolute increment of 10 in the percentage of ultra-processed foods in the diet 1.12 (95% confidence interval 1.05 to 1.20);",
       "limitations": "非书摘原文。单一网络招募队列，食品分类和自我报告都有误差，不能由关联推出因果，也不能外推为个体处方。",
       "population": "NutriNet-Santé 成年参与者。",
       "citation": {
@@ -2941,55 +4164,24 @@
         "url": "https://doi.org/10.1136/bmj.l1451"
       },
       "audience": "general",
-      "source_title": "Ultra-processed food intake and risk of cardiovascular disease: prospective cohort study (NutriNet-Santé)"
-    },
-    {
-      "id": "lit_red_meat_mortality_zheng_2019",
-      "source": "red_meat",
-      "target": "cardiometabolic",
-      "relation": "红肉摄入量变化与死亡风险的队列观察",
-      "direction": "mixed",
-      "evidence_type": "observational",
-      "strength": "moderate",
-      "source_file": "literature",
-      "note_id": "31189526",
-      "excerpt": "两个前瞻队列中，红肉摄入量增加与随后更高的全因及心血管死亡风险相关；换成其他食物时的估计并不相同。",
-      "limitations": "非书摘原文。观察性重复测量，替代模型依赖统计假设，残余混杂仍在。不同研究的结论并不整齐，不能外推为个体处方。",
-      "population": "美国女性和男性前瞻队列。",
-      "citation": {
-        "title": "Association of changes in red meat consumption with total and cause specific mortality among US women and men: two prospective cohort studies",
-        "authors": "Zheng et al.",
-        "year": 2019,
-        "doi": "10.1136/bmj.l2110",
-        "pmid": "31189526",
-        "url": "https://doi.org/10.1136/bmj.l2110"
-      },
-      "audience": "general",
-      "source_title": "Association of changes in red meat consumption with total and cause specific mortality among US women and men: two prospective cohort studies"
-    },
-    {
-      "id": "lit_fiber_gi_gill_2021",
-      "source": "dietary_fiber",
-      "target": "gut_microbiome",
-      "relation": "膳食纤维与胃肠道健康及菌群的综述归纳",
-      "direction": "protective",
-      "evidence_type": "expert_synthesis",
-      "strength": "moderate",
-      "source_file": "literature",
-      "note_id": "33208922",
-      "excerpt": "综述归纳膳食纤维在胃肠道健康中的讨论，包括发酵、菌群和肠道功能，不是一条新的试验结果。",
-      "limitations": "非书摘原文。专家综述，机制描述与人群资料放在一起，不能把综述直接当成临床效果，也不能外推为个体处方。",
-      "population": "综述所覆盖的研究，非单一队列。",
-      "citation": {
-        "title": "Dietary fibre in gastrointestinal health and disease",
-        "authors": "Gill et al.",
-        "year": 2021,
-        "doi": "10.1038/s41575-020-00375-4",
-        "pmid": "33208922",
-        "url": "https://doi.org/10.1038/s41575-020-00375-4"
-      },
-      "audience": "deep_reader",
-      "source_title": "Dietary fibre in gastrointestinal health and disease"
+      "source_title": "Ultra-processed food intake and risk of cardiovascular disease: prospective cohort study (NutriNet-Santé)",
+      "evidences": [
+        {
+          "excerpt": "OBJECTIVE: To assess the prospective associations between consumption of ultra-processed foods and risk of cardiovascular diseases. DESIGN: Population based cohort study. SETTING: NutriNet-Santé cohort, France 2009-18. PARTICIPANTS: 105 159 participants aged at least 18 years. Dietary intakes were collected using repeated 24 hour dietary records (5.7 for each participant on average), designed to register participants' usual consumption of 3300 food items. These foods were categorised using the NOVA classification according to degree of processing. MAIN OUTCOME MEASURES: Associations between intake of ultra-processed food and overall risk of cardiovascular, coronary heart, and cerebrovascular diseases assessed by multivariable Cox proportional hazard models adjusted for known risk factors. RESULTS: During a median follow-up of 5.2 years, intake of ultra-processed food was associated with a higher risk of overall cardiovascular disease (1409 cases; hazard ratio for an absolute increment of 10 in the percentage of ultra-processed foods in the diet 1.12 (95% confidence interval 1.05 to 1.20);",
+          "source_title": "Ultra-processed food intake and risk of cardiovascular disease: prospective cohort study (NutriNet-Santé)",
+          "source_file": "literature",
+          "limitations": "非书摘原文。单一网络招募队列，食品分类和自我报告都有误差，不能由关联推出因果，也不能外推为个体处方。",
+          "note_id": "31142457",
+          "citation": {
+            "title": "Ultra-processed food intake and risk of cardiovascular disease: prospective cohort study (NutriNet-Santé)",
+            "authors": "Srour et al.",
+            "year": 2019,
+            "doi": "10.1136/bmj.l1451",
+            "pmid": "31142457",
+            "url": "https://doi.org/10.1136/bmj.l1451"
+          }
+        }
+      ]
     },
     {
       "id": "lit_microbiome_colon_okeefe_2016",
@@ -3001,7 +4193,7 @@
       "strength": "moderate",
       "source_file": "literature",
       "note_id": "27848961",
-      "excerpt": "综述讨论膳食、肠道微生物及其代谢物与结肠癌之间的多条通路，其中既有偏保护的代谢物，也有与风险相关的途径。",
+      "excerpt": "Colorectal cancer is one of the so-called westernized diseases and the second leading cause of cancer death worldwide. On the basis of global epidemiological and scientific studies, evidence suggests that the risk of colorectal cancer is increased by processed and unprocessed meat consumption but suppressed by fibre, and that food composition affects colonic health and cancer risk via its effects on colonic microbial metabolism. The gut microbiota can ferment complex dietary residues that are resistant to digestion by enteric enzymes. This process provides energy for the microbiota but culminates in the release of short-chain fatty acids including butyrate, which are utilized for the metabolic needs of the colon and the body. Butyrate has a remarkable array of colonic health-promoting and antineoplastic properties: it is the preferred energy source for colonocytes, it maintains mucosal integrity and it suppresses inflammation and carcinogenesis through effects on immunity, gene expression and epigenetic modulation.",
       "limitations": "非书摘原文。以机制综述为主，人群证据不均，不能外推为筛查结论或个体处方。",
       "population": "综述所讨论的实验与人群资料。",
       "citation": {
@@ -3013,7 +4205,24 @@
         "url": "https://doi.org/10.1038/nrgastro.2016.165"
       },
       "audience": "deep_reader",
-      "source_title": "Diet, microorganisms and their metabolites, and colon cancer"
+      "source_title": "Diet, microorganisms and their metabolites, and colon cancer",
+      "evidences": [
+        {
+          "excerpt": "Colorectal cancer is one of the so-called westernized diseases and the second leading cause of cancer death worldwide. On the basis of global epidemiological and scientific studies, evidence suggests that the risk of colorectal cancer is increased by processed and unprocessed meat consumption but suppressed by fibre, and that food composition affects colonic health and cancer risk via its effects on colonic microbial metabolism. The gut microbiota can ferment complex dietary residues that are resistant to digestion by enteric enzymes. This process provides energy for the microbiota but culminates in the release of short-chain fatty acids including butyrate, which are utilized for the metabolic needs of the colon and the body. Butyrate has a remarkable array of colonic health-promoting and antineoplastic properties: it is the preferred energy source for colonocytes, it maintains mucosal integrity and it suppresses inflammation and carcinogenesis through effects on immunity, gene expression and epigenetic modulation.",
+          "source_title": "Diet, microorganisms and their metabolites, and colon cancer",
+          "source_file": "literature",
+          "limitations": "非书摘原文。以机制综述为主，人群证据不均，不能外推为筛查结论或个体处方。",
+          "note_id": "27848961",
+          "citation": {
+            "title": "Diet, microorganisms and their metabolites, and colon cancer",
+            "authors": "O'Keefe",
+            "year": 2016,
+            "doi": "10.1038/nrgastro.2016.165",
+            "pmid": "27848961",
+            "url": "https://doi.org/10.1038/nrgastro.2016.165"
+          }
+        }
+      ]
     },
     {
       "id": "lit_upf_outcomes_elizabeth_2020",
@@ -3025,7 +4234,7 @@
       "strength": "moderate",
       "source_file": "literature",
       "note_id": "32630022",
-      "excerpt": "叙述性综述汇总已发表研究：较高的超加工食品摄入与多种不利健康结局相关，其中包括与肥胖相关的观察，研究设计各不相同。",
+      "excerpt": "The nutrition literature and authoritative reports increasingly recognise the concept of ultra-processed foods (UPF), as a descriptor of unhealthy diets. UPFs are now prevalent in diets worldwide. This review aims to identify and appraise the studies on healthy participants that investigated associations between levels of UPF consumption and health outcomes. This involved a systematic search for extant literature; integration and interpretation of findings from diverse study types, populations, health outcomes and dietary assessments; and quality appraisal. Of 43 studies reviewed, 37 found dietary UPF exposure associated with at least one adverse health outcome. Among adults, these included overweight, obesity and cardio-metabolic risks; cancer, type-2 diabetes and cardiovascular diseases; irritable bowel syndrome, depression and frailty conditions; and all-cause mortality. Among children and adolescents, these included cardio-metabolic risks and asthma. No study reported an association between UPF and beneficial health outcomes.",
       "limitations": "非书摘原文。叙述性综述，不是新的试验；结局不止肥胖一项，本边只挂到肥胖相关主题。不能外推为个体处方。",
       "population": "综述纳入的健康参与者研究，设计各异。",
       "citation": {
@@ -3037,31 +4246,24 @@
         "url": "https://doi.org/10.3390/nu12071955"
       },
       "audience": "general",
-      "source_title": "Ultra-Processed Foods and Health Outcomes: A Narrative Review"
-    },
-    {
-      "id": "lit_prebiotic_microbiome_sanders_2019",
-      "source": "dietary_fiber",
-      "target": "gut_microbiome",
-      "relation": "益生元与肠道菌群的综述讨论",
-      "direction": "mixed",
-      "evidence_type": "expert_synthesis",
-      "strength": "low",
-      "source_file": "literature",
-      "note_id": "31296969",
-      "excerpt": "综述从生物学讨论到临床场景，同时涉及益生元与益生菌。本边只连接膳食纤维所代表的益生元一侧与肠道菌群，不覆盖具体产品。",
-      "limitations": "非书摘原文。综述中的实验和临床结果并不一致。益生菌产品不在这条边上，不能据此选择产品，也不能外推为个体处方。",
-      "population": "综述所覆盖的实验与临床资料。",
-      "citation": {
-        "title": "Probiotics and prebiotics in intestinal health and disease: from biology to the clinic",
-        "authors": "Sanders et al.",
-        "year": 2019,
-        "doi": "10.1038/s41575-019-0173-3",
-        "pmid": "31296969",
-        "url": "https://doi.org/10.1038/s41575-019-0173-3"
-      },
-      "audience": "deep_reader",
-      "source_title": "Probiotics and prebiotics in intestinal health and disease: from biology to the clinic"
+      "source_title": "Ultra-Processed Foods and Health Outcomes: A Narrative Review",
+      "evidences": [
+        {
+          "excerpt": "The nutrition literature and authoritative reports increasingly recognise the concept of ultra-processed foods (UPF), as a descriptor of unhealthy diets. UPFs are now prevalent in diets worldwide. This review aims to identify and appraise the studies on healthy participants that investigated associations between levels of UPF consumption and health outcomes. This involved a systematic search for extant literature; integration and interpretation of findings from diverse study types, populations, health outcomes and dietary assessments; and quality appraisal. Of 43 studies reviewed, 37 found dietary UPF exposure associated with at least one adverse health outcome. Among adults, these included overweight, obesity and cardio-metabolic risks; cancer, type-2 diabetes and cardiovascular diseases; irritable bowel syndrome, depression and frailty conditions; and all-cause mortality. Among children and adolescents, these included cardio-metabolic risks and asthma. No study reported an association between UPF and beneficial health outcomes.",
+          "source_title": "Ultra-Processed Foods and Health Outcomes: A Narrative Review",
+          "source_file": "literature",
+          "limitations": "非书摘原文。叙述性综述，不是新的试验；结局不止肥胖一项，本边只挂到肥胖相关主题。不能外推为个体处方。",
+          "note_id": "32630022",
+          "citation": {
+            "title": "Ultra-Processed Foods and Health Outcomes: A Narrative Review",
+            "authors": "Elizabeth et al.",
+            "year": 2020,
+            "doi": "10.3390/nu12071955",
+            "pmid": "32630022",
+            "url": "https://doi.org/10.3390/nu12071955"
+          }
+        }
+      ]
     }
   ]
 }

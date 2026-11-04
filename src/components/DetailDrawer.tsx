@@ -19,7 +19,7 @@ import {
 import { DIET_PATTERN_CARDS, type DietPatternCard } from '../lib/dietPatterns';
 import { PATTERN_SHELL } from '../lib/dietPatternDetails';
 import { semanticColor } from '../lib/palette';
-import type { GraphCitation, GraphData, GraphLink, GraphNode, Selection } from '../types/graph';
+import type { GraphCitation, GraphData, GraphEvidence, GraphLink, GraphNode, Selection } from '../types/graph';
 
 interface DetailDrawerProps {
   graph: GraphData;
@@ -80,7 +80,7 @@ function ExcerptBlock({ text }: { text: string | undefined }) {
   const [expanded, setExpanded] = useState(false);
   useEffect(() => setExpanded(false), [text]);
   if (!text) return null;
-  const limit = 48;
+  const limit = 120;
   const folded = text.length > limit && !expanded;
   const shown = folded ? `${text.slice(0, limit)}…` : text;
   return (
@@ -222,17 +222,21 @@ function NodeBody({
   );
 }
 
+type SourceRef = Pick<GraphEvidence, 'source_title' | 'source_id' | 'citation'> | GraphLink;
+
 function SourceTitleLink({
-  link,
+  evidence,
   onOpenSource,
+  testId = 'link-source-title',
 }: {
-  link: GraphLink;
+  evidence: SourceRef;
   onOpenSource?: (sourceId: string) => void;
+  testId?: string;
 }) {
-  const title = link.source_title?.trim() || '未注明来源';
-  const sourceId = link.source_id?.trim() || '';
-  const doi = link.citation?.doi?.trim() || '';
-  const pmid = link.citation?.pmid?.trim() || '';
+  const title = evidence.source_title?.trim() || '未注明来源';
+  const sourceId = evidence.source_id?.trim() || '';
+  const doi = evidence.citation?.doi?.trim() || '';
+  const pmid = evidence.citation?.pmid?.trim() || '';
   let href: string | null = null;
   let action: (() => void) | null = null;
   if (sourceId && onOpenSource) {
@@ -243,7 +247,7 @@ function SourceTitleLink({
     href = `https://pubmed.ncbi.nlm.nih.gov/${pmid}`;
   }
   return (
-    <div data-testid="link-source-title">
+    <div data-testid={testId}>
       <dt>来源</dt>
       <dd>
         {action ? (
@@ -265,6 +269,34 @@ function SourceTitleLink({
         )}
       </dd>
     </div>
+  );
+}
+
+function MoreEvidences({
+  evidences,
+  onOpenSource,
+}: {
+  evidences: GraphEvidence[];
+  onOpenSource?: (sourceId: string) => void;
+}) {
+  const extras = evidences.slice(1);
+  if (extras.length === 0) return null;
+  return (
+    <details className="more-evidences" data-testid="more-evidences">
+      <summary>还有 {extras.length} 处相关描述</summary>
+      {extras.map((ev, index) => (
+        <div className="drawer-block evidence-extra" key={index} data-testid={`evidence-extra-${index}`}>
+          <dl className="fields">
+            <ExcerptBlock text={ev.excerpt} />
+            <SourceTitleLink evidence={ev} onOpenSource={onOpenSource} testId={`extra-source-title-${index}`} />
+          </dl>
+          <div className="limitations-callout" data-testid={`extra-limitations-${index}`}>
+            <p className="muted">局限</p>
+            <p>{ev.limitations?.trim() ? ev.limitations : '未注明局限'}</p>
+          </div>
+        </div>
+      ))}
+    </details>
   );
 }
 
@@ -361,13 +393,22 @@ function LinkBody({
       </p>
       <div className="evidence-card" data-testid="evidence-card">
         <dl className="fields">
-          <ExcerptBlock text={link.excerpt} />
-          <SourceTitleLink link={link} onOpenSource={onOpenSource} />
+          <ExcerptBlock text={(link.evidences && link.evidences[0]?.excerpt) || link.excerpt} />
+          <SourceTitleLink
+            evidence={(link.evidences && link.evidences[0]) || link}
+            onOpenSource={onOpenSource}
+          />
         </dl>
         <div className="limitations-callout" data-testid="link-limitations">
           <p className="muted">局限</p>
-          <p>{link.limitations?.trim() ? link.limitations : '未注明局限'}</p>
+          <p>
+            {(() => {
+              const primary = link.evidences?.[0]?.limitations ?? link.limitations;
+              return primary?.trim() ? primary : '未注明局限';
+            })()}
+          </p>
         </div>
+        <MoreEvidences evidences={link.evidences ?? []} onOpenSource={onOpenSource} />
         <div className="badge-row" data-testid="evidence-badges">
           <span className="badge badge--direction" style={{ borderLeftColor: semanticColor(link.direction) }}>
             <Swatch value={link.direction} />
