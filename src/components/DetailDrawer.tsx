@@ -234,16 +234,13 @@ function SourceTitleLink({
   const doi = link.citation?.doi?.trim() || '';
   const pmid = link.citation?.pmid?.trim() || '';
   let href: string | null = null;
-  let external = false;
   let action: (() => void) | null = null;
   if (sourceId && onOpenSource) {
     action = () => onOpenSource(sourceId);
   } else if (doi) {
     href = `https://doi.org/${doi}`;
-    external = true;
   } else if (pmid) {
     href = `https://pubmed.ncbi.nlm.nih.gov/${pmid}`;
-    external = true;
   }
   return (
     <div data-testid="link-source-title">
