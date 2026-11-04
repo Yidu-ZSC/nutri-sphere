@@ -7,6 +7,7 @@
   --panel-muted: #efeff1;
   --panel-hover: #eaeaec;
   --text: #18181b;
+  --fg: var(--text);
   --muted: #71717a;
   --faint: #a1a1aa;
   --brand: #18181b;

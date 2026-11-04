@@ -735,7 +735,13 @@ export function App() {
     <div className="app">
       <header
         className={
-          exploring && mobile ? 'topbar topbar--narrow' : exploring ? 'topbar topbar--compact' : 'topbar'
+          mobile
+            ? exploring
+              ? 'topbar topbar--narrow topbar--mobile'
+              : 'topbar topbar--mobile'
+            : exploring
+              ? 'topbar topbar--compact'
+              : 'topbar'
         }
       >
         <div className="brand">
@@ -744,7 +750,7 @@ export function App() {
             <p className="brand-title" data-testid="brand-title" title="明膳知源" aria-label="明膳知源">
               明膳知源
             </p>
-            {!exploring && (
+            {!exploring && !mobile && (
               <p className="brand-sub">仅供学习：饮食、机制与健康结局的关联图谱</p>
             )}
           </div>
@@ -783,7 +789,7 @@ export function App() {
           </div>
         )}
         <div className="header-actions">
-          {exploring && (
+          {exploring && !mobile && (
             <button
               type="button"
               className="btn btn--ghost"
@@ -795,30 +801,112 @@ export function App() {
             </button>
           )}
           {mobile ? (
-            <div className="more-menu" ref={moreRoot}>
+            <div className="shell-menu" ref={moreRoot}>
               <button
                 type="button"
-                className="btn btn--ghost"
+                className="btn btn--ghost shell-menu-trigger"
                 aria-expanded={moreOpen}
-                aria-controls="more-panel"
+                aria-controls="shell-menu-panel"
+                aria-label="菜单"
                 data-testid="more-menu"
                 onClick={() => setMoreOpen((open) => !open)}
               >
-                更多
+                <svg className="shell-menu-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M5 7h14M5 12h14M5 17h14"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.75"
+                    strokeLinecap="round"
+                  />
+                </svg>
               </button>
               {moreOpen && (
-                <div id="more-panel" className="more-panel" data-testid="more-panel" role="menu">
-                  {exploring && viewControls}
-                  {rotateControl}
-                  {copyControl}
-                  <ThemeOptions theme={appTheme} onChange={onAppTheme} />
-                </div>
+                <>
+                  <button
+                    type="button"
+                    className="shell-menu-backdrop"
+                    aria-label="关闭菜单"
+                    data-testid="shell-menu-backdrop"
+                    onClick={() => setMoreOpen(false)}
+                  />
+                  <div
+                    id="shell-menu-panel"
+                    className="shell-menu-panel"
+                    data-testid="more-panel"
+                    role="menu"
+                    aria-label="应用菜单"
+                  >
+                    <p className="shell-menu-kicker">导航</p>
+                    <nav className="shell-menu-nav" aria-label="主视图">
+                      <button
+                        type="button"
+                        role="menuitem"
+                        className="shell-menu-item"
+                        aria-current={screen === 'home' || screen === 'pattern' ? 'true' : undefined}
+                        onClick={() => {
+                          goHome();
+                          setMoreOpen(false);
+                        }}
+                      >
+                        主题大厅
+                      </button>
+                      <button
+                        type="button"
+                        role="menuitem"
+                        className="shell-menu-item"
+                        aria-current={exploring ? 'true' : undefined}
+                        disabled={!graph}
+                        onClick={() => {
+                          if (graph) {
+                            setScreen('explore');
+                            setMoreOpen(false);
+                          }
+                        }}
+                      >
+                        图谱探索
+                      </button>
+                    </nav>
+                    {exploring && (
+                      <>
+                        <p className="shell-menu-kicker">探索</p>
+                        <button
+                          type="button"
+                          role="menuitem"
+                          className="shell-menu-item"
+                          data-testid="back-to-home"
+                          onClick={() => {
+                            goHome();
+                            setMoreOpen(false);
+                          }}
+                        >
+                          {BACK_TO_LOBBY}
+                        </button>
+                        {viewControls}
+                        {rotateControl}
+                      </>
+                    )}
+                    {(screen === 'twin' || screen === 'source') && (
+                      <button
+                        type="button"
+                        role="menuitem"
+                        className="shell-menu-item"
+                        onClick={() => {
+                          goHome();
+                          setMoreOpen(false);
+                        }}
+                      >
+                        {BACK_TO_LOBBY}
+                      </button>
+                    )}
+                    {copyControl}
+                    <ThemeOptions theme={appTheme} onChange={onAppTheme} />
+                  </div>
+                </>
               )}
             </div>
           ) : exploring ? null : (
-            <>
-              {copyControl}
-            </>
+            <>{copyControl}</>
           )}
           {!mobile && <ThemeSwitcher theme={appTheme} onChange={onAppTheme} />}
         </div>

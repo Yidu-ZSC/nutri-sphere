@@ -27,9 +27,10 @@ test('method help is a centered overlay and narrow explore keeps the primary pat
   assert.match(css, /\.about\s*\{[^}]*max-width:\s*560px/s);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
 
-  assert.match(app, />\s*更多\s*</);
+  assert.match(app, /aria-label="菜单"/);
   assert.match(app, /data-testid="more-menu"/);
   assert.match(app, /data-testid="back-to-home"/);
+  assert.match(app, /data-testid="shell-menu-backdrop"/);
   assert.match(app, /data-testid="rail-toggle"/);
   assert.match(app, /topbar--narrow/);
   assert.equal(app.includes('exploring && !mobile && graph'), false);
