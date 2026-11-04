@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { focusedNodeIds, isFocusEmpty, linkIsFocused } from './focus.ts';
+import { effectiveFocusIds, focusedNodeIds, isFocusEmpty, linkIsFocused, neighborhood } from './focus.ts';
 
 const links = [
   { source: 'chronic_inflammation', target: 'liver_chronic' },
@@ -59,4 +59,35 @@ test('filters with no shared neighborhood are empty', () => {
     isFocusEmpty(focus, ['mental_health', 'glycation', 'gut_microbiome', 'chronic_inflammation']),
     true,
   );
+});
+
+test('neighborhood is one hop including the root', () => {
+  const ids = neighborhood('chronic_inflammation', links);
+  assert.deepEqual([...ids].sort(), ['chronic_inflammation', 'glycation', 'liver_chronic']);
+});
+
+test('effectiveFocusIds with no click keeps filter focus', () => {
+  const filter = focusedNodeIds(links, 'liver_chronic', null);
+  assert.equal(effectiveFocusIds(filter, null, links), filter);
+  assert.equal(effectiveFocusIds(null, null, links), null);
+});
+
+test('effectiveFocusIds with only click uses one-hop neighborhood', () => {
+  const focus = effectiveFocusIds(null, 'chronic_inflammation', links);
+  assert.deepEqual([...(focus ?? [])].sort(), ['chronic_inflammation', 'glycation', 'liver_chronic']);
+});
+
+test('effectiveFocusIds ANDs click neighborhood with filter focus', () => {
+  const filter = focusedNodeIds(links, 'liver_chronic', null);
+  const focus = effectiveFocusIds(filter, 'chronic_inflammation', links);
+  assert.deepEqual([...(focus ?? [])].sort(), ['chronic_inflammation', 'liver_chronic']);
+  assert.equal(focus?.has('glycation'), false);
+});
+
+test('clearing click focus restores filter-only bright set', () => {
+  const filter = focusedNodeIds(links, 'liver_chronic', null);
+  const withClick = effectiveFocusIds(filter, 'chronic_inflammation', links);
+  assert.equal(withClick?.has('glycation'), false);
+  const cleared = effectiveFocusIds(filter, null, links);
+  assert.deepEqual([...(cleared ?? [])].sort(), [...(filter ?? [])].sort());
 });

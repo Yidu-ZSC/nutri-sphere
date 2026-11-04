@@ -48,3 +48,8 @@ export const RAIL_TOGGLE_LABEL = '主题/筛选';
 export const EXPLORE_EMPTY_COPY = '先选择一个主题';
 
 export const EXPLORE_EMPTY_ACTION = '选择主题';
+
+/** Click-focus chrome: shown while a node one-hop focus is active. */
+export const CLICK_FOCUS_PREFIX = '已聚焦：';
+
+export const CLEAR_CLICK_FOCUS = '清除聚焦';
