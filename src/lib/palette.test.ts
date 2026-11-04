@@ -97,7 +97,7 @@ test('lobby pillars place science and diet twin as peers above the full-width gr
     '<DietTwinPortal onOpen={onOpenTwin} />',
     '常见健康主题',
     '从食物/模式看',
-    '健康饮食方式',
+    '{VEGAN_DIET_SECTION_TITLE}',
     'className="mechanism-fold"',
   ];
   let cursor = -1;
