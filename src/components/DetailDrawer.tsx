@@ -82,7 +82,7 @@ function ExcerptBlock({ text, full }: { text: string | undefined; full: boolean 
   const folded = !full && text.length > limit && !expanded;
   const shown = folded ? `${text.slice(0, limit)}…` : text;
   return (
-    <div>
+    <div data-testid="link-excerpt">
       <dt>摘录</dt>
       <dd>
         <p className="excerpt">{shown}</p>
@@ -284,6 +284,15 @@ function LinkBody({
         </button>
       </p>
       <div className="evidence-card" data-testid="evidence-card">
+        <dl className="fields">
+          <ExcerptBlock text={link.excerpt} full={expert} />
+          <SourceFile name={link.source_file ?? '未注明'} />
+          {link.citation?.title ? <Field label="文献标题" children={link.citation.title} /> : null}
+        </dl>
+        <div className="limitations-callout" data-testid="link-limitations">
+          <p className="muted">局限</p>
+          <p>{link.limitations?.trim() ? link.limitations : '未注明局限'}</p>
+        </div>
         <div className="badge-row" data-testid="evidence-badges">
           <span className="badge badge--direction" style={{ borderLeftColor: semanticColor(link.direction) }}>
             <Swatch value={link.direction} />
@@ -299,16 +308,12 @@ function LinkBody({
           </span>
         </div>
         <p className="assurance">{evidenceAssurance(link.evidence_type, link.strength)}</p>
-        <div className="limitations-callout" data-testid="link-limitations">
-          <p className="muted">局限</p>
-          <p>{link.limitations?.trim() ? link.limitations : '未注明局限'}</p>
-        </div>
         {link.citation ? <CitationDisclosure citation={link.citation} layer={layer} /> : null}
-        <dl className="fields">
-          <ExcerptBlock text={link.excerpt} full={expert} />
-          <SourceFile name={link.source_file ?? '未注明'} />
-          <Field label="证据类型说明" children={evidenceDetail(link.evidence_type)} />
-        </dl>
+        {expert && (
+          <dl className="fields">
+            <Field label="证据类型说明" children={evidenceDetail(link.evidence_type)} />
+          </dl>
+        )}
         <details className="ladder">
           <summary>证据类型说明</summary>
           <ul>

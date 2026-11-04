@@ -1,0 +1,72 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import test from 'node:test';
+
+const source = fs.readFileSync(new URL('../components/DetailDrawer.tsx', import.meta.url), 'utf8');
+
+/** Extract the LinkBody evidence-card JSX region for order checks. */
+function evidenceCardSource(): string {
+  const start = source.indexOf('data-testid="evidence-card"');
+  assert.ok(start > 0);
+  const end = source.indexOf('data-testid="expert-link-meta"', start);
+  assert.ok(end > start);
+  return source.slice(start, end);
+}
+
+test('NS-046 LinkBody puts excerpt before source, limitations, badges, and secondary blocks', () => {
+  const card = evidenceCardSource();
+  const marks = [
+    'ExcerptBlock',
+    'SourceFile',
+    'link-limitations',
+    'evidence-badges',
+    'assurance',
+    'CitationDisclosure',
+    'ladder',
+  ];
+  const at = marks.map((m) => {
+    const i = card.indexOf(m);
+    assert.ok(i >= 0, `missing ${m}`);
+    return i;
+  });
+  for (let i = 1; i < at.length; i += 1) {
+    assert.ok(at[i] > at[i - 1], `${marks[i - 1]} must precede ${marks[i]}`);
+  }
+  // assurance / citation / ladder must not precede excerpt
+  assert.ok(card.indexOf('ExcerptBlock') < card.indexOf('assurance'));
+  assert.ok(card.indexOf('ExcerptBlock') < card.indexOf('CitationDisclosure'));
+  assert.ok(card.indexOf('ExcerptBlock') < card.indexOf('ladder'));
+});
+
+test('NS-046 ordinary mode does not render standalone evidence-type Field; expert does', () => {
+  const card = evidenceCardSource();
+  // Field 证据类型说明 must be gated by expert
+  assert.match(card, /\{expert && \([\s\S]*Field label="证据类型说明"/);
+  // CitationDisclosure still defaults open for expert
+  assert.match(source, /open=\{expert\}/);
+  assert.match(source, /full=\{expert\}/);
+});
+
+test('NS-046 seed descriptions drop graph meta-language for the five baseline ids', () => {
+  const seed = JSON.parse(
+    fs.readFileSync(new URL('../../data/seed_triples_v0.3_aligned.json', import.meta.url), 'utf8'),
+  ) as { nodes: { id: string; description: string }[] };
+  const byId = Object.fromEntries(seed.nodes.map((n) => [n.id, n.description]));
+  assert.equal(
+    byId.chronic_inflammation,
+    '持续存在的低度炎症状态，书摘里常把它和饮食选择、多种健康主题放在一起讨论。',
+  );
+  for (const id of [
+    'chronic_inflammation',
+    'digestive_cancer_risk',
+    'cardiometabolic',
+    'autoimmune',
+    'mental_health',
+  ]) {
+    assert.equal(/枢纽|教育向节点|中间环节|路径节点|本节点是/.test(byId[id]), false, id);
+  }
+  assert.match(byId.autoimmune, /不是疾病分类标准/);
+  for (const node of seed.nodes) {
+    assert.equal(/中间环节|路径节点|枢纽|教育向节点/.test(node.description ?? ''), false, node.id);
+  }
+});
