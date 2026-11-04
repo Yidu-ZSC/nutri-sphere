@@ -1,10 +1,10 @@
 {
   "meta": {
     "schema_version": "0.3",
-    "data_version": "0.6",
+    "data_version": "0.7",
     "extracted_from": "knowledge-base Project (high relevance files)",
     "extraction_date": "2026-10-31",
-    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 book-note nodes and excerpts are unchanged. data 0.5 adds schema 0.2 optional citation and nine literature edges with verified DOIs. data 0.6 / schema 0.3 writes audience on every link and mechanism_depth on mechanism nodes. These labels are not an evidence grade and not a view toggle. Educational use only. The original 20 excerpts are unchanged.",
+    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 book-note nodes and excerpts are unchanged. data 0.5 adds schema 0.2 optional citation and nine literature edges with verified DOIs. data 0.6 / schema 0.3 writes audience on every link and mechanism_depth on mechanism nodes. These labels are not an evidence grade and not a view toggle. Educational use only. The original 20 excerpts are unchanged. data 0.7 aligns the 14 existing mechanism descriptions to MECHANISM_DICTIONARY.md v0.2 concept sentences and adds 10 dictionary mechanism nodes (aliases empty; mechanism_depth mechanism). Mechanism nodes still carry no source or limitations fields. Educational use only; schema_version remains 0.3.",
     "disclaimer": "Educational / research use only. Not medical advice."
   },
   "nodes": [
@@ -133,7 +133,7 @@
       "type": "mechanism",
       "label": "活性氧 / 氧化应激",
       "group": "risk",
-      "description": "过量活性氧带来的氧化压力。",
+      "description": "细胞代谢中产生的活性氧超出清除能力时形成的氧化压力。",
       "aliases": [
         "活性氧",
         "氧化应激",
@@ -146,7 +146,7 @@
       "type": "mechanism",
       "label": "慢性炎症",
       "group": "risk",
-      "description": "持续存在的低度炎症状态，书摘里常把它和饮食选择、多种健康主题放在一起讨论。",
+      "description": "持续存在的低度炎症状态。",
       "aliases": [
         "慢性炎症",
         "低度炎症"
@@ -158,7 +158,7 @@
       "type": "mechanism",
       "label": "糖化反应",
       "group": "risk",
-      "description": "糖与蛋白质等结合并形成糖化产物的过程。",
+      "description": "糖与蛋白质等分子结合并形成糖化产物的过程。",
       "aliases": [
         "糖化",
         "糖化反应"
@@ -170,7 +170,7 @@
       "type": "mechanism",
       "label": "肠道菌群多样性",
       "group": "protective",
-      "description": "肠道微生物的组成与多样性。",
+      "description": "肠道微生物种类与数量的丰富程度。",
       "aliases": [
         "肠道菌群",
         "微生物组",
@@ -196,7 +196,7 @@
       "type": "mechanism",
       "label": "脂多糖 (LPS) 入血",
       "group": "risk",
-      "description": "革兰阴性菌外膜上的脂多糖进入血液的过程。",
+      "description": "革兰阴性菌外膜成分脂多糖进入血液的过程。",
       "aliases": [
         "脂多糖",
         "LPS",
@@ -209,7 +209,7 @@
       "type": "mechanism",
       "label": "血管生成防御",
       "group": "protective",
-      "description": "调控异常新生血管的防御过程，书摘用来讨论肿瘤血供等话题。",
+      "description": "调控异常新生血管形成的防御过程。",
       "aliases": [
         "血管生成",
         "抗血管生成"
@@ -221,7 +221,7 @@
       "type": "mechanism",
       "label": "有益表观遗传修饰",
       "group": "protective",
-      "description": "饮食相关生物活性物质对 DNA 与基因表达的有益方向讨论。",
+      "description": "饮食相关物质对 DNA 与基因表达产生的有益方向影响。",
       "aliases": [
         "表观遗传",
         "DNA 保护"
@@ -741,7 +741,7 @@
       "type": "mechanism",
       "label": "IGF-1信号",
       "group": "risk",
-      "description": "与胰岛素样生长因子-1 相关的信号讨论，不是化验单解读。",
+      "description": "与胰岛素样生长因子-1 相关的信号通路活动。",
       "aliases": [
         "IGF-1",
         "胰岛素样生长因子"
@@ -816,6 +816,96 @@
         "糖化血红蛋白",
         "A1C"
       ]
+    },
+    {
+      "id": "mitochondrial_energy",
+      "type": "mechanism",
+      "label": "线粒体能量代谢",
+      "group": "protective",
+      "description": "细胞通过线粒体产生能量的效率。",
+      "aliases": [],
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "glycemic_stability",
+      "type": "mechanism",
+      "label": "血糖稳态",
+      "group": "protective",
+      "description": "餐后血糖波动幅度较小的状态。",
+      "aliases": [],
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "inflammation_resolution",
+      "type": "mechanism",
+      "label": "炎症消退",
+      "group": "protective",
+      "description": "急性炎症后的主动消退过程。",
+      "aliases": [],
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "antioxidant_defense",
+      "type": "mechanism",
+      "label": "抗氧化防御",
+      "group": "protective",
+      "description": "内源性抗氧化酶与外源抗氧化物质共同参与的防御过程。",
+      "aliases": [],
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "scfa_signaling",
+      "type": "mechanism",
+      "label": "菌群代谢产物信号",
+      "group": "protective",
+      "description": "短链脂肪酸等菌群代谢产物对宿主的信号作用。",
+      "aliases": [],
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "circadian_alignment",
+      "type": "mechanism",
+      "label": "昼夜节律匹配",
+      "group": "protective",
+      "description": "进食时间与代谢节律匹配的状态。",
+      "aliases": [],
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "autonomic_balance",
+      "type": "mechanism",
+      "label": "自主神经平衡",
+      "group": "neutral",
+      "description": "交感与副交感调节的相对状态。",
+      "aliases": [],
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "muscle_protein_synthesis",
+      "type": "mechanism",
+      "label": "肌肉蛋白合成信号",
+      "group": "protective",
+      "description": "氨基酸供应与合成信号的过程。",
+      "aliases": [],
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "gut_barrier_integrity",
+      "type": "mechanism",
+      "label": "肠道屏障完整",
+      "group": "protective",
+      "description": "上皮紧密连接与黏液层保持相对完整的状态。",
+      "aliases": [],
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "epigenetic_regulation",
+      "type": "mechanism",
+      "label": "表观遗传调控",
+      "group": "mixed",
+      "description": "饮食对基因表达的可逆影响。",
+      "aliases": [],
+      "mechanism_depth": "mechanism"
     }
   ],
   "links": [

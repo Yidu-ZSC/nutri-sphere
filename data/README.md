@@ -1,6 +1,17 @@
 # Data Directory
 
-Runtime and CI load one file: `seed_triples_v0.3_aligned.json`. The filename stays on the v0.3 path so `src/lib/loadGraph.ts`, Vite, and `scripts/validate-data.mjs` do not move. The graph inside that file is **data_version 0.6** / **schema_version 0.3**.
+Runtime and CI load one file: `seed_triples_v0.3_aligned.json`. The filename stays on the v0.3 path so `src/lib/loadGraph.ts`, Vite, and `scripts/validate-data.mjs` do not move. The graph inside that file is **data_version 0.7** / **schema_version 0.3**.
+
+## seed_triples_v0.3_aligned.json (data 0.7)
+
+79 nodes / 125 links. Data 0.6 graph is unchanged except mechanism concept sentences. Data 0.7 aligns the 14 existing mechanism `description` values to `docs/MECHANISM_DICTIONARY.md` v0.2 and adds **10** dictionary mechanism nodes. No new links in this increment. Mechanism nodes still omit `source` / `limitations`.
+
+### 0.7 increment
+
+- 14 existing mechanisms: `description` rewritten to dictionary concept sentences; `aliases` and `mechanism_depth` kept (`lps` / `igf1_signaling` stay `technical`).
+- 10 new `type=mechanism` nodes with `aliases: []` and `mechanism_depth: mechanism`: `mitochondrial_energy`, `glycemic_stability`, `inflammation_resolution`, `antioxidant_defense`, `scfa_signaling`, `circadian_alignment`, `autonomic_balance`, `muscle_protein_synthesis`, `gut_barrier_integrity`, `epigenetic_regulation`.
+- Counts: 24 mechanism nodes total; 10 of them currently have degree 0 (dictionary-first; edges optional later).
+- Not in this increment: schema change, UI, DISCLAIMER, forced new edges, or related_*/status fields on nodes.
 
 ## seed_triples_v0.3_aligned.json (data 0.6)
 
@@ -63,8 +74,8 @@ See `graph_schema.json` and `../docs/GRAPH_SCHEMA.md` (schema 0.3).
 
 ### Important
 
-- The graph is still mostly book-note mechanistic and observational synthesis. Data 0.5 adds a few literature edges, including one republished trial report. Data 0.6 labels audience and mechanism depth on that same graph. None of this is an individual medical instruction. `audience` and `mechanism_depth` are not clinical strata and are not GRADE.
+- The graph is still mostly book-note mechanistic and observational synthesis. Data 0.5 adds a few literature edges, including one republished trial report. Data 0.6 labels audience and mechanism depth on that same graph. Data 0.7 expands mechanism concept coverage from the dictionary. None of this is an individual medical instruction. `audience` and `mechanism_depth` are not clinical strata and are not GRADE.
 - Visualizations must include the project disclaimer. A `deep_reader` edge does not drop or shorten `limitations`.
-- Open data (GBD, FAO, Nutri-Score/NOVA) is not part of data 0.6.
+- Open data (GBD, FAO, Nutri-Score/NOVA) is not part of data 0.7.
 
 See `../docs/DATA_STRATEGY.md`.

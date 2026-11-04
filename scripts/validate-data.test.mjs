@@ -51,7 +51,7 @@ const STAGE_A_LINKS = 117;
 test('aligned seed passes schema and referential checks', () => {
   const result = validateGraphFile();
   assert.equal(result.ok, true, result.errors.join('\n'));
-  assert.equal(result.counts.nodes, 69);
+  assert.equal(result.counts.nodes, 79);
   assert.equal(result.counts.links, 125);
 });
 
@@ -62,10 +62,10 @@ const DEEP_READER_LINKS = [
 ];
 const TECHNICAL_NODES = ['igf1_signaling', 'lps'];
 
-test('data 0.6 uses schema 0.3 and keeps the original book-note excerpts', () => {
+test('data 0.7 uses schema 0.3 and keeps the original book-note excerpts', () => {
   const data = readJson(ALIGNED_SEED);
   assert.equal(data.meta.schema_version, '0.3');
-  assert.equal(data.meta.data_version, '0.6');
+  assert.equal(data.meta.data_version, '0.7');
   assert.equal(data.meta.disclaimer, 'Educational / research use only. Not medical advice.');
   assert.ok(data.nodes.length >= 60 && data.nodes.length <= 90);
   assert.ok(data.links.length >= 80 && data.links.length <= 140);
@@ -81,11 +81,18 @@ test('data 0.6 uses schema 0.3 and keeps the original book-note excerpts', () =>
     degree.set(link.target, (degree.get(link.target) ?? 0) + 1);
   }
   for (const node of data.nodes) {
-    assert.ok((degree.get(node.id) ?? 0) > 0, node.id);
+    const deg = degree.get(node.id) ?? 0;
+    // NS-053: dictionary-only mechanisms may ship with degree 0 (no forced edges).
+    if (!(node.type === 'mechanism' && deg === 0)) {
+      assert.ok(deg > 0, node.id);
+    } else {
+      assert.ok(node.description, node.id);
+      assert.deepEqual(node.aliases, []);
+    }
     if (COLUMN[node.type] === 0) {
       assert.ok(node.description && node.aliases?.length, node.id);
     }
-    if (node.type === 'mechanism' && (degree.get(node.id) ?? 0) >= 3) {
+    if (node.type === 'mechanism' && deg >= 3) {
       assert.ok(node.description && node.aliases?.length, node.id);
     }
   }
@@ -116,7 +123,7 @@ test('data 0.6 uses schema 0.3 and keeps the original book-note excerpts', () =>
     if (!DEEP_READER_LINKS.includes(link.id)) assert.equal(link.audience, 'general', link.id ?? link.source);
   }
   const mechanisms = data.nodes.filter((node) => node.type === 'mechanism');
-  assert.equal(mechanisms.length, 14);
+  assert.equal(mechanisms.length, 24);
   assert.deepEqual(
     mechanisms
       .filter((node) => node.mechanism_depth === 'technical')
