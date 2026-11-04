@@ -13,7 +13,7 @@ import {
 } from '../lib/layout';
 import { LINK_OPACITY_3D, LINK_PARTICLE_WIDTH_3D, particleCount, styledLinkWidth } from '../lib/linkStyle';
 import { labelShouldShow, labelTextHeight, nodeScale, shapeKindForType } from '../lib/nodeStyle';
-import { CANVAS_BG, colorWithAlpha, semanticColor } from '../lib/palette';
+import { CANVAS_BG, colorWithAlpha, semanticColor, DIM_3D_LABEL, DIM_3D_LINK, DIM_3D_NODE } from '../lib/palette';
 import type { SimNode } from '../types/graph';
 import { geometryFor } from './nodeGeometry';
 import { linkIsBright, nodeIsBright, nodeIsSelected, type DrawLink, type SceneCommonProps } from './graphShared';
@@ -125,7 +125,7 @@ export function GraphScene3D(props: GraphScene3DProps) {
       const color = semanticColor(node.group);
       visual.material.color.set(color);
       visual.material.emissive.set(color);
-      visual.material.opacity = bright ? 0.96 : 0.16;
+      visual.material.opacity = bright ? 0.96 : DIM_3D_NODE;
       visual.material.emissiveIntensity = selected ? 0.42 : bright ? 0.12 : 0.03;
       const height = labelTextHeight(selected, bright) * 0.92;
       const text = expert ? `${node.label}\n${node.type}` : node.label;
@@ -146,7 +146,7 @@ export function GraphScene3D(props: GraphScene3DProps) {
       visual.sprite.visible = show;
       visual.sprite.textHeight = height;
       visual.sprite.text = text;
-      visual.sprite.material.opacity = bright ? 1 : 0.45;
+      visual.sprite.material.opacity = bright ? 1 : DIM_3D_LABEL;
       const worldHeight = height * lines + 0.7;
       visual.sprite.position.y = scale * 1.05 + worldHeight * 0.5 + 0.35;
     },
@@ -402,7 +402,7 @@ export function GraphScene3D(props: GraphScene3DProps) {
         const color = semanticColor(typed.direction);
         const canonical = props.graph.links[typed.graphIndex];
         const bright = canonical ? linkIsBright(canonical, typed.graphIndex, props.selection, props.focusIds) : false;
-        return bright ? color : colorWithAlpha(color, 0.2);
+        return bright ? color : colorWithAlpha(color, DIM_3D_LINK);
       }}
       linkWidth={(link) => {
         const typed = link as DrawLink;

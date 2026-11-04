@@ -1,7 +1,7 @@
 import { LABEL_FONT } from '../lib/labelText';
 import { COLUMN_CAPTIONS, columnIndex } from '../lib/layout';
 import { nodeScale, shapeKindForType, type ShapeKind } from '../lib/nodeStyle';
-import { colorWithAlpha, semanticColor } from '../lib/palette';
+import { colorWithAlpha, semanticColor, DIM_2D_NODE } from '../lib/palette';
 
 const FONT = 4.15;
 const MAX_LABEL_WIDTH = 60;
@@ -125,7 +125,7 @@ export function paintGraphNode(ctx: CanvasRenderingContext2D, node: PaintedNode,
   ctx.save();
   traceShape(ctx, shapeKindForType(node.type), node.x, node.y, radius);
   const color = semanticColor(node.group);
-  ctx.fillStyle = node.bright ? color : colorWithAlpha(color, 0.22);
+  ctx.fillStyle = node.bright ? color : colorWithAlpha(color, DIM_2D_NODE);
   ctx.fill();
   ctx.lineWidth = (node.selected ? 2.2 : 1.15) / Math.max(globalScale, 0.001);
   ctx.strokeStyle = node.selected ? '#f4f7fb' : 'rgba(6, 10, 16, 0.55)';

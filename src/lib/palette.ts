@@ -31,3 +31,10 @@ export function linkWidthForStrength(strength: string | undefined): number {
   if (strength === 'quantitative') return 2;
   return 0.8;
 }
+
+/** Non-bright (dimmed) strengths shared by filter focus and click-focus (TASK-NS-045). */
+export const DIM_2D_NODE = 0.08;
+export const DIM_2D_LINK = 0.06;
+export const DIM_3D_NODE = 0.06;
+export const DIM_3D_LABEL = 0.08;
+export const DIM_3D_LINK = 0.05;
