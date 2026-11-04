@@ -68,8 +68,8 @@ export function validateGraphData(data, schema, options = {}) {
     errors.push('sources.json 无法解析');
   } else {
     const sourcesRoot = /** @type {Record<string, unknown>} */ (sourcesPayload);
-    if (sourcesRoot.schema_version !== '1.0') {
-      errors.push('sources.json schema_version 必须为 "1.0"');
+    if (sourcesRoot.schema_version !== '1.1') {
+      errors.push('sources.json schema_version 必须为 "1.1"');
     }
     const list = Array.isArray(sourcesRoot.sources) ? sourcesRoot.sources : null;
     if (!list) {
@@ -80,6 +80,7 @@ export function validateGraphData(data, schema, options = {}) {
           `sources.json 应恰有 ${STAGE1_SOURCE_IDS.length} 本书，实际 ${list.length}`,
         );
       }
+      const allowedTypes = new Set(['book', 'review', 'paper']);
       const seen = new Set();
       for (const [index, raw] of list.entries()) {
         if (!raw || typeof raw !== 'object') {
@@ -92,7 +93,8 @@ export function validateGraphData(data, schema, options = {}) {
         const file = typeof row.file === 'string' ? row.file : '';
         const authors = typeof row.authors === 'string' ? row.authors.trim() : '';
         const year = row.year;
-        const description = typeof row.description === 'string' ? row.description.trim() : '';
+        const type = typeof row.type === 'string' ? row.type.trim() : '';
+        const summary = typeof row.summary === 'string' ? row.summary.trim() : '';
         if (!/^[a-z0-9_]+$/.test(id)) {
           errors.push(`sources[${index}].id 非法`);
           continue;
@@ -105,7 +107,28 @@ export function validateGraphData(data, schema, options = {}) {
         if (typeof year !== 'number' || !Number.isInteger(year)) {
           errors.push(`sources[${index}] 缺少 year`);
         }
-        if (!description) errors.push(`sources[${index}] 缺少 description`);
+        if (!allowedTypes.has(type)) {
+          errors.push(`sources[${index}] type 必须为 book|review|paper`);
+        }
+        if (!summary || summary.length < 40) {
+          errors.push(`sources[${index}] 缺少合格 summary（至少约 40 字）`);
+        } else {
+          const sentenceMarks = (summary.match(/[。！？]/g) ?? []).length;
+          if (sentenceMarks < 2) {
+            errors.push(`sources[${index}].summary 须至少两句`);
+          }
+        }
+        if (Object.prototype.hasOwnProperty.call(row, 'description')) {
+          errors.push(`sources[${index}] 不得保留 description`);
+        }
+        if (Object.prototype.hasOwnProperty.call(row, 'edge_count')) {
+          errors.push(`sources[${index}] 不得写入 edge_count`);
+        }
+        if (row.url !== undefined) {
+          if (typeof row.url !== 'string' || !/^https:\/\//.test(row.url)) {
+            errors.push(`sources[${index}].url 须以 https:// 开头`);
+          }
+        }
         sourcesById.set(id, { id, title, file });
       }
       for (const expected of STAGE1_SOURCE_IDS) {

@@ -351,7 +351,7 @@ test('missing limitations fail validation', () => {
 
 test('sources.json lists exactly the six cited books', () => {
   const sources = readJson('data/sources.json');
-  assert.equal(sources.schema_version, '1.0');
+  assert.equal(sources.schema_version, '1.1');
   assert.equal(sources.sources.length, 6);
   const ids = sources.sources.map((row) => row.id).sort();
   assert.deepEqual(ids, [
@@ -365,8 +365,27 @@ test('sources.json lists exactly the six cited books', () => {
   for (const row of sources.sources) {
     assert.ok(row.title && row.authors && row.file);
     assert.equal(typeof row.year, 'number');
-    assert.ok(row.description.length > 10);
+    assert.equal(row.type, 'book');
+    assert.ok(typeof row.summary === 'string' && row.summary.length >= 40);
+    assert.equal(Object.prototype.hasOwnProperty.call(row, 'description'), false);
+    assert.equal(Object.prototype.hasOwnProperty.call(row, 'edge_count'), false);
   }
+});
+
+test('sources.json rejects residual description or edge_count', () => {
+  const data = readJson(ALIGNED_SEED);
+  const schema = readJson(GRAPH_SCHEMA);
+  const sources = readJson('data/sources.json');
+  sources.sources[0].description = '旧字段';
+  let result = validateGraphData(data, schema, { sourcesPayload: sources });
+  assert.equal(result.ok, false);
+  assert.match(result.errors.join('\n'), /description/);
+
+  const sources2 = readJson('data/sources.json');
+  sources2.sources[0].edge_count = 7;
+  result = validateGraphData(data, schema, { sourcesPayload: sources2 });
+  assert.equal(result.ok, false);
+  assert.match(result.errors.join('\n'), /edge_count/);
 });
 
 test('missing source_title fails validation', () => {
