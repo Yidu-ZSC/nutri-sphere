@@ -133,14 +133,16 @@ export function ThemeLobby({
       <h1 className="sr-only">{LOBBY_KICKER}</h1>
       <p className="kicker lobby-lead" aria-hidden="true">{LOBBY_KICKER}</p>
       <div className="lobby-pillars">
-        <header className="lobby-intro">
+        <div className="lobby-title-row">
           <h2>{LOBBY_TITLE}</h2>
+          <section className="lobby-twin" aria-label={DIET_TWIN_COPY.entryTitle}>
+            <DietTwinPortal onOpen={onOpenTwin} />
+          </section>
+        </div>
+        <header className="lobby-intro">
           <p className="lobby-tagline" data-testid="lobby-tagline">{LOBBY_TAGLINE}</p>
           <p data-testid="lobby-intro">{LOBBY_INTRO}</p>
         </header>
-        <section className="lobby-twin" aria-label={DIET_TWIN_COPY.entryTitle}>
-          <DietTwinPortal onOpen={onOpenTwin} />
-        </section>
       </div>
       <section className="lobby-primary" aria-labelledby="health-theme-heading">
         <h2 id="health-theme-heading">常见健康主题</h2>
