@@ -60,7 +60,7 @@ test('compact screens hide labels outside the home column', () => {
   );
   assert.equal(
     labelShouldShow({ compact: false, bright: false, selected: false, column: 0, homeColumn: 2 }),
-    true,
+    false,
   );
   assert.equal(
     labelShouldShow({

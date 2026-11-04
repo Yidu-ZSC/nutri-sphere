@@ -4,7 +4,7 @@ import { directionLabel, evidenceLabel, nodeTypeLabel } from '../lib/copy';
 import { COLUMN_Y_GAP, frameGraph2d, columnIndex } from '../lib/layout';
 import { particleCount, styledLinkWidth } from '../lib/linkStyle';
 import { labelShouldShow } from '../lib/nodeStyle';
-import { CANVAS_BG, colorWithAlpha, semanticColor } from '../lib/palette';
+import { CANVAS_BG, colorWithAlpha, DIM_2D_LINK, semanticColor } from '../lib/palette';
 import type { SimNode } from '../types/graph';
 import { linkIsBright, nodeIsBright, nodeIsSelected, type DrawLink, type SceneCommonProps } from './graphShared';
 import { paintColumnCaptions, paintGraphNode, paintGraphNodeHit, type PaintedNode } from './paintNode2d';
@@ -158,7 +158,7 @@ export function GraphScene2D(props: SceneCommonProps) {
         const color = semanticColor(typed.direction);
         const canonical = props.graph.links[typed.graphIndex];
         const bright = canonical ? linkIsBright(canonical, typed.graphIndex, props.selection, props.focusIds) : false;
-        return bright ? colorWithAlpha(color, 0.92) : colorWithAlpha(color, 0.28);
+        return bright ? colorWithAlpha(color, 0.92) : colorWithAlpha(color, DIM_2D_LINK);
       }}
       linkWidth={(link) => {
         const typed = link as DrawLink;

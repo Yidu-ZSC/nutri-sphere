@@ -53,3 +53,20 @@ export const EXPLORE_EMPTY_ACTION = '选择主题';
 export const CLICK_FOCUS_PREFIX = '已聚焦：';
 
 export const CLEAR_CLICK_FOCUS = '清除聚焦';
+
+/** Close label for the non-blocking 「先选择一个主题」 hint (TASK-NS-045). */
+export const THEME_HINT_CLOSE = '关闭';
+
+/** The no-theme hint stays out of the way once the reader is focused, selecting, or dismissed it. */
+export function themeHintVisible(state: {
+  noTheme: boolean;
+  filterEmpty: boolean;
+  laypersonThemeEmpty: boolean;
+  clickFocusId: string | null;
+  hasSelection: boolean;
+  dismissed: boolean;
+}): boolean {
+  if (!state.noTheme || state.filterEmpty || state.laypersonThemeEmpty) return false;
+  if (state.clickFocusId || state.hasSelection) return false;
+  return !state.dismissed;
+}

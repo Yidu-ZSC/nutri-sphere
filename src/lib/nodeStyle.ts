@@ -75,8 +75,8 @@ export function labelShouldShow(options: {
     if (!options.compact) return true;
     return insideLabelWindow(options);
   }
-  if (!options.compact) return true;
   if (!options.bright) return false;
+  if (!options.compact) return true;
   if (options.column !== options.homeColumn) return false;
   return insideLabelWindow(options);
 }

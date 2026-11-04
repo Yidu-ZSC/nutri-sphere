@@ -13,6 +13,8 @@ interface ThemeBarProps {
   hideUnmatched: boolean;
   onTheme: (theme: ExploreTheme | null) => void;
   onHideUnmatched: (hide: boolean) => void;
+  /** Brief highlight after 「选择主题」 on desktop (TASK-NS-045). */
+  flash?: boolean;
 }
 
 export function ThemeBar({
@@ -24,6 +26,7 @@ export function ThemeBar({
   hideUnmatched,
   onTheme,
   onHideUnmatched,
+  flash = false,
 }: ThemeBarProps) {
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -34,7 +37,7 @@ export function ThemeBar({
 
   return (
     <div className="theme-bar">
-      <div ref={listRef} className="themes" role="group" aria-label="探索主题" data-testid="theme-chips">
+      <div ref={listRef} className={flash ? 'themes is-flash' : 'themes'} role="group" aria-label="探索主题" data-testid="theme-chips">
         <span className="themes-label">探索主题</span>
         {themes.map((theme) => {
           const pressed = themeMatches(theme, diseaseId, mechanismId, foodId);

@@ -19,6 +19,8 @@ import {
   CLEAR_CLICK_FOCUS,
   CLICK_FOCUS_PREFIX,
   EXPLORE_EMPTY_ACTION,
+  THEME_HINT_CLOSE,
+  themeHintVisible,
   EXPLORE_EMPTY_COPY,
   RAIL_TOGGLE_LABEL,
 } from './lib/exploreShell';
@@ -110,6 +112,8 @@ export function App() {
   const [patternReturnSnapshot, setPatternReturnSnapshot] = useState<ExploreSnapshot | null>(null);
   const [selection, setSelection] = useState<Selection | null>(null);
   const [clickFocusId, setClickFocusId] = useState<string | null>(null);
+  const [themeHintDismissed, setThemeHintDismissed] = useState(false);
+  const [themeChipsFlash, setThemeChipsFlash] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [autoRotate, setAutoRotate] = useState(false);
@@ -387,7 +391,16 @@ export function App() {
   };
 
   const chooseTheme = () => {
-    setSideOpen(true);
+    if (mobile) {
+      setSideOpen(true);
+      window.setTimeout(focusThemeList, 0);
+      return;
+    }
+    // Desktop rail is always open, so sideOpen alone changed nothing: scroll, flash, focus.
+    const root = document.querySelector<HTMLElement>('[data-testid="theme-chips"]');
+    root?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    setThemeChipsFlash(true);
+    window.setTimeout(() => setThemeChipsFlash(false), 1200);
     window.setTimeout(focusThemeList, 0);
   };
 
@@ -446,6 +459,7 @@ export function App() {
 
   const goHome = () => {
     setClickFocusId(null);
+    setThemeHintDismissed(false);
     setSelection(null);
     setMoreOpen(false);
     setPatternId(null);
@@ -617,6 +631,19 @@ export function App() {
       rendered.nodeIds,
       graph.nodes.map((node) => node.id),
     );
+  const themeHintShown = themeHintVisible({
+    noTheme: showThemeEmpty,
+    filterEmpty,
+    laypersonThemeEmpty,
+    clickFocusId,
+    hasSelection: selection != null,
+    dismissed: themeHintDismissed,
+  });
+
+  // Dismissal lasts for this no-theme stretch; picking a theme re-arms it for next time.
+  useEffect(() => {
+    if (!showThemeEmpty) setThemeHintDismissed(false);
+  }, [showThemeEmpty]);
 
   const onAppTheme = useCallback((next: AppTheme) => {
     setAppTheme(next);
@@ -782,6 +809,7 @@ export function App() {
                 hideUnmatched={hideUnmatched}
                 onTheme={onTheme}
                 onHideUnmatched={setHideUnmatched}
+                flash={themeChipsFlash}
               />
               <FilterPanel
                 diseases={diseases}
@@ -860,11 +888,20 @@ export function App() {
                 </p>
                 <p className="hud-note">颜色表示关联方向，线越粗表示强度越高。形状区分节点类型。</p>
               </div>
-              {showThemeEmpty && !filterEmpty && !laypersonThemeEmpty && (
+              {themeHintShown && (
                 <div className="empty-theme" role="status" data-testid="theme-empty">
                   <p>{EXPLORE_EMPTY_COPY}</p>
                   <button type="button" className="btn btn--primary" data-testid="choose-theme" onClick={chooseTheme}>
                     {EXPLORE_EMPTY_ACTION}
+                  </button>
+                  <button
+                    type="button"
+                    className="empty-theme-close"
+                    aria-label={THEME_HINT_CLOSE}
+                    data-testid="theme-empty-close"
+                    onClick={() => setThemeHintDismissed(true)}
+                  >
+                    ×
                   </button>
                 </div>
               )}
