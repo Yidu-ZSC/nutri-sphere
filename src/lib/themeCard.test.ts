@@ -30,6 +30,24 @@ test('lobby theme cards use the locked surface without retuning global radii', (
   assert.match(card, /min-height:\s*148px/);
   assert.match(card, /padding:\s*var\(--space-4\)\s*;/);
   assert.match(card, /cursor:\s*pointer/);
+
+  // TASK-NS-050: mobile density overrides (desktop 148 above must remain)
+  const mobileMediaIdx = css.indexOf('@media (max-width: 768px)');
+  assert.ok(mobileMediaIdx >= 0, 'expected max-width 768px media query');
+  const mobileBlock = css.slice(mobileMediaIdx);
+  assert.match(mobileBlock, /\.theme-card\s*\{[^}]*min-height:\s*104px/);
+  assert.match(mobileBlock, /\.theme-card\s*\{[^}]*padding:\s*12px/);
+  assert.match(mobileBlock, /\.theme-card\s*\{[^}]*gap:\s*6px/);
+  assert.match(
+    mobileBlock,
+    /\.theme-grid,\s*\.mechanism-list\s*\{[^}]*gap:\s*12px/,
+  );
+  assert.match(
+    mobileBlock,
+    /\.theme-grid,\s*\.mechanism-list\s*\{[^}]*margin-top:\s*12px/,
+  );
+  assert.match(mobileBlock, /\.lobby\s*\{\s*padding:\s*14px\s+12px\s+20px/);
+  assert.match(mobileBlock, /\.lobby-primary h2\s*\{\s*margin-top:\s*14px/);
   assert.equal(card.includes('var(--radius-card)'), false);
   assert.equal(card.includes('+ 3px'), false);
   assert.equal(card.includes('calc('), false);

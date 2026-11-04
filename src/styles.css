@@ -2830,7 +2830,18 @@ code {
 }
 
 @media (max-width: 768px) {
-  .lobby { padding: 18px 12px 24px; }
+  .lobby { padding: 14px 12px 20px; }
+  .lobby-primary h2 { margin-top: 14px; }
+  .theme-card {
+    min-height: 104px;
+    padding: 12px;
+    gap: 6px;
+  }
+  .theme-grid,
+  .mechanism-list {
+    gap: 12px;
+    margin-top: 12px;
+  }
   .pattern-screen,
   .twin-screen { padding: 18px 12px 24px; }
   .pattern-hero h1 { font-size: 20px; }
