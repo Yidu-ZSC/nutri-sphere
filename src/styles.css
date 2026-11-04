@@ -737,20 +737,41 @@ button { cursor: pointer; }
 
 .endpoints { line-height: 1.5; }
 
-.related { margin-top: 8px; }
+/* NS-052: node/edge drawer block rhythm */
+.drawer-block { margin: 0 0 16px; }
+.drawer-block-label { margin: 0 0 4px; font-size: 12px; }
+.drawer-desc-text { margin: 0; font-size: 14px; line-height: 1.5; }
 
-.related ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.related { margin-top: 0; }
+
+.related h3 { margin: 0 0 8px; }
+
+.related ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 
 .related-btn {
   width: 100%;
   text-align: left;
   border: 1px solid var(--line);
+  border-left-width: 4px;
+  border-left-style: solid;
   background: var(--btn);
   border-radius: 8px;
-  padding: 8px 10px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  transition: border-color 0.15s ease;
+}
+
+.related-btn-main {
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.related-btn:hover {
+  border-top-color: color-mix(in srgb, var(--fg) 42%, var(--line));
+  border-right-color: color-mix(in srgb, var(--fg) 42%, var(--line));
+  border-bottom-color: color-mix(in srgb, var(--fg) 42%, var(--line));
 }
 
 .linkish {
@@ -895,13 +916,13 @@ button { cursor: pointer; }
 
 .evidence-card {
   margin: 8px 0 12px;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--panel-hover);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
 }
 
 .assurance { margin: 0; font-size: 13px; }
@@ -3135,9 +3156,9 @@ code {
 
 /* NS-047: collapsed technical block in the evidence drawer */
 .more-detail {
-  margin-top: 12px;
+  margin-top: 0;
   border-top: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
-  padding-top: 8px;
+  padding-top: 12px;
 }
 .more-detail > summary {
   cursor: pointer;

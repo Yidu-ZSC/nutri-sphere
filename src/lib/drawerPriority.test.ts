@@ -81,3 +81,51 @@ test('NS-046 seed descriptions drop graph meta-language for the five baseline id
     assert.equal(/中间环节|路径节点|枢纽|教育向节点/.test(node.description ?? ''), false, node.id);
   }
 });
+
+/** Extract the NodeBody function region for order checks. */
+function nodeBodySource(): string {
+  const start = source.indexOf('function NodeBody');
+  assert.ok(start > 0);
+  const end = source.indexOf('function SourceFile', start);
+  assert.ok(end > start);
+  return source.slice(start, end);
+}
+
+test('NS-052 NodeBody shows description and related before MoreDetail; type/aliases inside', () => {
+  const body = nodeBodySource();
+  const desc = body.indexOf('node-description');
+  const related = body.indexOf('node-related');
+  const more = body.indexOf('MoreDetail');
+  assert.ok(desc >= 0, 'missing node-description');
+  assert.ok(related >= 0, 'missing node-related');
+  assert.ok(more >= 0, 'missing MoreDetail');
+  assert.ok(desc < related, 'description must precede related');
+  assert.ok(related < more, 'related must precede MoreDetail');
+
+  // Direction badge from group, not a 分组 Field in the main area
+  assert.ok(body.indexOf('node-direction') >= 0);
+  assert.ok(body.indexOf('node-direction') < more);
+  const main = body.slice(0, more);
+  assert.equal(/<dt>分组<\/dt>/.test(main), false);
+  assert.equal(/<dt>类型<\/dt>/.test(main), false);
+  assert.equal(/label="别名"/.test(main), false);
+  assert.equal(/label="说明"/.test(main), false);
+
+  // Type + aliases live inside MoreDetail children
+  const folded = body.slice(more);
+  assert.match(folded, /<dt>类型<\/dt>/);
+  assert.match(folded, /label="别名"/);
+  assert.ok(folded.indexOf('类型') < folded.indexOf('别名'));
+  assert.ok(folded.indexOf('别名') < folded.indexOf('说明深度'));
+  assert.ok(folded.indexOf('说明深度') < folded.indexOf('node-id'));
+});
+
+test('NS-052 related cards use left direction color bar and 12px padding class', () => {
+  const body = nodeBodySource();
+  assert.match(body, /borderLeftColor:\s*semanticColor\(link\.direction\)/);
+  assert.match(body, /className="related-btn"/);
+  const css = fs.readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
+  assert.match(css, /\.related-btn\s*\{[\s\S]*?padding:\s*12px/);
+  assert.match(css, /\.related-btn:hover\s*\{/);
+  assert.match(css, /border-left-width:\s*4px/);
+});

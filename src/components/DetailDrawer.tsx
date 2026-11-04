@@ -140,57 +140,50 @@ function NodeBody({
   const depth = node.mechanism_depth;
   const sources = formatUnknown(node.sources);
   const metadata = formatUnknown(node.metadata);
-  const hasMore = Boolean(node.id) || Boolean(sources) || Boolean(metadata) || Boolean(depth);
+  const hasAliases = Boolean(node.aliases && node.aliases.length > 0);
+  const hasMore =
+    Boolean(node.type) ||
+    hasAliases ||
+    Boolean(depth) ||
+    Boolean(node.id) ||
+    Boolean(sources) ||
+    Boolean(metadata);
   return (
     <>
       <p className="kicker">节点</p>
       <h2>{node.label}</h2>
-      <dl className="fields">
-        <div>
-          <dt>类型</dt>
-          <dd>{withEnum(nodeTypeLabel(node.type), node.type)}</dd>
-        </div>
-        <div>
-          <dt>分组</dt>
-          <dd className="inline">
+      {node.group ? (
+        <div className="badge-row drawer-block" data-testid="node-direction">
+          <span
+            className="badge badge--direction"
+            style={{ borderLeftColor: semanticColor(node.group) }}
+          >
             <Swatch value={node.group} />
-            {withEnum(groupLabel(node.group), node.group)}
-          </dd>
+            {groupLabel(node.group)}
+          </span>
         </div>
-        <Field label="说明" children={node.description} />
-        {node.aliases && node.aliases.length > 0 && (
-          <Field label="别名" children={node.aliases.join('、')} />
-        )}
-      </dl>
-      {hasMore && (
-        <MoreDetail>
-          <dl className="fields">
-            <Field label="id" testId="node-id" children={node.id} />
-            <Field label="来源" children={sources} />
-            <Field label="metadata" children={metadata} />
-            {depth ? (
-              <Field
-                label="说明深度"
-                testId="node-mechanism-depth"
-                children={mechanismDepthLabel(depth)}
-              />
-            ) : null}
-          </dl>
-        </MoreDetail>
-      )}
+      ) : null}
+      {node.description ? (
+        <section className="drawer-block drawer-desc" data-testid="node-description">
+          <p className="muted drawer-block-label">说明</p>
+          <p className="drawer-desc-text">{node.description}</p>
+        </section>
+      ) : null}
       {links.length > 0 && (
-        <section className="related" aria-label="相关关联">
+        <section className="related drawer-block" aria-label="相关关联" data-testid="node-related">
           <h3>相关关联</h3>
           <ul>
             {links.map(({ link, index }) => {
               const otherId = link.source === node.id ? link.target : link.source;
               return (
                 <li key={index}>
-                  <button type="button" className="related-btn" onClick={() => onSelectLink(index)}>
-                    <span className="inline">
-                      <Swatch value={link.direction} />
-                      {link.relation}
-                    </span>
+                  <button
+                    type="button"
+                    className="related-btn"
+                    style={{ borderLeftColor: semanticColor(link.direction) }}
+                    onClick={() => onSelectLink(index)}
+                  >
+                    <span className="related-btn-main">{link.relation}</span>
                     <span className="muted">
                       {directionLabel(link.direction)} · {evidenceBadge(link.evidence_type)}
                       {evidenceTrack(link.evidence_type) === 'literature' ? ' · 文献' : ''} ·{' '}
@@ -202,6 +195,27 @@ function NodeBody({
             })}
           </ul>
         </section>
+      )}
+      {hasMore && (
+        <MoreDetail>
+          <dl className="fields">
+            <div>
+              <dt>类型</dt>
+              <dd>{withEnum(nodeTypeLabel(node.type), node.type)}</dd>
+            </div>
+            {hasAliases ? <Field label="别名" children={node.aliases!.join('、')} /> : null}
+            {depth ? (
+              <Field
+                label="说明深度"
+                testId="node-mechanism-depth"
+                children={mechanismDepthLabel(depth)}
+              />
+            ) : null}
+            <Field label="id" testId="node-id" children={node.id} />
+            <Field label="来源" children={sources} />
+            <Field label="metadata" children={metadata} />
+          </dl>
+        </MoreDetail>
       )}
     </>
   );
