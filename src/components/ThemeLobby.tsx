@@ -8,7 +8,9 @@ import {
   LOBBY_KICKER,
   LOBBY_TAGLINE,
   LOBBY_TITLE,
-  VEGAN_DIET_SECTION_FOOTER,
+  VEGAN_DIET_GRAPH_THEME_ID,
+  VEGAN_DIET_SECTION_DETAIL_CTA,
+  VEGAN_DIET_SECTION_GRAPH_CTA,
   VEGAN_DIET_SECTION_INTRO,
   VEGAN_DIET_SECTION_TITLE,
 } from '../lib/exploreShell';
@@ -82,16 +84,10 @@ function ThemeCard({ theme, onEnter }: { theme: ExploreTheme; onEnter: (theme: E
 function PatternCard({
   card,
   highlighted,
-  onEnter,
-  onOpenPattern,
 }: {
   card: DietPatternCard;
   highlighted: boolean;
-  onEnter: (theme: ExploreTheme) => void;
-  onOpenPattern: (id: string) => void;
 }) {
-  const graphTheme = themeById(card.primary_theme);
-
   return (
     <article
       className="pattern-card pattern-card--journey"
@@ -111,36 +107,13 @@ function PatternCard({
           </li>
         ))}
       </ul>
-      <div className="pattern-related pattern-related--compact">
-        <button
-          type="button"
-          className="btn btn--primary pattern-jump"
-          data-testid="open-pattern-detail"
-          data-pattern={card.id}
-          onClick={() => onOpenPattern(card.id)}
-        >
-          {PATTERN_SHELL.openDetail}
-        </button>
-        {graphTheme && (
-          <button
-            type="button"
-            className="pattern-jump pattern-jump--graph"
-            data-testid={`pattern-jump-${card.id}-${graphTheme.id}`}
-            aria-label={`${PATTERN_SHELL.lobbyGraph}：${graphTheme.label}`}
-            onClick={() => onEnter(graphTheme)}
-          >
-            {PATTERN_SHELL.lobbyGraph}
-            <span className="muted">{graphTheme.label}</span>
-          </button>
-        )}
-      </div>
     </article>
   );
 }
 
 export function ThemeLobby({
   onEnter,
-  onOpenPattern,
+  onOpenPattern: _onOpenPattern,
   onOpenCompare,
   onOpenTwin,
   highlightedPatterns = [],
@@ -150,6 +123,7 @@ export function ThemeLobby({
   const highlighted = new Set(highlightedPatterns);
   const showReturn = highlightedPatterns.length > 0 && themeById(patternSourceTheme) != null && Boolean(onReturnToGraph);
   const highlightKey = highlightedPatterns.join(',');
+  const veganGraphTheme = themeById(VEGAN_DIET_GRAPH_THEME_ID);
 
   useEffect(() => {
     if (!highlightKey) return;
@@ -211,24 +185,31 @@ export function ThemeLobby({
         <ul className="pattern-grid pattern-grid--journey">
           {DIET_PATTERN_CARDS.map((card) => (
             <li key={card.id}>
-              <PatternCard
-                card={card}
-                highlighted={highlighted.has(card.id)}
-                onEnter={onEnter}
-                onOpenPattern={onOpenPattern}
-              />
+              <PatternCard card={card} highlighted={highlighted.has(card.id)} />
             </li>
           ))}
         </ul>
-        <p className="pattern-section-footer">{VEGAN_DIET_SECTION_FOOTER}</p>
-        <button
-          type="button"
-          className="pattern-jump pattern-compare-entry"
-          data-testid="open-pattern-compare"
-          onClick={onOpenCompare}
-        >
-          {PATTERN_SHELL.openCompare}
-        </button>
+        <div className="pattern-section-actions">
+          <button
+            type="button"
+            className="btn btn--primary pattern-section-btn"
+            data-testid="vegan-section-detail"
+            onClick={onOpenCompare}
+          >
+            {VEGAN_DIET_SECTION_DETAIL_CTA}
+          </button>
+          {veganGraphTheme && (
+            <button
+              type="button"
+              className="btn btn--ghost pattern-section-btn"
+              data-testid="vegan-section-graph"
+              aria-label={`${VEGAN_DIET_SECTION_GRAPH_CTA}：${veganGraphTheme.label}`}
+              onClick={() => onEnter(veganGraphTheme)}
+            >
+              {VEGAN_DIET_SECTION_GRAPH_CTA}
+            </button>
+          )}
+        </div>
       </section>
       <details className="mechanism-fold" data-testid="mechanism-fold">
         <summary>进阶：机制与饮食（可选）</summary>

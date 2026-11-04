@@ -48,9 +48,9 @@ export const PATTERN_SHELL = {
   openDetail: '查看详情',
   openCompare: '对比三种素食路径',
   lobbyIntro: VEGAN_DIET_SECTION_INTRO,
-  lobbyGraph: '在图谱里展开',
-  compareTitle: '三种素食路径对比',
-  compareNote: '以下为公开资料与书摘中常见描述的对比，不是排名，也不是个人饮食方案，更不是在比高下。',
+  compareTitle: '素食饮食方式说明',
+  compareNote:
+    '下面三步是 ClearDiet 常用的试做顺序，不是三种互斥的「定义」。若需要某一阶段的多吃少吃、证据与局限性，可点该步的查看详情。',
   compareLegend:
     '强调 = 该路径常被强调；部分 = 有时提到、非核心；可选 = 多为可选或因人而异；限制 = 常被描述为需限制或避免',
   sidebarOne: '查看路径详情',
