@@ -73,7 +73,7 @@ test('compare matrix uses only the four locked cell words and does not rank', ()
   for (const word of ['更好', '最优', '最佳', '推荐采用', '建议你吃', '评分', '胜出', ...banned]) {
     assert.equal(shell.includes(word), false, word);
   }
-  assert.match(PATTERN_SHELL.compareNote, /不是排名/);
+  assert.match(PATTERN_SHELL.compareNote, /不是三种互斥/);
 });
 
 test('sidebar detail labels match the locked short names', () => {
