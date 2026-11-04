@@ -8,8 +8,8 @@ import {
   LOBBY_KICKER,
   LOBBY_TAGLINE,
   LOBBY_TITLE,
-  THEME_CTA,
-  VEGAN_DIET_SECTION_MISSION,
+  VEGAN_DIET_SECTION_FOOTER,
+  VEGAN_DIET_SECTION_INTRO,
   VEGAN_DIET_SECTION_TITLE,
 } from '../lib/exploreShell';
 import { PALETTE } from '../lib/palette';
@@ -90,40 +90,28 @@ function PatternCard({
   onEnter: (theme: ExploreTheme) => void;
   onOpenPattern: (id: string) => void;
 }) {
-  const related = card.related_themes
-    .map((id) => themeById(id))
-    .filter((theme): theme is ExploreTheme => theme !== null);
+  const graphTheme = themeById(card.primary_theme);
 
   return (
     <article
-      className="pattern-card"
+      className="pattern-card pattern-card--journey"
       data-testid={`pattern-card-${card.id}`}
+      data-journey-stage={card.journey_stage}
       data-highlighted={highlighted ? 'true' : undefined}
     >
       {highlighted && <span className="pattern-badge">{PATTERN_SHELL.highlightBadge}</span>}
       <span className="pattern-stage">{card.journey_stage}</span>
       <h3>{card.title}</h3>
-      <p className="pattern-summary" title={card.summary}>{card.summary}</p>
-      <p className="pattern-practice">{card.practice_hint}</p>
-      <dl className="pattern-fields">
-        <div>
-          <dt>资料中常提到的多吃要点</dt>
-          <dd>{card.emphasize}</dd>
-        </div>
-        <div>
-          <dt>资料中常提到的少吃要点</dt>
-          <dd>{card.limit}</dd>
-        </div>
-        <div>
-          <dt>证据与来源（简述）</dt>
-          <dd>{card.evidence_note}</dd>
-        </div>
-        <div>
-          <dt>局限性</dt>
-          <dd data-testid={`pattern-limitations-${card.id}`}>{card.limitations}</dd>
-        </div>
-      </dl>
-      <div className="pattern-related">
+      <p className="pattern-hook">{card.hook}</p>
+      <ul className="pattern-facets">
+        {card.lobby_facets.map((facet) => (
+          <li key={facet.kind} className="pattern-facet" data-facet={facet.kind}>
+            <span className="pattern-facet-label">{facet.label}</span>
+            <p>{facet.body}</p>
+          </li>
+        ))}
+      </ul>
+      <div className="pattern-related pattern-related--compact">
         <button
           type="button"
           className="btn btn--primary pattern-jump"
@@ -133,19 +121,18 @@ function PatternCard({
         >
           {PATTERN_SHELL.openDetail}
         </button>
-        {related.map((theme) => (
-            <button
-              key={theme.id}
-              type="button"
-              className="pattern-jump"
-              data-testid={`pattern-jump-${card.id}-${theme.id}`}
-              aria-label={`${THEME_CTA}：${theme.label}`}
-              onClick={() => onEnter(theme)}
-            >
-              {THEME_CTA}
-              <span className="muted">{theme.label}</span>
-            </button>
-        ))}
+        {graphTheme && (
+          <button
+            type="button"
+            className="pattern-jump pattern-jump--graph"
+            data-testid={`pattern-jump-${card.id}-${graphTheme.id}`}
+            aria-label={`${PATTERN_SHELL.lobbyGraph}：${graphTheme.label}`}
+            onClick={() => onEnter(graphTheme)}
+          >
+            {PATTERN_SHELL.lobbyGraph}
+            <span className="muted">{graphTheme.label}</span>
+          </button>
+        )}
       </div>
     </article>
   );
@@ -218,9 +205,10 @@ export function ThemeLobby({
             </button>
           )}
         </div>
-        <p className="pattern-note">{PATTERN_SHELL.lobbyNote}</p>
-        <p className="pattern-mission" data-testid="vegan-diet-mission">{VEGAN_DIET_SECTION_MISSION}</p>
-        <ul className="pattern-grid">
+        <p className="pattern-intro" data-testid="vegan-diet-intro">
+          {VEGAN_DIET_SECTION_INTRO}
+        </p>
+        <ul className="pattern-grid pattern-grid--journey">
           {DIET_PATTERN_CARDS.map((card) => (
             <li key={card.id}>
               <PatternCard
@@ -232,6 +220,7 @@ export function ThemeLobby({
             </li>
           ))}
         </ul>
+        <p className="pattern-section-footer">{VEGAN_DIET_SECTION_FOOTER}</p>
         <button
           type="button"
           className="pattern-jump pattern-compare-entry"
