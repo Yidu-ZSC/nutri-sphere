@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import { PALETTE } from '../lib/palette';
+import { readLegendExpanded, writeLegendExpanded } from '../lib/legendChrome';
 import type { ShapeKind } from '../lib/nodeStyle';
 
 const DIRECTIONS: { id: keyof typeof PALETTE; label: string }[] = [
@@ -37,9 +39,9 @@ function ShapeIcon({ kind }: { kind: ShapeKind }) {
   );
 }
 
-export function Legend() {
+function LegendBlocks() {
   return (
-    <div className="legend" data-testid="legend" aria-label="图例">
+    <>
       <div className="legend-block">
         <p>关联方向</p>
         <ul>
@@ -89,6 +91,73 @@ export function Legend() {
           </li>
         </ul>
       </div>
+    </>
+  );
+}
+
+export interface LegendProps {
+  /** ≤768 explore: enable collapse chip. Desktop leaves this false/undefined. */
+  compact?: boolean;
+  /** Notifies parent so HUD can apply `.hud--legend-collapsed`. */
+  onExpandedChange?: (expanded: boolean) => void;
+}
+
+export function Legend({ compact = false, onExpandedChange }: LegendProps) {
+  const [expanded, setExpanded] = useState(() => (compact ? readLegendExpanded() : true));
+
+  useEffect(() => {
+    if (!compact) {
+      onExpandedChange?.(true);
+      return;
+    }
+    const next = readLegendExpanded();
+    setExpanded(next);
+    onExpandedChange?.(next);
+  }, [compact, onExpandedChange]);
+
+  const toggle = () => {
+    setExpanded((prev) => {
+      const next = !prev;
+      writeLegendExpanded(next);
+      onExpandedChange?.(next);
+      return next;
+    });
+  };
+
+  if (!compact) {
+    return (
+      <div className="legend" data-testid="legend" aria-label="图例">
+        <LegendBlocks />
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={expanded ? 'legend legend--expanded' : 'legend legend--collapsed'}
+      data-testid="legend"
+      aria-label="图例"
+    >
+      <button
+        type="button"
+        className="legend-toggle"
+        data-testid="legend-toggle"
+        aria-expanded={expanded}
+        aria-controls="legend-details"
+        onClick={toggle}
+      >
+        <span className="legend-toggle-label">图例</span>
+        <span className="legend-toggle-dots" aria-hidden="true">
+          {DIRECTIONS.map((item) => (
+            <i key={item.id} className="swatch" style={{ background: PALETTE[item.id] }} />
+          ))}
+        </span>
+      </button>
+      {expanded && (
+        <div id="legend-details" className="legend-details">
+          <LegendBlocks />
+        </div>
+      )}
     </div>
   );
 }

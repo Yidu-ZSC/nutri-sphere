@@ -6,6 +6,7 @@ import { FilterPanel } from './components/FilterPanel';
 import { GraphCanvas } from './components/GraphCanvas';
 import { LayoutToggle } from './components/LayoutToggle';
 import { Legend } from './components/Legend';
+import { readLegendExpanded } from './lib/legendChrome';
 import { VeganDietDetail } from './components/VeganDietDetail';
 import { SearchBar } from './components/SearchBar';
 import { ThemeBar } from './components/ThemeBar';
@@ -69,6 +70,10 @@ function readInitialQuery(): ParsedShare {
 
 export function App() {
   const mobile = useMediaQuery('(max-width: 768px)');
+  const [legendExpanded, setLegendExpanded] = useState(() => readLegendExpanded());
+  const onLegendExpandedChange = useCallback((expanded: boolean) => {
+    setLegendExpanded(expanded);
+  }, []);
   const initialQuery = useRef(readInitialQuery());
   const initialFilters = useRef(filtersFromShare(initialQuery.current));
   const [load, setLoad] = useState<LoadState>({ status: 'loading' });
@@ -833,8 +838,8 @@ export function App() {
                   </button>
                 </div>
               )}
-              <div className="hud">
-                <Legend />
+              <div className={mobile && !legendExpanded ? 'hud hud--legend-collapsed' : 'hud'}>
+                <Legend compact={mobile} onExpandedChange={onLegendExpandedChange} />
                 <p className="counts" data-testid="graph-stats">
                   {visibleGraphStats(rendered.nodeIds.size, rendered.links.length)}
                 </p>
