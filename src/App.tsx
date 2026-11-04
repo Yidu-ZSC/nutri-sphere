@@ -744,9 +744,34 @@ export function App() {
             <p className="brand-title" data-testid="brand-title" title="明膳知源" aria-label="明膳知源">
               明膳知源
             </p>
-            <p className="brand-sub">仅供学习：饮食、机制与健康结局的关联图谱</p>
+            {!exploring && (
+              <p className="brand-sub">仅供学习：饮食、机制与健康结局的关联图谱</p>
+            )}
           </div>
         </div>
+        {!mobile && (
+          <nav className="shell-nav" aria-label="主视图">
+            <button
+              type="button"
+              className="shell-nav-btn"
+              aria-current={screen === 'home' || screen === 'pattern' ? 'page' : undefined}
+              onClick={goHome}
+            >
+              主题大厅
+            </button>
+            <button
+              type="button"
+              className="shell-nav-btn"
+              aria-current={exploring ? 'page' : undefined}
+              disabled={!graph}
+              onClick={() => {
+                if (graph) setScreen('explore');
+              }}
+            >
+              图谱探索
+            </button>
+          </nav>
+        )}
         {exploring && graph && (
           <div className="header-tools">
             <SearchBar

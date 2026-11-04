@@ -1,19 +1,25 @@
 :root {
-  color-scheme: dark;
-  --bg: #0b0d12;
-  --panel: #16181d;
+  color-scheme: light;
+  /* UI shell only — graph canvas stays #0b0d12 via CANVAS_BG in palette.ts */
+  --bg: #f4f4f5;
+  --panel: #ffffff;
   --panel-solid: var(--panel);
-  --panel-hover: #1e2128;
-  --text: #f1f3f5;
-  --muted: #a1a8b3;
-  --faint: #6b7280;
-  --brand: #22c55e;
-  --brand-hover: #16a34a;
+  --panel-muted: #efeff1;
+  --panel-hover: #eaeaec;
+  --text: #18181b;
+  --muted: #71717a;
+  --faint: #a1a1aa;
+  --brand: #18181b;
+  --brand-hover: #3f3f46;
+  --brand-on: #ffffff;
+  --accent: #3d6ea8;
+  --accent-hover: #325a88;
+  --accent-soft: rgba(61, 110, 168, 0.12);
   --dir-protective: #34d399;
   --dir-risk: #f87171;
   --dir-mixed: #fbbf24;
   --dir-neutral: #94a3b8;
-  --border-color: rgba(255, 255, 255, 0.08);
+  --border-color: rgba(24, 24, 27, 0.09);
   --border: 1px solid var(--border-color);
   --line: var(--border-color);
   --space-1: 4px;
@@ -22,62 +28,66 @@
   --space-4: 16px;
   --space-5: 24px;
   --space-6: 32px;
-  --radius-btn: 6px;
-  --radius-card: 10px;
-  --radius-panel: 16px;
-  /* Lobby theme cards and their CTAs only. Do not retune the global radii above. */
-  --radius-theme-card: 12px;
-  --radius-theme-cta: 8px;
-  --border-hover: rgba(255, 255, 255, 0.22);
-  --shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
-  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --space-7: 40px;
+  --radius-btn: 10px;
+  --radius-card: 14px;
+  --radius-panel: 18px;
+  --radius-theme-card: 16px;
+  --radius-theme-cta: 10px;
+  --radius-pill: 999px;
+  --border-hover: rgba(24, 24, 27, 0.16);
+  --shadow: 0 18px 48px rgba(24, 24, 27, 0.1);
+  --shadow-card: 0 1px 2px rgba(24, 24, 27, 0.04), 0 10px 28px rgba(24, 24, 27, 0.07);
+  --shadow-inset-canvas: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
   --btn: transparent;
   --btn-hover: var(--panel-hover);
-  --font: system-ui, "Segoe UI", "WenQuanYi Micro Hei", "Droid Sans Fallback", "PingFang SC",
-    "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
   font-family: var(--font);
   line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Panel surface token is `--panel` (`--panel-solid` follows it). Do not add a `--card` token. */
-/* Direction colors, `--brand`, and `--brand-hover` stay on :root so every theme shares the same values. */
-/* Missing `data-theme` or `data-theme="dark"` uses the :root values above. */
+/* Missing `data-theme` or `data-theme="light"` uses the :root values above. */
 
-:root[data-theme='fresh'] {
+:root[data-theme='paper'] {
   color-scheme: light;
-  --bg: #f8fafc;
-  --panel: #ffffff;
-  --text: #1e293b;
-  --panel-hover: #f1f5f9;
-  --muted: #64748b;
-  --faint: #94a3b8;
-  --border-color: rgba(15, 23, 42, 0.1);
-  --border-hover: rgba(15, 23, 42, 0.18);
-  --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --bg: #f7f6f3;
+  --panel: #fffcf8;
+  --panel-muted: #f0eeea;
+  --panel-hover: #ebe8e3;
+  --text: #1c1917;
+  --muted: #78716c;
+  --faint: #a8a29e;
+  --border-color: rgba(28, 25, 23, 0.1);
+  --border-hover: rgba(28, 25, 23, 0.18);
+  --shadow-card: 0 1px 2px rgba(28, 25, 23, 0.04), 0 10px 28px rgba(28, 25, 23, 0.06);
 }
 
-:root[data-theme='soft'] {
+:root[data-theme='stone'] {
   color-scheme: light;
-  --bg: #f1f5f9;
-  --panel: #ffffff;
-  --text: #334155;
-  --panel-hover: #e2e8f0;
-  --muted: #64748b;
-  --faint: #94a3b8;
-  --border-color: rgba(15, 23, 42, 0.1);
-  --border-hover: rgba(15, 23, 42, 0.18);
-  --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --bg: #ececef;
+  --panel: #fafafa;
+  --panel-muted: #e4e4e7;
+  --panel-hover: #dcdce0;
+  --text: #27272a;
+  --muted: #52525b;
+  --faint: #71717a;
+  --border-color: rgba(39, 39, 42, 0.11);
+  --border-hover: rgba(39, 39, 42, 0.2);
+  --shadow-card: 0 1px 2px rgba(39, 39, 42, 0.05), 0 10px 28px rgba(39, 39, 42, 0.08);
 }
 
-:root[data-theme='eye'] {
-  color-scheme: dark;
-  --bg: #1c1917;
-  --panel: #292524;
-  --text: #fafaf9;
-  --panel-hover: #44403c;
-  --muted: #a8a29e;
-  --faint: #78716c;
-  --border-color: rgba(250, 250, 249, 0.1);
-  --border-hover: rgba(250, 250, 249, 0.2);
-  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.4);
+:root[data-theme='contrast'] {
+  color-scheme: light;
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --panel-muted: #f4f4f5;
+  --panel-hover: #e4e4e7;
+  --text: #09090b;
+  --muted: #52525b;
+  --faint: #71717a;
+  --border-color: rgba(9, 9, 11, 0.14);
+  --border-hover: rgba(9, 9, 11, 0.24);
+  --shadow-card: 0 2px 8px rgba(9, 9, 11, 0.08);
 }

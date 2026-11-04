@@ -28,13 +28,17 @@
     <script>
       (function () {
         var key = 'cleardiet.theme';
-        var theme = 'dark';
+        var theme = 'light';
+        var allowed = { light: 1, paper: 1, stone: 1, contrast: 1, dark: 1, fresh: 1, soft: 1, eye: 1 };
         try {
           var stored = localStorage.getItem(key);
-          if (stored === 'dark' || stored === 'fresh' || stored === 'soft' || stored === 'eye') {
-            theme = stored;
+          if (stored && allowed[stored]) {
+            if (stored === 'dark' || stored === 'fresh') theme = 'light';
+            else if (stored === 'soft') theme = 'paper';
+            else if (stored === 'eye') theme = 'stone';
+            else theme = stored;
           } else if (stored !== null) {
-            localStorage.setItem(key, 'dark');
+            localStorage.setItem(key, 'light');
           }
         } catch (e) {}
         document.documentElement.setAttribute('data-theme', theme);
