@@ -1,4 +1,6 @@
-import type { SourcesData, SourceRecord } from '../types/graph';
+import type { SourcesData, SourceRecord, SourceType } from '../types/graph';
+
+const SOURCE_TYPES = new Set<SourceType>(['book', 'review', 'paper']);
 
 export function sourcesDataUrl(): string {
   return `${import.meta.env.BASE_URL}data/sources.json`;
@@ -28,7 +30,7 @@ export function assertSources(payload: unknown): SourcesData {
     throw new Error('来源简介结构无效');
   }
   const root = payload as Record<string, unknown>;
-  if (root.schema_version !== '1.0') {
+  if (root.schema_version !== '1.1') {
     throw new Error('来源简介 schema_version 无效');
   }
   if (!Array.isArray(root.sources)) {
@@ -44,21 +46,39 @@ export function assertSources(payload: unknown): SourcesData {
       typeof row.title !== 'string' ||
       typeof row.authors !== 'string' ||
       typeof row.year !== 'number' ||
-      typeof row.description !== 'string' ||
+      typeof row.type !== 'string' ||
+      typeof row.summary !== 'string' ||
       typeof row.file !== 'string'
     ) {
       throw new Error(`sources[${index}] 字段不完整`);
     }
-    return {
+    if (!SOURCE_TYPES.has(row.type as SourceType)) {
+      throw new Error(`sources[${index}].type 非法`);
+    }
+    if ('description' in row) {
+      throw new Error(`sources[${index}] 不得含 description`);
+    }
+    if ('edge_count' in row) {
+      throw new Error(`sources[${index}] 不得含 edge_count`);
+    }
+    const record: SourceRecord = {
       id: row.id,
       title: row.title,
       authors: row.authors,
       year: row.year,
-      description: row.description,
+      type: row.type as SourceType,
+      summary: row.summary,
       file: row.file,
     };
+    if (row.url !== undefined) {
+      if (typeof row.url !== 'string' || !/^https:\/\//.test(row.url)) {
+        throw new Error(`sources[${index}].url 必须为 https://`);
+      }
+      record.url = row.url;
+    }
+    return record;
   });
-  return { schema_version: '1.0', sources };
+  return { schema_version: '1.1', sources };
 }
 
 export function sourceById(data: SourcesData | null | undefined, id: string | null | undefined): SourceRecord | null {

@@ -75,12 +75,17 @@ export interface GraphLink {
   metadata?: Record<string, unknown>;
 }
 
+export type SourceType = 'book' | 'review' | 'paper';
+
 export interface SourceRecord {
   id: string;
   title: string;
   authors: string;
   year: number;
-  description: string;
+  type: SourceType;
+  summary: string;
+  /** Optional public https URL. Never show `file` in UI. */
+  url?: string;
   file: string;
 }
 
