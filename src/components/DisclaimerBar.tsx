@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import {
   DISCLAIMER_EN,
+  DISCLAIMER_SHORT,
   DISCLAIMER_TEXT,
   EVIDENCE_LADDER,
   disclaimerSegments,
@@ -9,6 +10,7 @@ import {
   evidenceStatus,
 } from '../lib/copy';
 import { LOBBY_EDU_FOOTER, LOBBY_TAGLINE } from '../lib/exploreShell';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 import type { GraphMeta } from '../types/graph';
 
 interface DisclaimerBarProps {
@@ -30,10 +32,16 @@ export function DisclaimerBar({
   onAboutOpen,
   onAboutClose,
 }: DisclaimerBarProps) {
+  const mobile = useMediaQuery('(max-width: 768px)');
+  const [expanded, setExpanded] = useState(false);
   const segments = disclaimerSegments(DISCLAIMER_TEXT);
   const closeRef = useRef<HTMLButtonElement>(null);
   const version = meta?.data_version ? `数据 v${meta.data_version}` : '数据版本待加载';
   const extracted = meta?.extraction_date ? ` · 提取 ${meta.extraction_date}` : '';
+
+  useEffect(() => {
+    if (!mobile) setExpanded(false);
+  }, [mobile]);
 
   useEffect(() => {
     if (aboutOpen) closeRef.current?.focus();
@@ -220,23 +228,70 @@ export function DisclaimerBar({
       </div>
   ) : null;
 
+  const fullDisclaimer = (
+    <p className="disclaimer-long" data-testid="disclaimer-text">
+      {segments.map((segment, index) =>
+        segment.strong ? <strong key={index}>{segment.value}</strong> : <span key={index}>{segment.value}</span>,
+      )}
+    </p>
+  );
+
+  const versionLine = (
+    <p className="version-line" data-testid="data-version">
+      {version}
+      {extracted}
+    </p>
+  );
+
+  const methodsButton = (
+    <button type="button" className="linkish" onClick={onAboutOpen}>
+      方法说明
+    </button>
+  );
+
   return (
-    <footer className="disclaimer" role="note" aria-label="免责声明" data-testid="disclaimer">
+    <footer
+      className={mobile && !expanded ? 'disclaimer disclaimer--collapsed' : 'disclaimer'}
+      role="note"
+      aria-label="免责声明"
+      data-testid="disclaimer"
+      data-collapsed={mobile && !expanded ? 'true' : 'false'}
+    >
       {aboutDialog && createPortal(aboutDialog, document.body)}
-      <div className="disclaimer-copy">
-        <p className="disclaimer-long" data-testid="disclaimer-text">
-          {segments.map((segment, index) =>
-            segment.strong ? <strong key={index}>{segment.value}</strong> : <span key={index}>{segment.value}</span>,
-          )}
-        </p>
-        <p className="version-line" data-testid="data-version">
-          {version}
-          {extracted}
-        </p>
-      </div>
-      <button type="button" className="linkish" onClick={onAboutOpen}>
-        方法说明
-      </button>
+      {mobile ? (
+        <>
+          <div className="disclaimer-copy">
+            {expanded ? (
+              fullDisclaimer
+            ) : (
+              <p className="disclaimer-summary" data-testid="disclaimer-summary">
+                {DISCLAIMER_SHORT}
+              </p>
+            )}
+            {versionLine}
+          </div>
+          <div className="disclaimer-actions">
+            <button
+              type="button"
+              className="disclaimer-toggle"
+              data-testid="disclaimer-toggle"
+              aria-expanded={expanded}
+              onClick={() => setExpanded((value) => !value)}
+            >
+              {expanded ? '收起' : '展开'}
+            </button>
+            {methodsButton}
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="disclaimer-copy">
+            {fullDisclaimer}
+            {versionLine}
+          </div>
+          {methodsButton}
+        </>
+      )}
     </footer>
   );
 }

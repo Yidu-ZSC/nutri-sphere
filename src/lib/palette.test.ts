@@ -234,8 +234,10 @@ test('diet twin lobby entry is a silhouette portal with only the title visible',
     css.indexOf('@media (max-width: 768px)'),
     css.indexOf('@media (prefers-reduced-motion: reduce)'),
   );
-  assert.match(mobile, /\.diet-twin-stage\s*\{[^}]*height:\s*136px/);
-  assert.match(mobile, /\.diet-twin-figure-wrap\s*\{[^}]*height:\s*112px/);
+  assert.match(mobile, /\.diet-twin-entry\s*\{[^}]*flex-direction:\s*row/);
+  assert.match(mobile, /\.diet-twin-stage\s*\{[^}]*height:\s*44px/);
+  assert.match(mobile, /\.diet-twin-figure-wrap\s*\{[^}]*height:\s*40px/);
+  assert.equal(/\.diet-twin-stage\s*\{[^}]*height:\s*136px/.test(mobile), false);
 
   const reduced = css.slice(css.indexOf('@media (prefers-reduced-motion: reduce)'));
   assert.match(reduced, /\.diet-twin-hotspot,\s*\.diet-twin-glow\s*\{[^}]*animation:\s*none/);
@@ -259,3 +261,18 @@ test('theme accent bars follow the seed anchor group', () => {
     assert.equal(themeAccent(theme), byId.get(anchor), theme.id);
   }
 });
+
+test('brand title always shows full 明膳知源 without short label', () => {
+  const app = fs.readFileSync(path.join(root, 'src/App.tsx'), 'utf8');
+  const css = fs.readFileSync(path.join(root, 'src/styles.css'), 'utf8');
+  assert.match(app, /data-testid="brand-title"/);
+  assert.match(app, /aria-label="明膳知源"/);
+  assert.match(app, /title="明膳知源"/);
+  assert.match(app, />\s*明膳知源\s*</);
+  assert.equal(app.includes('brand-title-short'), false);
+  assert.equal(app.includes('aria-hidden="true">明膳<'), false);
+  assert.equal(css.includes('.brand-title-short'), false);
+  assert.equal(css.includes('.brand-title-full'), false);
+  assert.equal(/@media \(max-width:\s*639px\)/.test(css), false);
+});
+

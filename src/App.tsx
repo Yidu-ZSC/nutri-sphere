@@ -650,11 +650,7 @@ export function App() {
           <span className="mark" aria-hidden="true" />
           <div>
             <p className="brand-title" data-testid="brand-title" title="明膳知源" aria-label="明膳知源">
-              <span className="brand-title-full">明膳知源</span>
-              <span className="brand-title-short">
-                <span aria-hidden="true">明膳</span>
-                <span className="sr-only">明膳知源</span>
-              </span>
+              明膳知源
             </p>
             <p className="brand-sub">仅供学习：饮食、机制与健康结局的关联图谱</p>
           </div>
