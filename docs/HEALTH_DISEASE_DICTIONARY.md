@@ -29,93 +29,94 @@
 | status | 已有 / 建议新增 |
 
 状态节点只解释概念。来源与局限性属于边。
+描述中不使用「教育向节点」「风险节点」等元语言。
 
 ## 4. 已有状态（11 个）
 
-### 4.1 慢性肝炎相关进展
+### 4.1 慢性肝炎进展
 - id: liver_chronic
 - group: risk
-- description: 慢性肝炎向肝功能衰竭或肝癌方向进展的相关讨论。
+- description: 慢性肝炎向肝功能衰竭或肝癌方向进展的过程。
 - related_mechanism: 慢性炎症
 - related_diet: —
 - status: 已有
 
-### 4.2 消化系统癌症风险
+### 4.2 消化系统肿瘤
 - id: digestive_cancer_risk
 - group: risk
-- description: 消化系统肿瘤相关风险的教育向节点。
+- description: 食管、胃、肠等消化系统部位的肿瘤。
 - related_mechanism: 慢性炎症、DNA损伤
 - related_diet: —
 - status: 已有
 
-### 4.3 心血管 / 代谢疾病风险
+### 4.3 心血管与代谢问题
 - id: cardiometabolic
 - group: risk
-- description: 心血管与代谢相关风险的教育向节点。
+- description: 心血管系统与血糖、血脂等代谢相关的异常状态。
 - related_mechanism: 慢性炎症、胰岛素抵抗
 - related_diet: 动物性食物、超加工食品
 - status: 已有
 
-### 4.4 自身免疫相关
+### 4.4 自身免疫问题
 - id: autoimmune
 - group: risk
-- description: 自身免疫相关风险的教育向节点。
+- description: 免疫系统攻击自身组织的相关状态。
 - related_mechanism: 免疫过度激活、肠道屏障损伤
 - related_diet: —
 - status: 已有
 
-### 4.5 心理健康 / 抑郁等
+### 4.5 情绪低落
 - id: mental_health
 - group: risk
-- description: 情绪、抑郁等心理相关讨论的教育向节点。
+- description: 持续情绪低落、兴趣减退等心理状态。
 - related_mechanism: 慢性炎症、肠道菌群
 - related_diet: —
 - status: 已有
 
-### 4.6 乳腺与前列腺风险
+### 4.6 乳腺与前列腺问题
 - id: breast_prostate_risk
 - group: risk
-- description: 与血管生成、IGF-1 一并讨论的相关风险节点。
+- description: 乳腺或前列腺部位的异常增生或肿瘤。
 - related_mechanism: 血管生成防御、IGF-1信号
 - related_diet: —
 - status: 已有
 
-### 4.7 炎症性肠病相关
+### 4.7 肠道炎症
 - id: ibd_related
 - group: risk
-- description: 与屏障和炎症一并提到的肠道炎症相关结局。
+- description: 肠道黏膜持续炎症的状态。
 - related_mechanism: 慢性炎症、肠道屏障损伤
 - related_diet: —
 - status: 已有
 
-### 4.8 脂肪肝相关风险
+### 4.8 脂肪肝
 - id: fatty_liver
 - group: risk
-- description: 与代谢和炎症叙述相连的肝脏脂肪相关风险。
+- description: 肝细胞内脂肪堆积的状态。
 - related_mechanism: 胰岛素抵抗、慢性炎症
 - related_diet: 超加工食品、添加糖
 - status: 已有
 
-### 4.9 肥胖相关风险
+### 4.9 肥胖
 - id: obesity_risk
 - group: risk
-- description: 与纤维、短链脂肪酸和代谢叙述相连的体重相关风险。
+- description: 体脂过多、体重明显高于日常活动需求的状态。
 - related_mechanism: 胰岛素抵抗、慢性炎症
 - related_diet: 膳食纤维、超加工食品
 - status: 已有
 
-### 4.10 C反应蛋白
+### 4.10 C反应蛋白升高
 - id: crp
 - group: neutral
-- description: 用来参照慢性炎症的可测指标名称。
+- description: 血液中 C 反应蛋白水平升高。
 - related_mechanism: 慢性炎症
 - related_diet: —
 - status: 已有
 
-### 4.11 糖化血红蛋白
+### 4.11 糖化血红蛋白升高
 - id: hba1c
 - group: neutral
-- description: 用来参照长期血糖暴露的可测指标名称。
+- description: 血液中糖化血红蛋白水平升高。
 - related_mechanism: 糖化反应
 - related_diet: —
 - status: 已有
@@ -198,6 +199,7 @@
 
 ## 7. 版本
 
+- v0.2：去掉「教育向」「风险」「相关」等元语言；节点名称与描述改为直接说明状态本身。
 - v0.1：整理现有 11 个状态节点，提出 8 个健康方向建议新增；建议列名改为「健康/疾病」。
 
 以上供最后一列扩展对齐使用。
