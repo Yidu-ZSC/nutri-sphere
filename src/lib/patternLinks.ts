@@ -1,13 +1,12 @@
 import { DIET_PATTERN_CARDS } from './dietPatterns.ts';
 
 /**
- * Theme id → diet-pattern card ids.
- * Locked to the product mapping. Do not invert `related_themes`:
- * `plant_forward` lists `cardiometabolic`, and that card stays off this map.
+ * Theme id → diet-pattern card ids on the ClearDiet vegetarian journey.
  */
 export const THEME_PATTERN_LINKS: Readonly<Record<string, readonly string[]>> = {
-  cardiometabolic: ['mediterranean', 'dash'],
-  'chronic-inflammation': ['plant_forward'],
+  cardiometabolic: ['plant_forward', 'lacto_ovo', 'vegan_whole'],
+  'chronic-inflammation': ['plant_forward', 'lacto_ovo', 'vegan_whole'],
+  'plant-based': ['lacto_ovo', 'vegan_whole'],
 };
 
 const PATTERN_ID = /^[a-z0-9_]+$/;

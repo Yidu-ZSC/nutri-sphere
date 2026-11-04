@@ -28,6 +28,7 @@ test('pattern details follow the locked copy and stay on known themes', () => {
     assert.ok(card);
     assert.equal(detail.title, card.title);
     assert.equal(detail.summary, card.summary);
+    assert.equal(detail.practice_hint, card.practice_hint);
     assert.equal(detail.evidence_note, card.evidence_note);
     assert.deepEqual(detail.related_themes, card.related_themes);
     assert.equal(detail.sample_day.disclaimer, PATTERN_SAMPLE_DISCLAIMER);
@@ -46,42 +47,36 @@ test('pattern details follow the locked copy and stay on known themes', () => {
     for (const word of banned) assert.equal(copy.includes(word), false, `${detail.id} ${word}`);
   }
 
-  assert.equal(dietPatternById('dash')?.evidence_badge, '指南与观察');
-  assert.equal(dietPatternById('mediterranean')?.evidence_badge, '观察与综述');
-  assert.equal(dietPatternById('plant_forward')?.evidence_badge, '书摘与综述');
-  assert.equal(dietPatternById('plant_forward')?.graph_paths.length, 2);
+  assert.equal(dietPatternById('plant_forward')?.evidence_badge, '书摘与观察');
+  assert.equal(dietPatternById('lacto_ovo')?.evidence_badge, '书摘与综述');
+  assert.equal(dietPatternById('vegan_whole')?.evidence_badge, '书摘与综述');
+  assert.equal(dietPatternById('mediterranean'), null);
+  assert.equal(dietPatternById('dash'), null);
   assert.equal(dietPatternById('nope'), null);
-  assert.equal(dietPatternById(null), null);
 });
 
 test('compare matrix uses only the four locked cell words and does not rank', () => {
   assert.deepEqual(
     COMPARE_COLUMNS.map((column) => column.id),
-    ['mediterranean', 'dash', 'plant_forward'],
+    ['plant_forward', 'lacto_ovo', 'vegan_whole'],
   );
-  assert.deepEqual(
-    COMPARE_COLUMNS.map((column) => column.title),
-    ['地中海', 'DASH', '植物性为主'],
-  );
-  assert.equal(PATTERN_COMPARE_ROWS.length, 7);
+  assert.deepEqual(COMPARE_COLUMNS.map((column) => column.title), ['以植物为主', '蛋奶素', '全食物全素']);
+  assert.equal(PATTERN_COMPARE_ROWS.length, 6);
   const allowed = new Set<string>(COMPARE_CELLS);
   for (const row of PATTERN_COMPARE_ROWS) {
     assert.equal(row.cells.length, 3);
     for (const cell of row.cells) assert.equal(allowed.has(cell), true, cell);
   }
-  assert.deepEqual(PATTERN_COMPARE_ROWS[2]?.cells, ['强调', '部分', '部分']);
-  assert.deepEqual(PATTERN_COMPARE_ROWS[3]?.cells, ['强调', '部分', '可选']);
-  assert.deepEqual(PATTERN_COMPARE_ROWS[4]?.cells, ['部分', '强调', '可选']);
+  assert.deepEqual(PATTERN_COMPARE_ROWS[2]?.cells, ['可选', '部分', '限制']);
   const shell = [PATTERN_SHELL.compareTitle, PATTERN_SHELL.compareNote, PATTERN_SHELL.compareLegend].join('\n');
   for (const word of ['更好', '最优', '最佳', '推荐采用', '建议你吃', '评分', '胜出', ...banned]) {
     assert.equal(shell.includes(word), false, word);
   }
-  assert.match(PATTERN_SHELL.compareNote, /非排名/);
+  assert.match(PATTERN_SHELL.compareNote, /不是排名/);
 });
 
 test('sidebar detail labels match the locked short names', () => {
-  assert.equal(patternSidebarDetailLabel('地中海模式'), '地中海详情');
-  assert.equal(patternSidebarDetailLabel('DASH 模式'), 'DASH 详情');
-  assert.equal(patternSidebarDetailLabel('植物性为主模式'), '植物性为主详情');
-  assert.equal(PATTERN_SHELL.sidebarOne, '查看模式详情');
+  assert.equal(patternSidebarDetailLabel('弹性素食 · 以植物为主'), '弹性素食详情');
+  assert.equal(patternSidebarDetailLabel('蛋奶素食'), '蛋奶素食详情');
+  assert.equal(PATTERN_SHELL.sidebarOne, '查看路径详情');
 });

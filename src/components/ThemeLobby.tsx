@@ -3,7 +3,15 @@ import { DietTwinPortal } from './DietTwinPortal';
 import { DIET_TWIN_COPY } from '../lib/dietTwin';
 import { DIET_PATTERN_CARDS, type DietPatternCard } from '../lib/dietPatterns';
 import { PATTERN_SHELL } from '../lib/dietPatternDetails';
-import { LOBBY_INTRO, LOBBY_KICKER, LOBBY_TAGLINE, LOBBY_TITLE, THEME_CTA } from '../lib/exploreShell';
+import {
+  LOBBY_INTRO,
+  LOBBY_KICKER,
+  LOBBY_TAGLINE,
+  LOBBY_TITLE,
+  THEME_CTA,
+  VEGAN_DIET_SECTION_MISSION,
+  VEGAN_DIET_SECTION_TITLE,
+} from '../lib/exploreShell';
 import { PALETTE } from '../lib/palette';
 import { themeAccent } from '../lib/themeAccent';
 import {
@@ -93,8 +101,10 @@ function PatternCard({
       data-highlighted={highlighted ? 'true' : undefined}
     >
       {highlighted && <span className="pattern-badge">{PATTERN_SHELL.highlightBadge}</span>}
+      <span className="pattern-stage">{card.journey_stage}</span>
       <h3>{card.title}</h3>
       <p className="pattern-summary" title={card.summary}>{card.summary}</p>
+      <p className="pattern-practice">{card.practice_hint}</p>
       <dl className="pattern-fields">
         <div>
           <dt>资料中常提到的多吃要点</dt>
@@ -196,7 +206,7 @@ export function ThemeLobby({
       </section>
       <section className="lobby-patterns" id="diet-patterns" aria-labelledby="diet-pattern-heading" data-testid="diet-patterns">
         <div className="pattern-head">
-          <h2 id="diet-pattern-heading">健康饮食方式</h2>
+          <h2 id="diet-pattern-heading">{VEGAN_DIET_SECTION_TITLE}</h2>
           {showReturn && (
             <button
               type="button"
@@ -209,6 +219,7 @@ export function ThemeLobby({
           )}
         </div>
         <p className="pattern-note">{PATTERN_SHELL.lobbyNote}</p>
+        <p className="pattern-mission" data-testid="vegan-diet-mission">{VEGAN_DIET_SECTION_MISSION}</p>
         <ul className="pattern-grid">
           {DIET_PATTERN_CARDS.map((card) => (
             <li key={card.id}>

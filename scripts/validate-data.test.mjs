@@ -51,8 +51,8 @@ const STAGE_A_LINKS = 117;
 test('aligned seed passes schema and referential checks', () => {
   const result = validateGraphFile();
   assert.equal(result.ok, true, result.errors.join('\n'));
-  assert.equal(result.counts.nodes, 70);
-  assert.equal(result.counts.links, 126);
+  assert.equal(result.counts.nodes, 69);
+  assert.equal(result.counts.links, 125);
 });
 
 const DEEP_READER_LINKS = [

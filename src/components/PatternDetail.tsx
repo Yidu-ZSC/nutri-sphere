@@ -56,7 +56,8 @@ export function PatternDetail({ detail, onBack, onCompare, onEnterTheme, onRetur
           )}
         </div>
         <header className="pattern-hero pattern-section">
-          <p className="kicker">健康饮食方式</p>
+          <p className="kicker">{PATTERN_SHELL.sectionKicker}</p>
+          <p className="pattern-stage pattern-stage--hero">{detail.journey_stage}</p>
           <h1>{detail.title}</h1>
           <p className="pattern-summary" title={detail.summary}>
             {detail.summary}
@@ -65,6 +66,10 @@ export function PatternDetail({ detail, onBack, onCompare, onEnterTheme, onRetur
             {detail.evidence_badge}
           </p>
         </header>
+        <section className="pattern-section" aria-labelledby="pattern-practice-heading">
+          <h2 id="pattern-practice-heading">{PATTERN_SHELL.practiceTitle}</h2>
+          <p data-testid="pattern-practice-hint">{detail.practice_hint}</p>
+        </section>
         <div className="pattern-split">
           <section className="pattern-section" aria-labelledby="pattern-emphasize-heading">
             <h2 id="pattern-emphasize-heading">{PATTERN_SHELL.emphasizeTitle}</h2>

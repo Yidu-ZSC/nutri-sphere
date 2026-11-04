@@ -1,9 +1,15 @@
 import type { DietPatternCard } from './dietPatterns.ts';
+import {
+  VEGAN_DIET_SECTION_TAGLINE,
+  VEGAN_DIET_SECTION_TITLE,
+} from './exploreShell.ts';
 
 export interface DietPatternDetail {
   id: string;
+  journey_stage: string;
   title: string;
   summary: string;
+  practice_hint: string;
   evidence_badge: string;
   emphasize_items: readonly { label: string; note: string }[];
   limit_items: readonly { label: string; note: string }[];
@@ -23,27 +29,29 @@ export interface DietPatternDetail {
 /** Shared by every pattern. Locked wording; do not swap back to a banned term. */
 export const PATTERN_SAMPLE_DISCLAIMER = '仅为说明模式特征的示例组合，非个人食谱或饮食医嘱。';
 
-const EMPHASIZE_NOTE = '公开资料中常被描述为该模式的常见组成。';
-const LIMIT_NOTE = '公开资料中常被描述为该模式会较少出现的类别。';
+const EMPHASIZE_NOTE = '公开资料与书摘中常被描述为该路径的常见组成。';
+const LIMIT_NOTE = '公开资料与书摘中常被描述为该路径会较少出现或刻意避免的类别。';
 
 export const PATTERN_SHELL = {
   backLobby: '返回大厅',
+  sectionKicker: VEGAN_DIET_SECTION_TITLE,
   emphasizeTitle: '资料中常提到的多吃要点',
   limitTitle: '资料中常提到的少吃要点',
+  practiceTitle: '实践与自我观察',
   sampleTitle: '典型一天示例',
   graphTitle: '与图谱的关联',
   graphPrefix: '在图谱里看相关讨论：',
   evidenceTitle: '证据与局限性',
-  compareEntry: '与其他模式对比',
+  compareEntry: '与其他路径对比',
   backGraph: '返回图谱',
   openDetail: '查看详情',
-  openCompare: '对比三种模式',
-  lobbyNote: '公开资料中常被描述的健康饮食方式。供学习参考，不是个人饮食医嘱。',
-  compareTitle: '三种饮食模式对比',
-  compareNote: '以下为公开资料中常见描述的对比，非排名或个人建议。',
+  openCompare: '对比三种素食路径',
+  lobbyNote: VEGAN_DIET_SECTION_TAGLINE,
+  compareTitle: '三种素食路径对比',
+  compareNote: '以下为公开资料与书摘中常见描述的对比，不是排名，也不是个人饮食方案，更不是在比高下。',
   compareLegend:
-    '强调 = 公开资料中该模式常被强调；部分 = 有时提到、非核心强调；可选 = 多为可选或因人而异的描述；限制 = 常被描述为需限制',
-  sidebarOne: '查看模式详情',
+    '强调 = 该路径常被强调；部分 = 有时提到、非核心；可选 = 多为可选或因人而异；限制 = 常被描述为需限制或避免',
+  sidebarOne: '查看路径详情',
   highlightBadge: '与当前主题相关',
   columnPoint: '要点',
 } as const;
@@ -52,22 +60,21 @@ export const COMPARE_CELLS = ['强调', '部分', '可选', '限制'] as const;
 export type CompareCell = (typeof COMPARE_CELLS)[number];
 
 export const COMPARE_COLUMNS = [
-  { id: 'mediterranean', title: '地中海' },
-  { id: 'dash', title: 'DASH' },
-  { id: 'plant_forward', title: '植物性为主' },
+  { id: 'plant_forward', title: '以植物为主' },
+  { id: 'lacto_ovo', title: '蛋奶素' },
+  { id: 'vegan_whole', title: '全食物全素' },
 ] as const;
 
 export const PATTERN_COMPARE_ROWS: readonly {
   point: string;
   cells: readonly [CompareCell, CompareCell, CompareCell];
 }[] = [
-  { point: '多吃蔬菜水果', cells: ['强调', '强调', '强调'] },
-  { point: '多吃豆类全谷物', cells: ['强调', '强调', '强调'] },
-  { point: '橄榄油 / 植物油', cells: ['强调', '部分', '部分'] },
-  { point: '鱼类', cells: ['强调', '部分', '可选'] },
-  { point: '低脂乳制品', cells: ['部分', '强调', '可选'] },
-  { point: '限制红肉与加工肉', cells: ['限制', '限制', '限制'] },
-  { point: '限制超加工', cells: ['限制', '限制', '限制'] },
+  { point: '蔬菜、水果、豆、全谷', cells: ['强调', '强调', '强调'] },
+  { point: '坚果与种子', cells: ['强调', '强调', '强调'] },
+  { point: '蛋、奶', cells: ['可选', '部分', '限制'] },
+  { point: '肉、鱼', cells: ['部分', '限制', '限制'] },
+  { point: '超加工食品', cells: ['限制', '限制', '限制'] },
+  { point: '以记录与反馈调整', cells: ['强调', '强调', '强调'] },
 ];
 
 function items(labels: readonly string[], note: string): readonly { label: string; note: string }[] {
@@ -85,59 +92,79 @@ function sample(breakfast: string, lunch: string, dinner: string): DietPatternDe
 
 export const DIET_PATTERN_DETAILS: readonly DietPatternDetail[] = [
   {
-    id: 'mediterranean',
-    title: '地中海模式',
-    summary: '公开资料中常被描述为以蔬菜、水果、豆类、全谷物、橄榄油为主的模式。',
-    evidence_badge: '观察与综述',
-    emphasize_items: items(['蔬菜', '水果', '豆类', '坚果', '全谷物', '橄榄油', '鱼类'], EMPHASIZE_NOTE),
-    limit_items: items(['红肉', '加工肉类', '添加糖饮品', '超加工食品'], LIMIT_NOTE),
-    sample_day: sample(
-      '公开资料中常见的组合方式：全谷物或燕麦，搭配水果与坚果。',
-      '公开资料中常见的组合方式：豆类或谷物配大量蔬菜，橄榄油调味，可含鱼。',
-      '公开资料中常见的组合方式：蔬菜为主的一餐，可含豆类或少量鱼，少加工肉。',
-    ),
-    related_themes: ['cardiometabolic'],
-    graph_paths: [{ label: '地中海模式 → 心血代谢主题', theme_id: 'cardiometabolic' }],
-    evidence_note: '多个心血管相关指南与综述将其与心血代谢结局联系起来（观察与部分干预证据）。',
-    evidence_sources: ['指南综述', '观察研究'],
-    limitations: '个体差异大；不是针对个人的饮食医嘱；本项目不做原创研究；健康决策请咨询专业人员。',
-  },
-  {
-    id: 'dash',
-    title: 'DASH 模式',
-    summary: '公开资料中常被描述为强调蔬菜、水果、低脂乳制品与全谷物，并限制钠与饱和脂肪的模式。',
-    evidence_badge: '指南与观察',
-    emphasize_items: items(['蔬菜', '水果', '低脂乳制品', '全谷物', '豆类', '坚果'], EMPHASIZE_NOTE),
-    limit_items: items(['高钠食物', '红肉', '添加糖', '饱和脂肪较高的食物'], LIMIT_NOTE),
-    sample_day: sample(
-      '公开资料中常见的组合方式：全谷物配水果，可含低脂乳制品。',
-      '公开资料中常见的组合方式：蔬菜与全谷物为主，可含豆类或低脂乳制品。',
-      '公开资料中常见的组合方式：蔬菜配瘦蛋白来源描述中的选项，少高钠加工食品。',
-    ),
-    related_themes: ['cardiometabolic'],
-    graph_paths: [{ label: 'DASH 模式 → 心血代谢主题', theme_id: 'cardiometabolic' }],
-    evidence_note: '多个指南将其与血压与心血管结局联系起来。',
-    evidence_sources: ['指南综述', '观察研究'],
-    limitations: '个体差异大；不是针对个人的饮食医嘱；本项目不做原创研究；健康决策请咨询专业人员。',
-  },
-  {
     id: 'plant_forward',
-    title: '植物性为主模式',
-    summary: '公开资料与书摘中常描述为以全食物植物为主、限制动物性食物与超加工的方式。',
-    evidence_badge: '书摘与综述',
+    journey_stage: '起步',
+    title: '弹性素食 · 以植物为主',
+    summary:
+      '公开资料与书摘里常把「先让盘子里更多全食物植物」描述为可试做的第一步，而不必立刻贴标签。',
+    practice_hint:
+      '适合先记录一两周：哪几餐植物比例更高、身体与精力感受如何，再决定是否往下一步走。',
+    evidence_badge: '书摘与观察',
     emphasize_items: items(['蔬菜', '豆类', '全谷物', '水果', '坚果种子'], EMPHASIZE_NOTE),
-    limit_items: items(['动物性食物', '超加工食品'], LIMIT_NOTE),
+    limit_items: items(['超加工食品', '长期以动物性食物为主的一餐'], LIMIT_NOTE),
     sample_day: sample(
-      '公开资料中常见的组合方式：全谷物或燕麦配水果与坚果种子。',
-      '公开资料中常见的组合方式：豆类与全谷物配大量蔬菜。',
-      '公开资料中常见的组合方式：以植物性食物为主的一餐，少超加工食品。',
+      '书摘中常见的组合方式：全谷物或燕麦，搭配水果与坚果种子。',
+      '书摘中常见的组合方式：豆类或全谷配大量蔬菜，少超加工配菜。',
+      '书摘中常见的组合方式：以植物性为主的一餐；若仍有动物性食物，可观察比例与频率。',
     ),
     related_themes: ['chronic-inflammation', 'cardiometabolic'],
     graph_paths: [
-      { label: '植物性为主 → 慢性炎症主题', theme_id: 'chronic-inflammation' },
-      { label: '植物性为主 → 心血代谢主题', theme_id: 'cardiometabolic' },
+      { label: '以植物为主 → 慢性炎症主题', theme_id: 'chronic-inflammation' },
+      { label: '以植物为主 → 心血代谢主题', theme_id: 'cardiometabolic' },
     ],
-    evidence_note: '书摘机制描述为主，辅以部分观察与综述。',
+    evidence_note: '书摘机制与观察性叙述为主，常与肠道、炎症、代谢等主题一起讨论。',
+    evidence_sources: ['书摘机制', '观察与综述'],
+    limitations: '个体差异大；不是针对个人的饮食医嘱；本项目不做原创研究；健康决策请咨询专业人员。',
+  },
+  {
+    id: 'lacto_ovo',
+    journey_stage: '进阶',
+    title: '蛋奶素食',
+    summary: '公开资料中常描述为不吃肉与鱼，仍可能选用蛋、奶等动物来源食物，并搭配多样植物性来源。',
+    practice_hint:
+      '若你正在减少肉类，可对照图谱里豆、全谷与蔬果节点，观察自己是否更容易坚持、是否愿意再减少蛋奶。',
+    evidence_badge: '书摘与综述',
+    emphasize_items: items(
+      ['蔬菜', '豆类', '全谷物', '水果', '坚果种子', '蛋、奶（若保留）'],
+      EMPHASIZE_NOTE,
+    ),
+    limit_items: items(['肉类', '鱼类', '超加工食品'], LIMIT_NOTE),
+    sample_day: sample(
+      '书摘中常见的组合方式：全谷物配水果；若含蛋奶，常与多样植物一起出现。',
+      '书摘中常见的组合方式：豆类与全谷配大量蔬菜。',
+      '书摘中常见的组合方式：以植物性为主的一餐，不含肉与鱼，少超加工。',
+    ),
+    related_themes: ['plant-based', 'chronic-inflammation', 'cardiometabolic'],
+    graph_paths: [
+      { label: '蛋奶素 → 植物性饮食主题', theme_id: 'plant-based' },
+      { label: '蛋奶素 → 慢性炎症主题', theme_id: 'chronic-inflammation' },
+    ],
+    evidence_note: '公开资料与书摘中的模式描述为主，兼有部分观察与综述。',
+    evidence_sources: ['书摘机制', '观察与综述'],
+    limitations: '个体差异大；不是针对个人的饮食医嘱；本项目不做原创研究；营养搭配需因人而异；健康决策请咨询专业人员。',
+  },
+  {
+    id: 'vegan_whole',
+    journey_stage: '深入',
+    title: '全食物全素食',
+    summary:
+      '书摘与公开资料里常把不选用动物来源食物、以未过度加工的植物性全食物为主的方式，与全食物植物性膳食节点一起讨论。',
+    practice_hint:
+      '适合在已有植物性实践基础上，对照饮食孪生与图谱反馈，看自己是否愿意把日常尽量收拢到全食物植物。',
+    evidence_badge: '书摘与综述',
+    emphasize_items: items(['蔬菜', '豆类', '全谷物', '水果', '坚果种子', '香草香料'], EMPHASIZE_NOTE),
+    limit_items: items(['动物性食物（含蛋、奶、鱼、肉）', '超加工食品'], LIMIT_NOTE),
+    sample_day: sample(
+      '书摘中常见的组合方式：全谷物或燕麦配水果与坚果种子。',
+      '书摘中常见的组合方式：豆类与全谷物配大量蔬菜。',
+      '书摘中常见的组合方式：以全食物植物为主的一餐，少超加工。',
+    ),
+    related_themes: ['plant-based', 'chronic-inflammation', 'cardiometabolic'],
+    graph_paths: [
+      { label: '全食物全素 → 植物性饮食主题', theme_id: 'plant-based' },
+      { label: '全食物全素 → 图谱节点：全食物植物性膳食', theme_id: 'plant-based' },
+    ],
+    evidence_note: '书摘机制描述为主，辅以部分观察与综述；与图谱中「全食物植物性膳食 / 素食」节点对应。',
     evidence_sources: ['书摘机制', '观察与综述'],
     limitations: '个体差异大；不是针对个人的饮食医嘱；本项目不做原创研究；个体营养需求差异大；健康决策请咨询专业人员。',
   },
@@ -148,9 +175,10 @@ export function dietPatternById(id: string | null | undefined): DietPatternDetai
   return DIET_PATTERN_DETAILS.find((detail) => detail.id === id) ?? null;
 }
 
-/** Multi-pattern sidebar label. Drops a trailing 模式 and keeps a preceding space, as in DASH 详情. */
+/** Sidebar label for pattern detail entry. */
 export function patternSidebarDetailLabel(title: string): string {
-  return `${title.replace(/模式$/, '')}详情`;
+  const short = title.split('·')[0]?.trim() ?? title;
+  return `${short}详情`;
 }
 
 export function patternCardTitle(cards: readonly DietPatternCard[], id: string): string | null {

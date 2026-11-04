@@ -22,17 +22,6 @@
       ]
     },
     {
-      "id": "mediterranean_diet",
-      "type": "diet_pattern",
-      "label": "地中海膳食模式",
-      "group": "protective",
-      "description": "以橄榄油、蔬果、全谷、豆类和鱼类为特征的膳食模式，供文献样例边挂接",
-      "aliases": [
-        "Mediterranean diet",
-        "地中海饮食"
-      ]
-    },
-    {
       "id": "animal_foods",
       "type": "food_category",
       "label": "动物性食物 / 动物蛋白",
@@ -2631,29 +2620,6 @@
         "url": "https://doi.org/10.1038/nrgastro.2016.165"
       },
       "audience": "deep_reader"
-    },
-    {
-      "id": "lit_predimed_estruch_2018",
-      "source": "mediterranean_diet",
-      "target": "cardiometabolic",
-      "relation": "补充橄榄油或坚果的地中海膳食与心血管事件的试验报告",
-      "direction": "protective",
-      "evidence_type": "interventional",
-      "strength": "moderate",
-      "source_file": "literature",
-      "note_id": "29897866",
-      "excerpt": "更正后发表的试验报告：在心血管风险较高的成年人中，配合特级初榨橄榄油或坚果的地中海膳食指导，主要心血管事件少于对照建议组。",
-      "limitations": "非书摘原文。这是干预试验的更正再发表，原始报告曾因随机化问题撤回。对照是另一套膳食建议，样本来自西班牙高风险成年人，不能外推为个体处方。",
-      "population": "西班牙、心血管风险较高的成年人。",
-      "citation": {
-        "title": "Primary Prevention of Cardiovascular Disease with a Mediterranean Diet Supplemented with Extra-Virgin Olive Oil or Nuts",
-        "authors": "Estruch et al.",
-        "year": 2018,
-        "doi": "10.1056/NEJMoa1800389",
-        "pmid": "29897866",
-        "url": "https://doi.org/10.1056/NEJMoa1800389"
-      },
-      "audience": "general"
     },
     {
       "id": "lit_upf_outcomes_elizabeth_2020",

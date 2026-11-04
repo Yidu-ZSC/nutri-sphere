@@ -241,7 +241,7 @@ test('food themes serialize a food anchor and default hide on', () => {
     mechanism: null,
     food: 'ultra_processed',
     pattern: null,
-    patterns: ['mediterranean'],
+    patterns: ['plant_forward'],
     layer: 'layperson',
     layout: 'hierarchy',
     view: '2d',
@@ -276,12 +276,12 @@ test('food themes serialize a food anchor and default hide on', () => {
 
 test('home pattern links keep the source theme and drop unknown ids', () => {
   const parsed = parseViewQuery(
-    '?screen=home&layer=layperson&theme=cardiometabolic&patterns=foo,mediterranean,dash,mediterranean',
+    '?screen=home&layer=layperson&theme=cardiometabolic&patterns=foo,plant_forward,lacto_ovo,plant_forward',
   );
   assert.equal(resolveScreen(parsed), 'home');
   assert.equal(parsed.hideUnmatched, false);
   assert.equal(parsed.theme, 'cardiometabolic');
-  assert.deepEqual(parsed.patterns, ['mediterranean', 'dash']);
+  assert.deepEqual(parsed.patterns, ['plant_forward', 'lacto_ovo']);
   const query = serializeViewQuery({
     screen: 'home',
     theme: parsed.theme,
@@ -302,8 +302,8 @@ test('home pattern links keep the source theme and drop unknown ids', () => {
   assert.equal(query.includes('node='), false);
   assert.match(query, /screen=home/);
   assert.match(query, /theme=cardiometabolic/);
-  assert.match(query, /patterns=mediterranean,dash/);
-  assert.deepEqual(parseViewQuery('?screen=home&patterns=foo,dash').patterns, ['dash']);
+  assert.match(query, /patterns=plant_forward,lacto_ovo/);
+  assert.deepEqual(parseViewQuery('?screen=home&patterns=foo,lacto_ovo').patterns, ['lacto_ovo']);
   assert.equal(parseViewQuery('?screen=home&theme=cardiometabolic&patterns=nope').patterns.length, 0);
 });
 
@@ -334,7 +334,7 @@ test('pattern and compare screens serialize only screen, pattern, and layer', ()
       theme: 'cardiometabolic',
       disease: 'cardiometabolic',
       food: 'ultra_processed',
-      patterns: ['dash'],
+      patterns: ['lacto_ovo'],
       view: '3d',
       layout: 'force',
       hideUnmatched: true,
@@ -356,9 +356,9 @@ test('pattern and compare screens serialize only screen, pattern, and layer', ()
   const compareQuery = serializeViewQuery(
     shareState({
       screen: 'compare',
-      pattern: 'dash',
+      pattern: 'lacto_ovo',
       layer: 'layperson',
-      patterns: ['mediterranean'],
+      patterns: ['plant_forward'],
       theme: 'cardiometabolic',
       hideUnmatched: true,
       disease: 'cardiometabolic',
@@ -373,43 +373,46 @@ test('pattern and compare screens serialize only screen, pattern, and layer', ()
 });
 
 test('pattern links open a detail only without explore anchors', () => {
-  assert.equal(resolveScreen(parseViewQuery('?pattern=mediterranean')), 'pattern');
-  assert.equal(parseViewQuery('?pattern=mediterranean').pattern, 'mediterranean');
-  assert.equal(parseViewQuery('?pattern=mediterranean').hideUnmatched, false);
-  assert.equal(parseViewQuery('?pattern=mediterranean&hide=1').hideUnmatched, false);
-  assert.equal(resolveScreen(parseViewQuery('?screen=pattern&pattern=dash')), 'pattern');
+  assert.equal(resolveScreen(parseViewQuery('?pattern=plant_forward')), 'pattern');
+  assert.equal(parseViewQuery('?pattern=plant_forward').pattern, 'plant_forward');
+  assert.equal(parseViewQuery('?pattern=plant_forward').hideUnmatched, false);
+  assert.equal(parseViewQuery('?pattern=plant_forward&hide=1').hideUnmatched, false);
+  assert.equal(resolveScreen(parseViewQuery('?screen=pattern&pattern=lacto_ovo')), 'pattern');
+  assert.equal(resolveScreen(parseViewQuery('?pattern=mediterranean')), 'home');
+  assert.equal(parseViewQuery('?pattern=mediterranean').pattern, null);
+  assert.equal(resolveScreen(parseViewQuery('?screen=pattern&pattern=dash')), 'home');
   assert.equal(resolveScreen(parseViewQuery('?screen=pattern&pattern=nope')), 'home');
   assert.equal(resolveScreen(parseViewQuery('?screen=pattern')), 'home');
   assert.equal(parseViewQuery('?pattern=nope').pattern, null);
-  assert.equal(parseViewQuery('?pattern=../dash').pattern, null);
+  assert.equal(parseViewQuery('?pattern=../lacto_ovo').pattern, null);
   assert.equal(resolveScreen(parseViewQuery('?pattern=NOT')), 'home');
-  assert.equal(resolveScreen(parseViewQuery('?pattern=mediterranean&disease=cardiometabolic')), 'explore');
-  assert.equal(resolveScreen(parseViewQuery('?pattern=mediterranean&theme=cardiometabolic')), 'explore');
-  assert.equal(resolveScreen(parseViewQuery('?pattern=mediterranean&food=ultra_processed')), 'explore');
-  assert.equal(resolveScreen(parseViewQuery('?pattern=mediterranean&node=soy')), 'explore');
-  assert.equal(resolveScreen(parseViewQuery('?pattern=mediterranean&mechanism=chronic_inflammation')), 'explore');
-  assert.equal(resolveScreen(parseViewQuery('?screen=compare&pattern=dash&hide=1')), 'compare');
+  assert.equal(resolveScreen(parseViewQuery('?pattern=plant_forward&disease=cardiometabolic')), 'explore');
+  assert.equal(resolveScreen(parseViewQuery('?pattern=plant_forward&theme=cardiometabolic')), 'explore');
+  assert.equal(resolveScreen(parseViewQuery('?pattern=plant_forward&food=ultra_processed')), 'explore');
+  assert.equal(resolveScreen(parseViewQuery('?pattern=plant_forward&node=soy')), 'explore');
+  assert.equal(resolveScreen(parseViewQuery('?pattern=plant_forward&mechanism=chronic_inflammation')), 'explore');
+  assert.equal(resolveScreen(parseViewQuery('?screen=compare&pattern=lacto_ovo&hide=1')), 'compare');
   assert.equal(parseViewQuery('?screen=compare&hide=1').hideUnmatched, false);
-  assert.equal(parseViewQuery('?screen=pattern&pattern=dash&hide=1&disease=cardiometabolic').hideUnmatched, false);
-  assert.equal(parseViewQuery('?screen=pattern&pattern=dash&disease=cardiometabolic').disease, 'cardiometabolic');
+  assert.equal(parseViewQuery('?screen=pattern&pattern=lacto_ovo&hide=1&disease=cardiometabolic').hideUnmatched, false);
+  assert.equal(parseViewQuery('?screen=pattern&pattern=lacto_ovo&disease=cardiometabolic').disease, 'cardiometabolic');
   const home = serializeViewQuery(
     shareState({
       screen: 'home',
-      pattern: 'dash',
-      patterns: ['dash'],
+      pattern: 'lacto_ovo',
+      patterns: ['lacto_ovo'],
       theme: 'cardiometabolic',
       hideUnmatched: true,
       disease: 'cardiometabolic',
     }),
   );
   assert.equal(/(^|[?&])pattern=/.test(home), false);
-  assert.match(home, /patterns=dash/);
+  assert.match(home, /patterns=lacto_ovo/);
   assert.match(home, /screen=home/);
   assert.equal(home.includes('hide='), false);
   const explore = serializeViewQuery(
     shareState({
       screen: 'explore',
-      pattern: 'dash',
+      pattern: 'lacto_ovo',
       theme: 'fatty_liver',
       disease: 'fatty_liver',
       hideUnmatched: true,
@@ -418,8 +421,11 @@ test('pattern links open a detail only without explore anchors', () => {
   assert.equal(/(^|[?&])pattern=/.test(explore), false);
   assert.match(explore, /screen=explore/);
   assert.match(explore, /hide=1/);
-  assert.equal(resolveScreen(parseViewQuery('?screen=home&patterns=mediterranean,dash')), 'home');
-  assert.deepEqual(parseViewQuery('?screen=home&patterns=mediterranean,dash').patterns, ['mediterranean', 'dash']);
+  assert.equal(resolveScreen(parseViewQuery('?screen=home&patterns=plant_forward,lacto_ovo')), 'home');
+  assert.deepEqual(parseViewQuery('?screen=home&patterns=plant_forward,lacto_ovo').patterns, [
+    'plant_forward',
+    'lacto_ovo',
+  ]);
 });
 
 test('twin screen is explicit and does not carry explore anchors', () => {
@@ -436,8 +442,8 @@ test('twin screen is explicit and does not carry explore anchors', () => {
       theme: 'plant-based',
       disease: 'cardiometabolic',
       food: 'ultra_processed',
-      pattern: 'dash',
-      patterns: ['dash'],
+      pattern: 'lacto_ovo',
+      patterns: ['lacto_ovo'],
       hideUnmatched: true,
       node: 'plant_based_diet',
       link: 'soy~angiogenesis_defense',
@@ -448,5 +454,5 @@ test('twin screen is explicit and does not carry explore anchors', () => {
   assert.equal(query, '?screen=twin&layer=layperson');
   assert.equal(resolveScreen(parseViewQuery(query)), 'twin');
   assert.equal(parseViewQuery('?screen=twin').hideUnmatched, false);
-  assert.equal(resolveScreen(parseViewQuery('?screen=twin&pattern=mediterranean')), 'twin');
+  assert.equal(resolveScreen(parseViewQuery('?screen=twin&pattern=plant_forward')), 'twin');
 });
