@@ -3,7 +3,8 @@ export interface FocusLink {
   target: string;
 }
 
-function neighborhood(nodeId: string, links: readonly FocusLink[]): Set<string> {
+/** One-hop neighborhood: the node itself plus every direct neighbor. */
+export function neighborhood(nodeId: string, links: readonly FocusLink[]): Set<string> {
   const ids = new Set<string>([nodeId]);
   for (const link of links) {
     if (link.source === nodeId) ids.add(link.target);
@@ -35,6 +36,26 @@ export function focusedNodeIds(
     }
     return next;
   });
+}
+
+/**
+ * Bright-set for the canvas: theme/filter focusIds AND click one-hop.
+ * Missing filter → pure click neighborhood; missing click → filter (or null) alone.
+ * Neither → null (full bright). Does not remove nodes from the scene.
+ */
+export function effectiveFocusIds(
+  filterFocus: ReadonlySet<string> | null,
+  clickRoot: string | null,
+  links: readonly FocusLink[],
+): ReadonlySet<string> | null {
+  if (!clickRoot) return filterFocus;
+  const click = neighborhood(clickRoot, links);
+  if (filterFocus == null) return click;
+  const next = new Set<string>();
+  for (const id of click) {
+    if (filterFocus.has(id)) next.add(id);
+  }
+  return next;
 }
 
 export function isFocusEmpty(

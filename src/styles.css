@@ -303,6 +303,44 @@ button { cursor: pointer; }
   inset: 0;
 }
 
+
+.click-focus-banner {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: min(420px, calc(100% - 24px));
+  padding: 8px 10px 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  pointer-events: auto;
+}
+
+.click-focus-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+  .click-focus-banner {
+    left: 12px;
+    right: 12px;
+    transform: none;
+    max-width: none;
+    border-radius: 12px;
+  }
+}
+
 .hud {
   position: absolute;
   left: 12px;

@@ -16,11 +16,13 @@ import { useMediaQuery } from './hooks/useMediaQuery';
 import { evidenceCounts, visibleGraphStats } from './lib/copy';
 import {
   BACK_TO_LOBBY,
+  CLEAR_CLICK_FOCUS,
+  CLICK_FOCUS_PREFIX,
   EXPLORE_EMPTY_ACTION,
   EXPLORE_EMPTY_COPY,
   RAIL_TOGGLE_LABEL,
 } from './lib/exploreShell';
-import { focusedNodeIds, isFocusEmpty } from './lib/focus';
+import { effectiveFocusIds, focusedNodeIds, isFocusEmpty } from './lib/focus';
 import { readGraphView, writeGraphView, type GraphView } from './lib/graphView';
 import { twinExploreTarget, type TwinIndicatorId } from './lib/dietTwin';
 import {
@@ -107,6 +109,7 @@ export function App() {
   });
   const [patternReturnSnapshot, setPatternReturnSnapshot] = useState<ExploreSnapshot | null>(null);
   const [selection, setSelection] = useState<Selection | null>(null);
+  const [clickFocusId, setClickFocusId] = useState<string | null>(null);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [autoRotate, setAutoRotate] = useState(false);
@@ -287,6 +290,17 @@ export function App() {
     [graph, safeDisease, safeFood, safeMechanism],
   );
 
+  /** Bright/dim only — click-focus dims outsiders; does not hard-hide nodes. */
+  const brightFocusIds = useMemo(
+    () => (graph ? effectiveFocusIds(focusIds, clickFocusId, graph.links) : null),
+    [clickFocusId, focusIds, graph],
+  );
+
+  const clickFocusLabel = useMemo(() => {
+    if (!graph || !clickFocusId) return null;
+    return graph.nodes.find((node) => node.id === clickFocusId)?.label ?? null;
+  }, [clickFocusId, graph]);
+
   const rendered = useMemo(() => {
     if (!graph) return null;
     const pinned = selectionPinIds(selection, graph.links, hideUnmatched, focusIds);
@@ -340,7 +354,10 @@ export function App() {
   };
 
   const onSelectHit = (hit: SearchHit) => {
-    if (hit.kind === 'node' && hit.id) setSelection({ kind: 'node', id: hit.id });
+    if (hit.kind === 'node' && hit.id) {
+      setClickFocusId(hit.id);
+      setSelection({ kind: 'node', id: hit.id });
+    }
     if (hit.kind === 'link' && hit.index != null) setSelection({ kind: 'link', index: hit.index });
     setMoreOpen(false);
   };
@@ -393,6 +410,24 @@ export function App() {
     setReturnSnapshot(null);
   };
 
+  const selectNode = (id: string) => {
+    setClickFocusId(id);
+    setSelection({ kind: 'node', id });
+  };
+
+  const selectLink = (index: number) => {
+    setSelection({ kind: 'link', index });
+  };
+
+  const clearClickFocus = () => {
+    setClickFocusId(null);
+  };
+
+  const clearSelectionAndClickFocus = () => {
+    setClickFocusId(null);
+    setSelection(null);
+  };
+
   const enterTheme = (theme: ExploreTheme) => {
     setDiseaseId(theme.diseaseId);
     setMechanismId(theme.mechanismId);
@@ -400,6 +435,7 @@ export function App() {
     setLayout('hierarchy');
     setGraphView('2d');
     setHideUnmatched(true);
+    setClickFocusId(null);
     setSelection(null);
     setMoreOpen(false);
     setPatternId(null);
@@ -409,6 +445,7 @@ export function App() {
   };
 
   const goHome = () => {
+    setClickFocusId(null);
     setSelection(null);
     setMoreOpen(false);
     setPatternId(null);
@@ -432,6 +469,7 @@ export function App() {
     if (fromExplore) setPatternReturnSnapshot(captureExplore());
     else setPatternReturnSnapshot(null);
     setPatternId(VEGAN_DIET_HUB_ID);
+    setClickFocusId(null);
     setSelection(null);
     setMoreOpen(false);
     setScreen('pattern');
@@ -443,6 +481,7 @@ export function App() {
   };
 
   const openTwin = () => {
+    setClickFocusId(null);
     setSelection(null);
     setMoreOpen(false);
     setPatternId(null);
@@ -476,7 +515,7 @@ export function App() {
       if (node && !nodeKeptOnLayperson(node)) setLayer('expert');
       setLayout('hierarchy');
       setGraphView('2d');
-      setSelection({ kind: 'node', id: target.nodeId });
+      selectNode(target.nodeId);
       setMoreOpen(false);
       setPatternId(null);
       setPatternReturnSnapshot(null);
@@ -499,6 +538,7 @@ export function App() {
     setLayout(snapshot.layout);
     setGraphView(snapshot.graphView);
     setHideUnmatched(snapshot.hideUnmatched);
+    setClickFocusId(null);
     setSelection(snapshot.selection);
     setMoreOpen(false);
     setScreen('explore');
@@ -540,7 +580,8 @@ export function App() {
       setLayout(snapshot.layout);
       setGraphView(snapshot.graphView);
       setHideUnmatched(snapshot.hideUnmatched);
-      setSelection(snapshot.selection);
+      setClickFocusId(null);
+    setSelection(snapshot.selection);
       setMoreOpen(false);
       setScreen('explore');
       return;
@@ -764,7 +805,7 @@ export function App() {
             <div className="stage-main" data-testid="explore-screen">
               <GraphCanvas
                 graph={graph}
-                focusIds={focusIds}
+                focusIds={brightFocusIds}
                 selection={selection}
                 layer={layer}
                 layout={layout}
@@ -774,9 +815,9 @@ export function App() {
                 compact={mobile}
                 autoRotate={autoRotate}
                 anchorId={anchorId}
-                onSelectNode={(id) => setSelection({ kind: 'node', id })}
-                onSelectLink={(index) => setSelection({ kind: 'link', index })}
-                onBackground={() => setSelection(null)}
+                onSelectNode={selectNode}
+                onSelectLink={selectLink}
+                onBackground={clearSelectionAndClickFocus}
               />
               <button
                 type="button"
@@ -795,6 +836,22 @@ export function App() {
                   aria-label="关闭主题筛选"
                   onClick={() => setSideOpen(false)}
                 />
+              )}
+              {clickFocusId && clickFocusLabel && (
+                <div className="click-focus-banner" data-testid="click-focus-banner" role="status">
+                  <span className="click-focus-label">
+                    {CLICK_FOCUS_PREFIX}
+                    {clickFocusLabel}
+                  </span>
+                  <button
+                    type="button"
+                    className="btn btn--ghost"
+                    data-testid="clear-click-focus"
+                    onClick={clearClickFocus}
+                  >
+                    {CLEAR_CLICK_FOCUS}
+                  </button>
+                </div>
               )}
               <div className="hud">
                 <Legend />
@@ -842,8 +899,8 @@ export function App() {
                 evidenceCounts={counts}
                 visibleLinkIndices={rendered.linkIndices}
                 onClose={() => setSelection(null)}
-                onSelectNode={(id) => setSelection({ kind: 'node', id })}
-                onSelectLink={(index) => setSelection({ kind: 'link', index })}
+                onSelectNode={selectNode}
+                onSelectLink={selectLink}
                 onShowPatterns={relatedPatternIds.length > 0 ? showRelatedPatterns : undefined}
                 relatedPatternIds={relatedPatternIds}
                 onOpenPattern={relatedPatternIds.length > 0 ? () => openVeganDietDetail(true) : undefined}
