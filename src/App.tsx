@@ -6,8 +6,7 @@ import { FilterPanel } from './components/FilterPanel';
 import { GraphCanvas } from './components/GraphCanvas';
 import { LayoutToggle } from './components/LayoutToggle';
 import { Legend } from './components/Legend';
-import { PatternCompare } from './components/PatternCompare';
-import { PatternDetail } from './components/PatternDetail';
+import { VeganDietDetail } from './components/VeganDietDetail';
 import { SearchBar } from './components/SearchBar';
 import { ThemeBar } from './components/ThemeBar';
 import { ThemeLobby } from './components/ThemeLobby';
@@ -33,7 +32,7 @@ import {
 } from './lib/layerFilter';
 import type { LayoutMode } from './lib/layout';
 import { loadGraph } from './lib/loadGraph';
-import { dietPatternById } from './lib/dietPatternDetails';
+import { isVeganDietHubPattern, normalizeVeganDietPatternId, VEGAN_DIET_HUB_ID } from './lib/dietPatternDetails';
 import { patternsForTheme } from './lib/patternLinks';
 import { searchGraph, type SearchHit } from './lib/search';
 import {
@@ -231,10 +230,14 @@ export function App() {
   const safeFood = graph?.nodes.some((node) => node.id === foodId) ? foodId : null;
 
   useEffect(() => {
-    if (screen === 'pattern' && !dietPatternById(patternId)) {
+    if (screen !== 'pattern') return;
+    const normalized = normalizeVeganDietPatternId(patternId);
+    if (!normalized) {
       setPatternId(null);
       setScreen('home');
+      return;
     }
+    if (patternId !== normalized) setPatternId(normalized);
   }, [patternId, screen]);
 
   useEffect(() => {
@@ -425,28 +428,10 @@ export function App() {
     selection,
   });
 
-  const openPatternFromLobby = (id: string) => {
-    if (!dietPatternById(id)) return;
-    setPatternReturnSnapshot(null);
-    setPatternId(id);
-    setSelection(null);
-    setMoreOpen(false);
-    setScreen('pattern');
-    clearPatternHighlight();
-  };
-
-  const openPatternFromCompare = (id: string) => {
-    if (!dietPatternById(id)) return;
-    setPatternId(id);
-    setSelection(null);
-    setMoreOpen(false);
-    setScreen('pattern');
-  };
-
-  const openPatternFromExplore = (id: string) => {
-    if (!dietPatternById(id)) return;
-    setPatternReturnSnapshot(captureExplore());
-    setPatternId(id);
+  const openVeganDietDetail = (fromExplore: boolean) => {
+    if (fromExplore) setPatternReturnSnapshot(captureExplore());
+    else setPatternReturnSnapshot(null);
+    setPatternId(VEGAN_DIET_HUB_ID);
     setSelection(null);
     setMoreOpen(false);
     setScreen('pattern');
@@ -454,10 +439,7 @@ export function App() {
   };
 
   const openCompare = () => {
-    setSelection(null);
-    setMoreOpen(false);
-    setScreen('compare');
-    clearPatternHighlight();
+    openVeganDietDetail(false);
   };
 
   const openTwin = () => {
@@ -567,7 +549,7 @@ export function App() {
   };
 
   const exploring = screen === 'explore';
-  const activePattern = screen === 'pattern' ? dietPatternById(patternId) : null;
+  const showVeganDietDetail = screen === 'pattern' && isVeganDietHubPattern(patternId);
   const relatedPatternIds = patternsForTheme(themeForFilters(safeDisease, safeMechanism, safeFood)?.id);
 
   const copyViewLink = () => {
@@ -723,10 +705,9 @@ export function App() {
             </button>
           </div>
         )}
-        {(screen === 'home' || (screen === 'pattern' && !activePattern)) && (
+        {(screen === 'home' || (screen === 'pattern' && !showVeganDietDetail)) && (
           <ThemeLobby
             onEnter={enterTheme}
-            onOpenPattern={openPatternFromLobby}
             onOpenCompare={openCompare}
             onOpenTwin={openTwin}
             highlightedPatterns={patterns}
@@ -735,16 +716,13 @@ export function App() {
           />
         )}
         {screen === 'twin' && <DietTwin onBack={goHome} onOpenIndicator={openTwinIndicator} />}
-        {activePattern && (
-          <PatternDetail
-            detail={activePattern}
+        {showVeganDietDetail && (
+          <VeganDietDetail
             onBack={goHome}
-            onCompare={openCompare}
             onEnterTheme={enterTheme}
             onReturnToGraph={patternReturnSnapshot ? returnFromPatternToGraph : undefined}
           />
         )}
-        {screen === 'compare' && <PatternCompare onBack={goHome} onOpenPattern={openPatternFromCompare} />}
         {exploring && graph && rendered && (
           <>
             <aside
@@ -868,7 +846,7 @@ export function App() {
                 onSelectLink={(index) => setSelection({ kind: 'link', index })}
                 onShowPatterns={relatedPatternIds.length > 0 ? showRelatedPatterns : undefined}
                 relatedPatternIds={relatedPatternIds}
-                onOpenPattern={relatedPatternIds.length > 0 ? openPatternFromExplore : undefined}
+                onOpenPattern={relatedPatternIds.length > 0 ? () => openVeganDietDetail(true) : undefined}
               />
             )}
           </>

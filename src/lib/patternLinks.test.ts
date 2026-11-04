@@ -21,7 +21,8 @@ test('pattern lists keep known ids and drop unknown ones', () => {
   assert.deepEqual(parsePatternList('Mediterranean,not a id,plant_forward'), ['plant_forward']);
   assert.deepEqual(parsePatternList(' , ,lacto_ovo'), ['lacto_ovo']);
   assert.deepEqual(parsePatternList('ultra-processed'), []);
-  assert.equal(knownPatternId('lacto_ovo'), 'lacto_ovo');
+  assert.equal(knownPatternId('lacto_ovo'), 'vegan_diet');
+  assert.equal(knownPatternId('vegan_diet'), 'vegan_diet');
   assert.equal(knownPatternId('mediterranean'), null);
   assert.equal(knownPatternId('dash'), null);
   assert.equal(knownPatternId('nope'), null);
