@@ -27,18 +27,18 @@ function memoryStorage(initial?: string | null) {
   };
 }
 
-test('theme preference defaults to dark and round-trips the four slugs', () => {
+test('theme preference defaults to light and round-trips the four slugs', () => {
   assert.equal(THEME_STORAGE_KEY, 'cleardiet.theme');
-  assert.deepEqual([...THEME_IDS], ['dark', 'fresh', 'soft', 'eye']);
+  assert.deepEqual([...THEME_IDS], ['light', 'paper', 'stone', 'contrast']);
   assert.deepEqual(
     THEME_OPTIONS.map((option) => option.label),
-    ['深色', '清新', '柔和', '护眼'],
+    ['标准', '纸本', '岩灰', '高对比'],
   );
 
   const empty = memoryStorage();
-  assert.equal(readTheme(empty), 'dark');
-  assert.equal(empty.values.has(THEME_STORAGE_KEY), false);
-  assert.equal(readTheme(null), 'dark');
+  assert.equal(readTheme(empty), 'light');
+  assert.equal(empty.values.get(THEME_STORAGE_KEY), 'light');
+  assert.equal(readTheme(null), 'light');
 
   const storage = memoryStorage();
   for (const theme of THEME_IDS) {
@@ -47,11 +47,21 @@ test('theme preference defaults to dark and round-trips the four slugs', () => {
   }
 });
 
-test('illegal theme values fall back to dark and are written back', () => {
-  for (const dirty of ['', 'light', 'DARK', 'neon', 'cleardiet']) {
+test('legacy theme slugs migrate to the professional shell palette', () => {
+  assert.equal(readTheme(memoryStorage('dark')), 'light');
+  assert.equal(readTheme(memoryStorage('fresh')), 'light');
+  assert.equal(readTheme(memoryStorage('soft')), 'paper');
+  assert.equal(readTheme(memoryStorage('eye')), 'stone');
+  const storage = memoryStorage('dark');
+  readTheme(storage);
+  assert.equal(storage.values.get(THEME_STORAGE_KEY), 'light');
+});
+
+test('illegal theme values fall back to light and are written back', () => {
+  for (const dirty of ['', 'light-mode', 'DARK', 'neon', 'cleardiet']) {
     const storage = memoryStorage(dirty);
-    assert.equal(readTheme(storage), 'dark');
-    assert.equal(storage.values.get(THEME_STORAGE_KEY), 'dark');
+    assert.equal(readTheme(storage), 'light');
+    assert.equal(storage.values.get(THEME_STORAGE_KEY), 'light');
   }
 
   const throwing = {
@@ -62,7 +72,7 @@ test('illegal theme values fall back to dark and are written back', () => {
       throw new Error('blocked');
     },
   };
-  assert.equal(readTheme(throwing), 'dark');
+  assert.equal(readTheme(throwing), 'light');
 });
 
 test('applyTheme sets data-theme on the document root', () => {
@@ -80,12 +90,12 @@ test('applyTheme sets data-theme on the document root', () => {
 
 test('theme tokens keep direction colors and brand shared, and canvas stays dark', () => {
   const tokens = fs.readFileSync(path.join(root, 'src/styles/tokens.css'), 'utf8');
-  const fresh = tokens.match(/:root\[data-theme='fresh'\]\s*\{([^}]*)\}/)?.[1] ?? '';
-  const soft = tokens.match(/:root\[data-theme='soft'\]\s*\{([^}]*)\}/)?.[1] ?? '';
-  const eye = tokens.match(/:root\[data-theme='eye'\]\s*\{([^}]*)\}/)?.[1] ?? '';
-  assert.ok(fresh && soft && eye);
+  const paper = tokens.match(/:root\[data-theme='paper'\]\s*\{([^}]*)\}/)?.[1] ?? '';
+  const stone = tokens.match(/:root\[data-theme='stone'\]\s*\{([^}]*)\}/)?.[1] ?? '';
+  const contrast = tokens.match(/:root\[data-theme='contrast'\]\s*\{([^}]*)\}/)?.[1] ?? '';
+  assert.ok(paper && stone && contrast);
 
-  for (const block of [fresh, soft, eye]) {
+  for (const block of [paper, stone, contrast]) {
     assert.equal(block.includes('--dir-'), false);
     assert.equal(block.includes('--brand'), false);
     assert.equal(block.includes('--card:'), false);
@@ -96,31 +106,19 @@ test('theme tokens keep direction colors and brand shared, and canvas stays dark
     assert.match(block, /color-scheme:/);
   }
 
-  assert.match(fresh, /color-scheme:\s*light/);
-  assert.match(fresh, /--bg:\s*#f8fafc/);
-  assert.match(fresh, /--panel:\s*#ffffff/);
-  assert.match(fresh, /--text:\s*#1e293b/);
-  assert.match(fresh, /--panel-hover:\s*#f1f5f9/);
-  assert.match(fresh, /--muted:\s*#64748b/);
-  assert.match(fresh, /--faint:\s*#94a3b8/);
-  assert.match(soft, /--bg:\s*#f1f5f9/);
-  assert.match(soft, /--text:\s*#334155/);
-  assert.match(soft, /--panel-hover:\s*#e2e8f0/);
-  assert.match(eye, /color-scheme:\s*dark/);
-  assert.match(eye, /--bg:\s*#1c1917/);
-  assert.match(eye, /--panel:\s*#292524/);
-  assert.match(eye, /--text:\s*#fafaf9/);
-  assert.match(eye, /--panel-hover:\s*#44403c/);
-  assert.match(eye, /--muted:\s*#a8a29e/);
-  assert.match(eye, /--faint:\s*#78716c/);
+  assert.match(paper, /color-scheme:\s*light/);
+  assert.match(paper, /--bg:\s*#f7f6f3/);
+  assert.match(paper, /--panel:\s*#fffcf8/);
+  assert.match(stone, /--bg:\s*#ececef/);
+  assert.match(contrast, /--text:\s*#09090b/);
 
   const rootBlock = tokens.match(/:root\s*\{([^}]*)\}/)?.[1] ?? '';
-  assert.match(rootBlock, /color-scheme:\s*dark/);
-  assert.match(rootBlock, /--bg:\s*#0b0d12/);
-  assert.match(rootBlock, /--panel:\s*#16181d/);
-  assert.match(rootBlock, /--text:\s*#f1f3f5/);
-  assert.match(rootBlock, /--brand:\s*#22c55e/);
-  assert.match(rootBlock, /--brand-hover:\s*#16a34a/);
+  assert.match(rootBlock, /color-scheme:\s*light/);
+  assert.match(rootBlock, /--bg:\s*#f4f4f5/);
+  assert.match(rootBlock, /--panel:\s*#ffffff/);
+  assert.match(rootBlock, /--text:\s*#18181b/);
+  assert.match(rootBlock, /--brand:\s*#18181b/);
+  assert.match(rootBlock, /--brand-hover:\s*#3f3f46/);
   assert.match(rootBlock, /--dir-protective:\s*#34d399/);
   assert.match(rootBlock, /--dir-risk:\s*#f87171/);
   assert.match(rootBlock, /--dir-mixed:\s*#fbbf24/);
@@ -135,7 +133,8 @@ test('theme tokens keep direction colors and brand shared, and canvas stays dark
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   assert.match(html, /cleardiet\.theme/);
   assert.match(html, /document\.documentElement\.setAttribute\('data-theme', theme\)/);
-  for (const theme of THEME_IDS) assert.match(html, new RegExp(`stored === '${theme}'`));
+  assert.match(html, /var theme = 'light'/);
+  for (const theme of THEME_IDS) assert.match(html, new RegExp(`${theme}: 1`));
   const entry = fs.readFileSync(path.join(root, 'src/main.tsx'), 'utf8');
   assert.match(entry, /applyTheme\(readTheme\(\)\)/);
 });

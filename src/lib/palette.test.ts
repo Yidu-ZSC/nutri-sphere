@@ -29,9 +29,9 @@ test('protective color is the PRO token and the retired green is gone from src',
 
   const tokens = fs.readFileSync(path.join(root, 'src/styles/tokens.css'), 'utf8');
   assert.match(tokens, /--dir-protective:\s*#34d399/);
-  assert.match(tokens, /--bg:\s*#0b0d12/);
-  assert.match(tokens, /--brand:\s*#22c55e/);
-  assert.match(tokens, /--brand-hover:\s*#16a34a/);
+  assert.match(tokens, /--bg:\s*#f4f4f5/);
+  assert.match(tokens, /--brand:\s*#18181b/);
+  assert.match(tokens, /--brand-hover:\s*#3f3f46/);
   assert.equal(tokens.includes('#4ade80'), false);
   assert.equal(tokens.includes('--green'), false);
 
@@ -233,12 +233,12 @@ test('diet twin lobby entry is a silhouette portal with only the title visible',
   const spot = css.match(/\.diet-twin-hotspot\s*\{([^}]*)\}/)?.[1] ?? '';
   assert.match(spot, /width:\s*8px/);
   assert.match(spot, /height:\s*8px/);
-  assert.match(spot, /#22c55e/);
+  assert.match(spot, /var\(--accent\)/);
   assert.match(spot, /pointer-events:\s*none/);
   assert.equal(spot.includes('#f87171'), false);
   assert.equal(css.includes('.diet-twin-hotspot:hover'), false);
 
-  for (const theme of ['fresh', 'soft', 'eye']) {
+  for (const theme of ['paper', 'stone', 'contrast']) {
     const block = css.match(new RegExp(`:root\\[data-theme='${theme}'\\] \\.diet-twin-entry\\s*\\{([^}]*)\\}`))?.[1] ?? '';
     assert.match(block, /--twin-glow:/, theme);
     assert.match(block, /--twin-figure:/, theme);

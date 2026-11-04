@@ -1,20 +1,34 @@
 export const THEME_STORAGE_KEY = 'cleardiet.theme';
 
-export const THEME_IDS = ['dark', 'fresh', 'soft', 'eye'] as const;
+export const THEME_IDS = ['light', 'paper', 'stone', 'contrast'] as const;
 
 export type AppTheme = (typeof THEME_IDS)[number];
 
 export const THEME_OPTIONS: readonly { id: AppTheme; label: string }[] = [
-  { id: 'dark', label: '深色' },
-  { id: 'fresh', label: '清新' },
-  { id: 'soft', label: '柔和' },
-  { id: 'eye', label: '护眼' },
+  { id: 'light', label: '标准' },
+  { id: 'paper', label: '纸本' },
+  { id: 'stone', label: '岩灰' },
+  { id: 'contrast', label: '高对比' },
 ];
 
 const THEME_SET: ReadonlySet<string> = new Set(THEME_IDS);
 
+/** Previous UI theme slugs before the professional shell redesign. */
+const LEGACY_THEME_MAP: Readonly<Record<string, AppTheme>> = {
+  dark: 'light',
+  fresh: 'light',
+  soft: 'paper',
+  eye: 'stone',
+};
+
 export function isAppTheme(value: string | null | undefined): value is AppTheme {
   return value != null && THEME_SET.has(value);
+}
+
+function normalizeTheme(stored: string | null): AppTheme {
+  if (isAppTheme(stored)) return stored;
+  if (stored != null && LEGACY_THEME_MAP[stored]) return LEGACY_THEME_MAP[stored]!;
+  return 'light';
 }
 
 type ThemeStorage = Pick<Storage, 'getItem' | 'setItem'>;
@@ -28,23 +42,23 @@ function browserStorage(): ThemeStorage | null {
   }
 }
 
-/** Read `cleardiet.theme`. Missing key stays dark in memory. Illegal values fall back to dark and are written back. */
+/** Read `cleardiet.theme`. Missing key defaults to light. Illegal values fall back to light and are written back. */
 export function readTheme(storage?: ThemeStorage | null): AppTheme {
   const store = storage === undefined ? browserStorage() : storage;
   try {
     const stored = store?.getItem(THEME_STORAGE_KEY) ?? null;
-    if (isAppTheme(stored)) return stored;
-    if (stored !== null) {
+    const theme = normalizeTheme(stored);
+    if (stored !== theme) {
       try {
-        store?.setItem(THEME_STORAGE_KEY, 'dark');
+        store?.setItem(THEME_STORAGE_KEY, theme);
       } catch {
         // Write-back is best-effort when storage rejects the write.
       }
     }
+    return theme;
   } catch {
-    // Private mode or blocked storage: keep the in-memory default.
+    return 'light';
   }
-  return 'dark';
 }
 
 export function writeTheme(theme: AppTheme, storage?: ThemeStorage | null): void {

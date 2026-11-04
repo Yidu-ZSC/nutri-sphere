@@ -13,10 +13,10 @@ test('desktop header and mobile more panel share the theme switcher', () => {
   const css = fs.readFileSync(path.join(root, 'src/styles.css'), 'utf8');
 
   assert.match(switcher, /aria-label="切换主题"/);
-  assert.match(preference, /label: '深色'/);
-  assert.match(preference, /label: '清新'/);
-  assert.match(preference, /label: '柔和'/);
-  assert.match(preference, /label: '护眼'/);
+  assert.match(preference, /label: '标准'/);
+  assert.match(preference, /label: '纸本'/);
+  assert.match(preference, /label: '岩灰'/);
+  assert.match(preference, /label: '高对比'/);
   assert.match(switcher, /THEME_OPTIONS/);
   assert.match(switcher, /aria-checked=\{selected\}/);
   assert.match(app, /!mobile && <ThemeSwitcher theme=\{appTheme\} onChange=\{onAppTheme\} \/>/);
