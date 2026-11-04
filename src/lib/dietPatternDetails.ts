@@ -1,6 +1,6 @@
 import type { DietPatternCard } from './dietPatterns.ts';
 import {
-  VEGAN_DIET_SECTION_TAGLINE,
+  VEGAN_DIET_SECTION_INTRO,
   VEGAN_DIET_SECTION_TITLE,
 } from './exploreShell.ts';
 
@@ -8,6 +8,7 @@ export interface DietPatternDetail {
   id: string;
   journey_stage: string;
   title: string;
+  hook: string;
   summary: string;
   practice_hint: string;
   evidence_badge: string;
@@ -46,7 +47,8 @@ export const PATTERN_SHELL = {
   backGraph: '返回图谱',
   openDetail: '查看详情',
   openCompare: '对比三种素食路径',
-  lobbyNote: VEGAN_DIET_SECTION_TAGLINE,
+  lobbyIntro: VEGAN_DIET_SECTION_INTRO,
+  lobbyGraph: '在图谱里展开',
   compareTitle: '三种素食路径对比',
   compareNote: '以下为公开资料与书摘中常见描述的对比，不是排名，也不是个人饮食方案，更不是在比高下。',
   compareLegend:
@@ -95,6 +97,7 @@ export const DIET_PATTERN_DETAILS: readonly DietPatternDetail[] = [
     id: 'plant_forward',
     journey_stage: '起步',
     title: '弹性素食 · 以植物为主',
+    hook: '还不必戒肉，先让植物在盘子里占主位。',
     summary:
       '公开资料与书摘里常把「先让盘子里更多全食物植物」描述为可试做的第一步，而不必立刻贴标签。',
     practice_hint:
@@ -120,6 +123,7 @@ export const DIET_PATTERN_DETAILS: readonly DietPatternDetail[] = [
     id: 'lacto_ovo',
     journey_stage: '进阶',
     title: '蛋奶素食',
+    hook: '肉鱼退出日常，蛋奶仍可作选项。',
     summary: '公开资料中常描述为不吃肉与鱼，仍可能选用蛋、奶等动物来源食物，并搭配多样植物性来源。',
     practice_hint:
       '若你正在减少肉类，可对照图谱里豆、全谷与蔬果节点，观察自己是否更容易坚持、是否愿意再减少蛋奶。',
@@ -147,6 +151,7 @@ export const DIET_PATTERN_DETAILS: readonly DietPatternDetail[] = [
     id: 'vegan_whole',
     journey_stage: '深入',
     title: '全食物全素食',
+    hook: '盘里尽量只有未过度加工的植物性食物。',
     summary:
       '书摘与公开资料里常把不选用动物来源食物、以未过度加工的植物性全食物为主的方式，与全食物植物性膳食节点一起讨论。',
     practice_hint:

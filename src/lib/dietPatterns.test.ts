@@ -13,7 +13,17 @@ test('diet pattern cards match the ClearDiet vegetarian journey and resolve to e
     ['起步', '进阶', '深入'],
   );
 
+  const hooks = new Set(DIET_PATTERN_CARDS.map((card) => card.hook));
+  assert.equal(hooks.size, 3, 'each lobby card needs a distinct hook');
+
   for (const card of DIET_PATTERN_CARDS) {
+    assert.ok(card.hook.trim().length > 0, card.id);
+    assert.equal(card.lobby_facets.length, 3, card.id);
+    assert.deepEqual(
+      card.lobby_facets.map((facet) => facet.kind),
+      ['plate', 'belief', 'try'],
+    );
+    assert.ok(themeById(card.primary_theme), `${card.id} primary_theme`);
     assert.ok(card.practice_hint.trim().length > 0, card.id);
     assert.ok(card.limitations.trim().length > 0, card.id);
     assert.ok(card.related_themes.length > 0, card.id);
@@ -22,6 +32,8 @@ test('diet pattern cards match the ClearDiet vegetarian journey and resolve to e
     }
     const copy = [
       card.title,
+      card.hook,
+      ...card.lobby_facets.map((f) => f.body),
       card.summary,
       card.practice_hint,
       card.emphasize,

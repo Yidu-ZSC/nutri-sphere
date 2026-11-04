@@ -78,7 +78,8 @@ test('locked lobby and explore shell strings stay short and non-clinical', () =>
   assert.ok(lobby.includes('LOBBY_KICKER'));
   assert.ok(lobby.includes('LOBBY_TITLE'));
   assert.ok(lobby.includes('LOBBY_INTRO'));
-  assert.ok(lobby.includes('THEME_CTA'));
+  assert.ok(lobby.includes('VEGAN_DIET_SECTION_INTRO'));
+  assert.ok(lobby.includes('pattern-facets'));
   const app = fs.readFileSync(path.join(root, 'src/App.tsx'), 'utf8');
   assert.ok(app.includes('explore-rail'));
   assert.ok(app.includes('EXPLORE_EMPTY_COPY'));

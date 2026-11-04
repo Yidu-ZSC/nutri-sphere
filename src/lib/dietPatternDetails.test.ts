@@ -20,7 +20,7 @@ test('pattern details follow the locked copy and stay on known themes', () => {
     DIET_PATTERN_DETAILS.map((detail) => detail.id),
     DIET_PATTERN_CARDS.map((card) => card.id),
   );
-  assert.equal(PATTERN_SHELL.lobbyNote.includes('个人方案'), false);
+  assert.equal(PATTERN_SHELL.lobbyIntro.includes('个人方案'), false);
   assert.equal(PATTERN_SAMPLE_DISCLAIMER, '仅为说明模式特征的示例组合，非个人食谱或饮食医嘱。');
 
   for (const detail of DIET_PATTERN_DETAILS) {
@@ -29,6 +29,7 @@ test('pattern details follow the locked copy and stay on known themes', () => {
     assert.equal(detail.title, card.title);
     assert.equal(detail.summary, card.summary);
     assert.equal(detail.practice_hint, card.practice_hint);
+    assert.equal(detail.hook, card.hook, detail.id);
     assert.equal(detail.evidence_note, card.evidence_note);
     assert.deepEqual(detail.related_themes, card.related_themes);
     assert.equal(detail.sample_day.disclaimer, PATTERN_SAMPLE_DISCLAIMER);

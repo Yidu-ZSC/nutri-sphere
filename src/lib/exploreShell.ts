@@ -15,11 +15,19 @@ export const LOBBY_EDU_FOOTER = '下面说明图谱怎么读、证据怎么标�
 /** Home section: ClearDiet vegetarian lifestyle hub (replaces generic “healthy patterns”). */
 export const VEGAN_DIET_SECTION_TITLE = '素食饮食方式';
 
-/** One line under the section heading. */
+/** Single intro under the section heading (no extra line break between lead and mission). */
+export const VEGAN_DIET_SECTION_INTRO =
+  '从认识自己的盘子开始，在试做与反馈里慢慢理解全食物植物性选择。ClearDiet 希望帮你把「我吃什么」当回事：先看见过去习以为常的观念，再用小步实践对照书摘与公开资料里的讨论，决定是否更主动走向素食，乃至全素生活方式。';
+
+/** Shared footer for the section; evidence/limitations live on detail pages. */
+export const VEGAN_DIET_SECTION_FOOTER =
+  '供学习参考，不是个人饮食医嘱；证据与局限性见各路径「查看详情」。';
+
+/** @deprecated Use VEGAN_DIET_SECTION_INTRO — kept for tests that slice the first sentence. */
 export const VEGAN_DIET_SECTION_TAGLINE =
   '从认识自己的盘子开始，在试做与反馈里慢慢理解全食物植物性选择。';
 
-/** Mission framing; educational only, not medical advice. */
+/** @deprecated Merged into VEGAN_DIET_SECTION_INTRO. */
 export const VEGAN_DIET_SECTION_MISSION =
   'ClearDiet 希望帮你把「我吃什么」当回事：先看见过去习以为常的观念，再用小步实践对照书摘与公开资料里的讨论，决定是否更主动走向素食，乃至全素生活方式。';
 

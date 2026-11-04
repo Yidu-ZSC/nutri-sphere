@@ -59,6 +59,7 @@ export function PatternDetail({ detail, onBack, onCompare, onEnterTheme, onRetur
           <p className="kicker">{PATTERN_SHELL.sectionKicker}</p>
           <p className="pattern-stage pattern-stage--hero">{detail.journey_stage}</p>
           <h1>{detail.title}</h1>
+          <p className="pattern-hook pattern-hook--detail">{detail.hook}</p>
           <p className="pattern-summary" title={detail.summary}>
             {detail.summary}
           </p>

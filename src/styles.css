@@ -1498,12 +1498,82 @@ code {
   line-height: 1.4;
 }
 
-.pattern-mission {
-  margin: 0 0 16px;
+.pattern-intro {
+  margin: 8px 0 0;
   max-width: 72ch;
   color: var(--muted);
   font-size: 14px;
   line-height: 1.55;
+}
+
+.pattern-section-footer {
+  margin: 12px 0 0;
+  max-width: 72ch;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.pattern-journey-labels {
+  display: none;
+}
+
+.pattern-hook {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--text);
+}
+
+.pattern-facets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pattern-facet {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: var(--radius-btn);
+  background: color-mix(in srgb, var(--panel-hover) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+}
+
+.pattern-facet-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--brand);
+}
+
+.pattern-facet p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.pattern-card--journey {
+  gap: 10px;
+}
+
+.pattern-related--compact {
+  margin-top: auto;
+  width: 100%;
+  padding-top: 4px;
+}
+
+.pattern-jump--graph {
+  justify-content: flex-start;
+  text-align: left;
 }
 
 .pattern-stage {
@@ -1967,7 +2037,7 @@ code {
 @media (min-width: 640px) {
   .theme-grid,
   .mechanism-list,
-  .pattern-grid {
+  .pattern-grid:not(.pattern-grid--journey) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -1975,8 +2045,36 @@ code {
 @media (min-width: 1024px) {
   .theme-grid,
   .mechanism-list,
-  .pattern-grid {
+  .pattern-grid:not(.pattern-grid--journey) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .pattern-grid--journey {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    position: relative;
+    margin-top: 20px;
+  }
+
+  .pattern-grid--journey::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 16%;
+    right: 16%;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--brand) 35%, transparent),
+      color-mix(in srgb, var(--brand) 65%, transparent),
+      color-mix(in srgb, var(--brand) 35%, transparent)
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .pattern-grid--journey > li {
+    position: relative;
+    z-index: 1;
   }
 }
 

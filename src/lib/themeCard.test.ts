@@ -116,7 +116,7 @@ test('lobby theme cards use the locked surface without retuning global radii', (
 
   assert.equal(lobby.includes('theme-cta'), false);
   assert.equal(lobby.includes('dir-bar'), false);
-  assert.ok(lobby.includes('THEME_CTA'));
-  assert.match(lobby, /className="pattern-card"/);
+  assert.ok(lobby.includes('pattern-facets'));
+  assert.match(lobby, /className="pattern-card pattern-card--journey"/);
   assert.match(lobby, /className="btn btn--primary pattern-jump"/);
 });
