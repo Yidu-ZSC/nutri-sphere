@@ -1,10 +1,10 @@
 {
   "meta": {
     "schema_version": "0.3",
-    "data_version": "0.7",
+    "data_version": "0.8",
     "extracted_from": "knowledge-base Project (high relevance files)",
     "extraction_date": "2026-10-31",
-    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 book-note nodes and excerpts are unchanged. data 0.5 adds schema 0.2 optional citation and nine literature edges with verified DOIs. data 0.6 / schema 0.3 writes audience on every link and mechanism_depth on mechanism nodes. These labels are not an evidence grade and not a view toggle. Educational use only. The original 20 excerpts are unchanged. data 0.7 aligns the 14 existing mechanism descriptions to MECHANISM_DICTIONARY.md v0.2 concept sentences and adds 10 dictionary mechanism nodes (aliases empty; mechanism_depth mechanism). Mechanism nodes still carry no source or limitations fields. Educational use only; schema_version remains 0.3.",
+    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 book-note nodes and excerpts are unchanged. data 0.5 adds schema 0.2 optional citation and nine literature edges with verified DOIs. data 0.6 / schema 0.3 writes audience on every link and mechanism_depth on mechanism nodes. These labels are not an evidence grade and not a view toggle. Educational use only. The original 20 excerpts are unchanged. data 0.7 aligns the 14 existing mechanism descriptions to MECHANISM_DICTIONARY.md v0.2 concept sentences and adds 10 dictionary mechanism nodes (aliases empty; mechanism_depth mechanism). Mechanism nodes still carry no source or limitations fields. Educational use only; schema_version remains 0.3. data 0.8 aligns 11 existing disease/biomarker labels and descriptions to HEALTH_DISEASE_DICTIONARY.md v0.2 concept sentences and adds 8 protective health-direction disease nodes (aliases empty). Column caption becomes 健康/疾病. Status nodes still carry no source or limitations fields. No new edges in this increment. Educational use only; schema_version remains 0.3.",
     "disclaimer": "Educational / research use only. Not medical advice."
   },
   "nodes": [
@@ -243,9 +243,9 @@
     {
       "id": "liver_chronic",
       "type": "disease",
-      "label": "慢性肝炎相关进展",
+      "label": "慢性肝炎进展",
       "group": "risk",
-      "description": "书摘里从慢性肝炎走向肝功能衰竭或肝癌的进展叙述。",
+      "description": "慢性肝炎向肝功能衰竭或肝癌方向进展的过程。",
       "aliases": [
         "慢性肝炎",
         "肝癌"
@@ -254,9 +254,9 @@
     {
       "id": "digestive_cancer_risk",
       "type": "disease",
-      "label": "消化系统癌症风险",
+      "label": "消化系统肿瘤",
       "group": "risk",
-      "description": "书摘里讨论的消化系统肿瘤相关风险主题，常与饮食模式等话题一并出现。",
+      "description": "食管、胃、肠等消化系统部位的肿瘤。",
       "aliases": [
         "消化系统肿瘤",
         "胃癌",
@@ -266,9 +266,9 @@
     {
       "id": "cardiometabolic",
       "type": "disease",
-      "label": "心血管 / 代谢疾病风险",
+      "label": "心血管与代谢问题",
       "group": "risk",
-      "description": "书摘里讨论的心血管与代谢相关风险主题，常与饮食模式、血脂与血糖等话题一并出现。",
+      "description": "心血管系统与血糖、血脂等代谢相关的异常状态。",
       "aliases": [
         "心血管",
         "代谢疾病",
@@ -278,9 +278,9 @@
     {
       "id": "autoimmune",
       "type": "disease",
-      "label": "自身免疫相关",
+      "label": "自身免疫问题",
       "group": "risk",
-      "description": "书摘里讨论的自身免疫相关风险主题；不是疾病分类标准。",
+      "description": "免疫系统攻击自身组织的相关状态。",
       "aliases": [
         "自身免疫",
         "免疫相关疾病"
@@ -289,9 +289,9 @@
     {
       "id": "mental_health",
       "type": "disease",
-      "label": "心理健康 / 抑郁等",
+      "label": "情绪低落",
       "group": "risk",
-      "description": "书摘里讨论的情绪、抑郁等心理相关主题，常与饮食与生活方式话题一并出现。",
+      "description": "持续情绪低落、兴趣减退等心理状态。",
       "aliases": [
         "抑郁",
         "情绪",
@@ -751,9 +751,9 @@
     {
       "id": "breast_prostate_risk",
       "type": "disease",
-      "label": "乳腺与前列腺风险",
+      "label": "乳腺与前列腺问题",
       "group": "risk",
-      "description": "书摘中与血管生成、IGF-1 一并讨论的相关风险，不是疾病分类标准。",
+      "description": "乳腺或前列腺部位的异常增生或肿瘤。",
       "aliases": [
         "乳腺癌",
         "前列腺癌",
@@ -764,9 +764,9 @@
     {
       "id": "ibd_related",
       "type": "disease",
-      "label": "炎症性肠病相关",
+      "label": "肠道炎症",
       "group": "risk",
-      "description": "书摘里与屏障和炎症一并提到的肠道炎症相关结局。",
+      "description": "肠道黏膜持续炎症的状态。",
       "aliases": [
         "炎症性肠病",
         "IBD"
@@ -775,9 +775,9 @@
     {
       "id": "fatty_liver",
       "type": "disease",
-      "label": "脂肪肝相关风险",
+      "label": "脂肪肝",
       "group": "risk",
-      "description": "与代谢和炎症叙述相连的肝脏脂肪相关风险，不同于慢性肝炎进展节点。",
+      "description": "肝细胞内脂肪堆积的状态。",
       "aliases": [
         "脂肪肝",
         "NAFLD"
@@ -786,9 +786,9 @@
     {
       "id": "obesity_risk",
       "type": "disease",
-      "label": "肥胖相关风险",
+      "label": "肥胖",
       "group": "risk",
-      "description": "书摘中与纤维、短链脂肪酸和代谢叙述相连的体重相关风险。",
+      "description": "体脂过多、体重明显高于日常活动需求的状态。",
       "aliases": [
         "肥胖",
         "obesity"
@@ -797,9 +797,9 @@
     {
       "id": "crp",
       "type": "biomarker",
-      "label": "C反应蛋白",
+      "label": "C反应蛋白升高",
       "group": "neutral",
-      "description": "书摘用来参照慢性炎症的可测指标名称，不含参考区间或判读。",
+      "description": "血液中 C 反应蛋白水平升高。",
       "aliases": [
         "CRP",
         "C反应蛋白"
@@ -808,9 +808,9 @@
     {
       "id": "hba1c",
       "type": "biomarker",
-      "label": "糖化血红蛋白",
+      "label": "糖化血红蛋白升高",
       "group": "neutral",
-      "description": "书摘用来参照长期血糖暴露的可测指标名称，不含目标值或判读。",
+      "description": "血液中糖化血红蛋白水平升高。",
       "aliases": [
         "HbA1c",
         "糖化血红蛋白",
@@ -906,6 +906,70 @@
       "description": "饮食对基因表达的可逆影响。",
       "aliases": [],
       "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "metabolic_health",
+      "type": "disease",
+      "label": "代谢健康",
+      "group": "protective",
+      "description": "血糖、血脂、血压等代谢指标处于相对稳定的状态。",
+      "aliases": []
+    },
+    {
+      "id": "energy_vitality",
+      "type": "disease",
+      "label": "能量充沛",
+      "group": "protective",
+      "description": "日常活动中感到精力充足、不易疲劳的状态。",
+      "aliases": []
+    },
+    {
+      "id": "gut_comfort",
+      "type": "disease",
+      "label": "肠道舒适",
+      "group": "protective",
+      "description": "排便规律、腹胀较少、消化感受平稳的状态。",
+      "aliases": []
+    },
+    {
+      "id": "emotional_stability",
+      "type": "disease",
+      "label": "情绪稳定",
+      "group": "protective",
+      "description": "情绪波动较小、日常心境相对平稳的状态。",
+      "aliases": []
+    },
+    {
+      "id": "immune_resilience",
+      "type": "disease",
+      "label": "免疫稳健",
+      "group": "protective",
+      "description": "免疫反应能启动也能适时消退的状态。",
+      "aliases": []
+    },
+    {
+      "id": "healthy_weight",
+      "type": "disease",
+      "label": "体重适宜",
+      "group": "protective",
+      "description": "体重处于相对稳定、与日常活动匹配的状态。",
+      "aliases": []
+    },
+    {
+      "id": "good_sleep",
+      "type": "disease",
+      "label": "睡眠良好",
+      "group": "protective",
+      "description": "入睡与维持睡眠相对顺畅、醒来感到恢复的状态。",
+      "aliases": []
+    },
+    {
+      "id": "cognitive_clarity",
+      "type": "disease",
+      "label": "认知清晰",
+      "group": "protective",
+      "description": "日常注意力与思维清晰度相对较好的状态。",
+      "aliases": []
     }
   ],
   "links": [

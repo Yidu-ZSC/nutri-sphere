@@ -76,7 +76,7 @@ test('NS-046 seed descriptions drop graph meta-language for the five baseline id
   ]) {
     assert.equal(/枢纽|教育向节点|中间环节|路径节点|本节点是/.test(byId[id]), false, id);
   }
-  assert.match(byId.autoimmune, /不是疾病分类标准/);
+  assert.equal(byId.autoimmune, '免疫系统攻击自身组织的相关状态。');
   for (const node of seed.nodes) {
     assert.equal(/中间环节|路径节点|枢纽|教育向节点/.test(node.description ?? ''), false, node.id);
   }

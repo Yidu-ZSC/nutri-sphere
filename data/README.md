@@ -1,6 +1,17 @@
 # Data Directory
 
-Runtime and CI load one file: `seed_triples_v0.3_aligned.json`. The filename stays on the v0.3 path so `src/lib/loadGraph.ts`, Vite, and `scripts/validate-data.mjs` do not move. The graph inside that file is **data_version 0.7** / **schema_version 0.3**.
+Runtime and CI load one file: `seed_triples_v0.3_aligned.json`. The filename stays on the v0.3 path so `src/lib/loadGraph.ts`, Vite, and `scripts/validate-data.mjs` do not move. The graph inside that file is **data_version 0.8** / **schema_version 0.3**.
+
+## seed_triples_v0.3_aligned.json (data 0.8)
+
+87 nodes / 125 links. Data 0.7 graph is unchanged except health/disease concept sentences and eight new protective disease nodes. Data 0.8 aligns 11 existing disease/biomarker `label` + `description` values to `docs/HEALTH_DISEASE_DICTIONARY.md` v0.2 and adds **8** health-direction disease nodes. No new links in this increment. Status nodes still omit `source` / `limitations`. UI column caption becomes「健康/疾病」.
+
+### 0.8 increment
+
+- 11 existing status nodes (9 `disease` + 2 `biomarker`): `label` and `description` rewritten to dictionary concept sentences; `id` / `type` / `group` / `aliases` kept.
+- 8 new `type=disease` nodes with `group=protective` and `aliases: []`: `metabolic_health`, `energy_vitality`, `gut_comfort`, `emotional_stability`, `immune_resilience`, `healthy_weight`, `good_sleep`, `cognitive_clarity`.
+- Counts: 17 disease + 2 biomarker = 19 status nodes; 8 of the disease nodes currently have degree 0 (dictionary-first; edges optional later).
+- Not in this increment: schema change, DISCLAIMER, CANVAS_BG, forced new edges, related_*/status fields on nodes, or lobby cards for the 8 new health nodes.
 
 ## seed_triples_v0.3_aligned.json (data 0.7)
 
@@ -74,8 +85,8 @@ See `graph_schema.json` and `../docs/GRAPH_SCHEMA.md` (schema 0.3).
 
 ### Important
 
-- The graph is still mostly book-note mechanistic and observational synthesis. Data 0.5 adds a few literature edges, including one republished trial report. Data 0.6 labels audience and mechanism depth on that same graph. Data 0.7 expands mechanism concept coverage from the dictionary. None of this is an individual medical instruction. `audience` and `mechanism_depth` are not clinical strata and are not GRADE.
+- The graph is still mostly book-note mechanistic and observational synthesis. Data 0.5 adds a few literature edges, including one republished trial report. Data 0.6 labels audience and mechanism depth on that same graph. Data 0.7 expands mechanism concept coverage from the dictionary. Data 0.8 aligns health/disease labels and adds protective status nodes. None of this is an individual medical instruction. `audience` and `mechanism_depth` are not clinical strata and are not GRADE.
 - Visualizations must include the project disclaimer. A `deep_reader` edge does not drop or shorten `limitations`.
-- Open data (GBD, FAO, Nutri-Score/NOVA) is not part of data 0.7.
+- Open data (GBD, FAO, Nutri-Score/NOVA) is not part of data 0.8.
 
 See `../docs/DATA_STRATEGY.md`.
