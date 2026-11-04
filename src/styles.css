@@ -1026,21 +1026,36 @@ code {
 .lobby-pillars {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "title twin"
+    "body twin";
   gap: 16px;
   align-items: stretch;
   margin-top: var(--space-2);
 }
 
-.lobby-intro,
-.lobby-twin {
+.lobby-title-row {
+  display: contents;
+}
+
+.lobby-title-row > h2 {
+  grid-area: title;
+  align-self: end;
+  min-width: 0;
+}
+
+.lobby-intro {
+  grid-area: body;
   min-width: 0;
 }
 
 .lobby-twin {
+  grid-area: twin;
   display: flex;
+  min-width: 0;
 }
 
-.lobby-intro h2,
+.lobby-title-row h2,
 .diet-twin-title {
   margin: 0;
   font-size: 20px;
@@ -1321,10 +1336,6 @@ code {
 @keyframes diet-twin-ring {
   0%, 100% { opacity: 0.36; }
   50% { opacity: 0.62; }
-}
-
-.lobby-intro h2 {
-  margin-bottom: var(--space-2);
 }
 
 .lobby-intro p {
@@ -2823,8 +2834,33 @@ code {
   .pattern-screen,
   .twin-screen { padding: 18px 12px 24px; }
   .pattern-hero h1 { font-size: 20px; }
-  .lobby-pillars { grid-template-columns: 1fr; }
-  .lobby-intro h2 { font-size: 20px; }
+  .lobby-pillars {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "title"
+      "body";
+    gap: 10px 12px;
+  }
+  .lobby-title-row {
+    display: flex;
+    grid-area: title;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-width: 0;
+  }
+  .lobby-title-row > h2 {
+    grid-area: unset;
+    align-self: center;
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 20px;
+  }
+  .lobby-twin {
+    grid-area: unset;
+    flex: 0 1 auto;
+    max-width: min(58%, 220px);
+  }
   .diet-twin-entry {
     flex-direction: row;
     justify-content: flex-start;
@@ -2832,6 +2868,8 @@ code {
     gap: 10px;
     padding: 8px 12px;
     text-align: left;
+    width: auto;
+    flex: 0 1 auto;
   }
   .diet-twin-stage {
     width: 48px;

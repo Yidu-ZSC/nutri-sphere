@@ -92,10 +92,11 @@ test('lobby pillars place science and diet twin as peers above the full-width gr
   const marks = [
     'className="kicker lobby-lead"',
     'className="lobby-pillars"',
-    'className="lobby-intro"',
+    'className="lobby-title-row"',
     '<h2>{LOBBY_TITLE}</h2>',
     'className="lobby-twin"',
     '<DietTwinPortal onOpen={onOpenTwin} />',
+    'className="lobby-intro"',
     '常见健康主题',
     '从食物/模式看',
     '{VEGAN_DIET_SECTION_TITLE}',
@@ -115,10 +116,17 @@ test('lobby pillars place science and diet twin as peers above the full-width gr
   const pillars = css.match(/\.lobby-pillars\s*\{([^}]*)\}/)?.[1] ?? '';
   assert.match(pillars, /display:\s*grid/);
   assert.match(pillars, /grid-template-columns:\s*1fr 1fr/);
+  assert.match(pillars, /grid-template-areas:/);
+  assert.match(pillars, /"title twin"/);
+  assert.match(pillars, /"body twin"/);
   assert.match(pillars, /gap:\s*16px/);
   assert.equal(/\.diet-twin-entry\s*\{[^}]*max-width:\s*520px/.test(css), false);
 
-  const peer = css.match(/\.lobby-intro h2,\s*\.diet-twin-title\s*\{([^}]*)\}/)?.[1] ?? '';
+  assert.match(css, /\.lobby-title-row\s*\{[^}]*display:\s*contents/);
+  assert.match(css, /\.lobby-twin\s*\{[^}]*grid-area:\s*twin/);
+  assert.match(css, /\.lobby-intro\s*\{[^}]*grid-area:\s*body/);
+
+  const peer = css.match(/\.lobby-title-row h2,\s*\.diet-twin-title\s*\{([^}]*)\}/)?.[1] ?? '';
   assert.match(peer, /font-size:\s*20px/);
   assert.match(peer, /font-weight:\s*600/);
 
@@ -126,7 +134,11 @@ test('lobby pillars place science and diet twin as peers above the full-width gr
     css.indexOf('@media (max-width: 768px)'),
     css.indexOf('@media (prefers-reduced-motion: reduce)'),
   );
-  assert.match(mobile, /\.lobby-pillars\s*\{[^}]*grid-template-columns:\s*1fr/);
+  assert.match(mobile, /\.lobby-title-row\s*\{[^}]*display:\s*flex/);
+  assert.match(mobile, /\.lobby-pillars\s*\{[^}]*grid-template-areas:[^}]*"title"[^}]*"body"/s);
+  assert.match(mobile, /\.lobby-title-row > h2\s*\{[^}]*font-size:\s*20px/);
+  // Mobile must not stack twin as a full-width row after the whole intro body.
+  assert.equal(/\.lobby-pillars\s*\{[^}]*grid-template-columns:\s*1fr\s*;\s*\}/.test(mobile), false);
 
   const leadStart = bar.indexOf('className="about-lead"');
   const lead = bar.slice(leadStart, bar.indexOf('</div>', leadStart));
@@ -168,8 +180,13 @@ test('diet twin lobby entry is a silhouette portal with only the title visible',
   assert.equal(lobby.includes('entryPrompt'), false);
   assert.equal(lobby.includes('entryBlurb'), false);
   assert.equal(lobby.includes('theme-card diet-twin-entry'), false);
+  assert.match(lobby, /className="lobby-title-row"/);
   assert.match(lobby, /<section className="lobby-twin"/);
   assert.match(lobby, /<DietTwinPortal onOpen=\{onOpenTwin\} \/>/);
+  const titleRowAt = lobby.indexOf('className="lobby-title-row"');
+  const twinAt = lobby.indexOf('className="lobby-twin"', titleRowAt);
+  const introAt = lobby.indexOf('className="lobby-intro"', titleRowAt);
+  assert.ok(titleRowAt > 0 && twinAt > titleRowAt && introAt > twinAt);
 
   assert.match(portal, /data-testid="diet-twin-entry"/);
   assert.match(portal, /aria-label=\{DIET_TWIN_COPY\.entryAria\}/);
