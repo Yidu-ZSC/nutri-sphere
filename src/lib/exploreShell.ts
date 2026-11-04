@@ -17,7 +17,7 @@ export const VEGAN_DIET_SECTION_TITLE = '素食饮食方式';
 
 /** One continuous intro under the section heading (keep-all typography in CSS). */
 export const VEGAN_DIET_SECTION_INTRO =
-  'ClearDiet 从「我的盘子」出发，用小步试做与反馈对照书摘和公开资料，理解全食物植物性选择，再更主动走向素食或全素。';
+  '从认识自己的餐盘开始，在试做与反馈里慢慢理解全食物植物性选择。ClearDiet 希望帮你把「我吃什么」当回事：先看见过去习以为常的观念，再用小步实践对照书摘与公开资料里的讨论，决定是否更主动走向素食，乃至全素生活方式。';
 
 /** Lobby section actions (whole hub, not per-card). */
 export const VEGAN_DIET_SECTION_DETAIL_CTA = '查看详情';
