@@ -65,7 +65,7 @@ test('NS-046 seed descriptions drop graph meta-language for the five baseline id
   const byId = Object.fromEntries(seed.nodes.map((n) => [n.id, n.description]));
   assert.equal(
     byId.chronic_inflammation,
-    '持续存在的低度炎症状态，书摘里常把它和饮食选择、多种健康主题放在一起讨论。',
+    '持续存在的低度炎症状态。',
   );
   for (const id of [
     'chronic_inflammation',
