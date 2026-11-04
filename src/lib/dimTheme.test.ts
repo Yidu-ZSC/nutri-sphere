@@ -14,7 +14,6 @@ test('NS-045 dimmed strengths are locked to the spec', () => {
 const base = {
   noTheme: true,
   filterEmpty: false,
-  laypersonThemeEmpty: false,
   clickFocusId: null,
   hasSelection: false,
   dismissed: false,
@@ -24,7 +23,6 @@ test('theme hint shows only with no theme and nothing focused', () => {
   assert.equal(themeHintVisible(base), true);
   assert.equal(themeHintVisible({ ...base, noTheme: false }), false);
   assert.equal(themeHintVisible({ ...base, filterEmpty: true }), false);
-  assert.equal(themeHintVisible({ ...base, laypersonThemeEmpty: true }), false);
 });
 
 test('theme hint hides on click focus, selection, or dismissal', () => {

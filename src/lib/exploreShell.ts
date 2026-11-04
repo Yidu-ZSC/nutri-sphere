@@ -61,12 +61,11 @@ export const THEME_HINT_CLOSE = '关闭';
 export function themeHintVisible(state: {
   noTheme: boolean;
   filterEmpty: boolean;
-  laypersonThemeEmpty: boolean;
   clickFocusId: string | null;
   hasSelection: boolean;
   dismissed: boolean;
 }): boolean {
-  if (!state.noTheme || state.filterEmpty || state.laypersonThemeEmpty) return false;
+  if (!state.noTheme || state.filterEmpty) return false;
   if (state.clickFocusId || state.hasSelection) return false;
   return !state.dismissed;
 }

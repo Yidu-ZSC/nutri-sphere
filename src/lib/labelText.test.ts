@@ -7,7 +7,6 @@ test('long pathway names wrap on the slash before hard breaks', () => {
   assert.deepEqual(wrapCjk('慢性炎症', 9), ['慢性炎症']);
 });
 
-test('expert lines keep the type caption', () => {
-  const lines = pathwayLabelLines('慢性炎症', true, '机制');
-  assert.deepEqual(lines, ['慢性炎症', '机制']);
+test('graph labels stay vernacular-only after ViewLayer retirement', () => {
+  assert.deepEqual(pathwayLabelLines('慢性炎症'), ['慢性炎症']);
 });

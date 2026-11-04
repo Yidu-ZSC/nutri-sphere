@@ -3007,3 +3007,24 @@ code {
     animation: none;
   }
 }
+
+/* NS-047: collapsed technical block in the evidence drawer */
+.more-detail {
+  margin-top: 12px;
+  border-top: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  padding-top: 8px;
+}
+.more-detail > summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--muted);
+  list-style: none;
+}
+.more-detail > summary::-webkit-details-marker { display: none; }
+.more-detail > summary::before {
+  content: '▸ ';
+  display: inline-block;
+  transition: transform 0.15s ease;
+}
+.more-detail[open] > summary::before { transform: rotate(90deg); }
+.more-detail[open] > summary { margin-bottom: 8px; color: var(--fg); }

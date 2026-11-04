@@ -83,7 +83,7 @@ export function DisclaimerBar({
               <ol className="about-steps">
                 <li>在大厅选一个你想了解的主题。</li>
                 <li>进入图后，点击线条或节点查看详细说明。</li>
-                <li>用顶部切换「普通视图 / 专家视图」。普通视图更简洁。</li>
+                <li>点开关联边，先读短引与局限；需要时再展开「更多说明」。</li>
                 <li>想看「怎么做」，可进入「素食饮食方式」，或从侧栏跳转。</li>
               </ol>
             </section>

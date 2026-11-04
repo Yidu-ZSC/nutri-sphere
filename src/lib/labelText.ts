@@ -18,8 +18,7 @@ export function wrapCjk(text: string, maxChars: number): string[] {
   return lines.slice(0, 3);
 }
 
-export function pathwayLabelLines(label: string, expert: boolean, typeLabel: string): string[] {
-  const lines = wrapCjk(label, 9);
-  if (expert) lines.push(typeLabel);
-  return lines.slice(0, 4);
+/** Graph labels stay vernacular-only after ViewLayer retirement. */
+export function pathwayLabelLines(label: string): string[] {
+  return wrapCjk(label, 9).slice(0, 4);
 }

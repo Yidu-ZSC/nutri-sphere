@@ -1,11 +1,10 @@
-import type { GraphNode, ViewLayer } from '../types/graph';
+import type { GraphNode } from '../types/graph';
 
 interface FilterPanelProps {
   diseases: GraphNode[];
   mechanisms: GraphNode[];
   diseaseId: string | null;
   mechanismId: string | null;
-  layer: ViewLayer;
   onDisease: (id: string | null) => void;
   onMechanism: (id: string | null) => void;
   onClear: () => void;
@@ -16,13 +15,12 @@ export function FilterPanel({
   mechanisms,
   diseaseId,
   mechanismId,
-  layer,
   onDisease,
   onMechanism,
   onClear,
 }: FilterPanelProps) {
-  const diseaseLabel = layer === 'expert' ? '疾病 disease' : '按健康主题';
-  const mechanismLabel = layer === 'expert' ? '机制 mechanism' : '按机制';
+  const diseaseLabel = '按健康主题';
+  const mechanismLabel = '按机制';
 
   return (
     <div className="filters">
