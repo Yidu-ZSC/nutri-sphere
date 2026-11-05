@@ -1,7 +1,5 @@
 # 明膳知源
 
-（原 NutriSphere）
-
 看清膳食，知道来源。英文副名 ClearDiet。
 分享预览 URL 已指向 cleardiet.org；自定义域绑定另案。
 
