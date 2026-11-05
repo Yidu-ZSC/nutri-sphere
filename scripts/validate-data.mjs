@@ -396,7 +396,7 @@ export function validateAdminBooks(payload, sourcesPayload) {
       errors.push(`admin_books.json 缺少已入库书目 id "${expected}"`);
     }
   }
-  // NS-071: gut_brain + eat_to_heal + amazing_veggie_soup + how_not_to_die ingested; china_study+know_your_gut remain index_only.
+  // NS-074: +china_study ingested; know_your_gut remains index_only.
   if (books.length === 19) {
     const gut = books.find((b) => b && typeof b === 'object' && /** @type {any} */ (b).id === 'gut_brain');
     if (!gut || /** @type {any} */ (gut).status !== 'ingested' || /** @type {any} */ (gut).source_id !== 'gut_brain') {
@@ -414,8 +414,12 @@ export function validateAdminBooks(payload, sourcesPayload) {
     if (!hntd || /** @type {any} */ (hntd).status !== 'ingested' || /** @type {any} */ (hntd).source_id !== 'how_not_to_die') {
       errors.push('admin_books.json how_not_to_die 须为 ingested + source_id（NS-071）');
     }
-    if (ingested !== 4) {
-      errors.push(`admin_books.json NS-071 后应恰有 4 本 ingested（gut_brain+eat_to_heal+amazing_veggie_soup+how_not_to_die），实为 ${ingested}`);
+    const cs = books.find((b) => b && typeof b === 'object' && /** @type {any} */ (b).id === 'china_study');
+    if (!cs || /** @type {any} */ (cs).status !== 'ingested' || /** @type {any} */ (cs).source_id !== 'china_study') {
+      errors.push('admin_books.json china_study 须为 ingested + source_id（NS-074）');
+    }
+    if (ingested !== 5) {
+      errors.push(`admin_books.json NS-074 后应恰有 5 本 ingested（+china_study），实为 ${ingested}`);
     }
   }
 
