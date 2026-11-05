@@ -1,0 +1,568 @@
+{
+ "meta": {
+  "source_id": "china_study",
+  "source_title": "救命饮食：中国健康调查报告",
+  "schema_align": "seed snapshot origin/main data 2.1 / schema 0.7",
+  "themes": [
+   "health"
+  ],
+  "note": "候选；同端点 append；勿直接改 seed；禁止 limitations；relation 为公共共享关系；入库须另开 TASK + Brent 合并闸门",
+  "weread_link": "https://weread.qq.com/book-detail?type=1&v=4d5324e0813ab7911g015706",
+  "new_node_count": 20,
+  "reuse_node_count": 42
+ },
+ "new_nodes": [
+  {
+   "id": "cancer_overall",
+   "domain": "health",
+   "type": "disease",
+   "label": "癌症（总体）",
+   "group": "risk",
+   "description": "泛指各部位癌症的总体发生与死亡；用于不限定部位的癌症论述。",
+   "aliases": [
+    "癌症",
+    "肿瘤",
+    "癌症死亡率"
+   ]
+  },
+  {
+   "id": "chronic_disease",
+   "domain": "health",
+   "type": "disease",
+   "label": "慢性病 / 富贵病",
+   "group": "risk",
+   "description": "心脏病、癌症、糖尿病等与西式富裕饮食相关的慢性疾病集合。",
+   "aliases": [
+    "富贵病",
+    "西方疾病",
+    "慢性病"
+   ]
+  },
+  {
+   "id": "liver_cancer",
+   "domain": "health",
+   "type": "disease",
+   "label": "肝癌",
+   "group": "risk",
+   "description": "原发性肝癌；含实验性肝癌病灶（动物研究）。",
+   "aliases": [
+    "原发性肝癌",
+    "肝癌病灶"
+   ]
+  },
+  {
+   "id": "cognitive_decline",
+   "domain": "health",
+   "type": "disease",
+   "label": "认知障碍 / 阿尔茨海默病",
+   "group": "risk",
+   "description": "记忆力与认知功能衰退、血管性痴呆及阿尔茨海默病。",
+   "aliases": [
+    "阿尔茨海默病",
+    "痴呆",
+    "认知障碍",
+    "记忆力衰退"
+   ]
+  },
+  {
+   "id": "kidney_stones",
+   "domain": "health",
+   "type": "disease",
+   "label": "肾结石",
+   "group": "risk",
+   "description": "肾脏内钙盐、草酸盐等结晶沉积形成的结石。",
+   "aliases": [
+    "肾结石",
+    "草酸钙结石"
+   ]
+  },
+  {
+   "id": "type1_diabetes",
+   "domain": "health",
+   "type": "disease",
+   "label": "1型糖尿病",
+   "group": "risk",
+   "description": "自身免疫介导的胰岛β细胞破坏所致糖尿病，多见于儿童。",
+   "aliases": [
+    "Ⅰ型糖尿病",
+    "1型糖尿病",
+    "青少年糖尿病"
+   ]
+  },
+  {
+   "id": "osteoporosis",
+   "domain": "health",
+   "type": "disease",
+   "label": "骨质疏松 / 髋骨骨折",
+   "group": "risk",
+   "description": "骨量减少、骨折风险升高，以髋骨骨折为常见结局。",
+   "aliases": [
+    "骨质疏松症",
+    "髋骨骨折",
+    "骨折"
+   ]
+  },
+  {
+   "id": "cataract",
+   "domain": "health",
+   "type": "disease",
+   "label": "白内障",
+   "group": "risk",
+   "description": "晶状体混浊导致的视力下降。",
+   "aliases": [
+    "白内障"
+   ]
+  },
+  {
+   "id": "aflatoxin",
+   "domain": "health",
+   "type": "compound",
+   "label": "黄曲霉毒素",
+   "group": "risk",
+   "description": "霉变花生、玉米等中的真菌毒素，强致肝癌物。",
+   "aliases": [
+    "黄曲霉毒素",
+    "AF"
+   ]
+  },
+  {
+   "id": "nutrient_supplements",
+   "domain": "health",
+   "type": "compound",
+   "label": "营养补充剂（离析营养素）",
+   "group": "mixed",
+   "description": "以片剂等形式单独补充的维生素、矿物质、番茄红素等离析营养素。",
+   "aliases": [
+    "营养补充剂",
+    "维生素补充品",
+    "补充剂"
+   ]
+  },
+  {
+   "id": "plant_protein",
+   "domain": "health",
+   "type": "nutrient",
+   "label": "植物蛋白",
+   "group": "protective",
+   "description": "小麦、大豆等植物来源蛋白质。",
+   "aliases": [
+    "植物蛋白",
+    "植物性蛋白质"
+   ]
+  },
+  {
+   "id": "dietary_fat",
+   "domain": "health",
+   "type": "nutrient",
+   "label": "膳食脂肪（总脂肪）",
+   "group": "mixed",
+   "description": "饮食中总脂肪摄入量，常与动物性食物摄入共变。",
+   "aliases": [
+    "膳食脂肪",
+    "脂肪摄入",
+    "高脂饮食"
+   ]
+  },
+  {
+   "id": "vitamin_d",
+   "domain": "health",
+   "type": "nutrient",
+   "label": "维生素D / 活性维生素D",
+   "group": "protective",
+   "description": "含日照合成的维生素D及其活性形式1,25D。",
+   "aliases": [
+    "维生素D",
+    "1,25D",
+    "活性维生素D"
+   ]
+  },
+  {
+   "id": "blood_cholesterol",
+   "domain": "health",
+   "type": "biomarker",
+   "label": "血胆固醇",
+   "group": "risk",
+   "description": "血液总胆固醇（含LDL）水平。",
+   "aliases": [
+    "血胆固醇",
+    "总胆固醇",
+    "血清胆固醇"
+   ]
+  },
+  {
+   "id": "estrogen_level",
+   "domain": "health",
+   "type": "biomarker",
+   "label": "血液雌激素水平",
+   "group": "risk",
+   "description": "血液中雌激素等女性生殖激素水平。",
+   "aliases": [
+    "雌激素",
+    "女性激素",
+    "生殖激素"
+   ]
+  },
+  {
+   "id": "iron_status",
+   "domain": "health",
+   "type": "biomarker",
+   "label": "铁营养状况",
+   "group": "neutral",
+   "description": "血红蛋白、铁储备等铁营养相关指标。",
+   "aliases": [
+    "铁营养",
+    "血红蛋白",
+    "铁储备"
+   ]
+  },
+  {
+   "id": "genetic_predisposition",
+   "domain": "health",
+   "type": "mechanism",
+   "label": "遗传易感性 / 基因表达",
+   "group": "neutral",
+   "description": "遗传基因与其受营养等环境因素调控的表达。",
+   "aliases": [
+    "遗传",
+    "基因",
+    "家族史",
+    "基因表达"
+   ]
+  },
+  {
+   "id": "hbv_infection",
+   "domain": "health",
+   "type": "mechanism",
+   "label": "乙肝病毒慢性感染",
+   "group": "risk",
+   "description": "慢性乙型肝炎病毒感染，肝癌风险因素。",
+   "aliases": [
+    "乙肝",
+    "HBV",
+    "乙型肝炎病毒"
+   ]
+  },
+  {
+   "id": "hormone_replacement_therapy",
+   "domain": "health",
+   "type": "mechanism",
+   "label": "激素替代疗法",
+   "group": "risk",
+   "description": "绝经期使用外源雌激素/孕激素的激素替代疗法。",
+   "aliases": [
+    "激素替代疗法",
+    "HRT",
+    "激素疗法"
+   ]
+  },
+  {
+   "id": "low_carb_diet",
+   "domain": "health",
+   "type": "diet_pattern",
+   "label": "低碳水高蛋白饮食 / 阿特金斯饮食",
+   "group": "risk",
+   "description": "以高动物蛋白、高脂、低碳水为特征的减重饮食。",
+   "aliases": [
+    "阿特金斯饮食",
+    "低碳饮食",
+    "高蛋白饮食"
+   ]
+  }
+ ],
+ "reuse_nodes": [
+  {
+   "id": "aerobic_exercise",
+   "type": "mechanism",
+   "label": "有氧运动 / 适度运动",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "age_related_macular_degeneration",
+   "type": "disease",
+   "label": "年龄相关性黄斑变性",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "animal_foods",
+   "type": "food_category",
+   "label": "动物性食物 / 动物蛋白",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "antioxidant_defense",
+   "type": "mechanism",
+   "label": "抗氧化防御",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "atherosclerosis",
+   "type": "disease",
+   "label": "动脉粥样硬化",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "autoimmune",
+   "type": "disease",
+   "label": "自身免疫问题",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "breast_prostate_risk",
+   "type": "disease",
+   "label": "乳腺与前列腺问题",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "carotenoids",
+   "type": "nutrient",
+   "label": "类胡萝卜素",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "casein",
+   "type": "compound",
+   "label": "酪蛋白",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "coronary_heart_disease",
+   "type": "disease",
+   "label": "冠心病 / 心脏病发作",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "dairy",
+   "type": "food_category",
+   "label": "乳制品",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "dietary_cholesterol",
+   "type": "nutrient",
+   "label": "膳食胆固醇",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "dietary_fiber",
+   "type": "nutrient",
+   "label": "膳食纤维 / 益生元",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "dietary_nitrates",
+   "type": "compound",
+   "label": "膳食硝酸盐 / 亚硝酸盐",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "digestive_cancer_risk",
+   "type": "disease",
+   "label": "消化系统肿瘤",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "dna_damage",
+   "type": "mechanism",
+   "label": "DNA损伤",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "energy_vitality",
+   "type": "disease",
+   "label": "能量充沛",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "environmental_pollutants",
+   "type": "compound",
+   "label": "环境持久性污染物 / 饮食暴露",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "healthy_weight",
+   "type": "disease",
+   "label": "体重适宜",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "hematologic_cancer",
+   "type": "disease",
+   "label": "血液性癌症 / 淋巴瘤白血病相关",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "hypertension",
+   "type": "disease",
+   "label": "高血压",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "iatrogenic_harm",
+   "type": "disease",
+   "label": "医源性伤害相关负担",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "igf1_signaling",
+   "type": "mechanism",
+   "label": "IGF-1信号",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "insulin_resistance",
+   "type": "mechanism",
+   "label": "胰岛素抵抗",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "medical_care_exposure",
+   "type": "mechanism",
+   "label": "医疗暴露 / 诊断与处方相关",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "metabolic_health",
+   "type": "disease",
+   "label": "代谢健康",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "obesity_risk",
+   "type": "disease",
+   "label": "肥胖",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "omega3",
+   "type": "nutrient",
+   "label": "ω-3 多不饱和脂肪酸",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "plant_based_diet",
+   "type": "diet_pattern",
+   "label": "全食物植物性膳食 / 素食",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "processed_meat",
+   "type": "food",
+   "label": "加工肉类",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "reactive_oxygen",
+   "type": "mechanism",
+   "label": "活性氧 / 氧化应激",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "red_meat",
+   "type": "food",
+   "label": "红肉",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "refined_carbs",
+   "type": "food_category",
+   "label": "精制植物性主食",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "saturated_fat",
+   "type": "nutrient",
+   "label": "饱和脂肪",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "stroke",
+   "type": "disease",
+   "label": "中风 / 脑卒中",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "tomato",
+   "type": "food",
+   "label": "番茄 / 番茄红素食品",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "type2_diabetes",
+   "type": "disease",
+   "label": "Ⅱ型糖尿病",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "ultra_processed",
+   "type": "food_category",
+   "label": "超加工食品",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "vegetables_greens",
+   "type": "food",
+   "label": "黄绿色蔬菜",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "vitamin_c",
+   "type": "nutrient",
+   "label": "维生素C",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "vitamin_e",
+   "type": "nutrient",
+   "label": "维生素E",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "whole_grains",
+   "type": "food",
+   "label": "全谷类",
+   "group": "protective",
+   "domain": "health"
+  }
+ ]
+}

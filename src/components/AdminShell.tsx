@@ -5,6 +5,7 @@ const NAV_ITEMS: { id: AdminSection; label: string }[] = [
   { id: 'books', label: '图书管理' },
   { id: 'edges', label: '边管理' },
   { id: 'nodes', label: '节点管理' },
+  { id: 'candidates', label: '候选审阅' },
   { id: 'validate', label: '数据校验' },
   { id: 'settings', label: '系统设置' },
 ];

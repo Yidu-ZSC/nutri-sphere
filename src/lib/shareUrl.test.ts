@@ -562,6 +562,18 @@ test('admin screen round-trips list and book detail; invalid book id stripped at
     serializeViewQuery(shareState({ screen: 'admin', adminSection: 'settings' })),
     '?screen=admin&section=settings',
   );
+  assert.equal(
+    serializeViewQuery(shareState({ screen: 'admin', adminSection: 'candidates' })),
+    '?screen=admin&section=candidates',
+  );
+  assert.equal(
+    serializeViewQuery(
+      shareState({ screen: 'admin', adminSection: 'candidates', book: 'china_study' }),
+    ),
+    '?screen=admin&section=candidates&book=china_study',
+  );
+  assert.equal(parseViewQuery('?screen=admin&section=candidates&book=china_study').adminSection, 'candidates');
+  assert.equal(parseViewQuery('?screen=admin&section=candidates&book=china_study').book, 'china_study');
   assert.equal(parseViewQuery('?screen=admin&section=nope').adminSection, null);
   assert.equal(parseViewQuery('?screen=admin&edge=bad').edge, null);
 });
