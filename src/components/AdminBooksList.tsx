@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { AdminBookRecord, GraphData, SourcesData, WereadCorpus } from '../types/graph';
+import { readAdminDrafts } from '../lib/adminMaintenance';
 import {
   defaultAdminBookFilters,
   displayAuthors,
@@ -25,6 +26,7 @@ interface AdminBooksListProps {
 export function AdminBooksList({ books, sources, graph, onOpenBook }: AdminBooksListProps) {
   const [filters, setFilters] = useState<AdminBookFilters>(() => defaultAdminBookFilters());
   const [wereadById, setWereadById] = useState<Map<string, WereadCorpus>>(() => new Map());
+  const [draftFile] = useState(() => readAdminDrafts());
   const themes = useMemo(() => listAdminThemes(books), [books]);
   const rows = useMemo(() => filterAndSortAdminBooks(books, filters), [books, filters]);
   const clearFilters = () => setFilters(defaultAdminBookFilters());
@@ -115,7 +117,7 @@ export function AdminBooksList({ books, sources, graph, onOpenBook }: AdminBooks
         </div>
       ) : (
         <div className="admin-table-wrap">
-          <table className="admin-table" data-testid="admin-books-table">
+          <table className="admin-table admin-books-table" data-testid="admin-books-table">
             <thead>
               <tr>
                 <th scope="col">书名</th>
@@ -132,6 +134,10 @@ export function AdminBooksList({ books, sources, graph, onOpenBook }: AdminBooks
             <tbody>
               {rows.map((book) => {
                 const source = sourceForBook(sources, book);
+                const draft = draftFile.books[book.id];
+                const authors = draft ? draft.authors || '—' : displayAuthors(book, source);
+                const year = draft ? draft.year || '—' : displayYear(book, source);
+                const status = draft?.status ?? book.status;
                 return (
                   <tr
                     key={book.id}
@@ -140,15 +146,18 @@ export function AdminBooksList({ books, sources, graph, onOpenBook }: AdminBooks
                     onClick={() => onOpenBook(book.id)}
                   >
                     <td>{displayTitle(book, source)}</td>
-                    <td>{displayAuthors(book, source)}</td>
-                    <td>{displayYear(book, source)}</td>
+                    <td>{authors}</td>
+                    <td>{year}</td>
                     <td>{RELEVANCE_LABEL[book.relevance]}</td>
                     <td>{book.note_count}</td>
                     <td data-testid={`admin-edge-count-${book.id}`}>
                       {edgeCountForBook(graph, book.source_id)}
                     </td>
                     <td data-testid={`admin-weread-count-${book.id}`}>{wereadCell(book)}</td>
-                    <td>{STATUS_LABEL[book.status]}</td>
+                    <td>
+                      {STATUS_LABEL[status]}
+                      {draft ? <span className="admin-chip admin-chip--draft">本机修订</span> : null}
+                    </td>
                     <td>
                       <button
                         type="button"

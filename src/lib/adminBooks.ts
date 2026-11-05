@@ -83,7 +83,9 @@ export function filterAndSortAdminBooks(
   });
 }
 
-/** Book-body markdown files are not yet synced into the repo (only README + index). */
-export function kbBodySynced(_kbFile: string): boolean {
-  return false;
+/** Markdown bodies present under data/kb/. The browser cannot list that directory. */
+const SYNCED_KB_FILES = new Set(['肠道菌群_菌群大脑.md']);
+
+export function kbBodySynced(kbFile: string): boolean {
+  return SYNCED_KB_FILES.has(kbFile);
 }
