@@ -52,11 +52,12 @@
       "theme": "植物性饮食与慢病",
       "relevance": "high",
       "kb_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
-      "status": "index_only",
+      "status": "ingested",
       "publisher": "电子工业出版社",
       "isbn": "9787121340109",
       "cover_url": "https://cdn.weread.qq.com/weread/cover/17/3300017717/t6_3300017717.jpg",
-      "translator": "谢宜晖 张家绮"
+      "translator": "谢宜晖 张家绮",
+      "source_id": "how_not_to_die"
     },
     {
       "id": "china_study",
