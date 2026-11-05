@@ -26,7 +26,6 @@ function checkEvidence(issues: AuditIssue[], ev: GraphEvidence | undefined, path
   else if (ev.excerpt.length > EXCERPT_LIMIT) {
     pushError(issues, `${path}.excerpt 长度为 ${ev.excerpt.length}，超过 ${EXCERPT_LIMIT}`);
   }
-  if (!ev.limitations?.trim()) pushError(issues, `${path} 缺少 limitations`);
   if (!ev.source_title?.trim()) pushError(issues, `${path} 缺少 source_title`);
   if (!ev.source_file?.trim()) pushError(issues, `${path} 缺少 source_file`);
   if (ev.source_file === 'literature') {

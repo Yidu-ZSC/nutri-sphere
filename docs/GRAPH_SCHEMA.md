@@ -58,11 +58,9 @@ This document defines the canonical data model for the knowledge graph. All seed
   "source_id": "string (book id into data/sources.json; omit on literature edges)",
   "note_id": "string (weread_note_id or external id, optional)",
   "excerpt": "string (quote or summary; ≤1200 characters; mirrors evidences[0].excerpt)",
-  "limitations": "string (mirrors evidences[0].limitations)",
   "evidences": [
     {
       "excerpt": "string (≤1200)",
-      "limitations": "string",
       "source_title": "string",
       "source_file": "string",
       "source_id": "string (books only)",
@@ -112,7 +110,7 @@ This document defines the canonical data model for the knowledge graph. All seed
 
 These values are suggestions. Schema 0.2 does **not** lock `evidence_type` as an AJV enum.
 
-Literature edges use a non-`book_notes_*` type together with `citation`. `source_file` may be `"literature"` or a short journal name. Their `limitations` must say the edge is not a book-note excerpt and must state the study-design limit. Book-note edges keep `book_notes_*`, omit `citation`, and keep their existing excerpts.
+Literature edges use a non-`book_notes_*` type together with `citation`. `source_file` may be `"literature"` or a short journal name. Literature identity comes from `evidence_type` / `citation` / omitted `source_id`, not from a per-edge limitations field (removed in schema 0.7). Book-note edges keep `book_notes_*`, omit `citation`, and keep their existing excerpts.
 
 ### Direction Values
 
@@ -151,7 +149,7 @@ Scope for 0.3:
 - Neither property is in `required`. A missing field must not break a client. Interpret a missing `audience` as `general` and a missing `mechanism_depth` as `summary`.
 - The only allowed `audience` strings are `general` and `deep_reader`. A patient label, `patient_curious`, `clinical`, and `consumer` are rejected. Do not add them for compatibility.
 - `type=mechanism` nodes in the aligned seed are written as `mechanism` unless a manual pass marks a denser narrative `technical`. Other node types omit `mechanism_depth`.
-- Any combination of these fields keeps the edge `limitations` text and the product educational disclaimer. Do not shorten `limitations` because an edge is `deep_reader` or a node is `technical`.
+- Any combination of these fields keeps the product educational disclaimer (`DISCLAIMER_TEXT`). Schema 0.7 does not store per-edge `limitations`.
 - Validation does not require `audience` to match the current `ViewLayer`.
 - A non-mechanism node may carry `mechanism_depth: "technical"`. That is a warning in `validate:data`, not a hard error. A value outside the enum is a hard error.
 
@@ -199,7 +197,7 @@ Future versions may split into separate node and edge files or use a graph datab
 - `domain` must be `health`, `environment`, or `culture`. Missing `domain` fails seed validation. Omitted-at-runtime may be read as `health`.
 - `direction` is an allowed enum (`protective`, `risk`, `neutral`, `mixed`). `evidence_type` stays an open string in AJV.
 - If `citation` is present, it must match the object above (including `doi` or `pmid`) and `evidence_type` must not start with `book_notes_`.
-- Every link must have `evidences` (length ≥ 1). Top-level `excerpt` / `limitations` / `source_title` / `source_file` / `source_id` / `citation` must mirror `evidences[0]`.
+- Every link must have `evidences` (length ≥ 1). Top-level `excerpt` / `source_title` / `source_file` / `source_id` / `citation` must mirror `evidences[0]`. Do not write `limitations` on links or evidences (schema 0.7).
 - Excerpt length (top-level and each evidence) must be ≤ 1200 characters.
 - If `audience` is present it must be `general` or `deep_reader`. Any other string fails validation. Omission is valid.
 - If `mechanism_depth` is present it must be `summary`, `mechanism`, or `technical`. Any other string fails validation. Omission is valid.
@@ -213,7 +211,7 @@ Future versions may split into separate node and edge files or use a graph datab
 | direction      | Edge color                          |
 | strength/weight| Edge thickness                      |
 | type           | Node shape or icon                  |
-| excerpt + source_file + limitations | Tooltip / side panel |
+| excerpt + source_title / source_file | Tooltip / side panel |
 | audience, mechanism_depth | Not mapped to color, thickness, or a view toggle |
 | domain | Not mapped to color, filter, or theme switch in 0.6 |
 
@@ -232,3 +230,5 @@ See also: `DATA_STRATEGY.md`, `ARCHITECTURE.md`.
 - **0.5**: documents `links[].evidences[]` (multi-evidence). Top-level source fields remain as mirrors of `evidences[0]`. Excerpt limit 1200. Aligned seed `data_version` 1.0. Validate requires evidences, mirror equality, and per-evidence book/literature rules; stage-1 reject-evidences rule is removed.
 
 - **0.6**: required `nodes[].domain` and `links[].domain` (`health` | `environment` | `culture`). Seed writes are explicit; omitted-at-runtime means `health`. Not ViewLayer, not GRADE, not audience. Aligned seed `data_version` 1.3 ships every node/link as `health` only—no environment/culture data and no theme-switch UI in this release.
+
+- **0.7**: remove `links[].limitations` and `evidences[].limitations` (NS-065). Product `DISCLAIMER_TEXT` unchanged. Aligned seed `data_version` 1.5 keeps topology 102 nodes / 158 links.

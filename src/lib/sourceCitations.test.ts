@@ -48,14 +48,12 @@ test('citingLinks matches evidences[].source_id when top-level differs', () => {
       evidences: [
         {
           excerpt: 'x',
-          limitations: 'y',
           source_title: 't',
           source_file: 'f',
           source_id: 'eat_to_heal',
         },
         {
           excerpt: 'x2',
-          limitations: 'y2',
           source_title: 't2',
           source_file: 'f2',
           source_id: 'gut_brain',
@@ -78,7 +76,6 @@ test('citingLinks dedupes when both top-level and evidence cite the same book', 
       evidences: [
         {
           excerpt: 'x',
-          limitations: 'y',
           source_title: 't',
           source_file: 'f',
           source_id: 'china_study',
@@ -135,10 +132,10 @@ test('SourceDetail markup: breadcrumb, filter default, no description/file, summ
   assert.match(source, /citingLinks/);
 });
 
-test('seed data_version is 1.4 after NS-064 gut_brain EPUB replace; schema is 0.6', () => {
+test('seed data_version is 1.5 after NS-065 remove limitations; schema is 0.7', () => {
   const seed = JSON.parse(
     fs.readFileSync(new URL('../../data/seed_triples_v0.3_aligned.json', import.meta.url), 'utf8'),
   ) as { meta: { data_version: string; schema_version: string } };
-  assert.equal(seed.meta.data_version, '1.4');
-  assert.equal(seed.meta.schema_version, '0.6');
+  assert.equal(seed.meta.data_version, '1.5');
+  assert.equal(seed.meta.schema_version, '0.7');
 });

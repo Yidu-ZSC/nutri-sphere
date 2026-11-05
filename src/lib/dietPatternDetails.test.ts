@@ -22,7 +22,7 @@ test('vegan diet hub normalizes legacy step ids to one detail screen', () => {
   assert.equal(normalizeVeganDietPatternId('mediterranean'), null);
   assert.equal(isVeganDietHubPattern('plant_forward'), true);
   assert.equal(PATTERN_SHELL.sidebarOne, '查看素食饮食方式详情');
-  assert.ok(VEGAN_DIET_HUB_EVIDENCE.limitations.includes('健康决策请咨询专业人员'));
+  assert.ok(VEGAN_DIET_HUB_EVIDENCE.evidence_note.includes('不是原创研究'));
 });
 
 test('compare matrix uses only the four locked cell words and does not rank', () => {

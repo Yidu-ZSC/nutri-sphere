@@ -44,7 +44,6 @@ export interface GraphCitation {
 /** One evidence item on an edge (schema 0.5). Top-level link fields mirror evidences[0]. */
 export interface GraphEvidence {
   excerpt: string;
-  limitations: string;
   source_title: string;
   source_file: string;
   /** Book id into data/sources.json. Absent on literature evidence. */
@@ -75,7 +74,6 @@ export interface GraphLink {
   source_id?: string;
   note_id?: string;
   excerpt?: string;
-  limitations?: string;
   dose_response?: string;
   population?: string;
   /** Who this edge is written for. Omitted means general. Not ViewLayer. */

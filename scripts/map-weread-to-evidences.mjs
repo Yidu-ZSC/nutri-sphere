@@ -133,11 +133,6 @@ const RELATION_KEYS = [
   '素食', '蔬食',
 ];
 
-const LIMITATIONS_PERSONAL =
-  '此段摘自微信读书个人划线原文，为作者论述片段，不等于完整语境或诊疗建议；请结合原书与边级局限性理解。';
-const LIMITATIONS_BEST =
-  '此段摘自微信读书热门划线原文，为作者论述片段，不等于完整语境或诊疗建议；请结合原书与边级局限性理解。';
-
 export function truncateAtSentence(text, limit = EXCERPT_LIMIT) {
   if (text.length <= limit) return text;
   const window = text.slice(0, limit);
@@ -274,15 +269,11 @@ function bestBookmarkId(item, sourceId) {
   return `best:${h}`;
 }
 
-function buildEvidence({ markText, sourceId, sourceTitle, origin, bookmarkId, chapterTitle, edgeLimitations }) {
+function buildEvidence({ markText, sourceId, sourceTitle, origin, bookmarkId, chapterTitle }) {
   const excerpt = truncateAtSentence(String(markText || '').trim(), EXCERPT_LIMIT);
-  const limitations =
-    (edgeLimitations && String(edgeLimitations).trim()) ||
-    (origin === 'best' ? LIMITATIONS_BEST : LIMITATIONS_PERSONAL);
   /** @type {Record<string, unknown>} */
   const ev = {
     excerpt,
-    limitations,
     source_title: sourceTitle,
     source_file: `weread/${sourceId}.json`,
     source_id: sourceId,
@@ -447,7 +438,6 @@ export function mapWereadToEvidences({ seed, sources, corpora, dryRun = false })
         origin: cand.origin,
         bookmarkId: bmId,
         chapterTitle: cand.chapterTitle,
-        edgeLimitations: edge0?.limitations || link.limitations,
       });
 
       if (!dryRun) {
@@ -461,7 +451,6 @@ export function mapWereadToEvidences({ seed, sources, corpora, dryRun = false })
             link.evidences = [evidence, ...link.evidences.slice(1)];
           }
           link.excerpt = evidence.excerpt;
-          link.limitations = evidence.limitations;
           link.source_title = evidence.source_title;
           link.source_id = evidence.source_id;
           link.source_file = evidence.source_file;

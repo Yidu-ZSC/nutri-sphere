@@ -298,10 +298,6 @@ function MoreEvidences({
             <ExcerptBlock text={ev.excerpt} />
             <SourceTitleLink evidence={ev} onOpenSource={onOpenSource} testId={`extra-source-title-${index}`} />
           </dl>
-          <div className="limitations-callout" data-testid={`extra-limitations-${index}`}>
-            <p className="muted">局限</p>
-            <p>{ev.limitations?.trim() ? ev.limitations : '未注明局限'}</p>
-          </div>
         </div>
       ))}
     </details>
@@ -378,15 +374,6 @@ function LinkBody({
             onOpenSource={onOpenSource}
           />
         </dl>
-        <div className="limitations-callout" data-testid="link-limitations">
-          <p className="muted">局限</p>
-          <p>
-            {(() => {
-              const primary = link.evidences?.[0]?.limitations ?? link.limitations;
-              return primary?.trim() ? primary : '未注明局限';
-            })()}
-          </p>
-        </div>
         <MoreEvidences evidences={link.evidences ?? []} onOpenSource={onOpenSource} />
         <div className="badge-row" data-testid="evidence-badges">
           <span className="badge badge--direction" style={{ borderLeftColor: semanticColor(link.direction) }}>

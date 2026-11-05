@@ -6,7 +6,7 @@
 
 所有新增信息必须：
 - 可追溯到公开来源
-- 带证据类型与局限性
+- 带证据类型与可追溯来源
 - 符合现有图谱 schema
 - 经审核后进入主数据文件
 
@@ -58,8 +58,7 @@
 | evidence_type | 见下表 |
 | strength | low / moderate / high / quantitative |
 | source_file | 书摘文件名或 "literature" |
-| excerpt | ≤300 字，保留原文语气 |
-| limitations | 必须填写，说明研究设计或资料局限 |
+| excerpt | ≤1200 字，保留原文语气 |
 | audience | general（默认）或 deep_reader |
 | citation | 文献边必填（含 doi 或 pmid） |
 
@@ -91,13 +90,13 @@
 1. 从知识库 Markdown 中定位相关笔记。
 2. 提取节点与边，填写上表字段。
 3. 放入待审文件（如 `data/pending/YYYY-MM-DD.json`）。
-4. 人工审核：检查摘录准确性、局限性是否充分、是否越界。
+4. 人工审核：检查摘录准确性、来源字段、是否越界。
 5. 通过后合并至主数据文件，更新 `data_version`。
 
 ### 5.2 文献层
 1. 针对高关注主题检索已发表综述或机制研究。
 2. 提取关联描述，填写 citation（doi 或 pmid）。
-3. limitations 中明确注明「非书摘，研究设计为……」。
+3. 用 `evidence_type` / `citation` 标明文献身份（不再写 limitations 字段）。
 4. 放入待审文件，经审核后合并。
 
 ### 5.3 优先级
@@ -117,18 +116,17 @@
 | direction | 边颜色 | 绿（保护）/ 红（风险） |
 | strength | 边粗细 | 粗细差异 |
 | excerpt | 右抽屉 | 短引 |
-| limitations | 右抽屉 | 局限说明 |
 | evidence_type | 抽屉徽章 | 「书摘·机制」「观察研究」等 |
 | citation | 抽屉来源 | 文献标题与 DOI 链接 |
 | description | 抽屉顶部 | 节点一两句说明 |
 
-用户不需要看到完整论文，只需要：这条关联来自哪里、是什么类型、有什么局限。
+用户不需要看到完整论文，只需要：这条关联来自哪里、是什么类型；一般局限见产品免责声明。
 
 ## 7. 文案与边界
 
 - 使用「公开资料中常被描述为……」
 - 不使用「可以治疗」「建议你吃」「你的风险是」
-- 每条边的 limitations 必须保留，不得因 audience 或 mechanism_depth 而缩短
+- 不在边上写入 limitations（schema 0.7）；不得因 audience 或 mechanism_depth 而缩短摘录或弱化免责
 - 免责声明始终可见，不因数据增加而弱化
 
 ## 8. 版本与校验

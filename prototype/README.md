@@ -18,7 +18,7 @@ A single-file browser prototype that visualizes the seed graph using [3d-force-g
 
 - 3D force-directed layout of nodes and evidence-weighted edges
 - Color by group / direction (green = protective, red = risk)
-- Click node or link to see label, evidence type, excerpt, source file, and limitations
+- Click node or link to see label, evidence type, excerpt, source file, and sources
 - Gentle auto-rotation
 - Persistent disclaimer
 

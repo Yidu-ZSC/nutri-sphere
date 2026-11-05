@@ -13,12 +13,11 @@ function evidenceCardSource(): string {
   return source.slice(start, end);
 }
 
-test('NS-047/056 LinkBody keeps excerpt → source → limitations → more-evidences → badges → more-detail', () => {
+test('NS-047/056/065 LinkBody keeps excerpt → source → more-evidences → badges → more-detail', () => {
   const card = evidenceCardSource();
   const marks = [
     'ExcerptBlock',
     'SourceTitleLink',
-    'link-limitations',
     'MoreEvidences',
     'evidence-badges',
     'MoreDetail',
@@ -43,7 +42,7 @@ test('NS-047/056 LinkBody keeps excerpt → source → limitations → more-evid
   assert.match(source, /收起原文摘录/);
 });
 
-test('NS-047 more-detail is a single collapsed details block; limitations stay outside', () => {
+test('NS-047 more-detail is a single collapsed details block; no limitations slot', () => {
   assert.match(source, /data-testid="more-detail"/);
   assert.match(source, /<summary>更多说明<\/summary>/);
   // MoreDetail helper has no open attr
@@ -51,10 +50,10 @@ test('NS-047 more-detail is a single collapsed details block; limitations stay o
   const moreChunk = source.slice(moreFn, moreFn + 280);
   assert.match(moreChunk, /data-testid="more-detail"/);
   assert.equal(/\bopen\b/.test(moreChunk), false);
-  // limitations before MoreDetail in the card
   const card = evidenceCardSource();
-  assert.ok(card.indexOf('link-limitations') < card.indexOf('MoreDetail'));
-  assert.ok(card.indexOf('ExcerptBlock') < card.indexOf('link-limitations'));
+  assert.equal(card.includes('link-limitations'), false);
+  assert.equal(card.includes('limitations-callout'), false);
+  assert.ok(card.indexOf('ExcerptBlock') < card.indexOf('MoreDetail'));
   // no layer prop / expert gating
   assert.equal(/layer:\s*ViewLayer/.test(source), false);
   assert.equal(/full=\{expert\}/.test(source), false);

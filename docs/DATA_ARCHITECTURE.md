@@ -20,13 +20,13 @@ Knowledge-base Project (book notes)
 
 ## Key Principles
 
-1. **Evidence first**: Every edge carries evidence_type, strength, source, and limitations.
+1. **Evidence first**: Every edge carries evidence_type, strength, source, and excerpt (schema 0.7+; no per-edge limitations field).
 2. **Separation of concerns**:
    - Qualitative research notes stay in the knowledge-base Project.
    - Structured, machine-readable triples and open-data extracts live in this repository (`/data`).
 3. **Schema-driven**: All data must validate against `GRAPH_SCHEMA.md`.
 4. **Reproducible**: Data releases are versioned; pipelines (future) are scripted.
-5. **Transparent limitations**: Ecological vs individual, correlation vs causation, book-note vs trial data are explicit.
+5. **Transparent provenance**: Ecological vs individual, correlation vs causation, book-note vs trial data are explicit via evidence_type / citation; product disclaimer covers general limits (NS-065).
 
 ## Current State
 

@@ -13,7 +13,7 @@ export interface DietPatternCard {
   title: string;
   /** One-line differentiator on the lobby card. */
   hook: string;
-  /** What makes this step distinct on the lobby card (not evidence/limitations). */
+  /** What makes this step distinct on the lobby card (not evidence text). */
   lobby_facets: readonly PatternLobbyFacet[];
   /** Primary graph theme for a single lobby link. */
   primary_theme: string;
@@ -23,7 +23,6 @@ export interface DietPatternCard {
   emphasize: string;
   limit: string;
   evidence_note: string;
-  limitations: string;
   related_themes: readonly string[];
 }
 
@@ -63,7 +62,6 @@ export const DIET_PATTERN_CARDS: readonly DietPatternCard[] = [
     emphasize: '蔬菜、豆类、全谷物、水果、坚果种子',
     limit: '超加工食品；仍以动物性食物为主的一餐（尚未刻意排除）',
     evidence_note: '书摘机制与观察性叙述为主，常与肠道、炎症、代谢等主题一起讨论。',
-    limitations: '个体差异大；不是针对个人的饮食医嘱；本项目不做原创研究。',
     related_themes: ['chronic-inflammation', 'cardiometabolic'],
   },
   {
@@ -95,7 +93,6 @@ export const DIET_PATTERN_CARDS: readonly DietPatternCard[] = [
     emphasize: '蔬菜、豆类、全谷物、水果、坚果种子；若保留蛋奶，常与多样植物搭配一起讨论',
     limit: '肉类、鱼类、超加工食品',
     evidence_note: '公开资料与书摘中的模式描述为主，兼有部分观察与综述。',
-    limitations: '个体差异大；不是针对个人的饮食医嘱；本项目不做原创研究；营养搭配需因人而异。',
     related_themes: ['plant-based', 'chronic-inflammation', 'cardiometabolic'],
   },
   {
@@ -128,7 +125,6 @@ export const DIET_PATTERN_CARDS: readonly DietPatternCard[] = [
     emphasize: '蔬菜、豆类、全谷物、水果、坚果种子、香草香料',
     limit: '动物性食物（含蛋、奶、鱼、肉）、超加工食品',
     evidence_note: '书摘机制描述为主，辅以部分观察与综述；与图谱中「全食物植物性膳食 / 素食」节点对应。',
-    limitations: '个体差异大；不是针对个人的饮食医嘱；本项目不做原创研究；个体营养需求差异大。',
     related_themes: ['plant-based', 'chronic-inflammation', 'cardiometabolic'],
   },
 ];

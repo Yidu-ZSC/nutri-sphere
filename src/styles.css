@@ -1152,23 +1152,6 @@ button { cursor: pointer; }
   gap: var(--space-4);
 }
 
-.limitations-callout {
-  margin: 0;
-  padding: var(--space-3);
-  border-radius: var(--radius-btn);
-  background: var(--panel-muted);
-  border-left: 3px solid var(--dir-mixed);
-}
-
-.limitations-callout p { margin: 0; line-height: 1.5; }
-.limitations-callout .muted {
-  margin: 0 0 var(--space-1);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--faint);
-}
 
 .ladder { font-size: 13px; }
 .ladder summary { cursor: pointer; }

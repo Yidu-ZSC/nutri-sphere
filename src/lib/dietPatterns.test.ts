@@ -25,7 +25,6 @@ test('diet pattern cards match the ClearDiet vegetarian journey and resolve to e
     );
     assert.ok(themeById(card.primary_theme), `${card.id} primary_theme`);
     assert.ok(card.practice_hint.trim().length > 0, card.id);
-    assert.ok(card.limitations.trim().length > 0, card.id);
     assert.ok(card.related_themes.length > 0, card.id);
     for (const themeId of card.related_themes) {
       assert.ok(themeById(themeId), `${card.id} related theme ${themeId}`);
@@ -39,7 +38,6 @@ test('diet pattern cards match the ClearDiet vegetarian journey and resolve to e
       card.emphasize,
       card.limit,
       card.evidence_note,
-      card.limitations,
     ].join('\n');
     for (const word of banned) {
       assert.equal(copy.includes(word), false, `${card.id} ${word}`);

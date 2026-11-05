@@ -15,30 +15,150 @@
     ]
   },
   "nodes": [
-    {"id": "plant_based_diet", "type": "diet_pattern", "label": "全食物植物性膳食 / 素食", "group": "protective"},
-    {"id": "animal_foods", "type": "food_category", "label": "动物性食物 / 动物蛋白", "group": "risk"},
-    {"id": "ultra_processed", "type": "food_category", "label": "超加工食品", "group": "risk"},
-    {"id": "dietary_fiber", "type": "nutrient", "label": "膳食纤维 / 益生元", "group": "protective"},
-    {"id": "vegetables_greens", "type": "food", "label": "黄绿色蔬菜", "group": "protective"},
-    {"id": "soy", "type": "food", "label": "大豆食品", "group": "protective"},
-    {"id": "berries_fruits", "type": "food", "label": "浆果 / 核果 / 番茄等", "group": "protective"},
-    {"id": "omega3", "type": "nutrient", "label": "ω-3 多不饱和脂肪酸", "group": "protective"},
-    {"id": "glutathione", "type": "compound", "label": "谷胱甘肽", "group": "protective"},
-    {"id": "scfa", "type": "metabolite", "label": "短链脂肪酸 (SCFA)", "group": "protective"},
-    {"id": "reactive_oxygen", "type": "mechanism", "label": "活性氧 / 氧化应激", "group": "risk"},
-    {"id": "chronic_inflammation", "type": "mechanism", "label": "慢性炎症", "group": "risk"},
-    {"id": "glycation", "type": "mechanism", "label": "糖化反应", "group": "risk"},
-    {"id": "gut_microbiome", "type": "mechanism", "label": "肠道菌群多样性", "group": "protective"},
-    {"id": "gut_barrier_leak", "type": "mechanism", "label": "肠道屏障损伤 / 肠漏", "group": "risk"},
-    {"id": "lps", "type": "mechanism", "label": "脂多糖 (LPS) 入血", "group": "risk"},
-    {"id": "angiogenesis_defense", "type": "mechanism", "label": "血管生成防御", "group": "protective"},
-    {"id": "epigenetic_positive", "type": "mechanism", "label": "有益表观遗传修饰", "group": "protective"},
-    {"id": "immune_balance", "type": "mechanism", "label": "免疫系统平衡", "group": "protective"},
-    {"id": "liver_chronic", "type": "disease", "label": "慢性肝炎相关进展", "group": "risk"},
-    {"id": "digestive_cancer_risk", "type": "disease", "label": "消化系统癌症风险", "group": "risk"},
-    {"id": "cardiometabolic", "type": "disease", "label": "心血管 / 代谢疾病风险", "group": "risk"},
-    {"id": "autoimmune", "type": "disease", "label": "自身免疫相关", "group": "risk"},
-    {"id": "mental_health", "type": "disease", "label": "心理健康 / 抑郁等", "group": "risk"}
+    {
+      "id": "plant_based_diet",
+      "type": "diet_pattern",
+      "label": "全食物植物性膳食 / 素食",
+      "group": "protective"
+    },
+    {
+      "id": "animal_foods",
+      "type": "food_category",
+      "label": "动物性食物 / 动物蛋白",
+      "group": "risk"
+    },
+    {
+      "id": "ultra_processed",
+      "type": "food_category",
+      "label": "超加工食品",
+      "group": "risk"
+    },
+    {
+      "id": "dietary_fiber",
+      "type": "nutrient",
+      "label": "膳食纤维 / 益生元",
+      "group": "protective"
+    },
+    {
+      "id": "vegetables_greens",
+      "type": "food",
+      "label": "黄绿色蔬菜",
+      "group": "protective"
+    },
+    {
+      "id": "soy",
+      "type": "food",
+      "label": "大豆食品",
+      "group": "protective"
+    },
+    {
+      "id": "berries_fruits",
+      "type": "food",
+      "label": "浆果 / 核果 / 番茄等",
+      "group": "protective"
+    },
+    {
+      "id": "omega3",
+      "type": "nutrient",
+      "label": "ω-3 多不饱和脂肪酸",
+      "group": "protective"
+    },
+    {
+      "id": "glutathione",
+      "type": "compound",
+      "label": "谷胱甘肽",
+      "group": "protective"
+    },
+    {
+      "id": "scfa",
+      "type": "metabolite",
+      "label": "短链脂肪酸 (SCFA)",
+      "group": "protective"
+    },
+    {
+      "id": "reactive_oxygen",
+      "type": "mechanism",
+      "label": "活性氧 / 氧化应激",
+      "group": "risk"
+    },
+    {
+      "id": "chronic_inflammation",
+      "type": "mechanism",
+      "label": "慢性炎症",
+      "group": "risk"
+    },
+    {
+      "id": "glycation",
+      "type": "mechanism",
+      "label": "糖化反应",
+      "group": "risk"
+    },
+    {
+      "id": "gut_microbiome",
+      "type": "mechanism",
+      "label": "肠道菌群多样性",
+      "group": "protective"
+    },
+    {
+      "id": "gut_barrier_leak",
+      "type": "mechanism",
+      "label": "肠道屏障损伤 / 肠漏",
+      "group": "risk"
+    },
+    {
+      "id": "lps",
+      "type": "mechanism",
+      "label": "脂多糖 (LPS) 入血",
+      "group": "risk"
+    },
+    {
+      "id": "angiogenesis_defense",
+      "type": "mechanism",
+      "label": "血管生成防御",
+      "group": "protective"
+    },
+    {
+      "id": "epigenetic_positive",
+      "type": "mechanism",
+      "label": "有益表观遗传修饰",
+      "group": "protective"
+    },
+    {
+      "id": "immune_balance",
+      "type": "mechanism",
+      "label": "免疫系统平衡",
+      "group": "protective"
+    },
+    {
+      "id": "liver_chronic",
+      "type": "disease",
+      "label": "慢性肝炎相关进展",
+      "group": "risk"
+    },
+    {
+      "id": "digestive_cancer_risk",
+      "type": "disease",
+      "label": "消化系统癌症风险",
+      "group": "risk"
+    },
+    {
+      "id": "cardiometabolic",
+      "type": "disease",
+      "label": "心血管 / 代谢疾病风险",
+      "group": "risk"
+    },
+    {
+      "id": "autoimmune",
+      "type": "disease",
+      "label": "自身免疫相关",
+      "group": "risk"
+    },
+    {
+      "id": "mental_health",
+      "type": "disease",
+      "label": "心理健康 / 抑郁等",
+      "group": "risk"
+    }
   ],
   "links": [
     {
@@ -50,8 +170,7 @@
       "strength": "moderate",
       "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
       "note_id": "35903999_7UumHuIZG",
-      "excerpt": "谷胱甘肽多存在于芹菜、菠菜等黄绿色蔬菜中…从蔬菜汤中获取的谷胱甘肽被肠道吸收后…可以起到抗氧化和抗炎的作用",
-      "limitations": "书摘机制"
+      "excerpt": "谷胱甘肽多存在于芹菜、菠菜等黄绿色蔬菜中…从蔬菜汤中获取的谷胱甘肽被肠道吸收后…可以起到抗氧化和抗炎的作用"
     },
     {
       "source": "glutathione",
@@ -62,8 +181,7 @@
       "strength": "moderate",
       "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
       "note_id": "35903999_7UumHuIZG",
-      "excerpt": "谷胱甘肽能消除毒性最强的脂质自由基，预防癌症和炎症",
-      "limitations": "书摘"
+      "excerpt": "谷胱甘肽能消除毒性最强的脂质自由基，预防癌症和炎症"
     },
     {
       "source": "plant_based_diet",
@@ -74,8 +192,7 @@
       "strength": "moderate",
       "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
       "note_id": "35903999_7UujZPd3G",
-      "excerpt": "植物性饮食的抗氧化作用能够阻止氧化反应",
-      "limitations": "想法部分有读者推断"
+      "excerpt": "植物性饮食的抗氧化作用能够阻止氧化反应"
     },
     {
       "source": "chronic_inflammation",
@@ -86,8 +203,7 @@
       "strength": "moderate",
       "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
       "note_id": "35903999_7UujZPd3G",
-      "excerpt": "从慢性肝炎发展成肝功能衰竭、肝癌",
-      "limitations": "书摘"
+      "excerpt": "从慢性肝炎发展成肝功能衰竭、肝癌"
     },
     {
       "source": "chronic_inflammation",
@@ -98,8 +214,7 @@
       "strength": "moderate",
       "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
       "note_id": "35903999_7UulQClmx",
-      "excerpt": "癌症是没有终止的炎症，长期持续的炎症状态是引发肝脏、胃等消化系统器官癌症的原因",
-      "limitations": "书摘"
+      "excerpt": "癌症是没有终止的炎症，长期持续的炎症状态是引发肝脏、胃等消化系统器官癌症的原因"
     },
     {
       "source": "glycation",
@@ -110,8 +225,7 @@
       "strength": "moderate",
       "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
       "note_id": "35903999_7Uum2bdvM",
-      "excerpt": "高血糖也会引起慢性炎症…糖化程度越强，大脑、心脏、肾脏等器官受到损伤而引发炎症的危险性就越大",
-      "limitations": "书摘"
+      "excerpt": "高血糖也会引起慢性炎症…糖化程度越强，大脑、心脏、肾脏等器官受到损伤而引发炎症的危险性就越大"
     },
     {
       "source": "dietary_fiber",
@@ -122,8 +236,7 @@
       "strength": "high",
       "source_file": "植物性饮食与慢病_吃出自愈力.md",
       "note_id": "39484588_10_5172-5447",
-      "excerpt": "短链脂肪酸（SCFA）是细菌消化植物性纤维所产生的副产品…抗炎特性能够保护你的肠道和整体健康",
-      "limitations": "书摘"
+      "excerpt": "短链脂肪酸（SCFA）是细菌消化植物性纤维所产生的副产品…抗炎特性能够保护你的肠道和整体健康"
     },
     {
       "source": "scfa",
@@ -134,8 +247,7 @@
       "strength": "high",
       "source_file": "植物性饮食与慢病_吃出自愈力.md",
       "note_id": "39484588_10_5172-5447",
-      "excerpt": "它们的抗炎特性能够保护你的肠道和整体健康，它们可以提升你的身体代谢葡萄糖和脂类的能力",
-      "limitations": "书摘"
+      "excerpt": "它们的抗炎特性能够保护你的肠道和整体健康，它们可以提升你的身体代谢葡萄糖和脂类的能力"
     },
     {
       "source": "dietary_fiber",
@@ -146,8 +258,7 @@
       "strength": "high",
       "source_file": "植物性饮食与慢病_吃出自愈力.md",
       "note_id": "39484588_10_9655-9804",
-      "excerpt": "益生元是一种人体无法消化的食物，却能给我们肠道中的健康细菌提供食物",
-      "limitations": "书摘"
+      "excerpt": "益生元是一种人体无法消化的食物，却能给我们肠道中的健康细菌提供食物"
     },
     {
       "source": "soy",
@@ -158,8 +269,7 @@
       "strength": "moderate",
       "source_file": "植物性饮食与慢病_吃出自愈力.md",
       "note_id": "39484588_14_3969-4088",
-      "excerpt": "大豆食品含有强效的抗血管生成特性…吃更多大豆食品的人降低了患许多与血管生成相关的疾病的风险，包括乳腺癌、前列腺癌和冠心病",
-      "limitations": "书摘综述"
+      "excerpt": "大豆食品含有强效的抗血管生成特性…吃更多大豆食品的人降低了患许多与血管生成相关的疾病的风险，包括乳腺癌、前列腺癌和冠心病"
     },
     {
       "source": "berries_fruits",
@@ -170,8 +280,7 @@
       "strength": "moderate",
       "source_file": "植物性饮食与慢病_吃出自愈力.md",
       "note_id": "multiple chapters",
-      "excerpt": "浆果、核果、番茄等含类胡萝卜素、花青素等，具有抗血管生成活性",
-      "limitations": "书摘多处提及"
+      "excerpt": "浆果、核果、番茄等含类胡萝卜素、花青素等，具有抗血管生成活性"
     },
     {
       "source": "plant_based_diet",
@@ -182,8 +291,7 @@
       "strength": "moderate",
       "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
       "note_id": "3300017717_13_11428-11518",
-      "excerpt": "素食者所摄取到的所有营养素几乎都比肉食者多，包括膳食纤维、维生素A、C、E等",
-      "limitations": "书摘"
+      "excerpt": "素食者所摄取到的所有营养素几乎都比肉食者多，包括膳食纤维、维生素A、C、E等"
     },
     {
       "source": "animal_foods",
@@ -194,8 +302,7 @@
       "strength": "moderate",
       "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
       "note_id": "related",
-      "excerpt": "少吃动物性食物和高度精制的植物性食物，并多吃“天然蔬食”",
-      "limitations": "export_may_be_truncated: true；书中综述"
+      "excerpt": "少吃动物性食物和高度精制的植物性食物，并多吃“天然蔬食”"
     },
     {
       "source": "lps",
@@ -206,8 +313,7 @@
       "strength": "high",
       "source_file": "肠道菌群_菌群大脑.md",
       "note_id": "related to LPS chapter",
-      "excerpt": "如果脂多糖进入到血液，就会在动物体内诱发强烈的炎症反应。血液中的脂多糖水平能反应炎症水平，且能对肠道渗漏起到指示作用",
-      "limitations": "书摘"
+      "excerpt": "如果脂多糖进入到血液，就会在动物体内诱发强烈的炎症反应。血液中的脂多糖水平能反应炎症水平，且能对肠道渗漏起到指示作用"
     },
     {
       "source": "gut_barrier_leak",
@@ -218,8 +324,7 @@
       "strength": "high",
       "source_file": "肠道菌群_菌群大脑.md",
       "note_id": "related",
-      "excerpt": "血液中的脂多糖水平…能对肠道渗漏起到指示作用",
-      "limitations": "书摘"
+      "excerpt": "血液中的脂多糖水平…能对肠道渗漏起到指示作用"
     },
     {
       "source": "gut_microbiome",
@@ -230,8 +335,7 @@
       "strength": "moderate",
       "source_file": "肠道菌群_菌群大脑.md",
       "note_id": "related",
-      "excerpt": "微生物组可以调控或管理免疫反应。它就是这样参与身体炎症过程的",
-      "limitations": "书摘"
+      "excerpt": "微生物组可以调控或管理免疫反应。它就是这样参与身体炎症过程的"
     },
     {
       "source": "gut_microbiome",
@@ -242,8 +346,7 @@
       "strength": "moderate",
       "source_file": "肠道菌群_晓肚知肠.md / 菌群大脑.md",
       "note_id": "multiple",
-      "excerpt": "菌-肠-脑轴调节心理和行为；抑郁症是一种炎症性疾病等描述",
-      "limitations": "多书书摘"
+      "excerpt": "菌-肠-脑轴调节心理和行为；抑郁症是一种炎症性疾病等描述"
     },
     {
       "source": "omega3",
@@ -254,8 +357,7 @@
       "strength": "moderate",
       "source_file": "植物性饮食与慢病_吃出自愈力.md",
       "note_id": "related DNA chapters",
-      "excerpt": "ω-3多不饱和脂肪酸具有抗氧化作用，可以对抗自由基造成的DNA破坏，并改善DNA修复",
-      "limitations": "书摘"
+      "excerpt": "ω-3多不饱和脂肪酸具有抗氧化作用，可以对抗自由基造成的DNA破坏，并改善DNA修复"
     },
     {
       "source": "plant_based_diet",
@@ -266,8 +368,7 @@
       "strength": "moderate",
       "source_file": "植物性饮食与慢病_吃出自愈力.md",
       "note_id": "DNA保护章节",
-      "excerpt": "在植物性食物、茶或咖啡中发现的生物活性物质可以对你的DNA产生积极的影响",
-      "limitations": "书摘"
+      "excerpt": "在植物性食物、茶或咖啡中发现的生物活性物质可以对你的DNA产生积极的影响"
     },
     {
       "source": "gut_microbiome",
@@ -278,8 +379,7 @@
       "strength": "moderate",
       "source_file": "肠道菌群_菌群大脑.md / 吃出自愈力.md",
       "note_id": "multiple",
-      "excerpt": "肠道细菌失衡的中间产物同样会对线粒体造成直接伤害，转而引发更激烈的炎症反应",
-      "limitations": "多书综合"
+      "excerpt": "肠道细菌失衡的中间产物同样会对线粒体造成直接伤害，转而引发更激烈的炎症反应"
     }
   ]
 }

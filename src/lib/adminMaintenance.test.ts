@@ -63,12 +63,10 @@ function link(partial: Partial<GraphLink> = {}): GraphLink {
     direction: 'protective',
     evidence_type: 'book_notes_mechanistic',
     excerpt: '原文一句。',
-    limitations: '不能外推到个体。',
     note_id: 'note-1',
     evidences: [
       {
         excerpt: '原文一句。',
-        limitations: '不能外推到个体。',
         source_title: '菌群大脑',
         source_file: 'data/kb/肠道菌群_菌群大脑.md',
       },
@@ -98,7 +96,6 @@ test('parseAdminDrafts drops garbage and keeps valid rows', () => {
         ok: {
           relation: '相关',
           excerpt: '摘录',
-          limitations: '局限',
           evidences: [],
         },
         bad: { relation: '缺字段' },
@@ -139,13 +136,11 @@ test('edge drafts keep identity on note_id and mirror the first evidence', () =>
   const edited: EdgeFieldDraft = {
     relation: '多酚相关',
     excerpt: '会被第一条证据覆盖',
-    limitations: '会被第一条证据覆盖',
-    evidences: [{ excerpt: ' 新摘录 ', limitations: ' 新局限 ' }],
+    evidences: [{ excerpt: ' 新摘录 ' }],
   };
   const normalized = normalizeEdgeDraft(edited);
   assert.equal(normalized.excerpt, '新摘录');
-  assert.equal(normalized.limitations, '新局限');
-  assert.equal(validateEdgeDraft({ ...edited, evidences: [{ excerpt: '有摘录', limitations: ' ' }] }), '请填写局限');
+  assert.equal(validateEdgeDraft({ ...edited, evidences: [{ excerpt: ' ' }] }), '请填写原文摘录');
   const stored = saveEdgeDraft(emptyAdminDrafts(), edgeDraftKey(row), edited, baseline);
   assert.equal(stored.edges[edgeDraftKey(row)]?.relation, '多酚相关');
   assert.equal(presentEdge(row, stored.edges[edgeDraftKey(row)]).excerpt, '新摘录');

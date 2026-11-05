@@ -30,7 +30,7 @@ function graph(partial: Partial<GraphData>): GraphData {
   };
 }
 
-test('audit flags a dangling target and a missing limitation', () => {
+test('audit flags a dangling target', () => {
   const report = auditLoadedGraph(
     graph({
       links: [
@@ -43,7 +43,6 @@ test('audit flags a dangling target and a missing limitation', () => {
           evidences: [
             {
               excerpt: '摘录',
-              limitations: '',
               source_title: '吃出自愈力',
               source_file: 'book.md',
               source_id: 'eat_to_heal',
@@ -55,7 +54,6 @@ test('audit flags a dangling target and a missing limitation', () => {
     sources,
   );
   assert.ok(report.errors.some((issue) => issue.message.includes('不存在')));
-  assert.ok(report.errors.some((issue) => issue.message.includes('limitations')));
 });
 
 test('audit accepts a minimal consistent edge', () => {
@@ -72,7 +70,6 @@ test('audit accepts a minimal consistent edge', () => {
           evidences: [
             {
               excerpt: '摘录',
-              limitations: '书摘',
               source_title: '吃出自愈力',
               source_file: 'book.md',
               source_id: 'eat_to_heal',

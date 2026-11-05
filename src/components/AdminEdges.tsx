@@ -74,12 +74,6 @@ export function AdminEdges({ graph, selected, onOpen, onBack, onOpenGraph }: Adm
               <p>{link.excerpt}</p>
             </div>
           ) : null}
-          {link.limitations ? (
-            <div className="admin-summary">
-              <h2>局限</h2>
-              <p>{link.limitations}</p>
-            </div>
-          ) : null}
           {(link.evidences?.length ?? 0) > 1 ? (
             <div className="admin-summary">
               <h2>其他证据</h2>
