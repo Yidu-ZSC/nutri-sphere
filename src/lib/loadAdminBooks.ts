@@ -1,0 +1,105 @@
+import type { AdminBookRecord, AdminBooksData, AdminBookStatus, AdminRelevance } from '../types/graph.ts';
+
+const RELEVANCE = new Set<AdminRelevance>(['high', 'edge', 'low']);
+const STATUS = new Set<AdminBookStatus>(['ingested', 'index_only']);
+const ID = /^[a-z0-9_]+$/;
+
+export function adminBooksDataUrl(): string {
+  return `${import.meta.env.BASE_URL}data/admin_books.json`;
+}
+
+export async function loadAdminBooks(url: string = adminBooksDataUrl()): Promise<AdminBooksData> {
+  let response: Response;
+  try {
+    response = await fetch(url);
+  } catch {
+    throw new Error('无法连接图书目录文件');
+  }
+  if (!response.ok) {
+    throw new Error(`图书目录请求失败（${response.status}）`);
+  }
+  let payload: unknown;
+  try {
+    payload = await response.json();
+  } catch {
+    throw new Error('图书目录不是合法 JSON');
+  }
+  return assertAdminBooks(payload);
+}
+
+export function assertAdminBooks(payload: unknown): AdminBooksData {
+  if (!payload || typeof payload !== 'object') {
+    throw new Error('图书目录结构无效');
+  }
+  const root = payload as Record<string, unknown>;
+  if (root.schema_version !== '1.0') {
+    throw new Error('图书目录 schema_version 无效');
+  }
+  if (!Array.isArray(root.books)) {
+    throw new Error('图书目录缺少 books');
+  }
+  const books: AdminBookRecord[] = root.books.map((item, index) => {
+    if (!item || typeof item !== 'object') {
+      throw new Error(`books[${index}] 无效`);
+    }
+    const row = item as Record<string, unknown>;
+    if (
+      typeof row.id !== 'string' ||
+      typeof row.title !== 'string' ||
+      typeof row.theme !== 'string' ||
+      typeof row.relevance !== 'string' ||
+      typeof row.note_count !== 'number' ||
+      typeof row.kb_file !== 'string' ||
+      typeof row.status !== 'string'
+    ) {
+      throw new Error(`books[${index}] 字段不完整`);
+    }
+    if (!ID.test(row.id)) {
+      throw new Error(`books[${index}].id 非法`);
+    }
+    if (!RELEVANCE.has(row.relevance as AdminRelevance)) {
+      throw new Error(`books[${index}].relevance 非法`);
+    }
+    if (!STATUS.has(row.status as AdminBookStatus)) {
+      throw new Error(`books[${index}].status 非法`);
+    }
+    if (!Number.isFinite(row.note_count) || row.note_count < 0) {
+      throw new Error(`books[${index}].note_count 非法`);
+    }
+    if ('edge_count' in row) {
+      throw new Error(`books[${index}] 不得含 edge_count`);
+    }
+    const hasSource = typeof row.source_id === 'string' && row.source_id !== '';
+    if (hasSource && row.status !== 'ingested') {
+      throw new Error(`books[${index}] 有 source_id 时 status 须为 ingested`);
+    }
+    if (!hasSource && row.status !== 'index_only') {
+      throw new Error(`books[${index}] 无 source_id 时 status 须为 index_only`);
+    }
+    if (hasSource && !ID.test(row.source_id as string)) {
+      throw new Error(`books[${index}].source_id 非法`);
+    }
+    const record: AdminBookRecord = {
+      id: row.id,
+      title: row.title,
+      theme: row.theme,
+      relevance: row.relevance as AdminRelevance,
+      note_count: row.note_count,
+      kb_file: row.kb_file,
+      status: row.status as AdminBookStatus,
+    };
+    if (hasSource) record.source_id = row.source_id as string;
+    if (typeof row.authors === 'string') record.authors = row.authors;
+    if (typeof row.year === 'number' && Number.isInteger(row.year)) record.year = row.year;
+    return record;
+  });
+  return { schema_version: '1.0', books };
+}
+
+export function adminBookById(
+  data: AdminBooksData | null | undefined,
+  id: string | null | undefined,
+): AdminBookRecord | null {
+  if (!data || !id) return null;
+  return data.books.find((item) => item.id === id) ?? null;
+}

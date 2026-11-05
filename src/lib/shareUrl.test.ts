@@ -336,6 +336,7 @@ function shareState(partial: Partial<import('./shareUrl.ts').ShareState> & { scr
     pattern: null,
     patterns: [],
     source: null,
+    book: null,
     layout: 'hierarchy',
     view: '2d',
     hideUnmatched: false,
@@ -505,4 +506,35 @@ test('source screen round-trips and unknown source falls back to home', () => {
   const bad = parseViewQuery('?screen=source&source=../etc');
   assert.equal(bad.source, null);
   assert.equal(resolveScreen(bad), 'home');
+});
+
+test('admin screen round-trips list and book detail; invalid book id stripped at parse', () => {
+  const list = serializeViewQuery(
+    shareState({
+      screen: 'admin',
+      theme: 'fatty_liver',
+      disease: 'fatty_liver',
+      hideUnmatched: true,
+      node: 'soy',
+      link: 'soy~angiogenesis_defense',
+      view: '3d',
+      layout: 'force',
+    }),
+  );
+  assert.equal(list, '?screen=admin');
+  assert.equal(resolveScreen(parseViewQuery(list)), 'admin');
+  assert.equal(parseViewQuery(list).book, null);
+  assert.equal(parseViewQuery(list).hideUnmatched, false);
+
+  const detail = serializeViewQuery(shareState({ screen: 'admin', book: 'eat_to_heal' }));
+  assert.equal(detail, '?screen=admin&book=eat_to_heal');
+  const parsed = parseViewQuery(detail);
+  assert.equal(parsed.screen, 'admin');
+  assert.equal(parsed.book, 'eat_to_heal');
+  assert.equal(resolveScreen(parsed), 'admin');
+
+  const bad = parseViewQuery('?screen=admin&book=../etc');
+  assert.equal(bad.screen, 'admin');
+  assert.equal(bad.book, null);
+  assert.equal(resolveScreen(bad), 'admin');
 });

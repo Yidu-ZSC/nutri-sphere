@@ -1,0 +1,182 @@
+{
+  "schema_version": "1.0",
+  "books": [
+    {
+      "id": "gut_brain",
+      "title": "菌群大脑",
+      "theme": "肠道菌群",
+      "relevance": "high",
+      "note_count": 73,
+      "kb_file": "肠道菌群_菌群大脑.md",
+      "source_id": "gut_brain",
+      "status": "ingested"
+    },
+    {
+      "id": "know_your_gut",
+      "title": "晓肚知肠",
+      "theme": "肠道菌群",
+      "relevance": "high",
+      "note_count": 26,
+      "kb_file": "肠道菌群_晓肚知肠.md",
+      "source_id": "know_your_gut",
+      "status": "ingested"
+    },
+    {
+      "id": "gut_tune_all_diseases",
+      "title": "调好肠胃百病消",
+      "theme": "肠道菌群",
+      "relevance": "high",
+      "note_count": 1,
+      "kb_file": "肠道菌群_调好肠胃百病消.md",
+      "status": "index_only"
+    },
+    {
+      "id": "eat_to_heal",
+      "title": "吃出自愈力",
+      "theme": "植物性饮食与慢病",
+      "relevance": "high",
+      "note_count": 42,
+      "kb_file": "植物性饮食与慢病_吃出自愈力.md",
+      "source_id": "eat_to_heal",
+      "status": "ingested"
+    },
+    {
+      "id": "how_not_to_die",
+      "title": "救命：逆转和预防致命疾病的科学饮食",
+      "theme": "植物性饮食与慢病",
+      "relevance": "high",
+      "note_count": 22,
+      "kb_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "source_id": "how_not_to_die",
+      "status": "ingested"
+    },
+    {
+      "id": "china_study",
+      "title": "救命饮食：中国健康调查报告",
+      "theme": "植物性饮食与慢病",
+      "relevance": "high",
+      "note_count": 21,
+      "kb_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+      "source_id": "china_study",
+      "status": "ingested"
+    },
+    {
+      "id": "amazing_veggie_soup",
+      "title": "惊人的蔬菜汤",
+      "theme": "植物性饮食与慢病",
+      "relevance": "high",
+      "note_count": 19,
+      "kb_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "source_id": "amazing_veggie_soup",
+      "status": "ingested"
+    },
+    {
+      "id": "quit_sugar",
+      "title": "戒糖",
+      "theme": "糖与代谢",
+      "relevance": "high",
+      "note_count": 3,
+      "kb_file": "糖与代谢_戒糖.md",
+      "status": "index_only"
+    },
+    {
+      "id": "you_are_what_you_eat",
+      "title": "你是你吃出来的",
+      "theme": "营养基础",
+      "relevance": "high",
+      "note_count": 20,
+      "kb_file": "营养基础_你是你吃出来的.md",
+      "status": "index_only"
+    },
+    {
+      "id": "body_story",
+      "title": "人体的故事",
+      "theme": "营养基础",
+      "relevance": "high",
+      "note_count": 1,
+      "kb_file": "营养基础_人体的故事.md",
+      "status": "index_only"
+    },
+    {
+      "id": "self_healing_method",
+      "title": "自愈的方法",
+      "theme": "身心与疾病",
+      "relevance": "edge",
+      "note_count": 20,
+      "kb_file": "身心与疾病_自愈的方法.md",
+      "status": "index_only"
+    },
+    {
+      "id": "body_unlimited",
+      "title": "无限可能的身体",
+      "theme": "身心与疾病",
+      "relevance": "edge",
+      "note_count": 3,
+      "kb_file": "身心与疾病_无限可能的身体.md",
+      "status": "index_only"
+    },
+    {
+      "id": "seasoning_of_love",
+      "title": "爱的作料",
+      "theme": "素食实践",
+      "relevance": "high",
+      "note_count": 3,
+      "kb_file": "素食实践_爱的作料.md",
+      "status": "index_only"
+    },
+    {
+      "id": "vegetarian_home_cooking",
+      "title": "素食家常菜一本就够",
+      "theme": "素食实践",
+      "relevance": "low",
+      "note_count": 3,
+      "kb_file": "素食实践_素食家常菜一本就够.md",
+      "status": "index_only"
+    },
+    {
+      "id": "minimalist_veggie_2",
+      "title": "极简全蔬食.2",
+      "theme": "素食实践",
+      "relevance": "low",
+      "note_count": 1,
+      "kb_file": "素食实践_极简全蔬食.2.md",
+      "status": "index_only"
+    },
+    {
+      "id": "vegetable_cookbook",
+      "title": "素菜宝典",
+      "theme": "素食实践",
+      "relevance": "low",
+      "note_count": 1,
+      "kb_file": "素食实践_素菜宝典.md",
+      "status": "index_only"
+    },
+    {
+      "id": "china_on_the_tip",
+      "title": "舌尖上的中国",
+      "theme": "素食实践",
+      "relevance": "low",
+      "note_count": 1,
+      "kb_file": "素食实践_舌尖上的中国.md",
+      "status": "index_only"
+    },
+    {
+      "id": "power_of_habit",
+      "title": "习惯的力量",
+      "theme": "零散",
+      "relevance": "edge",
+      "note_count": 1,
+      "kb_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+      "status": "index_only"
+    },
+    {
+      "id": "flow",
+      "title": "心流",
+      "theme": "零散",
+      "relevance": "edge",
+      "note_count": 1,
+      "kb_file": "零散_心流_2796-2924.md",
+      "status": "index_only"
+    }
+  ]
+}
