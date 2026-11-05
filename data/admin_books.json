@@ -76,11 +76,12 @@
       "theme": "植物性饮食与慢病",
       "relevance": "high",
       "kb_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
-      "status": "index_only",
+      "status": "ingested",
       "publisher": "天津科学技术出版社",
       "isbn": "9787557699529",
       "cover_url": "https://cdn.weread.qq.com/weread/cover/76/cpplatform_ddhulkphorhyd81w9uwflx/t6_cpplatform_ddhulkphorhyd81w9uwflx1705912171.jpg",
-      "translator": "陈昕璐"
+      "translator": "陈昕璐",
+      "source_id": "amazing_veggie_soup"
     },
     {
       "id": "quit_sugar",

@@ -84,7 +84,7 @@ export function filterAndSortAdminBooks(
 }
 
 /** Markdown bodies present under data/kb/. The browser cannot list that directory. */
-const SYNCED_KB_FILES = new Set(['肠道菌群_菌群大脑.md', '植物性饮食与慢病_吃出自愈力.md']);
+const SYNCED_KB_FILES = new Set(['肠道菌群_菌群大脑.md', '植物性饮食与慢病_吃出自愈力.md', '植物性饮食与慢病_惊人的蔬菜汤.md']);
 
 export function kbBodySynced(kbFile: string): boolean {
   return SYNCED_KB_FILES.has(kbFile);
