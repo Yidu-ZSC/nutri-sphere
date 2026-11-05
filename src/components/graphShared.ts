@@ -3,7 +3,7 @@ import { LABEL_HOME_COLUMN, columnIndex, type LayoutMode } from '../lib/layout';
 import type { CanvasStage } from '../lib/canvasStage';
 import type { GraphData, Selection, SimLink, SimNode } from '../types/graph';
 
-export type DrawLink = SimLink & { graphIndex: number };
+export type DrawLink = SimLink & { graphIndex: number; curvature?: number };
 
 export interface SceneCommonProps {
   graph: GraphData;

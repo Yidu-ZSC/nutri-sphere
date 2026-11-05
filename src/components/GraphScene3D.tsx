@@ -409,6 +409,7 @@ export function GraphScene3D(props: GraphScene3DProps) {
         const selected = props.selection?.kind === 'link' && props.selection.index === typed.graphIndex;
         return styledLinkWidth(typed.strength, '3d', selected);
       }}
+      linkCurvature={(link) => (link as DrawLink).curvature ?? 0}
       linkOpacity={LINK_OPACITY_3D}
       linkLabel={(link) => {
         const typed = link as DrawLink;

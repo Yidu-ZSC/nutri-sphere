@@ -141,7 +141,7 @@ export function GraphScene2D(props: SceneCommonProps) {
       nodeCanvasObject={nodeCanvasObject}
       nodePointerAreaPaint={nodePointerAreaPaint}
       nodeColor={() => 'rgba(0,0,0,0)'}
-      linkCurvature={0}
+      linkCurvature={(link) => (link as DrawLink).curvature ?? 0}
       linkHoverPrecision={8}
       linkColor={(link) => {
         const typed = link as DrawLink;
