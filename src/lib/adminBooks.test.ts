@@ -7,6 +7,7 @@ import {
   defaultAdminBookFilters,
   edgeCountForBook,
   filterAndSortAdminBooks,
+  kbBodySynced,
   RELEVANCE_LABEL,
   STATUS_LABEL,
 } from './adminBooks.ts';
@@ -121,4 +122,9 @@ test('runtime edge counts for ingested books match citingLinks', () => {
   }
   assert.equal(edgeCountForBook(seed, undefined), 0);
   assert.equal(edgeCountForBook(null, 'eat_to_heal'), 0);
+});
+
+test('kb body sync flag follows files committed under data/kb', () => {
+  assert.equal(kbBodySynced('肠道菌群_菌群大脑.md'), true);
+  assert.equal(kbBodySynced('肠道菌群_晓肚知肠.md'), false);
 });

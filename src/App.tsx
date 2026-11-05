@@ -1129,7 +1129,7 @@ export function App() {
                 graph={graph}
                 onBack={closeAdminBook}
                 onOpenPublicSource={openSourcePage}
-                onOpenLink={openCitedLink}
+                onOpenGraph={openCitedLink}
               />
             ) : null}
             {adminSection === 'books' && !activeAdminBook ? (
