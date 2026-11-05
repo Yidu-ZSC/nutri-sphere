@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react';
-import type { AdminBookRecord, GraphData, SourcesData } from '../types/graph';
+import { useEffect, useMemo, useState } from 'react';
+import type { AdminBookRecord, GraphData, SourcesData, WereadCorpus } from '../types/graph';
 import {
   defaultAdminBookFilters,
   displayAuthors,
@@ -13,6 +13,7 @@ import {
   STATUS_LABEL,
   type AdminBookFilters,
 } from '../lib/adminBooks';
+import { loadAllWereadCorpora } from '../lib/loadWeread';
 
 interface AdminBooksListProps {
   books: readonly AdminBookRecord[];
@@ -23,9 +24,27 @@ interface AdminBooksListProps {
 
 export function AdminBooksList({ books, sources, graph, onOpenBook }: AdminBooksListProps) {
   const [filters, setFilters] = useState<AdminBookFilters>(() => defaultAdminBookFilters());
+  const [wereadById, setWereadById] = useState<Map<string, WereadCorpus>>(() => new Map());
   const themes = useMemo(() => listAdminThemes(books), [books]);
   const rows = useMemo(() => filterAndSortAdminBooks(books, filters), [books, filters]);
   const clearFilters = () => setFilters(defaultAdminBookFilters());
+
+  useEffect(() => {
+    let cancelled = false;
+    loadAllWereadCorpora().then((map) => {
+      if (!cancelled) setWereadById(map);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  function wereadCell(book: AdminBookRecord): string {
+    if (!book.weread_book_id) return '—';
+    const corpus = wereadById.get(book.id);
+    if (!corpus) return '—';
+    return String(corpus.stats.bookmark_count);
+  }
 
   return (
     <section className="admin-books" data-testid="admin-books-list" aria-labelledby="admin-books-heading">
@@ -105,6 +124,7 @@ export function AdminBooksList({ books, sources, graph, onOpenBook }: AdminBooks
                 <th scope="col">相关度</th>
                 <th scope="col">笔记数</th>
                 <th scope="col">已入库边数</th>
+                <th scope="col">微信划线</th>
                 <th scope="col">状态</th>
                 <th scope="col">操作</th>
               </tr>
@@ -127,6 +147,7 @@ export function AdminBooksList({ books, sources, graph, onOpenBook }: AdminBooks
                     <td data-testid={`admin-edge-count-${book.id}`}>
                       {edgeCountForBook(graph, book.source_id)}
                     </td>
+                    <td data-testid={`admin-weread-count-${book.id}`}>{wereadCell(book)}</td>
                     <td>{STATUS_LABEL[book.status]}</td>
                     <td>
                       <button

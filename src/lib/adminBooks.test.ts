@@ -23,7 +23,7 @@ function readJson(rel: string) {
 test('admin_books.json asserts 19 books with six ingested and no edge_count', () => {
   const payload = readJson('data/admin_books.json');
   const data = assertAdminBooks(payload);
-  assert.equal(data.schema_version, '1.0');
+  assert.equal(data.schema_version, '1.1');
   assert.equal(data.books.length, 19);
   const ingested = data.books.filter((book) => book.status === 'ingested');
   assert.equal(ingested.length, 6);
@@ -43,6 +43,22 @@ test('admin_books.json asserts 19 books with six ingested and no edge_count', ()
   assert.equal(
     data.books.some((book) => Object.prototype.hasOwnProperty.call(book, 'edge_count')),
     false,
+  );
+  const a2: Record<string, string> = {
+    eat_to_heal: '39484588',
+    how_not_to_die: '3300017717',
+    gut_brain: '24913511',
+    amazing_veggie_soup: '3300084701',
+    china_study: '3300047535',
+    know_your_gut: '26793466',
+  };
+  for (const [id, bookId] of Object.entries(a2)) {
+    const book = data.books.find((row) => row.id === id);
+    assert.equal(book?.weread_book_id, bookId, id);
+  }
+  assert.equal(
+    data.books.filter((book) => book.weread_book_id).length,
+    6,
   );
 });
 

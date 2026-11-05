@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { ALIGNED_SEED, GRAPH_SCHEMA, validateAdminBooks, validateGraphData, validateGraphFile } from './validate-data.mjs';
+import { ALIGNED_SEED, GRAPH_SCHEMA, validateAdminBooks, validateGraphData, validateGraphFile, validateWereadCorpora } from './validate-data.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -450,4 +450,31 @@ test('admin_books.json passes catalog invariants', () => {
   assert.equal(result.ok, true, result.errors.join('\n'));
   assert.equal(result.counts.books, 19);
   assert.equal(result.counts.ingested, 6);
+});
+
+
+test('weread corpora pass A2 map and shape invariants', () => {
+  const result = validateWereadCorpora();
+  assert.equal(result.ok, true, result.errors.join('\n'));
+  assert.equal(result.counts.files, 6);
+  assert.ok(result.counts.bookmarks >= 100);
+});
+
+test('admin_books six ingested books carry locked weread_book_id', () => {
+  const admin = readJson('data/admin_books.json');
+  assert.equal(admin.schema_version, '1.1');
+  const a2 = {
+    eat_to_heal: '39484588',
+    how_not_to_die: '3300017717',
+    gut_brain: '24913511',
+    amazing_veggie_soup: '3300084701',
+    china_study: '3300047535',
+    know_your_gut: '26793466',
+  };
+  for (const [id, bookId] of Object.entries(a2)) {
+    const row = admin.books.find((b) => b.id === id);
+    assert.ok(row, id);
+    assert.equal(row.weread_book_id, bookId);
+  }
+  assert.equal(admin.books.filter((b) => b.weread_book_id).length, 6);
 });

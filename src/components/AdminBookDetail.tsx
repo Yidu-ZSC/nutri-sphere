@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
-import type { AdminBookRecord, GraphData, SourcesData } from '../types/graph';
+import { useEffect, useMemo, useState } from 'react';
+import type { AdminBookRecord, GraphData, SourcesData, WereadCorpus } from '../types/graph';
 import { directionLabel } from '../lib/copy';
 import {
   displayAuthors,
@@ -12,6 +12,7 @@ import {
   STATUS_LABEL,
 } from '../lib/adminBooks';
 import { citingLinks, sourceTypeLabel } from '../lib/sourceCitations';
+import { formatSyncedAt, loadWereadCorpus, truncateMarkText } from '../lib/loadWeread';
 
 interface AdminBookDetailProps {
   book: AdminBookRecord;
@@ -45,6 +46,45 @@ export function AdminBookDetail({
   const year = displayYear(book, source);
   const kbPath = `data/kb/${book.kb_file}`;
   const kbReady = kbBodySynced(book.kb_file);
+  const wereadPath = `data/weread/${book.id}.json`;
+
+  const [weread, setWeread] = useState<WereadCorpus | null>(null);
+  const [wereadError, setWereadError] = useState<string | null>(null);
+  const [wereadLoading, setWereadLoading] = useState(false);
+
+  useEffect(() => {
+    if (!book.weread_book_id) {
+      setWeread(null);
+      setWereadError(null);
+      setWereadLoading(false);
+      return;
+    }
+    let cancelled = false;
+    setWereadLoading(true);
+    setWereadError(null);
+    loadWereadCorpus(book.id)
+      .then((corpus) => {
+        if (!cancelled) {
+          setWeread(corpus);
+          setWereadLoading(false);
+        }
+      })
+      .catch((err: unknown) => {
+        if (!cancelled) {
+          setWeread(null);
+          setWereadError(err instanceof Error ? err.message : '加载失败');
+          setWereadLoading(false);
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [book.id, book.weread_book_id]);
+
+  const previewMarks = useMemo(() => {
+    if (!weread) return [];
+    return weread.bookmarks.slice(0, 5).map((bm) => truncateMarkText(bm.markText, 120));
+  }, [weread]);
 
   return (
     <section className="admin-book-detail" data-testid="admin-book-detail" aria-labelledby="admin-book-title">
@@ -148,6 +188,66 @@ export function AdminBookDetail({
           <p className="muted" data-testid="admin-kb-missing">
             书摘正文尚未同步进仓库（当前仅有索引）。同步后路径：
             <code>{kbPath}</code>
+          </p>
+        )}
+      </div>
+
+      <div className="admin-detail-card pattern-section" data-testid="admin-book-weread">
+        <h2>微信划线</h2>
+        {!book.weread_book_id ? (
+          <p className="muted" data-testid="admin-weread-not-in-scope">
+            本目录书未接入微信读书（本期仅 6 本已入库）
+          </p>
+        ) : wereadLoading ? (
+          <p className="muted" data-testid="admin-weread-loading">
+            正在加载语料…
+          </p>
+        ) : weread ? (
+          <>
+            <dl className="admin-meta-grid" data-testid="admin-weread-meta">
+              <div>
+                <dt>状态</dt>
+                <dd data-testid="admin-weread-status">已同步</dd>
+              </div>
+              <div>
+                <dt>个人划线</dt>
+                <dd data-testid="admin-weread-bookmark-count">{weread.stats.bookmark_count}</dd>
+              </div>
+              <div>
+                <dt>热门划线</dt>
+                <dd data-testid="admin-weread-best">
+                  总量 {weread.bestbookmarks.totalCount} · 已存 {weread.bestbookmarks.items.length} 条
+                </dd>
+              </div>
+              <div>
+                <dt>最近同步</dt>
+                <dd data-testid="admin-weread-synced-at">{formatSyncedAt(weread.synced_at)}</dd>
+              </div>
+            </dl>
+            <div className="admin-weread-preview" data-testid="admin-weread-preview">
+              <h3>个人划线预览</h3>
+              {previewMarks.length === 0 ? (
+                <p className="muted" data-testid="admin-weread-preview-empty">
+                  暂无个人划线（仍可能有热门划线快照）
+                </p>
+              ) : (
+                <ol className="admin-weread-preview-list">
+                  {previewMarks.map((text, index) => (
+                    <li key={index} data-testid={`admin-weread-preview-${index}`}>
+                      {text}
+                    </li>
+                  ))}
+                </ol>
+              )}
+            </div>
+            <p className="muted admin-weread-path">
+              语料路径：<code data-testid="admin-weread-path">{wereadPath}</code>
+            </p>
+          </>
+        ) : (
+          <p className="muted" data-testid="admin-weread-missing">
+            尚未同步{wereadError ? `（${wereadError}）` : ''}。预期路径：
+            <code>{wereadPath}</code>
           </p>
         )}
       </div>

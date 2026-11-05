@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "books": [
     {
       "id": "gut_brain",
@@ -9,7 +9,12 @@
       "note_count": 73,
       "kb_file": "肠道菌群_菌群大脑.md",
       "source_id": "gut_brain",
-      "status": "ingested"
+      "status": "ingested",
+      "weread_book_id": "24913511",
+      "publisher": "机械工业出版社",
+      "isbn": "9787518055753",
+      "cover_url": "https://cdn.weread.qq.com/weread/cover/36/yuewen_24913511/t6_yuewen_249135111735543207.jpg",
+      "translator": "张雪 魏宁"
     },
     {
       "id": "know_your_gut",
@@ -19,7 +24,11 @@
       "note_count": 26,
       "kb_file": "肠道菌群_晓肚知肠.md",
       "source_id": "know_your_gut",
-      "status": "ingested"
+      "status": "ingested",
+      "weread_book_id": "26793466",
+      "publisher": "清华大学出版社",
+      "isbn": "9787302511601",
+      "cover_url": "https://cdn.weread.qq.com/weread/cover/35/YueWen_26793466/t6_YueWen_26793466.jpg"
     },
     {
       "id": "gut_tune_all_diseases",
@@ -38,7 +47,12 @@
       "note_count": 42,
       "kb_file": "植物性饮食与慢病_吃出自愈力.md",
       "source_id": "eat_to_heal",
-      "status": "ingested"
+      "status": "ingested",
+      "weread_book_id": "39484588",
+      "publisher": "湖南科学技术出版社",
+      "isbn": "9787571000998",
+      "cover_url": "https://cdn.weread.qq.com/weread/cover/87/YueWen_39484588/t6_YueWen_39484588.jpg",
+      "translator": "路旦俊,蔡志强"
     },
     {
       "id": "how_not_to_die",
@@ -48,7 +62,12 @@
       "note_count": 22,
       "kb_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
       "source_id": "how_not_to_die",
-      "status": "ingested"
+      "status": "ingested",
+      "weread_book_id": "3300017717",
+      "publisher": "电子工业出版社",
+      "isbn": "9787121340109",
+      "cover_url": "https://cdn.weread.qq.com/weread/cover/17/3300017717/t6_3300017717.jpg",
+      "translator": "谢宜晖 张家绮"
     },
     {
       "id": "china_study",
@@ -58,7 +77,12 @@
       "note_count": 21,
       "kb_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
       "source_id": "china_study",
-      "status": "ingested"
+      "status": "ingested",
+      "weread_book_id": "3300047535",
+      "publisher": "中信出版集团",
+      "isbn": "9787521749502",
+      "cover_url": "https://cdn.weread.qq.com/weread/cover/87/cpplatform_1zdqgcxy5gqcpkjt4yomdu/t6_cpplatform_1zdqgcxy5gqcpkjt4yomdu1675672855.jpg",
+      "translator": "吕奕欣 倪婉君 张家瑞"
     },
     {
       "id": "amazing_veggie_soup",
@@ -68,7 +92,12 @@
       "note_count": 19,
       "kb_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
       "source_id": "amazing_veggie_soup",
-      "status": "ingested"
+      "status": "ingested",
+      "weread_book_id": "3300084701",
+      "publisher": "天津科学技术出版社",
+      "isbn": "9787557699529",
+      "cover_url": "https://cdn.weread.qq.com/weread/cover/76/cpplatform_ddhulkphorhyd81w9uwflx/t6_cpplatform_ddhulkphorhyd81w9uwflx1705912171.jpg",
+      "translator": "陈昕璐"
     },
     {
       "id": "quit_sugar",
