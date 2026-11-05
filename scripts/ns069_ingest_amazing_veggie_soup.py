@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""TASK-NS-069: ingest amazing_veggie_soup EPUB candidates into aligned seed."""
+"""TASK-NS-069: ingest amazing_veggie_soup EPUB candidates into aligned seed.
+
+See scripts/ingest_collapse_same_endpoints.py (NS-072): same endpoints → append, no parallel edge.
+"""
 from __future__ import annotations
 
 import json

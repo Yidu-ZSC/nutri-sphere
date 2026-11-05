@@ -105,19 +105,17 @@ test('admin filters theme / relevance / status', () => {
   assert.equal(STATUS_LABEL.index_only, '仅索引');
 });
 
-test('runtime edge counts: gut_brain + eat_to_heal + amazing_veggie_soup + how_not_to_die after NS-071', () => {
+test('runtime edge counts: gut_brain + eat_to_heal + amazing_veggie_soup + how_not_to_die after NS-072', () => {
   const seed = readJson('data/seed_triples_v0.3_aligned.json') as GraphData;
   assert.equal(citingLinks(seed, 'gut_brain').length, 55);
   assert.equal(edgeCountForBook(seed, 'gut_brain'), 55);
-  // 97 new top-level + 8 unique baseline hosts receiving the 14 append evidences
-  assert.equal(citingLinks(seed, 'eat_to_heal').length, 105);
-  assert.equal(edgeCountForBook(seed, 'eat_to_heal'), 105);
-  // 77 new top-level + 4 append hosts
-  assert.equal(citingLinks(seed, 'amazing_veggie_soup').length, 81);
-  assert.equal(edgeCountForBook(seed, 'amazing_veggie_soup'), 81);
-  // 167 new top-level + 13 unique baseline hosts receiving the 28 append evidences
-  assert.equal(citingLinks(seed, 'how_not_to_die').length, 180);
-  assert.equal(edgeCountForBook(seed, 'how_not_to_die'), 180);
+  // NS-072 collapse: citingLinks counts unique edges (top-level or evidence cite)
+  assert.equal(citingLinks(seed, 'eat_to_heal').length, 87);
+  assert.equal(edgeCountForBook(seed, 'eat_to_heal'), 87);
+  assert.equal(citingLinks(seed, 'amazing_veggie_soup').length, 70);
+  assert.equal(edgeCountForBook(seed, 'amazing_veggie_soup'), 70);
+  assert.equal(citingLinks(seed, 'how_not_to_die').length, 131);
+  assert.equal(edgeCountForBook(seed, 'how_not_to_die'), 131);
   for (const id of THIN) {
     assert.equal(citingLinks(seed, id).length, 0, id);
     assert.equal(edgeCountForBook(seed, id), 0, id);
