@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""TASK-NS-071: ingest how_not_to_die EPUB candidates into aligned seed."""
+"""TASK-NS-071: ingest how_not_to_die EPUB candidates into aligned seed.
+
+NOTE (NS-072): future ingest MUST follow scripts/ingest_collapse_same_endpoints.py —
+same (source, target) → append evidences; never open a parallel top-level edge.
+This historical script only appended against *baseline* endpoints; batch-internal
+parallels from NS-071 were later collapsed by NS-072.
+"""
 from __future__ import annotations
 
 import json

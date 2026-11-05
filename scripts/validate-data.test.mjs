@@ -47,18 +47,18 @@ test('aligned seed passes schema and referential checks', () => {
   const result = validateGraphFile();
   assert.equal(result.ok, true, result.errors.join('\n'));
   assert.equal(result.counts.nodes, 139);
-  assert.equal(result.counts.links, 404);
+  assert.equal(result.counts.links, 325);
 });
 
 const TECHNICAL_NODES = ['igf1_signaling', 'lps'];
 
-test('data 2.0 uses schema 0.7; NS-071 how_not_to_die ingest; keeps prior book+lit counts', () => {
+test('data 2.1 uses schema 0.7; NS-072 collapses same-endpoint parallels; keeps books+lit', () => {
   const data = readJson(ALIGNED_SEED);
   assert.equal(data.meta.schema_version, '0.7');
-  assert.equal(data.meta.data_version, '2.0');
+  assert.equal(data.meta.data_version, '2.1');
   assert.equal(data.meta.disclaimer, 'Educational / research use only. Not medical advice.');
   assert.equal(data.nodes.length, 139);
-  assert.equal(data.links.length, 404);
+  assert.equal(data.links.length, 325);
   for (const node of data.nodes) {
     assert.equal(node.domain, 'health', node.id);
   }
@@ -77,27 +77,60 @@ test('data 2.0 uses schema 0.7; NS-071 how_not_to_die ingest; keeps prior book+l
   for (const link of data.links) {
     assert.equal(bookRel.test(link.relation || ''), false, link.id ?? `${link.source}->${link.target}`);
   }
+  assert.ok(data.meta.note.includes('NS-072'));
   assert.ok(data.meta.note.includes('NS-071'));
   assert.ok(data.nodes.length >= 130 && data.nodes.length <= 150);
-  assert.ok(data.links.length >= 380 && data.links.length <= 430);
+  assert.ok(data.links.length >= 300 && data.links.length <= 350);
 
   const thinLeft = data.links.filter((link) => THIN_SOURCE_IDS.has(link.source_id));
   assert.equal(thinLeft.length, 0);
   const eatToHeal = data.links.filter((link) => link.source_id === 'eat_to_heal');
-  assert.equal(eatToHeal.length, 97);
+  assert.equal(eatToHeal.length, 79);
   const avs = data.links.filter((link) => link.source_id === 'amazing_veggie_soup');
-  assert.equal(avs.length, 77);
+  assert.equal(avs.length, 66);
   const hntd = data.links.filter((link) => link.source_id === 'how_not_to_die');
-  assert.equal(hntd.length, 167);
+  assert.equal(hntd.length, 118);
   const gutBrain = data.links.filter((link) => link.source_id === 'gut_brain');
   assert.ok(gutBrain.length >= 53, String(gutBrain.length));
   assert.equal(gutBrain.length, 55);
   const lit = data.links.filter((link) => !link.source_id);
   assert.ok(lit.length >= 4, String(lit.length));
-  assert.equal(lit.length, 8);
-  for (const id of [...PROMOTE_GUT_BRAIN_IDS, ...PROMOTE_LIT_IDS]) {
+  assert.equal(lit.length, 7);
+  for (const id of PROMOTE_GUT_BRAIN_IDS) {
     assert.ok(data.links.some((link) => link.id === id), id);
   }
+  // NS-072: lit_prebiotic_sanders_2019 collapses into lit_fiber_gi_gill_2021 (same endpoints);
+  // other promote lit ids remain top-level hosts.
+  for (const id of PROMOTE_LIT_IDS) {
+    if (id === 'lit_prebiotic_sanders_2019') {
+      assert.ok(
+        data.links.some(
+          (link) =>
+            link.id === id ||
+            (link.evidences || []).some(
+              (ev) => ev.note_id === '31296969' || ev.citation?.doi === '10.1038/s41575-019-0173-3',
+            ),
+        ),
+        id,
+      );
+      continue;
+    }
+    assert.ok(data.links.some((link) => link.id === id), id);
+  }
+  // NS-072: no parallel same-endpoint edges
+  const pairCount = new Map();
+  for (const link of data.links) {
+    const key = `${link.source}\0${link.target}`;
+    pairCount.set(key, (pairCount.get(key) ?? 0) + 1);
+  }
+  for (const [key, n] of pairCount) {
+    assert.equal(n, 1, key);
+  }
+  const chd = data.links.filter(
+    (link) => link.source === 'plant_based_diet' && link.target === 'coronary_heart_disease',
+  );
+  assert.equal(chd.length, 1);
+  assert.ok(chd[0].evidences.length >= 6, String(chd[0].evidences.length));
   const blob = JSON.stringify(data.links);
   for (const doi of PROMOTE_DOIS) {
     assert.ok(blob.includes(doi), doi);
@@ -234,7 +267,7 @@ test('citation edges stay in range and are not book notes', () => {
     (link.evidences ?? []).filter((ev) => ev.citation),
   );
   assert.ok(citedEvidences.length >= 5 && citedEvidences.length <= 20, String(citedEvidences.length));
-  assert.equal(data.links.length, 404);
+  assert.equal(data.links.length, 325);
   assert.ok(cited.length >= 4 && cited.length <= citedEvidences.length, String(cited.length));
   // Top-level literature types (post-merge) plus nested observational evidences
   const observationalPmids = new Set(

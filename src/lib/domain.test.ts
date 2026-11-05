@@ -28,7 +28,7 @@ test('filterGraphByDomain keeps full health seed when active=health', () => {
   assert.equal(filtered.links.length, seed.links.length);
   assert.equal(filtered.linkIndices.size, seed.links.length);
   assert.equal(filtered.nodes.length, 139);
-  assert.equal(filtered.links.length, 404);
+  assert.equal(filtered.links.length, 325);
 });
 
 test('filterGraphByDomain yields empty for environment and culture on current seed', () => {

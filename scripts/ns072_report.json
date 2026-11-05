@@ -1,0 +1,776 @@
+{
+  "task": "TASK-NS-072",
+  "elon_task": "TASK-20261105-01",
+  "from_data_version": "2.0",
+  "to_data_version": "2.1",
+  "schema_version": "0.7",
+  "before": {
+    "nodes": 139,
+    "links": 404,
+    "parallel_pairs": 54,
+    "extra_parallel": 79
+  },
+  "after": {
+    "nodes": 139,
+    "links": 325,
+    "parallel_pairs": 0,
+    "extra_parallel": 0
+  },
+  "top_source_id": {
+    "(lit)": 7,
+    "gut_brain": 55,
+    "eat_to_heal": 79,
+    "amazing_veggie_soup": 66,
+    "how_not_to_die": 118
+  },
+  "citing": {
+    "gut_brain": 55,
+    "eat_to_heal": 87,
+    "amazing_veggie_soup": 70,
+    "how_not_to_die": 131
+  },
+  "collapsed_groups": [
+    {
+      "host_id": "lit_fiber_gi_gill_2021",
+      "endpoints": [
+        "dietary_fiber",
+        "gut_microbiome"
+      ],
+      "before": 2,
+      "evidences_after": 4,
+      "swallowed_ids": [
+        "lit_prebiotic_sanders_2019"
+      ],
+      "host_source_id": "(lit)"
+    },
+    {
+      "host_id": "eat_to_heal_00_angio_teaser",
+      "endpoints": [
+        "soy",
+        "angiogenesis_defense"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "eat_to_heal_06_soy_genistein"
+      ],
+      "host_source_id": "eat_to_heal"
+    },
+    {
+      "host_id": "eat_to_heal_00_regen_teaser",
+      "endpoints": [
+        "cacao",
+        "regeneration_defense"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "eat_to_heal_07_cocoa_epc"
+      ],
+      "host_source_id": "eat_to_heal"
+    },
+    {
+      "host_id": "eat_to_heal_10_blueberry",
+      "endpoints": [
+        "berries_fruits",
+        "immune_balance"
+      ],
+      "before": 2,
+      "evidences_after": 3,
+      "swallowed_ids": [
+        "eat_to_heal_00_immune_teaser"
+      ],
+      "host_source_id": "eat_to_heal"
+    },
+    {
+      "host_id": "eat_to_heal_01_angio_def",
+      "endpoints": [
+        "angiogenesis_defense",
+        "microscopic_tumors"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "eat_to_heal_01_starve_micro"
+      ],
+      "host_source_id": "eat_to_heal"
+    },
+    {
+      "host_id": "eat_to_heal_01_balance",
+      "endpoints": [
+        "angiogenesis_defense",
+        "metabolic_health"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "eat_to_heal_06_balance_food"
+      ],
+      "host_source_id": "eat_to_heal"
+    },
+    {
+      "host_id": "eat_to_heal_01_collateral",
+      "endpoints": [
+        "angiogenesis_defense",
+        "cardiometabolic"
+      ],
+      "before": 4,
+      "evidences_after": 4,
+      "swallowed_ids": [
+        "eat_to_heal_01_endothelium",
+        "eat_to_heal_01_neuropathy",
+        "eat_to_heal_06_plaque_vessels"
+      ],
+      "host_source_id": "eat_to_heal"
+    },
+    {
+      "host_id": "eat_to_heal_01_tumor_hijack",
+      "endpoints": [
+        "angiogenesis_defense",
+        "digestive_cancer_risk"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "eat_to_heal_06_angioprevention"
+      ],
+      "host_source_id": "eat_to_heal"
+    },
+    {
+      "host_id": "eat_to_heal_06_soy_breast_surv",
+      "endpoints": [
+        "soy",
+        "breast_prostate_risk"
+      ],
+      "before": 2,
+      "evidences_after": 4,
+      "swallowed_ids": [
+        "eat_to_heal_01_asia_med"
+      ],
+      "host_source_id": "eat_to_heal"
+    },
+    {
+      "host_id": "eat_to_heal_02_link_angio",
+      "endpoints": [
+        "regeneration_defense",
+        "angiogenesis_defense"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "eat_to_heal_02_mobilization"
+      ],
+      "host_source_id": "eat_to_heal"
+    },
+    {
+      "host_id": "eat_to_heal_02_diabetes",
+      "endpoints": [
+        "regeneration_defense",
+        "cardiometabolic"
+      ],
+      "before": 5,
+      "evidences_after": 5,
+      "swallowed_ids": [
+        "eat_to_heal_02_epc_nejm",
+        "eat_to_heal_02_epc_repair",
+        "eat_to_heal_02_scf_malmo",
+        "eat_to_heal_02_smoke"
+      ],
+      "host_source_id": "eat_to_heal"
+    },
+    {
+      "host_id": "eat_to_heal_02_alcohol",
+      "endpoints": [
+        "regeneration_defense",
+        "cognitive_clarity"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "eat_to_heal_02_brain"
+      ],
+      "host_source_id": "eat_to_heal"
+    },
+    {
+      "host_id": "eat_to_heal_05_cancer_immune",
+      "endpoints": [
+        "immune_balance",
+        "digestive_cancer_risk"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "eat_to_heal_10_immune_down"
+      ],
+      "host_source_id": "eat_to_heal"
+    },
+    {
+      "host_id": "eat_to_heal_10_green_tea_auto",
+      "endpoints": [
+        "green_tea",
+        "autoimmune"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "eat_to_heal_10_green_tea_lupus"
+      ],
+      "host_source_id": "eat_to_heal"
+    },
+    {
+      "host_id": "avs_ch3_ros_cause",
+      "endpoints": [
+        "reactive_oxygen",
+        "digestive_cancer_risk"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "avs_pref_ros_cancer"
+      ],
+      "host_source_id": "amazing_veggie_soup"
+    },
+    {
+      "host_id": "avs_ch7_flu_ros",
+      "endpoints": [
+        "reactive_oxygen",
+        "immune_activation"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "avs_pref_ros_infection"
+      ],
+      "host_source_id": "amazing_veggie_soup"
+    },
+    {
+      "host_id": "avs_ch3_cellwall",
+      "endpoints": [
+        "vegetable_soup",
+        "phytochemicals"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "avs_pref_heat_absorb"
+      ],
+      "host_source_id": "amazing_veggie_soup"
+    },
+    {
+      "host_id": "avs_ch6_soluble_immune",
+      "endpoints": [
+        "dietary_fiber",
+        "immune_balance"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "avs_pref_poly_immune"
+      ],
+      "host_source_id": "amazing_veggie_soup"
+    },
+    {
+      "host_id": "avs_ch4_soup_absorb",
+      "endpoints": [
+        "vegetable_soup",
+        "energy_vitality"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "avs_pref_soup_vitality"
+      ],
+      "host_source_id": "amazing_veggie_soup"
+    },
+    {
+      "host_id": "avs_ch3_soup_vs_raw",
+      "endpoints": [
+        "vegetable_soup",
+        "antioxidant_defense"
+      ],
+      "before": 3,
+      "evidences_after": 3,
+      "swallowed_ids": [
+        "avs_epi_soup_ros",
+        "avs_rec_multi"
+      ],
+      "host_source_id": "amazing_veggie_soup"
+    },
+    {
+      "host_id": "avs_ch7_soup_inflam",
+      "endpoints": [
+        "vegetable_soup",
+        "chronic_inflammation"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "avs_rec_inflam"
+      ],
+      "host_source_id": "amazing_veggie_soup"
+    },
+    {
+      "host_id": "avs_ch1_peels",
+      "endpoints": [
+        "vegetables_greens",
+        "antioxidant_defense"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "avs_ch1_variety"
+      ],
+      "host_source_id": "amazing_veggie_soup"
+    },
+    {
+      "host_id": "avs_ch3_fiber_probiotics",
+      "endpoints": [
+        "dietary_fiber",
+        "probiotics"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "avs_ch5_poly_probio"
+      ],
+      "host_source_id": "amazing_veggie_soup"
+    },
+    {
+      "host_id": "avs_ch6_nitrate_no",
+      "endpoints": [
+        "dietary_nitrates",
+        "nitric_oxide"
+      ],
+      "before": 2,
+      "evidences_after": 3,
+      "swallowed_ids": [
+        "avs_ch5_alz_nitrate"
+      ],
+      "host_source_id": "amazing_veggie_soup"
+    },
+    {
+      "host_id": "hntd_pref_gene_vs_diet",
+      "endpoints": [
+        "plant_based_diet",
+        "epigenetic_regulation"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_pref_ornish_gene_expr"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch07_dash",
+      "endpoints": [
+        "plant_based_diet",
+        "hypertension"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_pref_kaiser"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch01_athero_plaque",
+      "endpoints": [
+        "animal_foods",
+        "atherosclerosis"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch01_fatty_streak_kids"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch01_angina_relief",
+      "endpoints": [
+        "plant_based_diet",
+        "coronary_heart_disease"
+      ],
+      "before": 6,
+      "evidences_after": 6,
+      "swallowed_ids": [
+        "hntd_ch01_china_study_chd",
+        "hntd_ch01_migration_cholesterol",
+        "hntd_ch01_reversal_pioneers",
+        "hntd_ch01_uganda_autopsy",
+        "hntd_ch01_wfpb_or_statin"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch01_brazil_nuts",
+      "endpoints": [
+        "nuts_seeds",
+        "cardiometabolic"
+      ],
+      "before": 4,
+      "evidences_after": 4,
+      "swallowed_ids": [
+        "hntd_ch25_nuts_stroke",
+        "hntd_ch25_peanut_chd",
+        "hntd_ch25_predimed"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch02_curcumin_blocker",
+      "endpoints": [
+        "turmeric",
+        "dna_damage"
+      ],
+      "before": 4,
+      "evidences_after": 4,
+      "swallowed_ids": [
+        "hntd_ch02_curcumin_urine",
+        "hntd_ch15_turmeric_garlic",
+        "hntd_ch26_curcumin_dna"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch02_curcumin_apoptosis",
+      "endpoints": [
+        "turmeric",
+        "digestive_cancer_risk"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch04_turmeric_pancreas"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch02_asthma_increase_fv",
+      "endpoints": [
+        "berries_fruits",
+        "lung_disease"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch02_copd_fruit"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch02_asthma_veg",
+      "endpoints": [
+        "vegetables_greens",
+        "lung_disease"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch02_copd_trial"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch03_fiber_7g",
+      "endpoints": [
+        "dietary_fiber",
+        "stroke"
+      ],
+      "before": 3,
+      "evidences_after": 3,
+      "swallowed_ids": [
+        "hntd_ch03_fiber_mechanism",
+        "hntd_ch03_stroke_fiber"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch04_berries_polyps",
+      "endpoints": [
+        "berries_fruits",
+        "digestive_cancer_risk"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch04_strawberry_esophagus"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch05_egg_salmonella",
+      "endpoints": [
+        "animal_foods",
+        "infectious_disease"
+      ],
+      "before": 6,
+      "evidences_after": 6,
+      "swallowed_ids": [
+        "hntd_ch05_meat_fecal",
+        "hntd_ch05_pork_yersinia",
+        "hntd_ch05_poultry_salmonella",
+        "hntd_ch05_superbugs",
+        "hntd_ch08_hepe_pork"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch06_diet_prevalence",
+      "endpoints": [
+        "plant_based_diet",
+        "type2_diabetes"
+      ],
+      "before": 3,
+      "evidences_after": 3,
+      "swallowed_ids": [
+        "hntd_ch06_neuropathy",
+        "hntd_ch06_reverse_dm"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch07_flax_bp",
+      "endpoints": [
+        "flax_chia",
+        "hypertension"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch24_flax_refs"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch08_nafld",
+      "endpoints": [
+        "ultra_processed",
+        "fatty_liver"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch08_weightloss_liver"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch10_diet_kidney",
+      "endpoints": [
+        "animal_foods",
+        "kidney_disease"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch10_kidney_stones"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch10_kidney_cancer",
+      "endpoints": [
+        "plant_based_diet",
+        "kidney_disease"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch10_protein_type"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch11_aicr_three",
+      "endpoints": [
+        "plant_based_diet",
+        "breast_prostate_risk"
+      ],
+      "before": 6,
+      "evidences_after": 6,
+      "swallowed_ids": [
+        "hntd_ch11_blood_vs_cancer",
+        "hntd_ch11_breast_intro",
+        "hntd_ch11_occult_tumors",
+        "hntd_ch13_ornish_psa",
+        "hntd_ch13_wfpb_blood"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch12_veg_mood",
+      "endpoints": [
+        "plant_based_diet",
+        "mental_health"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch12_workplace_wfpb"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch12_folate_leafy",
+      "endpoints": [
+        "vegetables_greens",
+        "mental_health"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch12_veg_depression_risk"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch13_dairy_hormones",
+      "endpoints": [
+        "dairy",
+        "breast_prostate_risk"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch13_milk_meta"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch13_dairy_igf",
+      "endpoints": [
+        "dairy",
+        "igf1_signaling"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch28_milk_igf"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch13_choline_fatal",
+      "endpoints": [
+        "animal_foods",
+        "breast_prostate_risk"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch13_egg_choline"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch13_flax_lignans",
+      "endpoints": [
+        "flax_chia",
+        "breast_prostate_risk"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch13_flax_psa"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch13_cruciferous",
+      "endpoints": [
+        "cruciferous",
+        "breast_prostate_risk"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch21_sulforaphane"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch14_berries",
+      "endpoints": [
+        "environmental_pollutants",
+        "parkinson_disease"
+      ],
+      "before": 3,
+      "evidences_after": 3,
+      "swallowed_ids": [
+        "hntd_ch14_definition",
+        "hntd_ch14_pesticide_brain"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch14_dioxin_animal",
+      "endpoints": [
+        "animal_foods",
+        "environmental_pollutants"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch14_food_sources"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch15_hiroshima_fv",
+      "endpoints": [
+        "vegetables_greens",
+        "digestive_cancer_risk"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch23_veg_diversity"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch19_berries_cvd",
+      "endpoints": [
+        "berries_fruits",
+        "cardiometabolic"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch20_apple_ldl"
+      ],
+      "host_source_id": "how_not_to_die"
+    },
+    {
+      "host_id": "hntd_ch27_wg_diabetes",
+      "endpoints": [
+        "whole_grains",
+        "metabolic_health"
+      ],
+      "before": 2,
+      "evidences_after": 2,
+      "swallowed_ids": [
+        "hntd_ch27_whole_grains"
+      ],
+      "host_source_id": "how_not_to_die"
+    }
+  ],
+  "spot_plant_based_diet_chd": {
+    "id": "hntd_ch01_angina_relief",
+    "source_id": "how_not_to_die",
+    "evidences": 6,
+    "relation": "以蔬食为主的饮食结构与心绞痛发作减少相关的观察",
+    "note_ids": [
+      "hntd_ch01_angina_relief",
+      "hntd_ch01_china_study_chd",
+      "hntd_ch01_migration_cholesterol",
+      "hntd_ch01_reversal_pioneers",
+      "hntd_ch01_uganda_autopsy",
+      "hntd_ch01_wfpb_or_statin"
+    ]
+  },
+  "ingest_convention": "批内同端点与对基线已有端点：第二条起 append evidences，禁止平行双开；host 优先 lit → evidences 最多 → id 字典序最小；relation 单句公共观察；顶层与 evidences[0] 镜像；无 limitations；不动 DISCLAIMER。"
+}
