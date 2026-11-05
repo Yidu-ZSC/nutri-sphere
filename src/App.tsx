@@ -17,6 +17,8 @@ import { AdminValidate } from './components/AdminValidate';
 import { AdminSettings } from './components/AdminSettings';
 import { VeganDietDetail } from './components/VeganDietDetail';
 import { SearchBar } from './components/SearchBar';
+import { DomainEmptyState } from './components/DomainEmptyState';
+import { DomainOptions, DomainSwitcher } from './components/DomainSwitcher';
 import { ThemeBar } from './components/ThemeBar';
 import { ThemeLobby } from './components/ThemeLobby';
 import { ThemeOptions, ThemeSwitcher } from './components/ThemeSwitcher';
@@ -39,6 +41,7 @@ import {
   renderVisibleGraph,
 } from './lib/layerFilter';
 import type { LayoutMode } from './lib/layout';
+import { filterGraphByDomain } from './lib/domain';
 import { loadGraph } from './lib/loadGraph';
 import { loadSources, sourceById } from './lib/loadSources';
 import { loadAdminBooks, adminBookById } from './lib/loadAdminBooks';
@@ -58,7 +61,7 @@ import {
 import { EXPLORE_THEMES, filtersFromShare, themeById, themeForFilters, type ExploreTheme } from './lib/themes';
 import { selectionPinIds } from './lib/visibility';
 import { applyTheme, readTheme, writeTheme, type AppTheme } from './lib/themePreference';
-import type { AdminBooksData, GraphData, Selection, SourcesData } from './types/graph';
+import type { AdminBooksData, Domain, GraphData, Selection, SourcesData } from './types/graph';
 
 interface ExploreSnapshot {
   diseaseId: string | null;
@@ -154,6 +157,7 @@ export function App() {
   const [autoRotate, setAutoRotate] = useState(false);
   const [shellMenuOpen, setShellMenuOpen] = useState(false);
   const [appTheme, setAppTheme] = useState<AppTheme>(() => readTheme());
+  const [activeDomain, setActiveDomain] = useState<Domain>(() => initialQuery.current.domain);
   const [sideOpen, setSideOpen] = useState(false);
   const shellMenuRef = useRef<HTMLDivElement>(null);
 
@@ -283,18 +287,25 @@ export function App() {
     }
   }, [mobile]);
 
+  const domainView = useMemo(
+    () => (graph ? filterGraphByDomain(graph, activeDomain) : null),
+    [activeDomain, graph],
+  );
+  const domainEmpty = domainView != null && domainView.nodes.length === 0;
+  const exploreNodes = domainView?.nodes ?? [];
+
   const diseases = useMemo(
-    () => (graph ? graph.nodes.filter((node) => node.type === 'disease') : []),
-    [graph],
+    () => exploreNodes.filter((node) => node.type === 'disease'),
+    [exploreNodes],
   );
   const mechanisms = useMemo(
-    () => (graph ? graph.nodes.filter((node) => node.type === 'mechanism') : []),
-    [graph],
+    () => exploreNodes.filter((node) => node.type === 'mechanism'),
+    [exploreNodes],
   );
 
   const safeDisease = diseases.some((node) => node.id === diseaseId) ? diseaseId : null;
   const safeMechanism = mechanisms.some((node) => node.id === mechanismId) ? mechanismId : null;
-  const safeFood = graph?.nodes.some((node) => node.id === foodId) ? foodId : null;
+  const safeFood = exploreNodes.some((node) => node.id === foodId) ? foodId : null;
 
   useEffect(() => {
     if (screen !== 'pattern') return;
@@ -356,6 +367,7 @@ export function App() {
     const link = exploring && selection?.kind === 'link' ? graph.links[selection.index] : undefined;
     const next = serializeViewQuery({
       screen,
+      domain: activeDomain,
       theme: exploring
         ? (themeForFilters(safeDisease, safeMechanism, safeFood)?.id ?? null)
         : screen === 'home' && patterns.length > 0
@@ -395,6 +407,7 @@ export function App() {
     safeDisease,
     safeFood,
     safeMechanism,
+    activeDomain,
     adminEdge,
     adminNodeId,
     adminSection,
@@ -405,14 +418,14 @@ export function App() {
   ]);
 
   const focusIds = useMemo(
-    () => (graph ? focusedNodeIds(graph.links, safeDisease, safeMechanism, safeFood) : null),
-    [graph, safeDisease, safeFood, safeMechanism],
+    () => (domainView ? focusedNodeIds(domainView.links, safeDisease, safeMechanism, safeFood) : null),
+    [domainView, safeDisease, safeFood, safeMechanism],
   );
 
   /** Bright/dim only — click-focus dims outsiders; does not hard-hide nodes. */
   const brightFocusIds = useMemo(
-    () => (graph ? effectiveFocusIds(focusIds, clickFocusId, graph.links) : null),
-    [clickFocusId, focusIds, graph],
+    () => (domainView ? effectiveFocusIds(focusIds, clickFocusId, domainView.links) : null),
+    [clickFocusId, domainView, focusIds],
   );
 
   const clickFocusLabel = useMemo(() => {
@@ -421,21 +434,22 @@ export function App() {
   }, [clickFocusId, graph]);
 
   const rendered = useMemo(() => {
-    if (!graph) return null;
+    if (!graph || !domainView) return null;
     const pinned = selectionPinIds(selection, graph.links, hideUnmatched, focusIds);
     const view = renderVisibleGraph({
-      nodes: graph.nodes,
+      nodes: domainView.nodes,
       links: graph.links,
       focusIds,
       hideUnmatched,
       pinnedIds: pinned,
     });
+    const links = view.links.filter((link) => domainView.linkIndices.has(link.graphIndex));
     return {
       nodeIds: view.nodeIds,
-      links: view.links,
-      linkIndices: new Set(view.links.map((link) => link.graphIndex)),
+      links,
+      linkIndices: new Set(links.map((link) => link.graphIndex)),
     };
-  }, [focusIds, graph, hideUnmatched, selection]);
+  }, [domainView, focusIds, graph, hideUnmatched, selection]);
 
   useEffect(() => {
     if (!graph || !rendered || !selection) return;
@@ -485,6 +499,27 @@ export function App() {
     setMechanismId(null);
     setFoodId(null);
   };
+
+  const onDomainChange = useCallback((next: Domain) => {
+    setActiveDomain((prev) => {
+      if (prev === next) return prev;
+      setDiseaseId(null);
+      setMechanismId(null);
+      setFoodId(null);
+      setSelection(null);
+      setClickFocusId(null);
+      setHideUnmatched(false);
+      setQuery('');
+      setSideOpen(false);
+      setThemeHintDismissed(false);
+      setShellMenuOpen(false);
+      return next;
+    });
+  }, []);
+
+  const returnToHealthDomain = useCallback(() => {
+    onDomainChange('health');
+  }, [onDomainChange]);
 
   const selectDisease = (id: string | null) => {
     setDiseaseId(id);
@@ -832,7 +867,7 @@ export function App() {
     done();
   };
 
-  const filterEmpty = graph != null && isFocusEmpty(focusIds, graph.nodes.map((node) => node.id));
+  const filterEmpty = domainView != null && isFocusEmpty(focusIds, exploreNodes.map((node) => node.id));
   const showThemeEmpty = !safeDisease && !safeMechanism && !safeFood;
   const themeHintShown = themeHintVisible({
     noTheme: showThemeEmpty,
@@ -918,6 +953,9 @@ export function App() {
               图谱探索
             </button>
           </nav>
+        )}
+        {!mobile && screen !== 'admin' && (
+          <DomainSwitcher domain={activeDomain} onChange={onDomainChange} />
         )}
         {exploring && graph && (
           <div className="header-tools">
@@ -1008,6 +1046,15 @@ export function App() {
                         图谱探索
                       </button>
                     </nav>
+                    {screen !== 'admin' && (
+                      <DomainOptions
+                        domain={activeDomain}
+                        onChange={(next) => {
+                          onDomainChange(next);
+                          closeShellMenu();
+                        }}
+                      />
+                    )}
                     {exploring && (
                       <>
                         <p className="shell-menu-kicker">探索</p>
@@ -1030,11 +1077,13 @@ export function App() {
 
       <div
         className={
-          exploring && graph && rendered
+          exploring && graph && rendered && !domainEmpty
             ? selection
               ? 'stage stage--explore stage--detail'
               : 'stage stage--explore'
-            : 'stage'
+            : exploring && domainEmpty
+              ? 'stage stage--domain-empty'
+              : 'stage'
         }
       >
         {exploring && load.status === 'loading' && (
@@ -1059,6 +1108,8 @@ export function App() {
             highlightedPatterns={patterns}
             patternSourceTheme={patternSourceTheme}
             onReturnToGraph={returnToGraph}
+            activeDomain={activeDomain}
+            onReturnHealth={returnToHealthDomain}
           />
         )}
         {screen === 'twin' && <DietTwin onBack={goHome} onOpenIndicator={openTwinIndicator} />}
@@ -1129,7 +1180,12 @@ export function App() {
             onOpenLink={openCitedLink}
           />
         )}
-        {exploring && graph && rendered && (
+        {exploring && graph && domainEmpty && activeDomain !== 'health' && (
+          <div className="stage-main stage-main--domain-empty" data-testid="explore-screen">
+            <DomainEmptyState domain={activeDomain} onReturnHealth={returnToHealthDomain} />
+          </div>
+        )}
+        {exploring && graph && rendered && !domainEmpty && (
           <>
             <aside
               id="explore-rail"

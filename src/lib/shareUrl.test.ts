@@ -565,3 +565,68 @@ test('admin screen round-trips list and book detail; invalid book id stripped at
   assert.equal(parseViewQuery('?screen=admin&section=nope').adminSection, null);
   assert.equal(parseViewQuery('?screen=admin&edge=bad').edge, null);
 });
+
+test('domain query defaults to health; illegal → health; omits health on serialize', () => {
+  assert.equal(parseViewQuery('').domain, 'health');
+  assert.equal(parseViewQuery('?domain=nutrition').domain, 'health');
+  assert.equal(parseViewQuery('?domain=environment').domain, 'environment');
+  assert.equal(parseViewQuery('?domain=culture&screen=explore').domain, 'culture');
+  assert.equal(parseViewQuery('?screen=explore&domain=environment').domain, 'environment');
+
+  const health = serializeViewQuery({
+    screen: 'home',
+    domain: 'health',
+    theme: null,
+    disease: null,
+    mechanism: null,
+    food: null,
+    pattern: null,
+    patterns: [],
+    source: null,
+    layout: 'hierarchy',
+    view: '2d',
+    hideUnmatched: false,
+    node: null,
+    link: null,
+  });
+  assert.equal(health.includes('domain='), false);
+
+  const env = serializeViewQuery({
+    screen: 'explore',
+    domain: 'environment',
+    theme: null,
+    disease: null,
+    mechanism: null,
+    food: null,
+    pattern: null,
+    patterns: [],
+    source: null,
+    layout: 'hierarchy',
+    view: '2d',
+    hideUnmatched: false,
+    node: null,
+    link: null,
+  });
+  assert.match(env, /domain=environment/);
+  assert.match(env, /screen=explore/);
+  assert.equal(parseViewQuery(env).domain, 'environment');
+
+  const twin = serializeViewQuery({
+    screen: 'twin',
+    domain: 'culture',
+    theme: null,
+    disease: null,
+    mechanism: null,
+    food: null,
+    pattern: null,
+    patterns: [],
+    source: null,
+    layout: 'hierarchy',
+    view: '2d',
+    hideUnmatched: false,
+    node: null,
+    link: null,
+  });
+  assert.match(twin, /domain=culture/);
+  assert.match(twin, /screen=twin/);
+});

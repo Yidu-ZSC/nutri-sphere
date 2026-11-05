@@ -16,6 +16,8 @@ import {
 } from '../lib/exploreShell';
 import { PALETTE } from '../lib/palette';
 import { themeAccent } from '../lib/themeAccent';
+import { DomainEmptyState } from './DomainEmptyState';
+import type { Domain } from '../types/graph';
 import {
   HOME_FOOD_THEMES,
   HOME_HEALTH_THEMES,
@@ -32,6 +34,9 @@ interface ThemeLobbyProps {
   highlightedPatterns?: readonly string[];
   patternSourceTheme?: string | null;
   onReturnToGraph?: () => void;
+  /** Knowledge domain. Non-health replaces theme cards with empty state; twin stays. */
+  activeDomain?: Domain;
+  onReturnHealth?: () => void;
 }
 
 function kickerFor(kind: ThemeKind): string {
@@ -117,12 +122,13 @@ export function ThemeLobby({
   highlightedPatterns = [],
   patternSourceTheme = null,
   onReturnToGraph,
+  activeDomain = 'health',
+  onReturnHealth,
 }: ThemeLobbyProps) {
   const highlighted = new Set(highlightedPatterns);
   const showReturn = highlightedPatterns.length > 0 && themeById(patternSourceTheme) != null && Boolean(onReturnToGraph);
   const highlightKey = highlightedPatterns.join(',');
   const veganGraphTheme = themeById(VEGAN_DIET_GRAPH_THEME_ID);
-
   useEffect(() => {
     if (!highlightKey) return;
     document.getElementById('diet-patterns')?.scrollIntoView({ block: 'start' });
@@ -144,6 +150,10 @@ export function ThemeLobby({
           <p data-testid="lobby-intro">{LOBBY_INTRO}</p>
         </header>
       </div>
+      {activeDomain !== 'health' && onReturnHealth ? (
+        <DomainEmptyState domain={activeDomain} onReturnHealth={onReturnHealth} />
+      ) : (
+        <>
       <section className="lobby-primary" aria-labelledby="health-theme-heading">
         <h2 id="health-theme-heading">常见健康主题</h2>
         <ul className="theme-grid" data-testid="health-theme-grid">
@@ -223,6 +233,8 @@ export function ThemeLobby({
           ))}
         </ul>
       </details>
+        </>
+      )}
     </main>
   );
 }
