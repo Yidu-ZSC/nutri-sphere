@@ -3608,6 +3608,30 @@ code {
 }
 .admin-summary p { margin: 0; line-height: 1.55; }
 .admin-cite-list { margin-top: 8px; }
+
+.admin-weread-preview {
+  margin-top: 12px;
+}
+.admin-weread-preview h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.admin-weread-preview-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.admin-weread-preview-list li {
+  line-height: 1.5;
+  font-size: 13px;
+}
+.admin-weread-path {
+  margin-top: 12px;
+  font-size: 12px;
+}
 @media (max-width: 768px) {
   .admin-shell {
     grid-template-columns: 1fr;

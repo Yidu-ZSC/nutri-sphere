@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import Ajv2020 from 'ajv/dist/2020.js';
+import { WEREAD_BOOK_MAP, WEREAD_SOURCE_IDS } from './weread-book-map.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -10,6 +11,8 @@ export const ALIGNED_SEED = 'data/seed_triples_v0.3_aligned.json';
 export const GRAPH_SCHEMA = 'data/graph_schema.json';
 export const SOURCES_FILE = 'data/sources.json';
 export const ADMIN_BOOKS_FILE = 'data/admin_books.json';
+export const WEREAD_DIR = 'data/weread';
+
 
 const EXCERPT_LIMIT = 1200;
 const STAGE1_SOURCE_IDS = [
@@ -306,8 +309,8 @@ export function validateAdminBooks(payload, sourcesPayload) {
     return { ok: false, errors, counts: { books: 0, ingested: 0 } };
   }
   const rootObj = /** @type {Record<string, unknown>} */ (adminPayload);
-  if (rootObj.schema_version !== '1.0') {
-    errors.push('admin_books.json schema_version 必须为 "1.0"');
+  if (rootObj.schema_version !== '1.1') {
+    errors.push('admin_books.json schema_version 必须为 "1.1"');
   }
   const books = Array.isArray(rootObj.books) ? rootObj.books : null;
   if (!books) {
@@ -357,6 +360,18 @@ export function validateAdminBooks(payload, sourcesPayload) {
     if (Object.prototype.hasOwnProperty.call(row, 'edge_count')) {
       errors.push(`admin_books.books[${index}] 不得写入 edge_count`);
     }
+    if (Object.prototype.hasOwnProperty.call(row, 'weread_book_id')) {
+      const wid = row.weread_book_id;
+      if (typeof wid !== 'string' || !/^[0-9]+$/.test(wid)) {
+        errors.push(`admin_books.books[${index}].weread_book_id 须匹配 /^[0-9]+$/`);
+      } else if (WEREAD_BOOK_MAP[id] && wid !== WEREAD_BOOK_MAP[id]) {
+        errors.push(`admin_books.books[${index}].weread_book_id 须为 A2 锁定值 "${WEREAD_BOOK_MAP[id]}"`);
+      } else if (!WEREAD_BOOK_MAP[id]) {
+        errors.push(`admin_books.books[${index}] 非六书不得写 weread_book_id`);
+      }
+    } else if (WEREAD_BOOK_MAP[id]) {
+      errors.push(`admin_books.books[${index}] 已入库六书缺少 weread_book_id`);
+    }
     const sourceId = typeof row.source_id === 'string' && row.source_id !== '' ? row.source_id : null;
     if (sourceId) {
       ingested += 1;
@@ -393,6 +408,129 @@ export function validateAdminBooks(payload, sourcesPayload) {
   };
 }
 
+
+/**
+ * Validate data/weread/<source_id>.json for the six ingested books.
+ * @returns {{ ok: boolean, errors: string[], counts: { files: number, bookmarks: number } }}
+ */
+export function validateWereadCorpora() {
+  const errors = [];
+  let files = 0;
+  let bookmarks = 0;
+  const dir = path.join(root, WEREAD_DIR);
+  if (!fs.existsSync(dir)) {
+    errors.push(`${WEREAD_DIR}/ 目录不存在`);
+    return { ok: false, errors, counts: { files: 0, bookmarks: 0 } };
+  }
+  for (const sourceId of WEREAD_SOURCE_IDS) {
+    const expectedBookId = WEREAD_BOOK_MAP[sourceId];
+    const filePath = path.join(dir, `${sourceId}.json`);
+    if (!fs.existsSync(filePath)) {
+      errors.push(`${WEREAD_DIR}/${sourceId}.json 缺失`);
+      continue;
+    }
+    files += 1;
+    let payload;
+    try {
+      payload = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    } catch {
+      errors.push(`${WEREAD_DIR}/${sourceId}.json 无法解析`);
+      continue;
+    }
+    if (!payload || typeof payload !== 'object') {
+      errors.push(`${sourceId}.json 根对象无效`);
+      continue;
+    }
+    const row = /** @type {Record<string, unknown>} */ (payload);
+    if (row.schema_version !== '1.0') {
+      errors.push(`${sourceId}.json schema_version 须为 "1.0"`);
+    }
+    if (row.source_id !== sourceId) {
+      errors.push(`${sourceId}.json source_id 须为 "${sourceId}"`);
+    }
+    if (row.bookId !== expectedBookId) {
+      errors.push(`${sourceId}.json bookId 须为 A2 "${expectedBookId}"`);
+    }
+    if (typeof row.title_weread !== 'string' || !row.title_weread.trim()) {
+      errors.push(`${sourceId}.json 缺少 title_weread`);
+    }
+    if (typeof row.synced_at !== 'string' || !row.synced_at.trim()) {
+      errors.push(`${sourceId}.json 缺少 synced_at`);
+    }
+    if (!row.meta || typeof row.meta !== 'object' || Array.isArray(row.meta)) {
+      errors.push(`${sourceId}.json 缺少 meta`);
+    }
+    if (Object.prototype.hasOwnProperty.call(row, 'review') || Object.prototype.hasOwnProperty.call(row, 'reviews') || Object.prototype.hasOwnProperty.call(row, 'ideas')) {
+      errors.push(`${sourceId}.json 不得含 review/ideas 顶层键`);
+    }
+    if (!Array.isArray(row.bookmarks)) {
+      errors.push(`${sourceId}.json bookmarks 须为数组`);
+    } else {
+      bookmarks += row.bookmarks.length;
+      const seen = new Set();
+      for (const [i, bm] of row.bookmarks.entries()) {
+        if (!bm || typeof bm !== 'object') {
+          errors.push(`${sourceId}.json bookmarks[${i}] 非法`);
+          continue;
+        }
+        const b = /** @type {Record<string, unknown>} */ (bm);
+        if (typeof b.bookmarkId !== 'string' || !b.bookmarkId) {
+          errors.push(`${sourceId}.json bookmarks[${i}] 缺少 bookmarkId`);
+        } else if (seen.has(b.bookmarkId)) {
+          errors.push(`${sourceId}.json bookmarks[${i}] bookmarkId 重复`);
+        } else {
+          seen.add(b.bookmarkId);
+        }
+        if (typeof b.markText !== 'string' || !b.markText.trim()) {
+          errors.push(`${sourceId}.json bookmarks[${i}] 缺少 markText`);
+        }
+      }
+    }
+    const best = row.bestbookmarks;
+    if (!best || typeof best !== 'object' || Array.isArray(best)) {
+      errors.push(`${sourceId}.json 缺少 bestbookmarks`);
+    } else {
+      const bestObj = /** @type {Record<string, unknown>} */ (best);
+      if (typeof bestObj.totalCount !== 'number') {
+        errors.push(`${sourceId}.json bestbookmarks.totalCount 非法`);
+      }
+      if (!Array.isArray(bestObj.items)) {
+        errors.push(`${sourceId}.json bestbookmarks.items 须为数组`);
+      }
+    }
+    const stats = row.stats;
+    if (!stats || typeof stats !== 'object' || Array.isArray(stats)) {
+      errors.push(`${sourceId}.json 缺少 stats`);
+    } else {
+      const statsObj = /** @type {Record<string, unknown>} */ (stats);
+      const bmLen = Array.isArray(row.bookmarks) ? row.bookmarks.length : -1;
+      if (statsObj.bookmark_count !== bmLen) {
+        errors.push(`${sourceId}.json stats.bookmark_count 须等于 bookmarks.length`);
+      }
+      const itemsLen =
+        best && typeof best === 'object' && !Array.isArray(best) && Array.isArray(best.items)
+          ? best.items.length
+          : -1;
+      if (statsObj.bestbookmark_item_count !== itemsLen) {
+        errors.push(`${sourceId}.json stats.bestbookmark_item_count 须等于 items.length`);
+      }
+    }
+  }
+  // No extra JSON beyond the six (+ README is fine)
+  for (const name of fs.readdirSync(dir)) {
+    if (!name.endsWith('.json')) continue;
+    const id = name.replace(/\.json$/, '');
+    if (!WEREAD_BOOK_MAP[id]) {
+      errors.push(`${WEREAD_DIR}/${name} 不在 A2 六书集合内`);
+    }
+  }
+  return {
+    ok: errors.length === 0,
+    errors,
+    counts: { files, bookmarks },
+  };
+}
+
 export function validateGraphFile(dataRel = ALIGNED_SEED, schemaRel = GRAPH_SCHEMA) {
   const data = JSON.parse(fs.readFileSync(path.join(root, dataRel), 'utf8'));
   const schema = JSON.parse(fs.readFileSync(path.join(root, schemaRel), 'utf8'));
@@ -425,5 +563,14 @@ if (isMain()) {
   }
   console.log(
     `OK ${admin.counts.books} admin books (${admin.counts.ingested} ingested) — ${ADMIN_BOOKS_FILE}`,
+  );
+  const weread = validateWereadCorpora();
+  if (!weread.ok) {
+    for (const error of weread.errors) console.error(`ERROR ${error}`);
+    console.error(`validate:data 失败（${WEREAD_DIR}/）`);
+    process.exit(1);
+  }
+  console.log(
+    `OK ${weread.counts.files} weread corpora (${weread.counts.bookmarks} bookmarks) — ${WEREAD_DIR}/`,
   );
 }

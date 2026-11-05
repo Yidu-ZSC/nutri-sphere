@@ -7,3 +7,7 @@ dist
 .wrangler/
 .dev.vars
 .dev.vars.*
+
+# WeChat Reading credentials — never commit
+**/credentials.env
+.weread/

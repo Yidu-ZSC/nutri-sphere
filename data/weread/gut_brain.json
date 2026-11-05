@@ -1,0 +1,952 @@
+{
+  "schema_version": "1.0",
+  "source_id": "gut_brain",
+  "bookId": "24913511",
+  "title_weread": "菌群大脑：肠道微生物影响大脑和身心健康的惊人真相",
+  "synced_at": "2026-11-05T09:53:02+08:00",
+  "meta": {
+    "author": "[美]戴维·珀尔马特  [美]克里斯廷·洛伯格",
+    "translator": "张雪 魏宁",
+    "publisher": "机械工业出版社",
+    "isbn": "9787518055753",
+    "cover": "https://cdn.weread.qq.com/weread/cover/36/yuewen_24913511/t6_yuewen_249135111735543207.jpg",
+    "publishTime": "2020-12-30 00:00:00",
+    "category": "医学健康-健康",
+    "deepLink": "https://weread.qq.com/book-detail?type=1&v=08b32d50717c266708b2b77",
+    "readerLink": "https://weread.qq.com/web/reader/08b32d50717c266708b2b77",
+    "newRating": 722,
+    "newRatingCount": 1762
+  },
+  "bookmarks": [
+    {
+      "bookmarkId": "24913511_125_896-953",
+      "chapterUid": 125,
+      "range": "896-953",
+      "markText": "在www.DrPerlmutter.com/Resources网页上，各位可以找到我根据指南所推荐的特定食物品牌。",
+      "createTime": 1782444302,
+      "chapterIdx": 61,
+      "chapterTitle": "第10章 大脑塑造者七天饮食计划：吃出健康的大脑",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_124_2164-2468",
+      "chapterUid": 124,
+      "range": "2164-2468",
+      "markText": "维生素D：这实际上是一种激素，而不是维生素。维生素D是在暴露于太阳紫外线辐射下的皮肤中产生的。虽然大多数人都会想到维生素D与骨骼健康和钙含量的关系，但它对身体、特别是大脑也会产生深远的影响。我们知道，在整个中枢神经系统中都有维生素D受体，我们也知道维生素D有助于调节大脑和脑脊液中产生神经递质和刺激神经生长的酶。动物和人类研究都表明，维生素D能保护神经元免受自由基的破坏并减少炎症。最重要的事实在于，维生素D是通过对肠道细菌的调控而执行所有这些任务的。13早在2010年，我们就已经发现肠道菌群与维生素D受体的相互作用，可控制维生素D受体增加或降低活性。",
+      "createTime": 1782443836,
+      "chapterIdx": 60,
+      "chapterTitle": "我能为宝宝做些什么",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_122_608-830",
+      "chapterUid": 122,
+      "range": "608-830",
+      "markText": "简化至五种广泛存在的核心益生菌种类：植物乳杆菌(Lactobacillus plantarum)、嗜酸乳杆菌(Lactobacillus acidophilus)、短乳杆菌(Lactobacillus brevis)、乳酸双歧杆菌(Bifidobacterium lactis)和长双歧杆菌(Bifidobacterium longum)。不同的菌株具有不同的好处，但正如我们在本书开头中所探讨的那样，这些益生菌能够以如下方式最佳支撑大脑健康：",
+      "createTime": 1782440603,
+      "chapterIdx": 58,
+      "chapterTitle": "益生菌：五种核心菌种",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_121_948-972",
+      "chapterUid": 121,
+      "range": "948-972",
+      "markText": "过敏是肠道细菌失衡和肠道渗漏风险增加的特征之一。",
+      "createTime": 1782364338,
+      "chapterIdx": 57,
+      "chapterTitle": "第9章 “益”起来补充膳食指南",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_120_1123-1323",
+      "chapterUid": 120,
+      "range": "1123-1323",
+      "markText": "事实上，几千年来我们已经知道降低热量摄入可以减缓衰老，减少老年性慢性疾病并延长生命。但是直到最近，科学才追赶上各种轶事证据的脚步。15，16除了我已经列出的各种好处之外，热量限制还被证明可以增加胰岛素的敏感性，降低人体的氧化应激，诱导基因表达以管理压力和抵抗疾病，并将身体切换到燃烧脂肪模式。",
+      "createTime": 1782357533,
+      "chapterIdx": 56,
+      "chapterTitle": "第六点：每季禁食",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_116_3153-3177",
+      "chapterUid": 116,
+      "range": "3153-3177",
+      "markText": "低碳水化合物饮食对促进胰岛素敏感性的影响最为显著",
+      "createTime": 1782278625,
+      "chapterIdx": 52,
+      "chapterTitle": "第二点：低碳水化合物和优质脂肪",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_116_1454-1567",
+      "chapterUid": 116,
+      "range": "1454-1567",
+      "markText": "《谷物大脑》书中的一个重要前提就是，脂肪（不是碳水化合物）是人类新陈代谢的首选燃料，它是人类进化的全部。我自己坚持选择优质脂肪，并且从不担心所谓的“高胆固醇”食品。让我在这里总结一下重点，好让大家从微生物组的角度理解这些内容。",
+      "createTime": 1782271120,
+      "chapterIdx": 52,
+      "chapterTitle": "第二点：低碳水化合物和优质脂肪",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_116_1342-1425",
+      "chapterUid": 116,
+      "range": "1342-1425",
+      "markText": "高糖分和低纤维的食物会为有害细菌提供燃料，增加肠道渗漏、线粒体损伤、免疫系统危害以及直达大脑的系统炎症的机会。这是一个恶性循环，因为这一切都会进一步影响微生物的平衡。",
+      "createTime": 1782271069,
+      "chapterIdx": 52,
+      "chapterTitle": "第二点：低碳水化合物和优质脂肪",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_114_461-491",
+      "chapterUid": 114,
+      "range": "461-491",
+      "markText": "肠道细菌的排布最短在制订新的饮食计划后六天内就会发生重大变化",
+      "createTime": 1782112958,
+      "chapterIdx": 50,
+      "chapterTitle": "第8章 养好你的微生物组：通过促进肠道来促进大脑的六个关键点",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_111_1161-1277",
+      "chapterUid": 111,
+      "range": "1161-1277",
+      "markText": "环境化学物质可能有害的原因之一是它们往往是亲脂性的，这意味着它们会积聚在内分泌腺和脂肪组织中。更重要的是，当肝脏不得不超负荷地处理毒素时，将这些物质从身体中清除出去的效率就更低了。这反过来又改变了整个身体以及微生物群落的整个栖息地。",
+      "createTime": 1782099496,
+      "chapterIdx": 47,
+      "chapterTitle": "环境化学物质",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_108_2869-2880",
+      "chapterUid": 108,
+      "range": "2869-2880",
+      "markText": "抗生素属于内分泌干扰物",
+      "createTime": 1782091195,
+      "chapterIdx": 44,
+      "chapterTitle": "抗生素",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_106_3232-3274",
+      "chapterUid": 106,
+      "range": "3232-3274",
+      "markText": "2013年，梅奥医学中心的一组医生和研究人员最终证明了膳食麸质可能会导致1型糖尿病。",
+      "createTime": 1782089457,
+      "chapterIdx": 42,
+      "chapterTitle": "麸质",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_106_1342-1393",
+      "chapterUid": 106,
+      "range": "1342-1393",
+      "markText": "事实上，接触到麸质后，身体所发生的一系列不良反应很有可能是从微生物组的变化开始的，这才是麸质的原爆点。",
+      "createTime": 1782086531,
+      "chapterIdx": 42,
+      "chapterTitle": "麸质",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_106_1798-1950",
+      "chapterUid": 106,
+      "range": "1798-1950",
+      "markText": "所有人都有某种程度的麸质敏感性。一旦你发生了肠道渗漏，就很容易在将来对其他食物过敏。你也很容易受到脂多糖进入血液的影响。或许你还记得，脂多糖是肠道中许多微生物细胞的组成成分。如果脂多糖能够通过那些紧密连接，就会增加系统性炎症，并且刺激免疫系统，这是会让你承受大量脑疾病、自身免疫疾病和癌症风险的多重打击。",
+      "createTime": 1781588189,
+      "chapterIdx": 42,
+      "chapterTitle": "麸质",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_106_1197-1225",
+      "chapterUid": 106,
+      "range": "1197-1225",
+      "markText": "麸质主要由两类蛋白质组成，即麦谷蛋白和醇溶蛋白（麸朊）。",
+      "createTime": 1781587978,
+      "chapterIdx": 42,
+      "chapterTitle": "麸质",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_106_551-619",
+      "chapterUid": 106,
+      "range": "551-619",
+      "markText": "麸质敏感性都会增加炎症细胞因子的产生，而后者在神经退行性疾病中发挥着关键作用。正如我一直提示的，大脑是最容易受到炎症有害影响的器官之一。",
+      "createTime": 1781251782,
+      "chapterIdx": 42,
+      "chapterTitle": "麸质",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_105_3358-3402",
+      "chapterUid": 105,
+      "range": "3358-3402",
+      "markText": "高果糖可引起细菌退出肠道，进入血液并造成肝损伤。",
+      "createTime": 1781251686,
+      "chapterIdx": 41,
+      "chapterTitle": "果糖",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_105_2906-3158",
+      "chapterUid": 105,
+      "range": "2906-3158",
+      "markText": "美国人平均每天摄入80克果糖，并且通常是以高果糖玉米糖浆的加工形式摄入的。这些果糖不可能全部由肠道吸收到血液中去。肠道细菌也喜欢加工后的果糖，与人相比有过之而无不及，它们尽情享受着肠道中过量的果糖。果糖是肠道细菌快速发酵的副产物，类似于我们在第5章中讨论到的短链脂肪酸，其他产物还有混合气体，包括甲烷、氢气、二氧化碳、硫化氢等。正如你所能想象到的，发酵的气体堆积起来会引起腹胀、不适或腹痛。多余的果糖在肠道里也会产生多余的水分，具有通便作用。而这些短链脂肪酸也会在肠道中吸引更多的水分，这无疑是雪上加霜。",
+      "createTime": 1781251646,
+      "chapterIdx": 41,
+      "chapterTitle": "果糖",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_105_1393-1417",
+      "chapterUid": 105,
+      "range": "1393-1417",
+      "markText": "肥胖可能是由果糖摄入所导致的微生物组变化的反映。",
+      "createTime": 1781251227,
+      "chapterIdx": 41,
+      "chapterTitle": "果糖",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_105_1078-1126",
+      "chapterUid": 105,
+      "range": "1078-1126",
+      "markText": "由于果糖不会触发胰岛素和瘦素这两种代谢调节激素的生产，所以高果糖饮食通常会导致肥胖及其代谢影响。",
+      "createTime": 1781251172,
+      "chapterIdx": 41,
+      "chapterTitle": "果糖",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_105_759-770",
+      "chapterUid": 105,
+      "range": "759-770",
+      "markText": "果糖的血糖指数并不高。",
+      "createTime": 1781251098,
+      "chapterIdx": 41,
+      "chapterTitle": "果糖",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_102_455-538",
+      "chapterUid": 102,
+      "range": "455-538",
+      "markText": "尽管由DNA编码的基因在本质上是固定的（除非发生突变），但这些基因的表达可在环境的影响下产生高度动态的变化。这一研究领域被称为表观遗传学，是目前最热点的研究领域之一。",
+      "createTime": 1781247369,
+      "chapterIdx": 38,
+      "chapterTitle": "控制你的基因",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_101_3292-3400",
+      "chapterUid": 101,
+      "range": "3292-3400",
+      "markText": "肠道菌群与线粒体有着复杂的相互作用，除了细胞核DNA外，它们就像是我们体内的第二套和第三套DNA。肠道细菌的活动不仅支持着线粒体的健康，而且当肠道微生物失去平衡或受到致病菌株的支配时，它们也会对线粒体造成直接的损害。",
+      "createTime": 1781247272,
+      "chapterIdx": 37,
+      "chapterTitle": "自闭症是一种线粒体疾病",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_101_1942-2004",
+      "chapterUid": 101,
+      "range": "1942-2004",
+      "markText": "自闭症、精神分裂症、躁郁症、帕金森病和阿尔茨海默病等神经系统疾病都与线粒体缺陷有关。",
+      "createTime": 1781246300,
+      "chapterIdx": 37,
+      "chapterTitle": "自闭症是一种线粒体疾病",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_100_437-463",
+      "chapterUid": 100,
+      "range": "437-463",
+      "markText": "丙酸通过削弱肠黏膜细胞的紧密连接来增加肠道的通透性。",
+      "createTime": 1781245745,
+      "chapterIdx": 36,
+      "chapterTitle": "丙酸的重要关联",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_99_3346-3394",
+      "chapterUid": 99,
+      "range": "3346-3394",
+      "markText": "肠道微生物产生的三种主要脂肪酸（乙酸、丙酸和丁酸）都由结肠排泄或吸收，并作为人体细胞的能量来源。",
+      "createTime": 1781245644,
+      "chapterIdx": 35,
+      "chapterTitle": "肠功能障碍导致神经功能障碍",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_99_3104-3250",
+      "chapterUid": 99,
+      "range": "3104-3250",
+      "markText": "芬戈尔德博士曾多次发现，自闭症儿童粪便中的梭菌数量要远远大于非自闭症儿童（即这些研究所使用的对照组）。22在其中一项研究中，自闭症儿童粪便中有9种梭菌是对照组儿童所缺乏的，然而对照组儿童的粪便中仅有3种梭菌在自闭症儿童的粪便中没有鉴定到。",
+      "createTime": 1781245518,
+      "chapterIdx": 35,
+      "chapterTitle": "肠功能障碍导致神经功能障碍",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_96_6836-6871",
+      "chapterUid": 96,
+      "range": "6836-6871",
+      "markText": "只要保养好自己的微生物组，你就能控制新陈代谢或者是炎症通路和大脑健康。",
+      "createTime": 1781241655,
+      "chapterIdx": 32,
+      "chapterTitle": "千万别错怪了糖果，细菌才是罪魁祸首",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_96_4973-4988",
+      "chapterUid": 96,
+      "range": "4973-4988",
+      "markText": "锻炼的确会培养微生物的多样性。",
+      "createTime": 1781241338,
+      "chapterIdx": 32,
+      "chapterTitle": "千万别错怪了糖果，细菌才是罪魁祸首",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_95_1046-1073",
+      "chapterUid": 95,
+      "range": "1046-1073",
+      "markText": "糖尿病患者是由于细胞无法吸收葡萄糖而导致血糖过高的人。",
+      "createTime": 1781235222,
+      "chapterIdx": 31,
+      "chapterTitle": "血糖和大脑",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_95_793-831",
+      "chapterUid": 95,
+      "range": "793-831",
+      "markText": "一旦细胞产生胰岛素抵抗，它便无法从血液中提取葡萄糖，葡萄糖只能留存在血液中。",
+      "createTime": 1781234720,
+      "chapterIdx": 31,
+      "chapterTitle": "血糖和大脑",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_95_513-595",
+      "chapterUid": 95,
+      "range": "513-595",
+      "markText": "我们的细胞只有在胰岛素的帮助下才能接受葡萄糖，而由胰腺产生的胰岛素就在其中扮演着转运蛋白的角色。胰岛素将血液中的葡萄糖转运到细胞内，而后血糖在细胞中将作为燃料使用。",
+      "createTime": 1781234648,
+      "chapterIdx": 31,
+      "chapterTitle": "血糖和大脑",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_93_760-839",
+      "chapterUid": 93,
+      "range": "760-839",
+      "markText": "数量最多的两种细菌是厚壁菌和拟杆菌；这两种细菌占肠道细菌的90%以上。这两种细菌的相对比例决定了炎症水平，并且与肥胖、糖尿病、冠状动脉疾病和整体炎症直接相关。",
+      "createTime": 1781233850,
+      "chapterIdx": 29,
+      "chapterTitle": "肥胖一族与瘦弱一族",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_92_1602-1662",
+      "chapterUid": 92,
+      "range": "1602-1662",
+      "markText": "所有最新科学研究都表明微生物在控制食欲、新陈代谢健康和体重中的作用。能否实现最佳体重的关键就在于你是否拥有“肥胖”细菌。",
+      "createTime": 1781233702,
+      "chapterIdx": 28,
+      "chapterTitle": "第4章 肠道细菌如何引发肥胖和大脑疾病肠道细菌、食欲、肥胖和大脑之间的惊人联系",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_91_4731-4766",
+      "chapterUid": 91,
+      "range": "4731-4766",
+      "markText": "正如我所说，我们必须认识到，用药物干预来解决大脑相关的问题是不可行的。",
+      "createTime": 1781231539,
+      "chapterIdx": 27,
+      "chapterTitle": "年轻、心烦意乱、深陷药物",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_90_3074-3125",
+      "chapterUid": 90,
+      "range": "3074-3125",
+      "markText": "那时候我发现她对麸质非常敏感。她的维生素D水平偏低，而她的脂多糖水平（肠道通透性及炎症标志）高得吓人。",
+      "createTime": 1781230930,
+      "chapterIdx": 26,
+      "chapterTitle": "焦虑的细菌",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_86_3038-3080",
+      "chapterUid": 86,
+      "range": "3038-3080",
+      "markText": "脂多糖不仅会加重肠道的渗漏情况，它还能穿透血脑屏障，使促炎症化学物质对大脑发起攻击。",
+      "createTime": 1781226932,
+      "chapterIdx": 22,
+      "chapterTitle": "抑郁症是一种炎症性疾病",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_86_1504-1553",
+      "chapterUid": 86,
+      "range": "1504-1553",
+      "markText": "换句话说，现代抗抑郁药物的实质机制可能与血清素没有任何联系，这一切都是靠降低炎症水平而发挥作用的。",
+      "createTime": 1781226749,
+      "chapterIdx": 22,
+      "chapterTitle": "抑郁症是一种炎症性疾病",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_86_1334-1396",
+      "chapterUid": 86,
+      "range": "1334-1396",
+      "markText": "干扰素是一类自然存在的蛋白质，它们组成了免疫系统内在的一部分，但也能作为一种药物而进行人工生产并用于治疗某些特定的病毒感染。",
+      "createTime": 1781226720,
+      "chapterIdx": 22,
+      "chapterTitle": "抑郁症是一种炎症性疾病",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_86_2021-2073",
+      "chapterUid": 86,
+      "range": "2021-2073",
+      "markText": "实际上，除了阿尔茨海默病外，高血糖也是抑郁症的最大风险因素之一。",
+      "createTime": 1781166931,
+      "chapterIdx": 22,
+      "chapterTitle": "抑郁症是一种炎症性疾病",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_86_354-365",
+      "chapterUid": 86,
+      "range": "354-365",
+      "markText": "抑郁症是一种炎症性疾病",
+      "createTime": 1781166679,
+      "chapterIdx": 22,
+      "chapterTitle": "抑郁症是一种炎症性疾病",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_83_1015-1043",
+      "chapterUid": 83,
+      "range": "1015-1043",
+      "markText": "多发性硬化是一种炎症性疾病，其特征是大脑和脊髓神经受损。",
+      "createTime": 1781163329,
+      "chapterIdx": 19,
+      "chapterTitle": "神秘疾病的控制",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_82_3093-3155",
+      "chapterUid": 82,
+      "range": "3093-3155",
+      "markText": "线粒体疾病包括线粒体功能失调造成的一系列神经、肌肉和代谢紊乱。糖尿病、自闭症和阿尔茨海默病等多种疾病均可能与线粒体问题有关。",
+      "createTime": 1781160621,
+      "chapterIdx": 18,
+      "chapterTitle": "炎症、肠道和强大的线粒体",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_82_3014-3052",
+      "chapterUid": 82,
+      "range": "3014-3052",
+      "markText": "肠道细菌失衡的中间产物同样会对线粒体造成直接伤害，转而引发更激烈的炎症反应。",
+      "createTime": 1781160590,
+      "chapterIdx": 18,
+      "chapterTitle": "炎症、肠道和强大的线粒体",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_82_2164-2254",
+      "chapterUid": 82,
+      "range": "2164-2254",
+      "markText": "细胞凋亡至关重要，它令人体得以摆脱大量持续出现的癌细胞。每天都有100亿个细胞终止生命，为更新、更健康的细胞让路。而线粒体在生产能量过程中制造的自由基就在细胞凋亡过程中发挥着作用。",
+      "createTime": 1781159808,
+      "chapterIdx": 18,
+      "chapterTitle": "炎症、肠道和强大的线粒体",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_82_956-1119",
+      "chapterUid": 82,
+      "range": "956-1119",
+      "markText": "直到1949年，美国科学家尤金·肯尼迪(Eugene Kennedy)和阿尔伯特·伦宁格(Albert Lehninger)才发现了线粒体“能量工厂”的作用。基本来说，线粒体可以利用碳水化合物作为燃料并将其转化为能量，从而驱动大多数细胞功能。通过这种反应产生的能量叫作有氧代谢，因为在这一过程中氧气已被耗尽，就像点火燃烧一样。",
+      "createTime": 1781155094,
+      "chapterIdx": 18,
+      "chapterTitle": "炎症、肠道和强大的线粒体",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_82_674-711",
+      "chapterUid": 82,
+      "range": "674-711",
+      "markText": "鉴于线粒体的细菌来源及其独特的DNA，它也应当被视为人类微生物组的一部分。",
+      "createTime": 1781154940,
+      "chapterIdx": 18,
+      "chapterTitle": "炎症、肠道和强大的线粒体",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_82_427-590",
+      "chapterUid": 82,
+      "range": "427-590",
+      "markText": "线粒体是人体中微小的细胞器，它们存在于除红细胞外的所有细胞中，并以三磷腺苷(ATP)的形式为人供给化学能量。线粒体具有自身的DNA，而当前科学认为线粒体来源于细菌的内共生，也就是说，线粒体曾经是独立生存的细菌，而这种细菌最终寄居在人体细胞中并为细胞提供能量。线粒体DNA和细菌DNA一样呈环状，这和细胞核中的遗传物质大不相同。",
+      "createTime": 1781154874,
+      "chapterIdx": 18,
+      "chapterTitle": "炎症、肠道和强大的线粒体",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_81_2208-2347",
+      "chapterUid": 81,
+      "range": "2208-2347",
+      "markText": "研究者们刚刚开始阐释咖啡对于大脑的保护作用，而最新研究也指出，这种作用是在微生物组的水平上产生的。实验室研究已十分广泛而确定地表明，咖啡可借助肠道微生物的作用来降低2型糖尿病、中风、阿尔茨海默病、帕金森病甚至是癌症和心血管疾病的患病风险。",
+      "createTime": 1781150281,
+      "chapterIdx": 17,
+      "chapterTitle": "大脑健康，始于肠道",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_81_1631-1742",
+      "chapterUid": 81,
+      "range": "1631-1742",
+      "markText": "咖啡是大脑的保护剂”这一观点，因为这将让你更加信服，饮食选择对于肠道细菌的巨大影响。《阿尔茨海默病杂志》（Journal of Alzheimer抯Disease）的最新论文表明，饮用咖啡的人患阿尔茨海默病的风险有所下降。",
+      "createTime": 1781150153,
+      "chapterIdx": 17,
+      "chapterTitle": "大脑健康，始于肠道",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_81_1049-1174",
+      "chapterUid": 81,
+      "range": "1049-1174",
+      "markText": "在体内，维生素B12的合成主要发生在小肠中，肠道细菌就是在这里利用钴和其他营养物质对其进行制造。虽然我们也可以从饮食中获得维生素B12，并且主要来源于包括鱼、肉、禽、蛋等动物性食物，但是在肠道吸收并用于满足日常需求的维生素B12往往来自那些细菌工厂。",
+      "createTime": 1781150062,
+      "chapterIdx": 17,
+      "chapterTitle": "大脑健康，始于肠道",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_81_821-881",
+      "chapterUid": 81,
+      "range": "821-881",
+      "markText": "低水平的维生素B12是痴呆症的巨大风险因素，更不用说抑郁症等其他神经系统疾病了。",
+      "createTime": 1781149804,
+      "chapterIdx": 17,
+      "chapterTitle": "大脑健康，始于肠道",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_81_540-601",
+      "chapterUid": 81,
+      "range": "540-601",
+      "markText": "故事并非起始于身体对面包和薄饼卷的炎症反应，而是起始于扰乱的微生物组，以及脂多糖等分子一旦进入血液循环所带来的灾难性影响。",
+      "createTime": 1781149741,
+      "chapterIdx": 17,
+      "chapterTitle": "大脑健康，始于肠道",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_80_1635-1692",
+      "chapterUid": 80,
+      "range": "1635-1692",
+      "markText": "所有人的肠道中都存在脂多糖，因为这是肠道细菌的一种重要结构组分，但它绝不应出现在血液中，血液中的脂多糖极具毁灭性。",
+      "createTime": 1781149576,
+      "chapterIdx": 16,
+      "chapterTitle": "身体的燃烧装置：脂多糖",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_80_1004-1039",
+      "chapterUid": 80,
+      "range": "1004-1039",
+      "markText": "血液中的脂多糖水平不仅能够反应炎症水平，而且能对肠道渗漏起到指示作用。",
+      "createTime": 1781149476,
+      "chapterIdx": 16,
+      "chapterTitle": "身体的燃烧装置：脂多糖",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_80_607-674",
+      "chapterUid": 80,
+      "range": "607-674",
+      "markText": "我们一直都知道，如果脂多糖进入到血液，就会在动物体内诱发强烈的炎症反应。（脂多糖被归类为内毒素，也就是说，这是一种来源于细菌的毒素。）",
+      "createTime": 1781149373,
+      "chapterIdx": 16,
+      "chapterTitle": "身体的燃烧装置：脂多糖",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_79_2268-2452",
+      "chapterUid": 79,
+      "range": "2268-2452",
+      "markText": "我们怎样才能判断自己的肠道是否渗漏呢？我每天都会对患者进行简单的血液测试，来辅助判断他们肠壁的完整性。我所采用的测试叫作Cyrex Array 2，这是当今市场上能够提供的最为全面的筛选测试。Cyrex实验室(www.CyrexLabs.com)所提供的这种测试能够测量免疫系统在脂多糖条件下所产生的抗体。所有与微生物组、炎症和大脑相关的情景都无法回避这种分子的影响。",
+      "createTime": 1781149310,
+      "chapterIdx": 15,
+      "chapterTitle": "肠道渗漏的危险",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_78_2515-2618",
+      "chapterUid": 78,
+      "range": "2515-2618",
+      "markText": "2012年，《自然》(Nature)期刊发布的一项研究表明，2型糖尿病患者会出现肠道细菌失衡（内部失调）现象。",
+      "createTime": 1781147951,
+      "chapterIdx": 14,
+      "chapterTitle": "炎症：共同特性",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_78_2674-2710",
+      "chapterUid": 78,
+      "range": "2674-2710",
+      "markText": "2型糖尿病患者由于无法将血流中的葡萄糖转运到自身细胞中而承受着代谢压力。",
+      "createTime": 1781147938,
+      "chapterIdx": 14,
+      "chapterTitle": "炎症：共同特性",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_74_584-826",
+      "chapterUid": 74,
+      "range": "584-826",
+      "markText": "· 恶势力一号：能够杀死肠道菌群或对其组分造成不良改变的物质。这其中包括所有的环境化学物质，以及食物、水、药物中的特定成分（比如糖、麸质、氯、抗生素等）。\n· 恶势力二号：健康、多样性菌群所需营养元素的缺乏。我将会介绍保证微生物组及大脑健康所必需的食物和成分。\n· 恶势力三号：压力。尽管这听起来像是压力对健康有害的陈词滥调，后面我会解释清楚压力的作用要比我们想象中更糟糕",
+      "createTime": 1781143779,
+      "chapterIdx": 10,
+      "chapterTitle": "妨碍肠道细菌的三股恶势力",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_72_4024-4066",
+      "chapterUid": 72,
+      "range": "4024-4066",
+      "markText": "携带不健康微生物组的人群可能会对疼痛更敏感。",
+      "createTime": 1781081646,
+      "chapterIdx": 8,
+      "chapterTitle": "最终的大脑塑造者",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_72_3321-3382",
+      "chapterUid": 72,
+      "range": "3321-3382",
+      "markText": "大部分免疫系统都分布在肠道中的原因很简单：肠壁是身体与外界的边界。除了皮肤之外，肠壁是最有可能面对外来物质及生命体的地方。",
+      "createTime": 1781078751,
+      "chapterIdx": 8,
+      "chapterTitle": "最终的大脑塑造者",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_72_2512-2591",
+      "chapterUid": 72,
+      "range": "2512-2591",
+      "markText": "所有疾病都源于炎症反应的胡作非为，而免疫系统控制着炎症过程。微生物组又在其中发挥着怎样的作用呢？微生物组可以调控或管理免疫反应。它就是这样参与身体炎症过程的。",
+      "createTime": 1781074685,
+      "chapterIdx": 8,
+      "chapterTitle": "最终的大脑塑造者",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_71_709-753",
+      "chapterUid": 71,
+      "range": "709-753",
+      "markText": "如果将肠道中的细菌收集在一起，它们的重量大约有1.3～1.8千克，这基本和大脑的重量相等",
+      "createTime": 1781061881,
+      "chapterIdx": 7,
+      "chapterTitle": "到底是谁说了算？肠道中的细菌！",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_71_435-503",
+      "chapterUid": 71,
+      "range": "435-503",
+      "markText": "人类肠道中至少有10000种不同的物种与人类共生，但一些专家认为，这一数字可能会超过35000。",
+      "createTime": 1781061812,
+      "chapterIdx": 7,
+      "chapterTitle": "到底是谁说了算？肠道中的细菌！",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_68_1157-2053",
+      "chapterUid": 68,
+      "range": "1157-2053",
+      "markText": "1.你母亲怀孕时是否服用过抗生素？\n2.你母亲怀孕时是否服用过强的松等类固醇？\n3.你是通过剖腹产出生的吗？\n4.你哺乳期不足一个月吗？\n5.你小时候经常耳朵和喉咙发炎吗？\n6.你小时候需要用耳管吗？\n7.你的扁桃体切除了吗？\n8.你是否曾经使用类固醇药物超过一周，包括类固醇喷鼻药或呼吸型吸入器？\n9.你每两到三年至少服用一次抗生素吗？\n10.你在服用抑制胃酸分泌的药物（用于消化性溃疡或胃食管反流）吗？\n11.你对麸质过敏吗？\n12.你对食物过敏吗？\n13.你对日常用品和商品中经常出现的化学物质特别敏感吗？\n14.你被诊断出患有自身免疫性疾病吗？\n15.你有2型糖尿病吗？\n16.你超重9千克以上吗？\n17.你有肠易激综合征吗？\n18.你每个月至少有一次腹泻吗？\n19.你每个月至少需要一次泻药吗？\n20.你患有抑郁症吗？",
+      "createTime": 1781061125,
+      "chapterIdx": 4,
+      "chapterTitle": "肠道检查 你有哪些风险因素",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_67_8220-8270",
+      "chapterUid": 67,
+      "range": "8220-8270",
+      "markText": "食物最重要\n食物是人类健康中最重要的变量，",
+      "createTime": 1781059855,
+      "chapterIdx": 3,
+      "chapterTitle": "引言 肠道警钟：不速之客",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_67_4863-4901",
+      "chapterUid": 67,
+      "range": "4863-4901",
+      "markText": "微生物组对于人体的健康状态十分关键，以至于微生物组本身应该被看作是一种器官。",
+      "createTime": 1781057969,
+      "chapterIdx": 3,
+      "chapterTitle": "引言 肠道警钟：不速之客",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_67_3905-3968",
+      "chapterUid": 67,
+      "range": "3905-3968",
+      "markText": "19世纪，俄罗斯生物学家、诺贝尔奖获得者梅契尼科夫发现了人类长寿和体内细菌健康平衡之间的最直接联系，并证实了“死亡始于结肠”。",
+      "createTime": 1781054492,
+      "chapterIdx": 3,
+      "chapterTitle": "引言 肠道警钟：不速之客",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_67_3661-3714",
+      "chapterUid": 67,
+      "range": "3661-3714",
+      "markText": "希腊名医、现代医学之父希波克拉底(Hippocrates)在公元前3世纪首次提出“所有的疾病都始于肠道”。",
+      "createTime": 1781054370,
+      "chapterIdx": 3,
+      "chapterTitle": "引言 肠道警钟：不速之客",
+      "colorStyle": 0,
+      "type": 1
+    },
+    {
+      "bookmarkId": "24913511_67_2891-2948",
+      "chapterUid": 67,
+      "range": "2891-2948",
+      "markText": "世界上最受尊重的机构所发表的前沿科学研究发现，在很大程度上，大脑健康或者说是大脑疾病，都取决于肠道内所发生的一切。",
+      "createTime": 1781054169,
+      "chapterIdx": 3,
+      "chapterTitle": "引言 肠道警钟：不速之客",
+      "colorStyle": 0,
+      "type": 1
+    }
+  ],
+  "bestbookmarks": {
+    "totalCount": 459,
+    "items": [
+      {
+        "bookmarkId": "24913511_67_2914-2948",
+        "chapterUid": 67,
+        "range": "2914-2948",
+        "markText": "在很大程度上，大脑健康或者说是大脑疾病，都取决于肠道内所发生的一切。",
+        "totalCount": 720
+      },
+      {
+        "bookmarkId": "24913511_73_4096-4158",
+        "chapterUid": 73,
+        "range": "4096-4158",
+        "markText": "各项条件全部良好的孕妇本可以进行阴道分娩，却面临着预料之外的剖腹产选择。对于危及孩子的未来健康，她不会感到一点点愧疚或恐惧。",
+        "totalCount": 493
+      },
+      {
+        "bookmarkId": "24913511_67_8255-8365",
+        "chapterUid": 67,
+        "range": "8255-8365",
+        "markText": "食物是人类健康中最重要的变量，这种观点可不是什么新鲜事。老话说得好：“食以药补，以食为药。”15任何人都可以通过饮食选择而改变自己的微生物组状态，以及终身的健康状况。",
+        "totalCount": 468
+      },
+      {
+        "bookmarkId": "24913511_94_1262-1325",
+        "chapterUid": 94,
+        "range": "1262-1325",
+        "markText": "腹部越大（即腰臀比越大），大脑的记忆中心海马体就越小。而海马体的功能取决于它的大小，如果你的海马体萎缩，那么记忆也就随之衰退。",
+        "totalCount": 351
+      },
+      {
+        "bookmarkId": "24913511_67_9157-9208",
+        "chapterUid": 67,
+        "range": "9157-9208",
+        "markText": "这项非常实用的方案中包括六个关键点：益生元、益生菌、发酵食品、低碳水化合物食品、无麸质食品和健康脂肪。",
+        "totalCount": 306
+      },
+      {
+        "bookmarkId": "24913511_77_1461-1513",
+        "chapterUid": 77,
+        "range": "1461-1513",
+        "markText": "与其在阿尔茨海默病等神经退行性疾病的治疗开发上花费如此多的精力和资金，我们不如聚焦于疾病预防措施的普及。",
+        "totalCount": 304
+      },
+      {
+        "bookmarkId": "24913511_75_1712-1790",
+        "chapterUid": 75,
+        "range": "1712-1790",
+        "markText": "在公共卫生条件最差的国家中，阿尔茨海默病的流行率急剧降低。但在卫生条件较好的国家中，寄生物水平和肠道微生物的多样性也相对较低，而阿尔茨海默病的发病率却剧增。",
+        "totalCount": 299
+      },
+      {
+        "bookmarkId": "24913511_69_1261-1329",
+        "chapterUid": 69,
+        "range": "1261-1329",
+        "markText": "细菌是地球上所有生命的基础。它们是地球上最初的生命形式，也有可能是最后一种生命形式。为什么？生命绝不能脱离细菌而存活，连我们人类也不行。",
+        "totalCount": 288
+      },
+      {
+        "bookmarkId": "24913511_67_3234-3266",
+        "chapterUid": 67,
+        "range": "3234-3266",
+        "markText": "整个医疗行业的特点就是根据身体部位或独立系统而划分成不同的学科。",
+        "totalCount": 285
+      },
+      {
+        "bookmarkId": "24913511_78_3515-3565",
+        "chapterUid": 78,
+        "range": "3515-3565",
+        "markText": "数千年后，古老的中药实践终于得到了应有的解释。正是肠道细菌首先利用了中药成分，所以我们才能从中受益。",
+        "totalCount": 280
+      },
+      {
+        "bookmarkId": "24913511_67_3661-3714",
+        "chapterUid": 67,
+        "range": "3661-3714",
+        "markText": "希腊名医、现代医学之父希波克拉底(Hippocrates)在公元前3世纪首次提出“所有的疾病都始于肠道”。",
+        "totalCount": 275
+      },
+      {
+        "bookmarkId": "24913511_67_9894-9958",
+        "chapterUid": 67,
+        "range": "9894-9958",
+        "markText": "大蒜、洋姜、豆薯甚至是蒲公英等食物，以及德国泡菜、康普茶、韩国泡菜等发酵食品将为更高的健康水准，特别是脑功能的保护打开新的大门。",
+        "totalCount": 273
+      },
+      {
+        "bookmarkId": "24913511_104_1010-1061",
+        "chapterUid": 104,
+        "range": "1010-1061",
+        "markText": "饮食在肠道菌群的塑造过程中占据着主导地位，而关键群落的改变有可能令健康的肠道菌群转化为诱发疾病的所在。",
+        "totalCount": 255
+      },
+      {
+        "bookmarkId": "24913511_67_5504-5549",
+        "chapterUid": 67,
+        "range": "5504-5549",
+        "markText": "微生物组会影响我们的情绪、生命力、代谢、免疫，甚至会影响我们对世界的看法和思想的清晰程度。",
+        "totalCount": 252
+      },
+      {
+        "bookmarkId": "24913511_101_590-642",
+        "chapterUid": 101,
+        "range": "590-642",
+        "markText": "在柬埔寨等发展中国家，自闭症的发病率极低，那里的卫生状况远不如西方国家，但却保持着微生物的多样性和数量。",
+        "totalCount": 252
+      },
+      {
+        "bookmarkId": "24913511_75_430-483",
+        "chapterUid": 75,
+        "range": "430-483",
+        "markText": "令人震惊的新研究发现，人类日益纯净的生活环境与心脏疾病、自身免疫疾病、癌症、痴呆症等慢性疾病的发生率有关。",
+        "totalCount": 238
+      },
+      {
+        "bookmarkId": "24913511_71_709-796",
+        "chapterUid": 71,
+        "range": "709-796",
+        "markText": "如果将肠道中的细菌收集在一起，它们的重量大约有1.3～1.8千克，这基本和大脑的重量相等（粪便中一半的重量都是由废弃的细菌构成的）。4",
+        "totalCount": 228
+      },
+      {
+        "bookmarkId": "24913511_67_3340-3419",
+        "chapterUid": 67,
+        "range": "3340-3419",
+        "markText": "消化系统与大脑也有着密切的联系。也许，我们的肠道在各方面都与身体和心理健康相关，或许其中最重要的就是肠道的内部生态，也就是生活在其中的各种微生物，特别是细菌。",
+        "totalCount": 225
+      },
+      {
+        "bookmarkId": "24913511_67_6364-6429",
+        "chapterUid": 67,
+        "range": "6364-6429",
+        "markText": "虽然你可能没有需要药物或强化治疗的极端无情的疾病，但不正常的肠道菌群也会成为令人烦恼的头痛、焦虑、注意力不集中或消极人生观的根源。",
+        "totalCount": 221
+      },
+      {
+        "bookmarkId": "24913511_87_783-874",
+        "chapterUid": 87,
+        "range": "783-874",
+        "markText": "以感染为例，免疫系统为了对抗感染会点燃炎症反应。如果抗生素参与治疗，它就会降解微生物组并进一步促进验证过程。固醇等治疗自身免疫疾病的药物也会打破肠道细菌的平衡，并改变免疫系统的功能。",
+        "totalCount": 216
+      }
+    ]
+  },
+  "stats": {
+    "bookmark_count": 71,
+    "bestbookmark_item_count": 20
+  }
+}

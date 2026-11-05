@@ -134,6 +134,50 @@ export interface AdminBookRecord {
   authors?: string;
   year?: number;
   status: AdminBookStatus;
+  /** WeChat Reading bookId for the six ingested books (admin_books 1.1). */
+  weread_book_id?: string;
+  publisher?: string;
+  isbn?: string;
+  cover_url?: string;
+  translator?: string;
+}
+
+export interface WereadBookmark {
+  bookmarkId: string;
+  chapterUid: number;
+  chapterIdx?: number;
+  chapterTitle?: string;
+  range: string;
+  markText: string;
+  createTime: number;
+  colorStyle?: number;
+  type?: number;
+}
+
+export interface WereadBestBookmarkItem {
+  bookmarkId: string;
+  chapterUid: number;
+  range: string;
+  markText: string;
+  totalCount?: number;
+}
+
+export interface WereadCorpus {
+  schema_version: string;
+  source_id: string;
+  bookId: string;
+  title_weread: string;
+  synced_at: string;
+  meta: Record<string, unknown>;
+  bookmarks: WereadBookmark[];
+  bestbookmarks: {
+    totalCount: number;
+    items: WereadBestBookmarkItem[];
+  };
+  stats: {
+    bookmark_count: number;
+    bestbookmark_item_count: number;
+  };
 }
 
 export interface AdminBooksData {
