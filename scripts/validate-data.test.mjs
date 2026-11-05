@@ -58,11 +58,21 @@ test('aligned seed passes schema and referential checks', () => {
 
 const TECHNICAL_NODES = ['igf1_signaling', 'lps'];
 
-test('data 1.2 uses schema 0.5 with evidences mirrors; NS-056/058 excerpts + NS-061 weread mapping', () => {
+test('data 1.3 uses schema 0.6 with domain=health on all nodes/links; NS-056/058/061 preserved', () => {
   const data = readJson(ALIGNED_SEED);
-  assert.equal(data.meta.schema_version, '0.5');
-  assert.equal(data.meta.data_version, '1.2');
+  assert.equal(data.meta.schema_version, '0.6');
+  assert.equal(data.meta.data_version, '1.3');
   assert.equal(data.meta.disclaimer, 'Educational / research use only. Not medical advice.');
+  assert.equal(data.nodes.length, 87);
+  assert.equal(data.links.length, 121);
+  for (const node of data.nodes) {
+    assert.equal(node.domain, 'health', node.id);
+  }
+  for (const link of data.links) {
+    assert.equal(link.domain, 'health', link.id ?? `${link.source}->${link.target}`);
+  }
+  assert.equal(data.nodes.some((n) => n.domain === 'environment' || n.domain === 'culture'), false);
+  assert.equal(data.links.some((l) => l.domain === 'environment' || l.domain === 'culture'), false);
   assert.ok(data.nodes.length >= 60 && data.nodes.length <= 90);
   assert.ok(data.links.length >= 80 && data.links.length <= 140);
   assert.equal(data.links.length, 121);
@@ -340,6 +350,45 @@ test('a mechanism_depth outside the enum fails validation', () => {
   const result = validateGraphData(data, schema);
   assert.equal(result.ok, false);
   assert.match(result.errors.join('\n'), /mechanism_depth/);
+});
+
+
+test('schema 0.6 requires domain enum on nodes and links', () => {
+  const schema = readJson(GRAPH_SCHEMA);
+  const nodeDomain = schema.properties.nodes.items.properties.domain;
+  const linkDomain = schema.properties.links.items.properties.domain;
+  assert.deepEqual(nodeDomain.enum, ['health', 'environment', 'culture']);
+  assert.deepEqual(linkDomain.enum, ['health', 'environment', 'culture']);
+  assert.equal(schema.properties.nodes.items.required.includes('domain'), true);
+  assert.equal(schema.properties.links.items.required.includes('domain'), true);
+});
+
+test('a missing domain on a node fails validation', () => {
+  const data = readJson(ALIGNED_SEED);
+  const schema = readJson(GRAPH_SCHEMA);
+  delete data.nodes[0].domain;
+  const result = validateGraphData(data, schema);
+  assert.equal(result.ok, false);
+  assert.match(result.errors.join('\n'), /domain|required/i);
+});
+
+test('a missing domain on a link fails validation', () => {
+  const data = readJson(ALIGNED_SEED);
+  const schema = readJson(GRAPH_SCHEMA);
+  delete data.links[0].domain;
+  const result = validateGraphData(data, schema);
+  assert.equal(result.ok, false);
+  assert.match(result.errors.join('\n'), /domain|required/i);
+});
+
+test('an illegal domain value fails validation', () => {
+  const data = readJson(ALIGNED_SEED);
+  const schema = readJson(GRAPH_SCHEMA);
+  data.nodes[0].domain = 'nutrition';
+  data.links[0].domain = 'wellness';
+  const result = validateGraphData(data, schema);
+  assert.equal(result.ok, false);
+  assert.match(result.errors.join('\n'), /domain/);
 });
 
 test('omitted audience and mechanism_depth still validate', () => {

@@ -1,10 +1,10 @@
 {
   "meta": {
-    "schema_version": "0.5",
-    "data_version": "1.2",
+    "schema_version": "0.6",
+    "data_version": "1.3",
     "extracted_from": "knowledge-base Project (high relevance files)",
     "extraction_date": "2026-10-31",
-    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 book-note nodes and excerpts are unchanged. data 0.5 adds schema 0.2 optional citation and nine literature edges with verified DOIs. data 0.6 / schema 0.3 writes audience on every link and mechanism_depth on mechanism nodes. These labels are not an evidence grade and not a view toggle. Educational use only. The original 20 excerpts are unchanged. data 0.7 aligns the 14 existing mechanism descriptions to MECHANISM_DICTIONARY.md v0.2 concept sentences and adds 10 dictionary mechanism nodes (aliases empty; mechanism_depth mechanism). Mechanism nodes still carry no source or limitations fields. Educational use only; schema_version remains 0.3. data 0.8 aligns 11 existing disease/biomarker labels and descriptions to HEALTH_DISEASE_DICTIONARY.md v0.2 concept sentences and adds 8 protective health-direction disease nodes (aliases empty). Column caption becomes 健康/疾病. Status nodes still carry no source or limitations fields. No new edges in this increment. Educational use only; schema_version remains 0.3. data 0.9 / schema 0.4 adds source_title on every link, source_id on book-note links, and data/sources.json (six cited books) for the source intro screen. Literature links set source_title from citation.title and omit source_id. Excerpt bodies and limitations are unchanged; evidences arrays are not introduced. Educational use only. NS-056：evidences[]+顶层镜像；合并同端点 125→121；EXCERPT_LIMIT 1200；加长主摘录（微信读书书摘/PubMed 摘要，未编造）。 data 1.1 / NS-058：按 EXCERPT_EXPANSION 将优先主题短摘录替换为知识库原文（目标 400–800；evidences[0]+顶层镜像；schema 0.5 / sources 1.1 不动）。 data 1.2 / NS-061：六书微信划线映射进已有边 evidences[]（个人为主、热门去重补充；默认 append；短主摘录可 promote0）；schema 0.5 / sources 1.1 / admin_books 1.1 不动；语料 JSON 正文不改。",
+    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 book-note nodes and excerpts are unchanged. data 0.5 adds schema 0.2 optional citation and nine literature edges with verified DOIs. data 0.6 / schema 0.3 writes audience on every link and mechanism_depth on mechanism nodes. These labels are not an evidence grade and not a view toggle. Educational use only. The original 20 excerpts are unchanged. data 0.7 aligns the 14 existing mechanism descriptions to MECHANISM_DICTIONARY.md v0.2 concept sentences and adds 10 dictionary mechanism nodes (aliases empty; mechanism_depth mechanism). Mechanism nodes still carry no source or limitations fields. Educational use only; schema_version remains 0.3. data 0.8 aligns 11 existing disease/biomarker labels and descriptions to HEALTH_DISEASE_DICTIONARY.md v0.2 concept sentences and adds 8 protective health-direction disease nodes (aliases empty). Column caption becomes 健康/疾病. Status nodes still carry no source or limitations fields. No new edges in this increment. Educational use only; schema_version remains 0.3. data 0.9 / schema 0.4 adds source_title on every link, source_id on book-note links, and data/sources.json (six cited books) for the source intro screen. Literature links set source_title from citation.title and omit source_id. Excerpt bodies and limitations are unchanged; evidences arrays are not introduced. Educational use only. NS-056：evidences[]+顶层镜像；合并同端点 125→121；EXCERPT_LIMIT 1200；加长主摘录（微信读书书摘/PubMed 摘要，未编造）。 data 1.1 / NS-058：按 EXCERPT_EXPANSION 将优先主题短摘录替换为知识库原文（目标 400–800；evidences[0]+顶层镜像；schema 0.5 / sources 1.1 不动）。 data 1.2 / NS-061：六书微信划线映射进已有边 evidences[]（个人为主、热门去重补充；默认 append；短主摘录可 promote0）；schema 0.5 / sources 1.1 / admin_books 1.1 不动；语料 JSON 正文不改。 data 1.3 / schema 0.6 · NS-062：全量节点与边显式 domain: health；无环境/文化数据；无 UI 主题切换。",
     "disclaimer": "Educational / research use only. Not medical advice."
   },
   "nodes": [
@@ -19,7 +19,8 @@
         "全植物",
         "蔬食",
         "WFPB"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "animal_foods",
@@ -31,7 +32,8 @@
         "动物性食品",
         "动物蛋白",
         "肉蛋奶"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ultra_processed",
@@ -43,7 +45,8 @@
         "超加工",
         "高度加工食品",
         "UPF"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "dietary_fiber",
@@ -55,7 +58,8 @@
         "膳食纤维",
         "益生元",
         "fiber"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "vegetables_greens",
@@ -68,7 +72,8 @@
         "绿叶菜",
         "芹菜",
         "菠菜"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "soy",
@@ -80,7 +85,8 @@
         "大豆",
         "豆腐",
         "豆浆"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "berries_fruits",
@@ -92,7 +98,8 @@
         "浆果",
         "番茄",
         "核果"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "omega3",
@@ -104,7 +111,8 @@
         "omega-3",
         "ω-3",
         "多不饱和脂肪酸"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "glutathione",
@@ -115,7 +123,8 @@
       "aliases": [
         "谷胱甘肽",
         "GSH"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "scfa",
@@ -126,7 +135,8 @@
       "aliases": [
         "短链脂肪酸",
         "SCFA"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "reactive_oxygen",
@@ -139,7 +149,8 @@
         "氧化应激",
         "自由基"
       ],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "chronic_inflammation",
@@ -151,7 +162,8 @@
         "慢性炎症",
         "低度炎症"
       ],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "glycation",
@@ -163,7 +175,8 @@
         "糖化",
         "糖化反应"
       ],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "gut_microbiome",
@@ -176,7 +189,8 @@
         "微生物组",
         "菌群多样性"
       ],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "gut_barrier_leak",
@@ -189,7 +203,8 @@
         "肠道屏障",
         "肠通透性"
       ],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "lps",
@@ -202,7 +217,8 @@
         "LPS",
         "内毒素"
       ],
-      "mechanism_depth": "technical"
+      "mechanism_depth": "technical",
+      "domain": "health"
     },
     {
       "id": "angiogenesis_defense",
@@ -214,7 +230,8 @@
         "血管生成",
         "抗血管生成"
       ],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "epigenetic_positive",
@@ -226,7 +243,8 @@
         "表观遗传",
         "DNA 保护"
       ],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "immune_balance",
@@ -238,7 +256,8 @@
         "免疫平衡",
         "免疫调节"
       ],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "liver_chronic",
@@ -249,7 +268,8 @@
       "aliases": [
         "慢性肝炎",
         "肝癌"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "digestive_cancer_risk",
@@ -261,7 +281,8 @@
         "消化系统肿瘤",
         "胃癌",
         "肠癌"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "cardiometabolic",
@@ -273,7 +294,8 @@
         "心血管",
         "代谢疾病",
         "心脏病"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "autoimmune",
@@ -284,7 +306,8 @@
       "aliases": [
         "自身免疫",
         "免疫相关疾病"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "mental_health",
@@ -296,7 +319,8 @@
         "抑郁",
         "情绪",
         "心理健康"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "green_tea",
@@ -307,7 +331,8 @@
       "aliases": [
         "绿茶",
         "green tea"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "coffee",
@@ -318,7 +343,8 @@
       "aliases": [
         "咖啡",
         "coffee"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "nuts_seeds",
@@ -330,7 +356,8 @@
         "坚果",
         "核桃",
         "nuts"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "cruciferous",
@@ -342,7 +369,8 @@
         "西兰花",
         "十字花科",
         "broccoli"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "alliums",
@@ -354,7 +382,8 @@
         "大蒜",
         "洋葱",
         "garlic"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "mushrooms",
@@ -366,7 +395,8 @@
         "蘑菇",
         "菌菇",
         "mushrooms"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "whole_grains",
@@ -379,7 +409,8 @@
         "燕麦",
         "糙米",
         "whole grains"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "legumes",
@@ -391,7 +422,8 @@
         "扁豆",
         "鹰嘴豆",
         "legumes"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "flax_chia",
@@ -403,7 +435,8 @@
         "亚麻籽",
         "奇亚籽",
         "flax"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "fermented_foods",
@@ -415,7 +448,8 @@
         "发酵食品",
         "泡菜",
         "味噌"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "refined_carbs",
@@ -427,7 +461,8 @@
         "精制主食",
         "白米饭面",
         "refined grains"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "processed_meat",
@@ -439,7 +474,8 @@
         "加工肉",
         "火腿",
         "香肠"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "added_sugar",
@@ -450,7 +486,8 @@
       "aliases": [
         "含糖饮料",
         "added sugar"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "dairy",
@@ -462,7 +499,8 @@
         "牛奶",
         "乳品",
         "dairy"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "red_meat",
@@ -474,7 +512,8 @@
         "牛肉",
         "猪肉",
         "red meat"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "herbs_spices",
@@ -486,7 +525,8 @@
         "香料",
         "香草",
         "spices"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "cacao",
@@ -497,7 +537,8 @@
       "aliases": [
         "可可",
         "cacao"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "polyphenols",
@@ -508,7 +549,8 @@
       "aliases": [
         "多酚",
         "polyphenols"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "egcg",
@@ -519,7 +561,8 @@
       "aliases": [
         "EGCG",
         "儿茶素"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "carotenoids",
@@ -530,7 +573,8 @@
       "aliases": [
         "类胡萝卜素",
         "carotenoids"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "anthocyanins",
@@ -541,7 +585,8 @@
       "aliases": [
         "花青素",
         "anthocyanins"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "isoflavones",
@@ -552,7 +597,8 @@
       "aliases": [
         "异黄酮",
         "isoflavones"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "sulforaphane",
@@ -563,7 +609,8 @@
       "aliases": [
         "萝卜硫素",
         "sulforaphane"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "organosulfur",
@@ -574,7 +621,8 @@
       "aliases": [
         "有机硫",
         "大蒜素"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "beta_glucan",
@@ -585,7 +633,8 @@
       "aliases": [
         "β-葡聚糖",
         "beta-glucan"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "resistant_starch",
@@ -596,7 +645,8 @@
       "aliases": [
         "抗性淀粉",
         "resistant starch"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "butyrate",
@@ -608,7 +658,8 @@
         "丁酸",
         "丁酸盐",
         "butyrate"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "vitamin_c",
@@ -620,7 +671,8 @@
         "维生素C",
         "抗坏血酸",
         "vitamin C"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "vitamin_e",
@@ -631,7 +683,8 @@
       "aliases": [
         "维生素E",
         "vitamin E"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "tmao",
@@ -642,7 +695,8 @@
       "aliases": [
         "TMAO",
         "氧化三甲胺"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "tryptophan_metabolites",
@@ -653,7 +707,8 @@
       "aliases": [
         "色氨酸代谢物",
         "tryptophan"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "saturated_fat",
@@ -664,7 +719,8 @@
       "aliases": [
         "饱和脂肪",
         "饱和脂肪酸"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "heme_iron",
@@ -675,7 +731,8 @@
       "aliases": [
         "血红素铁",
         "heme iron"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "casein",
@@ -686,7 +743,8 @@
       "aliases": [
         "酪蛋白",
         "casein"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "insulin_resistance",
@@ -698,7 +756,8 @@
         "胰岛素抵抗",
         "insulin resistance"
       ],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "dna_damage",
@@ -710,7 +769,8 @@
         "DNA损伤",
         "DNA damage"
       ],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "immune_activation",
@@ -722,7 +782,8 @@
         "免疫激活",
         "immune activation"
       ],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "mitochondrial_stress",
@@ -734,7 +795,8 @@
         "线粒体",
         "mitochondrial stress"
       ],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "igf1_signaling",
@@ -746,7 +808,8 @@
         "IGF-1",
         "胰岛素样生长因子"
       ],
-      "mechanism_depth": "technical"
+      "mechanism_depth": "technical",
+      "domain": "health"
     },
     {
       "id": "breast_prostate_risk",
@@ -759,7 +822,8 @@
         "前列腺癌",
         "breast",
         "prostate"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ibd_related",
@@ -770,7 +834,8 @@
       "aliases": [
         "炎症性肠病",
         "IBD"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "fatty_liver",
@@ -781,7 +846,8 @@
       "aliases": [
         "脂肪肝",
         "NAFLD"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "obesity_risk",
@@ -792,7 +858,8 @@
       "aliases": [
         "肥胖",
         "obesity"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "crp",
@@ -803,7 +870,8 @@
       "aliases": [
         "CRP",
         "C反应蛋白"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "hba1c",
@@ -815,7 +883,8 @@
         "HbA1c",
         "糖化血红蛋白",
         "A1C"
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "mitochondrial_energy",
@@ -824,7 +893,8 @@
       "group": "protective",
       "description": "细胞通过线粒体产生能量的效率。",
       "aliases": [],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "glycemic_stability",
@@ -833,7 +903,8 @@
       "group": "protective",
       "description": "餐后血糖波动幅度较小的状态。",
       "aliases": [],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "inflammation_resolution",
@@ -842,7 +913,8 @@
       "group": "protective",
       "description": "急性炎症后的主动消退过程。",
       "aliases": [],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "antioxidant_defense",
@@ -851,7 +923,8 @@
       "group": "protective",
       "description": "内源性抗氧化酶与外源抗氧化物质共同参与的防御过程。",
       "aliases": [],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "scfa_signaling",
@@ -860,7 +933,8 @@
       "group": "protective",
       "description": "短链脂肪酸等菌群代谢产物对宿主的信号作用。",
       "aliases": [],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "circadian_alignment",
@@ -869,7 +943,8 @@
       "group": "protective",
       "description": "进食时间与代谢节律匹配的状态。",
       "aliases": [],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "autonomic_balance",
@@ -878,7 +953,8 @@
       "group": "neutral",
       "description": "交感与副交感调节的相对状态。",
       "aliases": [],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "muscle_protein_synthesis",
@@ -887,7 +963,8 @@
       "group": "protective",
       "description": "氨基酸供应与合成信号的过程。",
       "aliases": [],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "gut_barrier_integrity",
@@ -896,7 +973,8 @@
       "group": "protective",
       "description": "上皮紧密连接与黏液层保持相对完整的状态。",
       "aliases": [],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "epigenetic_regulation",
@@ -905,7 +983,8 @@
       "group": "mixed",
       "description": "饮食对基因表达的可逆影响。",
       "aliases": [],
-      "mechanism_depth": "mechanism"
+      "mechanism_depth": "mechanism",
+      "domain": "health"
     },
     {
       "id": "metabolic_health",
@@ -913,7 +992,8 @@
       "label": "代谢健康",
       "group": "protective",
       "description": "血糖、血脂、血压等代谢指标处于相对稳定的状态。",
-      "aliases": []
+      "aliases": [],
+      "domain": "health"
     },
     {
       "id": "energy_vitality",
@@ -921,7 +1001,8 @@
       "label": "能量充沛",
       "group": "protective",
       "description": "日常活动中感到精力充足、不易疲劳的状态。",
-      "aliases": []
+      "aliases": [],
+      "domain": "health"
     },
     {
       "id": "gut_comfort",
@@ -929,7 +1010,8 @@
       "label": "肠道舒适",
       "group": "protective",
       "description": "排便规律、腹胀较少、消化感受平稳的状态。",
-      "aliases": []
+      "aliases": [],
+      "domain": "health"
     },
     {
       "id": "emotional_stability",
@@ -937,7 +1019,8 @@
       "label": "情绪稳定",
       "group": "protective",
       "description": "情绪波动较小、日常心境相对平稳的状态。",
-      "aliases": []
+      "aliases": [],
+      "domain": "health"
     },
     {
       "id": "immune_resilience",
@@ -945,7 +1028,8 @@
       "label": "免疫稳健",
       "group": "protective",
       "description": "免疫反应能启动也能适时消退的状态。",
-      "aliases": []
+      "aliases": [],
+      "domain": "health"
     },
     {
       "id": "healthy_weight",
@@ -953,7 +1037,8 @@
       "label": "体重适宜",
       "group": "protective",
       "description": "体重处于相对稳定、与日常活动匹配的状态。",
-      "aliases": []
+      "aliases": [],
+      "domain": "health"
     },
     {
       "id": "good_sleep",
@@ -961,7 +1046,8 @@
       "label": "睡眠良好",
       "group": "protective",
       "description": "入睡与维持睡眠相对顺畅、醒来感到恢复的状态。",
-      "aliases": []
+      "aliases": [],
+      "domain": "health"
     },
     {
       "id": "cognitive_clarity",
@@ -969,7 +1055,8 @@
       "label": "认知清晰",
       "group": "protective",
       "description": "日常注意力与思维清晰度相对较好的状态。",
-      "aliases": []
+      "aliases": [],
+      "domain": "health"
     }
   ],
   "links": [
@@ -996,7 +1083,8 @@
           "source_id": "amazing_veggie_soup",
           "note_id": "35903999_7UumHuIZG"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "glutathione",
@@ -1021,7 +1109,8 @@
           "source_id": "amazing_veggie_soup",
           "note_id": "35903999_7UumHuIZG"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "plant_based_diet",
@@ -1046,7 +1135,8 @@
           "source_id": "amazing_veggie_soup",
           "note_id": "35903999_7UujZPd3G"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "chronic_inflammation",
@@ -1071,7 +1161,8 @@
           "source_id": "amazing_veggie_soup",
           "note_id": "35903999_7UujZPd3G"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "chronic_inflammation",
@@ -1096,7 +1187,8 @@
           "source_id": "amazing_veggie_soup",
           "note_id": "35903999_7UulQClmx"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "glycation",
@@ -1121,7 +1213,8 @@
           "source_id": "amazing_veggie_soup",
           "note_id": "35903999_7Uum2bdvM"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "dietary_fiber",
@@ -1155,7 +1248,8 @@
           "source_id": "eat_to_heal",
           "note_id": "39484588_10_5172-5447"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "scfa",
@@ -1180,7 +1274,8 @@
           "source_id": "eat_to_heal",
           "note_id": "39484588_10_5172-5447"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "dietary_fiber",
@@ -1245,7 +1340,8 @@
           "weread_origin": "personal",
           "weread_chapter_title": "第三章 微生物组"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "soy",
@@ -1270,7 +1366,8 @@
           "source_id": "eat_to_heal",
           "note_id": "39484588_14_3969-4088"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "berries_fruits",
@@ -1303,7 +1400,8 @@
           "source_id": "eat_to_heal",
           "note_id": "multiple"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "plant_based_diet",
@@ -1328,7 +1426,8 @@
           "source_id": "how_not_to_die",
           "note_id": "3300017717_13_11428-11518"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "animal_foods",
@@ -1353,7 +1452,8 @@
           "source_id": "china_study",
           "note_id": "related"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "lps",
@@ -1378,7 +1478,8 @@
           "source_id": "gut_brain",
           "note_id": "related"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "gut_barrier_leak",
@@ -1413,7 +1514,8 @@
           "weread_origin": "personal",
           "weread_chapter_title": "焦虑的细菌"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "gut_microbiome",
@@ -1448,7 +1550,8 @@
           "weread_origin": "personal",
           "weread_chapter_title": "最终的大脑塑造者"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "gut_microbiome",
@@ -1513,7 +1616,8 @@
           "weread_origin": "personal",
           "weread_chapter_title": "3 菌-肠-脑轴，调节心理和行为的关键通路"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "omega3",
@@ -1547,7 +1651,8 @@
           "source_id": "eat_to_heal",
           "note_id": "related"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "plant_based_diet",
@@ -1572,7 +1677,8 @@
           "source_id": "eat_to_heal",
           "note_id": "related"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "source": "gut_microbiome",
@@ -1597,7 +1703,8 @@
           "source_id": "gut_brain",
           "note_id": "related"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_ultra_microbiome",
@@ -1623,7 +1730,8 @@
           "source_id": "gut_brain",
           "note_id": "ns009_ultra_microbiome"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_ultra_inflammation",
@@ -1649,7 +1757,8 @@
           "source_id": "gut_brain",
           "note_id": "ns009_ultra_inflammation"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_ultra_insulin",
@@ -1677,7 +1786,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_ultra_insulin"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_barrier_autoimmune",
@@ -1704,7 +1814,8 @@
           "source_id": "gut_brain",
           "note_id": "ns009_barrier_autoimmune"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_barrier_immune_activation",
@@ -1730,7 +1841,8 @@
           "source_id": "gut_brain",
           "note_id": "ns009_barrier_immune_activation"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_lps_immune_activation",
@@ -1795,7 +1907,8 @@
           "source_id": "gut_brain",
           "note_id": "ns009_lps_immune_activation"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_immune_activation_autoimmune",
@@ -1830,7 +1943,8 @@
           "source_id": "gut_brain",
           "note_id": "ns009_immune_activation_autoimmune"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_greens_vitc",
@@ -1856,7 +1970,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_greens_vitc"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_greens_carotenoids",
@@ -1882,7 +1997,8 @@
           "source_id": "amazing_veggie_soup",
           "note_id": "ns009_greens_carotenoids"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_greens_fiber",
@@ -1908,7 +2024,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_greens_fiber"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_berry_anthocyanins",
@@ -1953,7 +2070,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_berry_anthocyanins"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_berry_carotenoids",
@@ -1979,7 +2097,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_berry_carotenoids"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_berry_polyphenols",
@@ -2005,7 +2124,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_berry_polyphenols"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_berry_vitc",
@@ -2031,7 +2151,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_berry_vitc"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_soy_isoflavones",
@@ -2057,7 +2178,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_soy_isoflavones"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_soy_breast_prostate",
@@ -2103,7 +2225,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_soy_breast_prostate"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_soy_cardiometabolic",
@@ -2131,7 +2254,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_soy_cardiometabolic"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_tea_egcg",
@@ -2157,7 +2281,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_tea_egcg"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_tea_polyphenols",
@@ -2183,7 +2308,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_tea_polyphenols"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_coffee_polyphenols",
@@ -2209,7 +2335,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_coffee_polyphenols"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_coffee_epigenetic",
@@ -2244,7 +2371,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_coffee_epigenetic"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_nuts_fiber",
@@ -2270,7 +2398,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_nuts_fiber"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_nuts_omega3",
@@ -2296,7 +2425,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_nuts_omega3"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_nuts_vite",
@@ -2322,7 +2452,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_nuts_vite"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_cruciferous_sulforaphane",
@@ -2348,7 +2479,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_cruciferous_sulforaphane"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_cruciferous_fiber",
@@ -2374,7 +2506,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_cruciferous_fiber"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_alliums_sulfur",
@@ -2400,7 +2533,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_alliums_sulfur"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_mushroom_glucan",
@@ -2426,7 +2560,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_mushroom_glucan"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_grains_fiber",
@@ -2452,7 +2587,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_grains_fiber"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_grains_resistant_starch",
@@ -2478,7 +2614,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_grains_resistant_starch"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_legumes_fiber",
@@ -2504,7 +2641,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_legumes_fiber"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_legumes_microbiome",
@@ -2530,7 +2668,8 @@
           "source_id": "know_your_gut",
           "note_id": "ns009_legumes_microbiome"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_flax_omega3",
@@ -2556,7 +2695,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_flax_omega3"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_flax_fiber",
@@ -2582,7 +2722,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_flax_fiber"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_fermented_microbiome",
@@ -2608,7 +2749,8 @@
           "source_id": "know_your_gut",
           "note_id": "ns009_fermented_microbiome"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_fermented_immune",
@@ -2642,7 +2784,8 @@
           "source_id": "gut_brain",
           "note_id": "ns009_fermented_immune"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_spices_polyphenols",
@@ -2668,7 +2811,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_spices_polyphenols"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_cacao_polyphenols",
@@ -2694,7 +2838,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_cacao_polyphenols"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_cacao_angiogenesis",
@@ -2720,7 +2865,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_cacao_angiogenesis"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_plant_vitamins",
@@ -2756,7 +2902,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_plant_vitamins"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_plant_microbiome",
@@ -2782,7 +2929,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_plant_microbiome"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_plant_cardiometabolic",
@@ -2825,7 +2973,8 @@
             "url": "https://doi.org/10.1161/CIRCULATIONAHA.119.041014"
           }
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_redmeat_heme",
@@ -2851,7 +3000,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_redmeat_heme"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_redmeat_tmao",
@@ -2877,7 +3027,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_redmeat_tmao"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_redmeat_cardio",
@@ -2940,7 +3091,8 @@
           "weread_origin": "personal",
           "weread_chapter_title": "第2部分 今天要怎么吃？吃什么？"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_processed_digestive",
@@ -2968,7 +3120,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_processed_digestive"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_processed_cardio",
@@ -2996,7 +3149,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_processed_cardio"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_animal_satfat",
@@ -3023,7 +3177,8 @@
           "source_id": "china_study",
           "note_id": "ns009_animal_satfat"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_animal_igf1",
@@ -3049,7 +3204,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_animal_igf1"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_dairy_casein",
@@ -3083,7 +3239,8 @@
           "source_id": "china_study",
           "note_id": "ns009_dairy_casein"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_dairy_igf1",
@@ -3109,7 +3266,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_dairy_igf1"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_sugar_glycation",
@@ -3136,7 +3294,8 @@
           "source_id": "amazing_veggie_soup",
           "note_id": "ns009_sugar_glycation"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_sugar_insulin",
@@ -3164,7 +3323,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_sugar_insulin"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_refined_glycation",
@@ -3191,7 +3351,8 @@
           "source_id": "amazing_veggie_soup",
           "note_id": "ns009_refined_glycation"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_refined_microbiome",
@@ -3217,7 +3378,8 @@
           "source_id": "know_your_gut",
           "note_id": "ns009_refined_microbiome"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_refined_cardiometabolic",
@@ -3245,7 +3407,8 @@
           "source_id": "china_study",
           "note_id": "ns009_refined_cardiometabolic"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_vitc_ros",
@@ -3271,7 +3434,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_vitc_ros"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_vite_ros",
@@ -3297,7 +3461,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_vite_ros"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_carotenoid_ros",
@@ -3323,7 +3488,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_carotenoid_ros"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_carotenoid_angio",
@@ -3349,7 +3515,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_carotenoid_angio"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_polyphenol_ros",
@@ -3375,7 +3542,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_polyphenol_ros"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_polyphenol_epigenetic",
@@ -3401,7 +3569,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_polyphenol_epigenetic"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_anthocyanin_angio",
@@ -3427,7 +3596,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_anthocyanin_angio"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_isoflavone_angio",
@@ -3453,7 +3623,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_isoflavone_angio"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_egcg_angio",
@@ -3479,7 +3650,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_egcg_angio"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_egcg_epigenetic",
@@ -3505,7 +3677,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_egcg_epigenetic"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_sulforaphane_epigenetic",
@@ -3540,7 +3713,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_sulforaphane_epigenetic"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_sulfur_immune",
@@ -3566,7 +3740,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_sulfur_immune"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_glucan_immune",
@@ -3601,7 +3776,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_glucan_immune"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_rs_scfa",
@@ -3627,7 +3803,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_rs_scfa"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_rs_microbiome",
@@ -3653,7 +3830,8 @@
           "source_id": "know_your_gut",
           "note_id": "ns009_rs_microbiome"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_scfa_butyrate",
@@ -3679,7 +3857,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_scfa_butyrate"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_butyrate_barrier",
@@ -3705,7 +3884,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_butyrate_barrier"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_satfat_cardio",
@@ -3733,7 +3913,8 @@
           "source_id": "china_study",
           "note_id": "ns009_satfat_cardio"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_heme_dna",
@@ -3759,7 +3940,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_heme_dna"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_casein_cancer",
@@ -3787,7 +3969,8 @@
           "source_id": "china_study",
           "note_id": "ns009_casein_cancer"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_tmao_cardio",
@@ -3815,7 +3998,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_tmao_cardio"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_microbiome_tryptophan",
@@ -3841,7 +4025,8 @@
           "source_id": "gut_brain",
           "note_id": "ns009_microbiome_tryptophan"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_tryptophan_mental",
@@ -3868,7 +4053,8 @@
           "source_id": "gut_brain",
           "note_id": "ns009_tryptophan_mental"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_ros_dna",
@@ -3894,7 +4080,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_ros_dna"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_ros_inflammation",
@@ -3920,7 +4107,8 @@
           "source_id": "amazing_veggie_soup",
           "note_id": "ns009_ros_inflammation"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_dna_digestive",
@@ -3947,7 +4135,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_dna_digestive"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_glycation_insulin",
@@ -3973,7 +4162,8 @@
           "source_id": "amazing_veggie_soup",
           "note_id": "ns009_glycation_insulin"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_glycation_hba1c",
@@ -4000,7 +4190,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_glycation_hba1c"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_insulin_cardio",
@@ -4027,7 +4218,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_insulin_cardio"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_insulin_fatty_liver",
@@ -4054,7 +4246,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_insulin_fatty_liver"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_igf1_breast",
@@ -4081,7 +4274,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_igf1_breast"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_angio_breast",
@@ -4108,7 +4302,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_angio_breast"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_microbiome_mito",
@@ -4164,7 +4359,8 @@
           "weread_origin": "personal",
           "weread_chapter_title": "炎症、肠道和强大的线粒体"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_mito_inflammation",
@@ -4190,7 +4386,8 @@
           "source_id": "gut_brain",
           "note_id": "ns009_mito_inflammation"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_inflammation_crp",
@@ -4218,7 +4415,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_inflammation_crp"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_inflammation_fatty_liver",
@@ -4245,7 +4443,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_inflammation_fatty_liver"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_inflammation_mental",
@@ -4272,7 +4471,8 @@
           "source_id": "gut_brain",
           "note_id": "ns009_inflammation_mental"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_inflammation_ibd",
@@ -4299,7 +4499,8 @@
           "source_id": "know_your_gut",
           "note_id": "ns009_inflammation_ibd"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_barrier_ibd",
@@ -4326,7 +4527,8 @@
           "source_id": "know_your_gut",
           "note_id": "ns009_barrier_ibd"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_scfa_obesity",
@@ -4353,7 +4555,8 @@
           "source_id": "eat_to_heal",
           "note_id": "ns009_scfa_obesity"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "ns009_fiber_obesity",
@@ -4381,7 +4584,8 @@
           "source_id": "how_not_to_die",
           "note_id": "ns009_fiber_obesity"
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "lit_fiber_cvd_reynolds_2019",
@@ -4422,7 +4626,8 @@
             "url": "https://doi.org/10.1016/S0140-6736(18)31809-9"
           }
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "lit_upf_cvd_srour_2019",
@@ -4463,7 +4668,8 @@
             "url": "https://doi.org/10.1136/bmj.l1451"
           }
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "lit_microbiome_colon_okeefe_2016",
@@ -4504,7 +4710,8 @@
             "url": "https://doi.org/10.1038/nrgastro.2016.165"
           }
         }
-      ]
+      ],
+      "domain": "health"
     },
     {
       "id": "lit_upf_outcomes_elizabeth_2020",
@@ -4545,7 +4752,8 @@
             "url": "https://doi.org/10.3390/nu12071955"
           }
         }
-      ]
+      ],
+      "domain": "health"
     }
   ]
 }

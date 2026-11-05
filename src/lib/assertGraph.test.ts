@@ -36,3 +36,17 @@ test('rejects duplicate node ids', () => {
   broken.nodes.push({ ...broken.nodes[0] });
   assert.throws(() => assertGraph(broken), /重复/);
 });
+
+test('omitted domain normalizes to health without dropping nodes or links', () => {
+  const graph = assertGraph(valid);
+  assert.equal(graph.nodes.length, 2);
+  assert.equal(graph.links.length, 1);
+  assert.equal(graph.nodes.every((node) => node.domain === 'health'), true);
+  assert.equal(graph.links.every((link) => link.domain === 'health'), true);
+});
+
+test('rejects an illegal domain value', () => {
+  const broken = structuredClone(valid);
+  (broken.nodes[0] as { domain?: string }).domain = 'nutrition';
+  assert.throws(() => assertGraph(broken), /domain/);
+});

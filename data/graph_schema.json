@@ -32,7 +32,8 @@
           "id",
           "type",
           "label",
-          "group"
+          "group",
+          "domain"
         ],
         "properties": {
           "id": {
@@ -81,6 +82,15 @@
               "technical"
             ],
             "description": "Optional narrative depth for a mechanism node. Omitted means summary. Not GRADE, not ViewLayer, and not evidence strength."
+          },
+          "domain": {
+            "type": "string",
+            "enum": [
+              "health",
+              "environment",
+              "culture"
+            ],
+            "description": "Theme domain for this node or link. Seed writes must be explicit. Omitted-at-runtime ⇒ health. Not ViewLayer, not GRADE, not audience."
           }
         },
         "additionalProperties": true
@@ -95,7 +105,8 @@
           "target",
           "relation",
           "direction",
-          "evidence_type"
+          "evidence_type",
+          "domain"
         ],
         "properties": {
           "source": {
@@ -282,6 +293,15 @@
                 }
               }
             }
+          },
+          "domain": {
+            "type": "string",
+            "enum": [
+              "health",
+              "environment",
+              "culture"
+            ],
+            "description": "Theme domain for this node or link. Seed writes must be explicit. Omitted-at-runtime ⇒ health. Not ViewLayer, not GRADE, not audience."
           }
         },
         "additionalProperties": true

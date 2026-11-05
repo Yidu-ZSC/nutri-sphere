@@ -1,4 +1,12 @@
-import type { GraphData, GraphLink, GraphNode } from '../types/graph';
+import type { Domain, GraphData, GraphLink, GraphNode } from '../types/graph';
+
+const DOMAINS = new Set<Domain>(['health', 'environment', 'culture']);
+
+function readDomain(value: unknown): Domain {
+  if (value === undefined || value === null || value === '') return 'health';
+  if (typeof value === 'string' && DOMAINS.has(value as Domain)) return value as Domain;
+  throw new Error(`非法 domain：${String(value)}`);
+}
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -13,7 +21,8 @@ function readNode(value: unknown, index: number): GraphNode {
   if (!requiredString(value.id) || !requiredString(value.type) || !requiredString(value.label) || !requiredString(value.group)) {
     throw new Error(`节点 ${index} 缺少 id、type、label 或 group`);
   }
-  return value as unknown as GraphNode;
+  const domain = readDomain(value.domain);
+  return { ...(value as unknown as GraphNode), domain };
 }
 
 function readLink(value: unknown, index: number): GraphLink {
@@ -21,7 +30,8 @@ function readLink(value: unknown, index: number): GraphLink {
   if (!requiredString(value.source) || !requiredString(value.target) || !requiredString(value.relation) || !requiredString(value.direction) || !requiredString(value.evidence_type)) {
     throw new Error(`关联 ${index} 缺少 source、target、relation、direction 或 evidence_type`);
   }
-  return value as unknown as GraphLink;
+  const domain = readDomain(value.domain);
+  return { ...(value as unknown as GraphLink), domain };
 }
 
 /** Lightweight runtime guard. Broken references abort the view instead of drawing a partial graph. */

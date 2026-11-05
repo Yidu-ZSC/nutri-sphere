@@ -13,11 +13,16 @@ export type Audience = 'general' | 'deep_reader';
 /** Narrative depth of a mechanism node. Stored as words so it is not read as strength. */
 export type MechanismDepth = 'summary' | 'mechanism' | 'technical';
 
+/** Theme domain. Seed writes required; omitted-at-runtime means health. Not ViewLayer, not evidence grade, not audience. */
+export type Domain = 'health' | 'environment' | 'culture';
+
 export interface GraphNode {
   id: string;
   type: string;
   label: string;
   group: string;
+  /** Theme domain. Omitted means health at read time. Not ViewLayer. */
+  domain?: Domain;
   description?: string;
   aliases?: string[];
   sources?: string[];
@@ -58,6 +63,8 @@ export interface GraphLink {
   target: string;
   relation: string;
   direction: string;
+  /** Theme domain. Omitted means health at read time. Not ViewLayer. */
+  domain?: Domain;
   evidence_type: string;
   strength?: string;
   weight?: number;
