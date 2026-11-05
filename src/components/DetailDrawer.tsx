@@ -219,7 +219,7 @@ function NodeBody({
   );
 }
 
-type SourceRef = Pick<GraphEvidence, 'source_title' | 'source_id' | 'citation'> | GraphLink;
+type SourceRef = Pick<GraphEvidence, 'source_title' | 'source_id' | 'citation' | 'weread_bookmark_id'> | GraphLink;
 
 function SourceTitleLink({
   evidence,
@@ -243,6 +243,16 @@ function SourceTitleLink({
   } else if (pmid) {
     href = `https://pubmed.ncbi.nlm.nih.gov/${pmid}`;
   }
+  const wereadId =
+    ('weread_bookmark_id' in evidence && evidence.weread_bookmark_id) ||
+    ('evidences' in evidence &&
+      Array.isArray(evidence.evidences) &&
+      evidence.evidences[0]?.weread_bookmark_id);
+  const wereadLabel = wereadId ? (
+    <span className="muted weread-evidence-label" data-testid="weread-evidence-label">
+      微信划线
+    </span>
+  ) : null;
   return (
     <div data-testid={testId}>
       <dt>来源</dt>
@@ -264,6 +274,7 @@ function SourceTitleLink({
         ) : (
           <span>{title}</span>
         )}
+        {wereadLabel}
       </dd>
     </div>
   );

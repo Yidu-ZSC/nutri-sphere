@@ -3,7 +3,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { ALIGNED_SEED, GRAPH_SCHEMA, validateAdminBooks, validateGraphData, validateGraphFile, validateWereadCorpora } from './validate-data.mjs';
+import { ALIGNED_SEED, GRAPH_SCHEMA, validateAdminBooks, validateGraphData, validateGraphFile, validateWereadCorpora,
+  validateWereadMappingReport } from './validate-data.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -57,10 +58,10 @@ test('aligned seed passes schema and referential checks', () => {
 
 const TECHNICAL_NODES = ['igf1_signaling', 'lps'];
 
-test('data 1.1 uses schema 0.5 with evidences mirrors; NS-056 long excerpts and NS-058 priority expansions', () => {
+test('data 1.2 uses schema 0.5 with evidences mirrors; NS-056/058 excerpts + NS-061 weread mapping', () => {
   const data = readJson(ALIGNED_SEED);
   assert.equal(data.meta.schema_version, '0.5');
-  assert.equal(data.meta.data_version, '1.1');
+  assert.equal(data.meta.data_version, '1.2');
   assert.equal(data.meta.disclaimer, 'Educational / research use only. Not medical advice.');
   assert.ok(data.nodes.length >= 60 && data.nodes.length <= 90);
   assert.ok(data.links.length >= 80 && data.links.length <= 140);
@@ -70,6 +71,8 @@ test('data 1.1 uses schema 0.5 with evidences mirrors; NS-056 long excerpts and 
   const ns056LengthenedIdx = new Set([11, 18, 19]);
   // NS-058 priority-theme short→原文 expansions (target 400–800)
   const ns058LengthenedIdx = new Set([2, 3, 4, 5, 7, 8, 12, 13, 14, 15, 16]);
+  // NS-061: short [0] (<200) may be promote0'd by weread mapping; prior short text kept in evidences[1+]
+  const ns061Promote0Idx = new Set([6, 10, 17]);
   ORIGINAL_EXCERPTS.forEach((excerpt, index) => {
     if (ns056LengthenedIdx.has(index)) {
       assert.ok(data.links[index].excerpt.includes(excerpt.slice(0, 12)), `idx ${index}`);
@@ -77,10 +80,23 @@ test('data 1.1 uses schema 0.5 with evidences mirrors; NS-056 long excerpts and 
     } else if (ns058LengthenedIdx.has(index)) {
       assert.notEqual(data.links[index].excerpt, excerpt, `idx ${index} should be expanded`);
       assert.ok(data.links[index].excerpt.length >= 400 && data.links[index].excerpt.length <= 1200, `idx ${index}`);
+    } else if (ns061Promote0Idx.has(index)) {
+      const ev0 = data.links[index].evidences[0];
+      assert.ok(ev0.weread_bookmark_id, `idx ${index} promote0 weread`);
+      assert.equal(ev0.source_file, `weread/${ev0.source_id}.json`);
+      const still =
+        data.links[index].evidences.slice(1).some((ev) => ev.excerpt === excerpt) ||
+        data.links[index].excerpt !== excerpt;
+      assert.ok(still, `idx ${index} prior short excerpt preserved or replaced via promote0`);
     } else {
       assert.equal(data.links[index].excerpt, excerpt);
     }
   });
+  const wereadEv = data.links.reduce(
+    (n, link) => n + (link.evidences || []).filter((ev) => ev.weread_bookmark_id).length,
+    0,
+  );
+  assert.ok(wereadEv >= 25, `weread evidences ${wereadEv}`);
 
   const byId = new Map(data.nodes.map((node) => [node.id, node]));
   const degree = new Map();
@@ -146,8 +162,16 @@ test('data 1.1 uses schema 0.5 with evidences mirrors; NS-056 long excerpts and 
   });
   assert.ok(longPrimaries.length >= 8 && longPrimaries.length <= 12, String(longPrimaries.length));
   const multi = data.links.filter((link) => link.evidences.length > 1);
-  assert.equal(multi.length, 3);
-  assert.ok(multi.some((link) => link.source === 'dietary_fiber' && link.target === 'gut_microbiome' && link.evidences.length === 3));
+  // NS-056 shipped 3 multi-evidence edges; NS-061 append/promote0 expands further
+  assert.ok(multi.length >= 3, String(multi.length));
+  assert.ok(
+    multi.some(
+      (link) =>
+        link.source === 'dietary_fiber' &&
+        link.target === 'gut_microbiome' &&
+        link.evidences.length >= 3,
+    ),
+  );
   const bookIds = new Set(
     data.links.filter((link) => link.source_file !== 'literature').map((link) => link.source_id),
   );
@@ -477,4 +501,11 @@ test('admin_books six ingested books carry locked weread_book_id', () => {
     assert.equal(row.weread_book_id, bookId);
   }
   assert.equal(admin.books.filter((b) => b.weread_book_id).length, 6);
+});
+
+test('weread mapping_report covers 156 personal outcomes and hard gate', () => {
+  const result = validateWereadMappingReport();
+  assert.equal(result.ok, true, result.errors?.join('; '));
+  assert.ok(!result.skipped, 'mapping_report should exist after NS-061');
+  assert.ok(result.counts.attached >= 25);
 });

@@ -45,3 +45,16 @@ node scripts/sync-weread-six.mjs
 每本：`schema_version` · `source_id` · `bookId` · `title_weread` · `synced_at` · `meta` · `bookmarks[]` · `bestbookmarks{totalCount,items}` · `stats`。
 
 `stats.bookmark_count` 必须等于 `bookmarks.length`。
+
+
+## 图谱映射（TASK-NS-061）
+
+将个人划线（热门去重补充）挂到**已有同书边**的 `evidences[]`，不新建节点/边，不改本目录语料正文。
+
+```bash
+node scripts/map-weread-to-evidences.mjs          # 写 seed data_version 1.2 + mapping_report.json
+node scripts/map-weread-to-evidences.mjs --dry-run
+```
+
+产出：`data/weread/mapping_report.json`（attached / skipped / needs_review；覆盖全部个人划线结局）。
+硬门槛：新挂 ≥25 且 ≥4 本书有挂载。评分规则见脚本头注释与 report.scoring。

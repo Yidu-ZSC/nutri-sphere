@@ -12,8 +12,9 @@
     "deploy": "npm run build && wrangler deploy",
     "preview": "vite preview",
     "validate:data": "node scripts/validate-data.mjs",
-    "test": "node --experimental-strip-types --test scripts/validate-data.test.mjs scripts/copy-guard.test.mjs src/lib/*.test.ts",
-    "sync:weread": "node scripts/sync-weread-six.mjs"
+    "test": "node --experimental-strip-types --test scripts/validate-data.test.mjs scripts/copy-guard.test.mjs scripts/map-weread-to-evidences.test.mjs src/lib/*.test.ts",
+    "sync:weread": "node scripts/sync-weread-six.mjs",
+    "map:weread": "node scripts/map-weread-to-evidences.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

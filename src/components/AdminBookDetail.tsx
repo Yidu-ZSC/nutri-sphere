@@ -27,6 +27,19 @@ function endpointLabel(graph: GraphData, id: string): string {
   return graph.nodes.find((node) => node.id === id)?.label ?? id;
 }
 
+/** Runtime scan of seed evidences with weread_bookmark_id for this book (NS-061 D1). */
+function countWereadMappedEvidences(graph: GraphData | null, sourceId: string | undefined): number {
+  if (!graph || !sourceId) return 0;
+  let n = 0;
+  for (const link of graph.links) {
+    if (link.source_id !== sourceId) continue;
+    for (const ev of link.evidences ?? []) {
+      if (ev.weread_bookmark_id) n += 1;
+    }
+  }
+  return n;
+}
+
 export function AdminBookDetail({
   book,
   sources,
@@ -222,6 +235,13 @@ export function AdminBookDetail({
               <div>
                 <dt>最近同步</dt>
                 <dd data-testid="admin-weread-synced-at">{formatSyncedAt(weread.synced_at)}</dd>
+              </div>
+              <div data-testid="admin-weread-mapping-progress">
+                <dt>图谱映射</dt>
+                <dd>
+                  {countWereadMappedEvidences(graph, book.source_id ?? book.id)} / {weread.stats.bookmark_count}
+                  <span className="muted">（个人划线）</span>
+                </dd>
               </div>
             </dl>
             <div className="admin-weread-preview" data-testid="admin-weread-preview">
