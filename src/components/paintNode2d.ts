@@ -1,6 +1,7 @@
 import { LABEL_FONT } from '../lib/labelText';
 import { COLUMN_CAPTIONS, columnIndex } from '../lib/layout';
 import { nodeScale, shapeKindForType, type ShapeKind } from '../lib/nodeStyle';
+import type { CanvasStage } from '../lib/canvasStage';
 import { colorWithAlpha, semanticColor, DIM_2D_NODE } from '../lib/palette';
 
 const FONT = 4.15;
@@ -117,7 +118,12 @@ function measureLabel(ctx: CanvasRenderingContext2D, node: PaintedNode): LabelBo
   };
 }
 
-export function paintGraphNode(ctx: CanvasRenderingContext2D, node: PaintedNode, globalScale: number) {
+export function paintGraphNode(
+  ctx: CanvasRenderingContext2D,
+  node: PaintedNode,
+  globalScale: number,
+  stage: CanvasStage,
+) {
   const radius = nodeRadius(node.degree, node.type, node.selected);
   ctx.save();
   traceShape(ctx, shapeKindForType(node.type), node.x, node.y, radius);
@@ -125,15 +131,15 @@ export function paintGraphNode(ctx: CanvasRenderingContext2D, node: PaintedNode,
   ctx.fillStyle = node.bright ? color : colorWithAlpha(color, DIM_2D_NODE);
   ctx.fill();
   ctx.lineWidth = (node.selected ? 2.2 : 1.15) / Math.max(globalScale, 0.001);
-  ctx.strokeStyle = node.selected ? '#f4f7fb' : 'rgba(6, 10, 16, 0.55)';
+  ctx.strokeStyle = node.selected ? stage.nodeStrokeSelected : stage.nodeStroke;
   ctx.stroke();
 
   const box = measureLabel(ctx, node);
   if (box) {
     roundRect(ctx, box.x, box.y, box.w, box.h, Math.min(2.4, box.h / 3));
-    ctx.fillStyle = node.bright ? 'rgba(8, 12, 18, 0.9)' : 'rgba(8, 12, 18, 0.62)';
+    ctx.fillStyle = node.bright ? stage.labelPlateBright : stage.labelPlateDim;
     ctx.fill();
-    ctx.fillStyle = node.bright ? '#f4f7fb' : 'rgba(244, 247, 251, 0.62)';
+    ctx.fillStyle = node.bright ? stage.labelTextBright : stage.labelTextDim;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
     box.lines.forEach((line, index) => {
@@ -157,6 +163,7 @@ export function paintColumnCaptions(
   ctx: CanvasRenderingContext2D,
   nodes: readonly { x?: number; y?: number; type: string }[],
   globalScale: number,
+  stage: CanvasStage,
 ) {
   const placed = nodes.filter((node) => node.y != null);
   if (placed.length === 0) return;
@@ -176,12 +183,12 @@ export function paintColumnCaptions(
     const boxW = width + padX * 2;
     const boxH = textH + 5 / scale;
     roundRect(ctx, x - boxW / 2, headerY - boxH, boxW, boxH, 7 / scale);
-    ctx.fillStyle = 'rgba(18, 26, 38, 0.92)';
+    ctx.fillStyle = stage.columnPlate;
     ctx.fill();
-    ctx.strokeStyle = 'rgba(232, 238, 247, 0.16)';
+    ctx.strokeStyle = stage.columnPlateStroke;
     ctx.lineWidth = 1 / scale;
     ctx.stroke();
-    ctx.fillStyle = 'rgba(214, 224, 236, 0.96)';
+    ctx.fillStyle = stage.columnText;
     ctx.fillText(caption, x, headerY - 3 / scale);
   });
   ctx.restore();

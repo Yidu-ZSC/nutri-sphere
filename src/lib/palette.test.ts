@@ -25,7 +25,7 @@ test('protective color is the PRO token and the retired green is gone from src',
   assert.equal(PALETTE.risk, '#f87171');
   assert.equal(PALETTE.mixed, '#fbbf24');
   assert.equal(PALETTE.neutral, '#94a3b8');
-  assert.equal(CANVAS_BG, '#0b0d12');
+  assert.equal(CANVAS_BG, '#0a0c11');
 
   const tokens = fs.readFileSync(path.join(root, 'src/styles/tokens.css'), 'utf8');
   assert.match(tokens, /--dir-protective:\s*#34d399/);

@@ -1,12 +1,15 @@
 :root {
   color-scheme: light;
-  /* UI shell only — graph canvas stays #0b0d12 via CANVAS_BG in palette.ts */
+  /* UI shell; graph canvas uses --canvas-bg from canvasStage.ts per data-theme */
+  --canvas-bg: #0a0c11;
+  --canvas-frame-glow: rgba(61, 110, 168, 0.14);
   --bg: #f4f4f5;
   --panel: #ffffff;
   --panel-solid: var(--panel);
   --panel-muted: #efeff1;
   --panel-hover: #eaeaec;
   --text: #18181b;
+  --fg: var(--text);
   --muted: #71717a;
   --faint: #a1a1aa;
   --brand: #18181b;
@@ -52,6 +55,8 @@
 
 :root[data-theme='paper'] {
   color-scheme: light;
+  --canvas-bg: #100e0b;
+  --canvas-frame-glow: rgba(140, 100, 60, 0.12);
   --bg: #f7f6f3;
   --panel: #fffcf8;
   --panel-muted: #f0eeea;
@@ -66,6 +71,8 @@
 
 :root[data-theme='stone'] {
   color-scheme: light;
+  --canvas-bg: #08090f;
+  --canvas-frame-glow: rgba(70, 95, 150, 0.16);
   --bg: #ececef;
   --panel: #fafafa;
   --panel-muted: #e4e4e7;
@@ -80,6 +87,8 @@
 
 :root[data-theme='contrast'] {
   color-scheme: light;
+  --canvas-bg: #030304;
+  --canvas-frame-glow: rgba(255, 255, 255, 0.06);
   --bg: #ffffff;
   --panel: #ffffff;
   --panel-muted: #f4f4f5;

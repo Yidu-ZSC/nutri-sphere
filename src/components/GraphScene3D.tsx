@@ -12,7 +12,7 @@ import {
 } from '../lib/layout';
 import { LINK_OPACITY_3D, LINK_PARTICLE_WIDTH_3D, particleCount, styledLinkWidth } from '../lib/linkStyle';
 import { labelShouldShow, labelTextHeight, nodeScale, shapeKindForType } from '../lib/nodeStyle';
-import { CANVAS_BG, colorWithAlpha, semanticColor, DIM_3D_LABEL, DIM_3D_LINK, DIM_3D_NODE } from '../lib/palette';
+import { colorWithAlpha, semanticColor, DIM_3D_LABEL, DIM_3D_LINK, DIM_3D_NODE } from '../lib/palette';
 import type { SimNode } from '../types/graph';
 import { geometryFor } from './nodeGeometry';
 import { linkIsBright, nodeIsBright, nodeIsSelected, type DrawLink, type SceneCommonProps } from './graphShared';
@@ -89,7 +89,9 @@ export function GraphScene3D(props: GraphScene3DProps) {
   const focusRef = useRef(props.focusIds);
   const brightNodeRef = useRef<(id: string) => boolean>(() => true);
   const paintNodeRef = useRef<(id: string) => void>(() => {});
+  const stageRef = useRef(props.canvasStage);
   const degreeRef = useRef(props.degrees);
+  stageRef.current = props.canvasStage;
   const nodeByIdRef = useRef(new Map<string, SimNode>());
   selectionRef.current = props.selection;
   compactRef.current = props.compact;
@@ -143,6 +145,10 @@ export function GraphScene3D(props: GraphScene3DProps) {
       visual.sprite.textHeight = height;
       visual.sprite.text = text;
       visual.sprite.material.opacity = bright ? 1 : DIM_3D_LABEL;
+      const stage = stageRef.current;
+      visual.sprite.color = stage.spriteLabelColor;
+      visual.sprite.backgroundColor = stage.spriteLabelBg;
+      visual.sprite.strokeColor = stage.spriteStroke;
       const worldHeight = height * lines + 0.7;
       visual.sprite.position.y = scale * 1.05 + worldHeight * 0.5 + 0.35;
     },
@@ -166,7 +172,7 @@ export function GraphScene3D(props: GraphScene3DProps) {
     paintAll();
     const frame = requestAnimationFrame(paintAll);
     return () => cancelAnimationFrame(frame);
-  }, [paintAll]);
+  }, [paintAll, props.canvasStage]);
 
   useEffect(() => {
     return () => {
@@ -177,6 +183,7 @@ export function GraphScene3D(props: GraphScene3DProps) {
   }, []);
 
   const nodeThreeObject = useCallback((node: SimNode) => {
+    const stage = stageRef.current;
     const group = new THREE.Group();
     const material = new THREE.MeshLambertMaterial({
       color: semanticColor(node.group),
@@ -191,12 +198,12 @@ export function GraphScene3D(props: GraphScene3DProps) {
     group.add(mesh);
 
     const sprite = new SpriteText(node.label);
-    sprite.color = '#f4f7fb';
-    sprite.backgroundColor = 'rgba(8, 12, 18, 0.9)';
+    sprite.color = stage.spriteLabelColor;
+    sprite.backgroundColor = stage.spriteLabelBg;
     sprite.padding = 0.55;
     sprite.borderRadius = 0.55;
     sprite.strokeWidth = 0.7;
-    sprite.strokeColor = '#061018';
+    sprite.strokeColor = stage.spriteStroke;
     sprite.fontFace = LABEL_FONT;
     sprite.fontSize = 96;
     sprite.fontWeight = '600';
@@ -376,7 +383,8 @@ export function GraphScene3D(props: GraphScene3DProps) {
       graphData={{ nodes: props.nodes, links: props.links }}
       width={props.size.w}
       height={props.size.h}
-      backgroundColor={CANVAS_BG}
+      backgroundColor={props.canvasStage.bg}
+      key={props.canvasStage.bg}
       showNavInfo={false}
       enableNodeDrag={props.layout === 'force'}
       nodeRelSize={4}

@@ -74,7 +74,7 @@ test('lobby theme cards use the locked surface without retuning global radii', (
   assert.equal(css.includes('.theme-card:hover .dir-bar'), false);
 
   const focus = css.match(/\.theme-card:focus-visible\s*\{([^}]*)\}/)?.[1] ?? '';
-  assert.match(focus, /outline:\s*2px solid var\(--brand\)/);
+  assert.match(focus, /outline:\s*2px solid var\(--accent\)/);
   assert.match(focus, /outline-offset:\s*2px/);
 
   const chevron = css.match(/\.theme-card-chevron\s*\{([^}]*)\}/)?.[1] ?? '';
