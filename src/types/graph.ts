@@ -137,7 +137,8 @@ export interface AdminBookRecord {
   title: string;
   theme: string;
   relevance: AdminRelevance;
-  note_count: number;
+  /** Removed from admin_books 1.2 (NS-066); optional for older drafts. */
+  note_count?: number;
   kb_file: string;
   source_id?: string;
   authors?: string;

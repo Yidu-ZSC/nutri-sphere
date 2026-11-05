@@ -251,10 +251,6 @@ export function AdminBookDetail({
 
       <dl className="admin-stat-strip" data-testid="admin-book-meta">
         <div className="admin-stat">
-          <dt>笔记数</dt>
-          <dd>{book.note_count}</dd>
-        </div>
-        <div className="admin-stat">
           <dt>已入库边数</dt>
           <dd data-testid="admin-detail-edge-count">{edgeCount}</dd>
         </div>

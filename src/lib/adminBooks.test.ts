@@ -21,55 +21,52 @@ function readJson(rel: string) {
   return JSON.parse(fs.readFileSync(path.join(root, rel), 'utf8'));
 }
 
-test('admin_books.json asserts 19 books with six ingested and no edge_count', () => {
+const THIN = [
+  'eat_to_heal',
+  'how_not_to_die',
+  'amazing_veggie_soup',
+  'china_study',
+  'know_your_gut',
+];
+
+test('admin_books.json asserts 19 books with one ingested (gut_brain) after NS-066', () => {
   const payload = readJson('data/admin_books.json');
   const data = assertAdminBooks(payload);
-  assert.equal(data.schema_version, '1.1');
+  assert.equal(data.schema_version, '1.2');
   assert.equal(data.books.length, 19);
   const ingested = data.books.filter((book) => book.status === 'ingested');
-  assert.equal(ingested.length, 6);
-  for (const id of [
-    'eat_to_heal',
-    'how_not_to_die',
-    'gut_brain',
-    'amazing_veggie_soup',
-    'china_study',
-    'know_your_gut',
-  ]) {
+  assert.equal(ingested.length, 1);
+  assert.equal(ingested[0]?.id, 'gut_brain');
+  assert.equal(ingested[0]?.source_id, 'gut_brain');
+  for (const id of THIN) {
     const book = data.books.find((row) => row.id === id);
     assert.ok(book, id);
-    assert.equal(book?.source_id, id);
-    assert.equal(book?.status, 'ingested');
+    assert.equal(book?.status, 'index_only');
+    assert.equal(book?.source_id, undefined);
   }
   assert.equal(
     data.books.some((book) => Object.prototype.hasOwnProperty.call(book, 'edge_count')),
     false,
   );
-  const a2: Record<string, string> = {
-    eat_to_heal: '39484588',
-    how_not_to_die: '3300017717',
-    gut_brain: '24913511',
-    amazing_veggie_soup: '3300084701',
-    china_study: '3300047535',
-    know_your_gut: '26793466',
-  };
-  for (const [id, bookId] of Object.entries(a2)) {
-    const book = data.books.find((row) => row.id === id);
-    assert.equal(book?.weread_book_id, bookId, id);
-  }
   assert.equal(
-    data.books.filter((book) => book.weread_book_id).length,
-    6,
+    data.books.some((book) => Object.prototype.hasOwnProperty.call(book, 'note_count')),
+    false,
+  );
+  assert.equal(
+    data.books.some((book) => Object.prototype.hasOwnProperty.call(book, 'weread_book_id')),
+    false,
   );
 });
 
-test('default admin list sort is relevance then note_count desc then title', () => {
+test('default admin list sort is relevance then title (NS-066)', () => {
   const data = assertAdminBooks(readJson('data/admin_books.json'));
   const rows = filterAndSortAdminBooks(data.books, defaultAdminBookFilters());
-  assert.equal(rows[0]?.id, 'gut_brain');
-  assert.equal(rows[0]?.note_count, 73);
-  const highCount = rows.filter((book) => book.relevance === 'high').length;
-  const edgeStart = highCount;
+  assert.equal(rows[0]?.relevance, 'high');
+  const high = rows.filter((book) => book.relevance === 'high');
+  for (let i = 1; i < high.length; i += 1) {
+    assert.ok(high[i - 1]!.title.localeCompare(high[i]!.title, 'zh-CN') <= 0);
+  }
+  const edgeStart = high.length;
   assert.equal(rows[edgeStart]?.relevance, 'edge');
   const lowStart = rows.findIndex((book) => book.relevance === 'low');
   assert.ok(lowStart > edgeStart);
@@ -77,9 +74,7 @@ test('default admin list sort is relevance then note_count desc then title', () 
     const prev = rows[i - 1]!;
     const cur = rows[i]!;
     const rank = { high: 0, edge: 1, low: 2 } as const;
-    if (rank[prev.relevance] === rank[cur.relevance]) {
-      assert.ok(prev.note_count >= cur.note_count);
-    } else {
+    if (rank[prev.relevance] !== rank[cur.relevance]) {
       assert.ok(rank[prev.relevance] < rank[cur.relevance]);
     }
   }
@@ -92,7 +87,7 @@ test('admin filters theme / relevance / status', () => {
     relevance: 'all',
     status: 'ingested',
   });
-  assert.equal(ingested.length, 6);
+  assert.equal(ingested.length, 1);
   const gut = filterAndSortAdminBooks(data.books, {
     theme: '肠道菌群',
     relevance: 'all',
@@ -109,16 +104,13 @@ test('admin filters theme / relevance / status', () => {
   assert.equal(STATUS_LABEL.index_only, '仅索引');
 });
 
-test('runtime edge counts for ingested books match citingLinks', () => {
+test('runtime edge counts: only gut_brain has booknote edges after NS-066', () => {
   const seed = readJson('data/seed_triples_v0.3_aligned.json') as GraphData;
-  const expected: Record<string, number> = {
-    eat_to_heal: 44,
-    gut_brain: 55,
-    china_study: 7,
-  };
-  for (const [id, count] of Object.entries(expected)) {
-    assert.equal(citingLinks(seed, id).length, count, id);
-    assert.equal(edgeCountForBook(seed, id), count, id);
+  assert.equal(citingLinks(seed, 'gut_brain').length, 55);
+  assert.equal(edgeCountForBook(seed, 'gut_brain'), 55);
+  for (const id of THIN) {
+    assert.equal(citingLinks(seed, id).length, 0, id);
+    assert.equal(edgeCountForBook(seed, id), 0, id);
   }
   assert.equal(edgeCountForBook(seed, undefined), 0);
   assert.equal(edgeCountForBook(null, 'eat_to_heal'), 0);
