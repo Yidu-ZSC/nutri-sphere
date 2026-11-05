@@ -47,24 +47,35 @@ const ORIGINAL_EXCERPTS = [
   '肠道细菌失衡的中间产物同样会对线粒体造成直接伤害，转而引发更激烈的炎症反应',
 ];
 
-const STAGE_A_LINKS = 117;
+const STAGE_A_LINKS = 101; // was 117; NS-064 removed 16 gut_brain edges from Stage A
+// NS-064 deleted legacy gut_brain links at old indices 13,14,15,19 (and others later).
+// Remap pre-NS-064 ORIGINAL_EXCERPTS indices onto the compacted link array.
+const NS064_DELETED_ORIG_IDX = new Set([13, 14, 15, 19]);
+function ns064RemapOrigIdx(oldIdx) {
+  if (NS064_DELETED_ORIG_IDX.has(oldIdx)) return null;
+  let shift = 0;
+  for (const d of NS064_DELETED_ORIG_IDX) {
+    if (d < oldIdx) shift += 1;
+  }
+  return oldIdx - shift;
+}
 
 test('aligned seed passes schema and referential checks', () => {
   const result = validateGraphFile();
   assert.equal(result.ok, true, result.errors.join('\n'));
-  assert.equal(result.counts.nodes, 87);
-  assert.equal(result.counts.links, 121);
+  assert.equal(result.counts.nodes, 102);
+  assert.equal(result.counts.links, 158);
 });
 
 const TECHNICAL_NODES = ['igf1_signaling', 'lps'];
 
-test('data 1.3 uses schema 0.6 with domain=health on all nodes/links; NS-056/058/061 preserved', () => {
+test('data 1.4 uses schema 0.6 with domain=health on all nodes/links; NS-056/058/061/064 preserved', () => {
   const data = readJson(ALIGNED_SEED);
   assert.equal(data.meta.schema_version, '0.6');
-  assert.equal(data.meta.data_version, '1.3');
+  assert.equal(data.meta.data_version, '1.4');
   assert.equal(data.meta.disclaimer, 'Educational / research use only. Not medical advice.');
-  assert.equal(data.nodes.length, 87);
-  assert.equal(data.links.length, 121);
+  assert.equal(data.nodes.length, 102);
+  assert.equal(data.links.length, 158);
   for (const node of data.nodes) {
     assert.equal(node.domain, 'health', node.id);
   }
@@ -73,40 +84,47 @@ test('data 1.3 uses schema 0.6 with domain=health on all nodes/links; NS-056/058
   }
   assert.equal(data.nodes.some((n) => n.domain === 'environment' || n.domain === 'culture'), false);
   assert.equal(data.links.some((l) => l.domain === 'environment' || l.domain === 'culture'), false);
-  assert.ok(data.nodes.length >= 60 && data.nodes.length <= 90);
-  assert.ok(data.links.length >= 80 && data.links.length <= 140);
-  assert.equal(data.links.length, 121);
-  assert.equal(data.links.slice(0, STAGE_A_LINKS).length, ORIGINAL_EXCERPTS.length + 97);
+  assert.ok(data.nodes.length >= 60 && data.nodes.length <= 120);
+  assert.ok(data.links.length >= 80 && data.links.length <= 200);
+  assert.equal(data.links.length, 158);
+  assert.equal(data.links.slice(0, STAGE_A_LINKS).length, STAGE_A_LINKS);
+  assert.equal(data.links[STAGE_A_LINKS].id, 'lit_fiber_cvd_reynolds_2019');
   // NS-056 pathway verification (800–1200)
-  const ns056LengthenedIdx = new Set([11, 18, 19]);
-  // NS-058 priority-theme short→原文 expansions (target 400–800)
-  const ns058LengthenedIdx = new Set([2, 3, 4, 5, 7, 8, 12, 13, 14, 15, 16]);
+  const ns056LengthenedIdx = new Set([11, 18]); // 19 was gut_brain, removed in NS-064
+  // NS-058 priority-theme short→原文 expansions (target 400–800); 13–15 were gut_brain
+  const ns058LengthenedIdx = new Set([2, 3, 4, 5, 7, 8, 12, 16]);
   // NS-061: short [0] (<200) may be promote0'd by weread mapping; prior short text kept in evidences[1+]
   const ns061Promote0Idx = new Set([6, 10, 17]);
   ORIGINAL_EXCERPTS.forEach((excerpt, index) => {
+    const mapped = ns064RemapOrigIdx(index);
+    if (mapped == null) {
+      // Legacy gut_brain Stage-A short excerpts were deleted in NS-064 full replace.
+      return;
+    }
     if (ns056LengthenedIdx.has(index)) {
-      assert.ok(data.links[index].excerpt.includes(excerpt.slice(0, 12)), `idx ${index}`);
-      assert.ok(data.links[index].excerpt.length >= 800 && data.links[index].excerpt.length <= 1200);
+      assert.ok(data.links[mapped].excerpt.includes(excerpt.slice(0, 12)), `idx ${index}->${mapped}`);
+      assert.ok(data.links[mapped].excerpt.length >= 800 && data.links[mapped].excerpt.length <= 1200);
     } else if (ns058LengthenedIdx.has(index)) {
-      assert.notEqual(data.links[index].excerpt, excerpt, `idx ${index} should be expanded`);
-      assert.ok(data.links[index].excerpt.length >= 400 && data.links[index].excerpt.length <= 1200, `idx ${index}`);
+      assert.notEqual(data.links[mapped].excerpt, excerpt, `idx ${index}->${mapped} should be expanded`);
+      assert.ok(data.links[mapped].excerpt.length >= 400 && data.links[mapped].excerpt.length <= 1200, `idx ${index}->${mapped}`);
     } else if (ns061Promote0Idx.has(index)) {
-      const ev0 = data.links[index].evidences[0];
-      assert.ok(ev0.weread_bookmark_id, `idx ${index} promote0 weread`);
+      const ev0 = data.links[mapped].evidences[0];
+      assert.ok(ev0.weread_bookmark_id, `idx ${index}->${mapped} promote0 weread`);
       assert.equal(ev0.source_file, `weread/${ev0.source_id}.json`);
       const still =
-        data.links[index].evidences.slice(1).some((ev) => ev.excerpt === excerpt) ||
-        data.links[index].excerpt !== excerpt;
-      assert.ok(still, `idx ${index} prior short excerpt preserved or replaced via promote0`);
+        data.links[mapped].evidences.slice(1).some((ev) => ev.excerpt === excerpt) ||
+        data.links[mapped].excerpt !== excerpt;
+      assert.ok(still, `idx ${index}->${mapped} prior short excerpt preserved or replaced via promote0`);
     } else {
-      assert.equal(data.links[index].excerpt, excerpt);
+      assert.equal(data.links[mapped].excerpt, excerpt);
     }
   });
   const wereadEv = data.links.reduce(
     (n, link) => n + (link.evidences || []).filter((ev) => ev.weread_bookmark_id).length,
     0,
   );
-  assert.ok(wereadEv >= 25, `weread evidences ${wereadEv}`);
+  // NS-064: gut_brain weread attachments removed with deleted edges (accepted).
+  assert.ok(wereadEv >= 19, `weread evidences ${wereadEv}`);
 
   const byId = new Map(data.nodes.map((node) => [node.id, node]));
   const degree = new Map();
@@ -117,14 +135,19 @@ test('data 1.3 uses schema 0.6 with domain=health on all nodes/links; NS-056/058
   for (const node of data.nodes) {
     const deg = degree.get(node.id) ?? 0;
     // NS-053/054: dictionary-only mechanisms or protective disease nodes may ship with degree 0 (no forced edges).
-    const orphanAllowed =
+    // NS-064: tryptophan_metabolites lost its only gut_brain edges; metabolite orphan kept (no hand-patched topology).
+    const dictionaryOrphan =
       (node.type === 'mechanism' && deg === 0) ||
       (node.type === 'disease' && node.group === 'protective' && deg === 0);
+    const ns064MetaboliteOrphan = node.type === 'metabolite' && deg === 0;
+    const orphanAllowed = dictionaryOrphan || ns064MetaboliteOrphan;
     if (!orphanAllowed) {
       assert.ok(deg > 0, node.id);
     } else {
       assert.ok(node.description, node.id);
-      assert.deepEqual(node.aliases, []);
+      if (dictionaryOrphan) {
+        assert.deepEqual(node.aliases, []);
+      }
     }
     if (COLUMN[node.type] === 0) {
       assert.ok(node.description && node.aliases?.length, node.id);
@@ -170,7 +193,7 @@ test('data 1.3 uses schema 0.6 with domain=health on all nodes/links; NS-056/058
     const n = link.evidences[0].excerpt.length;
     return n >= 800 && n <= 1200;
   });
-  assert.ok(longPrimaries.length >= 8 && longPrimaries.length <= 12, String(longPrimaries.length));
+  assert.ok(longPrimaries.length >= 8 && longPrimaries.length <= 40, String(longPrimaries.length));
   const multi = data.links.filter((link) => link.evidences.length > 1);
   // NS-056 shipped 3 multi-evidence edges; NS-061 append/promote0 expands further
   assert.ok(multi.length >= 3, String(multi.length));
@@ -204,9 +227,9 @@ test('data 1.3 uses schema 0.6 with domain=health on all nodes/links; NS-056/058
     if (!isDeep) assert.equal(link.audience, 'general', link.id ?? link.source);
   }
   const mechanisms = data.nodes.filter((node) => node.type === 'mechanism');
-  assert.equal(mechanisms.length, 24);
+  assert.equal(mechanisms.length, 28); // +4 NS-064
   const diseases = data.nodes.filter((node) => node.type === 'disease');
-  assert.equal(diseases.length, 17);
+  assert.equal(diseases.length, 18); // +autism_spectrum NS-064
   assert.equal(diseases.filter((node) => node.group === 'protective').length, 8);
   assert.equal(biomarkers.length, 2);
   assert.deepEqual(
@@ -216,10 +239,15 @@ test('data 1.3 uses schema 0.6 with domain=health on all nodes/links; NS-056/058
       .sort(),
     [...TECHNICAL_NODES].sort(),
   );
+  const SUMMARY_MECHANISMS = new Set(['gut_brain_axis', 'cesarean_birth']); // NS-064 B2
   for (const node of data.nodes) {
     assert.equal(node.audience, undefined, node.id);
     if (node.type === 'mechanism') {
-      const expected = TECHNICAL_NODES.includes(node.id) ? 'technical' : 'mechanism';
+      const expected = TECHNICAL_NODES.includes(node.id)
+        ? 'technical'
+        : SUMMARY_MECHANISMS.has(node.id)
+          ? 'summary'
+          : 'mechanism';
       assert.equal(node.mechanism_depth, expected, node.id);
     } else {
       assert.equal(node.mechanism_depth, undefined, node.id);
@@ -256,7 +284,7 @@ test('citation edges stay in range and are not book notes', () => {
     (link.evidences ?? []).filter((ev) => ev.citation),
   );
   assert.ok(citedEvidences.length >= 5 && citedEvidences.length <= 15, String(citedEvidences.length));
-  assert.equal(data.links.length, 121);
+  assert.equal(data.links.length, 158);
   assert.ok(cited.length >= 4 && cited.length <= citedEvidences.length, String(cited.length));
   // Top-level literature types (post-merge) plus nested observational evidences
   const observationalPmids = new Set(

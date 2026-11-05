@@ -112,7 +112,7 @@ test('runtime edge counts for ingested books match citingLinks', () => {
   const seed = readJson('data/seed_triples_v0.3_aligned.json') as GraphData;
   const expected: Record<string, number> = {
     eat_to_heal: 44,
-    gut_brain: 16,
+    gut_brain: 55,
     china_study: 7,
   };
   for (const [id, count] of Object.entries(expected)) {
