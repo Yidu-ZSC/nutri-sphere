@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { ALIGNED_SEED, GRAPH_SCHEMA, validateGraphData, validateGraphFile } from './validate-data.mjs';
+import { ALIGNED_SEED, GRAPH_SCHEMA, validateAdminBooks, validateGraphData, validateGraphFile } from './validate-data.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -442,4 +442,12 @@ test('top-level excerpt must mirror evidences[0]', () => {
   const result = validateGraphData(data, schema);
   assert.equal(result.ok, false);
   assert.match(result.errors.join('\n'), /镜像/);
+});
+
+
+test('admin_books.json passes catalog invariants', () => {
+  const result = validateAdminBooks();
+  assert.equal(result.ok, true, result.errors.join('\n'));
+  assert.equal(result.counts.books, 19);
+  assert.equal(result.counts.ingested, 6);
 });

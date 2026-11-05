@@ -9,6 +9,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const ALIGNED_SEED = 'data/seed_triples_v0.3_aligned.json';
 export const GRAPH_SCHEMA = 'data/graph_schema.json';
 export const SOURCES_FILE = 'data/sources.json';
+export const ADMIN_BOOKS_FILE = 'data/admin_books.json';
 
 const EXCERPT_LIMIT = 1200;
 const STAGE1_SOURCE_IDS = [
@@ -273,6 +274,125 @@ export function validateGraphData(data, schema, options = {}) {
   };
 }
 
+
+/**
+ * Validate data/admin_books.json (catalog of 19; independent of graph schema).
+ * @param {unknown} [payload]
+ * @param {unknown} [sourcesPayload]
+ * @returns {{ ok: boolean, errors: string[], counts: { books: number, ingested: number } }}
+ */
+export function validateAdminBooks(payload, sourcesPayload) {
+  const errors = [];
+  const adminPayload =
+    payload !== undefined
+      ? payload
+      : JSON.parse(fs.readFileSync(path.join(root, ADMIN_BOOKS_FILE), 'utf8'));
+  const sources =
+    sourcesPayload !== undefined
+      ? sourcesPayload
+      : JSON.parse(fs.readFileSync(path.join(root, SOURCES_FILE), 'utf8'));
+
+  const sourceIds = new Set();
+  if (sources && typeof sources === 'object' && Array.isArray(sources.sources)) {
+    for (const row of sources.sources) {
+      if (row && typeof row === 'object' && typeof row.id === 'string') sourceIds.add(row.id);
+    }
+  } else {
+    errors.push('sources.json 无法解析（admin_books 交叉校验）');
+  }
+
+  if (!adminPayload || typeof adminPayload !== 'object') {
+    errors.push('admin_books.json 无法解析');
+    return { ok: false, errors, counts: { books: 0, ingested: 0 } };
+  }
+  const rootObj = /** @type {Record<string, unknown>} */ (adminPayload);
+  if (rootObj.schema_version !== '1.0') {
+    errors.push('admin_books.json schema_version 必须为 "1.0"');
+  }
+  const books = Array.isArray(rootObj.books) ? rootObj.books : null;
+  if (!books) {
+    errors.push('admin_books.json 缺少 books 数组');
+    return { ok: false, errors, counts: { books: 0, ingested: 0 } };
+  }
+  if (books.length !== 19) {
+    errors.push(`admin_books.json 应恰有 19 本，实际 ${books.length}`);
+  }
+
+  const relevanceOk = new Set(['high', 'edge', 'low']);
+  const statusOk = new Set(['ingested', 'index_only']);
+  const seen = new Set();
+  let ingested = 0;
+
+  for (const [index, raw] of books.entries()) {
+    if (!raw || typeof raw !== 'object') {
+      errors.push(`admin_books.books[${index}] 非法`);
+      continue;
+    }
+    const row = /** @type {Record<string, unknown>} */ (raw);
+    const id = typeof row.id === 'string' ? row.id : '';
+    if (!/^[a-z0-9_]+$/.test(id)) {
+      errors.push(`admin_books.books[${index}].id 非法`);
+      continue;
+    }
+    if (seen.has(id)) errors.push(`admin_books.books[${index}].id "${id}" 重复`);
+    seen.add(id);
+    if (typeof row.title !== 'string' || !row.title.trim()) {
+      errors.push(`admin_books.books[${index}] 缺少 title`);
+    }
+    if (typeof row.theme !== 'string' || !row.theme.trim()) {
+      errors.push(`admin_books.books[${index}] 缺少 theme`);
+    }
+    if (!relevanceOk.has(/** @type {string} */ (row.relevance))) {
+      errors.push(`admin_books.books[${index}].relevance 须为 high|edge|low`);
+    }
+    if (typeof row.note_count !== 'number' || !Number.isFinite(row.note_count) || row.note_count < 0) {
+      errors.push(`admin_books.books[${index}].note_count 非法`);
+    }
+    if (typeof row.kb_file !== 'string' || !row.kb_file.trim()) {
+      errors.push(`admin_books.books[${index}] 缺少 kb_file`);
+    }
+    if (!statusOk.has(/** @type {string} */ (row.status))) {
+      errors.push(`admin_books.books[${index}].status 须为 ingested|index_only`);
+    }
+    if (Object.prototype.hasOwnProperty.call(row, 'edge_count')) {
+      errors.push(`admin_books.books[${index}] 不得写入 edge_count`);
+    }
+    const sourceId = typeof row.source_id === 'string' && row.source_id !== '' ? row.source_id : null;
+    if (sourceId) {
+      ingested += 1;
+      if (row.status !== 'ingested') {
+        errors.push(`admin_books.books[${index}] 有 source_id 时 status 须为 ingested`);
+      }
+      if (!sourceIds.has(sourceId)) {
+        errors.push(`admin_books.books[${index}].source_id "${sourceId}" 不在 sources.json`);
+      }
+    } else if (row.status !== 'index_only') {
+      errors.push(`admin_books.books[${index}] 无 source_id 时 status 须为 index_only`);
+    }
+  }
+
+  for (const expected of STAGE1_SOURCE_IDS) {
+    if (!seen.has(expected)) {
+      errors.push(`admin_books.json 缺少已入库书目 id "${expected}"`);
+    }
+  }
+  if (ingested !== STAGE1_SOURCE_IDS.length && books.length === 19) {
+    // soft consistency: count of ingested rows should be 6 when catalog is complete
+    const ingestedIds = [...seen].filter((id) => STAGE1_SOURCE_IDS.includes(id));
+    if (ingestedIds.length !== STAGE1_SOURCE_IDS.length) {
+      errors.push(
+        `admin_books.json 已入库六书映射不完整（找到 ${ingestedIds.length}/${STAGE1_SOURCE_IDS.length}）`,
+      );
+    }
+  }
+
+  return {
+    ok: errors.length === 0,
+    errors,
+    counts: { books: books.length, ingested },
+  };
+}
+
 export function validateGraphFile(dataRel = ALIGNED_SEED, schemaRel = GRAPH_SCHEMA) {
   const data = JSON.parse(fs.readFileSync(path.join(root, dataRel), 'utf8'));
   const schema = JSON.parse(fs.readFileSync(path.join(root, schemaRel), 'utf8'));
@@ -296,5 +416,14 @@ if (isMain()) {
   }
   console.log(
     `OK ${result.counts.nodes} nodes, ${result.counts.links} links — ${ALIGNED_SEED}`,
+  );
+  const admin = validateAdminBooks();
+  if (!admin.ok) {
+    for (const error of admin.errors) console.error(`ERROR ${error}`);
+    console.error(`validate:data 失败（${ADMIN_BOOKS_FILE}）`);
+    process.exit(1);
+  }
+  console.log(
+    `OK ${admin.counts.books} admin books (${admin.counts.ingested} ingested) — ${ADMIN_BOOKS_FILE}`,
   );
 }

@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react';
 
 const SEED_FILE = 'data/seed_triples_v0.3_aligned.json';
 const SOURCES_FILE = 'data/sources.json';
+const ADMIN_BOOKS_FILE = 'data/admin_books.json';
 
 function isDataRequest(url: string | undefined, fileName: string): boolean {
   if (!url) return false;
@@ -16,11 +17,13 @@ function isDataRequest(url: string | undefined, fileName: string): boolean {
 function nutriSeedPlugin(): Plugin {
   const seedPath = path.resolve(SEED_FILE);
   const sourcesPath = path.resolve(SOURCES_FILE);
+  const adminBooksPath = path.resolve(ADMIN_BOOKS_FILE);
   const attach = (middlewares: Connect.Server) => {
     middlewares.use((req, res, next) => {
       let filePath: string | null = null;
       if (isDataRequest(req.url, SEED_FILE)) filePath = seedPath;
       else if (isDataRequest(req.url, SOURCES_FILE)) filePath = sourcesPath;
+      else if (isDataRequest(req.url, ADMIN_BOOKS_FILE)) filePath = adminBooksPath;
       if (!filePath) {
         next();
         return;
@@ -49,6 +52,11 @@ function nutriSeedPlugin(): Plugin {
         type: 'asset',
         fileName: SOURCES_FILE,
         source: fs.readFileSync(sourcesPath),
+      });
+      this.emitFile({
+        type: 'asset',
+        fileName: ADMIN_BOOKS_FILE,
+        source: fs.readFileSync(adminBooksPath),
       });
       this.emitFile({
         type: 'asset',

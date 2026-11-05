@@ -119,3 +119,24 @@ export interface SimLink extends Omit<GraphLink, 'source' | 'target'> {
   source: string | SimNode;
   target: string | SimNode;
 }
+
+export type AdminRelevance = 'high' | 'edge' | 'low';
+export type AdminBookStatus = 'ingested' | 'index_only';
+
+export interface AdminBookRecord {
+  id: string;
+  title: string;
+  theme: string;
+  relevance: AdminRelevance;
+  note_count: number;
+  kb_file: string;
+  source_id?: string;
+  authors?: string;
+  year?: number;
+  status: AdminBookStatus;
+}
+
+export interface AdminBooksData {
+  schema_version: string;
+  books: AdminBookRecord[];
+}

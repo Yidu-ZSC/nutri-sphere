@@ -8,6 +8,9 @@ import { LayoutToggle } from './components/LayoutToggle';
 import { Legend } from './components/Legend';
 import { readLegendExpanded } from './lib/legendChrome';
 import { SourceDetail } from './components/SourceDetail';
+import { AdminShell } from './components/AdminShell';
+import { AdminBooksList } from './components/AdminBooksList';
+import { AdminBookDetail } from './components/AdminBookDetail';
 import { VeganDietDetail } from './components/VeganDietDetail';
 import { SearchBar } from './components/SearchBar';
 import { ThemeBar } from './components/ThemeBar';
@@ -34,6 +37,7 @@ import {
 import type { LayoutMode } from './lib/layout';
 import { loadGraph } from './lib/loadGraph';
 import { loadSources, sourceById } from './lib/loadSources';
+import { loadAdminBooks, adminBookById } from './lib/loadAdminBooks';
 import { isVeganDietHubPattern, normalizeVeganDietPatternId, VEGAN_DIET_HUB_ID } from './lib/dietPatternDetails';
 import { patternsForTheme } from './lib/patternLinks';
 import { searchGraph, type SearchHit } from './lib/search';
@@ -48,7 +52,7 @@ import {
 import { EXPLORE_THEMES, filtersFromShare, themeById, themeForFilters, type ExploreTheme } from './lib/themes';
 import { selectionPinIds } from './lib/visibility';
 import { applyTheme, readTheme, writeTheme, type AppTheme } from './lib/themePreference';
-import type { GraphData, Selection, SourcesData } from './types/graph';
+import type { AdminBooksData, GraphData, Selection, SourcesData } from './types/graph';
 
 interface ExploreSnapshot {
   diseaseId: string | null;
@@ -115,6 +119,11 @@ export function App() {
   });
   const [sourceReturnSnapshot, setSourceReturnSnapshot] = useState<ExploreSnapshot | null>(null);
   const [sources, setSources] = useState<SourcesData | null>(null);
+  const [adminBooks, setAdminBooks] = useState<AdminBooksData | null>(null);
+  const [bookId, setBookId] = useState<string | null>(() => {
+    const parsed = initialQuery.current;
+    return resolveScreen(parsed) === 'admin' ? parsed.book : null;
+  });
   const [selection, setSelection] = useState<Selection | null>(null);
   const [clickFocusId, setClickFocusId] = useState<string | null>(null);
   const [themeHintDismissed, setThemeHintDismissed] = useState(false);
@@ -130,10 +139,11 @@ export function App() {
   useEffect(() => {
     let cancelled = false;
     setLoad({ status: 'loading' });
-    Promise.all([loadGraph(), loadSources()])
-      .then(([graph, sourcesData]) => {
+    Promise.all([loadGraph(), loadSources(), loadAdminBooks()])
+      .then(([graph, sourcesData, adminBooksData]) => {
         if (cancelled) return;
         setSources(sourcesData);
+        setAdminBooks(adminBooksData);
         const parsed = initialQuery.current;
         if (screenRef.current === resolveScreen(parsed)) {
           const shared = filtersFromShare(parsed);
@@ -166,6 +176,15 @@ export function App() {
             } else {
               setSourceId(null);
               setScreen('home');
+            }
+          }
+          if (parsed.screen === 'admin') {
+            setScreen('admin');
+            if (parsed.book) {
+              const knownBook = adminBookById(adminBooksData, parsed.book);
+              setBookId(knownBook ? knownBook.id : null);
+            } else {
+              setBookId(null);
             }
           }
         }
@@ -274,6 +293,33 @@ export function App() {
   }, [screen, sourceId, sources]);
 
   useEffect(() => {
+    if (screen !== 'admin') return;
+    if (!adminBooks) return;
+    if (bookId && !adminBookById(adminBooks, bookId)) {
+      setBookId(null);
+    }
+  }, [screen, bookId, adminBooks]);
+
+  useEffect(() => {
+    if (screen !== 'admin') return;
+    const robots = document.querySelector('meta[name="robots"]');
+    const previous = robots?.getAttribute('content') ?? null;
+    if (robots) robots.setAttribute('content', 'noindex,nofollow');
+    else {
+      const meta = document.createElement('meta');
+      meta.name = 'robots';
+      meta.content = 'noindex,nofollow';
+      document.head.appendChild(meta);
+    }
+    return () => {
+      const current = document.querySelector('meta[name="robots"]');
+      if (!current) return;
+      if (previous == null) current.remove();
+      else current.setAttribute('content', previous);
+    };
+  }, [screen]);
+
+  useEffect(() => {
     if (screen === 'explore' && !graph) return;
     const exploring = screen === 'explore' && graph != null;
     const link = exploring && selection?.kind === 'link' ? graph.links[selection.index] : undefined;
@@ -290,6 +336,7 @@ export function App() {
       pattern: screen === 'pattern' ? patternId : null,
       patterns: screen === 'home' ? patterns : [],
       source: screen === 'source' ? sourceId : null,
+      book: screen === 'admin' ? bookId : null,
       layout,
       view: graphView,
       hideUnmatched: exploring ? hideUnmatched : false,
@@ -310,6 +357,7 @@ export function App() {
     safeDisease,
     safeFood,
     safeMechanism,
+    bookId,
     screen,
     selection,
     sourceId,
@@ -491,6 +539,7 @@ export function App() {
     setPatternReturnSnapshot(null);
     setSourceId(null);
     setSourceReturnSnapshot(null);
+    setBookId(null);
     setScreen('home');
     clearPatternHighlight();
   };
@@ -663,6 +712,7 @@ export function App() {
     if (!link) return;
     setSourceReturnSnapshot(null);
     setSourceId(null);
+    setBookId(null);
     setDiseaseId(null);
     setMechanismId(null);
     setFoodId(null);
@@ -676,10 +726,24 @@ export function App() {
     clearPatternHighlight();
   };
 
+  const openAdminBook = (id: string) => {
+    if (!adminBookById(adminBooks, id)) return;
+    setBookId(id);
+    setScreen('admin');
+    setShellMenuOpen(false);
+  };
+
+  const closeAdminBook = () => {
+    setBookId(null);
+    setScreen('admin');
+  };
+
   const exploring = screen === 'explore';
   const showVeganDietDetail = screen === 'pattern' && isVeganDietHubPattern(patternId);
   const activeSource = sourceById(sources, sourceId);
   const showSourceDetail = screen === 'source' && activeSource != null && graph != null;
+  const activeAdminBook = adminBookById(adminBooks, bookId);
+  const showAdmin = screen === 'admin' && adminBooks != null;
   const relatedPatternIds = patternsForTheme(themeForFilters(safeDisease, safeMechanism, safeFood)?.id);
 
   const copyViewLink = () => {
@@ -729,7 +793,7 @@ export function App() {
       </button>
     ) : null;
   const copyControl =
-    screen === 'twin' || screen === 'source' ? null : (
+    screen === 'twin' || screen === 'source' || screen === 'admin' ? null : (
       <button type="button" className="btn btn--ghost" onClick={copyViewLink}>
         {copied ? '已复制' : '复制链接'}
       </button>
@@ -931,6 +995,27 @@ export function App() {
             onEnterTheme={enterTheme}
             onReturnToGraph={patternReturnSnapshot ? returnFromPatternToGraph : undefined}
           />
+        )}
+        {showAdmin && adminBooks && (
+          <AdminShell>
+            {activeAdminBook ? (
+              <AdminBookDetail
+                book={activeAdminBook}
+                sources={sources}
+                graph={graph}
+                onBack={closeAdminBook}
+                onOpenPublicSource={openSourcePage}
+                onOpenLink={openCitedLink}
+              />
+            ) : (
+              <AdminBooksList
+                books={adminBooks.books}
+                sources={sources}
+                graph={graph}
+                onOpenBook={openAdminBook}
+              />
+            )}
+          </AdminShell>
         )}
         {showSourceDetail && activeSource && graph && (
           <SourceDetail
