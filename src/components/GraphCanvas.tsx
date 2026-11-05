@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { applyLinkCurvature } from '../lib/linkCurvature';
 import { LABEL_HOME_COLUMN, columnIndex, linkDegrees, placeNodes } from '../lib/layout';
 import type { GraphView } from '../lib/graphView';
 import type { GraphData, GraphLink, Selection, SimNode } from '../types/graph';
@@ -62,6 +63,7 @@ export function GraphCanvas({
       .map((node) => ({ ...node }));
     placeNodes(nodes, layout, graphView);
     const links: DrawLink[] = shownLinks.map((link) => ({ ...link }));
+    applyLinkCurvature(links, nodes);
     return { nodes, links };
   }, [graph.nodes, graphView, layout, shownLinks, shownNodeIds]);
 
