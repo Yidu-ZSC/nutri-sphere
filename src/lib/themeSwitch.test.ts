@@ -22,7 +22,7 @@ test('desktop header and mobile more panel share the theme switcher', () => {
   assert.match(app, /!mobile && <ThemeSwitcher theme=\{appTheme\} onChange=\{onAppTheme\} \/>/);
   assert.match(app, /<ThemeOptions theme=\{appTheme\} onChange=\{onAppTheme\} \/>/);
 
-  const morePanel = app.match(/data-testid="more-panel"[\s\S]*?<\/div>/)?.[0] ?? '';
+  const morePanel = app.match(/data-testid="shell-menu-panel"[\s\S]*?<\/div>/)?.[0] ?? '';
   assert.match(morePanel, /ThemeOptions/);
   assert.equal(morePanel.includes('ThemeSwitcher'), false);
 

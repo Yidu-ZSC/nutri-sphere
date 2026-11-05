@@ -135,7 +135,6 @@ export function GraphCanvas({
       data-view={graphView}
       data-frame="columns"
       data-canvas-theme={appTheme}
-      style={{ background: canvasStage.bg }}
     >
       {graphView === '3d' && !webgl && (
         <div className="banner banner--error" role="alert">

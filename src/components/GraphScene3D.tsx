@@ -220,7 +220,7 @@ export function GraphScene3D(props: GraphScene3DProps) {
     visuals.current.set(node.id, { mesh, material, sprite });
     queueMicrotask(() => paintNodeRef.current(node.id));
     return group;
-  }, [props.canvasStage.bg]);
+  }, []);
 
   const pauseTemporarily = useCallback(() => {
     setHold(true);

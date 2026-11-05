@@ -38,7 +38,7 @@ test('theme preference defaults to light and round-trips the four slugs', () => 
 
   const empty = memoryStorage();
   assert.equal(readTheme(empty), 'light');
-  assert.equal(empty.values.get(THEME_STORAGE_KEY), 'light');
+  assert.equal(empty.values.has(THEME_STORAGE_KEY), false);
   assert.equal(readTheme(null), 'light');
 
   const storage = memoryStorage();

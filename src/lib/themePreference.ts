@@ -50,7 +50,7 @@ export function readTheme(storage?: ThemeStorage | null): AppTheme {
   try {
     const stored = store?.getItem(THEME_STORAGE_KEY) ?? null;
     const theme = normalizeTheme(stored);
-    if (stored !== theme) {
+    if (stored != null && stored !== theme) {
       try {
         store?.setItem(THEME_STORAGE_KEY, theme);
       } catch {
@@ -72,14 +72,13 @@ export function writeTheme(theme: AppTheme, storage?: ThemeStorage | null): void
   }
 }
 
-export function applyTheme(
-  theme: AppTheme,
-  root?: { setAttribute(name: string, value: string): void; style?: { setProperty(name: string, value: string): void } } | null,
-): void {
+type ThemeRoot = HTMLElement | { setAttribute(name: string, value: string): void; style: { setProperty(name: string, value: string): void } };
+
+export function applyTheme(theme: AppTheme, root?: ThemeRoot | null): void {
   const target =
     root === undefined ? (typeof document !== 'undefined' ? document.documentElement : null) : root;
   target?.setAttribute('data-theme', theme);
   if (target && 'style' in target && target.style) {
-    applyCanvasStageCss(theme, target as HTMLElement);
+    applyCanvasStageCss(theme, target);
   }
 }

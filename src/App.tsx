@@ -122,10 +122,10 @@ export function App() {
   const [aboutOpen, setAboutOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [autoRotate, setAutoRotate] = useState(false);
-  const [moreOpen, setMoreOpen] = useState(false);
+  const [shellMenuOpen, setShellMenuOpen] = useState(false);
   const [appTheme, setAppTheme] = useState<AppTheme>(() => readTheme());
   const [sideOpen, setSideOpen] = useState(false);
-  const moreRoot = useRef<HTMLDivElement>(null);
+  const shellMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -198,8 +198,8 @@ export function App() {
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return;
-      if (moreOpen) {
-        setMoreOpen(false);
+      if (shellMenuOpen) {
+        setShellMenuOpen(false);
         return;
       }
       if (aboutOpen) {
@@ -214,23 +214,27 @@ export function App() {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [aboutOpen, mobile, moreOpen, selection, sideOpen]);
+  }, [aboutOpen, mobile, shellMenuOpen, selection, sideOpen]);
 
   useEffect(() => {
-    if (!moreOpen) return;
+    if (!shellMenuOpen) return;
     const onPointer = (event: PointerEvent) => {
-      const root = moreRoot.current;
+      const root = shellMenuRef.current;
       if (root && event.target instanceof Node && !root.contains(event.target)) {
-        setMoreOpen(false);
+        setShellMenuOpen(false);
       }
     };
     window.addEventListener('pointerdown', onPointer);
     return () => window.removeEventListener('pointerdown', onPointer);
-  }, [moreOpen]);
+  }, [shellMenuOpen]);
+
+  const closeShellMenu = useCallback(() => {
+    setShellMenuOpen(false);
+  }, []);
 
   useEffect(() => {
     if (!mobile) {
-      setMoreOpen(false);
+      setShellMenuOpen(false);
       setSideOpen(false);
     }
   }, [mobile]);
@@ -384,7 +388,7 @@ export function App() {
       setSelection({ kind: 'node', id: hit.id });
     }
     if (hit.kind === 'link' && hit.index != null) setSelection({ kind: 'link', index: hit.index });
-    setMoreOpen(false);
+    setShellMenuOpen(false);
   };
 
   const clearFilters = () => {
@@ -471,7 +475,7 @@ export function App() {
     setHideUnmatched(true);
     setClickFocusId(null);
     setSelection(null);
-    setMoreOpen(false);
+    setShellMenuOpen(false);
     setPatternId(null);
     setPatternReturnSnapshot(null);
     setScreen('explore');
@@ -482,7 +486,7 @@ export function App() {
     setClickFocusId(null);
     setThemeHintDismissed(false);
     setSelection(null);
-    setMoreOpen(false);
+    setShellMenuOpen(false);
     setPatternId(null);
     setPatternReturnSnapshot(null);
     setSourceId(null);
@@ -507,7 +511,7 @@ export function App() {
     setPatternId(VEGAN_DIET_HUB_ID);
     setClickFocusId(null);
     setSelection(null);
-    setMoreOpen(false);
+    setShellMenuOpen(false);
     setScreen('pattern');
     clearPatternHighlight();
   };
@@ -519,7 +523,7 @@ export function App() {
   const openTwin = () => {
     setClickFocusId(null);
     setSelection(null);
-    setMoreOpen(false);
+    setShellMenuOpen(false);
     setPatternId(null);
     setPatternReturnSnapshot(null);
     setScreen('twin');
@@ -550,7 +554,7 @@ export function App() {
       setLayout('hierarchy');
       setGraphView('2d');
       selectNode(target.nodeId);
-      setMoreOpen(false);
+      setShellMenuOpen(false);
       setPatternId(null);
       setPatternReturnSnapshot(null);
       setScreen('explore');
@@ -573,7 +577,7 @@ export function App() {
     setHideUnmatched(snapshot.hideUnmatched);
     setClickFocusId(null);
     setSelection(snapshot.selection);
-    setMoreOpen(false);
+    setShellMenuOpen(false);
     setScreen('explore');
     clearPatternHighlight();
   };
@@ -596,7 +600,7 @@ export function App() {
     setPatternId(null);
     setPatternReturnSnapshot(null);
     setSelection(null);
-    setMoreOpen(false);
+    setShellMenuOpen(false);
     setScreen('home');
   };
 
@@ -613,7 +617,7 @@ export function App() {
       setHideUnmatched(snapshot.hideUnmatched);
       setClickFocusId(null);
     setSelection(snapshot.selection);
-      setMoreOpen(false);
+      setShellMenuOpen(false);
       setScreen('explore');
       return;
     }
@@ -627,7 +631,7 @@ export function App() {
     setSourceId(id);
     setClickFocusId(null);
     setSelection(null);
-    setMoreOpen(false);
+    setShellMenuOpen(false);
     setPatternId(null);
     setScreen('source');
     clearPatternHighlight();
@@ -649,7 +653,7 @@ export function App() {
     setHideUnmatched(snapshot.hideUnmatched);
     setClickFocusId(null);
     setSelection(snapshot.selection);
-    setMoreOpen(false);
+    setShellMenuOpen(false);
     setScreen('explore');
   };
 
@@ -667,7 +671,7 @@ export function App() {
     setGraphView('2d');
     setClickFocusId(null);
     setSelection({ kind: 'link', index });
-    setMoreOpen(false);
+    setShellMenuOpen(false);
     setScreen('explore');
     clearPatternHighlight();
   };
@@ -801,15 +805,15 @@ export function App() {
             </button>
           )}
           {mobile ? (
-            <div className="shell-menu" ref={moreRoot}>
+            <div className="shell-menu" ref={shellMenuRef}>
               <button
                 type="button"
                 className="btn btn--ghost shell-menu-trigger"
-                aria-expanded={moreOpen}
+                aria-expanded={shellMenuOpen}
                 aria-controls="shell-menu-panel"
                 aria-label="菜单"
-                data-testid="more-menu"
-                onClick={() => setMoreOpen((open) => !open)}
+                data-testid="shell-menu-trigger"
+                onClick={() => setShellMenuOpen((open) => !open)}
               >
                 <svg className="shell-menu-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                   <path
@@ -821,19 +825,19 @@ export function App() {
                   />
                 </svg>
               </button>
-              {moreOpen && (
+              {shellMenuOpen && (
                 <>
                   <button
                     type="button"
                     className="shell-menu-backdrop"
                     aria-label="关闭菜单"
                     data-testid="shell-menu-backdrop"
-                    onClick={() => setMoreOpen(false)}
+                    onClick={closeShellMenu}
                   />
                   <div
                     id="shell-menu-panel"
                     className="shell-menu-panel"
-                    data-testid="more-panel"
+                    data-testid="shell-menu-panel"
                     role="menu"
                     aria-label="应用菜单"
                   >
@@ -846,7 +850,7 @@ export function App() {
                         aria-current={screen === 'home' || screen === 'pattern' ? 'true' : undefined}
                         onClick={() => {
                           goHome();
-                          setMoreOpen(false);
+                          closeShellMenu();
                         }}
                       >
                         主题大厅
@@ -860,7 +864,7 @@ export function App() {
                         onClick={() => {
                           if (graph) {
                             setScreen('explore');
-                            setMoreOpen(false);
+                            closeShellMenu();
                           }
                         }}
                       >
@@ -870,34 +874,9 @@ export function App() {
                     {exploring && (
                       <>
                         <p className="shell-menu-kicker">探索</p>
-                        <button
-                          type="button"
-                          role="menuitem"
-                          className="shell-menu-item"
-                          data-testid="back-to-home"
-                          onClick={() => {
-                            goHome();
-                            setMoreOpen(false);
-                          }}
-                        >
-                          {BACK_TO_LOBBY}
-                        </button>
                         {viewControls}
                         {rotateControl}
                       </>
-                    )}
-                    {(screen === 'twin' || screen === 'source') && (
-                      <button
-                        type="button"
-                        role="menuitem"
-                        className="shell-menu-item"
-                        onClick={() => {
-                          goHome();
-                          setMoreOpen(false);
-                        }}
-                      >
-                        {BACK_TO_LOBBY}
-                      </button>
                     )}
                     {copyControl}
                     <ThemeOptions theme={appTheme} onChange={onAppTheme} />

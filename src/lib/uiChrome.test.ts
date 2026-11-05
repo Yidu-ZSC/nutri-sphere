@@ -28,7 +28,7 @@ test('method help is a centered overlay and narrow explore keeps the primary pat
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
 
   assert.match(app, /aria-label="菜单"/);
-  assert.match(app, /data-testid="more-menu"/);
+  assert.match(app, /data-testid="shell-menu-trigger"/);
   assert.match(app, /data-testid="back-to-home"/);
   assert.match(app, /data-testid="shell-menu-backdrop"/);
   assert.match(app, /data-testid="rail-toggle"/);
