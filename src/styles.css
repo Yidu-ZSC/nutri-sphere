@@ -332,6 +332,93 @@ button { cursor: pointer; }
 
 .layout-toggle button { white-space: nowrap; }
 
+/* TASK-NS-063 · knowledge domain switcher (not appearance ThemeSwitcher) */
+.domain-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  min-width: 0;
+}
+
+.domain-switch-label,
+.more-domain-label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.domain-switch-segment button {
+  min-width: 44px;
+  min-height: 36px;
+  padding: 0 10px;
+}
+
+.more-domain {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+.more-domain .domain-switch-segment {
+  width: 100%;
+}
+
+.more-domain .domain-switch-segment button {
+  flex: 1;
+}
+
+.domain-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 520px;
+  margin: 24px auto;
+  padding: 20px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+}
+
+.domain-empty-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.domain-empty-body {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.stage--domain-empty,
+.stage-main--domain-empty {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 12px;
+  overflow: auto;
+}
+
+.topbar--compact .domain-switch-segment button {
+  padding: 0 8px;
+  min-width: 40px;
+}
+
+@media (max-width: 768px) {
+  .domain-empty {
+    margin: 12px 0;
+    width: 100%;
+    max-width: none;
+  }
+}
+
 .search {
   position: relative;
   flex: 1;

@@ -1,4 +1,6 @@
 import type { GraphView } from './graphView';
+import type { Domain } from '../types/graph';
+import { normalizeDomain } from './domain.ts';
 import type { LayoutMode } from './layout';
 import { normalizeVeganDietPatternId, VEGAN_DIET_HUB_ID } from './dietPatternDetails.ts';
 import { knownPatternId, parsePatternList } from './patternLinks.ts';
@@ -15,6 +17,8 @@ export type AdminSection = (typeof ADMIN_SECTIONS)[number];
 
 export interface ParsedShare {
   screen: ScreenMode | null;
+  /** Always resolved; missing/illegal URL → health. */
+  domain: Domain;
   theme: string | null;
   disease: string | null;
   mechanism: string | null;
@@ -34,6 +38,8 @@ export interface ParsedShare {
 
 export interface ShareState {
   screen: ScreenMode;
+  /** Omit or health → omit from URL; non-health must be written. */
+  domain?: Domain;
   theme: string | null;
   disease: string | null;
   mechanism: string | null;
@@ -94,6 +100,12 @@ function parseTheme(value: string | null): string | null {
   return value;
 }
 
+function writeDomain(params: URLSearchParams, domain: Domain | undefined): void {
+  const resolved = normalizeDomain(domain);
+  if (resolved !== 'health') params.set('domain', resolved);
+}
+
+
 /**
  * Missing `screen` is home, unless the link already points at a filter,
  * a food anchor, a node, a link, or a known theme — those open explore.
@@ -141,6 +153,7 @@ export function parseViewQuery(search: string): ParsedShare {
   const link = params.get('link');
   const parsed: ParsedShare = {
     screen: parseScreen(params.get('screen')),
+    domain: normalizeDomain(params.get('domain')),
     theme: parseTheme(params.get('theme')),
     disease: cleanId(params.get('disease')),
     mechanism: cleanId(params.get('mechanism')),
@@ -196,12 +209,14 @@ export function serializeViewQuery(state: ShareState): string {
     if (screen === 'pattern') {
       params.set('pattern', normalizeVeganDietPatternId(state.pattern) ?? VEGAN_DIET_HUB_ID);
     }
+    writeDomain(params, state.domain);
     return `?${params.toString()}`;
   }
   if (state.screen === 'source') {
     const params = new URLSearchParams();
     params.set('screen', 'source');
     if (state.source) params.set('source', state.source);
+    writeDomain(params, state.domain);
     return `?${params.toString()}`;
   }
   if (state.screen === 'admin') {
@@ -212,6 +227,7 @@ export function serializeViewQuery(state: ShareState): string {
     if (section === 'books' && state.book) params.set('book', state.book);
     if (section === 'edges' && state.edge) params.set('edge', state.edge);
     if (section === 'nodes' && state.node) params.set('node', state.node);
+    writeDomain(params, state.domain);
     return `?${params.toString()}`;
   }
   const params = new URLSearchParams();
@@ -229,6 +245,7 @@ export function serializeViewQuery(state: ShareState): string {
   } else if (state.patterns.length > 0) {
     if (state.theme) params.set('theme', state.theme);
   }
+  writeDomain(params, state.domain);
   const text = params.toString();
   const query = text ? `?${text}` : '';
   if (state.screen === 'home' && state.patterns.length > 0) {
