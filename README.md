@@ -14,7 +14,7 @@ An educational knowledge graph that helps ordinary people understand how diet is
 
 你可以：
 - 从日常问题入口（如「想了解脂肪肝相关饮食讨论」），看到相关食物、机制与健康主题的关联路径
-- 点开节点或边，查看原文摘录、来源与局限性
+- 点开节点或边，查看原文摘录与来源
 - 了解公开资料里常被提到的饮食选择与健康主题之间的讨论方式
 
 它不是医疗器械，不提供诊断、治疗方案或个性化建议。
@@ -25,7 +25,7 @@ An educational knowledge graph that helps ordinary people understand how diet is
 
 - 公开资料里怎么描述某种饮食与某个健康主题的关联
 - 这些描述来自哪些书或文献
-- 这些描述有哪些局限
+- 并结合页脚免责声明理解资料的一般边界
 
 它帮助你建立对饮食的重视，并提供一个可以自己查看的入口。
 
@@ -37,7 +37,7 @@ ClearDiet is an educational tool for ordinary people. It organizes descriptions 
 
 You can:
 - Start from everyday questions (for example, “want to understand diet discussions related to fatty liver”) and see related foods, mechanisms, and health topics
-- Click nodes or edges to view original excerpts, sources, and limitations
+- Click nodes or edges to view original excerpts and sources
 - Understand how public materials discuss the relationship between dietary choices and health topics
 
 It is not a medical device. It does not provide diagnosis, treatment plans, or personalized advice.
@@ -48,7 +48,7 @@ Most people choose food by habit and taste because the links between diet and he
 
 - How public materials describe the association between a dietary choice and a health topic
 - Which books or literature those descriptions come from
-- What limitations those descriptions have
+- And read the product disclaimer for general boundaries of the material
 
 It helps you pay attention to diet and provides an entry point you can explore yourself.
 

@@ -26,13 +26,11 @@ export interface BookFieldDraft {
 
 export interface EvidenceFieldDraft {
   excerpt: string;
-  limitations: string;
 }
 
 export interface EdgeFieldDraft {
   relation: string;
   excerpt: string;
-  limitations: string;
   evidences: EvidenceFieldDraft[];
 }
 
@@ -74,7 +72,7 @@ function isBookDraft(value: unknown): value is BookFieldDraft {
 function isEvidenceDraft(value: unknown): value is EvidenceFieldDraft {
   if (!value || typeof value !== 'object') return false;
   const row = value as EvidenceFieldDraft;
-  return typeof row.excerpt === 'string' && typeof row.limitations === 'string';
+  return typeof row.excerpt === 'string';
 }
 
 function isEdgeDraft(value: unknown): value is EdgeFieldDraft {
@@ -83,7 +81,6 @@ function isEdgeDraft(value: unknown): value is EdgeFieldDraft {
   return (
     typeof row.relation === 'string' &&
     typeof row.excerpt === 'string' &&
-    typeof row.limitations === 'string' &&
     Array.isArray(row.evidences) &&
     row.evidences.every(isEvidenceDraft)
   );
@@ -197,12 +194,10 @@ export function edgeDraftKey(link: GraphLink): string {
 export function edgeBaseline(link: GraphLink): EdgeFieldDraft {
   const evidences = (link.evidences ?? []).map((item) => ({
     excerpt: item.excerpt ?? '',
-    limitations: item.limitations ?? '',
   }));
   return {
     relation: link.relation,
     excerpt: link.excerpt ?? evidences[0]?.excerpt ?? '',
-    limitations: link.limitations ?? evidences[0]?.limitations ?? '',
     evidences,
   };
 }
@@ -214,13 +209,11 @@ export function presentEdge(link: GraphLink, draft: EdgeFieldDraft | null | unde
 export function normalizeEdgeDraft(draft: EdgeFieldDraft): EdgeFieldDraft {
   const evidences = draft.evidences.map((item) => ({
     excerpt: item.excerpt.trim(),
-    limitations: item.limitations.trim(),
   }));
   const first = evidences[0];
   return {
     relation: draft.relation.trim(),
     excerpt: (first?.excerpt ?? draft.excerpt).trim(),
-    limitations: (first?.limitations ?? draft.limitations).trim(),
     evidences,
   };
 }
@@ -228,13 +221,12 @@ export function normalizeEdgeDraft(draft: EdgeFieldDraft): EdgeFieldDraft {
 export function edgeDraftsEqual(a: EdgeFieldDraft, b: EdgeFieldDraft): boolean {
   const left = normalizeEdgeDraft(a);
   const right = normalizeEdgeDraft(b);
-  if (left.relation !== right.relation || left.excerpt !== right.excerpt || left.limitations !== right.limitations) {
+  if (left.relation !== right.relation || left.excerpt !== right.excerpt) {
     return false;
   }
   if (left.evidences.length !== right.evidences.length) return false;
   return left.evidences.every(
-    (item, index) =>
-      item.excerpt === right.evidences[index]?.excerpt && item.limitations === right.evidences[index]?.limitations,
+    (item, index) => item.excerpt === right.evidences[index]?.excerpt,
   );
 }
 
@@ -242,11 +234,10 @@ export function validateEdgeDraft(draft: EdgeFieldDraft): string | null {
   const next = normalizeEdgeDraft(draft);
   if (!next.relation) return '请填写关系表述';
   if (next.relation.length > RELATION_MAX) return '关系表述超过可保存长度';
-  const rows = next.evidences.length > 0 ? next.evidences : [{ excerpt: next.excerpt, limitations: next.limitations }];
+  const rows = next.evidences.length > 0 ? next.evidences : [{ excerpt: next.excerpt }];
   for (const row of rows) {
     if (!row.excerpt) return '请填写原文摘录';
-    if (!row.limitations) return '请填写局限';
-    if (row.excerpt.length > TEXT_MAX || row.limitations.length > TEXT_MAX) return '摘录或局限超过可保存长度';
+    if (row.excerpt.length > TEXT_MAX) return '摘录超过可保存长度';
   }
   return null;
 }

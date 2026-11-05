@@ -32,7 +32,7 @@ test('dual-end hit → pass / attach', () => {
     target: 'beta_glucan',
     relation: '提供 β-葡聚糖',
     source_id: 'eat_to_heal',
-    evidences: [{ excerpt: '短摘录', limitations: '书摘', source_title: 't', source_file: 'x.md', source_id: 'eat_to_heal' }],
+    evidences: [{ excerpt: '短摘录', source_title: 't', source_file: 'x.md', source_id: 'eat_to_heal' }],
   };
   const T = '白蘑菇是生物活性物质的良好来源，包括刺激免疫系统的膳食纤维β-葡聚糖。';
   const scored = scoreCandidate(T, link, nodesById);
@@ -49,7 +49,7 @@ test('low score / hub oneStrong-only → skip', () => {
     target: 'epigenetic_positive',
     relation: 'ω-3多不饱和脂肪酸具有抗氧化作用，可以对抗自由基造成的DNA破坏',
     source_id: 'eat_to_heal',
-    evidences: [{ excerpt: 'x'.repeat(250), limitations: '书摘', source_title: 't', source_file: 'x.md', source_id: 'eat_to_heal' }],
+    evidences: [{ excerpt: 'x'.repeat(250), source_title: 't', source_file: 'x.md', source_id: 'eat_to_heal' }],
   };
   // Only broad epigenetic/DNA tokens — no omega3 food side → should not auto-pass
   const T = '端粒保护染色体末端免受损伤，从而在保护DNA方面发挥着重要作用。表观遗传也会随年龄变化。';

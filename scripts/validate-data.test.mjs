@@ -69,10 +69,10 @@ test('aligned seed passes schema and referential checks', () => {
 
 const TECHNICAL_NODES = ['igf1_signaling', 'lps'];
 
-test('data 1.4 uses schema 0.6 with domain=health on all nodes/links; NS-056/058/061/064 preserved', () => {
+test('data 1.5 uses schema 0.7 with domain=health on all nodes/links; NS-065 drops limitations', () => {
   const data = readJson(ALIGNED_SEED);
-  assert.equal(data.meta.schema_version, '0.6');
-  assert.equal(data.meta.data_version, '1.4');
+  assert.equal(data.meta.schema_version, '0.7');
+  assert.equal(data.meta.data_version, '1.5');
   assert.equal(data.meta.disclaimer, 'Educational / research use only. Not medical advice.');
   assert.equal(data.nodes.length, 102);
   assert.equal(data.links.length, 158);
@@ -84,6 +84,12 @@ test('data 1.4 uses schema 0.6 with domain=health on all nodes/links; NS-056/058
   }
   assert.equal(data.nodes.some((n) => n.domain === 'environment' || n.domain === 'culture'), false);
   assert.equal(data.links.some((l) => l.domain === 'environment' || l.domain === 'culture'), false);
+  for (const link of data.links) {
+    assert.equal('limitations' in link, false, link.id ?? `${link.source}->${link.target}`);
+    for (const ev of link.evidences) {
+      assert.equal('limitations' in ev, false);
+    }
+  }
   assert.ok(data.nodes.length >= 60 && data.nodes.length <= 120);
   assert.ok(data.links.length >= 80 && data.links.length <= 200);
   assert.equal(data.links.length, 158);
@@ -180,7 +186,6 @@ test('data 1.4 uses schema 0.6 with domain=health on all nodes/links; NS-056/058
     assert.equal(link.excerpt, link.evidences[0].excerpt, link.id);
     assert.equal(link.source_title, link.evidences[0].source_title, link.id);
     assert.equal(link.source_file, link.evidences[0].source_file, link.id);
-    assert.equal(link.limitations, link.evidences[0].limitations, link.id);
     if (link.source_file === 'literature') {
       assert.equal('source_id' in link && link.source_id != null, false, link.id);
       assert.equal(link.source_title, link.citation.title, link.id);
@@ -302,14 +307,12 @@ test('citation edges stay in range and are not book notes', () => {
     assert.equal(link.evidence_type.startsWith('book_notes_'), false, link.id);
     assert.equal(link.source_file, 'literature', link.id);
     assert.ok(link.excerpt && link.excerpt.length <= 1200, link.id);
-    assert.match(link.limitations, /非书摘/, link.id);
     assert.ok(link.citation.doi || link.citation.pmid, link.id);
     assert.notEqual(link.citation.doi, retracted, link.id);
     assert.equal(String(link.citation.doi).includes('doi.org'), false, link.id);
   }
   for (const ev of citedEvidences) {
     assert.ok(ev.excerpt && ev.excerpt.length <= 1200);
-    assert.match(ev.limitations, /非书摘/);
     assert.ok(ev.citation.doi || ev.citation.pmid);
     assert.equal('source_id' in ev && ev.source_id != null, false);
   }
@@ -381,7 +384,7 @@ test('a mechanism_depth outside the enum fails validation', () => {
 });
 
 
-test('schema 0.6 requires domain enum on nodes and links', () => {
+test('schema 0.7 requires domain enum on nodes and links', () => {
   const schema = readJson(GRAPH_SCHEMA);
   const nodeDomain = schema.properties.nodes.items.properties.domain;
   const linkDomain = schema.properties.links.items.properties.domain;
@@ -446,13 +449,18 @@ test('aligned seed has no audience or depth warnings', () => {
   assert.deepEqual(result.warnings, []);
 });
 
-test('missing limitations fail validation', () => {
+test('seed and evidences carry no limitations keys after NS-065', () => {
   const data = readJson(ALIGNED_SEED);
   const schema = readJson(GRAPH_SCHEMA);
-  delete data.links[1].limitations;
   const result = validateGraphData(data, schema);
-  assert.equal(result.ok, false);
-  assert.match(result.errors.join('\n'), /limitations/);
+  assert.equal(result.ok, true, result.errors.join('\n'));
+  for (const link of data.links) {
+    assert.equal(Object.prototype.hasOwnProperty.call(link, 'limitations'), false);
+    for (const ev of link.evidences) {
+      assert.equal(Object.prototype.hasOwnProperty.call(ev, 'limitations'), false);
+    }
+  }
+  assert.equal(JSON.stringify(schema).includes('"limitations"'), false);
 });
 
 

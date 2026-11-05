@@ -82,7 +82,7 @@ export function DisclaimerBar({
               <ul className="about-list">
                 <li>从一个健康主题入手。看饮食与它常被怎么联系起来。</li>
                 <li>看到关联方向（保护相关 / 风险相关）和证据强度。</li>
-                <li>查看每条说明的来源与局限性。</li>
+                <li>查看每条说明的来源与原文摘录。</li>
                 <li>从「素食饮食方式」了解书摘与公开资料里常被描述的素食路径与试做思路。</li>
               </ul>
             </section>
@@ -91,7 +91,7 @@ export function DisclaimerBar({
               <ol className="about-steps">
                 <li>在大厅选一个你想了解的主题。</li>
                 <li>进入图后，点击线条或节点查看详细说明。</li>
-                <li>点开关联边，先读短引与局限；需要时再展开「更多说明」。</li>
+                <li>点开关联边，先读短引与来源；需要时再展开「更多说明」。</li>
                 <li>想看「怎么做」，可进入「素食饮食方式」，或从侧栏跳转。</li>
               </ol>
             </section>
@@ -112,10 +112,6 @@ export function DisclaimerBar({
                   <strong>证据类型</strong>
                   <span>证据类型标明来源（书摘、观察研究等）。</span>
                   <span>这不是临床等级。</span>
-                </li>
-                <li>
-                  <strong>局限性</strong>
-                  <span>每条说明都会标明自己的限制，请一起看。</span>
                 </li>
               </ul>
             </section>
@@ -168,8 +164,8 @@ export function DisclaimerBar({
                     <dd>来源属于哪一种资料。当前种子主要是书摘，另有少量文献边。名称只说明来源，不是临床等级。</dd>
                   </div>
                   <div>
-                    <dt>摘录 excerpt / 局限 limitations</dt>
-                    <dd>摘录保持原文，不在界面改写。局限是该条资料自己标明的限制。</dd>
+                    <dt>摘录 excerpt</dt>
+                    <dd>摘录保持原文，不在界面改写。产品级免责声明见页脚，不在边字段重复界定局限。</dd>
                   </div>
                 </dl>
               </section>

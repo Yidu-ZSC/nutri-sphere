@@ -441,16 +441,14 @@ def main() -> None:
         # Write evidences[0] + top-level mirrors
         e0["excerpt"] = new_text
         link["excerpt"] = new_text
-        # Keep limitations non-empty; mirror top
-        if not (e0.get("limitations") or "").strip():
-            raise SystemExit(f"empty limitations on {key}")
-        link["limitations"] = e0["limitations"]
-        # Keep source_* mirrors
+        # Keep source_* mirrors (schema 0.7+: no limitations field)
         for fld in ("source_title", "source_file", "source_id", "note_id"):
             if fld in e0 and e0[fld] is not None:
                 link[fld] = e0[fld]
+        # Drop legacy limitations if present on older inputs
+        e0.pop("limitations", None)
+        link.pop("limitations", None)
         assert link["excerpt"] == link["evidences"][0]["excerpt"]
-        assert link["limitations"] == link["evidences"][0]["limitations"]
         rec = {
             "index": idx,
             "edge": f"{key[0]}->{key[1]}",

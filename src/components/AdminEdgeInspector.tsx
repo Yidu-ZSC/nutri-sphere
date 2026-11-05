@@ -142,7 +142,7 @@ export function AdminEdgeInspector({
               <dd>{index}</dd>
             </div>
           </dl>
-          <p className="admin-draft-note">起点、终点、方向和强度保持种子数据。这里维护关系表述、摘录和局限。</p>
+          <p className="admin-draft-note">起点、终点、方向和强度保持种子数据。这里维护关系表述与原文摘录。</p>
 
           {editing ? (
             <form
@@ -178,15 +178,6 @@ export function AdminEdgeInspector({
                         onChange={(event) => updateEvidence(evidenceIndex, { excerpt: event.target.value })}
                       />
                     </label>
-                    <label className="admin-field">
-                      <span>局限</span>
-                      <textarea
-                        rows={3}
-                        value={item.limitations}
-                        data-testid={`admin-edge-limit-${evidenceIndex}`}
-                        onChange={(event) => updateEvidence(evidenceIndex, { limitations: event.target.value })}
-                      />
-                    </label>
                   </fieldset>
                 ))
               ) : (
@@ -198,15 +189,6 @@ export function AdminEdgeInspector({
                       value={form.excerpt}
                       data-testid="admin-edge-excerpt-0"
                       onChange={(event) => setForm((prev) => ({ ...prev, excerpt: event.target.value }))}
-                    />
-                  </label>
-                  <label className="admin-field">
-                    <span>局限</span>
-                    <textarea
-                      rows={3}
-                      value={form.limitations}
-                      data-testid="admin-edge-limit-0"
-                      onChange={(event) => setForm((prev) => ({ ...prev, limitations: event.target.value }))}
                     />
                   </label>
                 </>
@@ -235,16 +217,12 @@ export function AdminEdgeInspector({
                     ) : null}
                     <h4>原文摘录</h4>
                     <p className="admin-prose">{item.excerpt}</p>
-                    <h4>局限</h4>
-                    <p className="admin-prose">{item.limitations}</p>
                   </article>
                 ))
               ) : (
                 <article className="admin-evidence">
                   <h3>原文摘录</h3>
                   <p className="admin-prose">{shown.excerpt}</p>
-                  <h4>局限</h4>
-                  <p className="admin-prose">{shown.limitations}</p>
                 </article>
               )}
             </div>

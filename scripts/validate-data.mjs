@@ -159,9 +159,6 @@ export function validateGraphData(data, schema, options = {}) {
     } else if (ev.excerpt.length > EXCERPT_LIMIT) {
       errors.push(`${path}.excerpt 长度为 ${ev.excerpt.length}，超过 ${EXCERPT_LIMIT}`);
     }
-    if (typeof ev.limitations !== 'string' || ev.limitations.trim() === '') {
-      errors.push(`${path} 缺少 limitations`);
-    }
     if (typeof ev.source_title !== 'string' || ev.source_title.trim() === '') {
       errors.push(`${path} 缺少 source_title`);
     }
@@ -256,7 +253,7 @@ export function validateGraphData(data, schema, options = {}) {
     });
     const ev0 = /** @type {Record<string, unknown>} */ (row.evidences[0]);
     // top-level mirror of evidences[0]
-    for (const key of ['excerpt', 'limitations', 'source_title', 'source_file']) {
+    for (const key of ['excerpt', 'source_title', 'source_file']) {
       if (row[key] !== ev0[key]) {
         errors.push(`links[${index}].${key} 须与 evidences[0].${key} 镜像一致`);
       }

@@ -12,8 +12,6 @@ export const VEGAN_DIET_HUB_EVIDENCE = {
   evidence_note:
     '本页内容来自书摘与公开资料中的模式描述、观察与综述，不是原创研究，也不能外推为个人饮食方案。',
   evidence_sources: ['书摘机制', '观察与综述'] as const,
-  limitations:
-    '个体差异大；不是针对个人的饮食医嘱；本项目不做原创研究；健康决策请咨询专业人员。',
 } as const;
 
 export const PATTERN_SHELL = {
@@ -21,7 +19,7 @@ export const PATTERN_SHELL = {
   sectionKicker: VEGAN_DIET_SECTION_TITLE,
   journeyHeading: '试做顺序（可快可慢）',
   graphTitle: '与图谱的关联',
-  evidenceTitle: '证据与局限性',
+  evidenceTitle: '证据说明',
   backGraph: '返回图谱',
   openDetail: '查看详情',
   lobbyIntro: VEGAN_DIET_SECTION_INTRO,

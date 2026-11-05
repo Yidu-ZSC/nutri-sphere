@@ -103,7 +103,6 @@ export function VeganDietDetail({ onBack, onEnterTheme, onReturnToGraph }: Vegan
               <li key={source}>{source}</li>
             ))}
           </ul>
-          <p data-testid="vegan-diet-detail-limitations">{VEGAN_DIET_HUB_EVIDENCE.limitations}</p>
         </section>
 
         {graphTheme && (
