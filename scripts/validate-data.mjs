@@ -396,7 +396,7 @@ export function validateAdminBooks(payload, sourcesPayload) {
       errors.push(`admin_books.json 缺少已入库书目 id "${expected}"`);
     }
   }
-  // NS-067: gut_brain + eat_to_heal ingested; four thin books remain index_only (pending EPUB).
+  // NS-069: gut_brain + eat_to_heal + amazing_veggie_soup ingested; three thin books remain index_only.
   if (books.length === 19) {
     const gut = books.find((b) => b && typeof b === 'object' && /** @type {any} */ (b).id === 'gut_brain');
     if (!gut || /** @type {any} */ (gut).status !== 'ingested' || /** @type {any} */ (gut).source_id !== 'gut_brain') {
@@ -404,10 +404,14 @@ export function validateAdminBooks(payload, sourcesPayload) {
     }
     const eth = books.find((b) => b && typeof b === 'object' && /** @type {any} */ (b).id === 'eat_to_heal');
     if (!eth || /** @type {any} */ (eth).status !== 'ingested' || /** @type {any} */ (eth).source_id !== 'eat_to_heal') {
-      errors.push('admin_books.json eat_to_heal 须为 ingested + source_id（NS-067）');
+      errors.push('admin_books.json eat_to_heal 须保持 ingested + source_id');
     }
-    if (ingested !== 2) {
-      errors.push(`admin_books.json NS-067 后应恰有 2 本 ingested（gut_brain+eat_to_heal），实为 ${ingested}`);
+    const avs = books.find((b) => b && typeof b === 'object' && /** @type {any} */ (b).id === 'amazing_veggie_soup');
+    if (!avs || /** @type {any} */ (avs).status !== 'ingested' || /** @type {any} */ (avs).source_id !== 'amazing_veggie_soup') {
+      errors.push('admin_books.json amazing_veggie_soup 须为 ingested + source_id（NS-069）');
+    }
+    if (ingested !== 3) {
+      errors.push(`admin_books.json NS-069 后应恰有 3 本 ingested（gut_brain+eat_to_heal+amazing_veggie_soup），实为 ${ingested}`);
     }
   }
 

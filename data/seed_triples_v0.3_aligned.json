@@ -1,10 +1,10 @@
 {
   "meta": {
     "schema_version": "0.7",
-    "data_version": "1.8",
+    "data_version": "1.9",
     "extracted_from": "knowledge-base Project (high relevance files)",
     "extraction_date": "2026-10-31",
-    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 book-note nodes and excerpts are unchanged. data 0.5 adds schema 0.2 optional citation and nine literature edges with verified DOIs. data 0.6 / schema 0.3 writes audience on every link and mechanism_depth on mechanism nodes. These labels are not an evidence grade and not a view toggle. Educational use only. The original 20 excerpts are unchanged. data 0.7 aligns the 14 existing mechanism descriptions to MECHANISM_DICTIONARY.md v0.2 concept sentences and adds 10 dictionary mechanism nodes (aliases empty; mechanism_depth mechanism). Mechanism nodes still carry no source or limitations fields. Educational use only; schema_version remains 0.3. data 0.8 aligns 11 existing disease/biomarker labels and descriptions to HEALTH_DISEASE_DICTIONARY.md v0.2 concept sentences and adds 8 protective health-direction disease nodes (aliases empty). Column caption becomes 健康/疾病. Status nodes still carry no source or limitations fields. No new edges in this increment. Educational use only; schema_version remains 0.3. data 0.9 / schema 0.4 adds source_title on every link, source_id on book-note links, and data/sources.json (six cited books) for the source intro screen. Literature links set source_title from citation.title and omit source_id. Excerpt bodies and limitations are unchanged; evidences arrays are not introduced. Educational use only. NS-056：evidences[]+顶层镜像；合并同端点 125→121；EXCERPT_LIMIT 1200；加长主摘录（微信读书书摘/PubMed 摘要，未编造）。 data 1.1 / NS-058：按 EXCERPT_EXPANSION 将优先主题短摘录替换为知识库原文（目标 400–800；evidences[0]+顶层镜像；schema 0.5 / sources 1.1 不动）。 data 1.2 / NS-061：六书微信划线映射进已有边 evidences[]（个人为主、热门去重补充；默认 append；短主摘录可 promote0）；schema 0.5 / sources 1.1 / admin_books 1.1 不动；语料 JSON 正文不改。 data 1.3 / schema 0.6 · NS-062：全量节点与边显式 domain: health；无环境/文化数据；无 UI 主题切换。 data 1.4 · NS-064 删除 gut_brain 旧边并按 EPUB 候选全量录入 15 节点 + 55 边贡献；schema 仍 0.6。 data 1.5 / schema 0.7 · NS-065：全量删除边顶层与 evidences[].limitations（「局限」）；大厅饮食模式同步去掉；DISCLAIMER_TEXT 不动；拓扑仍 102+158。 data 1.6 · NS-066（B2+D）：清五本薄书摘边与 weread 语料/Admin 笔记数；先 promote 2 条 gut_brain 挂载 + 4 条嵌套文献；保留 gut_brain EPUB、纯文献与全部 102 节点（含 degree-0）；DISCLAIMER 不动；schema 仍 0.7；admin_books → 1.2（去 note_count）。 data 1.7 / schema 0.7 adds eat_to_heal EPUB full ingest (NS-067). data 1.8 · NS-068：将 eat_to_heal/gut_brain 书框 relation 批量改写为公共观察关系；excerpt/evidences/source_*/拓扑不动；schema 仍 0.7。",
+    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 book-note nodes and excerpts are unchanged. data 0.5 adds schema 0.2 optional citation and nine literature edges with verified DOIs. data 0.6 / schema 0.3 writes audience on every link and mechanism_depth on mechanism nodes. These labels are not an evidence grade and not a view toggle. Educational use only. The original 20 excerpts are unchanged. data 0.7 aligns the 14 existing mechanism descriptions to MECHANISM_DICTIONARY.md v0.2 concept sentences and adds 10 dictionary mechanism nodes (aliases empty; mechanism_depth mechanism). Mechanism nodes still carry no source or limitations fields. Educational use only; schema_version remains 0.3. data 0.8 aligns 11 existing disease/biomarker labels and descriptions to HEALTH_DISEASE_DICTIONARY.md v0.2 concept sentences and adds 8 protective health-direction disease nodes (aliases empty). Column caption becomes 健康/疾病. Status nodes still carry no source or limitations fields. No new edges in this increment. Educational use only; schema_version remains 0.3. data 0.9 / schema 0.4 adds source_title on every link, source_id on book-note links, and data/sources.json (six cited books) for the source intro screen. Literature links set source_title from citation.title and omit source_id. Excerpt bodies and limitations are unchanged; evidences arrays are not introduced. Educational use only. NS-056：evidences[]+顶层镜像；合并同端点 125→121；EXCERPT_LIMIT 1200；加长主摘录（微信读书书摘/PubMed 摘要，未编造）。 data 1.1 / NS-058：按 EXCERPT_EXPANSION 将优先主题短摘录替换为知识库原文（目标 400–800；evidences[0]+顶层镜像；schema 0.5 / sources 1.1 不动）。 data 1.2 / NS-061：六书微信划线映射进已有边 evidences[]（个人为主、热门去重补充；默认 append；短主摘录可 promote0）；schema 0.5 / sources 1.1 / admin_books 1.1 不动；语料 JSON 正文不改。 data 1.3 / schema 0.6 · NS-062：全量节点与边显式 domain: health；无环境/文化数据；无 UI 主题切换。 data 1.4 · NS-064 删除 gut_brain 旧边并按 EPUB 候选全量录入 15 节点 + 55 边贡献；schema 仍 0.6。 data 1.5 / schema 0.7 · NS-065：全量删除边顶层与 evidences[].limitations（「局限」）；大厅饮食模式同步去掉；DISCLAIMER_TEXT 不动；拓扑仍 102+158。 data 1.6 · NS-066（B2+D）：清五本薄书摘边与 weread 语料/Admin 笔记数；先 promote 2 条 gut_brain 挂载 + 4 条嵌套文献；保留 gut_brain EPUB、纯文献与全部 102 节点（含 degree-0）；DISCLAIMER 不动；schema 仍 0.7；admin_books → 1.2（去 note_count）。 data 1.7 / schema 0.7 adds eat_to_heal EPUB full ingest (NS-067). data 1.8 · NS-068：将 eat_to_heal/gut_brain 书框 relation 批量改写为公共观察关系；excerpt/evidences/source_*/拓扑不动；schema 仍 0.7。 data 1.9 · NS-069：amazing_veggie_soup EPUB 全量录入（10 新节点 + 81 边贡献；同端点 4 append，其余新建）；schema 仍 0.7。",
     "disclaimer": "Educational / research use only. Not medical advice."
   },
   "nodes": [
@@ -922,7 +922,12 @@
       "label": "抗氧化防御",
       "group": "protective",
       "description": "内源性抗氧化酶与外源抗氧化物质共同参与的防御过程。",
-      "aliases": [],
+      "aliases": [
+        "抗氧化",
+        "抗氧化系统",
+        "抗氧化能力",
+        "抗氧化物质防御"
+      ],
       "mechanism_depth": "mechanism",
       "domain": "health"
     },
@@ -1428,6 +1433,140 @@
         "休眠肿瘤"
       ],
       "domain": "health"
+    },
+    {
+      "id": "vegetable_soup",
+      "type": "diet_pattern",
+      "label": "蔬菜汤 / 熬煮蔬菜汤",
+      "group": "protective",
+      "description": "将多种蔬菜加水加热熬煮、连汤食用的饮食方式；作为植化素与膳食纤维摄入载体讨论。",
+      "aliases": [
+        "蔬菜汤",
+        "熬煮蔬菜汤",
+        "大块蔬菜汤",
+        "蔬菜浓汤",
+        "食疗汤"
+      ],
+      "domain": "health"
+    },
+    {
+      "id": "phytochemicals",
+      "type": "nutrient",
+      "label": "植化素 / 植物化学物质",
+      "group": "protective",
+      "description": "植物色素、香气与苦味来源的生物活性物质总称，含类黄酮、番茄红素、叶黄素、类胡萝卜素等。",
+      "aliases": [
+        "植化素",
+        "植物化学物质",
+        "植物性化学物质",
+        "phytonutrients"
+      ],
+      "domain": "health"
+    },
+    {
+      "id": "dietary_nitrates",
+      "type": "compound",
+      "label": "膳食硝酸盐 / 亚硝酸盐",
+      "group": "protective",
+      "description": "叶菜等蔬菜中常见的硝酸盐与亚硝酸盐，可经菌群与代谢途径参与一氧化氮相关通路。",
+      "aliases": [
+        "硝酸盐",
+        "亚硝酸盐",
+        "硝基脂肪酸"
+      ],
+      "domain": "health"
+    },
+    {
+      "id": "nitric_oxide",
+      "type": "metabolite",
+      "label": "一氧化氮 (NO)",
+      "group": "protective",
+      "description": "参与血管舒张与循环调节的信号分子；联系内皮细胞产生与膳食硝酸盐通路。",
+      "aliases": [
+        "一氧化氮",
+        "NO"
+      ],
+      "domain": "health"
+    },
+    {
+      "id": "lipid_radicals",
+      "type": "mechanism",
+      "label": "脂质自由基",
+      "group": "risk",
+      "description": "过氧化脂质与铁等反应形成的长寿命活性氧相关物种；联系细胞膜损伤与癌变叙述。",
+      "aliases": [
+        "脂质自由基",
+        "脂质过氧自由基"
+      ],
+      "domain": "health",
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "hypertension",
+      "type": "disease",
+      "label": "高血压",
+      "group": "risk",
+      "description": "血压持续偏高及相关血管硬化风险；与一氧化氮、膳食硝酸盐及抗氧化叙述相连。",
+      "aliases": [
+        "高血压",
+        "血压升高"
+      ],
+      "domain": "health"
+    },
+    {
+      "id": "atopic_dermatitis",
+      "type": "disease",
+      "label": "特应性皮炎 / 过敏性皮炎",
+      "group": "risk",
+      "description": "皮肤干燥、炎症与屏障受损相关的过敏性皮炎；联系脂质自由基与免疫过度反应。",
+      "aliases": [
+        "特应性皮炎",
+        "过敏性皮炎",
+        "皮炎"
+      ],
+      "domain": "health"
+    },
+    {
+      "id": "aerobic_exercise",
+      "type": "mechanism",
+      "label": "有氧运动 / 适度运动",
+      "group": "protective",
+      "description": "散步、游泳等有氧活动；联系内皮一氧化氮、血压与慢性病风险观察。",
+      "aliases": [
+        "有氧运动",
+        "适度运动",
+        "散步"
+      ],
+      "domain": "health",
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "psychological_stress",
+      "type": "mechanism",
+      "label": "精神压力 / 心理应激",
+      "group": "risk",
+      "description": "长期心理压力与自主神经失衡、活性氧增多及免疫低下相关。",
+      "aliases": [
+        "精神压力",
+        "心理压力",
+        "压力"
+      ],
+      "domain": "health",
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "seaweed",
+      "type": "food",
+      "label": "海藻 / 海带裙带菜",
+      "group": "protective",
+      "description": "海带、裙带菜、海蕴等海藻食材；作为汤底与相关营养讨论。",
+      "aliases": [
+        "海藻",
+        "海带",
+        "裙带菜",
+        "海蕴"
+      ],
+      "domain": "health"
     }
   ],
   "links": [
@@ -1467,6 +1606,13 @@
             "pmid": "30638909",
             "url": "https://doi.org/10.1016/S0140-6736(18)31809-9"
           }
+        },
+        {
+          "excerpt": "蔬菜汤中富含的不可溶性膳食纤维有润肠通便的功能，它会在肠道内包裹住甘油三酯、胆固醇、糖类，在排便时一起被排出。山冈女士排便畅通和甘油三酯降低，都是因为喝蔬菜汤补充了大量的膳食纤维。\n\n这种植物性食品的纤维叫作多糖，能增加肠道内的益生菌。益生菌增多，肠道内环境得到改善，人体免疫力就会随之增强。\n\n===== SPINE 046 | Liang Ren De Shu Cai Tang_split_045.html =====\n\n未知\n\n===== SPINE 047 | Liang Ren De Shu Cai Tang_split_046.html =====\n\n未知\n\n第6章\n蔬菜汤是有益成分的宝库，能舒张血管、增加益生菌\n\n===== SPINE 048 | Liang Ren De Shu Cai Tang_split_047.html =====\n\n未知\n\n蔬菜汤有类似药剂的功效，能舒张血管、预防高血压\n\n保护血管、改善血液循环的两大机制\n\n下面我来说明一下蔬菜汤与血管之间的关系。\n\n由血液运输的氧气和营养保证了我们的机体能够正常运转。血管是血液流动的通道，保护好血管，保证血液流通顺畅，是维持身体健康的关键。喝蔬菜汤可以调动身体的两大机制来保护血管、让血液流通更顺畅。\n\n一个是前面提到的植化素等抗氧化物质，它们的抗氧化功效能够防止低密度脂蛋白胆固醇氧化损伤血管，从而有效预防动脉硬化。另一个则是蔬菜中含有的硝酸盐和亚硝酸盐物质。硝酸盐和亚硝酸盐原本主要是用作供植物吸收的氮肥，富含于小松菜、菠菜、白萝卜和甜菜等蔬菜里。硝酸盐和亚硝酸盐进入人体后，会被肠道内的菌群变成一氧化氮，或和体内的亚油酸、亚麻酸等脂肪酸结合形成“硝基脂肪酸”，硝基脂肪酸被人体吸收后最终也会形成一氧化氮。\n\n一氧化氮有多种功效，可以舒张血管、改善血液循环，还可以消除体内的活性氧，预防血栓。硝基脂肪酸和用于治疗心脏病的硝酸甘油一样，具有舒张血管、降低血压的功能。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch5_fiber_tg"
         }
       ],
       "domain": "health"
@@ -1627,6 +1773,13 @@
             "pmid": "33208922",
             "url": "https://doi.org/10.1038/s41575-020-00375-4"
           }
+        },
+        {
+          "excerpt": "近年来的研究表明，肠道内益生菌占多数，人体免疫力就会增强。可溶性膳食纤维和不可溶性膳食纤维都有助于增加肠道益生菌，增强人体免疫力。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch6_fiber_gut"
         }
       ],
       "population": "综述所讨论的实验与临床资料，非单一新试验。"
@@ -4195,6 +4348,13 @@
           "source_file": "植物性饮食与慢病_吃出自愈力.md",
           "source_id": "eat_to_heal",
           "note_id": "eat_to_heal_04_damage"
+        },
+        {
+          "excerpt": "照射在皮肤上的紫外线能产生一种叫“双线态氧”的活性氧。为了防止紫外线活性氧的攻击，抑制和癌症有关的DNA损伤，皮肤上会出现黑色素，其结果就是出现色斑。\n\n森女士的皮肤恢复弹性、色斑变淡是因为蔬菜中含有的植化素和维生素等抗氧化物质发挥作用。为了抗衰老，今后最好继续喝蔬菜汤。番茄中富含的番茄红素，菠菜中富含的叶黄素等类胡萝卜素，都可以帮助消除皮肤中的活性氧。\n\n===== SPINE 045 | Liang Ren De Shu Cai Tang_split_044.html =====\n\n未知\n\n一天排便三次，很顺畅！甘油三酯恢复正常，血糖值也稳定了\n\n山冈黎子（化名）　78岁　家庭主妇\n\n吃饭的时候先喝蔬菜汤\n\n我认识一位80岁的奶奶，但是她精力充沛，看着根本不像80岁。她是三姐妹里的长女，但却是看起来最小的那个。她保持年轻的秘诀，原来是坚持喝蔬菜汤长达30年。我也想变得像这位奶奶一样年轻，于是我学习了她的食谱，从5年前开始喝蔬菜汤。\n\n白萝卜、胡萝卜、牛蒡、土豆洗干净以后直接带皮放入锅中，洋葱剥掉皮，把皮晒干后也放入锅中，然后再加入剥掉皮的蒜瓣和干香菇等。放入的水量是蔬菜的3倍，用中火煮1.5个小时即可出锅。我用的几乎所有的食材都是自家栽种现摘的新鲜食材。\n\n以前我都是把里面的蔬菜扔掉，只喝汤。但看了前田浩先生的书之后，知道了里面的菜也很重要。自那以后，我都会把汤里的蔬菜也一起吃掉。\n\n我每天喝三次蔬菜汤，都是在吃饭的时候喝。最近，我听说吃饭的时候先吃蔬菜能控制血糖值升高，于是我就把汤里的菜先吃掉。不管是汤还是蔬菜，都不调味。\n\n一天排便三次\n\n我在吃饭的时候，一开始先吃很多蔬菜，把肚子填满，最后吃一小碗饭就能饱。\n\n吃了很多蔬菜的肚子饱饱的，就不会再想着要吃零食了，我每天都能正常排便，体重由54 kg减轻至51 kg（身高156 cm），小肚子也瘪了下去。\n\n5年前我的甘油三酯值在3.4～4.5 mmol/L（正常数值是1.7 mmol/L以下）这个范围内，现在已经恢复正常了。糖化血红蛋白（HbA1c，近2～3个月的平均血糖水平，正常值是4%～6%）略高于正常值，服药后目前能稳定在6%左右。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch5_uv_spot"
         }
       ],
       "domain": "health"
@@ -5320,6 +5480,13 @@
           "source_file": "植物性饮食与慢病_吃出自愈力.md",
           "source_id": "eat_to_heal",
           "note_id": "eat_to_heal_10_mushroom_immune"
+        },
+        {
+          "excerpt": "我也很推荐往蔬菜汤里加入菌菇。菌菇中含有丰富的β葡聚糖，有增强人体抗氧化能力和免疫力的作用。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch5_mushroom_bg"
         }
       ],
       "domain": "health"
@@ -5645,6 +5812,1931 @@
           "source_file": "植物性饮食与慢病_吃出自愈力.md",
           "source_id": "eat_to_heal",
           "note_id": "eat_to_heal_b_stress"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "reactive_oxygen",
+      "target": "digestive_cancer_risk",
+      "relation": "过量活性氧与基因损伤、细胞突变及癌症发生相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_pref_ros_cancer",
+      "excerpt": "活性氧是一种攻击性很强的毒性物质，它能损伤细胞甚至基因，破坏身体组织并使其丧失部分功能。当人体内的活性氧过量时，就会直接破坏人体的基因，引起细胞突变，从而引发癌症。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_pref_ros_cancer",
+      "evidences": [
+        {
+          "excerpt": "活性氧是一种攻击性很强的毒性物质，它能损伤细胞甚至基因，破坏身体组织并使其丧失部分功能。当人体内的活性氧过量时，就会直接破坏人体的基因，引起细胞突变，从而引发癌症。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_pref_ros_cancer"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "reactive_oxygen",
+      "target": "immune_activation",
+      "relation": "免疫细胞产生活性氧杀灭病原时可伴随宿主组织损伤",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_pref_ros_infection",
+      "excerpt": "当病毒入侵生物体内时，负责免疫（保护机体不受“外来者”侵害的功能）的白细胞就会通过产生活性氧来杀死病毒。小白鼠的体内产生了大量的活性氧，肺部组织也同时受到活性氧的攻击从而引发肺炎，最后小白鼠因患肺炎而死。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_pref_ros_infection",
+      "evidences": [
+        {
+          "excerpt": "当病毒入侵生物体内时，负责免疫（保护机体不受“外来者”侵害的功能）的白细胞就会通过产生活性氧来杀死病毒。小白鼠的体内产生了大量的活性氧，肺部组织也同时受到活性氧的攻击从而引发肺炎，最后小白鼠因患肺炎而死。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_pref_ros_infection"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "phytochemicals",
+      "target": "antioxidant_defense",
+      "relation": "植化素等植物抗氧化物质参与抑制活性氧相关攻击",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_pref_plant_antiox",
+      "excerpt": "在研究中我发现，植物自身能够产生大量可以消除活性氧的物质——抗氧化物质。植物用自己产生的抗氧化物质抑制了活性氧，从而可以一直被紫外线照射而不会患癌。\n\n“植物化学物质”是抗氧化物质中最具代表性的功能性成分，也叫作“植化素”。植化素同时也是植物的颜色、香气和苦味的来源。“类黄酮”就是植化素家族的重要成员。\n\n我们身边常见的蔬菜就含有丰富的植化素，比如番茄里的番茄红素、菠菜里的叶黄素、胡萝卜里的类胡萝卜素等。\n\n植化素和维生素、矿物质等几种物质相互配合，能有效抑制活性氧的攻击。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_pref_plant_antiox",
+      "evidences": [
+        {
+          "excerpt": "在研究中我发现，植物自身能够产生大量可以消除活性氧的物质——抗氧化物质。植物用自己产生的抗氧化物质抑制了活性氧，从而可以一直被紫外线照射而不会患癌。\n\n“植物化学物质”是抗氧化物质中最具代表性的功能性成分，也叫作“植化素”。植化素同时也是植物的颜色、香气和苦味的来源。“类黄酮”就是植化素家族的重要成员。\n\n我们身边常见的蔬菜就含有丰富的植化素，比如番茄里的番茄红素、菠菜里的叶黄素、胡萝卜里的类胡萝卜素等。\n\n植化素和维生素、矿物质等几种物质相互配合，能有效抑制活性氧的攻击。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_pref_plant_antiox"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "phytochemicals",
+      "relation": "加热熬煮使蔬菜细胞壁破裂后，有效成分更易溶出并被肠道吸收",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_pref_heat_absorb",
+      "excerpt": "为了高效地利用蔬菜里的抗氧化物质，烹饪方法非常重要。蔬菜细胞最外侧是一层名为“细胞壁”的坚韧结构，这种结构即使用牙咬几下也不会被破坏掉。但被加热煮沸后，牢固的细胞壁很轻易地就破裂了，许多有效成分就会溶进汤汁里。溶解进汤汁里的这些蔬菜成分才能被肠道更好地吸收。\n\n我通过各种实验都证实了“喝蔬菜汤是消除人体内活性氧的有效方式”。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_pref_heat_absorb",
+      "evidences": [
+        {
+          "excerpt": "为了高效地利用蔬菜里的抗氧化物质，烹饪方法非常重要。蔬菜细胞最外侧是一层名为“细胞壁”的坚韧结构，这种结构即使用牙咬几下也不会被破坏掉。但被加热煮沸后，牢固的细胞壁很轻易地就破裂了，许多有效成分就会溶进汤汁里。溶解进汤汁里的这些蔬菜成分才能被肠道更好地吸收。\n\n我通过各种实验都证实了“喝蔬菜汤是消除人体内活性氧的有效方式”。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_pref_heat_absorb"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "digestive_cancer_risk",
+      "relation": "蔬菜汤相关临床试验与晚期肺癌患者生命质量及转移病灶观察相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_clinical_anecdote",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_pref_trial_lung",
+      "excerpt": "1999年，我和一位美国朋友一起在西奈山伊坎医学院开展了一项临床试验，试验的内容是让癌症患者进食蔬菜汤。\n\n试验对象是非小细胞肺癌的第3b阶段和第4阶段的患者。对象分成两组，一组是只用蔬菜汤进行治疗，另一组是用蔬菜汤和放射治疗两种方法治疗。我们在试验中观察到，患者体内部分向肺部和大脑转移的癌细胞消失了。虽然选取的病例数有限，但是只摄取蔬菜汤的一组比接受放射治疗的一组的生命质量(QOL)高出很多，寿命也得到了一定程度的延长（相关论文资料参见文末的参考文献）。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_pref_trial_lung",
+      "evidences": [
+        {
+          "excerpt": "1999年，我和一位美国朋友一起在西奈山伊坎医学院开展了一项临床试验，试验的内容是让癌症患者进食蔬菜汤。\n\n试验对象是非小细胞肺癌的第3b阶段和第4阶段的患者。对象分成两组，一组是只用蔬菜汤进行治疗，另一组是用蔬菜汤和放射治疗两种方法治疗。我们在试验中观察到，患者体内部分向肺部和大脑转移的癌细胞消失了。虽然选取的病例数有限，但是只摄取蔬菜汤的一组比接受放射治疗的一组的生命质量(QOL)高出很多，寿命也得到了一定程度的延长（相关论文资料参见文末的参考文献）。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_pref_trial_lung"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "dietary_fiber",
+      "target": "immune_balance",
+      "relation": "植物来源多糖（可溶性膳食纤维侧）与NK细胞、巨噬细胞激活相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_animal_experiment",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_pref_poly_immune",
+      "excerpt": "此外，蔬菜汤里富含的多糖（可溶性膳食纤维）也有增强人体免疫力的功效。\n\n我做了一项实验，在小白鼠身上使用高温、高压条件下提取出的山白竹叶汁（提取液，以下简称为山白竹）。实验证实了植物里的多糖能激活消灭癌细胞的NK细胞和巨噬细胞，从而抑制小白鼠体内癌细胞的增殖。此外，我还发现在癌细胞转移之前就给小白鼠预防性地使用山白竹，比癌细胞扩散之后再使用的效果要更好。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_pref_poly_immune",
+      "evidences": [
+        {
+          "excerpt": "此外，蔬菜汤里富含的多糖（可溶性膳食纤维）也有增强人体免疫力的功效。\n\n我做了一项实验，在小白鼠身上使用高温、高压条件下提取出的山白竹叶汁（提取液，以下简称为山白竹）。实验证实了植物里的多糖能激活消灭癌细胞的NK细胞和巨噬细胞，从而抑制小白鼠体内癌细胞的增殖。此外，我还发现在癌细胞转移之前就给小白鼠预防性地使用山白竹，比癌细胞扩散之后再使用的效果要更好。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_pref_poly_immune"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "reactive_oxygen",
+      "target": "cardiometabolic",
+      "relation": "活性氧与动脉硬化、糖尿病等多种慢性病风险相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_pref_ros_chronic",
+      "excerpt": "我从以上这些研究中深切地感受到预防癌症的重要性，因此想通过本书告诉各位读者朋友，喝蔬菜汤有助于预防癌症。此外，活性氧还会引起动脉硬化、糖尿病、阿尔茨海默病等各种疾病，所以消除活性氧的蔬菜汤可以说是能预防百病的“救命汤”。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_pref_ros_chronic",
+      "evidences": [
+        {
+          "excerpt": "我从以上这些研究中深切地感受到预防癌症的重要性，因此想通过本书告诉各位读者朋友，喝蔬菜汤有助于预防癌症。此外，活性氧还会引起动脉硬化、糖尿病、阿尔茨海默病等各种疾病，所以消除活性氧的蔬菜汤可以说是能预防百病的“救命汤”。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_pref_ros_chronic"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "energy_vitality",
+      "relation": "蔬菜汤作为流质营养载体与病后/体弱者恢复精力相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_pref_soup_vitality",
+      "excerpt": "除了能够预防疾病，蔬菜汤还有“食疗汤”的功能，可以让患病或体弱的人恢复精力。\n\n因为做手术或接受了某些治疗而丧失食欲，或上了年纪后进食能力衰退、胃口变差，这些都会导致体力下降，让整个人变得无精打采。蔬菜汤能给虚弱的身体和心灵带来抚慰。\n\n用料理机把蔬菜汤打成浓汤，口感会更顺滑，也更方便食用，对肠胃没有负担，人们可以通过这种方式轻松补充营养。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_pref_soup_vitality",
+      "evidences": [
+        {
+          "excerpt": "除了能够预防疾病，蔬菜汤还有“食疗汤”的功能，可以让患病或体弱的人恢复精力。\n\n因为做手术或接受了某些治疗而丧失食欲，或上了年纪后进食能力衰退、胃口变差，这些都会导致体力下降，让整个人变得无精打采。蔬菜汤能给虚弱的身体和心灵带来抚慰。\n\n用料理机把蔬菜汤打成浓汤，口感会更顺滑，也更方便食用，对肠胃没有负担，人们可以通过这种方式轻松补充营养。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_pref_soup_vitality"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "antioxidant_defense",
+      "relation": "蔬菜汤中的抗氧化物质、维生素矿物质与多糖分别与氧化应激、代谢与免疫相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_rec_multi",
+      "excerpt": "书里介绍了蔬菜汤的多种功能，比如，蔬菜汤富含的抗氧化物质能消除损伤细胞的活性氧；蔬菜汤还含有和代谢紧密相关的维生素、矿物质；富含的多糖可以增强机体免疫功能。由此可推测出蔬菜汤对癌症之外的其他疾病也有一定的预防和抑制效果。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_rec_multi",
+      "evidences": [
+        {
+          "excerpt": "书里介绍了蔬菜汤的多种功能，比如，蔬菜汤富含的抗氧化物质能消除损伤细胞的活性氧；蔬菜汤还含有和代谢紧密相关的维生素、矿物质；富含的多糖可以增强机体免疫功能。由此可推测出蔬菜汤对癌症之外的其他疾病也有一定的预防和抑制效果。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_rec_multi"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "chronic_inflammation",
+      "relation": "蔬菜汤摄入与慢性炎症相关衰老及慢性病风险的预防与抑制相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_rec_inflam",
+      "excerpt": "蔬菜汤还在减轻抗癌药的副作用、预防癌症复发等方面，给癌症患者及其家人带来了希望。此外，食用蔬菜汤有助于血管舒张，膳食纤维帮助增加了肠道内的益生菌，从而调整了肠道环境，这些功效可以让更广泛的人群受益。由慢性炎症引起的衰老、阿尔茨海默病以及其他慢性病等，都可以通过食用蔬菜汤得到一定程度的预防和抑制。如此强大的功效无疑也给老龄化社会带来了福音。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_rec_inflam",
+      "evidences": [
+        {
+          "excerpt": "蔬菜汤还在减轻抗癌药的副作用、预防癌症复发等方面，给癌症患者及其家人带来了希望。此外，食用蔬菜汤有助于血管舒张，膳食纤维帮助增加了肠道内的益生菌，从而调整了肠道环境，这些功效可以让更广泛的人群受益。由慢性炎症引起的衰老、阿尔茨海默病以及其他慢性病等，都可以通过食用蔬菜汤得到一定程度的预防和抑制。如此强大的功效无疑也给老龄化社会带来了福音。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_rec_inflam"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetables_greens",
+      "target": "antioxidant_defense",
+      "relation": "多种蔬菜搭配与更均衡摄取不同抗氧化物质相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch1_variety",
+      "excerpt": "使用多种蔬菜，能均衡地摄取不同的抗氧化物质，增强蔬菜汤的效果。营养和抗氧化物质含量最丰富的当属应季蔬菜。\n\n常用的蔬菜有卷心菜、洋葱、胡萝卜、南瓜、土豆、菠菜、白菜等，建议在家中常备。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch1_variety",
+      "evidences": [
+        {
+          "excerpt": "使用多种蔬菜，能均衡地摄取不同的抗氧化物质，增强蔬菜汤的效果。营养和抗氧化物质含量最丰富的当属应季蔬菜。\n\n常用的蔬菜有卷心菜、洋葱、胡萝卜、南瓜、土豆、菠菜、白菜等，建议在家中常备。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch1_variety"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetables_greens",
+      "target": "antioxidant_defense",
+      "relation": "蔬菜皮、种子、蒂等边角料富含抗氧化物质，可作汤底原料",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch1_peels",
+      "excerpt": "做蔬菜汤的时候，人们容易把蔬菜的皮、种子、蒂等边角料随手扔掉，实际上它们含有丰富的抗氧化物质，并不是蔬菜的“废料”。\n\n巧妙地利用边角料可以做出美味的“蔬菜汤底”，用在烩菜、炖菜、日式料理、西式料理等各种菜式中，也方便存放。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch1_peels",
+      "evidences": [
+        {
+          "excerpt": "做蔬菜汤的时候，人们容易把蔬菜的皮、种子、蒂等边角料随手扔掉，实际上它们含有丰富的抗氧化物质，并不是蔬菜的“废料”。\n\n巧妙地利用边角料可以做出美味的“蔬菜汤底”，用在烩菜、炖菜、日式料理、西式料理等各种菜式中，也方便存放。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch1_peels"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "olive_oil",
+      "target": "carotenoids",
+      "relation": "用油翻炒后再煮与脂溶性维生素及类胡萝卜素类营养吸收率提高相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch2_oil_absorb",
+      "excerpt": "煮蔬菜之前用油稍微炒一下，汤会变得更香。比较硬的蔬菜或根茎类蔬菜，用油翻炒一下再煮，很快就能变软。另外，像胡萝卜、菠菜这类富含脂溶性维生素的蔬菜，用油炒过之后维生素的吸收率会更高。\n\n===== SPINE 020 | Liang Ren De Shu Cai Tang_split_019.html =====\n\n未知\n\n添加肉类或牛奶有助于恢复体力\n\n往蔬菜汤里加入肉类或牛奶，能补充动物蛋白，可以帮助因病体弱的人、因年龄大吃得少而营养不足的人恢复体力。鸡肉汤和鱼肉汤就很推荐。\n\n加了鸡肉的蔬菜汤\n\n【食材】做好后约800～900 ml\n\n洋葱、胡萝卜、卷心菜、南瓜……共300 g\n\n鸡肉末（鸡腿肉或者鸡胸肉）……100 g\n\n水……900 ml\n\n木鱼花……少许（装入无纺布袋里）\n\n【制作方法】\n\n1　将蔬菜清洗干净。\n\n2　洋葱剥皮后切成适口大小。胡萝卜带皮切成适口大小的块状。卷心菜切成适口大小的块状。南瓜去籽后带皮切成适口大小。\n\n3　把鸡肉末放入锅中，不放油炒一下。等鸡肉变色后，往锅里加水。沸腾后把火调小，撇去浮沫。\n\n4　把步骤2的蔬菜和木鱼花也放入锅中，盖上锅盖煮30分钟左右，直到蔬菜变软。汤放凉之后取出装木鱼花的袋子。\n\n5　如果要做蔬菜浓汤，就等蔬菜汤冷却之后，用手持搅拌机或料理机把蔬菜汤搅拌、粉碎。\n\n各类食材大致的量\n\n加了鱼肉的蔬菜汤\n\n【食材】做好后约800～900 ml\n\n洋葱、胡萝卜、卷心菜、南瓜……共300 g\n\n白肉鱼……2小块（约120 g）\n\n水……900 ml\n\n海带2片(5 cm×5 cm)\n\n【制作方法】\n\n1　将蔬菜清洗干净。\n\n2　洋葱剥皮后切成适口大小。胡萝卜带皮切成适口大小的块状。卷心菜切成适口大小的块状。南瓜去籽后带皮切成适口大小。\n\n3　把鱼切成适口大小的块状，把鱼皮和骨头去掉，放在一边备用。然后将鱼肉用热水快速焯一下。\n\n4　把步骤2的蔬菜和步骤3的鱼肉、水、干海带放入锅中，开火熬煮。快煮沸的时候把火调小，盖上锅盖再煮30分钟左右，直到蔬菜变软。煮的时候注意要撇掉浮沫。煮好之后把海带捞出来。\n\n5　如果要做蔬菜浓汤，就等蔬菜汤冷却之后，用手持搅拌机或料理机把蔬菜汤搅拌、粉碎。\n\n各类食材大致的量\n\n加了牛奶的蔬菜汤",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch2_oil_absorb",
+      "evidences": [
+        {
+          "excerpt": "煮蔬菜之前用油稍微炒一下，汤会变得更香。比较硬的蔬菜或根茎类蔬菜，用油翻炒一下再煮，很快就能变软。另外，像胡萝卜、菠菜这类富含脂溶性维生素的蔬菜，用油炒过之后维生素的吸收率会更高。\n\n===== SPINE 020 | Liang Ren De Shu Cai Tang_split_019.html =====\n\n未知\n\n添加肉类或牛奶有助于恢复体力\n\n往蔬菜汤里加入肉类或牛奶，能补充动物蛋白，可以帮助因病体弱的人、因年龄大吃得少而营养不足的人恢复体力。鸡肉汤和鱼肉汤就很推荐。\n\n加了鸡肉的蔬菜汤\n\n【食材】做好后约800～900 ml\n\n洋葱、胡萝卜、卷心菜、南瓜……共300 g\n\n鸡肉末（鸡腿肉或者鸡胸肉）……100 g\n\n水……900 ml\n\n木鱼花……少许（装入无纺布袋里）\n\n【制作方法】\n\n1　将蔬菜清洗干净。\n\n2　洋葱剥皮后切成适口大小。胡萝卜带皮切成适口大小的块状。卷心菜切成适口大小的块状。南瓜去籽后带皮切成适口大小。\n\n3　把鸡肉末放入锅中，不放油炒一下。等鸡肉变色后，往锅里加水。沸腾后把火调小，撇去浮沫。\n\n4　把步骤2的蔬菜和木鱼花也放入锅中，盖上锅盖煮30分钟左右，直到蔬菜变软。汤放凉之后取出装木鱼花的袋子。\n\n5　如果要做蔬菜浓汤，就等蔬菜汤冷却之后，用手持搅拌机或料理机把蔬菜汤搅拌、粉碎。\n\n各类食材大致的量\n\n加了鱼肉的蔬菜汤\n\n【食材】做好后约800～900 ml\n\n洋葱、胡萝卜、卷心菜、南瓜……共300 g\n\n白肉鱼……2小块（约120 g）\n\n水……900 ml\n\n海带2片(5 cm×5 cm)\n\n【制作方法】\n\n1　将蔬菜清洗干净。\n\n2　洋葱剥皮后切成适口大小。胡萝卜带皮切成适口大小的块状。卷心菜切成适口大小的块状。南瓜去籽后带皮切成适口大小。\n\n3　把鱼切成适口大小的块状，把鱼皮和骨头去掉，放在一边备用。然后将鱼肉用热水快速焯一下。\n\n4　把步骤2的蔬菜和步骤3的鱼肉、水、干海带放入锅中，开火熬煮。快煮沸的时候把火调小，盖上锅盖再煮30分钟左右，直到蔬菜变软。煮的时候注意要撇掉浮沫。煮好之后把海带捞出来。\n\n5　如果要做蔬菜浓汤，就等蔬菜汤冷却之后，用手持搅拌机或料理机把蔬菜汤搅拌、粉碎。\n\n各类食材大致的量\n\n加了牛奶的蔬菜汤",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch2_oil_absorb"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "animal_foods",
+      "target": "energy_vitality",
+      "relation": "蔬菜汤中添加肉类或牛奶补充动物蛋白，与病后/年老体弱者恢复体力相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch2_protein_recover",
+      "excerpt": "往蔬菜汤里加入肉类或牛奶，能补充动物蛋白，可以帮助因病体弱的人、因年龄大吃得少而营养不足的人恢复体力。鸡肉汤和鱼肉汤就很推荐。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch2_protein_recover",
+      "evidences": [
+        {
+          "excerpt": "往蔬菜汤里加入肉类或牛奶，能补充动物蛋白，可以帮助因病体弱的人、因年龄大吃得少而营养不足的人恢复体力。鸡肉汤和鱼肉汤就很推荐。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch2_protein_recover"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "reactive_oxygen",
+      "target": "digestive_cancer_risk",
+      "relation": "活性氧氧化细胞膜与遗传物质，贯穿癌细胞产生、增殖与转移过程",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch3_ros_cause",
+      "excerpt": "诱发癌症的主要原因是体内的坏物质——活性氧。\n\n活性氧中“活性”这两个字，单从字面上看会让人理解成“比普通的氧更有活性，是会让身体健康有活力的物质”。但实际上却恰恰相反，活性氧会对人体造成严重的损害。这里的活性，不是英语里的“active（积极的）”的意思，而是“reactive（反应性强）”的意思。简单地说，就是很容易和其他物质相结合的氧。\n\n活性氧和其他物质相结合的反应叫作“氧化”。氧化现象在身边随处可见。例如，把一个苹果切开后，过段时间果肉就会变黄；铁块长时间放置在空气中就会生锈，表面变得斑驳不堪。这些都属于氧化现象。\n\n人体内也会发生这种氧化现象。活性氧能氧化掉包裹细胞的细胞膜和细胞内的遗传因子，进而损害人体。活性氧还可以杀死入侵体内的病毒和细菌，但如果长期持续增加就会损害健康。\n\n我们通过呼吸摄入的氧气，有2%～3%在人体内会转化成活性氧。日常生活里的紫外线、放射线、食品添加剂、二手烟、病毒、睡眠不足和压力等因素也会让体内产生活性氧。\n\n保护身体不受活性氧伤害的方法，就是要让人体自身具备抗氧化能力，即在体内产生能消除活性氧的抗氧化酶。抗氧化能力提升了，就能防止活性氧过量增加。\n\n但随着年龄的增长，人体的抗氧化能力会不断减弱，不能消除掉过多的活性氧。当活性氧大量增加的时候，就会损害体内正常的基因和细胞，使细胞发生变异，从而导致人罹患癌症。从癌细胞的产生、恶化、增殖到扩散转移，所有的过程都离不开活性氧。许多研究已经表明，活性氧和癌症的发生关系密切。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch3_ros_cause",
+      "evidences": [
+        {
+          "excerpt": "诱发癌症的主要原因是体内的坏物质——活性氧。\n\n活性氧中“活性”这两个字，单从字面上看会让人理解成“比普通的氧更有活性，是会让身体健康有活力的物质”。但实际上却恰恰相反，活性氧会对人体造成严重的损害。这里的活性，不是英语里的“active（积极的）”的意思，而是“reactive（反应性强）”的意思。简单地说，就是很容易和其他物质相结合的氧。\n\n活性氧和其他物质相结合的反应叫作“氧化”。氧化现象在身边随处可见。例如，把一个苹果切开后，过段时间果肉就会变黄；铁块长时间放置在空气中就会生锈，表面变得斑驳不堪。这些都属于氧化现象。\n\n人体内也会发生这种氧化现象。活性氧能氧化掉包裹细胞的细胞膜和细胞内的遗传因子，进而损害人体。活性氧还可以杀死入侵体内的病毒和细菌，但如果长期持续增加就会损害健康。\n\n我们通过呼吸摄入的氧气，有2%～3%在人体内会转化成活性氧。日常生活里的紫外线、放射线、食品添加剂、二手烟、病毒、睡眠不足和压力等因素也会让体内产生活性氧。\n\n保护身体不受活性氧伤害的方法，就是要让人体自身具备抗氧化能力，即在体内产生能消除活性氧的抗氧化酶。抗氧化能力提升了，就能防止活性氧过量增加。\n\n但随着年龄的增长，人体的抗氧化能力会不断减弱，不能消除掉过多的活性氧。当活性氧大量增加的时候，就会损害体内正常的基因和细胞，使细胞发生变异，从而导致人罹患癌症。从癌细胞的产生、恶化、增殖到扩散转移，所有的过程都离不开活性氧。许多研究已经表明，活性氧和癌症的发生关系密切。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch3_ros_cause"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "phytochemicals",
+      "target": "reactive_oxygen",
+      "relation": "蔬菜植化素摄入与对抗体内活性氧相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch3_phyto_ros",
+      "excerpt": "那么，该如何应对活性氧这种有害物质呢？我能想到的办法就是通过摄入具有抗氧化作用的食物，来消除体内的活性氧。具体来讲，就是摄取蔬菜中含有的植化素。植化素是植物为了抵抗紫外线和微生物等外界伤害而产生的物质，是构成植物色素、香气、苦味的主要成分。\n\n蔬菜里的植化素非常丰富，而这种物质的抗氧化能力十分强大。因为人类不能自己产生植化素，所以吃蔬菜是应对活性氧的好方法。\n\n为了最大程度发挥蔬菜抗氧化物质的功效，应选择适宜的烹调方法。最好的方法是加热后再食用。把蔬菜煮过之后，蔬菜里的营养素就能充分溶解进汤汁里。喝蔬菜汤能增强人体抗氧化的能力，从而来对抗活性氧的攻击。\n\n我认为，喝蔬菜汤是预防癌症的有效方法。\n\n===== SPINE 027 | Liang Ren De Shu Cai Tang_split_026.html =====\n\n未知",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch3_phyto_ros",
+      "evidences": [
+        {
+          "excerpt": "那么，该如何应对活性氧这种有害物质呢？我能想到的办法就是通过摄入具有抗氧化作用的食物，来消除体内的活性氧。具体来讲，就是摄取蔬菜中含有的植化素。植化素是植物为了抵抗紫外线和微生物等外界伤害而产生的物质，是构成植物色素、香气、苦味的主要成分。\n\n蔬菜里的植化素非常丰富，而这种物质的抗氧化能力十分强大。因为人类不能自己产生植化素，所以吃蔬菜是应对活性氧的好方法。\n\n为了最大程度发挥蔬菜抗氧化物质的功效，应选择适宜的烹调方法。最好的方法是加热后再食用。把蔬菜煮过之后，蔬菜里的营养素就能充分溶解进汤汁里。喝蔬菜汤能增强人体抗氧化的能力，从而来对抗活性氧的攻击。\n\n我认为，喝蔬菜汤是预防癌症的有效方法。\n\n===== SPINE 027 | Liang Ren De Shu Cai Tang_split_026.html =====\n\n未知",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch3_phyto_ros"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "tomato",
+      "target": "carotenoids",
+      "relation": "番茄红素、类胡萝卜素、叶黄素、儿茶素等为代表的植化素与抗氧化相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch3_examples",
+      "excerpt": "蔬菜里富含的植化素通过强大的抗氧化功效，可以消除人体内的活性氧，是预防癌症的主要成分。\n\n植化素是植物为了抵抗紫外线和微生物等外界伤害而产生的物质，是构成植物色素、香气、苦味的成分。其中的代表物质有番茄里的番茄红素、胡萝卜和南瓜里的类胡萝卜素、菠菜里的叶黄素、绿茶里的儿茶素等。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch3_examples",
+      "evidences": [
+        {
+          "excerpt": "蔬菜里富含的植化素通过强大的抗氧化功效，可以消除人体内的活性氧，是预防癌症的主要成分。\n\n植化素是植物为了抵抗紫外线和微生物等外界伤害而产生的物质，是构成植物色素、香气、苦味的成分。其中的代表物质有番茄里的番茄红素、胡萝卜和南瓜里的类胡萝卜素、菠菜里的叶黄素、绿茶里的儿茶素等。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch3_examples"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "phytochemicals",
+      "relation": "加热破坏细胞壁后约八成有效成分可溶入汤汁，提高吸收相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch3_cellwall",
+      "excerpt": "大部分植化素都存在于蔬菜的细胞中（参照［不破坏掉蔬菜的细胞壁，就很难吸收有效成分］图）。包裹植物细胞的细胞壁是由纤维素和果胶组成的，其结构牢固，具有韧性，稍微咬几下是破坏不了的。细胞壁下层的细胞膜则很柔软，很容易破损。细胞壁和细胞膜就像是汽车外胎和内胎的关系。\n\n为了析出植化素，就必须破坏掉坚韧的细胞壁。但即使是用菜刀将蔬菜切成小块，也并不能完全破坏细胞壁。因此做成沙拉，哪怕蔬菜被充分咀嚼后再咽下，纤维素也无法被完全消化掉。\n\n破坏细胞壁的最简单的方法就是把蔬菜加热做成蔬菜汤。一般情况下，只需要加热5～10分钟，细胞就能破裂，细胞内80%的有效成分就能溶解进汤里。\n\n不破坏掉蔬菜的细胞壁，就很难吸收有效成分\n\n蔬菜细胞的外侧是一层牢固的细胞壁，人类咀嚼是无法完全将其破坏的。但是只需要用95～100℃的热水煮5分钟，就能破坏掉细胞壁，细胞里面80%的成分都会溶解进汤汁里。因此，把蔬菜煮成蔬菜汤能提高有效成分的吸收率。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch3_cellwall",
+      "evidences": [
+        {
+          "excerpt": "大部分植化素都存在于蔬菜的细胞中（参照［不破坏掉蔬菜的细胞壁，就很难吸收有效成分］图）。包裹植物细胞的细胞壁是由纤维素和果胶组成的，其结构牢固，具有韧性，稍微咬几下是破坏不了的。细胞壁下层的细胞膜则很柔软，很容易破损。细胞壁和细胞膜就像是汽车外胎和内胎的关系。\n\n为了析出植化素，就必须破坏掉坚韧的细胞壁。但即使是用菜刀将蔬菜切成小块，也并不能完全破坏细胞壁。因此做成沙拉，哪怕蔬菜被充分咀嚼后再咽下，纤维素也无法被完全消化掉。\n\n破坏细胞壁的最简单的方法就是把蔬菜加热做成蔬菜汤。一般情况下，只需要加热5～10分钟，细胞就能破裂，细胞内80%的有效成分就能溶解进汤里。\n\n不破坏掉蔬菜的细胞壁，就很难吸收有效成分\n\n蔬菜细胞的外侧是一层牢固的细胞壁，人类咀嚼是无法完全将其破坏的。但是只需要用95～100℃的热水煮5分钟，就能破坏掉细胞壁，细胞里面80%的成分都会溶解进汤汁里。因此，把蔬菜煮成蔬菜汤能提高有效成分的吸收率。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch3_cellwall"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "antioxidant_defense",
+      "relation": "煮成汤后清除活性氧相关作用显著高于生蔬菜的实验比较观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_experimental_comparison",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch3_soup_vs_raw",
+      "excerpt": "实验表明，把蔬菜煮成汤后，其消除活性氧的功效要比生蔬菜强10到100倍（参照［生蔬菜和蔬菜汤的抗氧化力比较］图）。\n\n蔬菜中的多酚、类黄酮、类胡萝卜素等植化素能大量溶解在汤里，汤中维生素C、维生素K、叶酸等物质的含量非常丰富。溶解进汤里的有效成分进入肠道内也能被更好地吸收。\n\n相比之下，生蔬菜的有效成分则不能完全从细胞里释放出来，而是被封存在细胞内，所以无法轻易被肠道吸收。实际上，吃完生蔬菜之后去做便检可以发现，蔬菜的细胞未经消化就会被直接排出。\n\n活性氧会引发许多病症，为了消除活性氧、预防疾病，适宜的方法不是生吃蔬菜，而是喝蔬菜汤。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch3_soup_vs_raw",
+      "evidences": [
+        {
+          "excerpt": "实验表明，把蔬菜煮成汤后，其消除活性氧的功效要比生蔬菜强10到100倍（参照［生蔬菜和蔬菜汤的抗氧化力比较］图）。\n\n蔬菜中的多酚、类黄酮、类胡萝卜素等植化素能大量溶解在汤里，汤中维生素C、维生素K、叶酸等物质的含量非常丰富。溶解进汤里的有效成分进入肠道内也能被更好地吸收。\n\n相比之下，生蔬菜的有效成分则不能完全从细胞里释放出来，而是被封存在细胞内，所以无法轻易被肠道吸收。实际上，吃完生蔬菜之后去做便检可以发现，蔬菜的细胞未经消化就会被直接排出。\n\n活性氧会引发许多病症，为了消除活性氧、预防疾病，适宜的方法不是生吃蔬菜，而是喝蔬菜汤。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch3_soup_vs_raw"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vitamin_c",
+      "target": "antioxidant_defense",
+      "relation": "蔬菜基质中维生素C与其他抗氧化物质共存时，加热后仍可大量保留于汤中",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch3_vitc_heat",
+      "excerpt": "以前经常会看到有人在美食节目上说“生吃蔬菜好”，“加热蔬菜会破坏里面的维生素C，摄取维生素C时要避免加热，最好吃生蔬菜沙拉”。但这仅仅是在实验室得出的结论。在实验中把溶有维生素C的水加热沸腾10～20分钟后，90%～100%的维生素C都被氧化分解了，丧失了营养价值。维生素C单质确实不耐热。\n\n但把蔬菜加热做成蔬菜汤是不一样的。维生素C和维生素E、多酚等许多抗氧化物质混合在一起，即使加热也不会被完全分解，能保留一大半。土豆用沸水煮30分钟后，维生素C能保留60%。把蔬菜煮成蔬菜汤和加热单一的维生素C得到的结果完全不同。\n\n需要注意的是，做蔬菜汤时，蔬菜的维生素C会溶解进汤里，所以最好连汤一起喝。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch3_vitc_heat",
+      "evidences": [
+        {
+          "excerpt": "以前经常会看到有人在美食节目上说“生吃蔬菜好”，“加热蔬菜会破坏里面的维生素C，摄取维生素C时要避免加热，最好吃生蔬菜沙拉”。但这仅仅是在实验室得出的结论。在实验中把溶有维生素C的水加热沸腾10～20分钟后，90%～100%的维生素C都被氧化分解了，丧失了营养价值。维生素C单质确实不耐热。\n\n但把蔬菜加热做成蔬菜汤是不一样的。维生素C和维生素E、多酚等许多抗氧化物质混合在一起，即使加热也不会被完全分解，能保留一大半。土豆用沸水煮30分钟后，维生素C能保留60%。把蔬菜煮成蔬菜汤和加热单一的维生素C得到的结果完全不同。\n\n需要注意的是，做蔬菜汤时，蔬菜的维生素C会溶解进汤里，所以最好连汤一起喝。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch3_vitc_heat"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "reactive_oxygen",
+      "target": "immune_resilience",
+      "relation": "化疗与放疗过程中活性氧大量增加，与副作用及免疫力下降相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch3_chemo_ros",
+      "excerpt": "不管是化学疗法（服用抗癌药），还是放射线疗法，都会让体内产生大量的活性氧。许多抗癌药都是通过让人体产生活性氧来杀死癌细胞的。前文已经提及过，在接受抗癌药治疗的过程中，被杀死的不只是癌细胞，正常细胞也会遭受损伤，因此会给人体带来许多副作用，比如呕吐、恶心、食欲不振、脱发、白细胞减少、疼痛、麻痹、肝肾功能受损等。\n\n放射疗法也是如此。放射线诱发的活性氧会损伤包裹细胞的细胞膜，破坏细胞。放射疗法虽是精准定位到癌症病原体进行治疗的手段，但在实际治疗过程中，放射线诱发的活性氧会造成大范围的身体损害。例如，肺癌治疗中即使只针对肺部进行放射，也会产生恶心、脱发、白细胞减少和贫血等副作用。\n\n罹患癌症的一大原因是免疫力低下。如果在治疗中活性氧大量增加，身体会越来越弱，免疫力也越来越低下。\n\n为了保护身体在治疗中不受活性氧的伤害，积极摄取富含抗氧化物质的蔬菜汤是很重要的。通过消除活性氧，蔬菜汤能起到减少治疗副作用的效果。如果副作用的痛苦能够稍微缓和，患者就能继续接受有效的治疗。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch3_chemo_ros",
+      "evidences": [
+        {
+          "excerpt": "不管是化学疗法（服用抗癌药），还是放射线疗法，都会让体内产生大量的活性氧。许多抗癌药都是通过让人体产生活性氧来杀死癌细胞的。前文已经提及过，在接受抗癌药治疗的过程中，被杀死的不只是癌细胞，正常细胞也会遭受损伤，因此会给人体带来许多副作用，比如呕吐、恶心、食欲不振、脱发、白细胞减少、疼痛、麻痹、肝肾功能受损等。\n\n放射疗法也是如此。放射线诱发的活性氧会损伤包裹细胞的细胞膜，破坏细胞。放射疗法虽是精准定位到癌症病原体进行治疗的手段，但在实际治疗过程中，放射线诱发的活性氧会造成大范围的身体损害。例如，肺癌治疗中即使只针对肺部进行放射，也会产生恶心、脱发、白细胞减少和贫血等副作用。\n\n罹患癌症的一大原因是免疫力低下。如果在治疗中活性氧大量增加，身体会越来越弱，免疫力也越来越低下。\n\n为了保护身体在治疗中不受活性氧的伤害，积极摄取富含抗氧化物质的蔬菜汤是很重要的。通过消除活性氧，蔬菜汤能起到减少治疗副作用的效果。如果副作用的痛苦能够稍微缓和，患者就能继续接受有效的治疗。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch3_chemo_ros"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "immune_balance",
+      "relation": "蔬菜汤中植化素与膳食纤维与免疫及体力恢复相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch3_soup_immune_recover",
+      "excerpt": "植化素不仅有抗氧化作用，还有提高免疫力的功能。膳食纤维能增加肠道内的益生菌，进一步增强人体免疫力，同时对排便也很有帮助。\n\n蔬菜汤对手术后恢复体力、预防癌症复发都有很显著的效果。我身边就有几个令人欣喜的真实案例。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch3_soup_immune_recover",
+      "evidences": [
+        {
+          "excerpt": "植化素不仅有抗氧化作用，还有提高免疫力的功能。膳食纤维能增加肠道内的益生菌，进一步增强人体免疫力，同时对排便也很有帮助。\n\n蔬菜汤对手术后恢复体力、预防癌症复发都有很显著的效果。我身边就有几个令人欣喜的真实案例。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch3_soup_immune_recover"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "dietary_fiber",
+      "target": "probiotics",
+      "relation": "膳食纤维摄入与肠道益生菌增加相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch3_fiber_probiotics",
+      "excerpt": "植化素不仅有抗氧化作用，还有提高免疫力的功能。膳食纤维能增加肠道内的益生菌，进一步增强人体免疫力，同时对排便也很有帮助。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch3_fiber_probiotics",
+      "evidences": [
+        {
+          "excerpt": "植化素不仅有抗氧化作用，还有提高免疫力的功能。膳食纤维能增加肠道内的益生菌，进一步增强人体免疫力，同时对排便也很有帮助。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch3_fiber_probiotics"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetables_greens",
+      "target": "breast_prostate_risk",
+      "relation": "以黄绿色蔬菜为主的蔬菜汤及限制油脂红肉，与多癌共存者生存质量观察相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_anecdote",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch3_greens_case",
+      "excerpt": "还有一位60多岁的男士，患上了大肠癌和前列腺癌，医生告诉他：“即使使用抗癌药治疗，也最多只能再活一年。”\n\n在我的建议下，他改变了饮食结构，选择了以菠菜等黄绿色蔬菜为主的蔬菜汤和甜菜蔬菜汤，同时还控制了油脂和红肉的摄入。\n\n菠菜和甜菜富含一种成分（参照［蔬菜汤有类似药剂的功效，能舒张血管、预防高血压］），能扩张血管。这位男士告诉我：“坚持喝蔬菜汤，能很明显地感觉到血液循环更顺畅了。”结果他与癌症和平共处了10年，那10年里疾病没有影响他的生活质量，他最终平稳幸福地度过了余生。\n\n===== SPINE 029 | Liang Ren De Shu Cai Tang_split_028.html =====\n\n未知",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch3_greens_case",
+      "evidences": [
+        {
+          "excerpt": "还有一位60多岁的男士，患上了大肠癌和前列腺癌，医生告诉他：“即使使用抗癌药治疗，也最多只能再活一年。”\n\n在我的建议下，他改变了饮食结构，选择了以菠菜等黄绿色蔬菜为主的蔬菜汤和甜菜蔬菜汤，同时还控制了油脂和红肉的摄入。\n\n菠菜和甜菜富含一种成分（参照［蔬菜汤有类似药剂的功效，能舒张血管、预防高血压］），能扩张血管。这位男士告诉我：“坚持喝蔬菜汤，能很明显地感觉到血液循环更顺畅了。”结果他与癌症和平共处了10年，那10年里疾病没有影响他的生活质量，他最终平稳幸福地度过了余生。\n\n===== SPINE 029 | Liang Ren De Shu Cai Tang_split_028.html =====\n\n未知",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch3_greens_case"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "reactive_oxygen",
+      "target": "metabolic_health",
+      "relation": "活性氧与衰老及高血压、糖尿病、阿尔茨海默病、皮炎等多种慢性病相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch3_ros_90pct",
+      "excerpt": "众多研究表明，活性氧不仅会引发癌症，还会导致衰老以及多种疾病。其实，90%的疾病都是由活性氧导致的，比如高血压、糖尿病、高脂血症、风湿病、阿尔茨海默病、特应性皮炎等慢性疾病。\n\n活性氧导致胰岛β细胞氧化，影响胰岛素的分泌，阻碍了组织细胞吸收血液中的葡萄糖，从而引发糖尿病。\n\n此外，在活性氧产生的物质里还存在一种叫作“过氧化脂质”的物质。这是细胞膜被氧化后产生的有害物质。这种物质会引起大脑早衰，导致阿尔茨海默病。过氧化脂质还会削弱皮肤的保湿能力和屏障功能，引起特应性皮炎。它还能诱发黑色素沉积，使人体出现老年斑、皱纹和皮肤暗沉等皮肤问题。\n\n如果说活性氧是“百病之源”，那把富含抗氧化物质的蔬菜汤称为能预防百病的“救命汤”也不为过。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch3_ros_90pct",
+      "evidences": [
+        {
+          "excerpt": "众多研究表明，活性氧不仅会引发癌症，还会导致衰老以及多种疾病。其实，90%的疾病都是由活性氧导致的，比如高血压、糖尿病、高脂血症、风湿病、阿尔茨海默病、特应性皮炎等慢性疾病。\n\n活性氧导致胰岛β细胞氧化，影响胰岛素的分泌，阻碍了组织细胞吸收血液中的葡萄糖，从而引发糖尿病。\n\n此外，在活性氧产生的物质里还存在一种叫作“过氧化脂质”的物质。这是细胞膜被氧化后产生的有害物质。这种物质会引起大脑早衰，导致阿尔茨海默病。过氧化脂质还会削弱皮肤的保湿能力和屏障功能，引起特应性皮炎。它还能诱发黑色素沉积，使人体出现老年斑、皱纹和皮肤暗沉等皮肤问题。\n\n如果说活性氧是“百病之源”，那把富含抗氧化物质的蔬菜汤称为能预防百病的“救命汤”也不为过。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch3_ros_90pct"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "lipid_radicals",
+      "target": "digestive_cancer_risk",
+      "relation": "脂质自由基与基因损伤、细胞癌变及大肠癌风险相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_experimental",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch3_lipid_cancer",
+      "excerpt": "蔬菜汤特别强大的一点就是连活性氧中毒性特别强、杀伤力特别大的“脂质自由基”都可以消除。脂质自由基是上文提到的过氧化脂质和铁产生反应后变化形成的物质。\n\n那么，为什么说脂质自由基是毒性最强的物质呢？因为它在活性氧中寿命非常长，还能在人体内到处乱窜，损伤体内的细胞和基因。如果人的粪便中慢慢产生了脂质自由基，就说明可能患上大肠炎，更严重的还会损伤大肠的基因，从而诱发大肠癌。\n\n我在2013年开展的实验中证明了蔬菜汤的特效作用，它能够消除危害最大的脂质自由基，抑制基因损伤和细胞癌变（癌症发病的第二阶段）。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch3_lipid_cancer",
+      "evidences": [
+        {
+          "excerpt": "蔬菜汤特别强大的一点就是连活性氧中毒性特别强、杀伤力特别大的“脂质自由基”都可以消除。脂质自由基是上文提到的过氧化脂质和铁产生反应后变化形成的物质。\n\n那么，为什么说脂质自由基是毒性最强的物质呢？因为它在活性氧中寿命非常长，还能在人体内到处乱窜，损伤体内的细胞和基因。如果人的粪便中慢慢产生了脂质自由基，就说明可能患上大肠炎，更严重的还会损伤大肠的基因，从而诱发大肠癌。\n\n我在2013年开展的实验中证明了蔬菜汤的特效作用，它能够消除危害最大的脂质自由基，抑制基因损伤和细胞癌变（癌症发病的第二阶段）。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch3_lipid_cancer"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "lipid_radicals",
+      "relation": "蔬菜汤摄入与消除脂质自由基、抑制基因损伤的实验观察相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_experimental",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch3_soup_lipid",
+      "excerpt": "我在2013年开展的实验中证明了蔬菜汤的特效作用，它能够消除危害最大的脂质自由基，抑制基因损伤和细胞癌变（癌症发病的第二阶段）。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch3_soup_lipid",
+      "evidences": [
+        {
+          "excerpt": "我在2013年开展的实验中证明了蔬菜汤的特效作用，它能够消除危害最大的脂质自由基，抑制基因损伤和细胞癌变（癌症发病的第二阶段）。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch3_soup_lipid"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "red_meat",
+      "target": "lipid_radicals",
+      "relation": "高油脂饮食与红肉中铁参与过氧化脂质转化为脂质自由基相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch3_meat_lipid",
+      "excerpt": "当代人的日常饮食大都多肉、重油，因此身体一直在遭受脂质自由基的不断攻击。饮食中的油脂多了，血液中的脂肪也会增加。活性氧会将不饱和脂肪酸氧化，变成过氧化脂质。储存在内脏里的过氧化脂质和红肉等含铁的物质发生化学反应，就会变成脂质自由基。\n\n脂质自由基的特性是很容易穿透细胞膜进入细胞，损害合成细胞内DNA的酶，导致细胞发生突变，甚至引发癌症。不仅是大肠癌，所有癌症产生的原因都是如此。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch3_meat_lipid",
+      "evidences": [
+        {
+          "excerpt": "当代人的日常饮食大都多肉、重油，因此身体一直在遭受脂质自由基的不断攻击。饮食中的油脂多了，血液中的脂肪也会增加。活性氧会将不饱和脂肪酸氧化，变成过氧化脂质。储存在内脏里的过氧化脂质和红肉等含铁的物质发生化学反应，就会变成脂质自由基。\n\n脂质自由基的特性是很容易穿透细胞膜进入细胞，损害合成细胞内DNA的酶，导致细胞发生突变，甚至引发癌症。不仅是大肠癌，所有癌症产生的原因都是如此。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch3_meat_lipid"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "lipid_radicals",
+      "target": "cardiometabolic",
+      "relation": "脂质自由基氧化胆固醇与动脉硬化、血栓及心脑梗死风险相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch3_lipid_cardio",
+      "excerpt": "脂质自由基还是动脉硬化的根源。它能把血液中的胆固醇氧化，变成坏胆固醇，进而引起动脉硬化。\n\n动脉硬化的症状是血管变硬，内腔变窄。因为血液流通不畅，血液很容易凝块形成血栓，还会导致高血压，患心肌梗死和脑梗死的风险也会增高。就像有句话讲的，“人是从血管开始衰老的”，动脉硬化会导致各种各样的疾病。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch3_lipid_cardio",
+      "evidences": [
+        {
+          "excerpt": "脂质自由基还是动脉硬化的根源。它能把血液中的胆固醇氧化，变成坏胆固醇，进而引起动脉硬化。\n\n动脉硬化的症状是血管变硬，内腔变窄。因为血液流通不畅，血液很容易凝块形成血栓，还会导致高血压，患心肌梗死和脑梗死的风险也会增高。就像有句话讲的，“人是从血管开始衰老的”，动脉硬化会导致各种各样的疾病。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch3_lipid_cardio"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "aerobic_exercise",
+      "target": "digestive_cancer_risk",
+      "relation": "积极有氧运动与较低癌症、高血压、糖尿病风险的观察相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_col2_aero_risk",
+      "excerpt": "有氧运动具有显著的预防疾病的效果。研究数据表明，积极进行有氧运动的人，患癌症、高血压、糖尿病的风险更低。有氧运动在降低患病率方面，和服用抗癌药、降压药后所达到的效果相当。\n\n有氧运动有助于改善心肺功能。心肺功能越强，全身的血液循环就越畅通，细胞就能得到充分的氧气和营养供应，各内脏功能随之增强，自身的免疫力也会得到提高。当人自身有了对抗疾病的抵抗力，即使患病也不会轻易发展成重症。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_col2_aero_risk",
+      "evidences": [
+        {
+          "excerpt": "有氧运动具有显著的预防疾病的效果。研究数据表明，积极进行有氧运动的人，患癌症、高血压、糖尿病的风险更低。有氧运动在降低患病率方面，和服用抗癌药、降压药后所达到的效果相当。\n\n有氧运动有助于改善心肺功能。心肺功能越强，全身的血液循环就越畅通，细胞就能得到充分的氧气和营养供应，各内脏功能随之增强，自身的免疫力也会得到提高。当人自身有了对抗疾病的抵抗力，即使患病也不会轻易发展成重症。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_col2_aero_risk"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "aerobic_exercise",
+      "target": "nitric_oxide",
+      "relation": "步行等运动增加血管内皮与红细胞摩擦，与内皮分泌一氧化氮使血管扩张相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_col2_no_bp",
+      "excerpt": "散步是对身体的负担小、容易做、效果还很好的首选运动。走路的时候会心跳加快、血流量增多，使血管内皮细胞（血管最内侧的一层细胞）和红细胞之间的摩擦增加，摩擦加剧后内皮细胞就会分泌一氧化氮使血管扩张，从而促进血液循环（参照［蔬菜汤有类似药剂的功效，能舒张血管、预防高血压］）。\n\n血管内皮细胞和红细胞摩擦会产生一氧化氮，改善血液循环。两年前，时任哈佛大学医学院院长、我的朋友托马斯·米歇尔教授发现了这一现象。他的研究可以证实，适度的运动能降低血压，实现和降压药一样的效果。“运动是一剂良药”的说法绝不为过。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_col2_no_bp",
+      "evidences": [
+        {
+          "excerpt": "散步是对身体的负担小、容易做、效果还很好的首选运动。走路的时候会心跳加快、血流量增多，使血管内皮细胞（血管最内侧的一层细胞）和红细胞之间的摩擦增加，摩擦加剧后内皮细胞就会分泌一氧化氮使血管扩张，从而促进血液循环（参照［蔬菜汤有类似药剂的功效，能舒张血管、预防高血压］）。\n\n血管内皮细胞和红细胞摩擦会产生一氧化氮，改善血液循环。两年前，时任哈佛大学医学院院长、我的朋友托马斯·米歇尔教授发现了这一现象。他的研究可以证实，适度的运动能降低血压，实现和降压药一样的效果。“运动是一剂良药”的说法绝不为过。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_col2_no_bp"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "aerobic_exercise",
+      "relation": "健康饮食与适度运动并列为癌症预防相关生活方式要素",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_col2_diet_ex",
+      "excerpt": "健康饮食和适度运动，绝对是预防癌症的两大法宝。\n\n===== SPINE 032 | Liang Ren De Shu Cai Tang_split_031.html =====\n\n未知\n\n专栏3\n\n情绪和癌症的预防与治疗\n\n精神压力会产生大量的活性氧\n\n情绪在预防癌症方面的影响很大。许多癌症患者告诉我，他们在得病之前的很长一段时间里，都背负着巨大的心理压力。产生压力的原因各不相同，比如工作超负荷、夫妻或亲子间关系不和、职场人际关系复杂、经济问题等。\n\n压力过大则会损害健康。心理压力会打乱自主神经系统的平衡，使其不能正常调节内脏和血管平滑肌的活动，从而导致血液流通不畅、血压升高、免疫力低下。心理压力长期累积会使人体产生大量的活性氧。\n\n美国的癌症期刊《癌症研究》于几年前刊登了一篇文章，讲的是癌症患者在家人和朋友每天都去看望、每周去看望2～3次、每周去看望1次、不去看望这四种不同情况下治疗后的生存率，结果显示，相比没人看望只接受抗癌药治疗的患者，每天都有家人和朋友看望的患者心态更加积极，治理效果更好。这是因为有了周围人的支持，患者的心情能保持平稳，有助于身体恢复。\n\n由此可见，积极的情绪对抗癌药的治疗效果产生的作用不可小觑。\n\n活动身体能产生让心情变好的激素\n\n人生在世，就不可避免地会遇到压力。我给大家推荐一种缓解压力的有效方法——活动身体。\n\n筑波大学征矢英昭教授的研究表明，简单的运动就能让前额皮质和大脑海马体的反应更加灵敏，提升大脑的行为管理、记忆和认知功能，人会变得更积极、更开心。因此，只要做一些简单的运动，心情就会变好。\n\n癌症患者内心有许多不安，容易得抑郁症。身体能活动的人可以做些有氧运动，比如散步、打太极拳等，或者打扫卫生、收拾庭院、耕田种地等，不管怎么样都要活动身体。运动之后身体会产生能让心情变好的内啡肽等吗啡类物质，能更快消除压力。\n\n嫌运动麻烦的人也可以做一些简单的伸展运动，比如活动一下手指、脚趾。做伸展运动的时候，把注意力集中在活动的身体部位，可以促进血液循环、舒缓身体，进而达到改善心情的效果。清空心理压力对预防、治疗癌症有很大的帮助。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_col2_diet_ex",
+      "evidences": [
+        {
+          "excerpt": "健康饮食和适度运动，绝对是预防癌症的两大法宝。\n\n===== SPINE 032 | Liang Ren De Shu Cai Tang_split_031.html =====\n\n未知\n\n专栏3\n\n情绪和癌症的预防与治疗\n\n精神压力会产生大量的活性氧\n\n情绪在预防癌症方面的影响很大。许多癌症患者告诉我，他们在得病之前的很长一段时间里，都背负着巨大的心理压力。产生压力的原因各不相同，比如工作超负荷、夫妻或亲子间关系不和、职场人际关系复杂、经济问题等。\n\n压力过大则会损害健康。心理压力会打乱自主神经系统的平衡，使其不能正常调节内脏和血管平滑肌的活动，从而导致血液流通不畅、血压升高、免疫力低下。心理压力长期累积会使人体产生大量的活性氧。\n\n美国的癌症期刊《癌症研究》于几年前刊登了一篇文章，讲的是癌症患者在家人和朋友每天都去看望、每周去看望2～3次、每周去看望1次、不去看望这四种不同情况下治疗后的生存率，结果显示，相比没人看望只接受抗癌药治疗的患者，每天都有家人和朋友看望的患者心态更加积极，治理效果更好。这是因为有了周围人的支持，患者的心情能保持平稳，有助于身体恢复。\n\n由此可见，积极的情绪对抗癌药的治疗效果产生的作用不可小觑。\n\n活动身体能产生让心情变好的激素\n\n人生在世，就不可避免地会遇到压力。我给大家推荐一种缓解压力的有效方法——活动身体。\n\n筑波大学征矢英昭教授的研究表明，简单的运动就能让前额皮质和大脑海马体的反应更加灵敏，提升大脑的行为管理、记忆和认知功能，人会变得更积极、更开心。因此，只要做一些简单的运动，心情就会变好。\n\n癌症患者内心有许多不安，容易得抑郁症。身体能活动的人可以做些有氧运动，比如散步、打太极拳等，或者打扫卫生、收拾庭院、耕田种地等，不管怎么样都要活动身体。运动之后身体会产生能让心情变好的内啡肽等吗啡类物质，能更快消除压力。\n\n嫌运动麻烦的人也可以做一些简单的伸展运动，比如活动一下手指、脚趾。做伸展运动的时候，把注意力集中在活动的身体部位，可以促进血液循环、舒缓身体，进而达到改善心情的效果。清空心理压力对预防、治疗癌症有很大的帮助。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_col2_diet_ex"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "psychological_stress",
+      "target": "reactive_oxygen",
+      "relation": "长期心理压力与自主神经失衡、血压升高、免疫力低下及活性氧增多相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_col3_stress_ros",
+      "excerpt": "压力过大则会损害健康。心理压力会打乱自主神经系统的平衡，使其不能正常调节内脏和血管平滑肌的活动，从而导致血液流通不畅、血压升高、免疫力低下。心理压力长期累积会使人体产生大量的活性氧。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_col3_stress_ros",
+      "evidences": [
+        {
+          "excerpt": "压力过大则会损害健康。心理压力会打乱自主神经系统的平衡，使其不能正常调节内脏和血管平滑肌的活动，从而导致血液流通不畅、血压升高、免疫力低下。心理压力长期累积会使人体产生大量的活性氧。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_col3_stress_ros"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "psychological_stress",
+      "target": "immune_balance",
+      "relation": "心理压力与免疫力低下相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_col3_stress_immune",
+      "excerpt": "压力过大则会损害健康。心理压力会打乱自主神经系统的平衡，使其不能正常调节内脏和血管平滑肌的活动，从而导致血液流通不畅、血压升高、免疫力低下。心理压力长期累积会使人体产生大量的活性氧。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_col3_stress_immune",
+      "evidences": [
+        {
+          "excerpt": "压力过大则会损害健康。心理压力会打乱自主神经系统的平衡，使其不能正常调节内脏和血管平滑肌的活动，从而导致血液流通不畅、血压升高、免疫力低下。心理压力长期累积会使人体产生大量的活性氧。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_col3_stress_immune"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "energy_vitality",
+      "relation": "蔬菜汤营养素吸收利用率高，作为流质餐与病后营养补充相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch4_soup_absorb",
+      "excerpt": "有些人不能正常进食，我便会向他们推荐能够维持、恢复体力的养生餐食——食疗蔬菜汤，帮助他们轻松获取身体所需的营养。\n\n蔬菜汤含有众多身体必需的营养素，吸收利用率又高，所以叫作“食疗汤”。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch4_soup_absorb",
+      "evidences": [
+        {
+          "excerpt": "有些人不能正常进食，我便会向他们推荐能够维持、恢复体力的养生餐食——食疗蔬菜汤，帮助他们轻松获取身体所需的营养。\n\n蔬菜汤含有众多身体必需的营养素，吸收利用率又高，所以叫作“食疗汤”。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch4_soup_absorb"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "liver_chronic",
+      "relation": "蔬菜汤中抗炎成分与膳食纤维与肝脏炎症抑制及氨毒相关肠道环境相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch4_liver",
+      "excerpt": "蔬菜汤里有很多消炎的营养成分，具有抑制肝脏炎症的效果。而且蔬菜汤内膳食纤维也很丰富，能润肠通便，阻碍肠道有害菌繁殖，抑制氨毒的产生，有助于使分解氨毒能力不足的肝脏恢复。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch4_liver",
+      "evidences": [
+        {
+          "excerpt": "蔬菜汤里有很多消炎的营养成分，具有抑制肝脏炎症的效果。而且蔬菜汤内膳食纤维也很丰富，能润肠通便，阻碍肠道有害菌繁殖，抑制氨毒的产生，有助于使分解氨毒能力不足的肝脏恢复。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch4_liver"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "animal_foods",
+      "target": "liver_chronic",
+      "relation": "鸡胸肉熬煮汤汁富含支链氨基酸，与肝病患者营养改善相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch4_bcaa",
+      "excerpt": "虽然肝病患者也可以使用补充支链氨基酸的营养补充剂，但是味道不太好。我推荐患者喝用鸡胸肉熬煮蔬菜汤的汤汁。鸡胸肉富含支链氨基酸，煮出来的汤汁也很美味，能改善营养状况。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch4_bcaa",
+      "evidences": [
+        {
+          "excerpt": "虽然肝病患者也可以使用补充支链氨基酸的营养补充剂，但是味道不太好。我推荐患者喝用鸡胸肉熬煮蔬菜汤的汤汁。鸡胸肉富含支链氨基酸，煮出来的汤汁也很美味，能改善营养状况。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch4_bcaa"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "carotenoids",
+      "relation": "煮成汤后有效成分溶入汤汁，与营养吸收率提高相关；生食胡萝卜β-胡萝卜素吸收有限",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_col4_absorb",
+      "excerpt": "例如，胡萝卜直接生吃的话，所含β-胡萝卜素的吸收率最多只有5%～10%。服用维生素补充剂的时候，消费者往往相信药剂在肠道内能全部被溶解吸收。但研究发现市售的维生素补充剂也有未溶解就直接被排泄出人体的案例。在药剂学中，测试各种药剂的溶解度是一项非常重要的实验。\n\n把蔬菜做成汤后，蔬菜的有效成分能溶解在汤里，易于肠道吸收，所以人体对营养的吸收率也会提高很多。\n\n===== SPINE 037 | Liang Ren De Shu Cai Tang_split_036.html =====\n\n未知\n\n专栏5\n\n补充营养的食疗汤也可以利用市售产品制作\n\n本书不是临床医学书，为了避免讲得过于深奥，我不会就食疗汤展开过多的医学方面的论证。但我会给进食固体食物有困难的人，给出一些饮食方面的小建议，就像之前提到的，有些人因为某些原因不能进食固体食物，进而会导致营养失调。\n\n这类人群为了摄取基本营养素，需要食用鸡骨汤底或鱼骨汤底制作的蔬菜汤（参考［添加肉类或牛奶有助于恢复体力］的汤，［前田家的“蔬菜汤生活”］的西班牙巴斯克风格的汤）。\n\n鸡骨和鱼骨里含有各种氨基酸、脂肪和大量骨胶原蛋白，味道也很鲜美，十分推荐。骨胶原蛋白是构成血管和皮肤的重要成分，对美容和健康有很大帮助。\n\n如果觉得准备鸡骨很麻烦，可以使用市售的鸡汤做蔬菜汤，非常方便。市售的鸡汤有很多种类，从粉末类产品到冷冻类产品，一应俱全。\n\n===== SPINE 038 | Liang Ren De Shu Cai Tang_split_037.html =====\n\n未知\n\n===== SPINE 039 | Liang Ren De Shu Cai Tang_split_038.html =====\n\n未知\n\n第5章\n来自读者的经验谈：蔬菜汤的惊人效果\n\n===== SPINE 040 | Liang Ren De Shu Cai Tang_split_039.html =====\n\n未知\n\n虽然大家的感受各不相同，但蔬菜汤的效果是实实在在的\n\n熊本大学名誉教授　前田浩\n\n养成喝蔬菜汤的习惯，坚持就是力量",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_col4_absorb",
+      "evidences": [
+        {
+          "excerpt": "例如，胡萝卜直接生吃的话，所含β-胡萝卜素的吸收率最多只有5%～10%。服用维生素补充剂的时候，消费者往往相信药剂在肠道内能全部被溶解吸收。但研究发现市售的维生素补充剂也有未溶解就直接被排泄出人体的案例。在药剂学中，测试各种药剂的溶解度是一项非常重要的实验。\n\n把蔬菜做成汤后，蔬菜的有效成分能溶解在汤里，易于肠道吸收，所以人体对营养的吸收率也会提高很多。\n\n===== SPINE 037 | Liang Ren De Shu Cai Tang_split_036.html =====\n\n未知\n\n专栏5\n\n补充营养的食疗汤也可以利用市售产品制作\n\n本书不是临床医学书，为了避免讲得过于深奥，我不会就食疗汤展开过多的医学方面的论证。但我会给进食固体食物有困难的人，给出一些饮食方面的小建议，就像之前提到的，有些人因为某些原因不能进食固体食物，进而会导致营养失调。\n\n这类人群为了摄取基本营养素，需要食用鸡骨汤底或鱼骨汤底制作的蔬菜汤（参考［添加肉类或牛奶有助于恢复体力］的汤，［前田家的“蔬菜汤生活”］的西班牙巴斯克风格的汤）。\n\n鸡骨和鱼骨里含有各种氨基酸、脂肪和大量骨胶原蛋白，味道也很鲜美，十分推荐。骨胶原蛋白是构成血管和皮肤的重要成分，对美容和健康有很大帮助。\n\n如果觉得准备鸡骨很麻烦，可以使用市售的鸡汤做蔬菜汤，非常方便。市售的鸡汤有很多种类，从粉末类产品到冷冻类产品，一应俱全。\n\n===== SPINE 038 | Liang Ren De Shu Cai Tang_split_037.html =====\n\n未知\n\n===== SPINE 039 | Liang Ren De Shu Cai Tang_split_038.html =====\n\n未知\n\n第5章\n来自读者的经验谈：蔬菜汤的惊人效果\n\n===== SPINE 040 | Liang Ren De Shu Cai Tang_split_039.html =====\n\n未知\n\n虽然大家的感受各不相同，但蔬菜汤的效果是实实在在的\n\n熊本大学名誉教授　前田浩\n\n养成喝蔬菜汤的习惯，坚持就是力量",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_col4_absorb"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "metabolic_health",
+      "relation": "读者经验存在个体差异；蔬菜汤与身体调理及多种疾病预防相关（非普遍疗效断言）",
+      "direction": "protective",
+      "evidence_type": "book_notes_caveat",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch5_individual",
+      "excerpt": "有一点需要说明一下。关于书的经验谈虽然都是来自读者们的真实体验，但终究只是个人体验，情况不一定适用于每一个人。\n\n因为每个人的体质、患病程度、症状和生活习惯等情况各不相同，所以不一定“A变成了这样，我也一定会变成这样”。不同的人之间存在个体差异。\n\n在存在差异的情况下，可以确定的是蔬菜汤可以调理身体，帮助预防多种疾病。希望大家不要急于求成，放平心态，充分享受有蔬菜汤相伴的生活。\n\n===== SPINE 041 | Liang Ren De Shu Cai Tang_split_040.html =====\n\n未知",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch5_individual",
+      "evidences": [
+        {
+          "excerpt": "有一点需要说明一下。关于书的经验谈虽然都是来自读者们的真实体验，但终究只是个人体验，情况不一定适用于每一个人。\n\n因为每个人的体质、患病程度、症状和生活习惯等情况各不相同，所以不一定“A变成了这样，我也一定会变成这样”。不同的人之间存在个体差异。\n\n在存在差异的情况下，可以确定的是蔬菜汤可以调理身体，帮助预防多种疾病。希望大家不要急于求成，放平心态，充分享受有蔬菜汤相伴的生活。\n\n===== SPINE 041 | Liang Ren De Shu Cai Tang_split_040.html =====\n\n未知",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch5_individual"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "phytochemicals",
+      "target": "breast_prostate_risk",
+      "relation": "植化素清除活性氧与癌症预防及复发风险相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch5_breast_comment",
+      "excerpt": "诱发癌症的活性氧在人体内不停地产生。通过蔬菜汤里的植化素消除掉活性氧，不仅可以预防癌症，还有助于防止癌症复发。\n\n除了植化素，蔬菜汤里还有很多“配角”，它们能帮助细胞维持生命活动。例如，叶酸、矿物质与DNA的修复、合成紧密相关。\n\n我也很推荐往蔬菜汤里加入菌菇。菌菇中含有丰富的β葡聚糖，有增强人体抗氧化能力和免疫力的作用。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch5_breast_comment",
+      "evidences": [
+        {
+          "excerpt": "诱发癌症的活性氧在人体内不停地产生。通过蔬菜汤里的植化素消除掉活性氧，不仅可以预防癌症，还有助于防止癌症复发。\n\n除了植化素，蔬菜汤里还有很多“配角”，它们能帮助细胞维持生命活动。例如，叶酸、矿物质与DNA的修复、合成紧密相关。\n\n我也很推荐往蔬菜汤里加入菌菇。菌菇中含有丰富的β葡聚糖，有增强人体抗氧化能力和免疫力的作用。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch5_breast_comment"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "mushrooms",
+      "target": "beta_glucan",
+      "relation": "食用菌菇富含β-葡聚糖",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch5_mushroom_beta",
+      "excerpt": "我也很推荐往蔬菜汤里加入菌菇。菌菇中含有丰富的β葡聚糖，有增强人体抗氧化能力和免疫力的作用。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch5_mushroom_beta",
+      "evidences": [
+        {
+          "excerpt": "我也很推荐往蔬菜汤里加入菌菇。菌菇中含有丰富的β葡聚糖，有增强人体抗氧化能力和免疫力的作用。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch5_mushroom_beta"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "dna_repair",
+      "relation": "蔬菜汤中叶酸、矿物质与DNA修复及合成相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch5_dna_repair",
+      "excerpt": "除了植化素，蔬菜汤里还有很多“配角”，它们能帮助细胞维持生命活动。例如，叶酸、矿物质与DNA的修复、合成紧密相关。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch5_dna_repair",
+      "evidences": [
+        {
+          "excerpt": "除了植化素，蔬菜汤里还有很多“配角”，它们能帮助细胞维持生命活动。例如，叶酸、矿物质与DNA的修复、合成紧密相关。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch5_dna_repair"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "gut_comfort",
+      "relation": "坚持蔬菜汤与排便通畅等肠道舒适感相关的读者观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_reader_anecdote",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch5_fiber_bowel",
+      "excerpt": "喝了蔬菜汤之后最快感觉到的就是它净化身体的功能。喝了一周之后，起床时就有明显的便意了，排便也变得通畅。很久没有这么清爽畅快的早晨了。\n\n我原本有点便秘，一直以为不吃饭就无法排便，但喝了蔬菜汤之后，即使没有吃固体食物，早上起床后上厕所也很通畅，这令我非常惊讶。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch5_fiber_bowel",
+      "evidences": [
+        {
+          "excerpt": "喝了蔬菜汤之后最快感觉到的就是它净化身体的功能。喝了一周之后，起床时就有明显的便意了，排便也变得通畅。很久没有这么清爽畅快的早晨了。\n\n我原本有点便秘，一直以为不吃饭就无法排便，但喝了蔬菜汤之后，即使没有吃固体食物，早上起床后上厕所也很通畅，这令我非常惊讶。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch5_fiber_bowel"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "dietary_nitrates",
+      "target": "nitric_oxide",
+      "relation": "蔬菜中亚硝酸盐/硝酸盐在体内可转化为促进血液循环的物质（一氧化氮相关通路）",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch5_alz_nitrate",
+      "excerpt": "蔬菜汤里含有的亚硝酸盐和硝酸盐在人体内能变成促进血液循环的物质（参照［蔬菜汤有类似药剂的功效，能舒张血管、预防高血压］）。血液流通越顺畅，大脑、肠胃、肌肉等身体器官的功能就会越好。腰和腿都有力气了，对预防卧床不起也有很大帮助。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch5_alz_nitrate",
+      "evidences": [
+        {
+          "excerpt": "蔬菜汤里含有的亚硝酸盐和硝酸盐在人体内能变成促进血液循环的物质（参照［蔬菜汤有类似药剂的功效，能舒张血管、预防高血压］）。血液流通越顺畅，大脑、肠胃、肌肉等身体器官的功能就会越好。腰和腿都有力气了，对预防卧床不起也有很大帮助。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch5_alz_nitrate"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "cognitive_clarity",
+      "relation": "蔬菜汤作为适口流食与阿尔茨海默病患者营养摄入及体能、情绪改善相关的看护观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_reader_anecdote",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch5_soup_cognitive",
+      "excerpt": "但前田浩先生的蔬菜汤却不同。食量很小的母亲非常喜欢这样的蔬菜汤，每天要吃三次，每次都能吃光一整碗。做好的蔬菜浓汤只有蔬菜清爽质朴的味道，非常美味。\n\n蔬菜汤里有蔬菜原始的甘甜与柔和，吃进肚子里也是柔和的味道。打成浓汤后的蔬菜汤口感更顺滑，让人轻轻松松就能吃掉很多蔬菜。母亲用假牙也能完全品味到蔬菜的美味。\n\n她认为加了南瓜的甜汤喝起来很美味。有时候不小心忘了做，母亲还会问：“今天没有蔬菜汤吗？”可见她对蔬菜汤很是期待。\n\n母亲能吃蔬菜了，我终于放心了。现在已经吃了半年，母亲身上发生了很多好的变化。她的体重增加了1kg，腰和腿都有力气了。走路时脚拖地的现象得到了改善，步伐也更有力了。因为获取的营养变充足了，母亲的脸色都变得红润光鲜了，表情也比以前明朗愉快，经常笑嘻嘻的。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch5_soup_cognitive",
+      "evidences": [
+        {
+          "excerpt": "但前田浩先生的蔬菜汤却不同。食量很小的母亲非常喜欢这样的蔬菜汤，每天要吃三次，每次都能吃光一整碗。做好的蔬菜浓汤只有蔬菜清爽质朴的味道，非常美味。\n\n蔬菜汤里有蔬菜原始的甘甜与柔和，吃进肚子里也是柔和的味道。打成浓汤后的蔬菜汤口感更顺滑，让人轻轻松松就能吃掉很多蔬菜。母亲用假牙也能完全品味到蔬菜的美味。\n\n她认为加了南瓜的甜汤喝起来很美味。有时候不小心忘了做，母亲还会问：“今天没有蔬菜汤吗？”可见她对蔬菜汤很是期待。\n\n母亲能吃蔬菜了，我终于放心了。现在已经吃了半年，母亲身上发生了很多好的变化。她的体重增加了1kg，腰和腿都有力气了。走路时脚拖地的现象得到了改善，步伐也更有力了。因为获取的营养变充足了，母亲的脸色都变得红润光鲜了，表情也比以前明朗愉快，经常笑嘻嘻的。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch5_soup_cognitive"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "lipid_radicals",
+      "target": "atopic_dermatitis",
+      "relation": "特应性皮炎皮肤干燥与炎症与脂质自由基相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch5_dermatitis_lipid",
+      "excerpt": "特应性皮炎的症状是皮肤干燥、有炎症，这是由活性氧中毒性最强的脂质自由基造成的。小松菜、茼蒿、菠菜中富含的β-胡萝卜素和叶黄素，有强大的消除脂质自由基的功效。而且蔬菜中含有的硝酸盐、亚硝酸盐（参照［蔬菜汤有类似药剂的功效，能舒张血管、预防高血压］）也能改善血液循环，促进皮肤再生。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch5_dermatitis_lipid",
+      "evidences": [
+        {
+          "excerpt": "特应性皮炎的症状是皮肤干燥、有炎症，这是由活性氧中毒性最强的脂质自由基造成的。小松菜、茼蒿、菠菜中富含的β-胡萝卜素和叶黄素，有强大的消除脂质自由基的功效。而且蔬菜中含有的硝酸盐、亚硝酸盐（参照［蔬菜汤有类似药剂的功效，能舒张血管、预防高血压］）也能改善血液循环，促进皮肤再生。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch5_dermatitis_lipid"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetables_greens",
+      "target": "lipid_radicals",
+      "relation": "黄绿色叶菜中β-胡萝卜素与叶黄素与消除脂质自由基相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch5_greens_lipid",
+      "excerpt": "特应性皮炎的症状是皮肤干燥、有炎症，这是由活性氧中毒性最强的脂质自由基造成的。小松菜、茼蒿、菠菜中富含的β-胡萝卜素和叶黄素，有强大的消除脂质自由基的功效。而且蔬菜中含有的硝酸盐、亚硝酸盐（参照［蔬菜汤有类似药剂的功效，能舒张血管、预防高血压］）也能改善血液循环，促进皮肤再生。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch5_greens_lipid",
+      "evidences": [
+        {
+          "excerpt": "特应性皮炎的症状是皮肤干燥、有炎症，这是由活性氧中毒性最强的脂质自由基造成的。小松菜、茼蒿、菠菜中富含的β-胡萝卜素和叶黄素，有强大的消除脂质自由基的功效。而且蔬菜中含有的硝酸盐、亚硝酸盐（参照［蔬菜汤有类似药剂的功效，能舒张血管、预防高血压］）也能改善血液循环，促进皮肤再生。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch5_greens_lipid"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "dietary_fiber",
+      "target": "atopic_dermatitis",
+      "relation": "可溶性膳食纤维激活免疫细胞并增加抑制过度免疫的益生菌，与过敏反应抑制相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch5_fiber_allergy",
+      "excerpt": "特应性皮炎等过敏性疾病都是由于预防病毒、细菌入侵的免疫系统过度免疫引起的。\n\n我在研究中发现，溶解在蔬菜汤里的可溶性膳食纤维能提高巨噬细胞、NK细胞等免疫细胞的功能。同时，可溶性膳食纤维还能增加抑制过度免疫的益生菌数量，也有抑制过敏反应的功能。蔬菜汤有许多种功效，因此才能帮助山田女士改善特应性皮炎。\n\n===== SPINE 044 | Liang Ren De Shu Cai Tang_split_043.html =====\n\n未知",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch5_fiber_allergy",
+      "evidences": [
+        {
+          "excerpt": "特应性皮炎等过敏性疾病都是由于预防病毒、细菌入侵的免疫系统过度免疫引起的。\n\n我在研究中发现，溶解在蔬菜汤里的可溶性膳食纤维能提高巨噬细胞、NK细胞等免疫细胞的功能。同时，可溶性膳食纤维还能增加抑制过度免疫的益生菌数量，也有抑制过敏反应的功能。蔬菜汤有许多种功效，因此才能帮助山田女士改善特应性皮炎。\n\n===== SPINE 044 | Liang Ren De Shu Cai Tang_split_043.html =====\n\n未知",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch5_fiber_allergy"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "tomato",
+      "target": "antioxidant_defense",
+      "relation": "番茄红素等类胡萝卜素与皮肤活性氧及色斑相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch5_tomato_skin",
+      "excerpt": "森女士的皮肤恢复弹性、色斑变淡是因为蔬菜中含有的植化素和维生素等抗氧化物质发挥作用。为了抗衰老，今后最好继续喝蔬菜汤。番茄中富含的番茄红素，菠菜中富含的叶黄素等类胡萝卜素，都可以帮助消除皮肤中的活性氧。\n\n===== SPINE 045 | Liang Ren De Shu Cai Tang_split_044.html =====\n\n未知\n\n一天排便三次，很顺畅！甘油三酯恢复正常，血糖值也稳定了\n\n山冈黎子（化名）　78岁　家庭主妇\n\n吃饭的时候先喝蔬菜汤\n\n我认识一位80岁的奶奶，但是她精力充沛，看着根本不像80岁。她是三姐妹里的长女，但却是看起来最小的那个。她保持年轻的秘诀，原来是坚持喝蔬菜汤长达30年。我也想变得像这位奶奶一样年轻，于是我学习了她的食谱，从5年前开始喝蔬菜汤。\n\n白萝卜、胡萝卜、牛蒡、土豆洗干净以后直接带皮放入锅中，洋葱剥掉皮，把皮晒干后也放入锅中，然后再加入剥掉皮的蒜瓣和干香菇等。放入的水量是蔬菜的3倍，用中火煮1.5个小时即可出锅。我用的几乎所有的食材都是自家栽种现摘的新鲜食材。\n\n以前我都是把里面的蔬菜扔掉，只喝汤。但看了前田浩先生的书之后，知道了里面的菜也很重要。自那以后，我都会把汤里的蔬菜也一起吃掉。\n\n我每天喝三次蔬菜汤，都是在吃饭的时候喝。最近，我听说吃饭的时候先吃蔬菜能控制血糖值升高，于是我就把汤里的菜先吃掉。不管是汤还是蔬菜，都不调味。\n\n一天排便三次\n\n我在吃饭的时候，一开始先吃很多蔬菜，把肚子填满，最后吃一小碗饭就能饱。\n\n吃了很多蔬菜的肚子饱饱的，就不会再想着要吃零食了，我每天都能正常排便，体重由54 kg减轻至51 kg（身高156 cm），小肚子也瘪了下去。\n\n5年前我的甘油三酯值在3.4～4.5 mmol/L（正常数值是1.7 mmol/L以下）这个范围内，现在已经恢复正常了。糖化血红蛋白（HbA1c，近2～3个月的平均血糖水平，正常值是4%～6%）略高于正常值，服药后目前能稳定在6%左右。\n\n每次读前田浩先生的书，我都能感受到是蔬菜汤在支撑着我的健康，也让我更有精神和活力了。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch5_tomato_skin",
+      "evidences": [
+        {
+          "excerpt": "森女士的皮肤恢复弹性、色斑变淡是因为蔬菜中含有的植化素和维生素等抗氧化物质发挥作用。为了抗衰老，今后最好继续喝蔬菜汤。番茄中富含的番茄红素，菠菜中富含的叶黄素等类胡萝卜素，都可以帮助消除皮肤中的活性氧。\n\n===== SPINE 045 | Liang Ren De Shu Cai Tang_split_044.html =====\n\n未知\n\n一天排便三次，很顺畅！甘油三酯恢复正常，血糖值也稳定了\n\n山冈黎子（化名）　78岁　家庭主妇\n\n吃饭的时候先喝蔬菜汤\n\n我认识一位80岁的奶奶，但是她精力充沛，看着根本不像80岁。她是三姐妹里的长女，但却是看起来最小的那个。她保持年轻的秘诀，原来是坚持喝蔬菜汤长达30年。我也想变得像这位奶奶一样年轻，于是我学习了她的食谱，从5年前开始喝蔬菜汤。\n\n白萝卜、胡萝卜、牛蒡、土豆洗干净以后直接带皮放入锅中，洋葱剥掉皮，把皮晒干后也放入锅中，然后再加入剥掉皮的蒜瓣和干香菇等。放入的水量是蔬菜的3倍，用中火煮1.5个小时即可出锅。我用的几乎所有的食材都是自家栽种现摘的新鲜食材。\n\n以前我都是把里面的蔬菜扔掉，只喝汤。但看了前田浩先生的书之后，知道了里面的菜也很重要。自那以后，我都会把汤里的蔬菜也一起吃掉。\n\n我每天喝三次蔬菜汤，都是在吃饭的时候喝。最近，我听说吃饭的时候先吃蔬菜能控制血糖值升高，于是我就把汤里的菜先吃掉。不管是汤还是蔬菜，都不调味。\n\n一天排便三次\n\n我在吃饭的时候，一开始先吃很多蔬菜，把肚子填满，最后吃一小碗饭就能饱。\n\n吃了很多蔬菜的肚子饱饱的，就不会再想着要吃零食了，我每天都能正常排便，体重由54 kg减轻至51 kg（身高156 cm），小肚子也瘪了下去。\n\n5年前我的甘油三酯值在3.4～4.5 mmol/L（正常数值是1.7 mmol/L以下）这个范围内，现在已经恢复正常了。糖化血红蛋白（HbA1c，近2～3个月的平均血糖水平，正常值是4%～6%）略高于正常值，服药后目前能稳定在6%左右。\n\n每次读前田浩先生的书，我都能感受到是蔬菜汤在支撑着我的健康，也让我更有精神和活力了。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch5_tomato_skin"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "hba1c",
+      "relation": "先食蔬菜汤与甘油三酯及糖化血红蛋白相关指标改善的读者观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_reader_anecdote",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch5_tg_hba1c",
+      "excerpt": "5年前我的甘油三酯值在3.4～4.5 mmol/L（正常数值是1.7 mmol/L以下）这个范围内，现在已经恢复正常了。糖化血红蛋白（HbA1c，近2～3个月的平均血糖水平，正常值是4%～6%）略高于正常值，服药后目前能稳定在6%左右。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch5_tg_hba1c",
+      "evidences": [
+        {
+          "excerpt": "5年前我的甘油三酯值在3.4～4.5 mmol/L（正常数值是1.7 mmol/L以下）这个范围内，现在已经恢复正常了。糖化血红蛋白（HbA1c，近2～3个月的平均血糖水平，正常值是4%～6%）略高于正常值，服药后目前能稳定在6%左右。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch5_tg_hba1c"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "dietary_fiber",
+      "target": "probiotics",
+      "relation": "植物多糖类膳食纤维与肠道益生菌增加及免疫增强相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch5_poly_probio",
+      "excerpt": "这种植物性食品的纤维叫作多糖，能增加肠道内的益生菌。益生菌增多，肠道内环境得到改善，人体免疫力就会随之增强。\n\n===== SPINE 046 | Liang Ren De Shu Cai Tang_split_045.html =====\n\n未知\n\n===== SPINE 047 | Liang Ren De Shu Cai Tang_split_046.html =====\n\n未知\n\n第6章\n蔬菜汤是有益成分的宝库，能舒张血管、增加益生菌\n\n===== SPINE 048 | Liang Ren De Shu Cai Tang_split_047.html =====\n\n未知\n\n蔬菜汤有类似药剂的功效，能舒张血管、预防高血压\n\n保护血管、改善血液循环的两大机制\n\n下面我来说明一下蔬菜汤与血管之间的关系。\n\n由血液运输的氧气和营养保证了我们的机体能够正常运转。血管是血液流动的通道，保护好血管，保证血液流通顺畅，是维持身体健康的关键。喝蔬菜汤可以调动身体的两大机制来保护血管、让血液流通更顺畅。\n\n一个是前面提到的植化素等抗氧化物质，它们的抗氧化功效能够防止低密度脂蛋白胆固醇氧化损伤血管，从而有效预防动脉硬化。另一个则是蔬菜中含有的硝酸盐和亚硝酸盐物质。硝酸盐和亚硝酸盐原本主要是用作供植物吸收的氮肥，富含于小松菜、菠菜、白萝卜和甜菜等蔬菜里。硝酸盐和亚硝酸盐进入人体后，会被肠道内的菌群变成一氧化氮，或和体内的亚油酸、亚麻酸等脂肪酸结合形成“硝基脂肪酸”，硝基脂肪酸被人体吸收后最终也会形成一氧化氮。\n\n一氧化氮有多种功效，可以舒张血管、改善血液循环，还可以消除体内的活性氧，预防血栓。硝基脂肪酸和用于治疗心脏病的硝酸甘油一样，具有舒张血管、降低血压的功能。\n\n一氧化氮原本是由血管的内皮细胞产生的。内皮细胞位于血管的最内侧，是构成直接接触血液的内皮的细胞。当一氧化氮向血管肌肉（平滑肌）发送“扩张”的信号后，血管就会舒张，血液流通变得更顺畅，血压也会更稳定。但血管产生一氧化氮的能力会随着年龄的增长而不断减弱，而且体内的活性氧增多后，也会消耗一部分一氧化氮用来消除活性氧，这就会造成血管变窄，血压升高。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch5_poly_probio",
+      "evidences": [
+        {
+          "excerpt": "这种植物性食品的纤维叫作多糖，能增加肠道内的益生菌。益生菌增多，肠道内环境得到改善，人体免疫力就会随之增强。\n\n===== SPINE 046 | Liang Ren De Shu Cai Tang_split_045.html =====\n\n未知\n\n===== SPINE 047 | Liang Ren De Shu Cai Tang_split_046.html =====\n\n未知\n\n第6章\n蔬菜汤是有益成分的宝库，能舒张血管、增加益生菌\n\n===== SPINE 048 | Liang Ren De Shu Cai Tang_split_047.html =====\n\n未知\n\n蔬菜汤有类似药剂的功效，能舒张血管、预防高血压\n\n保护血管、改善血液循环的两大机制\n\n下面我来说明一下蔬菜汤与血管之间的关系。\n\n由血液运输的氧气和营养保证了我们的机体能够正常运转。血管是血液流动的通道，保护好血管，保证血液流通顺畅，是维持身体健康的关键。喝蔬菜汤可以调动身体的两大机制来保护血管、让血液流通更顺畅。\n\n一个是前面提到的植化素等抗氧化物质，它们的抗氧化功效能够防止低密度脂蛋白胆固醇氧化损伤血管，从而有效预防动脉硬化。另一个则是蔬菜中含有的硝酸盐和亚硝酸盐物质。硝酸盐和亚硝酸盐原本主要是用作供植物吸收的氮肥，富含于小松菜、菠菜、白萝卜和甜菜等蔬菜里。硝酸盐和亚硝酸盐进入人体后，会被肠道内的菌群变成一氧化氮，或和体内的亚油酸、亚麻酸等脂肪酸结合形成“硝基脂肪酸”，硝基脂肪酸被人体吸收后最终也会形成一氧化氮。\n\n一氧化氮有多种功效，可以舒张血管、改善血液循环，还可以消除体内的活性氧，预防血栓。硝基脂肪酸和用于治疗心脏病的硝酸甘油一样，具有舒张血管、降低血压的功能。\n\n一氧化氮原本是由血管的内皮细胞产生的。内皮细胞位于血管的最内侧，是构成直接接触血液的内皮的细胞。当一氧化氮向血管肌肉（平滑肌）发送“扩张”的信号后，血管就会舒张，血液流通变得更顺畅，血压也会更稳定。但血管产生一氧化氮的能力会随着年龄的增长而不断减弱，而且体内的活性氧增多后，也会消耗一部分一氧化氮用来消除活性氧，这就会造成血管变窄，血压升高。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch5_poly_probio"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "phytochemicals",
+      "target": "cardiometabolic",
+      "relation": "植化素等抗氧化物质防止低密度脂蛋白胆固醇氧化损伤血管，与动脉硬化预防相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch6_phyto_ldl",
+      "excerpt": "喝蔬菜汤可以调动身体的两大机制来保护血管、让血液流通更顺畅。\n\n一个是前面提到的植化素等抗氧化物质，它们的抗氧化功效能够防止低密度脂蛋白胆固醇氧化损伤血管，从而有效预防动脉硬化。另一个则是蔬菜中含有的硝酸盐和亚硝酸盐物质。硝酸盐和亚硝酸盐原本主要是用作供植物吸收的氮肥，富含于小松菜、菠菜、白萝卜和甜菜等蔬菜里。硝酸盐和亚硝酸盐进入人体后，会被肠道内的菌群变成一氧化氮，或和体内的亚油酸、亚麻酸等脂肪酸结合形成“硝基脂肪酸”，硝基脂肪酸被人体吸收后最终也会形成一氧化氮。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch6_phyto_ldl",
+      "evidences": [
+        {
+          "excerpt": "喝蔬菜汤可以调动身体的两大机制来保护血管、让血液流通更顺畅。\n\n一个是前面提到的植化素等抗氧化物质，它们的抗氧化功效能够防止低密度脂蛋白胆固醇氧化损伤血管，从而有效预防动脉硬化。另一个则是蔬菜中含有的硝酸盐和亚硝酸盐物质。硝酸盐和亚硝酸盐原本主要是用作供植物吸收的氮肥，富含于小松菜、菠菜、白萝卜和甜菜等蔬菜里。硝酸盐和亚硝酸盐进入人体后，会被肠道内的菌群变成一氧化氮，或和体内的亚油酸、亚麻酸等脂肪酸结合形成“硝基脂肪酸”，硝基脂肪酸被人体吸收后最终也会形成一氧化氮。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch6_phyto_ldl"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "dietary_nitrates",
+      "target": "nitric_oxide",
+      "relation": "膳食硝酸盐/亚硝酸盐经肠道菌群转化为一氧化氮或经硝基脂肪酸途径形成一氧化氮",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch6_nitrate_no",
+      "excerpt": "另一个则是蔬菜中含有的硝酸盐和亚硝酸盐物质。硝酸盐和亚硝酸盐原本主要是用作供植物吸收的氮肥，富含于小松菜、菠菜、白萝卜和甜菜等蔬菜里。硝酸盐和亚硝酸盐进入人体后，会被肠道内的菌群变成一氧化氮，或和体内的亚油酸、亚麻酸等脂肪酸结合形成“硝基脂肪酸”，硝基脂肪酸被人体吸收后最终也会形成一氧化氮。\n\n一氧化氮有多种功效，可以舒张血管、改善血液循环，还可以消除体内的活性氧，预防血栓。硝基脂肪酸和用于治疗心脏病的硝酸甘油一样，具有舒张血管、降低血压的功能。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch6_nitrate_no",
+      "evidences": [
+        {
+          "excerpt": "另一个则是蔬菜中含有的硝酸盐和亚硝酸盐物质。硝酸盐和亚硝酸盐原本主要是用作供植物吸收的氮肥，富含于小松菜、菠菜、白萝卜和甜菜等蔬菜里。硝酸盐和亚硝酸盐进入人体后，会被肠道内的菌群变成一氧化氮，或和体内的亚油酸、亚麻酸等脂肪酸结合形成“硝基脂肪酸”，硝基脂肪酸被人体吸收后最终也会形成一氧化氮。\n\n一氧化氮有多种功效，可以舒张血管、改善血液循环，还可以消除体内的活性氧，预防血栓。硝基脂肪酸和用于治疗心脏病的硝酸甘油一样，具有舒张血管、降低血压的功能。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch6_nitrate_no"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "nitric_oxide",
+      "target": "hypertension",
+      "relation": "一氧化氮向血管平滑肌发送扩张信号，与血管舒张及血压稳定相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch6_no_htn",
+      "excerpt": "一氧化氮原本是由血管的内皮细胞产生的。内皮细胞位于血管的最内侧，是构成直接接触血液的内皮的细胞。当一氧化氮向血管肌肉（平滑肌）发送“扩张”的信号后，血管就会舒张，血液流通变得更顺畅，血压也会更稳定。但血管产生一氧化氮的能力会随着年龄的增长而不断减弱，而且体内的活性氧增多后，也会消耗一部分一氧化氮用来消除活性氧，这就会造成血管变窄，血压升高。\n\n蔬菜汤是一氧化氮的补给源，蔬菜汤里富含的抗氧化物质还能消除活性氧，延长人体内一氧化氮的寿命。如此一来，就可以让血管保持弹性，预防动脉硬化和高血压。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch6_no_htn",
+      "evidences": [
+        {
+          "excerpt": "一氧化氮原本是由血管的内皮细胞产生的。内皮细胞位于血管的最内侧，是构成直接接触血液的内皮的细胞。当一氧化氮向血管肌肉（平滑肌）发送“扩张”的信号后，血管就会舒张，血液流通变得更顺畅，血压也会更稳定。但血管产生一氧化氮的能力会随着年龄的增长而不断减弱，而且体内的活性氧增多后，也会消耗一部分一氧化氮用来消除活性氧，这就会造成血管变窄，血压升高。\n\n蔬菜汤是一氧化氮的补给源，蔬菜汤里富含的抗氧化物质还能消除活性氧，延长人体内一氧化氮的寿命。如此一来，就可以让血管保持弹性，预防动脉硬化和高血压。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch6_no_htn"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "nitric_oxide",
+      "relation": "蔬菜汤作为一氧化氮相关底物补给，并经抗氧化延长一氧化氮作用相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch6_soup_no",
+      "excerpt": "蔬菜汤是一氧化氮的补给源，蔬菜汤里富含的抗氧化物质还能消除活性氧，延长人体内一氧化氮的寿命。如此一来，就可以让血管保持弹性，预防动脉硬化和高血压。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch6_soup_no",
+      "evidences": [
+        {
+          "excerpt": "蔬菜汤是一氧化氮的补给源，蔬菜汤里富含的抗氧化物质还能消除活性氧，延长人体内一氧化氮的寿命。如此一来，就可以让血管保持弹性，预防动脉硬化和高血压。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch6_soup_no"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "hypertension",
+      "relation": "蔬菜汤摄入与血管弹性维持及高血压预防相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch6_soup_htn",
+      "excerpt": "蔬菜汤是一氧化氮的补给源，蔬菜汤里富含的抗氧化物质还能消除活性氧，延长人体内一氧化氮的寿命。如此一来，就可以让血管保持弹性，预防动脉硬化和高血压。\n\n我的朋友路易斯·路伊格纳洛（美国药理学专家）等三人发现了一氧化氮具有扩张血管、降低血压的作用，因此荣获了1998年的诺贝尔生理学或医学奖。博士们的研究成果给心脏病等循环系统疾病的治疗带来了巨大贡献。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch6_soup_htn",
+      "evidences": [
+        {
+          "excerpt": "蔬菜汤是一氧化氮的补给源，蔬菜汤里富含的抗氧化物质还能消除活性氧，延长人体内一氧化氮的寿命。如此一来，就可以让血管保持弹性，预防动脉硬化和高血压。\n\n我的朋友路易斯·路伊格纳洛（美国药理学专家）等三人发现了一氧化氮具有扩张血管、降低血压的作用，因此荣获了1998年的诺贝尔生理学或医学奖。博士们的研究成果给心脏病等循环系统疾病的治疗带来了巨大贡献。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch6_soup_htn"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetables_greens",
+      "target": "hypertension",
+      "relation": "日本料理中吃蔬菜者血中亚硝酸盐浓度更高、血压更低的人群观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_population_observation",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch6_jp_nitrite",
+      "excerpt": "美国匹兹堡大学医学部的布鲁斯·弗里曼教授对日本饮食非常感兴趣，他于2010年发表了相关的研究报告。报告显示，在吃日本料理的人群中，吃蔬菜的人比不吃蔬菜的人的血液中亚硝酸盐的浓度要高出一倍，血压也明显更低。日本料理味道清淡，而且蔬菜充足，是保持血管年轻、预防高血压效果很好的餐食。我认为蔬菜汤也能保护血管，应该纳入到基本饮食中。\n\n===== SPINE 049 | Liang Ren De Shu Cai Tang_split_048.html =====\n\n未知\n\n喝蔬菜汤可以轻松摄入大量膳食纤维，改善肠道环境\n\n排便顺畅，抑制血糖值骤升\n\n蔬菜汤最适合用来补充现代人缺少的膳食纤维。\n\n从预防慢性病的角度来看，成年人每天的膳食纤维最佳摄入量是24 g以上。但是据日本厚生劳动省的调查显示，实际上的平均摄入量只有14 g左右，绝大多数日本人的膳食纤维都摄入不足。\n\n喝蔬菜汤是解决膳食纤维不足的最简单的方法。膳食纤维有可溶性膳食纤维和不可溶性膳食纤维两种，其各自的功能也不一样，而喝蔬菜汤可以同时摄入这两种膳食纤维。\n\n可溶性膳食纤维包括蔬菜和水果中富含的果胶、海带和裙带菜中的脱镁叶绿素、菌菇类里的β-葡聚糖、牛蒡里的菊粉等。\n\n可溶性膳食纤维溶解在水里后会变成黏滑的胶状，延缓肠道内糖类的吸收速度，从而可以抑制血糖快速升高，防止胰岛素分泌过剩。同时，还能阻碍钠和胆固醇的吸收，预防高血压、脂质代谢异常、动脉硬化等多种疾病。\n\n不可溶性膳食纤维多存在于蔬菜、谷类和豆类中，包括木质素、纤维素、半纤维素等。\n\n不可溶性膳食纤维吸水性很强，在肠道内会吸水膨胀，增加大便体积，从而促进肠胃蠕动，帮助顺利排便。此外，不可溶性膳食纤维还能吸附水银等重金属或致癌物等有害物质，在排便时把毒素一起排出体外，可以预防大肠癌。\n\n益生菌增加，免疫力也随之提高\n\n近年来的研究表明，肠道内益生菌占多数，人体免疫力就会增强。可溶性膳食纤维和不可溶性膳食纤维都有助于增加肠道益生菌，增强人体免疫力。\n\n我在实验中验证了可溶性膳食纤维能直接激活可以杀死癌细胞的白细胞。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch6_jp_nitrite",
+      "evidences": [
+        {
+          "excerpt": "美国匹兹堡大学医学部的布鲁斯·弗里曼教授对日本饮食非常感兴趣，他于2010年发表了相关的研究报告。报告显示，在吃日本料理的人群中，吃蔬菜的人比不吃蔬菜的人的血液中亚硝酸盐的浓度要高出一倍，血压也明显更低。日本料理味道清淡，而且蔬菜充足，是保持血管年轻、预防高血压效果很好的餐食。我认为蔬菜汤也能保护血管，应该纳入到基本饮食中。\n\n===== SPINE 049 | Liang Ren De Shu Cai Tang_split_048.html =====\n\n未知\n\n喝蔬菜汤可以轻松摄入大量膳食纤维，改善肠道环境\n\n排便顺畅，抑制血糖值骤升\n\n蔬菜汤最适合用来补充现代人缺少的膳食纤维。\n\n从预防慢性病的角度来看，成年人每天的膳食纤维最佳摄入量是24 g以上。但是据日本厚生劳动省的调查显示，实际上的平均摄入量只有14 g左右，绝大多数日本人的膳食纤维都摄入不足。\n\n喝蔬菜汤是解决膳食纤维不足的最简单的方法。膳食纤维有可溶性膳食纤维和不可溶性膳食纤维两种，其各自的功能也不一样，而喝蔬菜汤可以同时摄入这两种膳食纤维。\n\n可溶性膳食纤维包括蔬菜和水果中富含的果胶、海带和裙带菜中的脱镁叶绿素、菌菇类里的β-葡聚糖、牛蒡里的菊粉等。\n\n可溶性膳食纤维溶解在水里后会变成黏滑的胶状，延缓肠道内糖类的吸收速度，从而可以抑制血糖快速升高，防止胰岛素分泌过剩。同时，还能阻碍钠和胆固醇的吸收，预防高血压、脂质代谢异常、动脉硬化等多种疾病。\n\n不可溶性膳食纤维多存在于蔬菜、谷类和豆类中，包括木质素、纤维素、半纤维素等。\n\n不可溶性膳食纤维吸水性很强，在肠道内会吸水膨胀，增加大便体积，从而促进肠胃蠕动，帮助顺利排便。此外，不可溶性膳食纤维还能吸附水银等重金属或致癌物等有害物质，在排便时把毒素一起排出体外，可以预防大肠癌。\n\n益生菌增加，免疫力也随之提高\n\n近年来的研究表明，肠道内益生菌占多数，人体免疫力就会增强。可溶性膳食纤维和不可溶性膳食纤维都有助于增加肠道益生菌，增强人体免疫力。\n\n我在实验中验证了可溶性膳食纤维能直接激活可以杀死癌细胞的白细胞。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch6_jp_nitrite"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "dietary_nitrates",
+      "target": "digestive_cancer_risk",
+      "relation": "亚硝酸盐曾被怀疑致胃癌，现更强调幽门螺杆菌慢性感染；其抗氧化与降压作用获讨论",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch6_nitrite_reframe",
+      "excerpt": "过去，有一些研究者认为，亚硝酸盐是会诱发胃癌的致癌物。现在已经证明导致胃癌的原因是由幽门螺旋杆菌引起的慢性感染。\n\n亚硝酸盐的抗氧化作用和降压作用已经得到证实（2006年，第五次国际一氧化氮学会），从预防癌症和高血压的角度来看，它们都是非常有效的物质。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch6_nitrite_reframe",
+      "evidences": [
+        {
+          "excerpt": "过去，有一些研究者认为，亚硝酸盐是会诱发胃癌的致癌物。现在已经证明导致胃癌的原因是由幽门螺旋杆菌引起的慢性感染。\n\n亚硝酸盐的抗氧化作用和降压作用已经得到证实（2006年，第五次国际一氧化氮学会），从预防癌症和高血压的角度来看，它们都是非常有效的物质。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch6_nitrite_reframe"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "dietary_fiber",
+      "target": "glycemic_stability",
+      "relation": "可溶性膳食纤维延缓糖类吸收，与抑制血糖骤升及防止胰岛素分泌过剩相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch6_fiber_glucose",
+      "excerpt": "可溶性膳食纤维包括蔬菜和水果中富含的果胶、海带和裙带菜中的脱镁叶绿素、菌菇类里的β-葡聚糖、牛蒡里的菊粉等。\n\n可溶性膳食纤维溶解在水里后会变成黏滑的胶状，延缓肠道内糖类的吸收速度，从而可以抑制血糖快速升高，防止胰岛素分泌过剩。同时，还能阻碍钠和胆固醇的吸收，预防高血压、脂质代谢异常、动脉硬化等多种疾病。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch6_fiber_glucose",
+      "evidences": [
+        {
+          "excerpt": "可溶性膳食纤维包括蔬菜和水果中富含的果胶、海带和裙带菜中的脱镁叶绿素、菌菇类里的β-葡聚糖、牛蒡里的菊粉等。\n\n可溶性膳食纤维溶解在水里后会变成黏滑的胶状，延缓肠道内糖类的吸收速度，从而可以抑制血糖快速升高，防止胰岛素分泌过剩。同时，还能阻碍钠和胆固醇的吸收，预防高血压、脂质代谢异常、动脉硬化等多种疾病。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch6_fiber_glucose"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "dietary_fiber",
+      "target": "digestive_cancer_risk",
+      "relation": "不可溶性膳食纤维促进排便并吸附有害物质，与大肠癌预防相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch6_fiber_colon",
+      "excerpt": "不可溶性膳食纤维多存在于蔬菜、谷类和豆类中，包括木质素、纤维素、半纤维素等。\n\n不可溶性膳食纤维吸水性很强，在肠道内会吸水膨胀，增加大便体积，从而促进肠胃蠕动，帮助顺利排便。此外，不可溶性膳食纤维还能吸附水银等重金属或致癌物等有害物质，在排便时把毒素一起排出体外，可以预防大肠癌。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch6_fiber_colon",
+      "evidences": [
+        {
+          "excerpt": "不可溶性膳食纤维多存在于蔬菜、谷类和豆类中，包括木质素、纤维素、半纤维素等。\n\n不可溶性膳食纤维吸水性很强，在肠道内会吸水膨胀，增加大便体积，从而促进肠胃蠕动，帮助顺利排便。此外，不可溶性膳食纤维还能吸附水银等重金属或致癌物等有害物质，在排便时把毒素一起排出体外，可以预防大肠癌。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch6_fiber_colon"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "dietary_fiber",
+      "target": "immune_balance",
+      "relation": "可溶性膳食纤维体外直接激活NK/T/巨噬细胞等白细胞的实验相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_animal_experiment",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch6_soluble_immune",
+      "excerpt": "我在实验中验证了可溶性膳食纤维能直接激活可以杀死癌细胞的白细胞。\n\n在实验中，我从小白鼠的血液里分离出了杀灭癌细胞的NK细胞、T细胞、中性粒细胞、巨噬细胞等白细胞，然后往里面直接加入了溶有香菇的可溶性膳食纤维的溶液，可以发现白细胞变得更活跃了。\n\n可溶性膳食纤维能够增加益生菌、直接激活白细胞的双重功效，有助于预防癌症。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch6_soluble_immune",
+      "evidences": [
+        {
+          "excerpt": "我在实验中验证了可溶性膳食纤维能直接激活可以杀死癌细胞的白细胞。\n\n在实验中，我从小白鼠的血液里分离出了杀灭癌细胞的NK细胞、T细胞、中性粒细胞、巨噬细胞等白细胞，然后往里面直接加入了溶有香菇的可溶性膳食纤维的溶液，可以发现白细胞变得更活跃了。\n\n可溶性膳食纤维能够增加益生菌、直接激活白细胞的双重功效，有助于预防癌症。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch6_soluble_immune"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "dietary_fiber",
+      "relation": "蔬菜汤是同时补充可溶性与不可溶性膳食纤维的便捷方式",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch6_soup_fiber",
+      "excerpt": "蔬菜汤最适合用来补充现代人缺少的膳食纤维。\n\n从预防慢性病的角度来看，成年人每天的膳食纤维最佳摄入量是24 g以上。但是据日本厚生劳动省的调查显示，实际上的平均摄入量只有14 g左右，绝大多数日本人的膳食纤维都摄入不足。\n\n喝蔬菜汤是解决膳食纤维不足的最简单的方法。膳食纤维有可溶性膳食纤维和不可溶性膳食纤维两种，其各自的功能也不一样，而喝蔬菜汤可以同时摄入这两种膳食纤维。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch6_soup_fiber",
+      "evidences": [
+        {
+          "excerpt": "蔬菜汤最适合用来补充现代人缺少的膳食纤维。\n\n从预防慢性病的角度来看，成年人每天的膳食纤维最佳摄入量是24 g以上。但是据日本厚生劳动省的调查显示，实际上的平均摄入量只有14 g左右，绝大多数日本人的膳食纤维都摄入不足。\n\n喝蔬菜汤是解决膳食纤维不足的最简单的方法。膳食纤维有可溶性膳食纤维和不可溶性膳食纤维两种，其各自的功能也不一样，而喝蔬菜汤可以同时摄入这两种膳食纤维。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch6_soup_fiber"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "seaweed",
+      "target": "dietary_fiber",
+      "relation": "海带、裙带菜等海藻富含可溶性膳食纤维相关成分",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch6_seaweed_fiber",
+      "excerpt": "可溶性膳食纤维包括蔬菜和水果中富含的果胶、海带和裙带菜中的脱镁叶绿素、菌菇类里的β-葡聚糖、牛蒡里的菊粉等。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch6_seaweed_fiber",
+      "evidences": [
+        {
+          "excerpt": "可溶性膳食纤维包括蔬菜和水果中富含的果胶、海带和裙带菜中的脱镁叶绿素、菌菇类里的β-葡聚糖、牛蒡里的菊粉等。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch6_seaweed_fiber"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "reactive_oxygen",
+      "target": "chronic_inflammation",
+      "relation": "免疫系统过度反应持续释放活性氧，与组织持续损伤及慢性炎症形成相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch7_inflam_def",
+      "excerpt": "而慢性炎症则是会在体内慢慢持续很久的轻型炎症。其产生炎症的原因和急性炎症相同，症状却会持续几个月甚至几年。\n\n慢性炎症长期持续的主要原因是免疫系统遭到进攻后而引发的过度反应。当免疫系统反应过度时，即使体内没有病毒或细菌了，机体还是会不停释放出活性氧，进而使组织细胞受到持续性的伤害，炎症就会变成慢性炎症。而且身体的抗氧化能力减弱，活性氧增加过剩会引发体内氧化加剧，产生炎症。\n\n如果炎症在同一个地方长期持续产生，细胞和基因都会受到损伤，最终导致身体出现重大疾病，例如从慢性肝炎发展成肝功能衰竭、肝癌；从慢性胃炎、胃溃疡发展成胃癌等。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch7_inflam_def",
+      "evidences": [
+        {
+          "excerpt": "而慢性炎症则是会在体内慢慢持续很久的轻型炎症。其产生炎症的原因和急性炎症相同，症状却会持续几个月甚至几年。\n\n慢性炎症长期持续的主要原因是免疫系统遭到进攻后而引发的过度反应。当免疫系统反应过度时，即使体内没有病毒或细菌了，机体还是会不停释放出活性氧，进而使组织细胞受到持续性的伤害，炎症就会变成慢性炎症。而且身体的抗氧化能力减弱，活性氧增加过剩会引发体内氧化加剧，产生炎症。\n\n如果炎症在同一个地方长期持续产生，细胞和基因都会受到损伤，最终导致身体出现重大疾病，例如从慢性肝炎发展成肝功能衰竭、肝癌；从慢性胃炎、胃溃疡发展成胃癌等。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch7_inflam_def"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "chronic_inflammation",
+      "target": "digestive_cancer_risk",
+      "relation": "长期慢性炎症与消化系统器官癌症发生相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch7_inflam_cancer",
+      "excerpt": "人们常说“癌症是没有终止的炎症”，长期持续的炎症状态（慢性炎症）是引发肝脏、胃、胆囊、胆管、胰脏等消化系统器官癌症的原因。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch7_inflam_cancer",
+      "evidences": [
+        {
+          "excerpt": "人们常说“癌症是没有终止的炎症”，长期持续的炎症状态（慢性炎症）是引发肝脏、胃、胆囊、胆管、胰脏等消化系统器官癌症的原因。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch7_inflam_cancer"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "glycation",
+      "target": "chronic_inflammation",
+      "relation": "高血糖下蛋白质糖化与活性氧相关，并与器官炎症及心脑肾风险相连",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch7_glycation",
+      "excerpt": "高血糖也会引起慢性炎症。当葡萄糖在血液中达到高浓度时，会和血液里以及机体里的蛋白质结合，发生糖化的化学反应。糖化的过程也和活性氧息息相关。\n\n针对糖尿病的检查项目中有一项是检查糖化血红蛋白(HbA1c)。糖化血红蛋白是血液里红细胞中的血红蛋白与血清中的糖类（主要是葡萄糖）相结合，产生的糖化蛋白质。糖化血红蛋白是反应血液糖化的指标。具体来说，如果这个数值比较高，说明构成全身血管的细胞和构成血管的其他蛋白质都受到了糖化反应的损伤。\n\n糖化程度越强，大脑、心脏、肾脏等器官受到损伤而引发炎症的危险性就越大，以及患上脑梗死、阿尔茨海默病、认知障碍、心肌梗死、肾功能衰竭等疾病的风险性就越高。慢性炎症带来的健康损害是不可估量的。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch7_glycation",
+      "evidences": [
+        {
+          "excerpt": "高血糖也会引起慢性炎症。当葡萄糖在血液中达到高浓度时，会和血液里以及机体里的蛋白质结合，发生糖化的化学反应。糖化的过程也和活性氧息息相关。\n\n针对糖尿病的检查项目中有一项是检查糖化血红蛋白(HbA1c)。糖化血红蛋白是血液里红细胞中的血红蛋白与血清中的糖类（主要是葡萄糖）相结合，产生的糖化蛋白质。糖化血红蛋白是反应血液糖化的指标。具体来说，如果这个数值比较高，说明构成全身血管的细胞和构成血管的其他蛋白质都受到了糖化反应的损伤。\n\n糖化程度越强，大脑、心脏、肾脏等器官受到损伤而引发炎症的危险性就越大，以及患上脑梗死、阿尔茨海默病、认知障碍、心肌梗死、肾功能衰竭等疾病的风险性就越高。慢性炎症带来的健康损害是不可估量的。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch7_glycation"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "hba1c",
+      "target": "cardiometabolic",
+      "relation": "较高糖化血红蛋白反映全身血管蛋白糖化损伤，与心脑肾等并发症风险相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch7_hba1c",
+      "excerpt": "针对糖尿病的检查项目中有一项是检查糖化血红蛋白(HbA1c)。糖化血红蛋白是血液里红细胞中的血红蛋白与血清中的糖类（主要是葡萄糖）相结合，产生的糖化蛋白质。糖化血红蛋白是反应血液糖化的指标。具体来说，如果这个数值比较高，说明构成全身血管的细胞和构成血管的其他蛋白质都受到了糖化反应的损伤。\n\n糖化程度越强，大脑、心脏、肾脏等器官受到损伤而引发炎症的危险性就越大，以及患上脑梗死、阿尔茨海默病、认知障碍、心肌梗死、肾功能衰竭等疾病的风险性就越高。慢性炎症带来的健康损害是不可估量的。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch7_hba1c",
+      "evidences": [
+        {
+          "excerpt": "针对糖尿病的检查项目中有一项是检查糖化血红蛋白(HbA1c)。糖化血红蛋白是血液里红细胞中的血红蛋白与血清中的糖类（主要是葡萄糖）相结合，产生的糖化蛋白质。糖化血红蛋白是反应血液糖化的指标。具体来说，如果这个数值比较高，说明构成全身血管的细胞和构成血管的其他蛋白质都受到了糖化反应的损伤。\n\n糖化程度越强，大脑、心脏、肾脏等器官受到损伤而引发炎症的危险性就越大，以及患上脑梗死、阿尔茨海默病、认知障碍、心肌梗死、肾功能衰竭等疾病的风险性就越高。慢性炎症带来的健康损害是不可估量的。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch7_hba1c"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "reactive_oxygen",
+      "target": "immune_activation",
+      "relation": "流感感染模型中宿主活性氧过量与肺炎致死相关；补充抗氧化物质后存活率上升",
+      "direction": "risk",
+      "evidence_type": "book_notes_animal_experiment",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch7_flu_ros",
+      "excerpt": "我培养了一只感染了流感病毒的小白鼠，并探明其患病经过。我发现到了病情最严重的阶段，小白鼠快要死掉的时候，其肺部细胞内并没有致病的流感病毒。\n\n没有流感病毒，那小白鼠为什么死了呢？我调查原因后发现，小白鼠的肺里产生了大量的一种叫作“超氧化物”的活性氧，是它引发了肺炎。正如字面意思一样，肺炎就是在肺部出现的炎症。\n\n前面我提到过，当有“外敌”入侵时，机体内的白细胞会释放出活性氧击退外来异物。小白鼠的体内也出现了大量的活性氧，给肺部造成了损伤。\n\n我认为流感病毒只是一个诱因，小白鼠的真正死因是活性氧。为了验证这一猜想，我给小白鼠体内补充了可以消除活性氧的物质，结果感染流感病毒的小白鼠有95%都存活了下来。\n\n我通过实验在全世界首次证实了“感染病毒后杀死宿主的并不是病毒，而是活性氧”。这一研究成果发表在了美国的《科学(Science)》杂志上，在世界范围内引起轰动。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch7_flu_ros",
+      "evidences": [
+        {
+          "excerpt": "我培养了一只感染了流感病毒的小白鼠，并探明其患病经过。我发现到了病情最严重的阶段，小白鼠快要死掉的时候，其肺部细胞内并没有致病的流感病毒。\n\n没有流感病毒，那小白鼠为什么死了呢？我调查原因后发现，小白鼠的肺里产生了大量的一种叫作“超氧化物”的活性氧，是它引发了肺炎。正如字面意思一样，肺炎就是在肺部出现的炎症。\n\n前面我提到过，当有“外敌”入侵时，机体内的白细胞会释放出活性氧击退外来异物。小白鼠的体内也出现了大量的活性氧，给肺部造成了损伤。\n\n我认为流感病毒只是一个诱因，小白鼠的真正死因是活性氧。为了验证这一猜想，我给小白鼠体内补充了可以消除活性氧的物质，结果感染流感病毒的小白鼠有95%都存活了下来。\n\n我通过实验在全世界首次证实了“感染病毒后杀死宿主的并不是病毒，而是活性氧”。这一研究成果发表在了美国的《科学(Science)》杂志上，在世界范围内引起轰动。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch7_flu_ros"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "phytochemicals",
+      "target": "chronic_inflammation",
+      "relation": "洋葱、西蓝花、青椒、菠菜等中的类黄酮与抗炎、抗菌、抗病毒及抑制慢性炎症相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch7_flavonoid",
+      "excerpt": "蔬菜汤中富含大量的植化素，植化素有消除活性氧、抑制炎症的功效。洋葱、西蓝花、青椒、菠菜等蔬菜中含有丰富的类黄酮，具有抗炎、抗菌、抗病毒的作用，能抑制慢性炎症。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch7_flavonoid",
+      "evidences": [
+        {
+          "excerpt": "蔬菜汤中富含大量的植化素，植化素有消除活性氧、抑制炎症的功效。洋葱、西蓝花、青椒、菠菜等蔬菜中含有丰富的类黄酮，具有抗炎、抗菌、抗病毒的作用，能抑制慢性炎症。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch7_flavonoid"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "glutathione",
+      "target": "lipid_radicals",
+      "relation": "谷胱甘肽消除脂质自由基，与抗氧化抗炎及煮后吸收改善相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch7_gsh",
+      "excerpt": "谷胱甘肽能消除毒性最强的脂质自由基，预防癌症和炎症。谷胱甘肽的抗氧化能力很强大，常被用在药剂中治疗慢性肝炎、白内障、口角炎、皮肤炎、溃疡、动脉硬化等疾病。\n\n谷胱甘肽能溶于水，把蔬菜煮过后能更好地吸收谷胱甘肽。从蔬菜汤中获取的谷胱甘肽被肠道吸收后，跟随流动的血液被带向全身，可以起到抗氧化和抗炎的作用。\n\n谷胱甘肽多存在于芹菜、菠菜等黄绿色蔬菜中，青椒、西蓝花的茎、花椰菜、土豆中也含有谷胱甘肽。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch7_gsh",
+      "evidences": [
+        {
+          "excerpt": "谷胱甘肽能消除毒性最强的脂质自由基，预防癌症和炎症。谷胱甘肽的抗氧化能力很强大，常被用在药剂中治疗慢性肝炎、白内障、口角炎、皮肤炎、溃疡、动脉硬化等疾病。\n\n谷胱甘肽能溶于水，把蔬菜煮过后能更好地吸收谷胱甘肽。从蔬菜汤中获取的谷胱甘肽被肠道吸收后，跟随流动的血液被带向全身，可以起到抗氧化和抗炎的作用。\n\n谷胱甘肽多存在于芹菜、菠菜等黄绿色蔬菜中，青椒、西蓝花的茎、花椰菜、土豆中也含有谷胱甘肽。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch7_gsh"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "glutathione",
+      "target": "chronic_inflammation",
+      "relation": "谷胱甘肽与抗氧化抗炎作用相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch7_gsh_inflam",
+      "excerpt": "谷胱甘肽能溶于水，把蔬菜煮过后能更好地吸收谷胱甘肽。从蔬菜汤中获取的谷胱甘肽被肠道吸收后，跟随流动的血液被带向全身，可以起到抗氧化和抗炎的作用。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch7_gsh_inflam",
+      "evidences": [
+        {
+          "excerpt": "谷胱甘肽能溶于水，把蔬菜煮过后能更好地吸收谷胱甘肽。从蔬菜汤中获取的谷胱甘肽被肠道吸收后，跟随流动的血液被带向全身，可以起到抗氧化和抗炎的作用。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch7_gsh_inflam"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "dietary_fiber",
+      "target": "chronic_inflammation",
+      "relation": "膳食纤维抑制葡萄糖吸收，与预防炎症相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch7_fiber_inflam",
+      "excerpt": "蔬菜汤中富含可抑制葡萄糖吸收的可溶性膳食纤维和不可溶性膳食纤维（如半纤维素、果胶等）。摄取膳食纤维，抑制葡萄糖的吸收，有利于预防炎症。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch7_fiber_inflam",
+      "evidences": [
+        {
+          "excerpt": "蔬菜汤中富含可抑制葡萄糖吸收的可溶性膳食纤维和不可溶性膳食纤维（如半纤维素、果胶等）。摄取膳食纤维，抑制葡萄糖的吸收，有利于预防炎症。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch7_fiber_inflam"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetables_greens",
+      "target": "liver_chronic",
+      "relation": "乙肝病毒携带者队列中较高蔬菜摄入频率与较低肝癌发生率相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_population_observation",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch7_veg_hcc",
+      "excerpt": "该研究是在中国台湾地区开展的一项针对B型肝炎（乙肝）病毒的发展经过，进行了为期8～10年的追踪调查。\n\n在肝炎病毒的发展过程中，每周平均摄取蔬菜6次以上的人，比摄取数量少于他们的人，肝癌的发生率降低了约20%。这一研究结果对肝炎患者来说是一个巨大的喜讯。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch7_veg_hcc",
+      "evidences": [
+        {
+          "excerpt": "该研究是在中国台湾地区开展的一项针对B型肝炎（乙肝）病毒的发展经过，进行了为期8～10年的追踪调查。\n\n在肝炎病毒的发展过程中，每周平均摄取蔬菜6次以上的人，比摄取数量少于他们的人，肝癌的发生率降低了约20%。这一研究结果对肝炎患者来说是一个巨大的喜讯。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch7_veg_hcc"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "chronic_inflammation",
+      "relation": "蔬菜汤抗氧化与抗炎成分与抑制慢性炎症发展及相关疾病恶化相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_ch7_soup_inflam",
+      "excerpt": "喝蔬菜汤可以发挥蔬菜其中抗氧化成分和抗炎症成分的功效，抑制慢性炎症的发展，预防因慢性炎症而导致的疾病。\n\n我来介绍一下证实蔬菜功效的一项研究。该研究是在中国台湾地区开展的一项针对B型肝炎（乙肝）病毒的发展经过，进行了为期8～10年的追踪调查。\n\n在肝炎病毒的发展过程中，每周平均摄取蔬菜6次以上的人，比摄取数量少于他们的人，肝癌的发生率降低了约20%。这一研究结果对肝炎患者来说是一个巨大的喜讯。\n\n患有胃炎、中耳炎、鼻炎、牙周病、哮喘、关节风湿病等慢性炎症的人，坚持每天喝蔬菜汤非常有助于恢复以及维持健康。即便是没有患这些疾病的人，机体内某处也会或多或少出现炎症，因此也非常推荐食用蔬菜汤。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_ch7_soup_inflam",
+      "evidences": [
+        {
+          "excerpt": "喝蔬菜汤可以发挥蔬菜其中抗氧化成分和抗炎症成分的功效，抑制慢性炎症的发展，预防因慢性炎症而导致的疾病。\n\n我来介绍一下证实蔬菜功效的一项研究。该研究是在中国台湾地区开展的一项针对B型肝炎（乙肝）病毒的发展经过，进行了为期8～10年的追踪调查。\n\n在肝炎病毒的发展过程中，每周平均摄取蔬菜6次以上的人，比摄取数量少于他们的人，肝癌的发生率降低了约20%。这一研究结果对肝炎患者来说是一个巨大的喜讯。\n\n患有胃炎、中耳炎、鼻炎、牙周病、哮喘、关节风湿病等慢性炎症的人，坚持每天喝蔬菜汤非常有助于恢复以及维持健康。即便是没有患这些疾病的人，机体内某处也会或多或少出现炎症，因此也非常推荐食用蔬菜汤。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_ch7_soup_inflam"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vitamin_c",
+      "target": "phytochemicals",
+      "relation": "蔬菜中维生素C与维生素E、植化素共存时加热后仍可大量保留并溶入汤中",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_qa_vitc",
+      "excerpt": "加热后蔬菜中的维生素C就会被破坏这个观点是错的，这是实验室环境中的情况。维生素C单质溶于水，加热后的确很快就会被破坏。但蔬菜中的维生素C、维生素E和植化素等其他抗氧化物质共同存在，所以一大半都会被保留下来。维生素C会溶解进蔬菜汤里。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_qa_vitc",
+      "evidences": [
+        {
+          "excerpt": "加热后蔬菜中的维生素C就会被破坏这个观点是错的，这是实验室环境中的情况。维生素C单质溶于水，加热后的确很快就会被破坏。但蔬菜中的维生素C、维生素E和植化素等其他抗氧化物质共同存在，所以一大半都会被保留下来。维生素C会溶解进蔬菜汤里。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_qa_vitc"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "heme_iron",
+      "target": "lipid_radicals",
+      "relation": "体内过剩铁与过氧化脂质反应生成脂质自由基，与癌症风险相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_qa_iron",
+      "excerpt": "实验证明，身体里过剩的铁元素会和过氧化脂质发生化学反应，产生能引发癌症的“脂质自由基”。女性在生理期的时候会流失一部分铁元素，所以大部分人都需要补铁。但绝经后的女性和成年男性的体内很容易存积铁，所以不需要担心铁不足。相反，从预防癌症的角度看，富含铁的肝脏、红肉和鱼肉中带血的部分，这些都需要控制摄入。",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_qa_iron",
+      "evidences": [
+        {
+          "excerpt": "实验证明，身体里过剩的铁元素会和过氧化脂质发生化学反应，产生能引发癌症的“脂质自由基”。女性在生理期的时候会流失一部分铁元素，所以大部分人都需要补铁。但绝经后的女性和成年男性的体内很容易存积铁，所以不需要担心铁不足。相反，从预防癌症的角度看，富含铁的肝脏、红肉和鱼肉中带血的部分，这些都需要控制摄入。",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_qa_iron"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vegetable_soup",
+      "target": "antioxidant_defense",
+      "relation": "蔬菜汤增强机体抗氧化能力，与预防癌症、衰老及慢性病相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id": "avs_epi_soup_ros",
+      "excerpt": "虽然我们看不到万病之源——活性氧，但我调查研究了蔬菜的抗氧化物质，发现蔬菜汤能抓住并消灭活性氧。喝蔬菜汤能增强机体的抗氧化能力，有助于预防癌症、衰老以及各种慢性病。\n\n蔬菜汤是击退看不见的活性氧的有效方法。能把这本有关蔬菜汤的书呈现给各位读者，是我作为笔者的至高荣幸。\n\n===== SPINE 056 | Liang Ren De Shu Cai Tang_split_055.html =====\n\n未知\n\n参考文献\n\n『活性酸素と野菜の力』前田浩著　金澤文子執筆協力　幸書房\n\n《活性氧和蔬菜的力量》前田浩著　金泽文子执笔合作　日本幸书房出版\n\n『がん治療革命「副作用のない抗がん剤」の誕生』　奥野修司著　文藝春秋\n\n《癌症治疗革命“没有副作用的抗癌药”的诞生》　奥野修司著　日本文艺春秋出版\n\n『青木八郎記念予防医学広報助成事業団　疫学·予防情報　第10巻』　三重大学医学部附属病院疫学センター\n\n《青木八郎纪念预防医学宣传协助事业团传染学、预防信息　第10卷》　三重大学医学部附属医院传染学中心\n\n『Newton』　2017年10月号　ニュートンプレス\n\n《Newton》　2017年10月　Newtonpress\n\n『老後と介護を劇的に変える食事術』　川口美喜子著　晶文社\n\n《改变晚年与看护生活的饮食术》　川口美喜子著　日本晶文社出版\n\nAlexander S.Sun,etc.Phase I/II study of stage III and IV non- small cell lung cancer patients taking a specific dietary supplement.Nutrition and Cancer 34(1),62—69 (1999)\n\nAlexander S.Sun,etc.Pilot study of a specific dietary supplement in tumor-bearing mice and in stage IIIB and IV non-small cell lung cancer patients.Nutrition and Cancer 39,85—95 (2001)",
+      "audience": "general",
+      "source_id": "amazing_veggie_soup",
+      "source_title": "惊人的蔬菜汤",
+      "id": "avs_epi_soup_ros",
+      "evidences": [
+        {
+          "excerpt": "虽然我们看不到万病之源——活性氧，但我调查研究了蔬菜的抗氧化物质，发现蔬菜汤能抓住并消灭活性氧。喝蔬菜汤能增强机体的抗氧化能力，有助于预防癌症、衰老以及各种慢性病。\n\n蔬菜汤是击退看不见的活性氧的有效方法。能把这本有关蔬菜汤的书呈现给各位读者，是我作为笔者的至高荣幸。\n\n===== SPINE 056 | Liang Ren De Shu Cai Tang_split_055.html =====\n\n未知\n\n参考文献\n\n『活性酸素と野菜の力』前田浩著　金澤文子執筆協力　幸書房\n\n《活性氧和蔬菜的力量》前田浩著　金泽文子执笔合作　日本幸书房出版\n\n『がん治療革命「副作用のない抗がん剤」の誕生』　奥野修司著　文藝春秋\n\n《癌症治疗革命“没有副作用的抗癌药”的诞生》　奥野修司著　日本文艺春秋出版\n\n『青木八郎記念予防医学広報助成事業団　疫学·予防情報　第10巻』　三重大学医学部附属病院疫学センター\n\n《青木八郎纪念预防医学宣传协助事业团传染学、预防信息　第10卷》　三重大学医学部附属医院传染学中心\n\n『Newton』　2017年10月号　ニュートンプレス\n\n《Newton》　2017年10月　Newtonpress\n\n『老後と介護を劇的に変える食事術』　川口美喜子著　晶文社\n\n《改变晚年与看护生活的饮食术》　川口美喜子著　日本晶文社出版\n\nAlexander S.Sun,etc.Phase I/II study of stage III and IV non- small cell lung cancer patients taking a specific dietary supplement.Nutrition and Cancer 34(1),62—69 (1999)\n\nAlexander S.Sun,etc.Pilot study of a specific dietary supplement in tumor-bearing mice and in stage IIIB and IV non-small cell lung cancer patients.Nutrition and Cancer 39,85—95 (2001)",
+          "source_title": "惊人的蔬菜汤",
+          "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+          "source_id": "amazing_veggie_soup",
+          "note_id": "avs_epi_soup_ros"
         }
       ],
       "domain": "health"
