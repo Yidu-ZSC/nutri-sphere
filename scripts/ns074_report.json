@@ -1,0 +1,241 @@
+{
+  "task": "TASK-NS-074",
+  "from_data_version": "2.1",
+  "to_data_version": "2.2",
+  "schema_version": "0.7",
+  "before": {
+    "nodes": 139,
+    "links": 325
+  },
+  "after": {
+    "nodes": 159,
+    "links": 448
+  },
+  "new_nodes": [
+    "cancer_overall",
+    "chronic_disease",
+    "liver_cancer",
+    "cognitive_decline",
+    "kidney_stones",
+    "type1_diabetes",
+    "osteoporosis",
+    "cataract",
+    "aflatoxin",
+    "nutrient_supplements",
+    "plant_protein",
+    "dietary_fat",
+    "vitamin_d",
+    "blood_cholesterol",
+    "estrogen_level",
+    "iron_status",
+    "genetic_predisposition",
+    "hbv_infection",
+    "hormone_replacement_therapy",
+    "low_carb_diet"
+  ],
+  "new_node_count": 20,
+  "append_candidates": 18,
+  "append_evidence_rows": 63,
+  "new_edges": 123,
+  "batch_internal_appends_flagged_new": 0,
+  "parallel_pairs_after": 0,
+  "china_study_top_level": 123,
+  "china_study_citing": 141,
+  "direction_new": {
+    "protective": 50,
+    "risk": 73
+  },
+  "type_counts_after": {
+    "diet_pattern": 3,
+    "food_category": 7,
+    "nutrient": 16,
+    "food": 25,
+    "compound": 17,
+    "metabolite": 6,
+    "mechanism": 39,
+    "disease": 41,
+    "biomarker": 5
+  },
+  "append_hosts": [
+    {
+      "candidate_note_id": "cs_c07_p5_obesity_risk",
+      "endpoints": "ultra_processed->obesity_risk",
+      "host_id": "lit_upf_outcomes_elizabeth_2020",
+      "host_source_id": "(lit)",
+      "host_relation": "超加工食品与多种健康结局的叙述性综述",
+      "candidate_relation": "精加工食品为主的饮食与肥胖流行相关",
+      "existing_relation": "超加工食品与多种健康结局的叙述性综述",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "cs_c08_p8_breast_prostate_risk",
+      "endpoints": "animal_foods->breast_prostate_risk",
+      "host_id": "hntd_ch13_choline_fatal",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "较高胆碱摄入与致命性前列腺癌风险相关",
+      "candidate_relation": "动物性食物摄入与乳腺癌、前列腺癌等激素相关癌症风险相关",
+      "existing_relation": "较高胆碱摄入与致命性前列腺癌风险相关",
+      "evidences_appended": 7
+    },
+    {
+      "candidate_note_id": "cs_c09_p20_type2_diabetes",
+      "endpoints": "plant_based_diet->type2_diabetes",
+      "host_id": "hntd_ch06_diet_prevalence",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "不同饮食结构与糖尿病患病率差异相关",
+      "candidate_relation": "植物性膳食模式与较低2型糖尿病发生及更好血糖相关指标相关",
+      "existing_relation": "不同饮食结构与糖尿病患病率差异相关",
+      "evidences_appended": 8
+    },
+    {
+      "candidate_note_id": "cs_c09_p21_coronary_heart_disease",
+      "endpoints": "animal_foods->coronary_heart_disease",
+      "host_id": "hntd_ch01_animal_ldl_trio",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "动物性产品与加工食品来源的血脂相关因素与冠心病风险相关",
+      "candidate_relation": "动物性食物摄入与冠心病风险相关",
+      "existing_relation": "动物性产品与加工食品来源的血脂相关因素与冠心病风险相关",
+      "evidences_appended": 5
+    },
+    {
+      "candidate_note_id": "cs_c09_p23_breast_prostate_risk",
+      "endpoints": "dairy->breast_prostate_risk",
+      "host_id": "hntd_ch13_dairy_hormones",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "乳制品中天然激素与生长因子与激素敏感性肿瘤风险相关",
+      "candidate_relation": "乳制品摄入与前列腺癌等激素相关癌症风险相关",
+      "existing_relation": "乳制品中天然激素与生长因子与激素敏感性肿瘤风险相关",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "cs_c10_p9_coronary_heart_disease",
+      "endpoints": "plant_based_diet->coronary_heart_disease",
+      "host_id": "hntd_ch01_angina_relief",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "以蔬食为主的饮食结构与心绞痛发作减少相关的观察",
+      "candidate_relation": "以全食物植物为主的低脂膳食与冠心病进展放缓及事件减少相关",
+      "existing_relation": "以蔬食为主的饮食结构与心绞痛发作减少相关的观察",
+      "evidences_appended": 11
+    },
+    {
+      "candidate_note_id": "cs_c10_p29_iatrogenic_harm",
+      "endpoints": "medical_care_exposure->iatrogenic_harm",
+      "host_id": "hntd_ch15_iatrogenic_scale",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "药物不良反应与医疗失误相关死亡负担观察",
+      "candidate_relation": "医疗干预暴露与药物不良反应、医疗差错等医源性伤害相关",
+      "existing_relation": "药物不良反应与医疗失误相关死亡负担观察",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "cs_c13_p103_digestive_cancer_risk",
+      "endpoints": "dietary_fiber->digestive_cancer_risk",
+      "host_id": "avs_ch6_fiber_colon",
+      "host_source_id": "amazing_veggie_soup",
+      "host_relation": "不可溶性膳食纤维促进排便并吸附有害物质，与大肠癌预防相关",
+      "candidate_relation": "膳食纤维摄入与较低直肠癌、结肠癌等消化道癌风险相关",
+      "existing_relation": "不可溶性膳食纤维促进排便并吸附有害物质，与大肠癌预防相关",
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "cs_c13_p170_obesity_risk",
+      "endpoints": "plant_based_diet->obesity_risk",
+      "host_id": "hntd_pref_dqi",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "较高全植物饮食质量指数与较低腹部肥胖、高血压及血脂异常风险相关",
+      "candidate_relation": "以全食物植物为主的膳食模式与较低体重及肥胖风险相关",
+      "existing_relation": "较高全植物饮食质量指数与较低腹部肥胖、高血压及血脂异常风险相关",
+      "evidences_appended": 7
+    },
+    {
+      "candidate_note_id": "cs_c13_p187_breast_prostate_risk",
+      "endpoints": "plant_based_diet->breast_prostate_risk",
+      "host_id": "hntd_ch11_aicr_three",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "节制饮酒、植物性食物为主与维持健康体重等与较低乳腺癌风险相关",
+      "candidate_relation": "植物性膳食模式与较低乳腺癌、前列腺癌风险相关",
+      "existing_relation": "节制饮酒、植物性食物为主与维持健康体重等与较低乳腺癌风险相关",
+      "evidences_appended": 3
+    },
+    {
+      "candidate_note_id": "cs_c14_p41_atherosclerosis",
+      "endpoints": "dietary_cholesterol->atherosclerosis",
+      "host_id": "hntd_ch01_ldl_target",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "较低LDL水平与动脉粥样硬化进程停滞相关的降脂试验观察",
+      "candidate_relation": "膳食胆固醇摄入与实验性动脉粥样硬化相关（动物研究）",
+      "existing_relation": "较低LDL水平与动脉粥样硬化进程停滞相关的降脂试验观察",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "cs_c16_p24_type2_diabetes",
+      "endpoints": "animal_foods->type2_diabetes",
+      "host_id": "hntd_ch06_food_pollutants",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "动物性食品中持久性污染物暴露与糖尿病发病率相关",
+      "candidate_relation": "动物性食物摄入与较高2型糖尿病发生相关",
+      "existing_relation": "动物性食品中持久性污染物暴露与糖尿病发病率相关",
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "cs_c17_p83_digestive_cancer_risk",
+      "endpoints": "animal_foods->digestive_cancer_risk",
+      "host_id": "hntd_ch04_chicken_pancreas",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "禽肉摄入与胰腺癌风险相关的观察研究归纳",
+      "candidate_relation": "动物性食物摄入与结直肠癌风险相关",
+      "existing_relation": "禽肉摄入与胰腺癌风险相关的观察研究归纳",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "cs_c17_p104_digestive_cancer_risk",
+      "endpoints": "plant_based_diet->digestive_cancer_risk",
+      "host_id": "hntd_ch13_plant_protein",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "较高植物性蛋白占比与较低膀胱癌风险相关",
+      "candidate_relation": "植物性膳食模式与较低结直肠癌风险相关",
+      "existing_relation": "较高植物性蛋白占比与较低膀胱癌风险相关",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "cs_c17_p111_digestive_cancer_risk",
+      "endpoints": "aerobic_exercise->digestive_cancer_risk",
+      "host_id": "avs_col2_aero_risk",
+      "host_source_id": "amazing_veggie_soup",
+      "host_relation": "积极有氧运动与较低癌症、高血压、糖尿病风险的观察相关",
+      "candidate_relation": "身体活动与较低结肠癌风险相关",
+      "existing_relation": "积极有氧运动与较低癌症、高血压、糖尿病风险的观察相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "cs_c20_p94_autoimmune",
+      "endpoints": "plant_based_diet->autoimmune",
+      "host_id": "eat_to_heal_10_plant_ms",
+      "host_source_id": "eat_to_heal",
+      "host_relation": "高蔬菜低蛋白饮食与多发性硬化复发率及抗炎菌群变化相关",
+      "candidate_relation": "植物性膳食模式与部分自身免疫病病情进展较慢相关",
+      "existing_relation": "高蔬菜低蛋白饮食与多发性硬化复发率及抗炎菌群变化相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "cs_c21_p26_hypertension",
+      "endpoints": "plant_based_diet->hypertension",
+      "host_id": "hntd_ch07_dash",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "得舒等富含蔬果低钠饮食模式与血压管理相关",
+      "candidate_relation": "植物性膳食模式与血压及血脂指标下降相关",
+      "existing_relation": "得舒等富含蔬果低钠饮食模式与血压管理相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "cs_c24_p77_breast_prostate_risk",
+      "endpoints": "tomato->breast_prostate_risk",
+      "host_id": "eat_to_heal_06_tomato_prostate",
+      "host_source_id": "eat_to_heal",
+      "host_relation": "番茄/番茄酱摄入与前列腺癌风险及侵袭性相关",
+      "candidate_relation": "整颗西红柿摄入与较低前列腺癌风险相关",
+      "existing_relation": "番茄/番茄酱摄入与前列腺癌风险及侵袭性相关",
+      "evidences_appended": 1
+    }
+  ]
+}

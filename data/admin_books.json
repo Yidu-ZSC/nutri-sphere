@@ -65,11 +65,12 @@
       "theme": "植物性饮食与慢病",
       "relevance": "high",
       "kb_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
-      "status": "index_only",
+      "status": "ingested",
       "publisher": "中信出版集团",
       "isbn": "9787521749502",
       "cover_url": "https://cdn.weread.qq.com/weread/cover/87/cpplatform_1zdqgcxy5gqcpkjt4yomdu/t6_cpplatform_1zdqgcxy5gqcpkjt4yomdu1675672855.jpg",
-      "translator": "吕奕欣 倪婉君 张家瑞"
+      "translator": "吕奕欣 倪婉君 张家瑞",
+      "source_id": "china_study"
     },
     {
       "id": "amazing_veggie_soup",
