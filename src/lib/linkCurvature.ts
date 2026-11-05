@@ -2,8 +2,9 @@
 export const LONG_COLLINEAR_CURVATURE = 0.22;
 
 export interface LinkEndpoints {
-  source: string;
-  target: string;
+  /** Force-sim may replace ids with node objects; endpointId() normalizes. */
+  source: string | { id: string };
+  target: string | { id: string };
 }
 
 export interface NodePosition {
