@@ -168,8 +168,8 @@ export function DisclaimerBar({
                     <dd>来源属于哪一种资料。当前种子主要是书摘，另有少量文献边。名称只说明来源，不是临床等级。</dd>
                   </div>
                   <div>
-                    <dt>摘录 excerpt / 局限 limitations / 来源文件 source_file</dt>
-                    <dd>摘录保持原文，不在界面改写。局限是该条自己标明的限制。来源文件名用于回溯。</dd>
+                    <dt>摘录 excerpt / 局限 limitations</dt>
+                    <dd>摘录保持原文，不在界面改写。局限是该条资料自己标明的限制。</dd>
                   </div>
                 </dl>
               </section>

@@ -2,9 +2,7 @@ import { useEffect, useRef, useState, type PointerEvent, type ReactNode } from '
 import {
   audienceLabel,
   directionLabel,
-  evidenceAssurance,
   evidenceBadge,
-  evidenceDetail,
   evidenceLabel,
   evidenceStatus,
   evidenceTrack,
@@ -14,7 +12,6 @@ import {
   nodeTypeLabel,
   strengthLabel,
   withEnum,
-  DISCLAIMER_SHORT,
 } from '../lib/copy';
 import { DIET_PATTERN_CARDS, type DietPatternCard } from '../lib/dietPatterns';
 import { PATTERN_SHELL } from '../lib/dietPatternDetails';
@@ -300,35 +297,6 @@ function MoreEvidences({
   );
 }
 
-function SourceFile({ name }: { name: string }) {
-  const [copied, setCopied] = useState(false);
-  return (
-    <div>
-      <dt>来源文件</dt>
-      <dd className="source-line">
-        <code>{name}</code>
-        <button
-          type="button"
-          className="btn btn--ghost"
-          onClick={() => {
-            const finish = () => {
-              setCopied(true);
-              window.setTimeout(() => setCopied(false), 1200);
-            };
-            if (navigator.clipboard?.writeText) {
-              void navigator.clipboard.writeText(name).then(finish).catch(finish);
-              return;
-            }
-            finish();
-          }}
-        >
-          {copied ? '已复制' : '复制'}
-        </button>
-      </dd>
-    </div>
-  );
-}
-
 function CitationBlock({ citation }: { citation: GraphCitation }) {
   const byline = [citation.authors, citation.year == null ? '' : String(citation.year)].filter(Boolean);
   return (
@@ -424,13 +392,6 @@ function LinkBody({
           </span>
         </div>
         <MoreDetail>
-          <dl className="fields">
-            <SourceFile name={link.source_file ?? '未注明'} />
-          </dl>
-          <p className="assurance">{evidenceAssurance(link.evidence_type, link.strength)}</p>
-          <dl className="fields">
-            <Field label="证据类型说明" children={evidenceDetail(link.evidence_type)} />
-          </dl>
           {link.citation ? <CitationBlock citation={link.citation} /> : null}
           {link.audience ? (
             <dl className="fields">
@@ -469,7 +430,6 @@ function LinkBody({
                 </li>
               ))}
             </ul>
-            <p className="muted">这些名称只说明资料来源，不是临床等级。</p>
           </details>
           <dl className="fields" data-testid="expert-link-meta">
             <Field label="边 id" testId="edge-id" children={link.id} />
@@ -559,7 +519,6 @@ export function DetailDrawer({
         onPointerCancel={onPointerUp}
       >
         <span className="drawer-grip" aria-hidden="true" />
-        <p className="drawer-short">{DISCLAIMER_SHORT}</p>
       </div>
       <div className="drawer-toolbar">
         <button ref={closeRef} type="button" className="btn btn--ghost" onClick={onClose} aria-label="关闭详情">
@@ -611,7 +570,6 @@ export function DetailDrawer({
               </button>
             </div>
           )}
-          <p className="drawer-pattern-note">资料里常被一起提到的吃法，不是个人方案。</p>
         </div>
       )}
     </aside>
