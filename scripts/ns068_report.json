@@ -1,0 +1,73 @@
+{
+  "rewritten": 150,
+  "mapped": 150,
+  "samples": [
+    {
+      "id": "gut_brain_01_axis",
+      "before": "书中描述肠道菌群可经迷走神经等通路与大脑双向交流",
+      "after": "肠道菌群经迷走神经等通路与大脑双向交流"
+    },
+    {
+      "id": "gut_brain_01_axis_mental",
+      "before": "书中将肠脑双向调控与情绪相关讨论放在同一叙述中",
+      "after": "肠—脑轴双向调控与情绪状态相关"
+    },
+    {
+      "id": "gut_brain_02_micro_bdnf",
+      "before": "书中称 BDNF 等大脑化学物质水平与肠道细菌状态相关",
+      "after": "肠道菌群状态与 BDNF 等大脑化学物质水平相关"
+    },
+    {
+      "id": "gut_brain_02_bdnf_cog",
+      "before": "书中引用队列叙述：较高 BDNF 水平与较低痴呆风险相关讨论",
+      "after": "较高 BDNF 水平与较低痴呆风险相关"
+    },
+    {
+      "id": "gut_brain_02_barrier_bbb",
+      "before": "书中描述肠道通透性增加时可伴随血脑屏障通透性改变",
+      "after": "肠道通透性增加可伴随血脑屏障通透性改变"
+    },
+    {
+      "id": "gut_brain_06_gluten_bbb",
+      "before": "书中称暴露于醇溶蛋白时肠道与血脑屏障通透性均可增加",
+      "after": "醇溶蛋白暴露与肠道及血脑屏障通透性增加相关"
+    },
+    {
+      "id": "gut_brain_02_lps_neuroinf",
+      "before": "书中描述 LPS 相关炎症信号可影响大脑并参与神经炎症叙述",
+      "after": "LPS 相关炎症信号参与神经炎症过程"
+    },
+    {
+      "id": "gut_brain_02_neuroinf_cog",
+      "before": "书中将脑内炎症因子水平与认知损伤程度叙述相连",
+      "after": "脑内炎症因子水平与认知损伤程度相关"
+    },
+    {
+      "id": "gut_brain_02_sys_neuroinf",
+      "before": "书中强调全身炎症与脑内炎症过程常被放在同一疾病叙述中",
+      "after": "全身炎症与脑内炎症过程常共同出现"
+    },
+    {
+      "id": "gut_brain_06_gluten_micro",
+      "before": "书中称接触麸质后的不良反应可能始自微生物组变化",
+      "after": "麸质接触后的不良反应可始自微生物组变化"
+    },
+    {
+      "id": "gut_brain_06_gluten_barrier",
+      "before": "书中引用研究称醇溶蛋白可增加所有人的肠道通透性",
+      "after": "醇溶蛋白暴露与肠道通透性增加相关"
+    },
+    {
+      "id": "gut_brain_06_gluten_inflam",
+      "before": "书中描述麸质敏感性可增加炎症细胞因子产生",
+      "after": "麸质敏感性与炎症细胞因子产生增加相关"
+    }
+  ],
+  "counts": {
+    "nodes": 115,
+    "links": 160,
+    "eat_to_heal": 97,
+    "gut_brain": 55,
+    "lit": 8
+  }
+}

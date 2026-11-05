@@ -54,10 +54,10 @@ test('aligned seed passes schema and referential checks', () => {
 
 const TECHNICAL_NODES = ['igf1_signaling', 'lps'];
 
-test('data 1.7 uses schema 0.7; NS-067 ingests eat_to_heal EPUB; keeps gut_brain+lit+all nodes', () => {
+test('data 1.8 uses schema 0.7; NS-068 public relations; keeps eat_to_heal+gut_brain+lit counts', () => {
   const data = readJson(ALIGNED_SEED);
   assert.equal(data.meta.schema_version, '0.7');
-  assert.equal(data.meta.data_version, '1.7');
+  assert.equal(data.meta.data_version, '1.8');
   assert.equal(data.meta.disclaimer, 'Educational / research use only. Not medical advice.');
   assert.equal(data.nodes.length, 115);
   assert.equal(data.links.length, 160);
@@ -75,6 +75,11 @@ test('data 1.7 uses schema 0.7; NS-067 ingests eat_to_heal EPUB; keeps gut_brain
       assert.equal('limitations' in ev, false);
     }
   }
+  const bookRel = /书中|本书|该书写道|作者认为|引述.+叙述|概述.+叙述/;
+  for (const link of data.links) {
+    assert.equal(bookRel.test(link.relation || ''), false, link.id ?? `${link.source}->${link.target}`);
+  }
+  assert.ok(data.meta.note.includes('NS-068'));
   assert.ok(data.nodes.length >= 100 && data.nodes.length <= 130);
   assert.ok(data.links.length >= 140 && data.links.length <= 180);
 
