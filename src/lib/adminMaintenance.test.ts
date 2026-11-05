@@ -37,7 +37,6 @@ const book: AdminBookRecord = {
   title: '菌群大脑',
   theme: '肠道菌群',
   relevance: 'high',
-  note_count: 73,
   kb_file: '肠道菌群_菌群大脑.md',
   source_id: 'gut_brain',
   status: 'ingested',

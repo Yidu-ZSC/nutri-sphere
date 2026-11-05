@@ -319,8 +319,8 @@ export function validateAdminBooks(payload, sourcesPayload) {
     return { ok: false, errors, counts: { books: 0, ingested: 0 } };
   }
   const rootObj = /** @type {Record<string, unknown>} */ (adminPayload);
-  if (rootObj.schema_version !== '1.1') {
-    errors.push('admin_books.json schema_version 必须为 "1.1"');
+  if (rootObj.schema_version !== '1.2') {
+    errors.push('admin_books.json schema_version 必须为 "1.2"');
   }
   const books = Array.isArray(rootObj.books) ? rootObj.books : null;
   if (!books) {
@@ -358,8 +358,8 @@ export function validateAdminBooks(payload, sourcesPayload) {
     if (!relevanceOk.has(/** @type {string} */ (row.relevance))) {
       errors.push(`admin_books.books[${index}].relevance 须为 high|edge|low`);
     }
-    if (typeof row.note_count !== 'number' || !Number.isFinite(row.note_count) || row.note_count < 0) {
-      errors.push(`admin_books.books[${index}].note_count 非法`);
+    if (Object.prototype.hasOwnProperty.call(row, 'note_count')) {
+      errors.push(`admin_books.books[${index}] 不得含 note_count（NS-066）`);
     }
     if (typeof row.kb_file !== 'string' || !row.kb_file.trim()) {
       errors.push(`admin_books.books[${index}] 缺少 kb_file`);
@@ -370,17 +370,12 @@ export function validateAdminBooks(payload, sourcesPayload) {
     if (Object.prototype.hasOwnProperty.call(row, 'edge_count')) {
       errors.push(`admin_books.books[${index}] 不得写入 edge_count`);
     }
+    // NS-066: weread_book_id hard lock removed; optional shape check only.
     if (Object.prototype.hasOwnProperty.call(row, 'weread_book_id')) {
       const wid = row.weread_book_id;
       if (typeof wid !== 'string' || !/^[0-9]+$/.test(wid)) {
         errors.push(`admin_books.books[${index}].weread_book_id 须匹配 /^[0-9]+$/`);
-      } else if (WEREAD_BOOK_MAP[id] && wid !== WEREAD_BOOK_MAP[id]) {
-        errors.push(`admin_books.books[${index}].weread_book_id 须为 A2 锁定值 "${WEREAD_BOOK_MAP[id]}"`);
-      } else if (!WEREAD_BOOK_MAP[id]) {
-        errors.push(`admin_books.books[${index}] 非六书不得写 weread_book_id`);
       }
-    } else if (WEREAD_BOOK_MAP[id]) {
-      errors.push(`admin_books.books[${index}] 已入库六书缺少 weread_book_id`);
     }
     const sourceId = typeof row.source_id === 'string' && row.source_id !== '' ? row.source_id : null;
     if (sourceId) {
@@ -401,13 +396,14 @@ export function validateAdminBooks(payload, sourcesPayload) {
       errors.push(`admin_books.json 缺少已入库书目 id "${expected}"`);
     }
   }
-  if (ingested !== STAGE1_SOURCE_IDS.length && books.length === 19) {
-    // soft consistency: count of ingested rows should be 6 when catalog is complete
-    const ingestedIds = [...seen].filter((id) => STAGE1_SOURCE_IDS.includes(id));
-    if (ingestedIds.length !== STAGE1_SOURCE_IDS.length) {
-      errors.push(
-        `admin_books.json 已入库六书映射不完整（找到 ${ingestedIds.length}/${STAGE1_SOURCE_IDS.length}）`,
-      );
+  // NS-066: only gut_brain remains ingested; five thin books are index_only (pending EPUB).
+  if (books.length === 19) {
+    const gut = books.find((b) => b && typeof b === 'object' && /** @type {any} */ (b).id === 'gut_brain');
+    if (!gut || /** @type {any} */ (gut).status !== 'ingested' || /** @type {any} */ (gut).source_id !== 'gut_brain') {
+      errors.push('admin_books.json gut_brain 须保持 ingested + source_id');
+    }
+    if (ingested !== 1) {
+      errors.push(`admin_books.json NS-066 后应恰有 1 本 ingested（gut_brain），实为 ${ingested}`);
     }
   }
 
@@ -429,8 +425,12 @@ export function validateWereadCorpora() {
   let bookmarks = 0;
   const dir = path.join(root, WEREAD_DIR);
   if (!fs.existsSync(dir)) {
-    errors.push(`${WEREAD_DIR}/ 目录不存在`);
-    return { ok: false, errors, counts: { files: 0, bookmarks: 0 } };
+    // NS-066: weread ingest path deprecated.
+    return { ok: true, skipped: true, errors: [], counts: { files: 0, bookmarks: 0 } };
+  }
+  const jsonFiles = fs.readdirSync(dir).filter((name) => name.endsWith('.json'));
+  if (jsonFiles.length === 0) {
+    return { ok: true, skipped: true, errors: [], counts: { files: 0, bookmarks: 0 } };
   }
   for (const sourceId of WEREAD_SOURCE_IDS) {
     const expectedBookId = WEREAD_BOOK_MAP[sourceId];
@@ -623,9 +623,13 @@ if (isMain()) {
     console.error(`validate:data 失败（${WEREAD_DIR}/）`);
     process.exit(1);
   }
-  console.log(
-    `OK ${weread.counts.files} weread corpora (${weread.counts.bookmarks} bookmarks) — ${WEREAD_DIR}/`,
-  );
+  if (weread.skipped) {
+    console.log(`OK weread corpora skipped (deprecated NS-066) — ${WEREAD_DIR}/`);
+  } else {
+    console.log(
+      `OK ${weread.counts.files} weread corpora (${weread.counts.bookmarks} bookmarks) — ${WEREAD_DIR}/`,
+    );
+  }
   const mapping = validateWereadMappingReport();
   if (!mapping.ok) {
     for (const error of mapping.errors) console.error(`ERROR ${error}`);

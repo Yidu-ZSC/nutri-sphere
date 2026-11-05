@@ -4,7 +4,7 @@ const RELEVANCE = new Set<AdminRelevance>(['high', 'edge', 'low']);
 const STATUS = new Set<AdminBookStatus>(['ingested', 'index_only']);
 const ID = /^[a-z0-9_]+$/;
 const WEREAD_ID = /^[0-9]+$/;
-const ADMIN_SCHEMA = '1.1';
+const ADMIN_SCHEMA = '1.2';
 
 export function adminBooksDataUrl(): string {
   return `${import.meta.env.BASE_URL}data/admin_books.json`;
@@ -50,11 +50,13 @@ export function assertAdminBooks(payload: unknown): AdminBooksData {
       typeof row.title !== 'string' ||
       typeof row.theme !== 'string' ||
       typeof row.relevance !== 'string' ||
-      typeof row.note_count !== 'number' ||
       typeof row.kb_file !== 'string' ||
       typeof row.status !== 'string'
     ) {
       throw new Error(`books[${index}] 字段不完整`);
+    }
+    if (Object.prototype.hasOwnProperty.call(row, 'note_count')) {
+      throw new Error(`books[${index}] 不得含 note_count`);
     }
     if (!ID.test(row.id)) {
       throw new Error(`books[${index}].id 非法`);
@@ -64,9 +66,6 @@ export function assertAdminBooks(payload: unknown): AdminBooksData {
     }
     if (!STATUS.has(row.status as AdminBookStatus)) {
       throw new Error(`books[${index}].status 非法`);
-    }
-    if (!Number.isFinite(row.note_count) || row.note_count < 0) {
-      throw new Error(`books[${index}].note_count 非法`);
     }
     if ('edge_count' in row) {
       throw new Error(`books[${index}] 不得含 edge_count`);
@@ -91,7 +90,6 @@ export function assertAdminBooks(payload: unknown): AdminBooksData {
       title: row.title,
       theme: row.theme,
       relevance: row.relevance as AdminRelevance,
-      note_count: row.note_count,
       kb_file: row.kb_file,
       status: row.status as AdminBookStatus,
     };

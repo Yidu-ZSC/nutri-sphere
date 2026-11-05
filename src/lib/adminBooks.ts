@@ -78,7 +78,7 @@ export function filterAndSortAdminBooks(
   return filtered.slice().sort((a, b) => {
     const rank = RELEVANCE_RANK[a.relevance] - RELEVANCE_RANK[b.relevance];
     if (rank !== 0) return rank;
-    if (b.note_count !== a.note_count) return b.note_count - a.note_count;
+    // NS-066: note_count removed; sort by title within relevance.
     return a.title.localeCompare(b.title, 'zh-CN');
   });
 }

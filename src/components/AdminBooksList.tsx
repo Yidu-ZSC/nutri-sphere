@@ -124,7 +124,6 @@ export function AdminBooksList({ books, sources, graph, onOpenBook }: AdminBooks
                 <th scope="col">作者</th>
                 <th scope="col">出版年</th>
                 <th scope="col">相关度</th>
-                <th scope="col">笔记数</th>
                 <th scope="col">已入库边数</th>
                 <th scope="col">微信划线</th>
                 <th scope="col">状态</th>
@@ -149,7 +148,6 @@ export function AdminBooksList({ books, sources, graph, onOpenBook }: AdminBooks
                     <td>{authors}</td>
                     <td>{year}</td>
                     <td>{RELEVANCE_LABEL[book.relevance]}</td>
-                    <td>{book.note_count}</td>
                     <td data-testid={`admin-edge-count-${book.id}`}>
                       {edgeCountForBook(graph, book.source_id)}
                     </td>
