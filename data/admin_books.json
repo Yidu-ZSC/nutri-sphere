@@ -39,11 +39,12 @@
       "theme": "植物性饮食与慢病",
       "relevance": "high",
       "kb_file": "植物性饮食与慢病_吃出自愈力.md",
-      "status": "index_only",
+      "status": "ingested",
       "publisher": "湖南科学技术出版社",
       "isbn": "9787571000998",
       "cover_url": "https://cdn.weread.qq.com/weread/cover/87/YueWen_39484588/t6_YueWen_39484588.jpg",
-      "translator": "路旦俊,蔡志强"
+      "translator": "路旦俊,蔡志强",
+      "source_id": "eat_to_heal"
     },
     {
       "id": "how_not_to_die",
