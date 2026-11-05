@@ -33,11 +33,11 @@ test('NS-047/056 LinkBody keeps excerpt → source → limitations → more-evid
   }
   // Technical blocks live inside MoreDetail, after excerpt
   assert.ok(card.indexOf('ExcerptBlock') < card.indexOf('MoreDetail'));
-  assert.ok(card.indexOf('assurance') > card.indexOf('MoreDetail'));
-  assert.ok(card.indexOf('证据类型说明') > card.indexOf('MoreDetail'));
-  assert.ok(card.indexOf('CitationBlock') > card.indexOf('MoreDetail'));
+  assert.ok(card.indexOf('CitationBlock') > card.indexOf('MoreDetail') || card.indexOf('CitationBlock') < 0);
   assert.ok(card.indexOf('ladder') > card.indexOf('MoreDetail'));
-  assert.ok(card.indexOf('SourceFile') > card.indexOf('MoreDetail'), 'SourceFile must sit inside MoreDetail');
+  assert.equal(card.includes('SourceFile'), false);
+  assert.equal(source.includes('drawer-pattern-note'), false);
+  assert.equal(source.includes('DISCLAIMER_SHORT'), false);
   assert.match(source, /原文摘录/);
   assert.match(source, /展开原文摘录/);
   assert.match(source, /收起原文摘录/);
@@ -91,7 +91,7 @@ test('NS-046 seed descriptions drop graph meta-language for the five baseline id
 function nodeBodySource(): string {
   const start = source.indexOf('function NodeBody');
   assert.ok(start > 0);
-  const end = source.indexOf('function SourceFile', start);
+  const end = source.indexOf('function CitationBlock', start);
   assert.ok(end > start);
   return source.slice(start, end);
 }

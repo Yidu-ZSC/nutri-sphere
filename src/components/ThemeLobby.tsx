@@ -156,7 +156,6 @@ export function ThemeLobby({
       </section>
       <section className="lobby-food" aria-labelledby="food-theme-heading" data-testid="food-theme-grid">
         <h2 id="food-theme-heading">从食物/模式看</h2>
-        <p className="food-note">从一种食物或吃法出发，看公开资料里常被怎么描述。</p>
         <ul className="theme-grid">
           {HOME_FOOD_THEMES.map((theme) => (
             <li key={theme.id}>
