@@ -1,10 +1,10 @@
 {
   "meta": {
     "schema_version": "0.7",
-    "data_version": "1.7",
+    "data_version": "1.8",
     "extracted_from": "knowledge-base Project (high relevance files)",
     "extraction_date": "2026-10-31",
-    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 book-note nodes and excerpts are unchanged. data 0.5 adds schema 0.2 optional citation and nine literature edges with verified DOIs. data 0.6 / schema 0.3 writes audience on every link and mechanism_depth on mechanism nodes. These labels are not an evidence grade and not a view toggle. Educational use only. The original 20 excerpts are unchanged. data 0.7 aligns the 14 existing mechanism descriptions to MECHANISM_DICTIONARY.md v0.2 concept sentences and adds 10 dictionary mechanism nodes (aliases empty; mechanism_depth mechanism). Mechanism nodes still carry no source or limitations fields. Educational use only; schema_version remains 0.3. data 0.8 aligns 11 existing disease/biomarker labels and descriptions to HEALTH_DISEASE_DICTIONARY.md v0.2 concept sentences and adds 8 protective health-direction disease nodes (aliases empty). Column caption becomes 健康/疾病. Status nodes still carry no source or limitations fields. No new edges in this increment. Educational use only; schema_version remains 0.3. data 0.9 / schema 0.4 adds source_title on every link, source_id on book-note links, and data/sources.json (six cited books) for the source intro screen. Literature links set source_title from citation.title and omit source_id. Excerpt bodies and limitations are unchanged; evidences arrays are not introduced. Educational use only. NS-056：evidences[]+顶层镜像；合并同端点 125→121；EXCERPT_LIMIT 1200；加长主摘录（微信读书书摘/PubMed 摘要，未编造）。 data 1.1 / NS-058：按 EXCERPT_EXPANSION 将优先主题短摘录替换为知识库原文（目标 400–800；evidences[0]+顶层镜像；schema 0.5 / sources 1.1 不动）。 data 1.2 / NS-061：六书微信划线映射进已有边 evidences[]（个人为主、热门去重补充；默认 append；短主摘录可 promote0）；schema 0.5 / sources 1.1 / admin_books 1.1 不动；语料 JSON 正文不改。 data 1.3 / schema 0.6 · NS-062：全量节点与边显式 domain: health；无环境/文化数据；无 UI 主题切换。 data 1.4 · NS-064 删除 gut_brain 旧边并按 EPUB 候选全量录入 15 节点 + 55 边贡献；schema 仍 0.6。 data 1.5 / schema 0.7 · NS-065：全量删除边顶层与 evidences[].limitations（「局限」）；大厅饮食模式同步去掉；DISCLAIMER_TEXT 不动；拓扑仍 102+158。 data 1.6 · NS-066（B2+D）：清五本薄书摘边与 weread 语料/Admin 笔记数；先 promote 2 条 gut_brain 挂载 + 4 条嵌套文献；保留 gut_brain EPUB、纯文献与全部 102 节点（含 degree-0）；DISCLAIMER 不动；schema 仍 0.7；admin_books → 1.2（去 note_count）。 data 1.7 / schema 0.7 adds eat_to_heal EPUB full ingest (NS-067).",
+    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 book-note nodes and excerpts are unchanged. data 0.5 adds schema 0.2 optional citation and nine literature edges with verified DOIs. data 0.6 / schema 0.3 writes audience on every link and mechanism_depth on mechanism nodes. These labels are not an evidence grade and not a view toggle. Educational use only. The original 20 excerpts are unchanged. data 0.7 aligns the 14 existing mechanism descriptions to MECHANISM_DICTIONARY.md v0.2 concept sentences and adds 10 dictionary mechanism nodes (aliases empty; mechanism_depth mechanism). Mechanism nodes still carry no source or limitations fields. Educational use only; schema_version remains 0.3. data 0.8 aligns 11 existing disease/biomarker labels and descriptions to HEALTH_DISEASE_DICTIONARY.md v0.2 concept sentences and adds 8 protective health-direction disease nodes (aliases empty). Column caption becomes 健康/疾病. Status nodes still carry no source or limitations fields. No new edges in this increment. Educational use only; schema_version remains 0.3. data 0.9 / schema 0.4 adds source_title on every link, source_id on book-note links, and data/sources.json (six cited books) for the source intro screen. Literature links set source_title from citation.title and omit source_id. Excerpt bodies and limitations are unchanged; evidences arrays are not introduced. Educational use only. NS-056：evidences[]+顶层镜像；合并同端点 125→121；EXCERPT_LIMIT 1200；加长主摘录（微信读书书摘/PubMed 摘要，未编造）。 data 1.1 / NS-058：按 EXCERPT_EXPANSION 将优先主题短摘录替换为知识库原文（目标 400–800；evidences[0]+顶层镜像；schema 0.5 / sources 1.1 不动）。 data 1.2 / NS-061：六书微信划线映射进已有边 evidences[]（个人为主、热门去重补充；默认 append；短主摘录可 promote0）；schema 0.5 / sources 1.1 / admin_books 1.1 不动；语料 JSON 正文不改。 data 1.3 / schema 0.6 · NS-062：全量节点与边显式 domain: health；无环境/文化数据；无 UI 主题切换。 data 1.4 · NS-064 删除 gut_brain 旧边并按 EPUB 候选全量录入 15 节点 + 55 边贡献；schema 仍 0.6。 data 1.5 / schema 0.7 · NS-065：全量删除边顶层与 evidences[].limitations（「局限」）；大厅饮食模式同步去掉；DISCLAIMER_TEXT 不动；拓扑仍 102+158。 data 1.6 · NS-066（B2+D）：清五本薄书摘边与 weread 语料/Admin 笔记数；先 promote 2 条 gut_brain 挂载 + 4 条嵌套文献；保留 gut_brain EPUB、纯文献与全部 102 节点（含 degree-0）；DISCLAIMER 不动；schema 仍 0.7；admin_books → 1.2（去 note_count）。 data 1.7 / schema 0.7 adds eat_to_heal EPUB full ingest (NS-067). data 1.8 · NS-068：将 eat_to_heal/gut_brain 书框 relation 批量改写为公共观察关系；excerpt/evidences/source_*/拓扑不动；schema 仍 0.7。",
     "disclaimer": "Educational / research use only. Not medical advice."
   },
   "nodes": [
@@ -1761,7 +1761,7 @@
     {
       "source": "gut_microbiome",
       "target": "gut_brain_axis",
-      "relation": "书中描述肠道菌群可经迷走神经等通路与大脑双向交流",
+      "relation": "肠道菌群经迷走神经等通路与大脑双向交流",
       "direction": "mixed",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -1793,7 +1793,7 @@
     {
       "source": "gut_brain_axis",
       "target": "mental_health",
-      "relation": "书中将肠脑双向调控与情绪相关讨论放在同一叙述中",
+      "relation": "肠—脑轴双向调控与情绪状态相关",
       "direction": "mixed",
       "evidence_type": "book_notes_mechanistic",
       "strength": "low",
@@ -1818,7 +1818,7 @@
     {
       "source": "gut_microbiome",
       "target": "bdnf",
-      "relation": "书中称 BDNF 等大脑化学物质水平与肠道细菌状态相关",
+      "relation": "肠道菌群状态与 BDNF 等大脑化学物质水平相关",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "low",
@@ -1843,7 +1843,7 @@
     {
       "source": "bdnf",
       "target": "cognitive_clarity",
-      "relation": "书中引用队列叙述：较高 BDNF 水平与较低痴呆风险相关讨论",
+      "relation": "较高 BDNF 水平与较低痴呆风险相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -1868,7 +1868,7 @@
     {
       "source": "gut_barrier_leak",
       "target": "blood_brain_barrier",
-      "relation": "书中描述肠道通透性增加时可伴随血脑屏障通透性改变",
+      "relation": "肠道通透性增加可伴随血脑屏障通透性改变",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -1893,7 +1893,7 @@
     {
       "source": "gluten",
       "target": "blood_brain_barrier",
-      "relation": "书中称暴露于醇溶蛋白时肠道与血脑屏障通透性均可增加",
+      "relation": "醇溶蛋白暴露与肠道及血脑屏障通透性增加相关",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "low",
@@ -1918,7 +1918,7 @@
     {
       "source": "lps",
       "target": "neuroinflammation",
-      "relation": "书中描述 LPS 相关炎症信号可影响大脑并参与神经炎症叙述",
+      "relation": "LPS 相关炎症信号参与神经炎症过程",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -1943,7 +1943,7 @@
     {
       "source": "neuroinflammation",
       "target": "cognitive_clarity",
-      "relation": "书中将脑内炎症因子水平与认知损伤程度叙述相连",
+      "relation": "脑内炎症因子水平与认知损伤程度相关",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -1968,7 +1968,7 @@
     {
       "source": "chronic_inflammation",
       "target": "neuroinflammation",
-      "relation": "书中强调全身炎症与脑内炎症过程常被放在同一疾病叙述中",
+      "relation": "全身炎症与脑内炎症过程常共同出现",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "low",
@@ -1993,7 +1993,7 @@
     {
       "source": "gluten",
       "target": "gut_microbiome",
-      "relation": "书中称接触麸质后的不良反应可能始自微生物组变化",
+      "relation": "麸质接触后的不良反应可始自微生物组变化",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2018,7 +2018,7 @@
     {
       "source": "gluten",
       "target": "gut_barrier_leak",
-      "relation": "书中引用研究称醇溶蛋白可增加所有人的肠道通透性",
+      "relation": "醇溶蛋白暴露与肠道通透性增加相关",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2043,7 +2043,7 @@
     {
       "source": "gluten",
       "target": "chronic_inflammation",
-      "relation": "书中描述麸质敏感性可增加炎症细胞因子产生",
+      "relation": "麸质敏感性与炎症细胞因子产生增加相关",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2068,7 +2068,7 @@
     {
       "source": "gluten",
       "target": "autoimmune",
-      "relation": "书中将膳食麸质、菌群改变与1型糖尿病等自身免疫叙述相连",
+      "relation": "膳食麸质、菌群改变与自身免疫问题相关",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -2093,7 +2093,7 @@
     {
       "source": "fructose",
       "target": "gut_microbiome",
-      "relation": "书中描述过量加工果糖可改变菌群并供给致病菌",
+      "relation": "过量加工果糖可改变菌群并供给致病菌",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2118,7 +2118,7 @@
     {
       "source": "fructose",
       "target": "gut_barrier_leak",
-      "relation": "书中引用动物研究称高果糖可提高细菌渗漏率",
+      "relation": "高果糖负荷与细菌渗漏率升高相关",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2143,7 +2143,7 @@
     {
       "source": "fructose",
       "target": "lps",
-      "relation": "书中称果糖可将循环脂多糖水平提高约40%的叙述",
+      "relation": "果糖摄入与循环脂多糖水平升高相关",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -2168,7 +2168,7 @@
     {
       "source": "fructose",
       "target": "insulin_resistance",
-      "relation": "书中将大量非天然果糖与胰岛素抵抗、糖耐量受损叙述相连",
+      "relation": "大量非天然果糖与胰岛素抵抗、糖耐量受损相关",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -2193,7 +2193,7 @@
     {
       "source": "fructose",
       "target": "fatty_liver",
-      "relation": "书中描述高果糖负担与肝损伤、代谢紊乱叙述相关",
+      "relation": "高果糖负担与肝损伤、代谢紊乱相关",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2218,7 +2218,7 @@
     {
       "source": "fructose",
       "target": "obesity_risk",
-      "relation": "书中将加工果糖所致菌群变化与肥胖风险叙述相连",
+      "relation": "加工果糖所致菌群变化与肥胖风险相关",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -2243,7 +2243,7 @@
     {
       "source": "artificial_sweeteners",
       "target": "gut_microbiome",
-      "relation": "书中引用实验称人工甜味剂可改变肠道细菌组成",
+      "relation": "人工甜味剂可改变肠道细菌组成",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2275,7 +2275,7 @@
     {
       "source": "artificial_sweeteners",
       "target": "insulin_resistance",
-      "relation": "书中叙述清除菌群后甜味剂组糖代谢差异消失，提示菌群中介",
+      "relation": "人工甜味剂对糖代谢的影响可经菌群中介",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "low",
@@ -2300,7 +2300,7 @@
     {
       "source": "antibiotics",
       "target": "gut_microbiome",
-      "relation": "书中描述抗生素迅速改变菌群多样性并偏向促肥胖菌群",
+      "relation": "抗生素迅速改变菌群多样性并偏向促肥胖菌群",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2332,7 +2332,7 @@
     {
       "source": "antibiotics",
       "target": "obesity_risk",
-      "relation": "书中将抗生素暴露与体重增加、胃饥饿素升高等叙述相连",
+      "relation": "抗生素暴露与体重增加、胃饥饿素升高等相关",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -2357,7 +2357,7 @@
     {
       "source": "antibiotics",
       "target": "breast_prostate_risk",
-      "relation": "书中引用观察研究称抗生素使用天数与乳腺癌风险相关（非因果断言）",
+      "relation": "抗生素使用天数与乳腺癌风险相关（观察关联，非因果）",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -2382,7 +2382,7 @@
     {
       "source": "cesarean_birth",
       "target": "gut_microbiome",
-      "relation": "书中描述剖腹产婴儿初始菌群更接近皮肤菌群而非阴道乳酸杆菌主导",
+      "relation": "剖腹产婴儿初始菌群更接近皮肤菌群而非阴道乳酸杆菌主导",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -2407,7 +2407,7 @@
     {
       "source": "cesarean_birth",
       "target": "obesity_risk",
-      "relation": "书中综述剖腹产与成年肥胖风险升高的观察叙述",
+      "relation": "剖腹产与成年肥胖风险升高相关（观察）",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -2432,7 +2432,7 @@
     {
       "source": "cesarean_birth",
       "target": "autism_spectrum",
-      "relation": "书中列出剖腹产与自闭症风险翻倍等观察性关联叙述",
+      "relation": "剖腹产与自闭症谱系风险升高相关（观察）",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -2457,7 +2457,7 @@
     {
       "source": "breastfeeding",
       "target": "gut_microbiome",
-      "relation": "书中称母乳喂养婴儿菌群多样性更高、部分疾病风险叙述较低",
+      "relation": "母乳喂养与较高菌群多样性及部分疾病风险较低相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -2496,7 +2496,7 @@
     {
       "source": "propionate",
       "target": "gut_barrier_leak",
-      "relation": "书中描述丙酸削弱紧密连接、增加肠道通透性",
+      "relation": "丙酸削弱紧密连接、增加肠道通透性",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2521,7 +2521,7 @@
     {
       "source": "propionate",
       "target": "mitochondrial_stress",
-      "relation": "书中称丙酸可直接导致线粒体功能受损并增加氧化应激",
+      "relation": "丙酸可导致线粒体功能受损并增加氧化应激",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2546,7 +2546,7 @@
     {
       "source": "propionate",
       "target": "autism_spectrum",
-      "relation": "书中综述动物实验中丙酸与自闭症样行为及脑内炎症的关联叙述",
+      "relation": "丙酸与自闭症样行为及脑内炎症相关（动物观察）",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "low",
@@ -2571,7 +2571,7 @@
     {
       "source": "propionate",
       "target": "reactive_oxygen",
-      "relation": "书中描述丙酸增加氧化应激并消耗抗氧化分子",
+      "relation": "丙酸增加氧化应激并消耗抗氧化分子",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "low",
@@ -2596,7 +2596,7 @@
     {
       "source": "gut_microbiome",
       "target": "autism_spectrum",
-      "relation": "书中从肠功能障碍、梭菌/丙酸与线粒体角度讨论自闭症相关机制",
+      "relation": "肠功能障碍、梭菌/丙酸与线粒体路径与自闭症谱系讨论相关",
       "direction": "mixed",
       "evidence_type": "book_notes_mechanistic",
       "strength": "low",
@@ -2621,7 +2621,7 @@
     {
       "source": "probiotics",
       "target": "gut_barrier_integrity",
-      "relation": "书中描述益生菌有助于维持肠壁完整性",
+      "relation": "益生菌有助于维持肠壁完整性",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2646,7 +2646,7 @@
     {
       "source": "probiotics",
       "target": "immune_balance",
-      "relation": "书中称益生菌参与调节免疫功能并控制炎症叙述",
+      "relation": "益生菌参与调节免疫功能并控制炎症",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2671,7 +2671,7 @@
     {
       "source": "fermented_foods",
       "target": "probiotics",
-      "relation": "书中将泡菜、酸奶、开菲尔等发酵食物作为益生菌天然来源",
+      "relation": "泡菜、酸奶、开菲尔等发酵食物是益生菌天然来源",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2696,7 +2696,7 @@
     {
       "source": "omega6",
       "target": "chronic_inflammation",
-      "relation": "书中称现代饮食中过高 ω-6/ω-3 比例与促炎及脑心风险叙述相关",
+      "relation": "过高 ω-6/ω-3 比例与促炎及脑心风险相关",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -2721,7 +2721,7 @@
     {
       "source": "propionate",
       "target": "scfa",
-      "relation": "书中将丙酸作为短链脂肪酸谱中偏不利的组分加以讨论",
+      "relation": "丙酸是短链脂肪酸谱中偏不利的组分",
       "direction": "mixed",
       "evidence_type": "book_notes_mechanistic",
       "strength": "low",
@@ -2746,7 +2746,7 @@
     {
       "source": "red_wine",
       "target": "polyphenols",
-      "relation": "书中将红酒与茶叶、咖啡、巧克力并列作为多酚来源讨论",
+      "relation": "红酒与茶叶、咖啡、巧克力同属多酚来源",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "low",
@@ -2771,7 +2771,7 @@
     {
       "source": "gut_barrier_leak",
       "target": "immune_activation",
-      "relation": "书中描述屏障受损后外来蛋白与微生物组分更易触发免疫",
+      "relation": "屏障受损后外来蛋白与微生物组分更易触发免疫",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2796,7 +2796,7 @@
     {
       "source": "gut_microbiome",
       "target": "obesity_risk",
-      "relation": "书中综述厚壁菌/拟杆菌比值与肥胖生物标志及菌群移植实验叙述",
+      "relation": "厚壁菌/拟杆菌比值与肥胖生物标志及菌群移植观察相关",
       "direction": "mixed",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2821,7 +2821,7 @@
     {
       "source": "gut_microbiome",
       "target": "immune_balance",
-      "relation": "书中描述有益菌帮助免疫保持警戒而不进入持续防御",
+      "relation": "有益菌帮助免疫保持警戒而不进入持续防御",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2860,7 +2860,7 @@
     {
       "source": "gut_barrier_leak",
       "target": "lps",
-      "relation": "书中描述：紧密连接受损时脂多糖可进入血液循环",
+      "relation": "紧密连接受损时脂多糖可进入血液循环",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2885,7 +2885,7 @@
     {
       "source": "lps",
       "target": "immune_activation",
-      "relation": "书中描述 LPS 入血后可激活免疫并抬高炎症化学物质",
+      "relation": "LPS 入血后可激活免疫并抬高炎症化学物质",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2910,7 +2910,7 @@
     {
       "source": "lps",
       "target": "chronic_inflammation",
-      "relation": "书中将入血 LPS 描述为强烈炎症反应的触发情境",
+      "relation": "入血 LPS 可触发强烈炎症反应",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2935,7 +2935,7 @@
     {
       "source": "ultra_processed",
       "target": "gut_microbiome",
-      "relation": "书中将西化快餐式低纤维高糖高脂饮食与菌群重塑叙述相连",
+      "relation": "西化低纤维高糖高脂饮食与菌群重塑相关",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -2974,7 +2974,7 @@
     {
       "source": "lps",
       "target": "mental_health",
-      "relation": "书中引用资料称促炎细胞因子与脂多糖可能诱发抑郁相关症状",
+      "relation": "促炎细胞因子与脂多糖可能与抑郁相关症状相关",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -2999,7 +2999,7 @@
     {
       "source": "polyphenols",
       "target": "gut_microbiome",
-      "relation": "书中称人体利用多酚的能力很大程度上取决于肠道细菌",
+      "relation": "人体利用多酚的能力很大程度上取决于肠道细菌",
       "direction": "mixed",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -3024,7 +3024,7 @@
     {
       "source": "reactive_oxygen",
       "target": "mitochondrial_stress",
-      "relation": "书中描述线粒体产生活性氧；功能受损时可损伤正常细胞",
+      "relation": "线粒体产生活性氧；功能受损时可损伤正常细胞",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -3049,7 +3049,7 @@
     {
       "source": "added_sugar",
       "target": "gut_microbiome",
-      "relation": "书中描述高糖低纤维膳食为有害菌提供燃料并削弱多样性",
+      "relation": "高糖低纤维膳食为有害菌提供燃料并削弱多样性",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -3074,7 +3074,7 @@
     {
       "source": "insulin_resistance",
       "target": "cognitive_clarity",
-      "relation": "书中将血糖失调、糖尿病与阿尔茨海默病（所谓3型糖尿病）叙述相连",
+      "relation": "血糖失调、糖尿病与阿尔茨海默病（所谓3型糖尿病）相关讨论",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -3099,7 +3099,7 @@
     {
       "source": "gut_microbiome",
       "target": "gut_barrier_integrity",
-      "relation": "书中描述平衡的肠道菌群参与维持肠壁完整性、限制肠漏",
+      "relation": "平衡的肠道菌群参与维持肠壁完整性、限制肠漏",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -3124,7 +3124,7 @@
     {
       "source": "gut_microbiome",
       "target": "chronic_inflammation",
-      "relation": "书中称菌群平衡与多样性可调节全身及脑内炎症阈值",
+      "relation": "菌群平衡与多样性可调节全身及脑内炎症阈值",
       "direction": "mixed",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -3227,7 +3227,7 @@
     {
       "source": "angiogenesis_defense",
       "target": "immune_balance",
-      "relation": "书中将健康描述为受体内多套防御系统保护的活跃状态，并主张聚焦共同特征以统一预防",
+      "relation": "健康依赖体内多套防御系统的活跃平衡，可按共同特征统一理解",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -3252,7 +3252,7 @@
     {
       "source": "angiogenesis_defense",
       "target": "gut_microbiome",
-      "relation": "书中列出受饮食影响的五大健康防御：血管生成、再生、微生物组、DNA保护与免疫",
+      "relation": "饮食可影响血管生成、再生、微生物组、DNA保护与免疫五大防御",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -3277,7 +3277,7 @@
     {
       "source": "soy",
       "target": "angiogenesis_defense",
-      "relation": "书中概述大豆、绿茶、咖啡、番茄、红酒等可影响血管生成防御",
+      "relation": "大豆、绿茶、咖啡、番茄、红酒等与血管生成防御相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -3302,7 +3302,7 @@
     {
       "source": "cacao",
       "target": "regeneration_defense",
-      "relation": "书中概述干细胞推动日常再生，并提及黑巧克力、红茶等与动员干细胞相关的叙述",
+      "relation": "黑巧克力、红茶等与动员成体干细胞相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -3327,7 +3327,7 @@
     {
       "source": "dna_repair",
       "target": "telomere_integrity",
-      "relation": "书中概述DNA修复、表观遗传开关与端粒相关饮食叙述",
+      "relation": "饮食与DNA修复、表观遗传开关及端粒维护相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -3352,7 +3352,7 @@
     {
       "source": "berries_fruits",
       "target": "immune_balance",
-      "relation": "书中概述浆果、核桃、石榴等与激活免疫相关，并提及食物可帮助减轻自身免疫相关症状的叙述",
+      "relation": "浆果、核桃、石榴等与免疫激活相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -3377,7 +3377,7 @@
     {
       "source": "microscopic_tumors",
       "target": "dna_damage",
-      "relation": "书中描述尸检常见乳腺、前列腺、甲状腺微小肿瘤，并联系细胞分裂与环境暴露所致DNA错误",
+      "relation": "细胞分裂与环境暴露所致DNA错误与微小潜伏肿瘤相关",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -3402,7 +3402,7 @@
     {
       "source": "angiogenesis_defense",
       "target": "microscopic_tumors",
-      "relation": "书中描述血管生成防御可通过限制血供使微小肿瘤保持较小体积，并列举可增强该能力的食物",
+      "relation": "血管生成防御可通过限制血供使微小肿瘤保持较小体积",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -3427,7 +3427,7 @@
     {
       "source": "angiogenesis_defense",
       "target": "microscopic_tumors",
-      "relation": "书中定义血管生成：正常时供养器官，异常时可滋养微小肿瘤；健康系统可阻断肿瘤血供",
+      "relation": "正常血管生成供养器官，异常时可滋养微小肿瘤；健康系统可阻断肿瘤血供",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -3452,7 +3452,7 @@
     {
       "source": "angiogenesis_defense",
       "target": "metabolic_health",
-      "relation": "书中将循环系统中血管生成的适量平衡（体内平衡）描述为健康核心",
+      "relation": "循环系统中血管生成的适量平衡（体内平衡）与代谢健康相关",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -3477,7 +3477,7 @@
     {
       "source": "angiogenesis_defense",
       "target": "chronic_inflammation",
-      "relation": "书中描述缺氧驱动生长因子释放，炎症细胞参与早期愈合并增强血管生成反应",
+      "relation": "缺氧驱动生长因子释放，炎症细胞参与早期愈合并增强血管生成反应",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -3502,7 +3502,7 @@
     {
       "source": "angiogenesis_defense",
       "target": "cardiometabolic",
-      "relation": "书中描述内皮细胞响应生长因子迁移、成管并形成毛细血管环",
+      "relation": "内皮细胞响应生长因子迁移、成管并形成毛细血管环",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -3527,7 +3527,7 @@
     {
       "source": "angiogenesis_defense",
       "target": "digestive_cancer_risk",
-      "relation": "书中描述部分癌巢可释放伤口愈合样生长因子突破抗血管生成控制，获血供后迅速扩增并转移",
+      "relation": "部分癌巢可释放伤口愈合样生长因子突破抗血管生成控制并获血供扩增",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -3552,7 +3552,7 @@
     {
       "source": "angiogenesis_defense",
       "target": "age_related_macular_degeneration",
-      "relation": "书中描述黄斑变性与糖尿病相关视力丧失中异常血管渗漏出血破坏视力",
+      "relation": "黄斑变性与糖尿病相关视力丧失中异常血管渗漏出血破坏视力",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -3577,7 +3577,7 @@
     {
       "source": "angiogenesis_defense",
       "target": "cognitive_clarity",
-      "relation": "书中引述阿尔茨海默病患者脑内异常血管可释放神经毒素的观点",
+      "relation": "阿尔茨海默病患者脑内异常血管可释放神经毒素",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -3602,7 +3602,7 @@
     {
       "source": "angiogenesis_defense",
       "target": "obesity_risk",
-      "relation": "书中描述脂肪组织扩张依赖新生血管，错误饮食可增加循环中促血管生成生长因子",
+      "relation": "脂肪组织扩张依赖新生血管；错误饮食可增加循环中促血管生成生长因子",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -3627,7 +3627,7 @@
     {
       "source": "angiogenesis_defense",
       "target": "cardiometabolic",
-      "relation": "书中描述神经滋养血管受损及糖尿病相关血管生成减缓与周围神经病症状相关",
+      "relation": "神经滋养血管受损及糖尿病相关血管生成减缓与周围神经病症状相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -3652,7 +3652,7 @@
     {
       "source": "angiogenesis_defense",
       "target": "chronic_wounds",
-      "relation": "书中描述慢性伤口与糖尿病、动脉粥样硬化等相关，并强调需启动血管生成以促进愈合",
+      "relation": "慢性伤口愈合依赖启动血管生成；与糖尿病、动脉粥样硬化等相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -3677,7 +3677,7 @@
     {
       "source": "angiogenesis_defense",
       "target": "cardiometabolic",
-      "relation": "书中描述冠脉或颈动脉缓慢狭窄时可形成侧副血管旁路以维持器官灌注",
+      "relation": "冠脉或颈动脉缓慢狭窄时可形成侧副血管旁路以维持器官灌注",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -3702,7 +3702,7 @@
     {
       "source": "soy",
       "target": "breast_prostate_risk",
-      "relation": "书中将亚洲高大豆蔬菜茶饮食及地中海饮食与较低癌症风险、长寿观察相联系",
+      "relation": "亚洲高大豆蔬菜茶饮食及地中海饮食与较低癌症风险、长寿观察相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -3727,7 +3727,7 @@
     {
       "source": "regeneration_defense",
       "target": "metabolic_health",
-      "relation": "书中强调干细胞对器官维持至关重要，并概述胚胎多能干细胞发育过程",
+      "relation": "成体干细胞对器官维持至关重要",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -3752,7 +3752,7 @@
     {
       "source": "regeneration_defense",
       "target": "energy_vitality",
-      "relation": "书中将干细胞描述为可再生防御力量，并指出其受饮食显著影响",
+      "relation": "干细胞作为可再生防御力量，受饮食显著影响",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -3777,7 +3777,7 @@
     {
       "source": "regeneration_defense",
       "target": "angiogenesis_defense",
-      "relation": "书中描述受损器官释放VEGF等信号动员骨髓干细胞进入循环",
+      "relation": "受损器官释放VEGF等信号动员骨髓干细胞进入循环",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -3802,7 +3802,7 @@
     {
       "source": "regeneration_defense",
       "target": "angiogenesis_defense",
-      "relation": "书中描述再生与血管生成通过共同生长因子信号相互协同",
+      "relation": "再生与血管生成通过共同生长因子信号相互协同",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -3827,7 +3827,7 @@
     {
       "source": "regeneration_defense",
       "target": "cardiometabolic",
-      "relation": "书中描述吸烟耗竭骨髓干细胞并损害其自我复制与再生能力",
+      "relation": "吸烟耗竭骨髓干细胞并损害其自我复制与再生能力",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -3852,7 +3852,7 @@
     {
       "source": "regeneration_defense",
       "target": "cognitive_clarity",
-      "relation": "书中描述酒精损害干细胞再生能力并影响脑内祖细胞活性",
+      "relation": "酒精损害干细胞再生能力并影响脑内祖细胞活性",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -3877,7 +3877,7 @@
     {
       "source": "regeneration_defense",
       "target": "cardiometabolic",
-      "relation": "书中描述高血糖削弱干细胞繁殖、迁移与分泌存活因子的能力",
+      "relation": "高血糖削弱干细胞繁殖、迁移与分泌存活因子的能力",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -3902,7 +3902,7 @@
     {
       "source": "regeneration_defense",
       "target": "cardiometabolic",
-      "relation": "书中引述循环内皮祖细胞基线与未来心血管事件及死亡风险相关的观察",
+      "relation": "循环内皮祖细胞基线与未来心血管事件及死亡风险相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -3927,7 +3927,7 @@
     {
       "source": "regeneration_defense",
       "target": "cardiometabolic",
-      "relation": "书中引述干细胞因子水平较高者心衰、中风与全因死亡风险较低的长期队列叙述",
+      "relation": "较高干细胞因子水平与较低心衰、中风与全因死亡风险相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -3952,7 +3952,7 @@
     {
       "source": "regeneration_defense",
       "target": "cardiometabolic",
-      "relation": "书中描述内皮祖细胞修复血管内壁有助于降低动脉粥样硬化相关风险",
+      "relation": "内皮祖细胞修复血管内壁与较低动脉粥样硬化相关风险相关",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -3977,7 +3977,7 @@
     {
       "source": "regeneration_defense",
       "target": "cognitive_clarity",
-      "relation": "书中描述脑内祖细胞与小胶质细胞路径在阿尔茨海默病相关叙述中的作用",
+      "relation": "脑内祖细胞与小胶质细胞路径与阿尔茨海默病相关讨论相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -4002,7 +4002,7 @@
     {
       "source": "regeneration_defense",
       "target": "cancer_stem_cells",
-      "relation": "书中总结饮食可激活自身干细胞促进再生，同时部分食物可抑制肿瘤干细胞",
+      "relation": "饮食可激活自身干细胞促进再生，同时部分食物可抑制肿瘤干细胞",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -4027,7 +4027,7 @@
     {
       "source": "gut_microbiome",
       "target": "immune_resilience",
-      "relation": "书中强调菌群多样性是健康标志",
+      "relation": "菌群多样性是健康标志",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -4052,7 +4052,7 @@
     {
       "source": "dietary_fiber",
       "target": "scfa",
-      "relation": "书中描述益生元纤维经菌群发酵产生短链脂肪酸及其抗炎、代谢与免疫相关作用",
+      "relation": "益生元纤维经菌群发酵产生短链脂肪酸，参与抗炎、代谢与免疫相关过程",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -4077,7 +4077,7 @@
     {
       "source": "scfa",
       "target": "chronic_inflammation",
-      "relation": "书中分述丙酸、丁酸、醋酸盐在代谢、结肠能量、抗炎与食欲信号等方面的叙述",
+      "relation": "丙酸、丁酸、醋酸盐参与代谢、结肠能量、抗炎与食欲信号",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -4102,7 +4102,7 @@
     {
       "source": "gut_microbiome",
       "target": "gut_barrier_leak",
-      "relation": "书中描述产硫化氢细菌可破坏肠壁密封并与炎症性肠病相关叙述",
+      "relation": "产硫化氢细菌可破坏肠壁密封并与炎症性肠病相关",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -4127,7 +4127,7 @@
     {
       "source": "probiotics",
       "target": "angiogenesis_defense",
-      "relation": "书中引述罗伊氏乳杆菌加速伤口愈合并与血管生成加快相关的合作研究叙述",
+      "relation": "罗伊氏乳杆菌与伤口愈合加速及血管生成加快相关",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "low",
@@ -4152,7 +4152,7 @@
     {
       "source": "gut_microbiome",
       "target": "ibd_related",
-      "relation": "书中列举生态失调与代谢、IBD、癌症、神经精神等多类疾病相关的观察",
+      "relation": "生态失调与代谢、IBD、癌症、神经精神等多类疾病相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -4177,7 +4177,7 @@
     {
       "source": "reactive_oxygen",
       "target": "dna_damage",
-      "relation": "书中描述复制错误与自由基、辐射、化学物等造成每日大量DNA损伤",
+      "relation": "复制错误与自由基、辐射、化学物等造成每日大量DNA损伤",
       "direction": "risk",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -4202,7 +4202,7 @@
     {
       "source": "dna_repair",
       "target": "epigenetic_positive",
-      "relation": "书中概述DNA防御三路径：修复加速、表观遗传开关与端粒保护",
+      "relation": "DNA防御三路径：修复加速、表观遗传开关与端粒保护",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -4227,7 +4227,7 @@
     {
       "source": "vitamin_c",
       "target": "dna_damage",
-      "relation": "书中引述饮用橙汁后短期内DNA损伤指标下降的小规模人体观察",
+      "relation": "橙汁摄入与短期内DNA损伤指标下降相关（小规模人体观察）",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -4252,7 +4252,7 @@
     {
       "source": "epigenetic_regulation",
       "target": "mental_health",
-      "relation": "书中列举表观遗传变化与神经精神、代谢与肿瘤等多类疾病叙述相关",
+      "relation": "表观遗传变化与神经精神、代谢与肿瘤等多类疾病相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -4277,7 +4277,7 @@
     {
       "source": "immune_balance",
       "target": "digestive_cancer_risk",
-      "relation": "书中强调免疫系统可清除癌细胞甚至已扩散病灶",
+      "relation": "免疫系统可清除癌细胞甚至已扩散病灶",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -4302,7 +4302,7 @@
     {
       "source": "soy",
       "target": "angiogenesis_defense",
-      "relation": "书中引述大豆异黄酮染料木黄酮抑制肿瘤血管生成的早期发现，并联系亚洲饮食癌症风险观察",
+      "relation": "大豆异黄酮染料木黄酮与抑制肿瘤血管生成相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -4327,7 +4327,7 @@
     {
       "source": "angiogenesis_defense",
       "target": "digestive_cancer_risk",
-      "relation": "书中介绍血管预防概念：用安全手段干扰异常血管生成以实现癌症预防，饮食是重要选项",
+      "relation": "干扰异常血管生成与癌症预防相关，饮食是重要关联因素",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -4352,7 +4352,7 @@
     {
       "source": "angiogenesis_defense",
       "target": "metabolic_health",
-      "relation": "书中对比药物与膳食因子：后者倾向于将血管生成拉回基线平衡而非彻底关闭",
+      "relation": "膳食因子倾向于将血管生成拉回基线平衡而非彻底关闭",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -4377,7 +4377,7 @@
     {
       "source": "angiogenesis_defense",
       "target": "cardiometabolic",
-      "relation": "书中描述冠状动脉斑块内微血管可促进斑块增厚并使其更易破裂",
+      "relation": "冠状动脉斑块内微血管可促进斑块增厚并使其更易破裂",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -4402,7 +4402,7 @@
     {
       "source": "soy",
       "target": "isoflavones",
-      "relation": "书中描述大豆异黄酮的抗血管生成活性及发酵豆制品中浓度更高",
+      "relation": "大豆异黄酮具抗血管生成活性；发酵豆制品中浓度更高",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -4427,7 +4427,7 @@
     {
       "source": "soy",
       "target": "breast_prostate_risk",
-      "relation": "书中引述大豆摄入较高的乳腺癌幸存者复发与死亡风险较低的观察",
+      "relation": "较高大豆摄入与乳腺癌幸存者较低复发与死亡风险相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -4452,7 +4452,7 @@
     {
       "source": "tomato",
       "target": "angiogenesis_defense",
-      "relation": "书中描述番茄红素抑制血管生成，并说明烹饪与橄榄油可提高可吸收性",
+      "relation": "番茄红素抑制血管生成；烹饪与橄榄油可提高可吸收性",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -4477,7 +4477,7 @@
     {
       "source": "tomato",
       "target": "breast_prostate_risk",
-      "relation": "书中引述番茄/番茄酱摄入与前列腺癌风险及侵袭性相关的人群观察",
+      "relation": "番茄/番茄酱摄入与前列腺癌风险及侵袭性相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -4502,7 +4502,7 @@
     {
       "source": "cruciferous",
       "target": "angiogenesis_defense",
-      "relation": "书中描述西蓝花含芸薹宁、萝卜硫素等抗血管生成活性物质，并列举与多种癌症风险相关的人群观察",
+      "relation": "西蓝花中芸薹宁、萝卜硫素等与抗血管生成及多种癌症风险相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -4527,7 +4527,7 @@
     {
       "source": "berries_fruits",
       "target": "angiogenesis_defense",
-      "relation": "书中描述浆果花青素与鞣花酸具抗血管生成活性，并引述浆果摄入与肺癌风险相关观察",
+      "relation": "浆果花青素与鞣花酸具抗血管生成活性，浆果摄入与肺癌风险相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -4552,7 +4552,7 @@
     {
       "source": "seafood",
       "target": "digestive_cancer_risk",
-      "relation": "书中引述海鲜/鱼摄入与乳腺癌、结肠癌风险降低相关的人群研究叙述",
+      "relation": "海鲜/鱼摄入与乳腺癌、结肠癌风险降低相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -4577,7 +4577,7 @@
     {
       "source": "seafood",
       "target": "age_related_macular_degeneration",
-      "relation": "书中引述富脂鱼类摄入与年龄相关性黄斑变性风险降低相关的人群与荟萃分析叙述",
+      "relation": "富脂鱼类摄入与年龄相关性黄斑变性风险降低相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -4602,7 +4602,7 @@
     {
       "source": "cacao",
       "target": "regeneration_defense",
-      "relation": "书中引述高黄烷醇可可饮料使冠心病患者循环干细胞倍增并改善血流介导扩张的小规模试验叙述",
+      "relation": "高黄烷醇可可饮料与循环干细胞增加及血流介导扩张改善相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -4627,7 +4627,7 @@
     {
       "source": "red_wine",
       "target": "regeneration_defense",
-      "relation": "书中引述适量红葡萄酒升高循环内皮祖细胞并增强其迁移成血管能力的人体观察",
+      "relation": "适量红葡萄酒与循环内皮祖细胞升高及其迁移成血管能力增强相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -4652,7 +4652,7 @@
     {
       "source": "olive_oil",
       "target": "regeneration_defense",
-      "relation": "书中引述含特级初榨橄榄油的地中海饮食与老年人干细胞/血流反应相关的人体观察",
+      "relation": "含特级初榨橄榄油的地中海饮食与老年人干细胞/血流反应相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -4677,7 +4677,7 @@
     {
       "source": "added_sugar",
       "target": "regeneration_defense",
-      "relation": "书中描述升高血糖的食物饮料会阻碍干细胞生成并破坏干细胞",
+      "relation": "升高血糖的食物饮料与阻碍干细胞生成相关",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -4702,7 +4702,7 @@
     {
       "source": "green_tea",
       "target": "cancer_stem_cells",
-      "relation": "书中引述绿茶EGCG使结肠癌干细胞数量减少并诱导凋亡的实验室叙述",
+      "relation": "绿茶EGCG与结肠癌干细胞数量减少及诱导凋亡相关（实验室观察）",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "low",
@@ -4727,7 +4727,7 @@
     {
       "source": "turmeric",
       "target": "regeneration_defense",
-      "relation": "书中描述姜黄素具抗炎抗氧化抗血管生成及促进再生特性，并引述相关干细胞研究叙述",
+      "relation": "姜黄素具抗炎抗氧化抗血管生成及促进再生特性",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -4752,7 +4752,7 @@
     {
       "source": "akkermansia",
       "target": "gut_microbiome",
-      "relation": "书中概述阿克曼氏菌虽占比不高却与免疫、代谢及黏膜健康密切相关",
+      "relation": "阿克曼氏菌虽占比不高却与免疫、代谢及黏膜健康密切相关",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -4777,7 +4777,7 @@
     {
       "source": "akkermansia",
       "target": "immune_balance",
-      "relation": "书中引述阿克曼氏菌与癌症患者免疫疗法反应相关的研究叙述",
+      "relation": "阿克曼氏菌与癌症患者免疫疗法反应相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -4802,7 +4802,7 @@
     {
       "source": "pomegranate",
       "target": "akkermansia",
-      "relation": "书中描述石榴汁鞣花单宁代谢产物可改善阿克曼氏菌生长环境",
+      "relation": "石榴汁鞣花单宁代谢产物可改善阿克曼氏菌生长环境",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -4827,7 +4827,7 @@
     {
       "source": "animal_foods",
       "target": "gut_microbiome",
-      "relation": "书中主张减少动物蛋白摄入以利于微生物组",
+      "relation": "减少动物蛋白摄入与有利于微生物组相关",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -4852,7 +4852,7 @@
     {
       "source": "legumes",
       "target": "gut_barrier_integrity",
-      "relation": "书中引述豆类减少有害菌并支持黏液与屏障功能的动物研究叙述",
+      "relation": "豆类与减少有害菌并支持黏液与屏障功能相关",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "low",
@@ -4877,7 +4877,7 @@
     {
       "source": "mushrooms",
       "target": "gut_microbiome",
-      "relation": "书中引述白蘑菇增加保护性肠道菌（含阿克曼氏菌相关类群）的动物叙述",
+      "relation": "白蘑菇与增加保护性肠道菌（含阿克曼氏菌相关类群）相关",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "low",
@@ -4902,7 +4902,7 @@
     {
       "source": "berries_fruits",
       "target": "akkermansia",
-      "relation": "书中描述蔓越莓原花青素增厚黏液层以利于阿克曼氏菌的动物研究叙述",
+      "relation": "蔓越莓原花青素增厚黏液层以利于阿克曼氏菌",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "low",
@@ -4927,7 +4927,7 @@
     {
       "source": "red_wine",
       "target": "gut_microbiome",
-      "relation": "书中描述葡萄酒多酚抵达结肠滋养细菌并与炎症相关指标改善叙述相关",
+      "relation": "葡萄酒多酚抵达结肠滋养细菌并与炎症相关指标改善相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -4952,7 +4952,7 @@
     {
       "source": "green_tea",
       "target": "gut_microbiome",
-      "relation": "书中引述绿/乌龙/红茶多酚抵达结肠影响肠道细菌的研究叙述",
+      "relation": "绿/乌龙/红茶多酚抵达结肠并影响肠道细菌",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -4977,7 +4977,7 @@
     {
       "source": "cruciferous",
       "target": "dna_damage",
-      "relation": "书中引述西蓝花干预与年轻吸烟者DNA保护相关的人体研究叙述",
+      "relation": "西兰花摄入与吸烟相关DNA损伤的防护相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -5002,7 +5002,7 @@
     {
       "source": "omega3",
       "target": "dna_repair",
-      "relation": "书中描述海洋来源ω-3可保护DNA并改善修复",
+      "relation": "海洋来源ω-3与DNA保护及修复改善相关",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -5027,7 +5027,7 @@
     {
       "source": "soy",
       "target": "epigenetic_positive",
-      "relation": "书中引述大豆异黄酮与肿瘤抑制基因再激活相关的人体试验叙述",
+      "relation": "大豆异黄酮与肿瘤抑制基因再激活相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -5052,7 +5052,7 @@
     {
       "source": "cruciferous",
       "target": "epigenetic_positive",
-      "relation": "书中描述十字花科萝卜硫素可诱导有益表观遗传变化",
+      "relation": "十字花科萝卜硫素可诱导有益表观遗传变化",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -5077,7 +5077,7 @@
     {
       "source": "turmeric",
       "target": "epigenetic_regulation",
-      "relation": "书中描述姜黄素的表观遗传效应及其对血管相关蛋白表达的叙述",
+      "relation": "姜黄素具表观遗传效应并影响血管相关蛋白表达",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "moderate",
@@ -5102,7 +5102,7 @@
     {
       "source": "coffee",
       "target": "telomere_integrity",
-      "relation": "书中对比咖啡因实验室缩短端粒与人群中喝咖啡与更长端粒相关的观察",
+      "relation": "人群中喝咖啡与更长端粒相关（观察；实验室咖啡因结果另见）",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -5127,7 +5127,7 @@
     {
       "source": "green_tea",
       "target": "telomere_integrity",
-      "relation": "书中引述老年人喝茶与较长端粒相关的人群观察",
+      "relation": "老年人喝茶与较长端粒相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -5152,7 +5152,7 @@
     {
       "source": "nuts_seeds",
       "target": "telomere_integrity",
-      "relation": "书中引述坚果摄入与死亡率及端粒长度相关的人群观察",
+      "relation": "坚果摄入与死亡率及端粒长度相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -5177,7 +5177,7 @@
     {
       "source": "plant_based_diet",
       "target": "telomere_integrity",
-      "relation": "书中引述地中海饮食模式与女性端粒长度相关的人群观察",
+      "relation": "地中海饮食模式与女性端粒长度相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -5202,7 +5202,7 @@
     {
       "source": "processed_meat",
       "target": "telomere_integrity",
-      "relation": "书中引述加工肉类摄入与较短端粒相关的多项人群研究",
+      "relation": "加工肉类摄入与较短端粒相关",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -5227,7 +5227,7 @@
     {
       "source": "added_sugar",
       "target": "telomere_integrity",
-      "relation": "书中引述含糖饮料摄入与端粒缩短、加速衰老相关的人群分析",
+      "relation": "含糖饮料摄入与端粒缩短、加速衰老相关",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -5252,7 +5252,7 @@
     {
       "source": "immune_balance",
       "target": "digestive_cancer_risk",
-      "relation": "书中描述免疫功能下降可为感染与癌症创造条件，并提及免疫疗法背景",
+      "relation": "免疫功能下降可为感染与癌症创造条件",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -5277,7 +5277,7 @@
     {
       "source": "autoimmune",
       "target": "chronic_inflammation",
-      "relation": "书中概述自身免疫病中免疫系统错误攻击自身器官，并举1型糖尿病与甲状腺炎为例",
+      "relation": "自身免疫病中免疫系统错误攻击自身器官",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -5302,7 +5302,7 @@
     {
       "source": "mushrooms",
       "target": "immune_balance",
-      "relation": "书中引述白蘑菇β-葡聚糖与唾液IgA等免疫指标相关的人体观察",
+      "relation": "白蘑菇β-葡聚糖与唾液IgA等免疫指标相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -5327,7 +5327,7 @@
     {
       "source": "alliums",
       "target": "immune_resilience",
-      "relation": "书中引述陈年大蒜提取物与冷流感季节免疫细胞功能及症状天数相关的试验叙述",
+      "relation": "陈年大蒜提取物与冷流感季节免疫细胞功能及症状天数相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -5352,7 +5352,7 @@
     {
       "source": "cruciferous",
       "target": "immune_balance",
-      "relation": "书中描述西蓝花苗萝卜硫素含量显著高于成熟西蓝花，并引述与流感疫苗反应相关试验",
+      "relation": "西蓝花苗萝卜硫素含量显著高于成熟西蓝花，并与流感疫苗反应相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -5377,7 +5377,7 @@
     {
       "source": "berries_fruits",
       "target": "immune_balance",
-      "relation": "书中引述蓝莓对代谢综合征人群及运动后天然杀伤细胞等指标的试验叙述",
+      "relation": "蓝莓与代谢综合征人群及运动后天然杀伤细胞等指标相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -5402,7 +5402,7 @@
     {
       "source": "green_tea",
       "target": "autoimmune",
-      "relation": "书中描述EGCG可减少促炎T细胞、增加调节性T细胞，并引述多发性硬化动物模型叙述",
+      "relation": "EGCG可减少促炎T细胞、增加调节性T细胞，与多发性硬化动物模型相关",
       "direction": "protective",
       "evidence_type": "book_notes_mechanistic",
       "strength": "low",
@@ -5427,7 +5427,7 @@
     {
       "source": "green_tea",
       "target": "autoimmune",
-      "relation": "书中引述绿茶干预与狼疮患者疾病活动相关的随机对照试验叙述",
+      "relation": "绿茶干预与狼疮患者疾病活动相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -5452,7 +5452,7 @@
     {
       "source": "plant_based_diet",
       "target": "autoimmune",
-      "relation": "书中引述高蔬菜低蛋白饮食与多发性硬化复发率及抗炎菌群变化相关的小规模观察",
+      "relation": "高蔬菜低蛋白饮食与多发性硬化复发率及抗炎菌群变化相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -5477,7 +5477,7 @@
     {
       "source": "dairy",
       "target": "cardiometabolic",
-      "relation": "书中引述适量奶酪摄入与心脏病风险相关的人群观察，同时提示饱和脂肪与盐的顾虑",
+      "relation": "适量奶酪摄入与心脏病风险相关；同时需注意饱和脂肪与盐",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -5502,7 +5502,7 @@
     {
       "source": "cacao",
       "target": "polyphenols",
-      "relation": "书中区分黑巧克力因可可固体较高而与多项健康益处叙述相关",
+      "relation": "黑巧克力因可可固体较高而与多项健康益处相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -5527,7 +5527,7 @@
     {
       "source": "herbs_spices",
       "target": "cardiometabolic",
-      "relation": "书中引述中国辛辣饮食地区每日辛辣食物与较低死亡风险相关的大规模观察",
+      "relation": "每日辛辣食物与较低死亡风险相关（大规模观察）",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -5552,7 +5552,7 @@
     {
       "source": "nuts_seeds",
       "target": "digestive_cancer_risk",
-      "relation": "书中引述树坚果摄入与癌症相关结局改善的欧洲大型研究叙述",
+      "relation": "树坚果摄入与癌症相关结局改善相关",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
@@ -5577,7 +5577,7 @@
     {
       "source": "plant_based_diet",
       "target": "metabolic_health",
-      "relation": "书中说明证据层级：优先人类数据，动物与细胞研究用于机制理解且不可直接外推",
+      "relation": "证据层级优先人类数据；动物与细胞研究用于机制理解且不可直接外推",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -5602,7 +5602,7 @@
     {
       "source": "plant_based_diet",
       "target": "immune_resilience",
-      "relation": "书中强调食物影响因人而异，本书聚焦其对健康防御的有益性叙述而非绝对好坏",
+      "relation": "食物影响因人而异；聚焦其对健康防御的有益关联而非绝对好坏",
       "direction": "protective",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "low",
@@ -5627,7 +5627,7 @@
     {
       "source": "chronic_inflammation",
       "target": "gut_microbiome",
-      "relation": "书中描述长期压力可改变菌群、破坏血管生成与干细胞功能并降低免疫",
+      "relation": "长期压力可改变菌群、破坏血管生成与干细胞功能并降低免疫",
       "direction": "risk",
       "evidence_type": "book_notes_observational_synthesis",
       "strength": "moderate",
