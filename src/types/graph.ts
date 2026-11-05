@@ -46,6 +46,10 @@ export interface GraphEvidence {
   source_id?: string;
   note_id?: string;
   citation?: GraphCitation;
+  /** WeRead bookmark id when evidence came from data/weread (NS-061). */
+  weread_bookmark_id?: string;
+  weread_chapter_title?: string;
+  weread_origin?: 'personal' | 'best';
 }
 
 export interface GraphLink {

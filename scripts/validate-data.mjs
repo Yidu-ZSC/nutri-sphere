@@ -196,8 +196,21 @@ export function validateGraphData(data, schema, options = {}) {
           if (typeof ev.source_title === 'string' && ev.source_title !== book.title) {
             errors.push(`${path}.source_title 须与 sources[].title 一致`);
           }
-          if (sourceFile !== book.file) {
-            errors.push(`${path}.source_file 须与 sources[].file 一致`);
+          const wereadFile = `weread/${sourceId}.json`;
+          if (sourceFile !== book.file && sourceFile !== wereadFile) {
+            errors.push(
+              `${path}.source_file 须与 sources[].file 一致或为 weread/<source_id>.json（NS-061）`,
+            );
+          }
+          if (sourceFile === wereadFile) {
+            const bm = typeof ev.weread_bookmark_id === 'string' ? ev.weread_bookmark_id.trim() : '';
+            if (!bm) {
+              errors.push(`${path} weread source_file 须带 weread_bookmark_id`);
+            }
+            const origin = ev.weread_origin;
+            if (origin != null && origin !== 'personal' && origin !== 'best') {
+              errors.push(`${path}.weread_origin 须为 personal|best`);
+            }
           }
         }
       }
@@ -516,9 +529,11 @@ export function validateWereadCorpora() {
       }
     }
   }
-  // No extra JSON beyond the six (+ README is fine)
+  // No extra JSON beyond the six (+ mapping_report.json NS-061; README is fine)
+  const WEREAD_EXTRA_JSON = new Set(['mapping_report.json']);
   for (const name of fs.readdirSync(dir)) {
     if (!name.endsWith('.json')) continue;
+    if (WEREAD_EXTRA_JSON.has(name)) continue;
     const id = name.replace(/\.json$/, '');
     if (!WEREAD_BOOK_MAP[id]) {
       errors.push(`${WEREAD_DIR}/${name} 不在 A2 六书集合内`);
@@ -536,6 +551,47 @@ export function validateGraphFile(dataRel = ALIGNED_SEED, schemaRel = GRAPH_SCHE
   const schema = JSON.parse(fs.readFileSync(path.join(root, schemaRel), 'utf8'));
   const sourcesPayload = JSON.parse(fs.readFileSync(path.join(root, SOURCES_FILE), 'utf8'));
   return validateGraphData(data, schema, { sourcesPayload });
+}
+
+
+/** Optional NS-061 mapping_report shape check (present after map script). */
+export function validateWereadMappingReport() {
+  const file = path.join(root, WEREAD_DIR, 'mapping_report.json');
+  if (!fs.existsSync(file)) {
+    return { ok: true, skipped: true, errors: [] };
+  }
+  const errors = [];
+  let report;
+  try {
+    report = JSON.parse(fs.readFileSync(file, 'utf8'));
+  } catch (err) {
+    return { ok: false, errors: [`mapping_report.json 无法解析: ${err.message}`] };
+  }
+  if (report.schema_version !== '1.0') errors.push('mapping_report.schema_version 须为 "1.0"');
+  if (!report.hard_gate || typeof report.hard_gate.ok !== 'boolean') {
+    errors.push('mapping_report.hard_gate.ok 缺失');
+  }
+  if (!Array.isArray(report.attached)) errors.push('mapping_report.attached 须为数组');
+  if (!Array.isArray(report.skipped)) errors.push('mapping_report.skipped 须为数组');
+  if (!report.per_book || typeof report.per_book !== 'object') errors.push('mapping_report.per_book 缺失');
+  if (!report.personal_bookmark_outcomes || typeof report.personal_bookmark_outcomes !== 'object') {
+    errors.push('mapping_report.personal_bookmark_outcomes 缺失');
+  } else {
+    let n = 0;
+    for (const id of WEREAD_SOURCE_IDS) {
+      const rows = report.personal_bookmark_outcomes[id];
+      if (!Array.isArray(rows)) {
+        errors.push(`mapping_report.personal_bookmark_outcomes.${id} 须为数组`);
+        continue;
+      }
+      n += rows.length;
+    }
+    if (n !== 156) errors.push(`mapping_report 个人划线结局应为 156，实为 ${n}`);
+  }
+  if (report.hard_gate && report.hard_gate.ok === false) {
+    errors.push('mapping_report.hard_gate.ok 为 false（须 ≥25 挂载且 ≥4 书）');
+  }
+  return { ok: errors.length === 0, errors, counts: { attached: report.attached?.length ?? 0 } };
 }
 
 function isMain() {
@@ -573,4 +629,13 @@ if (isMain()) {
   console.log(
     `OK ${weread.counts.files} weread corpora (${weread.counts.bookmarks} bookmarks) — ${WEREAD_DIR}/`,
   );
+  const mapping = validateWereadMappingReport();
+  if (!mapping.ok) {
+    for (const error of mapping.errors) console.error(`ERROR ${error}`);
+    console.error(`validate:data 失败（${WEREAD_DIR}/mapping_report.json）`);
+    process.exit(1);
+  }
+  if (!mapping.skipped) {
+    console.log(`OK weread mapping_report (${mapping.counts.attached} attached) — ${WEREAD_DIR}/mapping_report.json`);
+  }
 }
