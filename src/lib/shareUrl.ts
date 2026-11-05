@@ -10,6 +10,9 @@ const THEME_ID = /^[a-z0-9_-]+$/;
 /** Home, explore, pattern detail, compare, or the diet twin screen. Distinct from `view`, which stays `2d` | `3d`. */
 export type ScreenMode = 'home' | 'explore' | 'pattern' | 'compare' | 'twin' | 'source' | 'admin';
 
+export const ADMIN_SECTIONS = ['books', 'edges', 'nodes', 'validate', 'settings'] as const;
+export type AdminSection = (typeof ADMIN_SECTIONS)[number];
+
 export interface ParsedShare {
   screen: ScreenMode | null;
   theme: string | null;
@@ -20,6 +23,8 @@ export interface ParsedShare {
   patterns: string[];
   source: string | null;
   book: string | null;
+  adminSection: AdminSection | null;
+  edge: string | null;
   layout: LayoutMode | null;
   view: GraphView | null;
   hideUnmatched: boolean;
@@ -37,6 +42,8 @@ export interface ShareState {
   patterns: readonly string[];
   source: string | null;
   book?: string | null;
+  adminSection?: AdminSection;
+  edge?: string | null;
   layout: LayoutMode;
   view: GraphView;
   hideUnmatched: boolean;
@@ -62,6 +69,24 @@ function parseScreen(value: string | null): ScreenMode | null {
     return value;
   }
   return null;
+}
+
+export function parseAdminSection(value: string | null): AdminSection | null {
+  if (
+    value === 'books' ||
+    value === 'edges' ||
+    value === 'nodes' ||
+    value === 'validate' ||
+    value === 'settings'
+  ) {
+    return value;
+  }
+  return null;
+}
+
+function parseEdgeKey(value: string | null): string | null {
+  if (!value || !/^[a-z0-9_]+~[a-z0-9_]+$/.test(value)) return null;
+  return value;
 }
 
 function parseTheme(value: string | null): string | null {
@@ -124,6 +149,8 @@ export function parseViewQuery(search: string): ParsedShare {
     patterns: parsePatternList(params.get('patterns')),
     source: cleanId(params.get('source')),
     book: cleanId(params.get('book')),
+    adminSection: parseAdminSection(params.get('section')),
+    edge: parseEdgeKey(params.get('edge')),
     layout: layout === 'hierarchy' || layout === 'force' ? layout : null,
     view: view === '2d' || view === '3d' ? view : null,
     hideUnmatched: false,
@@ -180,7 +207,11 @@ export function serializeViewQuery(state: ShareState): string {
   if (state.screen === 'admin') {
     const params = new URLSearchParams();
     params.set('screen', 'admin');
-    if (state.book) params.set('book', state.book);
+    const section = state.adminSection ?? 'books';
+    if (section !== 'books') params.set('section', section);
+    if (section === 'books' && state.book) params.set('book', state.book);
+    if (section === 'edges' && state.edge) params.set('edge', state.edge);
+    if (section === 'nodes' && state.node) params.set('node', state.node);
     return `?${params.toString()}`;
   }
   const params = new URLSearchParams();

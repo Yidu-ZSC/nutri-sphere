@@ -11,6 +11,10 @@ import { SourceDetail } from './components/SourceDetail';
 import { AdminShell } from './components/AdminShell';
 import { AdminBooksList } from './components/AdminBooksList';
 import { AdminBookDetail } from './components/AdminBookDetail';
+import { AdminEdges } from './components/AdminEdges';
+import { AdminNodes } from './components/AdminNodes';
+import { AdminValidate } from './components/AdminValidate';
+import { AdminSettings } from './components/AdminSettings';
 import { VeganDietDetail } from './components/VeganDietDetail';
 import { SearchBar } from './components/SearchBar';
 import { ThemeBar } from './components/ThemeBar';
@@ -38,6 +42,7 @@ import type { LayoutMode } from './lib/layout';
 import { loadGraph } from './lib/loadGraph';
 import { loadSources, sourceById } from './lib/loadSources';
 import { loadAdminBooks, adminBookById } from './lib/loadAdminBooks';
+import { findLinkByKey, nodeById } from './lib/adminCatalog';
 import { isVeganDietHubPattern, normalizeVeganDietPatternId, VEGAN_DIET_HUB_ID } from './lib/dietPatternDetails';
 import { patternsForTheme } from './lib/patternLinks';
 import { searchGraph, type SearchHit } from './lib/search';
@@ -47,6 +52,7 @@ import {
   parseViewQuery,
   resolveScreen,
   serializeViewQuery,
+  type AdminSection,
   type ParsedShare,
 } from './lib/shareUrl';
 import { EXPLORE_THEMES, filtersFromShare, themeById, themeForFilters, type ExploreTheme } from './lib/themes';
@@ -124,6 +130,21 @@ export function App() {
     const parsed = initialQuery.current;
     return resolveScreen(parsed) === 'admin' ? parsed.book : null;
   });
+  const [adminSection, setAdminSection] = useState<AdminSection>(() => {
+    const parsed = initialQuery.current;
+    if (resolveScreen(parsed) !== 'admin') return 'books';
+    return parsed.adminSection ?? 'books';
+  });
+  const [adminEdge, setAdminEdge] = useState<string | null>(() => {
+    const parsed = initialQuery.current;
+    if (resolveScreen(parsed) !== 'admin') return null;
+    return (parsed.adminSection ?? 'books') === 'edges' ? parsed.edge : null;
+  });
+  const [adminNodeId, setAdminNodeId] = useState<string | null>(() => {
+    const parsed = initialQuery.current;
+    if (resolveScreen(parsed) !== 'admin') return null;
+    return (parsed.adminSection ?? 'books') === 'nodes' ? parsed.node : null;
+  });
   const [selection, setSelection] = useState<Selection | null>(null);
   const [clickFocusId, setClickFocusId] = useState<string | null>(null);
   const [themeHintDismissed, setThemeHintDismissed] = useState(false);
@@ -180,12 +201,16 @@ export function App() {
           }
           if (parsed.screen === 'admin') {
             setScreen('admin');
-            if (parsed.book) {
+            const section = parsed.adminSection ?? 'books';
+            setAdminSection(section);
+            if (section === 'books' && parsed.book) {
               const knownBook = adminBookById(adminBooksData, parsed.book);
               setBookId(knownBook ? knownBook.id : null);
             } else {
               setBookId(null);
             }
+            setAdminEdge(section === 'edges' ? parsed.edge : null);
+            setAdminNodeId(section === 'nodes' && parsed.node && graph.nodes.some((node) => node.id === parsed.node) ? parsed.node : null);
           }
         }
         setLoad({ status: 'ready', graph });
@@ -301,6 +326,12 @@ export function App() {
   }, [screen, bookId, adminBooks]);
 
   useEffect(() => {
+    if (screen !== 'admin' || !graph) return;
+    if (adminEdge && !findLinkByKey(graph, adminEdge)) setAdminEdge(null);
+    if (adminNodeId && !nodeById(graph, adminNodeId)) setAdminNodeId(null);
+  }, [adminEdge, adminNodeId, graph, screen]);
+
+  useEffect(() => {
     if (screen !== 'admin') return;
     const robots = document.querySelector('meta[name="robots"]');
     const previous = robots?.getAttribute('content') ?? null;
@@ -336,11 +367,18 @@ export function App() {
       pattern: screen === 'pattern' ? patternId : null,
       patterns: screen === 'home' ? patterns : [],
       source: screen === 'source' ? sourceId : null,
-      book: screen === 'admin' ? bookId : null,
+      book: screen === 'admin' && adminSection === 'books' ? bookId : null,
+      adminSection: screen === 'admin' ? adminSection : 'books',
+      edge: screen === 'admin' && adminSection === 'edges' ? adminEdge : null,
       layout,
       view: graphView,
       hideUnmatched: exploring ? hideUnmatched : false,
-      node: exploring && selection?.kind === 'node' ? selection.id : null,
+      node:
+        exploring && selection?.kind === 'node'
+          ? selection.id
+          : screen === 'admin' && adminSection === 'nodes'
+            ? adminNodeId
+            : null,
       link: link ? linkKey(link.source, link.target) : null,
     });
     const target = `${window.location.pathname}${next}${window.location.hash}`;
@@ -357,6 +395,9 @@ export function App() {
     safeDisease,
     safeFood,
     safeMechanism,
+    adminEdge,
+    adminNodeId,
+    adminSection,
     bookId,
     screen,
     selection,
@@ -726,8 +767,20 @@ export function App() {
     clearPatternHighlight();
   };
 
+  const openAdminSection = (section: AdminSection) => {
+    setAdminSection(section);
+    setBookId(null);
+    setAdminEdge(null);
+    setAdminNodeId(null);
+    setScreen('admin');
+    setShellMenuOpen(false);
+  };
+
   const openAdminBook = (id: string) => {
     if (!adminBookById(adminBooks, id)) return;
+    setAdminSection('books');
+    setAdminEdge(null);
+    setAdminNodeId(null);
     setBookId(id);
     setScreen('admin');
     setShellMenuOpen(false);
@@ -736,6 +789,26 @@ export function App() {
   const closeAdminBook = () => {
     setBookId(null);
     setScreen('admin');
+  };
+
+  const openGraphNode = (id: string) => {
+    if (!graph?.nodes.some((node) => node.id === id)) return;
+    setSourceReturnSnapshot(null);
+    setSourceId(null);
+    setBookId(null);
+    setAdminEdge(null);
+    setAdminNodeId(null);
+    setDiseaseId(null);
+    setMechanismId(null);
+    setFoodId(null);
+    setHideUnmatched(false);
+    setLayout('hierarchy');
+    setGraphView('2d');
+    setClickFocusId(null);
+    setSelection({ kind: 'node', id });
+    setShellMenuOpen(false);
+    setScreen('explore');
+    clearPatternHighlight();
   };
 
   const exploring = screen === 'explore';
@@ -997,8 +1070,8 @@ export function App() {
           />
         )}
         {showAdmin && adminBooks && (
-          <AdminShell>
-            {activeAdminBook ? (
+          <AdminShell section={adminSection} onSection={openAdminSection}>
+            {adminSection === 'books' && activeAdminBook ? (
               <AdminBookDetail
                 book={activeAdminBook}
                 sources={sources}
@@ -1007,14 +1080,45 @@ export function App() {
                 onOpenPublicSource={openSourcePage}
                 onOpenLink={openCitedLink}
               />
-            ) : (
+            ) : null}
+            {adminSection === 'books' && !activeAdminBook ? (
               <AdminBooksList
                 books={adminBooks.books}
                 sources={sources}
                 graph={graph}
                 onOpenBook={openAdminBook}
               />
-            )}
+            ) : null}
+            {adminSection === 'edges' && graph ? (
+              <AdminEdges
+                graph={graph}
+                selected={findLinkByKey(graph, adminEdge)}
+                onOpen={setAdminEdge}
+                onBack={() => setAdminEdge(null)}
+                onOpenGraph={openCitedLink}
+              />
+            ) : null}
+            {adminSection === 'edges' && !graph ? <p className="admin-empty">图谱仍在加载。</p> : null}
+            {adminSection === 'nodes' && graph ? (
+              <AdminNodes
+                graph={graph}
+                selected={adminNodeId ? nodeById(graph, adminNodeId) ?? null : null}
+                onOpen={setAdminNodeId}
+                onBack={() => setAdminNodeId(null)}
+                onOpenGraph={openGraphNode}
+                onOpenEdge={(key) => {
+                  setAdminSection('edges');
+                  setAdminNodeId(null);
+                  setAdminEdge(key);
+                }}
+              />
+            ) : null}
+            {adminSection === 'nodes' && !graph ? <p className="admin-empty">图谱仍在加载。</p> : null}
+            {adminSection === 'validate' && graph ? <AdminValidate graph={graph} sources={sources} /> : null}
+            {adminSection === 'validate' && !graph ? <p className="admin-empty">图谱仍在加载。</p> : null}
+            {adminSection === 'settings' ? (
+              <AdminSettings graph={graph} sources={sources} books={adminBooks} appTheme={appTheme} />
+            ) : null}
           </AdminShell>
         )}
         {showSourceDetail && activeSource && graph && (

@@ -337,6 +337,8 @@ function shareState(partial: Partial<import('./shareUrl.ts').ShareState> & { scr
     patterns: [],
     source: null,
     book: null,
+    adminSection: 'books',
+    edge: null,
     layout: 'hierarchy',
     view: '2d',
     hideUnmatched: false,
@@ -537,4 +539,29 @@ test('admin screen round-trips list and book detail; invalid book id stripped at
   assert.equal(bad.screen, 'admin');
   assert.equal(bad.book, null);
   assert.equal(resolveScreen(bad), 'admin');
+
+  const edges = serializeViewQuery(
+    shareState({ screen: 'admin', adminSection: 'edges', edge: 'insulin_resistance~cardiometabolic', book: 'eat_to_heal' }),
+  );
+  assert.equal(edges, '?screen=admin&section=edges&edge=insulin_resistance%7Ecardiometabolic');
+  const edgesParsed = parseViewQuery(edges);
+  assert.equal(edgesParsed.adminSection, 'edges');
+  assert.equal(edgesParsed.edge, 'insulin_resistance~cardiometabolic');
+  assert.equal(edgesParsed.book, null);
+
+  const nodes = serializeViewQuery(
+    shareState({ screen: 'admin', adminSection: 'nodes', node: 'insulin_resistance' }),
+  );
+  assert.equal(nodes, '?screen=admin&section=nodes&node=insulin_resistance');
+
+  assert.equal(
+    serializeViewQuery(shareState({ screen: 'admin', adminSection: 'validate' })),
+    '?screen=admin&section=validate',
+  );
+  assert.equal(
+    serializeViewQuery(shareState({ screen: 'admin', adminSection: 'settings' })),
+    '?screen=admin&section=settings',
+  );
+  assert.equal(parseViewQuery('?screen=admin&section=nope').adminSection, null);
+  assert.equal(parseViewQuery('?screen=admin&edge=bad').edge, null);
 });
