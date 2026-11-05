@@ -47,7 +47,7 @@ const NODE_TYPES: Record<string, string> = {
   compound: '化合物',
   metabolite: '代谢物',
   mechanism: '机制',
-  disease: '疾病风险',
+  disease: '健康/疾病',
   biomarker: '生物标志',
 };
 

@@ -87,7 +87,7 @@ function LegendBlocks() {
           </li>
           <li>
             <ShapeIcon kind="octagon" />
-            疾病风险
+            健康/疾病
           </li>
         </ul>
       </div>
