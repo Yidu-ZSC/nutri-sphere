@@ -57,20 +57,26 @@ test('aligned seed passes schema and referential checks', () => {
 
 const TECHNICAL_NODES = ['igf1_signaling', 'lps'];
 
-test('data 1.0 uses schema 0.5 with evidences mirrors and keeps short book-note excerpts where not lengthened', () => {
+test('data 1.1 uses schema 0.5 with evidences mirrors; NS-056 long excerpts and NS-058 priority expansions', () => {
   const data = readJson(ALIGNED_SEED);
   assert.equal(data.meta.schema_version, '0.5');
-  assert.equal(data.meta.data_version, '1.0');
+  assert.equal(data.meta.data_version, '1.1');
   assert.equal(data.meta.disclaimer, 'Educational / research use only. Not medical advice.');
   assert.ok(data.nodes.length >= 60 && data.nodes.length <= 90);
   assert.ok(data.links.length >= 80 && data.links.length <= 140);
   assert.equal(data.links.length, 121);
   assert.equal(data.links.slice(0, STAGE_A_LINKS).length, ORIGINAL_EXCERPTS.length + 97);
-  const lengthenedOriginalIdx = new Set([11, 18, 19]);
+  // NS-056 pathway verification (800–1200)
+  const ns056LengthenedIdx = new Set([11, 18, 19]);
+  // NS-058 priority-theme short→原文 expansions (target 400–800)
+  const ns058LengthenedIdx = new Set([2, 3, 4, 5, 7, 8, 12, 13, 14, 15, 16]);
   ORIGINAL_EXCERPTS.forEach((excerpt, index) => {
-    if (lengthenedOriginalIdx.has(index)) {
+    if (ns056LengthenedIdx.has(index)) {
       assert.ok(data.links[index].excerpt.includes(excerpt.slice(0, 12)), `idx ${index}`);
       assert.ok(data.links[index].excerpt.length >= 800 && data.links[index].excerpt.length <= 1200);
+    } else if (ns058LengthenedIdx.has(index)) {
+      assert.notEqual(data.links[index].excerpt, excerpt, `idx ${index} should be expanded`);
+      assert.ok(data.links[index].excerpt.length >= 400 && data.links[index].excerpt.length <= 1200, `idx ${index}`);
     } else {
       assert.equal(data.links[index].excerpt, excerpt);
     }

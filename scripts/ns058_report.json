@@ -1,0 +1,562 @@
+{
+  "replaced_count": 33,
+  "skipped_count": 4,
+  "short_exceptions": [],
+  "replaced": [
+    {
+      "index": 2,
+      "edge": "plant_based_diet->chronic_inflammation",
+      "old_len": 19,
+      "new_len": 438,
+      "kind": "ok",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id_seed": "35903999_7UujZPd3G",
+      "note_ids_used": [
+        "35903999_7UujuY6q0",
+        "35903999_7UujZPd3G",
+        "35903999_7UulQClmx"
+      ],
+      "locate": "weread note_id 直达或同书扩段"
+    },
+    {
+      "index": 3,
+      "edge": "chronic_inflammation->liver_chronic",
+      "old_len": 16,
+      "new_len": 582,
+      "kind": "ok",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id_seed": "35903999_7UujZPd3G",
+      "note_ids_used": [
+        "35903999_7UujZPd3G",
+        "35903999_7UulQClmx",
+        "35903999_7Uum2bdvM"
+      ],
+      "locate": "weread note_id 直达或同书扩段"
+    },
+    {
+      "index": 4,
+      "edge": "chronic_inflammation->digestive_cancer_risk",
+      "old_len": 39,
+      "new_len": 582,
+      "kind": "ok",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id_seed": "35903999_7UulQClmx",
+      "note_ids_used": [
+        "35903999_7UujZPd3G",
+        "35903999_7UulQClmx",
+        "35903999_7Uum2bdvM"
+      ],
+      "locate": "weread note_id 直达或同书扩段"
+    },
+    {
+      "index": 5,
+      "edge": "glycation->chronic_inflammation",
+      "old_len": 46,
+      "new_len": 520,
+      "kind": "ok",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id_seed": "35903999_7Uum2bdvM",
+      "note_ids_used": [
+        "35903999_7UujZPd3G",
+        "35903999_7Uum2bdvM"
+      ],
+      "locate": "weread note_id 直达或同书扩段"
+    },
+    {
+      "index": 7,
+      "edge": "scfa->chronic_inflammation",
+      "old_len": 20,
+      "new_len": 476,
+      "kind": "ok",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id_seed": "39484588_10_5172-5447",
+      "note_ids_used": [
+        "39484588_10_5172-5447",
+        "39484588_10_9655-9804",
+        "39484588_18_22294-22371"
+      ],
+      "locate": "weread note_id 直达或同书扩段"
+    },
+    {
+      "index": 8,
+      "edge": "dietary_fiber->gut_microbiome",
+      "old_len": 33,
+      "new_len": 769,
+      "kind": "ok",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id_seed": "39484588_10_9655-9804",
+      "note_ids_used": [
+        "39484588_10_5172-5447",
+        "39484588_10_9655-9804",
+        "35903999_81vDbboq4"
+      ],
+      "locate": "weread note_id 直达或同书扩段"
+    },
+    {
+      "index": 12,
+      "edge": "animal_foods->cardiometabolic",
+      "old_len": 26,
+      "new_len": 509,
+      "kind": "ok",
+      "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+      "note_id_seed": "related",
+      "note_ids_used": [
+        "35903999_7UsOeVSXs",
+        "35903999_7UsVp5sbg",
+        "35903999_7UsVN9gnq",
+        "35903999_7Ut4eWrFy"
+      ],
+      "locate": "原 note_id=related；按旧摘录子串命中 35903999_7UsVp5sbg，并扩同书相邻脂肪/蛋白/蔬食劝告段"
+    },
+    {
+      "index": 13,
+      "edge": "lps->chronic_inflammation",
+      "old_len": 27,
+      "new_len": 408,
+      "kind": "ok",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id_seed": "related",
+      "note_ids_used": [
+        "24913511_79_2268-2452",
+        "24913511_80_607-674",
+        "24913511_80_1004-1039",
+        "24913511_80_1635-1692",
+        "24913511_81_540-601"
+      ],
+      "locate": "子串命中 LPS 段后扩肠漏与脂多糖章连续段"
+    },
+    {
+      "index": 14,
+      "edge": "gut_barrier_leak->lps",
+      "old_len": 21,
+      "new_len": 408,
+      "kind": "ok",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id_seed": "related",
+      "note_ids_used": [
+        "24913511_79_2268-2452",
+        "24913511_80_607-674",
+        "24913511_80_1004-1039",
+        "24913511_80_1635-1692",
+        "24913511_81_540-601"
+      ],
+      "locate": "子串命中后扩肠漏与脂多糖章连续段"
+    },
+    {
+      "index": 15,
+      "edge": "gut_microbiome->immune_balance",
+      "old_len": 15,
+      "new_len": 430,
+      "kind": "ok",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id_seed": "related",
+      "note_ids_used": [
+        "24913511_72_2512-2591",
+        "24913511_74_584-826",
+        "24913511_93_760-839",
+        "24913511_116_1342-1425"
+      ],
+      "locate": "原 note_id=related；子串命中后扩恶势力/菌群比例/高糖低纤段"
+    },
+    {
+      "index": 16,
+      "edge": "gut_microbiome->mental_health",
+      "old_len": 13,
+      "new_len": 517,
+      "kind": "ok",
+      "source_file": "肠道菌群_晓肚知肠.md",
+      "note_id_seed": "multiple",
+      "note_ids_used": [
+        "26793466_31_6055-6373",
+        "26793466_32_442-640"
+      ],
+      "locate": "原 note_id=multiple；取压力/焦虑胃肠反应 + 菌-肠-脑轴连续段"
+    },
+    {
+      "index": 20,
+      "edge": "ultra_processed->gut_microbiome",
+      "old_len": 28,
+      "new_len": 435,
+      "kind": "ok",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id_seed": "ns009_ultra_microbiome",
+      "note_ids_used": [
+        "24913511_105_1078-1126",
+        "24913511_105_1393-1417",
+        "24913511_105_2906-3158",
+        "24913511_105_3358-3402",
+        "24913511_116_1342-1425"
+      ],
+      "locate": "合成 id；取高果糖玉米糖浆加工形式→菌群/肝损伤 + 高糖低纤段"
+    },
+    {
+      "index": 21,
+      "edge": "ultra_processed->chronic_inflammation",
+      "old_len": 28,
+      "new_len": 514,
+      "kind": "ok",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id_seed": "ns009_ultra_inflammation",
+      "note_ids_used": [
+        "24913511_105_2906-3158",
+        "24913511_105_3358-3402",
+        "24913511_106_1798-1950",
+        "24913511_116_1342-1425"
+      ],
+      "locate": "合成 id；取加工果糖 + 肠漏/LPS + 高糖低纤炎症循环段"
+    },
+    {
+      "index": 23,
+      "edge": "gut_barrier_leak->autoimmune",
+      "old_len": 38,
+      "new_len": 464,
+      "kind": "ok",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id_seed": "ns009_barrier_autoimmune",
+      "note_ids_used": [
+        "24913511_79_2268-2452",
+        "24913511_106_1798-1950",
+        "24913511_106_3232-3274",
+        "24913511_116_1342-1425"
+      ],
+      "locate": "合成 id；取肠漏/LPS + 麸质与 1 型糖尿病段"
+    },
+    {
+      "index": 24,
+      "edge": "gut_barrier_leak->immune_activation",
+      "old_len": 32,
+      "new_len": 463,
+      "kind": "ok",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id_seed": "ns009_barrier_immune_activation",
+      "note_ids_used": [
+        "24913511_79_2268-2452",
+        "24913511_80_607-674",
+        "24913511_80_1635-1692",
+        "24913511_106_1798-1950"
+      ],
+      "locate": "合成 id；取肠漏检测 + LPS + 麸质敏感性段"
+    },
+    {
+      "index": 36,
+      "edge": "soy->cardiometabolic",
+      "old_len": 43,
+      "new_len": 497,
+      "kind": "ok",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id_seed": "ns009_soy_cardiometabolic",
+      "note_ids_used": [
+        "39484588_10_5172-5447",
+        "39484588_14_3969-4088",
+        "35903999_81vvKCKeg"
+      ],
+      "locate": "按旧摘录子串命中大豆/冠心病句，并扩同书 SCFA/干细胞护心相关连续段"
+    },
+    {
+      "index": 51,
+      "edge": "legumes->gut_microbiome",
+      "old_len": 24,
+      "new_len": 409,
+      "kind": "ok",
+      "source_file": "肠道菌群_晓肚知肠.md",
+      "note_id_seed": "ns009_legumes_microbiome",
+      "note_ids_used": [
+        "26793466_33_3195-3275",
+        "26793466_39_641-675",
+        "26793466_39_991-1138",
+        "26793466_40_1883-2028"
+      ],
+      "locate": "合成 id；书中无「豆类」专名，取同书膳食纤维→菌群/SCFA/食欲调节连续段"
+    },
+    {
+      "index": 60,
+      "edge": "plant_based_diet->gut_microbiome",
+      "old_len": 30,
+      "new_len": 598,
+      "kind": "ok",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id_seed": "ns009_plant_microbiome",
+      "note_ids_used": [
+        "39484588_10_9655-9804",
+        "35903999_81vDbboq4",
+        "39484588_18_22294-22371"
+      ],
+      "locate": "合成 id；取益生元 + 饮食重塑微生物组 + GALT 段"
+    },
+    {
+      "index": 61,
+      "edge": "plant_based_diet->cardiometabolic",
+      "old_len": 26,
+      "new_len": 509,
+      "kind": "ok",
+      "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+      "note_id_seed": "ns009_plant_cardiometabolic",
+      "note_ids_used": [
+        "35903999_7UsOeVSXs",
+        "35903999_7UsVp5sbg",
+        "35903999_7UsVN9gnq",
+        "35903999_7Ut4eWrFy"
+      ],
+      "locate": "原 note_id=ns009_*；同 7UsVp5sbg 定位并扩同书相关段"
+    },
+    {
+      "index": 74,
+      "edge": "refined_carbs->gut_microbiome",
+      "old_len": 28,
+      "new_len": 448,
+      "kind": "ok",
+      "source_file": "肠道菌群_晓肚知肠.md",
+      "note_id_seed": "ns009_refined_microbiome",
+      "note_ids_used": [
+        "26793466_37_3817-3936",
+        "26793466_39_641-675",
+        "26793466_39_991-1138",
+        "26793466_40_1883-2028"
+      ],
+      "locate": "合成 id；书中无精制主食专名，取同书纤维不足/高热量食物与菌群叙述"
+    },
+    {
+      "index": 75,
+      "edge": "refined_carbs->cardiometabolic",
+      "old_len": 26,
+      "new_len": 509,
+      "kind": "ok",
+      "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+      "note_id_seed": "ns009_refined_cardiometabolic",
+      "note_ids_used": [
+        "35903999_7UsOeVSXs",
+        "35903999_7UsVp5sbg",
+        "35903999_7UsVN9gnq",
+        "35903999_7Ut4eWrFy"
+      ],
+      "locate": "原 note_id=ns009_*；同 7UsVp5sbg（含「高度精制的植物性食物」）并扩同书相关段"
+    },
+    {
+      "index": 90,
+      "edge": "resistant_starch->gut_microbiome",
+      "old_len": 23,
+      "new_len": 409,
+      "kind": "ok",
+      "source_file": "肠道菌群_晓肚知肠.md",
+      "note_id_seed": "ns009_rs_microbiome",
+      "note_ids_used": [
+        "26793466_33_3195-3275",
+        "26793466_39_641-675",
+        "26793466_39_991-1138",
+        "26793466_40_1883-2028"
+      ],
+      "locate": "合成 id；书中无「抗性淀粉」专名，取同书纤维→SCFA/菌群连续段（抗性淀粉属可发酵底物同类）"
+    },
+    {
+      "index": 92,
+      "edge": "butyrate->gut_barrier_leak",
+      "old_len": 32,
+      "new_len": 476,
+      "kind": "ok",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id_seed": "ns009_butyrate_barrier",
+      "note_ids_used": [
+        "39484588_10_5172-5447",
+        "39484588_10_9655-9804",
+        "39484588_18_22294-22371"
+      ],
+      "locate": "合成 id；吃出自愈力无「丁酸」专名，取同书 SCFA 护肠 + 益生元 + GALT 连续段（丁酸为 SCFA 之一）"
+    },
+    {
+      "index": 93,
+      "edge": "saturated_fat->cardiometabolic",
+      "old_len": 31,
+      "new_len": 416,
+      "kind": "ok",
+      "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
+      "note_id_seed": "ns009_satfat_cardio",
+      "note_ids_used": [
+        "35903999_7UsOeVSXs",
+        "35903999_7UsQjCzCv",
+        "35903999_7UsVp5sbg",
+        "35903999_7UsVN9gnq"
+      ],
+      "locate": "原 note_id=ns009_*；命中含「饱和脂肪」短记 + 7UsVp5sbg 等"
+    },
+    {
+      "index": 100,
+      "edge": "reactive_oxygen->chronic_inflammation",
+      "old_len": 23,
+      "new_len": 756,
+      "kind": "ok",
+      "source_file": "植物性饮食与慢病_惊人的蔬菜汤.md",
+      "note_id_seed": "ns009_ros_inflammation",
+      "note_ids_used": [
+        "35903999_7UujuY6q0",
+        "35903999_7UujZPd3G",
+        "35903999_7Uumd0Ba1"
+      ],
+      "locate": "weread note_id 直达或同书扩段"
+    },
+    {
+      "index": 104,
+      "edge": "insulin_resistance->cardiometabolic",
+      "old_len": 24,
+      "new_len": 500,
+      "kind": "ok",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id_seed": "ns009_insulin_cardio",
+      "note_ids_used": [
+        "3300017717_13_11852-12010",
+        "3300017717_13_13762-13811",
+        "3300017717_13_14649-14707",
+        "3300017717_13_14986-15088",
+        "3300017717_7_7915-8196"
+      ],
+      "locate": "合成 id；取糖尿病/B细胞/心血管风险 + 生活方式四要素段"
+    },
+    {
+      "index": 105,
+      "edge": "insulin_resistance->fatty_liver",
+      "old_len": 24,
+      "new_len": 516,
+      "kind": "ok",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id_seed": "ns009_insulin_fatty_liver",
+      "note_ids_used": [
+        "3300017717_13_15822-16045",
+        "3300017717_7_6769-7356"
+      ],
+      "locate": "合成 id；书中无「脂肪肝」专名，取体脂储存毒物 + 饮食质量/腹部脂肪代谢段（短名例外风险见交付说明）"
+    },
+    {
+      "index": 108,
+      "edge": "gut_microbiome->mitochondrial_stress",
+      "old_len": 37,
+      "new_len": 467,
+      "kind": "ok",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id_seed": "ns009_microbiome_mito",
+      "note_ids_used": [
+        "24913511_82_427-590",
+        "24913511_82_674-711",
+        "24913511_82_956-1119",
+        "24913511_82_3014-3052",
+        "24913511_82_3093-3155"
+      ],
+      "locate": "子串命中后扩线粒体章节连续段"
+    },
+    {
+      "index": 109,
+      "edge": "mitochondrial_stress->chronic_inflammation",
+      "old_len": 25,
+      "new_len": 458,
+      "kind": "ok",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id_seed": "ns009_mito_inflammation",
+      "note_ids_used": [
+        "24913511_82_427-590",
+        "24913511_82_3014-3052",
+        "24913511_82_3093-3155",
+        "24913511_101_3292-3400",
+        "24913511_116_1342-1425"
+      ],
+      "locate": "合成 id；取线粒体章节伤害→炎症 + 菌群-线粒体 + 高糖低纤循环段"
+    },
+    {
+      "index": 111,
+      "edge": "chronic_inflammation->fatty_liver",
+      "old_len": 23,
+      "new_len": 584,
+      "kind": "ok",
+      "source_file": "植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md",
+      "note_id_seed": "ns009_inflammation_fatty_liver",
+      "note_ids_used": [
+        "3300017717_13_15822-16045",
+        "3300017717_7_6038-6129",
+        "3300017717_7_6769-7356"
+      ],
+      "locate": "合成 id；书中无「脂肪肝」专名，取体脂/代谢 + 饮食西化慢性病段"
+    },
+    {
+      "index": 112,
+      "edge": "chronic_inflammation->mental_health",
+      "old_len": 27,
+      "new_len": 404,
+      "kind": "ok",
+      "source_file": "肠道菌群_菌群大脑.md",
+      "note_id_seed": "ns009_inflammation_mental",
+      "note_ids_used": [
+        "24913511_86_354-365",
+        "24913511_86_2021-2073",
+        "24913511_86_1504-1553",
+        "24913511_86_3038-3080",
+        "24913511_106_551-619",
+        "24913511_116_1342-1425",
+        "24913511_116_1454-1567"
+      ],
+      "locate": "合成 id；取「抑郁症是一种炎症性疾病」章 + 麸质/炎症/大脑 + 高糖低纤段"
+    },
+    {
+      "index": 113,
+      "edge": "chronic_inflammation->ibd_related",
+      "old_len": 23,
+      "new_len": 431,
+      "kind": "ok",
+      "source_file": "肠道菌群_晓肚知肠.md",
+      "note_id_seed": "ns009_inflammation_ibd",
+      "note_ids_used": [
+        "26793466_39_641-675",
+        "26793466_45_10430-10546",
+        "26793466_46_2267-2444",
+        "26793466_51_5560-5629",
+        "26793466_51_5690-5755"
+      ],
+      "locate": "合成 id；节点标签为肠道炎症；取菌群失调→肠漏炎症 + 屏障破坏连续段"
+    },
+    {
+      "index": 114,
+      "edge": "gut_barrier_leak->ibd_related",
+      "old_len": 26,
+      "new_len": 431,
+      "kind": "ok",
+      "source_file": "肠道菌群_晓肚知肠.md",
+      "note_id_seed": "ns009_barrier_ibd",
+      "note_ids_used": [
+        "26793466_39_641-675",
+        "26793466_45_10430-10546",
+        "26793466_46_2267-2444",
+        "26793466_51_5560-5629",
+        "26793466_51_5690-5755"
+      ],
+      "locate": "合成 id；同上，屏障/肠漏→肠道炎症相关"
+    }
+  ],
+  "skipped": [
+    {
+      "index": 54,
+      "edge": "fermented_foods->gut_microbiome",
+      "reason": "晓肚知肠无发酵食物喂养菌群的连续原文；仅有益生菌玩笑段，跳过以免凑字/错段",
+      "old_len": 26
+    },
+    {
+      "index": 96,
+      "edge": "tmao->cardiometabolic",
+      "reason": "救命逆转无 TMAO/氧化三甲胺原文；禁止编造",
+      "old_len": 24
+    },
+    {
+      "index": 97,
+      "edge": "gut_microbiome->tryptophan_metabolites",
+      "reason": "菌群大脑无色氨酸代谢物原文；仅有血清素/炎症句，不足以支撑该边",
+      "old_len": 30
+    },
+    {
+      "index": 110,
+      "edge": "chronic_inflammation->crp",
+      "reason": "救命逆转无 C反应蛋白/CRP 原文；禁止编造",
+      "old_len": 34
+    }
+  ],
+  "length_bins": {
+    "<400": 0,
+    "400-800": 33,
+    "801-1200": 0,
+    ">1200": 0
+  }
+}
