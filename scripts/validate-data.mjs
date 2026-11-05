@@ -396,14 +396,18 @@ export function validateAdminBooks(payload, sourcesPayload) {
       errors.push(`admin_books.json 缺少已入库书目 id "${expected}"`);
     }
   }
-  // NS-066: only gut_brain remains ingested; five thin books are index_only (pending EPUB).
+  // NS-067: gut_brain + eat_to_heal ingested; four thin books remain index_only (pending EPUB).
   if (books.length === 19) {
     const gut = books.find((b) => b && typeof b === 'object' && /** @type {any} */ (b).id === 'gut_brain');
     if (!gut || /** @type {any} */ (gut).status !== 'ingested' || /** @type {any} */ (gut).source_id !== 'gut_brain') {
       errors.push('admin_books.json gut_brain 须保持 ingested + source_id');
     }
-    if (ingested !== 1) {
-      errors.push(`admin_books.json NS-066 后应恰有 1 本 ingested（gut_brain），实为 ${ingested}`);
+    const eth = books.find((b) => b && typeof b === 'object' && /** @type {any} */ (b).id === 'eat_to_heal');
+    if (!eth || /** @type {any} */ (eth).status !== 'ingested' || /** @type {any} */ (eth).source_id !== 'eat_to_heal') {
+      errors.push('admin_books.json eat_to_heal 须为 ingested + source_id（NS-067）');
+    }
+    if (ingested !== 2) {
+      errors.push(`admin_books.json NS-067 后应恰有 2 本 ingested（gut_brain+eat_to_heal），实为 ${ingested}`);
     }
   }
 

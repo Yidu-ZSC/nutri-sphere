@@ -1,10 +1,10 @@
 {
   "meta": {
     "schema_version": "0.7",
-    "data_version": "1.6",
+    "data_version": "1.7",
     "extracted_from": "knowledge-base Project (high relevance files)",
     "extraction_date": "2026-10-31",
-    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 book-note nodes and excerpts are unchanged. data 0.5 adds schema 0.2 optional citation and nine literature edges with verified DOIs. data 0.6 / schema 0.3 writes audience on every link and mechanism_depth on mechanism nodes. These labels are not an evidence grade and not a view toggle. Educational use only. The original 20 excerpts are unchanged. data 0.7 aligns the 14 existing mechanism descriptions to MECHANISM_DICTIONARY.md v0.2 concept sentences and adds 10 dictionary mechanism nodes (aliases empty; mechanism_depth mechanism). Mechanism nodes still carry no source or limitations fields. Educational use only; schema_version remains 0.3. data 0.8 aligns 11 existing disease/biomarker labels and descriptions to HEALTH_DISEASE_DICTIONARY.md v0.2 concept sentences and adds 8 protective health-direction disease nodes (aliases empty). Column caption becomes 健康/疾病. Status nodes still carry no source or limitations fields. No new edges in this increment. Educational use only; schema_version remains 0.3. data 0.9 / schema 0.4 adds source_title on every link, source_id on book-note links, and data/sources.json (six cited books) for the source intro screen. Literature links set source_title from citation.title and omit source_id. Excerpt bodies and limitations are unchanged; evidences arrays are not introduced. Educational use only. NS-056：evidences[]+顶层镜像；合并同端点 125→121；EXCERPT_LIMIT 1200；加长主摘录（微信读书书摘/PubMed 摘要，未编造）。 data 1.1 / NS-058：按 EXCERPT_EXPANSION 将优先主题短摘录替换为知识库原文（目标 400–800；evidences[0]+顶层镜像；schema 0.5 / sources 1.1 不动）。 data 1.2 / NS-061：六书微信划线映射进已有边 evidences[]（个人为主、热门去重补充；默认 append；短主摘录可 promote0）；schema 0.5 / sources 1.1 / admin_books 1.1 不动；语料 JSON 正文不改。 data 1.3 / schema 0.6 · NS-062：全量节点与边显式 domain: health；无环境/文化数据；无 UI 主题切换。 data 1.4 · NS-064 删除 gut_brain 旧边并按 EPUB 候选全量录入 15 节点 + 55 边贡献；schema 仍 0.6。 data 1.5 / schema 0.7 · NS-065：全量删除边顶层与 evidences[].limitations（「局限」）；大厅饮食模式同步去掉；DISCLAIMER_TEXT 不动；拓扑仍 102+158。 data 1.6 · NS-066（B2+D）：清五本薄书摘边与 weread 语料/Admin 笔记数；先 promote 2 条 gut_brain 挂载 + 4 条嵌套文献；保留 gut_brain EPUB、纯文献与全部 102 节点（含 degree-0）；DISCLAIMER 不动；schema 仍 0.7；admin_books → 1.2（去 note_count）。",
+    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 book-note nodes and excerpts are unchanged. data 0.5 adds schema 0.2 optional citation and nine literature edges with verified DOIs. data 0.6 / schema 0.3 writes audience on every link and mechanism_depth on mechanism nodes. These labels are not an evidence grade and not a view toggle. Educational use only. The original 20 excerpts are unchanged. data 0.7 aligns the 14 existing mechanism descriptions to MECHANISM_DICTIONARY.md v0.2 concept sentences and adds 10 dictionary mechanism nodes (aliases empty; mechanism_depth mechanism). Mechanism nodes still carry no source or limitations fields. Educational use only; schema_version remains 0.3. data 0.8 aligns 11 existing disease/biomarker labels and descriptions to HEALTH_DISEASE_DICTIONARY.md v0.2 concept sentences and adds 8 protective health-direction disease nodes (aliases empty). Column caption becomes 健康/疾病. Status nodes still carry no source or limitations fields. No new edges in this increment. Educational use only; schema_version remains 0.3. data 0.9 / schema 0.4 adds source_title on every link, source_id on book-note links, and data/sources.json (six cited books) for the source intro screen. Literature links set source_title from citation.title and omit source_id. Excerpt bodies and limitations are unchanged; evidences arrays are not introduced. Educational use only. NS-056：evidences[]+顶层镜像；合并同端点 125→121；EXCERPT_LIMIT 1200；加长主摘录（微信读书书摘/PubMed 摘要，未编造）。 data 1.1 / NS-058：按 EXCERPT_EXPANSION 将优先主题短摘录替换为知识库原文（目标 400–800；evidences[0]+顶层镜像；schema 0.5 / sources 1.1 不动）。 data 1.2 / NS-061：六书微信划线映射进已有边 evidences[]（个人为主、热门去重补充；默认 append；短主摘录可 promote0）；schema 0.5 / sources 1.1 / admin_books 1.1 不动；语料 JSON 正文不改。 data 1.3 / schema 0.6 · NS-062：全量节点与边显式 domain: health；无环境/文化数据；无 UI 主题切换。 data 1.4 · NS-064 删除 gut_brain 旧边并按 EPUB 候选全量录入 15 节点 + 55 边贡献；schema 仍 0.6。 data 1.5 / schema 0.7 · NS-065：全量删除边顶层与 evidences[].limitations（「局限」）；大厅饮食模式同步去掉；DISCLAIMER_TEXT 不动；拓扑仍 102+158。 data 1.6 · NS-066（B2+D）：清五本薄书摘边与 weread 语料/Admin 笔记数；先 promote 2 条 gut_brain 挂载 + 4 条嵌套文献；保留 gut_brain EPUB、纯文献与全部 102 节点（含 degree-0）；DISCLAIMER 不动；schema 仍 0.7；admin_books → 1.2（去 note_count）。 data 1.7 / schema 0.7 adds eat_to_heal EPUB full ingest (NS-067).",
     "disclaimer": "Educational / research use only. Not medical advice."
   },
   "nodes": [
@@ -972,7 +972,11 @@
       "label": "肠道屏障完整",
       "group": "protective",
       "description": "上皮紧密连接与黏液层保持相对完整的状态。",
-      "aliases": [],
+      "aliases": [
+        "肠道屏障",
+        "肠屏障完整",
+        "紧密连接屏障"
+      ],
       "mechanism_depth": "mechanism",
       "domain": "health"
     },
@@ -1258,6 +1262,172 @@
         "红葡萄酒"
       ],
       "domain": "health"
+    },
+    {
+      "id": "regeneration_defense",
+      "type": "mechanism",
+      "label": "再生防御 / 成体干细胞动员",
+      "group": "protective",
+      "description": "书中所述由成体干细胞动员、归巢与旁分泌修复构成的再生健康防御系统。",
+      "aliases": [
+        "再生",
+        "干细胞动员",
+        "成体干细胞",
+        "内皮祖细胞",
+        "EPC"
+      ],
+      "domain": "health",
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "telomere_integrity",
+      "type": "mechanism",
+      "label": "端粒完整性 / 端粒长度维护",
+      "group": "protective",
+      "description": "书中所述端粒对染色体末端的保护及其与衰老、DNA健康防御相关的叙述。",
+      "aliases": [
+        "端粒",
+        "端粒长度",
+        "telomere"
+      ],
+      "domain": "health",
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "cancer_stem_cells",
+      "type": "mechanism",
+      "label": "肿瘤干细胞相关叙述",
+      "group": "risk",
+      "description": "书中所述与肿瘤复发、耐药相关的肿瘤干细胞；与成体再生干细胞区分。",
+      "aliases": [
+        "肿瘤干细胞",
+        "CSC"
+      ],
+      "domain": "health",
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "dna_repair",
+      "type": "mechanism",
+      "label": "DNA修复能力",
+      "group": "protective",
+      "description": "书中所述细胞识别并修复DNA损伤的内在防御机制。",
+      "aliases": [
+        "DNA修复",
+        "基因修复"
+      ],
+      "domain": "health",
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "age_related_macular_degeneration",
+      "type": "disease",
+      "label": "年龄相关性黄斑变性",
+      "group": "risk",
+      "description": "书中所述与眼底异常血管生成相关的老年视力丧失风险。",
+      "aliases": [
+        "黄斑变性",
+        "AMD"
+      ],
+      "domain": "health"
+    },
+    {
+      "id": "chronic_wounds",
+      "type": "disease",
+      "label": "慢性伤口 / 愈合障碍",
+      "group": "risk",
+      "description": "书中所述愈合缓慢或无法愈合的伤口，常与糖尿病、循环障碍等相关。",
+      "aliases": [
+        "慢性伤口",
+        "糖尿病足溃疡"
+      ],
+      "domain": "health"
+    },
+    {
+      "id": "seafood",
+      "type": "food",
+      "label": "海鲜 / 富含ω-3的鱼贝",
+      "group": "protective",
+      "description": "书中讨论的鱼、贝类等海产品，常与ω-3及多项健康结局叙述相关。",
+      "aliases": [
+        "鱼",
+        "贝类",
+        "海产品"
+      ],
+      "domain": "health"
+    },
+    {
+      "id": "olive_oil",
+      "type": "food",
+      "label": "特级初榨橄榄油",
+      "group": "protective",
+      "description": "书中所述地中海饮食核心油脂，含多酚等生物活性物质。",
+      "aliases": [
+        "橄榄油",
+        "EVOO"
+      ],
+      "domain": "health"
+    },
+    {
+      "id": "tomato",
+      "type": "food",
+      "label": "番茄 / 番茄红素食品",
+      "group": "protective",
+      "description": "书中强调烹饪可提高可吸收番茄红素的番茄及其制品。",
+      "aliases": [
+        "番茄",
+        "番茄酱",
+        "番茄红素"
+      ],
+      "domain": "health"
+    },
+    {
+      "id": "turmeric",
+      "type": "food",
+      "label": "姜黄 / 姜黄素",
+      "group": "protective",
+      "description": "书中所述含姜黄素的香料，与抗炎、再生及表观遗传叙述相关。",
+      "aliases": [
+        "姜黄",
+        "姜黄素"
+      ],
+      "domain": "health"
+    },
+    {
+      "id": "pomegranate",
+      "type": "food",
+      "label": "石榴 / 石榴汁",
+      "group": "protective",
+      "description": "书中所述富含鞣花单宁的石榴制品，与阿克曼氏菌及免疫叙述相关。",
+      "aliases": [
+        "石榴",
+        "石榴汁"
+      ],
+      "domain": "health"
+    },
+    {
+      "id": "akkermansia",
+      "type": "compound",
+      "label": "嗜黏蛋白阿克曼氏菌",
+      "group": "protective",
+      "description": "书中强调的与黏膜、代谢与免疫疗法反应相关的肠道有益细菌。",
+      "aliases": [
+        "阿克曼氏菌",
+        "Akkermansia"
+      ],
+      "domain": "health"
+    },
+    {
+      "id": "microscopic_tumors",
+      "type": "disease",
+      "label": "微小潜伏肿瘤 / 无血管休眠癌灶",
+      "group": "risk",
+      "description": "书中所述尸检常见、因缺乏血供而长期保持微小体积的肿瘤灶。",
+      "aliases": [
+        "微小肿瘤",
+        "休眠肿瘤"
+      ],
+      "domain": "health"
     }
   ],
   "links": [
@@ -1497,6 +1667,13 @@
             "pmid": "31296969",
             "url": "https://doi.org/10.1038/s41575-019-0173-3"
           }
+        },
+        {
+          "excerpt": "第一个原则：食用大量来自天然食物的膳食纤维。膳食纤维来自天然的植物性食物，是有益于你微生物组健康的食品。50自二三十万年前智人出现以来，纤维就一直是人类食物的核心。人类采集并食用像古代谷物、坚果、豆类和水果这样的纤维食物。51只有动物蛋白很少被摄入。此外，这些食物都是从富含细菌的土壤和植被中被精心挑选出来的，所以我们的远祖吃的食物不仅富含纤维，还富含微生物。这种含有纤维和细菌的饮食模式塑造了我们的身体为生存而进化的方式。我们的身体仍然是为适应这种原始的饮食模式构建的，而这种饮食模式对我们的微生物组和我们的整体健康也仍然是最好的。如今的深加工食品是最近才发展起来的，直到20世纪中叶才出现。这意味着吃工业化食品的现代饮食模式只在人类历史上存在了0.02%左右的时间，因而从发挥营养功能的角度来说，这对人体依然是一个相对陌生的模式。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_08_fiber_principle"
         }
       ],
       "population": "综述所讨论的生物学与临床场景，不覆盖具体益生菌产品。"
@@ -1602,6 +1779,13 @@
           "source_file": "肠道菌群_菌群大脑.md",
           "source_id": "gut_brain",
           "note_id": "gut_brain_01_axis"
+        },
+        {
+          "excerpt": "一些肠道细菌，如植物乳杆菌、鼠李糖乳杆菌、蕈状芽孢杆菌，有着内分泌物或激素的功能，甚至可以产生和释放大脑神经递质，如催产素、血清素、γ-氨基丁酸（GABA）和多巴胺。这些化学物质会激活大脑的信号，从而对我们的情绪产生深远的影响。2一些细菌释放的代谢产物能保护我们免受糖尿病的困扰；另一些则控制腹部脂肪的生长。一种名为双歧杆菌的肠道细菌已经被证实可以通过独特的肠脑互动来减轻人们的压力和焦虑。3我们的细菌影响着血管生成、干细胞和免疫，甚至可以影响我们的激素、性健康和社交行为。它们既可以滋养人类的细胞，也可以刺激和激怒这些细胞。我们体内的微生物区系[2]可以决定生死，决定我们是得重病还是抵抗住疾病。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_03_neuro"
         }
       ],
       "domain": "health"
@@ -2077,6 +2261,13 @@
           "source_file": "肠道菌群_菌群大脑.md",
           "source_id": "gut_brain",
           "note_id": "gut_brain_06_sweetener_micro"
+        },
+        {
+          "excerpt": "到目前为止，我主要介绍的是你可以添加到饮食中的那些有助于让你变得更健康的食物，而不是你应该避免的食物，可是在谈到微生物组时，我想指出一种最好完全避免的物质：人工甜味剂。目前被批准供人类食用的人工甜味剂有糖精、阿斯巴甜、三氯蔗糖、安赛蜜和纽甜。它们将自己被合成后的使命完成得非常漂亮——尝起来非常、非常甜。89糖精的甜度是普通食糖的300~500倍，阿斯巴甜是180倍，三氯蔗糖是600倍。它们的优势在于满足了人们对甜食的喜好，却不会让人们摄入糖的热量。人工甜味剂实现这一优势的方法之一是使肠道对其吸收少，但这意味着它们被直接带到了肠道细菌面前。所以重要的问题是，这些甜味剂会如何影响微生物组？\n\n以色列魏茨曼科学研究院和特拉维夫大学的科学家研究了三种甜味剂——糖精、三氯蔗糖和阿斯巴甜——对肠道微生物组的影响。90他们在老鼠的饮用水中加入人工甜味剂或天然糖（葡萄糖和蔗糖），持续11周，并将这些老鼠的肠道细菌与只喝白开水的老鼠进行比较。他们发现糖精对微生物组的影响最大，有益的罗伊氏乳杆菌的数量减至原来的5/6。还记得吗？罗伊氏乳杆菌是一种重要的肠道细菌，可以影响人体的免疫功能，阻止乳腺肿瘤和结肠肿瘤的发展，并影响肠-脑轴，使其产生社交激素催产素。\n\n人工甜味剂的吸引人之处在于，大多数甜味剂不含任何碳水化合物，所以它们的血糖指数很低。然而，令人惊讶的是，如果给老鼠喂食人工甜味剂、天然糖或普通饮用水，然后测试它们代谢葡萄糖的能力，科学家发现，与饮用糖水或普通水的老鼠相比，饮用人工甜味剂的老鼠的葡萄糖耐量受损更严重。如果你只考虑甜味剂的化学成分，可能会觉得这说不通，但是人们已经研究过甜味剂与微生物组相互作用的可能性。在为了消灭肠道细菌而给老鼠使用广谱抗生素（环丙沙星、甲硝唑或万古霉素）之后，所有老鼠对葡萄糖耐量试验的反应都相似，这表明人工甜味剂与微生物组之间的相互作用与观察到的葡萄糖耐受不良的现象有关。\n\n以色列研究小组还研究了381名40多岁的非糖尿病健康人士，发现长期食用无热量的人工甜味剂影响他们肠道微生物组的变化。91他们的腰臀比（肥胖的一种衡量标准）更高，空腹血糖水平更高，糖化血红蛋白（反映长期高血糖的血液标志物）的水平也更高。重要的是，研究人员发现，人们对人工甜味剂的反应似乎存在个体差异，这可能也与他们体内微生物组的变化有关。\n\n凯斯西储大学、俄亥俄州立大学、美国国立卫生研究院和苏格兰阿伯丁大学的科学家进行的另一项实验室研究显示，人工甜味剂可能会导致生态失调。他们研究了易患类似克罗恩病这种炎症性肠病的老鼠，并给它们喂食了6周的三氯蔗糖麦芽糖糊精，在喂食后对老鼠的肠道细菌进行检测时发现大肠杆菌过度生长。92\n\n这些研究显示了合成食品对微生物组的影响。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_08_sweeteners"
         }
       ],
       "domain": "health"
@@ -2127,6 +2318,13 @@
           "source_file": "肠道菌群_菌群大脑.md",
           "source_id": "gut_brain",
           "note_id": "gut_brain_07_abx_micro"
+        },
+        {
+          "excerpt": "医学界现在面临着如何使用抗生素的难题。作为一名医生，我知道抗生素的价值，也亲身体会到合理使用抗生素的好处。但随着我们对微生物组的不断了解，我们开始思考杀死“好人”的后果。每个医生在专业的培训过程中都见到过艰难梭菌（C.dif icile）感染。C.代表梭菌属（Clostridium），事实证明，梭菌并不是外来入侵者，而是正常微生物组的一部分。然而，这种肠道细菌需要由其他细菌控制它的生长。当病人被给予像克林霉素这样的抗生素时，艰难梭菌有时会过度生长并引起肠道紊乱，伴有严重的腹泻、发烧、痉挛和危及生命的并发症，如肠穿孔和出血。但当我们了解到微生物组是如何保护我们的健康时，我们就开始重新思考，改变我们的肠道细菌会如何导致食物过敏、糖尿病、肥胖症、心血管疾病、癌症、阿尔茨海默病，甚至抑郁症的发病率的增加，这真的很不可思议。这个谜题还远未解开，但它应该让我们对漫不经心地使用抗生素，甚至防腐剂这一行为更加谨慎。它告诉我们，我们需要更多地考虑如何让肠道细菌保持良好状态，从而保持我们的整体健康。正确的饮食便是一种方法。\n\n饮食如何影响微生物组",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_03_abx"
         }
       ],
       "domain": "health"
@@ -2277,6 +2475,20 @@
           "source_file": "肠道菌群_菌群大脑.md",
           "source_id": "gut_brain",
           "note_id": "gut_brain_04_breast_micro"
+        },
+        {
+          "excerpt": "我们肠道内的健康细菌在我们出生之前就已经存在了。我在医学院的时候，老师告诉我们孕妇的子宫是无菌的，健康的细菌只有在分娩的时候才会被引入婴儿体内，在婴儿的头部经过产道被挤压时。寄生在阴道的细菌与婴儿的嘴唇接触，婴儿随即会吞入将在肠道内繁殖的细菌。无菌子宫的观点已经被推翻。我们现在知道，健康的细菌是在怀孕期间从母体转移给胎儿的。23胎盘以及胎儿在其中漂浮了9个月的羊水里都含有细菌，这些细菌会在胎儿的体内定植，影响胎儿的微生物组和未来的健康。24当然，在经阴道分娩时，细菌也会转移到婴儿身上。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_03_maternal"
+        },
+        {
+          "excerpt": "然后，母乳喂养会给婴儿带来更多的微生物。25现代医学再次颠覆了医生之前在医学院学到的知识，即母乳是无菌液体。错。我们现在知道，来自母亲免疫系统的特定细胞从她的肠道中提取细菌，并通过淋巴通道将它们输送到乳房上的乳腺导管。这种细胞名为树突状细胞。这意味着母乳中充满了健康的细菌，而且这些细菌会进入婴儿的肠道。事实上，据估计，婴儿的肠道细菌几乎有30%来自其母亲的母乳，10%来自吮吸乳头和吞食皮肤细菌，其余来自早期对环境的接触。2由于一个婴儿每天消耗约27盎司[1]的母乳，所以估计他每24小时就会吞入多达1000万个细菌。我们现在不妨想一想在分娩前后给母亲或婴儿使用抗生素的潜在影响。这可能会减少母亲体内重要的健康细菌，或者干扰它们在分娩和哺乳期间的传播。配方奶粉喂养的婴儿体内的微生物组与母乳喂养至少6周的婴儿相比存在显著差异。27",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_03_breastmilk"
         }
       ],
       "domain": "health"
@@ -2627,6 +2839,20 @@
           "source_file": "肠道菌群_菌群大脑.md",
           "source_id": "gut_brain",
           "note_id": "gut_brain_01_micro_immune"
+        },
+        {
+          "excerpt": "你不再只是人类——你是一个共生功能体。这个术语描述的是一种有机体，它靠把多种互利的物种组合在一起发挥作用。你是一个共生功能体，因为你的身体不是一个单一的实体，而是一个高度复杂的生态系统，体内和体表有39万亿细菌，其中大部分是好的。这些细菌的数量大致相当于你身上的细胞总量（约37万亿），但加在一起的重量大约只有3磅[1]，相当于你大脑的重量。1它们顽强得惊人，能抵抗胃酸和肠道内的化学物质。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_03_holobiont"
+        },
+        {
+          "excerpt": "同时也要记住，你的肠道微生物组是通过肠内的一层类似果冻卷的肠相关淋巴组织（GALT）与你的免疫系统进行沟通的。当你的肠道细菌健康时，这些淋巴组织会帮助你的免疫系统保持健康。因此，第八章中提到的所有保持微生物组健康的食物也有助于增强免疫防御能力。所以千万不要将不同的健康防御系统孤立开来，只关注其中一种——它们其实在共同发挥作用。我在本书中讨论的五个健康防御系统都以协作的方式相互作用，以维持你的健康。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_10_galt"
         }
       ],
       "domain": "health"
@@ -2727,6 +2953,20 @@
           "source_file": "肠道菌群_菌群大脑.md",
           "source_id": "gut_brain",
           "note_id": "gut_brain_04_ultra_micro"
+        },
+        {
+          "excerpt": "在一项研究中，科学家们将一组老鼠的饮食从低脂肪、高纤维（类似于对人类和有益细菌都有好处的植物性饮食）改为不健康的高脂肪、低纤维（类似于西式饮食），为期7周。这种饮食变化彻底改变了微生物组。原本存在于健康志愿者体内的各种细菌，有多达60%的细菌对不健康饮食做出了反应，数量减少了一半。后来的情况更糟。当科学家们让老鼠回到更健康的植物性饮食上时，减少的细菌只有30%恢复到以前的水平。事实上，整个微生物组的结构在之后长达15周（大约是老鼠寿命的10%）的时间里一直都在变化。科学家们得出的结论是，一些健康的细菌具有复原能力，能够从饮食损害中恢复过来，而另一些则不能。他们称这种持续性的损伤为饮食在微生物组那儿留下的“疤痕”。\n\n这项研究让人们感兴趣的是：当研究人员开始培育这些老鼠，并让每一代老鼠都吃高脂肪、低纤维的西式饮食时，微生物组的疤痕历经几代后在老鼠身上变得越来越大。在每一代老鼠中，来自健康人类体内的原始细菌越来越多地从微生物组中消失。到了第四代（第一代的曾孙），来自最初健康老鼠体内的微生物已经有72%无法被检测到。几代老鼠都吃同样不健康的高脂肪、低纤维食物，结果永久性地杀死了健康的肠道微生物。32它们灭绝了，无法像以前那样通过更健康的植物性饮食再生。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_03_scar"
+        },
+        {
+          "excerpt": "第三个原则：多吃新鲜、天然的食物，少吃加工食品。随着肉类消费的增加，现代化学进入了食品工业。深加工食品含有合成食品添加剂、防腐剂和香精。工业化使食品更便宜、更容易获得、更耐贮存，而且通过味道处理和市场营销，甚至比传统的新鲜食品更具吸引力。与此同时，卫生条件、食品行业监管和公共卫生工作减少了人类与环境中所有细菌的接触。巴氏消毒法和卫生条件的改善减少了人类与致病细菌的接触，但也减少了其与促进健康的细菌的接触。现代工业化的饮食习惯改变了我们与自身微生物组的关系，也改变了我们的健康。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_08_ultra"
         }
       ],
       "domain": "health"
@@ -2952,6 +3192,2459 @@
           "source_file": "肠道菌群_菌群大脑.md",
           "source_id": "gut_brain",
           "note_id": "gut_brain_08_ferment_micro"
+        },
+        {
+          "excerpt": "近40万亿细菌栖息在我们的身体里，其中大多数保护着我们的健康。这些细菌不仅能从我们吞下并输送到肠道的食物中产生对健康有益的代谢物，还能控制我们的免疫系统，影响血管生成，甚至帮助产生影响我们大脑和社会功能的激素。我们可以通过吃泡菜、酸菜、切达干酪和酸面包等食物来促进微生物组的作用。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_00_micro_teaser"
+        },
+        {
+          "excerpt": "饮食可能是影响我们微生物组最有力的工具。天然食品提供了更多样化的来源，例如酸奶、发酵食品，以及一些富含细菌的饮料。但即使你不直接食用益生菌，你每天吃的东西也对你的微生物组防御系统有着最深远的影响。我们的饮食随时可以减少或增多肠道微生物组的数量。你吃的食物会影响肠道的愈合能力，方式有时令人咋舌。在本书的第二部分，我将告诉你不同类型的食物如何相互作用，并构建更好的微生物组。例如，你可以影响肠道中某种特殊的有益细菌的数量，而这种影响又被证明能使一些癌症治疗更有效。\n\n但首先，我想与大家共享人体得以保持健康的另一个强大的防御系统：人体保护DNA的机制。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_03_diet_tool"
+        },
+        {
+          "excerpt": "韩国泡菜本质上是一种含有益生菌的食品。与酸奶一样，它能给你的肠道提供大量健康的细菌和生物活性物质。许多参与韩国泡菜发酵过程的细菌都和健康人体的微生物组中发现的细菌相同：拟杆菌、厚壁菌和乳酸菌等。22韩国世界泡菜研究所的科学家甚至发现了一种名为“泡菜慢生芽孢杆菌”的新细菌，这种细菌能产生维生素K2，也就是甲基萘醌。大家可以回想一下第六章的内容，维生素K2是一种抗血管生成的生物活性物质，存在于深色鸡肉和奶酪中。23韩国泡菜中的另一种细菌产物是丙酸，这是一种短链脂肪酸，可以降低胆固醇，减少炎症，防止动脉粥样硬化斑块的形成，并提高消化能力。24泡菜的提取物被发现可以杀死结肠癌、骨癌、肝癌，以及白血病的癌细胞。25生长在泡菜中的植物乳杆菌可以制造出一种能够预防甲型流感的细菌产物。26\n\n韩国亚洲大学的研究人员对21名患有糖尿病前期和代谢综合征的中年人进行了研究。代谢综合征指导致一个人患上心血管疾病的一系列代谢紊乱：腹部肥胖、血脂升高、高血压和高血糖。每个参与者的血糖水平虽然都低于严格的糖尿病标准，却高于正常水平（空腹血糖水平在100~125毫克/分升之间）。这项研究的目的是确定韩国泡菜是否能改善这些人的代谢状况，以及新鲜泡菜和深度发酵泡菜之间是否有区别。27\n\n参与者被分成两组。一组吃新鲜的泡菜，另一组吃发酵的泡菜，持续8周。所有泡菜都是在同一家工厂生产的。每毫升新鲜泡菜含有1500万个乳酸菌，而每毫升深度发酵的泡菜含有65亿个细菌，约是新鲜泡菜的433倍。在实验期间，研究人员测量了参与者的脂肪总量、体脂率和血压，并进行了血液测试，以检查炎症情况并确定血糖水平。8周后，研究人员要求参与者在接下来的4周内不要吃任何发酵食品，以“清洗”他们的身体系统。\n\n总的来说，发酵泡菜比新鲜泡菜的效果更好，因为发酵泡菜含有更多的细菌。食用发酵泡菜将身体的脂肪含量降低了6%，而新鲜泡菜降低了3.9%，这意味着前者的减脂量约为后者的1.5倍。发酵泡菜组的体脂率也下降了2%，而新鲜泡菜组的体脂率没有显著变化。吃发酵泡菜的那组人的血压也显著降低了。\n\n参与者还接受了口服葡萄糖耐量试验，以观察在吃过泡菜后他们的身体如何有效地处理葡萄糖。研究人员给他们喝了一种含糖量相当于42粒糖豆的饮料，并在他们喝这种饮料前和喝完两小时后检测了他们的血糖水平。与吃泡菜前相比，吃发酵泡菜的参与者的葡萄糖耐量提高了33%，提高量是吃新鲜泡菜组的3.5倍。因此，尽管吃任何一种泡菜都对体脂、血压和葡萄糖敏感性有好处，但发酵泡菜的好处还是要大于新鲜泡菜的。\n\n韩国东国大学的另一项研究调查了24名体重指数大于25的超重女性。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_08_kimchi"
+        },
+        {
+          "excerpt": "俄亥俄州扬斯敦州立大学的研究人员对6名健康的志愿者进行了一项小规模的研究，让他们连续42天每天饮用一杯酸奶，其摄入量与欧洲和澳大利亚酸奶爱好者的摄入量大致相同。41在为期6周的研究中，酸奶每3~4天被提供一次。每一份酸奶含有大约10亿个细菌。受试者被要求每7天提供一次粪便样本，他们在研究过程中总共提供了7次样本。研究人员发现，食用酸奶后，不同种类促进健康的乳酸菌的数量总体上有所增加。不同个体之间的细菌变化差异很大（另一项研究甚至表明，男性和女性体内的微生物对酸奶的反应不同42）。但扬斯敦州立大学的研究确实发现罗伊氏乳杆菌、干酪乳杆菌和鼠李糖乳杆菌的数量有所增加，这些细菌通常存在于益生菌产品中。这表明，喝酸奶会影响肠道微生物组。西班牙进行了一项规模大得多的酸奶研究，这项研究属于地中海饮食预防研究项目（PREDIMED）的一部分。43研究人员对7447名参与者进行了研究，分析了他们酸奶和木脂素的摄入量。木脂素是一种植物多酚，由肠道细菌代谢成生物活性物质——肠二醇和肠内酯，可以降低患心脏病的风险。44这些参与者饮食中的木脂素主要来自橄榄油、小麦制品、番茄、红葡萄酒和芦笋。地中海饮食预防研究项目的研究人员很想看看食用木脂素和酸奶是否会滋养酸奶中的细菌，从而带来更多的健康益处。\n\n结果显示，食用木脂素最多的参与者血糖水平较低，同时食用大量木脂素和酸奶的参与者血总胆固醇水平较低，有害的低密度脂蛋白胆固醇含量也有所降低。在酸奶中发现的乳酸菌可以加速清除体内的胆固醇，因此研究人员推测木脂素具有益生元的作用，可以滋养肠道细菌。与此同时，酸奶有益生菌的作用，能为细菌提供营养。吃酸奶和富含木脂素的植物性饮食可以预防心血管疾病，更好地控制血糖。\n\n酸面包",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_08_yogurt"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "angiogenesis_defense",
+      "target": "immune_balance",
+      "relation": "书中将健康描述为受体内多套防御系统保护的活跃状态，并主张聚焦共同特征以统一预防",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_00_defenses_active",
+      "excerpt": "很明显，我们的健康是一种活跃的状态，受到身体内一系列出色的防御系统的保护，而这些系统从我们出生到生命的最后一天都在全速运行，让我们的细胞和器官得以顺畅运转。这些保护我们的健康防御系统是我们体内固有的，其中一些非常强大，甚至可以逆转癌症等疾病。它们虽然作为独立的防御系统发挥作用，但也相互支持和相互作用。这些防御系统的正常运转是健康的共同特征。通过重新调整我们预防疾病的方法，并聚焦于这些共同特征，我们可以采取统一的方法，在疾病进驻之前就将其拦截。这可以和我们20年前找到的通过共同特征来治疗疾病的方法一样强大。\n\n5个防御系统构成你健康的关键支柱，每个系统都受到饮食的影响。一旦你知道吃什么可以支持某一种防御系统，就知道如何利用饮食来保持健康和战胜疾病。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_00_defenses_active",
+      "evidences": [
+        {
+          "excerpt": "很明显，我们的健康是一种活跃的状态，受到身体内一系列出色的防御系统的保护，而这些系统从我们出生到生命的最后一天都在全速运行，让我们的细胞和器官得以顺畅运转。这些保护我们的健康防御系统是我们体内固有的，其中一些非常强大，甚至可以逆转癌症等疾病。它们虽然作为独立的防御系统发挥作用，但也相互支持和相互作用。这些防御系统的正常运转是健康的共同特征。通过重新调整我们预防疾病的方法，并聚焦于这些共同特征，我们可以采取统一的方法，在疾病进驻之前就将其拦截。这可以和我们20年前找到的通过共同特征来治疗疾病的方法一样强大。\n\n5个防御系统构成你健康的关键支柱，每个系统都受到饮食的影响。一旦你知道吃什么可以支持某一种防御系统，就知道如何利用饮食来保持健康和战胜疾病。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_00_defenses_active"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "angiogenesis_defense",
+      "target": "gut_microbiome",
+      "relation": "书中列出受饮食影响的五大健康防御：血管生成、再生、微生物组、DNA保护与免疫",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_00_five_list",
+      "excerpt": "这5个防御系统是血管生成、再生、微生物组、DNA保护和免疫。\n\n血管生成\n\n6万英里[1]的血管流经我们的身体，为我们所有的细胞和器官带来氧气和营养。血管生成是这些血管形成的过程，像大豆、绿茶、咖啡、番茄、红葡萄酒、啤酒，甚至硬质干酪这样的食物都能影响血管生成防御系统。\n\n再生\n\n在分布在我们骨髓、肺、肝脏和几乎所有器官的75万多个干细胞的推动下，我们的身体每天都在自我再生。这些干细胞在我们的一生中维持、修复并再生我们的身体。一些食物（如黑巧克力、红茶和啤酒）可以动员它们，帮助我们再生。其他食物，如紫土豆，可以彻底杀死激发癌细胞生长的干细胞。\n\n微生物组\n\n近40万亿细菌栖息在我们的身体里，其中大多数保护着我们的健康。这些细菌不仅能从我们吞下并输送到肠道的食物中产生对健康有益的代谢物，还能控制我们的免疫系统，影响血管生成，甚至帮助产生影响我们大脑和社会功能的激素。我们可以通过吃泡菜、酸菜、切达干酪和酸面包等食物来促进微生物组的作用。\n\nDNA保护\n\n我们的DNA是我们的基因蓝图，但它也被设计成了一个防御系统。它具有惊人的修复机制，可以保护我们免受太阳辐射、家用化学品、压力、睡眠不足和饮食不良等带来的伤害。不仅某些食物能促使DNA自我修复，还有一些食物能开启有益基因，关闭有害基因，而其他食物则能延长我们的端粒。端粒可以保护DNA，延缓衰老。\n\n免疫\n\n我们的免疫系统以精密的方式保护我们的健康，远比我们之前想象的要复杂。它受我们肠道的影响，并且可以被操纵来成功地攻击和消灭癌症，即使是老年人也能做到。最近的发现彻底改变了我们对免疫系统的认识。黑莓、核桃和石榴等食物可以激活免疫系统，而有些食物可以抑制免疫系统的活动，帮助减轻自身免疫病的症状。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_00_five_list",
+      "evidences": [
+        {
+          "excerpt": "这5个防御系统是血管生成、再生、微生物组、DNA保护和免疫。\n\n血管生成\n\n6万英里[1]的血管流经我们的身体，为我们所有的细胞和器官带来氧气和营养。血管生成是这些血管形成的过程，像大豆、绿茶、咖啡、番茄、红葡萄酒、啤酒，甚至硬质干酪这样的食物都能影响血管生成防御系统。\n\n再生\n\n在分布在我们骨髓、肺、肝脏和几乎所有器官的75万多个干细胞的推动下，我们的身体每天都在自我再生。这些干细胞在我们的一生中维持、修复并再生我们的身体。一些食物（如黑巧克力、红茶和啤酒）可以动员它们，帮助我们再生。其他食物，如紫土豆，可以彻底杀死激发癌细胞生长的干细胞。\n\n微生物组\n\n近40万亿细菌栖息在我们的身体里，其中大多数保护着我们的健康。这些细菌不仅能从我们吞下并输送到肠道的食物中产生对健康有益的代谢物，还能控制我们的免疫系统，影响血管生成，甚至帮助产生影响我们大脑和社会功能的激素。我们可以通过吃泡菜、酸菜、切达干酪和酸面包等食物来促进微生物组的作用。\n\nDNA保护\n\n我们的DNA是我们的基因蓝图，但它也被设计成了一个防御系统。它具有惊人的修复机制，可以保护我们免受太阳辐射、家用化学品、压力、睡眠不足和饮食不良等带来的伤害。不仅某些食物能促使DNA自我修复，还有一些食物能开启有益基因，关闭有害基因，而其他食物则能延长我们的端粒。端粒可以保护DNA，延缓衰老。\n\n免疫\n\n我们的免疫系统以精密的方式保护我们的健康，远比我们之前想象的要复杂。它受我们肠道的影响，并且可以被操纵来成功地攻击和消灭癌症，即使是老年人也能做到。最近的发现彻底改变了我们对免疫系统的认识。黑莓、核桃和石榴等食物可以激活免疫系统，而有些食物可以抑制免疫系统的活动，帮助减轻自身免疫病的症状。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_00_five_list"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "soy",
+      "target": "angiogenesis_defense",
+      "relation": "书中概述大豆、绿茶、咖啡、番茄、红酒等可影响血管生成防御",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_00_angio_teaser",
+      "excerpt": "6万英里[1]的血管流经我们的身体，为我们所有的细胞和器官带来氧气和营养。血管生成是这些血管形成的过程，像大豆、绿茶、咖啡、番茄、红葡萄酒、啤酒，甚至硬质干酪这样的食物都能影响血管生成防御系统。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_00_angio_teaser",
+      "evidences": [
+        {
+          "excerpt": "6万英里[1]的血管流经我们的身体，为我们所有的细胞和器官带来氧气和营养。血管生成是这些血管形成的过程，像大豆、绿茶、咖啡、番茄、红葡萄酒、啤酒，甚至硬质干酪这样的食物都能影响血管生成防御系统。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_00_angio_teaser"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "cacao",
+      "target": "regeneration_defense",
+      "relation": "书中概述干细胞推动日常再生，并提及黑巧克力、红茶等与动员干细胞相关的叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_00_regen_teaser",
+      "excerpt": "在分布在我们骨髓、肺、肝脏和几乎所有器官的75万多个干细胞的推动下，我们的身体每天都在自我再生。这些干细胞在我们的一生中维持、修复并再生我们的身体。一些食物（如黑巧克力、红茶和啤酒）可以动员它们，帮助我们再生。其他食物，如紫土豆，可以彻底杀死激发癌细胞生长的干细胞。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_00_regen_teaser",
+      "evidences": [
+        {
+          "excerpt": "在分布在我们骨髓、肺、肝脏和几乎所有器官的75万多个干细胞的推动下，我们的身体每天都在自我再生。这些干细胞在我们的一生中维持、修复并再生我们的身体。一些食物（如黑巧克力、红茶和啤酒）可以动员它们，帮助我们再生。其他食物，如紫土豆，可以彻底杀死激发癌细胞生长的干细胞。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_00_regen_teaser"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "dna_repair",
+      "target": "telomere_integrity",
+      "relation": "书中概述DNA修复、表观遗传开关与端粒相关饮食叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_00_dna_teaser",
+      "excerpt": "我们的DNA是我们的基因蓝图，但它也被设计成了一个防御系统。它具有惊人的修复机制，可以保护我们免受太阳辐射、家用化学品、压力、睡眠不足和饮食不良等带来的伤害。不仅某些食物能促使DNA自我修复，还有一些食物能开启有益基因，关闭有害基因，而其他食物则能延长我们的端粒。端粒可以保护DNA，延缓衰老。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_00_dna_teaser",
+      "evidences": [
+        {
+          "excerpt": "我们的DNA是我们的基因蓝图，但它也被设计成了一个防御系统。它具有惊人的修复机制，可以保护我们免受太阳辐射、家用化学品、压力、睡眠不足和饮食不良等带来的伤害。不仅某些食物能促使DNA自我修复，还有一些食物能开启有益基因，关闭有害基因，而其他食物则能延长我们的端粒。端粒可以保护DNA，延缓衰老。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_00_dna_teaser"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "berries_fruits",
+      "target": "immune_balance",
+      "relation": "书中概述浆果、核桃、石榴等与激活免疫相关，并提及食物可帮助减轻自身免疫相关症状的叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_00_immune_teaser",
+      "excerpt": "我们的免疫系统以精密的方式保护我们的健康，远比我们之前想象的要复杂。它受我们肠道的影响，并且可以被操纵来成功地攻击和消灭癌症，即使是老年人也能做到。最近的发现彻底改变了我们对免疫系统的认识。黑莓、核桃和石榴等食物可以激活免疫系统，而有些食物可以抑制免疫系统的活动，帮助减轻自身免疫病的症状。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_00_immune_teaser",
+      "evidences": [
+        {
+          "excerpt": "我们的免疫系统以精密的方式保护我们的健康，远比我们之前想象的要复杂。它受我们肠道的影响，并且可以被操纵来成功地攻击和消灭癌症，即使是老年人也能做到。最近的发现彻底改变了我们对免疫系统的认识。黑莓、核桃和石榴等食物可以激活免疫系统，而有些食物可以抑制免疫系统的活动，帮助减轻自身免疫病的症状。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_00_immune_teaser"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "microscopic_tumors",
+      "target": "dna_damage",
+      "relation": "书中描述尸检常见乳腺、前列腺、甲状腺微小肿瘤，并联系细胞分裂与环境暴露所致DNA错误",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_01_micro_tumors",
+      "excerpt": "有些人生前从未被诊断出患有癌症，但是这些人死后人们对他们进行解剖时发现，40岁至50岁之间的女性当中，有近40%的人的乳房内有微小的肿瘤；50岁至60岁的男性当中，有约50%的人的前列腺内有微小肿瘤；70岁以上的人当中，几乎所有人的甲状腺内都有微小肿瘤。1当健康的细胞在细胞分裂过程中发生错误，或者细胞的DNA因环境暴露而发生变异时，就会形成这样的肿瘤。每天在你体内分裂的细胞会出现多达一万处的DNA错误，这使癌症的形成变得常见且不可避免。2然而，这些微小的肿瘤是完全无害的，它们中的大多数永远不会危及人们的生命。它们开始时很小，比圆珠笔的笔尖还小，而且只要不扩大、不侵入器官，就不会扩散并带来死亡。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_01_micro_tumors",
+      "evidences": [
+        {
+          "excerpt": "有些人生前从未被诊断出患有癌症，但是这些人死后人们对他们进行解剖时发现，40岁至50岁之间的女性当中，有近40%的人的乳房内有微小的肿瘤；50岁至60岁的男性当中，有约50%的人的前列腺内有微小肿瘤；70岁以上的人当中，几乎所有人的甲状腺内都有微小肿瘤。1当健康的细胞在细胞分裂过程中发生错误，或者细胞的DNA因环境暴露而发生变异时，就会形成这样的肿瘤。每天在你体内分裂的细胞会出现多达一万处的DNA错误，这使癌症的形成变得常见且不可避免。2然而，这些微小的肿瘤是完全无害的，它们中的大多数永远不会危及人们的生命。它们开始时很小，比圆珠笔的笔尖还小，而且只要不扩大、不侵入器官，就不会扩散并带来死亡。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_01_micro_tumors"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "angiogenesis_defense",
+      "target": "microscopic_tumors",
+      "relation": "书中描述血管生成防御可通过限制血供使微小肿瘤保持较小体积，并列举可增强该能力的食物",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_01_starve_micro",
+      "excerpt": "你的身体有一个非凡的防御系统，通过让微小的肿瘤无法得到它们生长所需的血液供应和营养物质来使它们保持较小的体积，而且你还可以通过食物来优化这个防御系统。超过100种食物可以增强身体饿死癌症的能力，并让这些肿瘤变得小而无害，其中包括大豆、番茄、黑覆盆子、石榴，甚至一些令人意外的食物，如甘草、啤酒和奶酪。你的防御武器可以在食杂店、农贸市场和你的花园里找到。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_01_starve_micro",
+      "evidences": [
+        {
+          "excerpt": "你的身体有一个非凡的防御系统，通过让微小的肿瘤无法得到它们生长所需的血液供应和营养物质来使它们保持较小的体积，而且你还可以通过食物来优化这个防御系统。超过100种食物可以增强身体饿死癌症的能力，并让这些肿瘤变得小而无害，其中包括大豆、番茄、黑覆盆子、石榴，甚至一些令人意外的食物，如甘草、啤酒和奶酪。你的防御武器可以在食杂店、农贸市场和你的花园里找到。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_01_starve_micro"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "angiogenesis_defense",
+      "target": "microscopic_tumors",
+      "relation": "书中定义血管生成：正常时供养器官，异常时可滋养微小肿瘤；健康系统可阻断肿瘤血供",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_01_angio_def",
+      "excerpt": "让我们的身体以这种方式拦截癌症的防御系统被称为血管生成。血管生成是我们的身体用来生长和维持血管健康的过程。在正常情况下，血管是生命的支持者，为我们所有的器官输送氧气和重要的营养物质。可当异常血管生长时，它们会滋养微小的肿瘤。一个健康的血管生成系统可以控制血管生长的时间与位置，还可以阻止肿瘤的特殊血液供应，让它们无法获得扩张所需的氧气。身体失去控制血管的能力时就会发生各种各样的疾病，包括癌症。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_01_angio_def",
+      "evidences": [
+        {
+          "excerpt": "让我们的身体以这种方式拦截癌症的防御系统被称为血管生成。血管生成是我们的身体用来生长和维持血管健康的过程。在正常情况下，血管是生命的支持者，为我们所有的器官输送氧气和重要的营养物质。可当异常血管生长时，它们会滋养微小的肿瘤。一个健康的血管生成系统可以控制血管生长的时间与位置，还可以阻止肿瘤的特殊血液供应，让它们无法获得扩张所需的氧气。身体失去控制血管的能力时就会发生各种各样的疾病，包括癌症。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_01_angio_def"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "angiogenesis_defense",
+      "target": "metabolic_health",
+      "relation": "书中将循环系统中血管生成的适量平衡（体内平衡）描述为健康核心",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_01_balance",
+      "excerpt": "只要血管生成系统正常运作，血管就会在正确的时间、正确的地点生长——既不太多，也不太少，而是适量地生长。在循环系统中保持这种完美的平衡，正是血管生成保护健康的核心，方法就是让我们处于一种被称作体内平衡的状态。体内平衡的定义是保持身体正常功能的稳定，同时适应不断变化的情况。血管生成起着至关重要的作用，它能建立和维持整个循环系统，并使其适应我们生活中的各种情况。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_01_balance",
+      "evidences": [
+        {
+          "excerpt": "只要血管生成系统正常运作，血管就会在正确的时间、正确的地点生长——既不太多，也不太少，而是适量地生长。在循环系统中保持这种完美的平衡，正是血管生成保护健康的核心，方法就是让我们处于一种被称作体内平衡的状态。体内平衡的定义是保持身体正常功能的稳定，同时适应不断变化的情况。血管生成起着至关重要的作用，它能建立和维持整个循环系统，并使其适应我们生活中的各种情况。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_01_balance"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "angiogenesis_defense",
+      "target": "chronic_inflammation",
+      "relation": "书中描述缺氧驱动生长因子释放，炎症细胞参与早期愈合并增强血管生成反应",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_01_hypoxia",
+      "excerpt": "刚一出血，受伤的组织就会启动血管生成系统。引发这一过程的原因是缺氧，也就是由于受伤，正常的血液流动中断，从而引起氧气水平降低。缺氧是一个信号，驱动生成更多的血管以吸收更多的氧气。缺氧使受伤的细胞开始释放一种叫作生长因子的蛋白质信号，其作用是刺激血管生成。炎症在愈合初期是非常重要的。被称为巨噬细胞和中性粒细胞的炎症细胞爬进伤口，清除伤口上的细菌和杂物，释放自己的血管生成生长因子，增强血管生成反应。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_01_hypoxia",
+      "evidences": [
+        {
+          "excerpt": "刚一出血，受伤的组织就会启动血管生成系统。引发这一过程的原因是缺氧，也就是由于受伤，正常的血液流动中断，从而引起氧气水平降低。缺氧是一个信号，驱动生成更多的血管以吸收更多的氧气。缺氧使受伤的细胞开始释放一种叫作生长因子的蛋白质信号，其作用是刺激血管生成。炎症在愈合初期是非常重要的。被称为巨噬细胞和中性粒细胞的炎症细胞爬进伤口，清除伤口上的细菌和杂物，释放自己的血管生成生长因子，增强血管生成反应。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_01_hypoxia"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "angiogenesis_defense",
+      "target": "cardiometabolic",
+      "relation": "书中描述内皮细胞响应生长因子迁移、成管并形成毛细血管环",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_01_endothelium",
+      "excerpt": "多亏了血管中一种叫作内皮细胞的特殊细胞，救援队正在等待接收那些指示内皮细胞进行部署的生长因子信号。大约有一万亿个内皮细胞排列在你的循环系统中，是你体内最丰富的细胞类型之一。把每个内皮细胞想象成一个连接到点火开关上的汽车引擎。现在，想象从受伤部位释放出来的生长因子是汽车钥匙。生长因子与内皮细胞表面的特定受体相匹配，就像汽车钥匙与点火开关相匹配一样。当正确的钥匙插进了正确的点火钥匙孔，引擎就会启动，内皮细胞开始向蛋白质生长因子的来源迁移，并开始分裂，构成管状结构，继而形成新的血管。但是内皮细胞首先需要离开静脉。它们释放酶来消化细胞外套筒状的血管壁，在血管壁上形成小孔。从此刻起，被激活的内皮细胞从这些孔中发芽，并跟随从受伤区域被送来的生长因子的梯度，朝着那个方向构建新的血管。随着血管芽不断变长，它们会纵向卷起形成导管，这些导管最终在顶端连接，形成毛细血管环。随着越来越多的毛细血管环在愈合区形成，一个新的愈合循环就诞生了。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_01_endothelium",
+      "evidences": [
+        {
+          "excerpt": "多亏了血管中一种叫作内皮细胞的特殊细胞，救援队正在等待接收那些指示内皮细胞进行部署的生长因子信号。大约有一万亿个内皮细胞排列在你的循环系统中，是你体内最丰富的细胞类型之一。把每个内皮细胞想象成一个连接到点火开关上的汽车引擎。现在，想象从受伤部位释放出来的生长因子是汽车钥匙。生长因子与内皮细胞表面的特定受体相匹配，就像汽车钥匙与点火开关相匹配一样。当正确的钥匙插进了正确的点火钥匙孔，引擎就会启动，内皮细胞开始向蛋白质生长因子的来源迁移，并开始分裂，构成管状结构，继而形成新的血管。但是内皮细胞首先需要离开静脉。它们释放酶来消化细胞外套筒状的血管壁，在血管壁上形成小孔。从此刻起，被激活的内皮细胞从这些孔中发芽，并跟随从受伤区域被送来的生长因子的梯度，朝着那个方向构建新的血管。随着血管芽不断变长，它们会纵向卷起形成导管，这些导管最终在顶端连接，形成毛细血管环。随着越来越多的毛细血管环在愈合区形成，一个新的愈合循环就诞生了。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_01_endothelium"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "angiogenesis_defense",
+      "target": "digestive_cancer_risk",
+      "relation": "书中描述部分癌巢可释放伤口愈合样生长因子突破抗血管生成控制，获血供后迅速扩增并转移",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_01_tumor_hijack",
+      "excerpt": "微小肿瘤不会生长的主要原因是你身体里有天然的血管生成抑制剂。这些对抗措施通过切断肿瘤的血液供应来控制肿瘤。早在1974年，哈佛医学院的研究人员就发现，只要没有血管生长来滋养肿瘤，癌细胞就会处于休眠状态，不会产生危害。你的免疫系统——之后我会在第五章详细介绍——最终会发现并摧毁它们。然而，随着时间的推移，一些微小的癌巢会释放大量与伤口愈合有关的生长因子信号，摧毁防御系统，克服各种抗血管生成的机制。在实验室的实验中，一旦新血管在小簇癌细胞中发芽，肿瘤就会成倍增长。在血管生成开始后的两周内，肿瘤的体积能膨胀到原来的1.6万倍。8当肿瘤操控了血管生成防御系统以促进自身循环时，原本无害的癌症很快就会成为一种潜在的致命癌症。更糟的是，给癌瘤提供营养的这些血管也充当了恶性细胞进入血液的出口通道。这被称为转移，是癌症最危险的一面。癌症患者很少死于他们的原发肿瘤，这些肿瘤通常可以通过手术切除，真正致命的正是如铅弹一样布满全身且转移了的肿瘤。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_01_tumor_hijack",
+      "evidences": [
+        {
+          "excerpt": "微小肿瘤不会生长的主要原因是你身体里有天然的血管生成抑制剂。这些对抗措施通过切断肿瘤的血液供应来控制肿瘤。早在1974年，哈佛医学院的研究人员就发现，只要没有血管生长来滋养肿瘤，癌细胞就会处于休眠状态，不会产生危害。你的免疫系统——之后我会在第五章详细介绍——最终会发现并摧毁它们。然而，随着时间的推移，一些微小的癌巢会释放大量与伤口愈合有关的生长因子信号，摧毁防御系统，克服各种抗血管生成的机制。在实验室的实验中，一旦新血管在小簇癌细胞中发芽，肿瘤就会成倍增长。在血管生成开始后的两周内，肿瘤的体积能膨胀到原来的1.6万倍。8当肿瘤操控了血管生成防御系统以促进自身循环时，原本无害的癌症很快就会成为一种潜在的致命癌症。更糟的是，给癌瘤提供营养的这些血管也充当了恶性细胞进入血液的出口通道。这被称为转移，是癌症最危险的一面。癌症患者很少死于他们的原发肿瘤，这些肿瘤通常可以通过手术切除，真正致命的正是如铅弹一样布满全身且转移了的肿瘤。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_01_tumor_hijack"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "angiogenesis_defense",
+      "target": "age_related_macular_degeneration",
+      "relation": "书中描述黄斑变性与糖尿病相关视力丧失中异常血管渗漏出血破坏视力",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_01_amd",
+      "excerpt": "过度的血管生成会引发除癌症之外的许多其他疾病，比如视力丧失。健康的眼睛能够看到事物，因为光线可以通过晶莹剔透的液体进入视网膜，并被大脑记录下来，而不受血管的干扰。眼睛的血管生成受到严格控制，视网膜血管里的内皮细胞在人的一生中通常只分裂两次。但是在年龄相关性黄斑变性——全球65岁及以上人群失明的主要原因——和糖尿病相关性视力丧失这两种情况下，血管生成会造成异常的血管缠结，从而导致液体渗漏和出血。不必要的血管生成所造成的这一灾难性后果会破坏视力。幸运的是，这些疾病现在可以使用美国食品药品管理局批准的生物药物进行治疗，眼科医生将这些药物注射到病人的眼睛里，以中断破坏性的血管生成，阻止渗漏并保护视力。有些病人甚至能重见光明。我有一个病人因为黄斑变性而法定失明[1]，不能开车或打高尔夫球，而这些向来是她最喜欢的消遣方式。在接受治疗后，她可以再次安全地开车，回到高尔夫球场练习挥杆。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_01_amd",
+      "evidences": [
+        {
+          "excerpt": "过度的血管生成会引发除癌症之外的许多其他疾病，比如视力丧失。健康的眼睛能够看到事物，因为光线可以通过晶莹剔透的液体进入视网膜，并被大脑记录下来，而不受血管的干扰。眼睛的血管生成受到严格控制，视网膜血管里的内皮细胞在人的一生中通常只分裂两次。但是在年龄相关性黄斑变性——全球65岁及以上人群失明的主要原因——和糖尿病相关性视力丧失这两种情况下，血管生成会造成异常的血管缠结，从而导致液体渗漏和出血。不必要的血管生成所造成的这一灾难性后果会破坏视力。幸运的是，这些疾病现在可以使用美国食品药品管理局批准的生物药物进行治疗，眼科医生将这些药物注射到病人的眼睛里，以中断破坏性的血管生成，阻止渗漏并保护视力。有些病人甚至能重见光明。我有一个病人因为黄斑变性而法定失明[1]，不能开车或打高尔夫球，而这些向来是她最喜欢的消遣方式。在接受治疗后，她可以再次安全地开车，回到高尔夫球场练习挥杆。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_01_amd"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "angiogenesis_defense",
+      "target": "cognitive_clarity",
+      "relation": "书中引述阿尔茨海默病患者脑内异常血管可释放神经毒素的观点",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_01_alz",
+      "excerpt": "阿尔茨海默病已被发现与过度和异常的血管生成有关。2003年，我和精神病学家安东尼·瓦纽奇博士在《柳叶刀》上发表的一篇论文提出，大脑血管的异常导致了阿尔茨海默病。11我们今天知道，阿尔茨海默病患者大脑中的血管是不正常的，实际上并没有增加血流量，而是释放出杀死脑细胞的神经毒素。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_01_alz",
+      "evidences": [
+        {
+          "excerpt": "阿尔茨海默病已被发现与过度和异常的血管生成有关。2003年，我和精神病学家安东尼·瓦纽奇博士在《柳叶刀》上发表的一篇论文提出，大脑血管的异常导致了阿尔茨海默病。11我们今天知道，阿尔茨海默病患者大脑中的血管是不正常的，实际上并没有增加血流量，而是释放出杀死脑细胞的神经毒素。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_01_alz"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "angiogenesis_defense",
+      "target": "obesity_risk",
+      "relation": "书中描述脂肪组织扩张依赖新生血管，错误饮食可增加循环中促血管生成生长因子",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_01_obesity",
+      "excerpt": "甚至肥胖症也与血管生成有密切的联系。虽然肥胖症是一种多因素的疾病，但过量饮食和错误饮食会产生大量刺激血管生成的生长因子在血液中循环。12就像肿瘤一样，大量的脂肪也需要人体生长出新的血管来滋养脂肪细胞。13对于所有这些健康问题以及许多其他疾病，令人兴奋的新型血管生成靶向药物治疗在实验室和临床试验中表现出了光明的前景。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_01_obesity",
+      "evidences": [
+        {
+          "excerpt": "甚至肥胖症也与血管生成有密切的联系。虽然肥胖症是一种多因素的疾病，但过量饮食和错误饮食会产生大量刺激血管生成的生长因子在血液中循环。12就像肿瘤一样，大量的脂肪也需要人体生长出新的血管来滋养脂肪细胞。13对于所有这些健康问题以及许多其他疾病，令人兴奋的新型血管生成靶向药物治疗在实验室和临床试验中表现出了光明的前景。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_01_obesity"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "angiogenesis_defense",
+      "target": "cardiometabolic",
+      "relation": "书中描述神经滋养血管受损及糖尿病相关血管生成减缓与周围神经病症状相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_01_neuropathy",
+      "excerpt": "其中一个后果就是神经病。当你的神经功能受到损害时，你就会得神经病。这会导致麻木或疼痛，程度从轻微到严重。你的周围神经是贯穿全身的电线，从你的大脑向你的肌肉传递指令，告诉它们收缩和放松。神经还将你皮肤和肌肉的感觉传回大脑。这些电缆有它们自己的小型循环系统，被称为神经滋养血管，使血液持续流向神经。当神经滋养血管萎缩时，神经开始死亡，症状的范围从刺痛，难以忍受的疼痛到手、腿和脚完全麻木。\n\n糖尿病患者神经的血液供应也可能受损，尤其是在血糖控制不好的时候。糖尿病还会减缓血管生成，而这会损害神经。研究人员一直在利用新方法，即用治疗性血管生成研究来增加神经的血流量。在实验室中，研究人员将用于生成血管内皮生长因子（VEGF）的基因注射到患有糖尿病的动物的肌肉中，发现它们可以增加流向神经的血流量，使神经的功能恢复到接近正常水平。14周围神经病的另一个常见病因是癌症化疗，化疗不仅杀死癌细胞，还对神经有很高的毒性，会摧毁它们的微循环系统。在实验室中，使用血管内皮生长因子进行基因治疗可以完全保护神经及其血液供应，防止功能丧失。15",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_01_neuropathy",
+      "evidences": [
+        {
+          "excerpt": "其中一个后果就是神经病。当你的神经功能受到损害时，你就会得神经病。这会导致麻木或疼痛，程度从轻微到严重。你的周围神经是贯穿全身的电线，从你的大脑向你的肌肉传递指令，告诉它们收缩和放松。神经还将你皮肤和肌肉的感觉传回大脑。这些电缆有它们自己的小型循环系统，被称为神经滋养血管，使血液持续流向神经。当神经滋养血管萎缩时，神经开始死亡，症状的范围从刺痛，难以忍受的疼痛到手、腿和脚完全麻木。\n\n糖尿病患者神经的血液供应也可能受损，尤其是在血糖控制不好的时候。糖尿病还会减缓血管生成，而这会损害神经。研究人员一直在利用新方法，即用治疗性血管生成研究来增加神经的血流量。在实验室中，研究人员将用于生成血管内皮生长因子（VEGF）的基因注射到患有糖尿病的动物的肌肉中，发现它们可以增加流向神经的血流量，使神经的功能恢复到接近正常水平。14周围神经病的另一个常见病因是癌症化疗，化疗不仅杀死癌细胞，还对神经有很高的毒性，会摧毁它们的微循环系统。在实验室中，使用血管内皮生长因子进行基因治疗可以完全保护神经及其血液供应，防止功能丧失。15",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_01_neuropathy"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "angiogenesis_defense",
+      "target": "chronic_wounds",
+      "relation": "书中描述慢性伤口与糖尿病、动脉粥样硬化等相关，并强调需启动血管生成以促进愈合",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_01_wounds",
+      "excerpt": "慢性伤口便是另一个例子。正常的伤口不到一周就会愈合，而慢性伤口愈合得很慢，甚至根本无法愈合。这些伤口会被感染，产生坏疽，并经常导致截肢。仅在美国就有800多万人受到影响，尤其是患有糖尿病、动脉粥样硬化和下肢静脉瓣膜功能不全的人，或那些卧床、坐轮椅的人。这是一种无声且致命的流行病，死亡率高于乳腺癌和结肠癌。16如果你有一个慢性伤口，你的医生的主要目标之一应该是快速启动血管生成，以增加血流量并加快愈合。这可以通过各种医疗设备和其他方法来实现，包括饮食。我们将在第六章讨论刺激血管生成的食物。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_01_wounds",
+      "evidences": [
+        {
+          "excerpt": "慢性伤口便是另一个例子。正常的伤口不到一周就会愈合，而慢性伤口愈合得很慢，甚至根本无法愈合。这些伤口会被感染，产生坏疽，并经常导致截肢。仅在美国就有800多万人受到影响，尤其是患有糖尿病、动脉粥样硬化和下肢静脉瓣膜功能不全的人，或那些卧床、坐轮椅的人。这是一种无声且致命的流行病，死亡率高于乳腺癌和结肠癌。16如果你有一个慢性伤口，你的医生的主要目标之一应该是快速启动血管生成，以增加血流量并加快愈合。这可以通过各种医疗设备和其他方法来实现，包括饮食。我们将在第六章讨论刺激血管生成的食物。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_01_wounds"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "angiogenesis_defense",
+      "target": "cardiometabolic",
+      "relation": "书中描述冠脉或颈动脉缓慢狭窄时可形成侧副血管旁路以维持器官灌注",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_01_collateral",
+      "excerpt": "你的心脏和大脑也依赖于血管生成防御系统来应对任何对自身循环的威胁。迅速恢复这些器官的血流量实际上是一个生死攸关的问题。当这些器官的血管发生阻塞，也就是动脉粥样硬化时，你的防御系统就会启动，长出新的血管，帮助在阻塞的血管周围形成一条天然的旁路。这种天然旁路被称为侧副血管，是在冠状血管或颈动脉逐渐变窄，阻塞缓慢发生时形成的。如果患有冠心病或颈动脉疾病的人的血管生成防御系统发挥作用，那么他们可以多活几年或几十年。即使是在突发性血管阻塞的情况下，如心脏病发作或发生缺血性中风[2]，如果病人存活下来，其血管生成防御系统也会发挥作用，形成天然的旁路。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_01_collateral",
+      "evidences": [
+        {
+          "excerpt": "你的心脏和大脑也依赖于血管生成防御系统来应对任何对自身循环的威胁。迅速恢复这些器官的血流量实际上是一个生死攸关的问题。当这些器官的血管发生阻塞，也就是动脉粥样硬化时，你的防御系统就会启动，长出新的血管，帮助在阻塞的血管周围形成一条天然的旁路。这种天然旁路被称为侧副血管，是在冠状血管或颈动脉逐渐变窄，阻塞缓慢发生时形成的。如果患有冠心病或颈动脉疾病的人的血管生成防御系统发挥作用，那么他们可以多活几年或几十年。即使是在突发性血管阻塞的情况下，如心脏病发作或发生缺血性中风[2]，如果病人存活下来，其血管生成防御系统也会发挥作用，形成天然的旁路。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_01_collateral"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "soy",
+      "target": "breast_prostate_risk",
+      "relation": "书中将亚洲高大豆蔬菜茶饮食及地中海饮食与较低癌症风险、长寿观察相联系",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_01_asia_med",
+      "excerpt": "越来越多的证据都证明了这种方法的威力。在亚洲，饮食中包含大量大豆、蔬菜和茶的人患乳腺癌和其他癌症的风险明显较低。在日本，100岁以上的老人有69000多人。17中国百岁老人的数量也在不断增加。我的叔祖父住在离上海不远的常熟，就在种植绿茶的虞山脚下的一个城镇上，健康地活到了104岁。希腊伊卡里亚岛和撒丁岛中部那些充满活力的百岁老人毕生所吃的都是地中海饮食，这种饮食虽然不是严格的素食结构，却富含促进血管生成、增强防御能力的成分。血管生成是关键的健康防御系统之一，只有明白了这一点，你才能揭开持久健康的新秘密，它就在你体内，而且不受医疗系统的限制。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_01_asia_med",
+      "evidences": [
+        {
+          "excerpt": "越来越多的证据都证明了这种方法的威力。在亚洲，饮食中包含大量大豆、蔬菜和茶的人患乳腺癌和其他癌症的风险明显较低。在日本，100岁以上的老人有69000多人。17中国百岁老人的数量也在不断增加。我的叔祖父住在离上海不远的常熟，就在种植绿茶的虞山脚下的一个城镇上，健康地活到了104岁。希腊伊卡里亚岛和撒丁岛中部那些充满活力的百岁老人毕生所吃的都是地中海饮食，这种饮食虽然不是严格的素食结构，却富含促进血管生成、增强防御能力的成分。血管生成是关键的健康防御系统之一，只有明白了这一点，你才能揭开持久健康的新秘密，它就在你体内，而且不受医疗系统的限制。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_01_asia_med"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "regeneration_defense",
+      "target": "metabolic_health",
+      "relation": "书中强调干细胞对器官维持至关重要，并概述胚胎多能干细胞发育过程",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_02_stem_intro",
+      "excerpt": "如果说血管生成通过生成新的血管来滋养不同器官并以此作为健康防御的话，那么是什么使这些器官生长并维持其功能的呢？答案是：干细胞。干细胞对你的健康至关重要，如果它们突然停止工作，你会在一周内死去。从你被孕育的那一刻起，干细胞就在身体生长和健康保持方面发挥着关键作用。我们实际上是由干细胞构成的。在你父亲的精子与你母亲的卵子相遇大约5天之后，你的生命开始于子宫内一个由50到100个胚胎干细胞组成的小球。这些干细胞的非凡之处在于它们具有多能性，也就是说它们可以在体内形成任何细胞或组织，从肌肉到神经、皮肤、大脑，再到眼球。当胚胎在12周内长成胎儿时，你所有的基本器官都由干细胞发育而成，这些干细胞会转化为更特化的细胞来执行每个器官的功能。很快，随着身体的形成，特化的器官细胞的数量开始超过非特化的干细胞。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_02_stem_intro",
+      "evidences": [
+        {
+          "excerpt": "如果说血管生成通过生成新的血管来滋养不同器官并以此作为健康防御的话，那么是什么使这些器官生长并维持其功能的呢？答案是：干细胞。干细胞对你的健康至关重要，如果它们突然停止工作，你会在一周内死去。从你被孕育的那一刻起，干细胞就在身体生长和健康保持方面发挥着关键作用。我们实际上是由干细胞构成的。在你父亲的精子与你母亲的卵子相遇大约5天之后，你的生命开始于子宫内一个由50到100个胚胎干细胞组成的小球。这些干细胞的非凡之处在于它们具有多能性，也就是说它们可以在体内形成任何细胞或组织，从肌肉到神经、皮肤、大脑，再到眼球。当胚胎在12周内长成胎儿时，你所有的基本器官都由干细胞发育而成，这些干细胞会转化为更特化的细胞来执行每个器官的功能。很快，随着身体的形成，特化的器官细胞的数量开始超过非特化的干细胞。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_02_stem_intro"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "regeneration_defense",
+      "target": "energy_vitality",
+      "relation": "书中将干细胞描述为可再生防御力量，并指出其受饮食显著影响",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_02_fraction",
+      "excerpt": "在你身体里的37.2万亿细胞中，干细胞只占很小一部分——0.002%，但它们是一个很强大的子集，能够再生你的健康。5干细胞可根据需要修复、替换和再生坏死及老旧的细胞。它们就像生活在你体内的特种部队士兵，不断收集情报，进行侦察，执行任务，以保持器官处于最佳状态。每当你受伤或患病时，你的干细胞就会发挥作用：创造新的组织来治愈你或帮助你的身体克服这种情况。这是你的再生健康防御系统。最新的研究表明，与血管生成系统一样，干细胞也受到饮食的巨大影响。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_02_fraction",
+      "evidences": [
+        {
+          "excerpt": "在你身体里的37.2万亿细胞中，干细胞只占很小一部分——0.002%，但它们是一个很强大的子集，能够再生你的健康。5干细胞可根据需要修复、替换和再生坏死及老旧的细胞。它们就像生活在你体内的特种部队士兵，不断收集情报，进行侦察，执行任务，以保持器官处于最佳状态。每当你受伤或患病时，你的干细胞就会发挥作用：创造新的组织来治愈你或帮助你的身体克服这种情况。这是你的再生健康防御系统。最新的研究表明，与血管生成系统一样，干细胞也受到饮食的巨大影响。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_02_fraction"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "regeneration_defense",
+      "target": "angiogenesis_defense",
+      "relation": "书中描述受损器官释放VEGF等信号动员骨髓干细胞进入循环",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_02_mobilization",
+      "excerpt": "干细胞一旦被需要再生的身体部位激活，就会引发一系列事情，把干细胞从它们的壁龛带入你的循环系统。骨髓中的干细胞会被受损器官释放的生长因子信号所改变。一种特殊的生长因子——血管内皮生长因子——是一种强大的干细胞激活剂。这种求救信号通过穿透骨头的血管到达骨髓。一旦进入骨髓，这些信号便会沿着骨髓内一个叫作正弦通道的毛细血管系统传输，而这个系统会让信号浮动到连接在通道壁上的干细胞上。这些干细胞将信号解读为一种化学警报，并做出相应的反应。一开始是求救信号，最后是一大群干细胞像蜜蜂飞出蜂巢那样，从骨髓进入人体的循环系统。6再生身体受伤部分的这个重要步骤被称为干细胞动员。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_02_mobilization",
+      "evidences": [
+        {
+          "excerpt": "干细胞一旦被需要再生的身体部位激活，就会引发一系列事情，把干细胞从它们的壁龛带入你的循环系统。骨髓中的干细胞会被受损器官释放的生长因子信号所改变。一种特殊的生长因子——血管内皮生长因子——是一种强大的干细胞激活剂。这种求救信号通过穿透骨头的血管到达骨髓。一旦进入骨髓，这些信号便会沿着骨髓内一个叫作正弦通道的毛细血管系统传输，而这个系统会让信号浮动到连接在通道壁上的干细胞上。这些干细胞将信号解读为一种化学警报，并做出相应的反应。一开始是求救信号，最后是一大群干细胞像蜜蜂飞出蜂巢那样，从骨髓进入人体的循环系统。6再生身体受伤部分的这个重要步骤被称为干细胞动员。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_02_mobilization"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "regeneration_defense",
+      "target": "angiogenesis_defense",
+      "relation": "书中描述再生与血管生成通过共同生长因子信号相互协同",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_02_link_angio",
+      "excerpt": "参与干细胞反应的某些生长因子与引发血管生成的生长因子完全相同，它们将这两种健康防御系统联系在一起。例如，当细胞由于缺氧或受损而释放血管内皮生长因子时，它会在局部触发血管生成，而在更远的骨髓壁龛中，干细胞会受到这种因子的警告。如果产生了一大块新生组织，就需要新鲜的血液供应。这时血管生成开始起作用，并通过形成新的血管提供新生组织所需要的营养。相反，干细胞也有助于构建新生成的血管，所以这是一种双赢的关系。新血管中有2%~25%的细胞来自干细胞。\n\n干细胞损伤的原因",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_02_link_angio",
+      "evidences": [
+        {
+          "excerpt": "参与干细胞反应的某些生长因子与引发血管生成的生长因子完全相同，它们将这两种健康防御系统联系在一起。例如，当细胞由于缺氧或受损而释放血管内皮生长因子时，它会在局部触发血管生成，而在更远的骨髓壁龛中，干细胞会受到这种因子的警告。如果产生了一大块新生组织，就需要新鲜的血液供应。这时血管生成开始起作用，并通过形成新的血管提供新生组织所需要的营养。相反，干细胞也有助于构建新生成的血管，所以这是一种双赢的关系。新血管中有2%~25%的细胞来自干细胞。\n\n干细胞损伤的原因",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_02_link_angio"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "regeneration_defense",
+      "target": "cardiometabolic",
+      "relation": "书中描述吸烟耗竭骨髓干细胞并损害其自我复制与再生能力",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_02_smoke",
+      "excerpt": "其中危害最大的因素之一是烟草烟雾。当吸烟者吸入香烟烟雾时，就会出现氧气不足，从而导致干细胞进入血液。但习惯性吸烟最终会耗尽储存在骨髓中的干细胞的数量，随着时间的推移，可供再生和修复的细胞的总数量会减少。11更糟的是，吸烟者体内剩余的干细胞无法正常工作——它们自我复制的能力降低了80%，参与再生的能力降低了近40%。12吸烟除了对血管有直接损害，还会导致干细胞数量和功能方面的下降，这也解释了为什么吸烟者患有心血管和肺部疾病的风险会增加。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_02_smoke",
+      "evidences": [
+        {
+          "excerpt": "其中危害最大的因素之一是烟草烟雾。当吸烟者吸入香烟烟雾时，就会出现氧气不足，从而导致干细胞进入血液。但习惯性吸烟最终会耗尽储存在骨髓中的干细胞的数量，随着时间的推移，可供再生和修复的细胞的总数量会减少。11更糟的是，吸烟者体内剩余的干细胞无法正常工作——它们自我复制的能力降低了80%，参与再生的能力降低了近40%。12吸烟除了对血管有直接损害，还会导致干细胞数量和功能方面的下降，这也解释了为什么吸烟者患有心血管和肺部疾病的风险会增加。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_02_smoke"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "regeneration_defense",
+      "target": "cognitive_clarity",
+      "relation": "书中描述酒精损害干细胞再生能力并影响脑内祖细胞活性",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_02_alcohol",
+      "excerpt": "酗酒会杀死干细胞。酒精在很多方面影响干细胞。研究人员对每天少量饮酒的猴子进行了研究，他们注意到，与不饮酒的猴子相比，这些猴子的循环系统中有更多的干细胞。然而，饮酒猴子的干细胞受到了损害，它们参与再生的能力也变差了。15大家可以把这些干细胞想象成醉酒的干细胞，它们甚至很难走出一条直线。当孕妇大量饮酒时，胎儿酒精综合征便是一个灾难性的后果。发育中的胎儿遭受永久性脑损伤和生长异常。酒精对胎儿干细胞是有毒的，所以胎儿酒精综合征所造成的破坏部分原因可能就在于干细胞受损。路易斯安那州立大学的研究人员在研究老鼠胚胎发育的模型时发现了这一点。16酗酒还给干细胞健康带来了另一个打击。肯塔基大学的研究人员发现，酗酒会降低被称为少突胶质细胞祖细胞的脑干细胞的活性，而这些细胞是生成新神经元所必需的。这种影响在大脑的海马区尤为明显。这是大脑中负责建立短期和长期记忆的部分。17好消息是，当狂饮停止时，这种损害是可以逆转的。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_02_alcohol",
+      "evidences": [
+        {
+          "excerpt": "酗酒会杀死干细胞。酒精在很多方面影响干细胞。研究人员对每天少量饮酒的猴子进行了研究，他们注意到，与不饮酒的猴子相比，这些猴子的循环系统中有更多的干细胞。然而，饮酒猴子的干细胞受到了损害，它们参与再生的能力也变差了。15大家可以把这些干细胞想象成醉酒的干细胞，它们甚至很难走出一条直线。当孕妇大量饮酒时，胎儿酒精综合征便是一个灾难性的后果。发育中的胎儿遭受永久性脑损伤和生长异常。酒精对胎儿干细胞是有毒的，所以胎儿酒精综合征所造成的破坏部分原因可能就在于干细胞受损。路易斯安那州立大学的研究人员在研究老鼠胚胎发育的模型时发现了这一点。16酗酒还给干细胞健康带来了另一个打击。肯塔基大学的研究人员发现，酗酒会降低被称为少突胶质细胞祖细胞的脑干细胞的活性，而这些细胞是生成新神经元所必需的。这种影响在大脑的海马区尤为明显。这是大脑中负责建立短期和长期记忆的部分。17好消息是，当狂饮停止时，这种损害是可以逆转的。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_02_alcohol"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "regeneration_defense",
+      "target": "cardiometabolic",
+      "relation": "书中描述高血糖削弱干细胞繁殖、迁移与分泌存活因子的能力",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_02_diabetes",
+      "excerpt": "慢性疾病也会对干细胞产生有害影响。糖尿病是干细胞杀手。糖尿病患者的干细胞较少，而现有的干细胞无法正常工作。高血糖是问题所在。暴露在高糖环境中的干细胞再生组织的能力较差。它们不能正常繁殖，也不能很好地在体内活动。因此，它们无法正常参与构建新的组织。最重要的是，它们分泌的存活因子比正常的干细胞要少。21研究人员发现，即使在没有糖尿病的正常健康的成年人中，高血糖也会影响干细胞。22这也是注意糖摄入量的另一个原因。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_02_diabetes",
+      "evidences": [
+        {
+          "excerpt": "慢性疾病也会对干细胞产生有害影响。糖尿病是干细胞杀手。糖尿病患者的干细胞较少，而现有的干细胞无法正常工作。高血糖是问题所在。暴露在高糖环境中的干细胞再生组织的能力较差。它们不能正常繁殖，也不能很好地在体内活动。因此，它们无法正常参与构建新的组织。最重要的是，它们分泌的存活因子比正常的干细胞要少。21研究人员发现，即使在没有糖尿病的正常健康的成年人中，高血糖也会影响干细胞。22这也是注意糖摄入量的另一个原因。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_02_diabetes"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "regeneration_defense",
+      "target": "cardiometabolic",
+      "relation": "书中引述循环内皮祖细胞基线与未来心血管事件及死亡风险相关的观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_02_epc_nejm",
+      "excerpt": "德国洪堡的研究人员对519个人进行了一项研究，他们发表在《新英格兰医学杂志》上的论文中说，测量循环内皮祖细胞的基线水平可以预测一个人在未来12个月里是否会心脏病发作或中风，这个基线水平甚至还可以预测个体是否会因此而死亡。28在这项特殊的研究中，内皮祖细胞基线水平较高的人首次经历重大病变的风险会比一般人低26%。干细胞基线水平较高的人死于心血管疾病的风险也比一般人低70%。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_02_epc_nejm",
+      "evidences": [
+        {
+          "excerpt": "德国洪堡的研究人员对519个人进行了一项研究，他们发表在《新英格兰医学杂志》上的论文中说，测量循环内皮祖细胞的基线水平可以预测一个人在未来12个月里是否会心脏病发作或中风，这个基线水平甚至还可以预测个体是否会因此而死亡。28在这项特殊的研究中，内皮祖细胞基线水平较高的人首次经历重大病变的风险会比一般人低26%。干细胞基线水平较高的人死于心血管疾病的风险也比一般人低70%。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_02_epc_nejm"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "regeneration_defense",
+      "target": "cardiometabolic",
+      "relation": "书中引述干细胞因子水平较高者心衰、中风与全因死亡风险较低的长期队列叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_02_scf_malmo",
+      "excerpt": "另一项具有里程碑意义的研究是瑞典的马尔默饮食与癌症研究，它也研究了干细胞水平与心血管疾病之间的关系。29这项研究始于1991年，研究对象为一组中年人。在整整19年里，研究人员跟踪调查了参与者的健康状况，定期抽取他们的血液样本，并向他们发放营养问卷，以探究营养与疾病之间的关系。在这一组中，研究人员测量了4742人的一种叫作干细胞因子的血液标志物。干细胞因子是在骨髓中产生的一种蛋白质，滋养着大量储备干细胞。这种蛋白质也存在于血液中，并在血液中指导干细胞的行为，如增殖、迁移，最终根据需要转化为特定的组织，这一过程被称为分化。干细胞因子对干细胞功能的正常运转至关重要。研究人员发现，与干细胞因子水平最低的参与者相比，那些干细胞因子水平最高的人得心力衰竭的风险低50%，中风的风险低34%，死于任何病因的风险低32%。毫不奇怪的是，这项研究还发现，血液中干细胞因子水平最低的人往往是吸烟者、酒精大量摄入者或糖尿病患者。这清楚地表明，生活方式、干细胞功能和患慢性疾病的风险之间存在密切的联系。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_02_scf_malmo",
+      "evidences": [
+        {
+          "excerpt": "另一项具有里程碑意义的研究是瑞典的马尔默饮食与癌症研究，它也研究了干细胞水平与心血管疾病之间的关系。29这项研究始于1991年，研究对象为一组中年人。在整整19年里，研究人员跟踪调查了参与者的健康状况，定期抽取他们的血液样本，并向他们发放营养问卷，以探究营养与疾病之间的关系。在这一组中，研究人员测量了4742人的一种叫作干细胞因子的血液标志物。干细胞因子是在骨髓中产生的一种蛋白质，滋养着大量储备干细胞。这种蛋白质也存在于血液中，并在血液中指导干细胞的行为，如增殖、迁移，最终根据需要转化为特定的组织，这一过程被称为分化。干细胞因子对干细胞功能的正常运转至关重要。研究人员发现，与干细胞因子水平最低的参与者相比，那些干细胞因子水平最高的人得心力衰竭的风险低50%，中风的风险低34%，死于任何病因的风险低32%。毫不奇怪的是，这项研究还发现，血液中干细胞因子水平最低的人往往是吸烟者、酒精大量摄入者或糖尿病患者。这清楚地表明，生活方式、干细胞功能和患慢性疾病的风险之间存在密切的联系。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_02_scf_malmo"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "regeneration_defense",
+      "target": "cardiometabolic",
+      "relation": "书中描述内皮祖细胞修复血管内壁有助于降低动脉粥样硬化相关风险",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_02_epc_repair",
+      "excerpt": "内皮祖细胞就像细胞裁缝一样，可以修复内壁。因此，干细胞损伤会降低你对动脉粥样硬化的再生防御能力。保持干细胞健康可以降低动脉粥样硬化形成的风险，并保护你不患上心血管疾病。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_02_epc_repair",
+      "evidences": [
+        {
+          "excerpt": "内皮祖细胞就像细胞裁缝一样，可以修复内壁。因此，干细胞损伤会降低你对动脉粥样硬化的再生防御能力。保持干细胞健康可以降低动脉粥样硬化形成的风险，并保护你不患上心血管疾病。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_02_epc_repair"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "regeneration_defense",
+      "target": "cognitive_clarity",
+      "relation": "书中描述脑内祖细胞与小胶质细胞路径在阿尔茨海默病相关叙述中的作用",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_02_brain",
+      "excerpt": "大脑干细胞的减少与痴呆的发展有关。30这些干细胞被称为少突胶质细胞祖细胞，能够再生和替换你大脑中的神经元，而且对你年老时保持敏锐的心智功能至关重要。这些干细胞也会受到酗酒的影响。研究人员正在寻找滋养大脑干细胞并促进其功能的方法来治疗阿尔茨海默病。另一种叫作小胶质细胞的特殊脑细胞是由造血干细胞发育而来的。这些小胶质细胞负责清理大脑，移除因阿尔茨海默病形成的有损大脑的β淀粉样斑。中国华中科技大学的科学家们在实验室中将一种名为基质细胞衍生因子-1（SDF-1）的蛋白质注入患有阿尔茨海默病的老鼠的大脑。他们发现，这种蛋白质可以将骨髓中的造血干细胞募集到大脑中，然后干细胞会变成小胶质细胞，改善对疾病中积累的淀粉样蛋白碎片的清理。31\n\n医学中的干细胞",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_02_brain",
+      "evidences": [
+        {
+          "excerpt": "大脑干细胞的减少与痴呆的发展有关。30这些干细胞被称为少突胶质细胞祖细胞，能够再生和替换你大脑中的神经元，而且对你年老时保持敏锐的心智功能至关重要。这些干细胞也会受到酗酒的影响。研究人员正在寻找滋养大脑干细胞并促进其功能的方法来治疗阿尔茨海默病。另一种叫作小胶质细胞的特殊脑细胞是由造血干细胞发育而来的。这些小胶质细胞负责清理大脑，移除因阿尔茨海默病形成的有损大脑的β淀粉样斑。中国华中科技大学的科学家们在实验室中将一种名为基质细胞衍生因子-1（SDF-1）的蛋白质注入患有阿尔茨海默病的老鼠的大脑。他们发现，这种蛋白质可以将骨髓中的造血干细胞募集到大脑中，然后干细胞会变成小胶质细胞，改善对疾病中积累的淀粉样蛋白碎片的清理。31\n\n医学中的干细胞",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_02_brain"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "regeneration_defense",
+      "target": "cancer_stem_cells",
+      "relation": "书中总结饮食可激活自身干细胞促进再生，同时部分食物可抑制肿瘤干细胞",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_02_food_regen",
+      "excerpt": "再生并不仅仅依赖于医疗机构的先进技术，你现在也可以在自家厨房里启动身体的再生防御系统。食物和饮料可以激活人体自身的干细胞，从内部增强身体的自我再生和治愈能力。这是一种全新的再生方法，不需要医生、医院或注射。饮食再生利用你自己的干细胞库来恢复健康。一些食物能增强干细胞活性，促进再生，而另一些食物则被发现会损伤干细胞，使其丧失功能。显然，人人都不希望看到干细胞“沉寂”——除非它们是肿瘤干细胞，因为肿瘤干细胞“沉寂”可以救人一命。有些食物也能做到这一点。无论你是身体健康，想要优化自己的力量，还是只想优雅地变老，或者你患有严重的慢性疾病，比如心脏病、阿尔茨海默病、糖尿病，甚至癌症，有一种方法可以利用饮食来引导干细胞，帮你彻底痊愈。我将在本书的第二部分告诉大家影响干细胞的所有食物，以及如何使用它们来改善你的健康状况。\n\n[11] 第三章 微生物组\n\n未知\n\n-\n-\n\n第三章 微生物组\n\n在一个人们的身份认同越来越多的时代，我们又迎来了一种新的身份。你不再只是人类——你是一个共生功能体。这个术语描述的是一种有机体，它靠把多种互利的物种组合在一起发挥作用。你是一个共生功能体，因为你的身体不是一个单一的实体，而是一个高度复杂的生态系统，体内和体表有39万亿细菌，其中大部分是好的。这些细菌的数量大致相当于你身上的细胞总量（约37万亿），但加在一起的重量大约只有3磅[1]，相当于你大脑的重量。1它们顽强得惊人，能抵抗胃酸和肠道内的化学物质。\n\n虽然医学界曾经认为微生物是令人讨厌的疾病载体，应该用抗生素清洗、消毒并杀死它们，但我们现在知道，我们体内的大多数细菌都以非常复杂的方式保护着我们的健康，甚至影响着我们的行为。健康的细菌被统称为微生物组，它们远非赖着不走的家伙，而是形成了一个复杂的生物系统，以多种方式与你的细胞和器官相互作用。（这个系统还包括真菌、病毒和被称为古生菌的微生物，但细菌将是本章的重点。）\n\n我们每天都从世界各地的研究人员那里了解到更多关于我们微生物组的情况，以及它如何促进健康，甚至帮助我们战胜癌症这样的疾病。一些肠道细菌，如植物乳杆菌、鼠李糖乳杆菌、蕈状芽孢杆菌，有着内分泌物或激素的功能，甚至可以产生和释放大脑神经递质，如催产素、血清素、γ-氨基丁酸（GABA）和多巴胺。这些化学物质会激活大脑的信号，从而对我们的情绪产生深远的影响。2一些细菌释放的代谢产物能保护我们免受糖尿病的困扰；另一些则控制腹部脂肪的生长。一种名为双歧杆菌的肠道细菌已经被证实可以通过独特的肠脑互动来减轻人们的压力和焦虑。3我们的细菌影响着血管生成、干细胞和免疫，甚至可以影响我们的激素、性健康和社交行为。它们既可以滋养人类的细胞，也可以刺激和激怒这些细胞。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_02_food_regen",
+      "evidences": [
+        {
+          "excerpt": "再生并不仅仅依赖于医疗机构的先进技术，你现在也可以在自家厨房里启动身体的再生防御系统。食物和饮料可以激活人体自身的干细胞，从内部增强身体的自我再生和治愈能力。这是一种全新的再生方法，不需要医生、医院或注射。饮食再生利用你自己的干细胞库来恢复健康。一些食物能增强干细胞活性，促进再生，而另一些食物则被发现会损伤干细胞，使其丧失功能。显然，人人都不希望看到干细胞“沉寂”——除非它们是肿瘤干细胞，因为肿瘤干细胞“沉寂”可以救人一命。有些食物也能做到这一点。无论你是身体健康，想要优化自己的力量，还是只想优雅地变老，或者你患有严重的慢性疾病，比如心脏病、阿尔茨海默病、糖尿病，甚至癌症，有一种方法可以利用饮食来引导干细胞，帮你彻底痊愈。我将在本书的第二部分告诉大家影响干细胞的所有食物，以及如何使用它们来改善你的健康状况。\n\n[11] 第三章 微生物组\n\n未知\n\n-\n-\n\n第三章 微生物组\n\n在一个人们的身份认同越来越多的时代，我们又迎来了一种新的身份。你不再只是人类——你是一个共生功能体。这个术语描述的是一种有机体，它靠把多种互利的物种组合在一起发挥作用。你是一个共生功能体，因为你的身体不是一个单一的实体，而是一个高度复杂的生态系统，体内和体表有39万亿细菌，其中大部分是好的。这些细菌的数量大致相当于你身上的细胞总量（约37万亿），但加在一起的重量大约只有3磅[1]，相当于你大脑的重量。1它们顽强得惊人，能抵抗胃酸和肠道内的化学物质。\n\n虽然医学界曾经认为微生物是令人讨厌的疾病载体，应该用抗生素清洗、消毒并杀死它们，但我们现在知道，我们体内的大多数细菌都以非常复杂的方式保护着我们的健康，甚至影响着我们的行为。健康的细菌被统称为微生物组，它们远非赖着不走的家伙，而是形成了一个复杂的生物系统，以多种方式与你的细胞和器官相互作用。（这个系统还包括真菌、病毒和被称为古生菌的微生物，但细菌将是本章的重点。）\n\n我们每天都从世界各地的研究人员那里了解到更多关于我们微生物组的情况，以及它如何促进健康，甚至帮助我们战胜癌症这样的疾病。一些肠道细菌，如植物乳杆菌、鼠李糖乳杆菌、蕈状芽孢杆菌，有着内分泌物或激素的功能，甚至可以产生和释放大脑神经递质，如催产素、血清素、γ-氨基丁酸（GABA）和多巴胺。这些化学物质会激活大脑的信号，从而对我们的情绪产生深远的影响。2一些细菌释放的代谢产物能保护我们免受糖尿病的困扰；另一些则控制腹部脂肪的生长。一种名为双歧杆菌的肠道细菌已经被证实可以通过独特的肠脑互动来减轻人们的压力和焦虑。3我们的细菌影响着血管生成、干细胞和免疫，甚至可以影响我们的激素、性健康和社交行为。它们既可以滋养人类的细胞，也可以刺激和激怒这些细胞。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_02_food_regen"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "gut_microbiome",
+      "target": "immune_resilience",
+      "relation": "书中强调菌群多样性是健康标志",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_03_diversity",
+      "excerpt": "微生物组的多样性是健康的一个重要标志。与人类社会一样，我们细菌生态系统的多样性以其优势和更有效的合作保护健康。我们拥有的细菌数量越多，种类越多，我们就越健康。正如与邻近物种共同兴旺、令人印象深刻的珊瑚礁一样，微生物组是一个生态系统，依赖于社会成员之间彼此包容的微妙平衡，为了我们的健康而共同努力。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_03_diversity",
+      "evidences": [
+        {
+          "excerpt": "微生物组的多样性是健康的一个重要标志。与人类社会一样，我们细菌生态系统的多样性以其优势和更有效的合作保护健康。我们拥有的细菌数量越多，种类越多，我们就越健康。正如与邻近物种共同兴旺、令人印象深刻的珊瑚礁一样，微生物组是一个生态系统，依赖于社会成员之间彼此包容的微妙平衡，为了我们的健康而共同努力。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_03_diversity"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "dietary_fiber",
+      "target": "scfa",
+      "relation": "书中描述益生元纤维经菌群发酵产生短链脂肪酸及其抗炎、代谢与免疫相关作用",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_03_scfa",
+      "excerpt": "最著名的物质实际上就是细菌的代谢物，称为短链脂肪酸（SCFA）。这些物质都是细菌消化植物性纤维所产生的副产品。（顺便说一句，当你听到“益生元”这个词时，它通常指的是这种滋养细菌产生短链脂肪酸的膳食纤维。）人们发现短链脂肪酸有一系列惊人的保健功能。它们的抗炎特性能够保护你的肠道和整体健康，它们可以提升你的身体代谢葡萄糖和脂类的能力。12短链脂肪酸还可以提高免疫力，引导血管生成，并帮助干细胞，充当人体四个健康防御系统之间的连接。乳杆菌和双歧杆菌之所以被认为对人体有益，就是因为它们产生短链脂肪酸。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_03_scfa",
+      "evidences": [
+        {
+          "excerpt": "最著名的物质实际上就是细菌的代谢物，称为短链脂肪酸（SCFA）。这些物质都是细菌消化植物性纤维所产生的副产品。（顺便说一句，当你听到“益生元”这个词时，它通常指的是这种滋养细菌产生短链脂肪酸的膳食纤维。）人们发现短链脂肪酸有一系列惊人的保健功能。它们的抗炎特性能够保护你的肠道和整体健康，它们可以提升你的身体代谢葡萄糖和脂类的能力。12短链脂肪酸还可以提高免疫力，引导血管生成，并帮助干细胞，充当人体四个健康防御系统之间的连接。乳杆菌和双歧杆菌之所以被认为对人体有益，就是因为它们产生短链脂肪酸。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_03_scfa"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "scfa",
+      "target": "chronic_inflammation",
+      "relation": "书中分述丙酸、丁酸、醋酸盐在代谢、结肠能量、抗炎与食欲信号等方面的叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_03_scfa_roles",
+      "excerpt": "三种主要的短链脂肪酸——丙酸盐、丁酸盐和醋酸盐——都在人体中扮演着独特的角色。例如，丙酸盐可以降低胆固醇，减少炎症，防止动脉粥样硬化斑块的形成，并改善消化系统的健康状况。13它还能激活免疫细胞。14丁酸盐是结肠内肠细胞的主要能量来源，它能促进结肠健康，并具有抗炎作用。它还能刺激血管生成，促进伤口愈合，并引导干细胞转化为不同类型的器官。15醋酸盐被释放到周围组织中，刺激那里的瘦素，从而抑制饥饿。16",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_03_scfa_roles",
+      "evidences": [
+        {
+          "excerpt": "三种主要的短链脂肪酸——丙酸盐、丁酸盐和醋酸盐——都在人体中扮演着独特的角色。例如，丙酸盐可以降低胆固醇，减少炎症，防止动脉粥样硬化斑块的形成，并改善消化系统的健康状况。13它还能激活免疫细胞。14丁酸盐是结肠内肠细胞的主要能量来源，它能促进结肠健康，并具有抗炎作用。它还能刺激血管生成，促进伤口愈合，并引导干细胞转化为不同类型的器官。15醋酸盐被释放到周围组织中，刺激那里的瘦素，从而抑制饥饿。16",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_03_scfa_roles"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "gut_microbiome",
+      "target": "gut_barrier_leak",
+      "relation": "书中描述产硫化氢细菌可破坏肠壁密封并与炎症性肠病相关叙述",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_03_h2s",
+      "excerpt": "例如，脱硫弧菌等细菌会产生硫化氢，这种化合物闻起来像臭鸡蛋，通常存在于火山和温泉中。硫化氢对我们的肠道有很大的毒性。当它由脱硫弧菌产生时，它会破坏肠道内壁，而肠道内壁通常会将食物和身体其他部位产生的废物密封起来。这种破坏会造成肠道渗漏，就像在一件潜水衣上扎了许多小孔，使得食物颗粒和垃圾更容易从肠道里漏出来。食物颗粒的泄漏会引起肠道周围的炎症反应，从而使人体对食物产生类似过敏的反应，甚至引发结肠炎。毫不奇怪，我们可以在炎症性肠病患者的粪便中发现产生硫化氢的细菌。22\n\n位置，位置，位置\n\n微生物组遍布你的全身，尤其是皮肤和体腔。促进健康的细菌生活在你的牙齿、牙龈、舌头、扁桃体、鼻子、肺、耳朵、阴道，特别是肠道中。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_03_h2s",
+      "evidences": [
+        {
+          "excerpt": "例如，脱硫弧菌等细菌会产生硫化氢，这种化合物闻起来像臭鸡蛋，通常存在于火山和温泉中。硫化氢对我们的肠道有很大的毒性。当它由脱硫弧菌产生时，它会破坏肠道内壁，而肠道内壁通常会将食物和身体其他部位产生的废物密封起来。这种破坏会造成肠道渗漏，就像在一件潜水衣上扎了许多小孔，使得食物颗粒和垃圾更容易从肠道里漏出来。食物颗粒的泄漏会引起肠道周围的炎症反应，从而使人体对食物产生类似过敏的反应，甚至引发结肠炎。毫不奇怪，我们可以在炎症性肠病患者的粪便中发现产生硫化氢的细菌。22\n\n位置，位置，位置\n\n微生物组遍布你的全身，尤其是皮肤和体腔。促进健康的细菌生活在你的牙齿、牙龈、舌头、扁桃体、鼻子、肺、耳朵、阴道，特别是肠道中。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_03_h2s"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "probiotics",
+      "target": "angiogenesis_defense",
+      "relation": "书中引述罗伊氏乳杆菌加速伤口愈合并与血管生成加快相关的合作研究叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_03_reuteri",
+      "excerpt": "当我听到波士顿麻省理工学院比较医学系主任苏珊·厄尔德曼的演讲时，我开始意识到这种做法的潜力。作为一场年度伤口愈合会议的联合主席，我邀请她介绍她对一种名为罗伊氏乳杆菌的细菌的研究，这种细菌是人类微生物组的一部分。厄尔德曼介绍了她的研究，展示了这种细菌使伤口愈合得更快的方式。她的发言引人入胜。她提供了令人信服的数据，证明在老鼠的饮用水中加入罗伊氏乳杆菌可以加快老鼠伤口愈合的速度。某些酸奶中就有罗伊氏乳杆菌，人们也将它用作膳食补充剂。将其用作益生菌食用时也对人体有效。之后，厄尔德曼和我进行合作研究，了解这些细菌帮助加速愈合的机制。答案是：吞下罗伊氏乳杆菌能加快皮肤伤口愈合过程中的血管生成。健康防御系统之间的另一种联系就这样被发现了。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_03_reuteri",
+      "evidences": [
+        {
+          "excerpt": "当我听到波士顿麻省理工学院比较医学系主任苏珊·厄尔德曼的演讲时，我开始意识到这种做法的潜力。作为一场年度伤口愈合会议的联合主席，我邀请她介绍她对一种名为罗伊氏乳杆菌的细菌的研究，这种细菌是人类微生物组的一部分。厄尔德曼介绍了她的研究，展示了这种细菌使伤口愈合得更快的方式。她的发言引人入胜。她提供了令人信服的数据，证明在老鼠的饮用水中加入罗伊氏乳杆菌可以加快老鼠伤口愈合的速度。某些酸奶中就有罗伊氏乳杆菌，人们也将它用作膳食补充剂。将其用作益生菌食用时也对人体有效。之后，厄尔德曼和我进行合作研究，了解这些细菌帮助加速愈合的机制。答案是：吞下罗伊氏乳杆菌能加快皮肤伤口愈合过程中的血管生成。健康防御系统之间的另一种联系就这样被发现了。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_03_reuteri"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "gut_microbiome",
+      "target": "ibd_related",
+      "relation": "书中列举生态失调与代谢、IBD、癌症、神经精神等多类疾病相关的观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_03_dysbiosis",
+      "excerpt": "生态失调指细菌生态系统受到严重干扰，这种肠道细菌的不平衡状态与许多疾病相关，包括糖尿病、肥胖症、自闭症、炎症性肠病、感染性结肠炎、肠易激综合征、癌症、哮喘、银屑病、多发性硬化、帕金森病、阿尔茨海默病、动脉粥样硬化、心力衰竭、乳糜泻、肝脏疾病、慢性疲劳综合征、蛀牙、精神分裂症和抑郁症。35导致上述病症的确切的微生物或微生物失衡机制，以及它们是原因还是结果，正由一些学界的后起之秀进行研究。与此同时，医疗机构也开始注意到这一点。三氯生是一种曾经被广泛使用、如今被禁用的抗菌化学物，过去出现在牙膏、肥皂、洗涤剂和其他2000多种消费品中，有人发现它会破坏婴儿的肠道微生物组，增加老鼠结肠炎和肿瘤的发生率。36",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_03_dysbiosis",
+      "evidences": [
+        {
+          "excerpt": "生态失调指细菌生态系统受到严重干扰，这种肠道细菌的不平衡状态与许多疾病相关，包括糖尿病、肥胖症、自闭症、炎症性肠病、感染性结肠炎、肠易激综合征、癌症、哮喘、银屑病、多发性硬化、帕金森病、阿尔茨海默病、动脉粥样硬化、心力衰竭、乳糜泻、肝脏疾病、慢性疲劳综合征、蛀牙、精神分裂症和抑郁症。35导致上述病症的确切的微生物或微生物失衡机制，以及它们是原因还是结果，正由一些学界的后起之秀进行研究。与此同时，医疗机构也开始注意到这一点。三氯生是一种曾经被广泛使用、如今被禁用的抗菌化学物，过去出现在牙膏、肥皂、洗涤剂和其他2000多种消费品中，有人发现它会破坏婴儿的肠道微生物组，增加老鼠结肠炎和肿瘤的发生率。36",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_03_dysbiosis"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "reactive_oxygen",
+      "target": "dna_damage",
+      "relation": "书中描述复制错误与自由基、辐射、化学物等造成每日大量DNA损伤",
+      "direction": "risk",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_04_damage",
+      "excerpt": "你的DNA每天承受着一万多起自然发生的破坏性事件。1其中一些错误是自发中断；当数以万亿计的细胞日复一日不间断地工作和复制时，这种中断在所难免。其他错误是体内发生的破坏性事件所造成的副作用，比如炎症或感染。还有一些则是有毒化学物造成的，这些化学物存在于我们呼吸的空气和吞咽的食物中，还可以通过我们的皮肤从家用产品和其他环境来源中吸收。无论以何种情况发生，每一个错误都有可能损害我们的DNA，严重破坏我们的健康。考虑到每天都有大量的DNA受损，你可能会想为什么我们没有那么容易生病，没有发生突变，或者没有每天都形成致命的癌症。这是因为我们的DNA天生就能保护自己，从而保护我们的健康，使其免受这种损害的影响。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_04_damage",
+      "evidences": [
+        {
+          "excerpt": "你的DNA每天承受着一万多起自然发生的破坏性事件。1其中一些错误是自发中断；当数以万亿计的细胞日复一日不间断地工作和复制时，这种中断在所难免。其他错误是体内发生的破坏性事件所造成的副作用，比如炎症或感染。还有一些则是有毒化学物造成的，这些化学物存在于我们呼吸的空气和吞咽的食物中，还可以通过我们的皮肤从家用产品和其他环境来源中吸收。无论以何种情况发生，每一个错误都有可能损害我们的DNA，严重破坏我们的健康。考虑到每天都有大量的DNA受损，你可能会想为什么我们没有那么容易生病，没有发生突变，或者没有每天都形成致命的癌症。这是因为我们的DNA天生就能保护自己，从而保护我们的健康，使其免受这种损害的影响。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_04_damage"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "dna_repair",
+      "target": "epigenetic_positive",
+      "relation": "书中概述DNA防御三路径：修复加速、表观遗传开关与端粒保护",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_04_three",
+      "excerpt": "好消息是，抗氧化剂并不是唯一能够防止基因受损的机制。食物可以触发天生就内置于我们的DNA的健康防御机制。有些食物可以加速受损DNA的修复。我们所吃的食物也能通过所谓表观遗传变化来开启或关闭某些基因。除了饮食，运动、睡眠和环境也可能有好的（和坏的）表观遗传效应。但是，具有积极表观遗传影响的食物可以释放有益基因或关闭有害基因，以预防和对抗疾病。食物也可以通过保护端粒来影响DNA。大家还记得吗？端粒是覆盖DNA链末端的保护帽，具有保护作用的端粒可以减缓衰老对端粒的破坏。你可以将许多大家熟悉且美味的食物添加到日常饮食中，通过食用这些食物来激活DNA的保护措施。所以，我们吃的东西可以保护我们的DNA免于受损，并提高我们的DNA原本就有的帮助我们抵抗疾病的能力。\n\n在讨论那些可以保护DNA的食物和饮料之前，我们先来看看与DNA损伤有关的疾病。\n\n与DNA损伤有关的疾病",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_04_three",
+      "evidences": [
+        {
+          "excerpt": "好消息是，抗氧化剂并不是唯一能够防止基因受损的机制。食物可以触发天生就内置于我们的DNA的健康防御机制。有些食物可以加速受损DNA的修复。我们所吃的食物也能通过所谓表观遗传变化来开启或关闭某些基因。除了饮食，运动、睡眠和环境也可能有好的（和坏的）表观遗传效应。但是，具有积极表观遗传影响的食物可以释放有益基因或关闭有害基因，以预防和对抗疾病。食物也可以通过保护端粒来影响DNA。大家还记得吗？端粒是覆盖DNA链末端的保护帽，具有保护作用的端粒可以减缓衰老对端粒的破坏。你可以将许多大家熟悉且美味的食物添加到日常饮食中，通过食用这些食物来激活DNA的保护措施。所以，我们吃的东西可以保护我们的DNA免于受损，并提高我们的DNA原本就有的帮助我们抵抗疾病的能力。\n\n在讨论那些可以保护DNA的食物和饮料之前，我们先来看看与DNA损伤有关的疾病。\n\n与DNA损伤有关的疾病",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_04_three"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "vitamin_c",
+      "target": "dna_damage",
+      "relation": "书中引述饮用橙汁后短期内DNA损伤指标下降的小规模人体观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_04_oj",
+      "excerpt": "中国香港专业教育学院（沙田分校）的研究人员进行了一项小规模但令人大开眼界的临床研究，以检验喝橙汁对DNA的保护作用。3橙子以富含维生素C而闻名。研究人员招募了6名受试者，让他们每人喝1.75杯经过巴氏杀菌的橙汁，并且分别在饮用前和饮用两小时后采集他们的血液样本。在另一次试验中，研究人员对同样的受试者重复了该试验，但这次给他们的是安慰剂饮料，由水、糖和维生素C片组成，而不是橙汁。在两次试验之后，研究人员使用了一种叫作彗星试验的特殊测试来分析受试者饮用饮料前后，其血液保护DNA的能力。在彗星试验中，白细胞被暴露在过氧化氢中，这也是头发漂白剂中使用的化学物质。过氧化氢会造成大量的自由基损伤，并破坏白细胞中的DNA。如果喝橙汁有保护作用，当细胞暴露在漂白剂中时，DNA受到的损伤就会变小。\n\n研究发现，喝橙汁确实提高了血液保护DNA的能力。与饮用富含维生素的糖水相比，饮用橙汁的人的DNA损伤降低了19%。对DNA的这种保护作用在饮用果汁两小时后就显现了出来。橙汁这种对DNA的保护作用超出了维生素C的功能范围，这表明，橙汁的益处不仅仅来自维生素C。橙子含有许多生物活性物质，包括柚皮素和橙皮苷，它们也是抗氧化剂。这将支持一种流行的观点，即食用天然食品所获得的综合的抗氧化效果可能比吞下补充剂更好。说到橙子，如果你吃整个水果，而不是只喝果汁，你会得到更多的益处。橙子含有膳食纤维，正如我们在第八章了解到的，膳食纤维对你的微生物组有益。虽然鲜榨橙汁是一个不错的选择，但是一定要小心加工过的果汁。许多果汁只是含糖饮料，实际的水果含量非常少。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_04_oj",
+      "evidences": [
+        {
+          "excerpt": "中国香港专业教育学院（沙田分校）的研究人员进行了一项小规模但令人大开眼界的临床研究，以检验喝橙汁对DNA的保护作用。3橙子以富含维生素C而闻名。研究人员招募了6名受试者，让他们每人喝1.75杯经过巴氏杀菌的橙汁，并且分别在饮用前和饮用两小时后采集他们的血液样本。在另一次试验中，研究人员对同样的受试者重复了该试验，但这次给他们的是安慰剂饮料，由水、糖和维生素C片组成，而不是橙汁。在两次试验之后，研究人员使用了一种叫作彗星试验的特殊测试来分析受试者饮用饮料前后，其血液保护DNA的能力。在彗星试验中，白细胞被暴露在过氧化氢中，这也是头发漂白剂中使用的化学物质。过氧化氢会造成大量的自由基损伤，并破坏白细胞中的DNA。如果喝橙汁有保护作用，当细胞暴露在漂白剂中时，DNA受到的损伤就会变小。\n\n研究发现，喝橙汁确实提高了血液保护DNA的能力。与饮用富含维生素的糖水相比，饮用橙汁的人的DNA损伤降低了19%。对DNA的这种保护作用在饮用果汁两小时后就显现了出来。橙汁这种对DNA的保护作用超出了维生素C的功能范围，这表明，橙汁的益处不仅仅来自维生素C。橙子含有许多生物活性物质，包括柚皮素和橙皮苷，它们也是抗氧化剂。这将支持一种流行的观点，即食用天然食品所获得的综合的抗氧化效果可能比吞下补充剂更好。说到橙子，如果你吃整个水果，而不是只喝果汁，你会得到更多的益处。橙子含有膳食纤维，正如我们在第八章了解到的，膳食纤维对你的微生物组有益。虽然鲜榨橙汁是一个不错的选择，但是一定要小心加工过的果汁。许多果汁只是含糖饮料，实际的水果含量非常少。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_04_oj"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "epigenetic_regulation",
+      "target": "mental_health",
+      "relation": "书中列举表观遗传变化与神经精神、代谢与肿瘤等多类疾病叙述相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_04_epi_disease",
+      "excerpt": "表观遗传变化可能是有害的，也可能是有益的，这些变化贯穿人的一生。DNA表达方式的变化可以代代相传。人们发现这些变化在一系列引人注目的疾病中发挥着作用，包括精神分裂症、自闭症谱系障碍、阿尔茨海默病、帕金森病、重度抑郁症、动脉粥样硬化和自身免疫病。5显然，在DNA保护系统本该发挥作用的地方出现了各种各样的健康威胁，而具有DNA保护性的正念饮食可以增强你的健康防御能力。\n\n影响DNA修复的食物",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_04_epi_disease",
+      "evidences": [
+        {
+          "excerpt": "表观遗传变化可能是有害的，也可能是有益的，这些变化贯穿人的一生。DNA表达方式的变化可以代代相传。人们发现这些变化在一系列引人注目的疾病中发挥着作用，包括精神分裂症、自闭症谱系障碍、阿尔茨海默病、帕金森病、重度抑郁症、动脉粥样硬化和自身免疫病。5显然，在DNA保护系统本该发挥作用的地方出现了各种各样的健康威胁，而具有DNA保护性的正念饮食可以增强你的健康防御能力。\n\n影响DNA修复的食物",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_04_epi_disease"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "immune_balance",
+      "target": "digestive_cancer_risk",
+      "relation": "书中强调免疫系统可清除癌细胞甚至已扩散病灶",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_05_cancer_immune",
+      "excerpt": "每个人都知道强大的免疫系统可以帮助你避免普通感冒，但是你知道免疫甚至强大到可以保护你免受癌症之害吗？如果你确实患有癌症，你的免疫系统有能力彻底将它从你的体内消除，即使它已经扩散。人们常常将基因、吸烟、环境、不良的饮食习惯和其他因素归结为引发癌症的病因。但事实是，不管癌症的病因是什么，只有当恶性细胞没有被免疫系统摧毁时，癌症才会成为一种疾病。我们的免疫系统确实是最著名的健康防御系统之一。它使我们在被割伤后免于感染，它与病毒做斗争，并防止我们因公交车上的一名乘客所咳出的有害微生物而生病。随着研究人员研究如何增强我们自身的免疫力来对抗癌症，免疫的真正力量正在被揭示。癌症患者采用增强免疫力的疗法后，疾病的各种症状逐渐消失，他们在与势不可当的疾病的较量中生存了下来。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_05_cancer_immune",
+      "evidences": [
+        {
+          "excerpt": "每个人都知道强大的免疫系统可以帮助你避免普通感冒，但是你知道免疫甚至强大到可以保护你免受癌症之害吗？如果你确实患有癌症，你的免疫系统有能力彻底将它从你的体内消除，即使它已经扩散。人们常常将基因、吸烟、环境、不良的饮食习惯和其他因素归结为引发癌症的病因。但事实是，不管癌症的病因是什么，只有当恶性细胞没有被免疫系统摧毁时，癌症才会成为一种疾病。我们的免疫系统确实是最著名的健康防御系统之一。它使我们在被割伤后免于感染，它与病毒做斗争，并防止我们因公交车上的一名乘客所咳出的有害微生物而生病。随着研究人员研究如何增强我们自身的免疫力来对抗癌症，免疫的真正力量正在被揭示。癌症患者采用增强免疫力的疗法后，疾病的各种症状逐渐消失，他们在与势不可当的疾病的较量中生存了下来。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_05_cancer_immune"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "soy",
+      "target": "angiogenesis_defense",
+      "relation": "书中引述大豆异黄酮染料木黄酮抑制肿瘤血管生成的早期发现，并联系亚洲饮食癌症风险观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_06_soy_genistein",
+      "excerpt": "大豆是第一种被发现影响血管生成的食物。1993年，在德国海德堡大学工作的希腊科学家西奥多·福特西斯发表了一篇开创性的论文，他发现，健康的日本男性和女性食用大豆后，尿液中含有一种名为染料木黄酮的天然物质，这种物质具有强大的抗癌作用。1在实验室里，福特西斯发现染料木黄酮能抑制肿瘤引发的血管生长。后来的实验证明染料木黄酮可以直接阻止四种不同类型的癌细胞（神经母细胞瘤、尤因肉瘤、横纹肌肉瘤、视网膜母细胞瘤）的生长。染料木黄酮不是身体产生的，所以它的来源只能是饮食。这些尿液是从村民那里收集的，他们大多是种植茶叶和水稻的农民。他们是素食主义者，吃以大豆为主的饮食，这在亚洲很常见。这些农民尿液中染料木黄酮的含量是采用西方饮食的人的30倍。福特西斯的研究首次报道了一种食物中含有一种能抑制血管生成的膳食因子，而且它确实可以被人体吸收并从尿液中排出。研究人员认为，大豆的这一特性可能有助于解释为何与西方饮食相比，食用亚洲植物性饮食的人罹患某些致命癌症的概率较低。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_06_soy_genistein",
+      "evidences": [
+        {
+          "excerpt": "大豆是第一种被发现影响血管生成的食物。1993年，在德国海德堡大学工作的希腊科学家西奥多·福特西斯发表了一篇开创性的论文，他发现，健康的日本男性和女性食用大豆后，尿液中含有一种名为染料木黄酮的天然物质，这种物质具有强大的抗癌作用。1在实验室里，福特西斯发现染料木黄酮能抑制肿瘤引发的血管生长。后来的实验证明染料木黄酮可以直接阻止四种不同类型的癌细胞（神经母细胞瘤、尤因肉瘤、横纹肌肉瘤、视网膜母细胞瘤）的生长。染料木黄酮不是身体产生的，所以它的来源只能是饮食。这些尿液是从村民那里收集的，他们大多是种植茶叶和水稻的农民。他们是素食主义者，吃以大豆为主的饮食，这在亚洲很常见。这些农民尿液中染料木黄酮的含量是采用西方饮食的人的30倍。福特西斯的研究首次报道了一种食物中含有一种能抑制血管生成的膳食因子，而且它确实可以被人体吸收并从尿液中排出。研究人员认为，大豆的这一特性可能有助于解释为何与西方饮食相比，食用亚洲植物性饮食的人罹患某些致命癌症的概率较低。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_06_soy_genistein"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "angiogenesis_defense",
+      "target": "digestive_cancer_risk",
+      "relation": "书中介绍血管预防概念：用安全手段干扰异常血管生成以实现癌症预防，饮食是重要选项",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_06_angioprevention",
+      "excerpt": "另一名杰出的研究人员是阿德里安娜·阿尔比尼。2002年，她在意大利热那亚的国家癌症研究所工作时，提出了“血管预防”（angioprevention）这个术语。阿尔比尼设想，血管预防可以通过使用对健康个体安全且耐受性良好的化合物来干扰异常的血管生成，从而实现癌症预防。2虽然有些药物确实符合这一要求，但食物是最安全的选择。今天，血管预防泛指一种健康方式，包括食用食物、膳食补充剂和服用药物。阿尔比尼、我，以及其他从事科学研究的同事在著名的《自然评论：临床肿瘤学》（Nature Reviews Clinical Oncology）期刊上发表了一篇关于血管预防的现代综述，其中包括饮食。3血管生成基金会以及由大批专心致志的科学家和临床医生组成的国际团体正在继续对血管生成和疾病预防进行研究。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_06_angioprevention",
+      "evidences": [
+        {
+          "excerpt": "另一名杰出的研究人员是阿德里安娜·阿尔比尼。2002年，她在意大利热那亚的国家癌症研究所工作时，提出了“血管预防”（angioprevention）这个术语。阿尔比尼设想，血管预防可以通过使用对健康个体安全且耐受性良好的化合物来干扰异常的血管生成，从而实现癌症预防。2虽然有些药物确实符合这一要求，但食物是最安全的选择。今天，血管预防泛指一种健康方式，包括食用食物、膳食补充剂和服用药物。阿尔比尼、我，以及其他从事科学研究的同事在著名的《自然评论：临床肿瘤学》（Nature Reviews Clinical Oncology）期刊上发表了一篇关于血管预防的现代综述，其中包括饮食。3血管生成基金会以及由大批专心致志的科学家和临床医生组成的国际团体正在继续对血管生成和疾病预防进行研究。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_06_angioprevention"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "angiogenesis_defense",
+      "target": "metabolic_health",
+      "relation": "书中对比药物与膳食因子：后者倾向于将血管生成拉回基线平衡而非彻底关闭",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_06_balance_food",
+      "excerpt": "相比之下，膳食因子就没有这么全能了，而且它缺乏破坏力。食物和饮料中的生物活性物质被少量吸收，能帮助影响身体自身保持血管生成处于平衡状态的能力。饮食中的抗血管生成因子只能剪除过多的血管，使其回到基线水平上。这意味着，让癌症挨饿的食物不会让心脏得不到必要的血液供应，因为它们只是保持身体处于健康的基线水平上。另外，刺激血管生成的食物也不会导致血管在循环系统中过度生长。促进血管生成的食物和饮料不会使系统过度运转，从而引发癌症。与体内平衡的原则一致，这种饮食有助于维持身体的和谐与平衡状态。\n\n血管生成过多引起的疾病\n\n大家回想一下，血管生成是疾病的共同特征。在第一章中，我讨论了关节炎、失明和阿尔茨海默病。让我们来看看其他一些可以通过饮食来促进血管生成防御，从而达到预防效果或使其变得更容易忍受的主要疾病。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_06_balance_food",
+      "evidences": [
+        {
+          "excerpt": "相比之下，膳食因子就没有这么全能了，而且它缺乏破坏力。食物和饮料中的生物活性物质被少量吸收，能帮助影响身体自身保持血管生成处于平衡状态的能力。饮食中的抗血管生成因子只能剪除过多的血管，使其回到基线水平上。这意味着，让癌症挨饿的食物不会让心脏得不到必要的血液供应，因为它们只是保持身体处于健康的基线水平上。另外，刺激血管生成的食物也不会导致血管在循环系统中过度生长。促进血管生成的食物和饮料不会使系统过度运转，从而引发癌症。与体内平衡的原则一致，这种饮食有助于维持身体的和谐与平衡状态。\n\n血管生成过多引起的疾病\n\n大家回想一下，血管生成是疾病的共同特征。在第一章中，我讨论了关节炎、失明和阿尔茨海默病。让我们来看看其他一些可以通过饮食来促进血管生成防御，从而达到预防效果或使其变得更容易忍受的主要疾病。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_06_balance_food"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "angiogenesis_defense",
+      "target": "cardiometabolic",
+      "relation": "书中描述冠状动脉斑块内微血管可促进斑块增厚并使其更易破裂",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_06_plaque_vessels",
+      "excerpt": "血管生成和冠心病之间有一个鲜为人知却很重要的联系。当冠状动脉被富含胆固醇的斑块堵塞时，心脏这块肌肉就需要强大的血管生成。然而，这些斑块并不仅仅是一层层厚厚的泥状物，将自己粘在血管壁上就完事了。它们会像肿瘤一样生长，依靠新的血管来进行扩张。冠状动脉斑块的新生血管是致命的。这些微血管不仅使斑块增厚、阻塞冠状动脉，还像人行道上的裂缝一样，使斑块变得更加脆弱，更加容易破裂。5冠状动脉斑块破裂时，会像隧道塌陷、天花板掉落一样，突然堵塞隧道，导致什么都无法通过。如果这种情况发生在冠状动脉中，血液流动就会中断，其结果可能是致命的心脏病发作。防止斑块形成这些危险的血管，与生成新的血管来维护心肌功能，这两者同样重要。6",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_06_plaque_vessels",
+      "evidences": [
+        {
+          "excerpt": "血管生成和冠心病之间有一个鲜为人知却很重要的联系。当冠状动脉被富含胆固醇的斑块堵塞时，心脏这块肌肉就需要强大的血管生成。然而，这些斑块并不仅仅是一层层厚厚的泥状物，将自己粘在血管壁上就完事了。它们会像肿瘤一样生长，依靠新的血管来进行扩张。冠状动脉斑块的新生血管是致命的。这些微血管不仅使斑块增厚、阻塞冠状动脉，还像人行道上的裂缝一样，使斑块变得更加脆弱，更加容易破裂。5冠状动脉斑块破裂时，会像隧道塌陷、天花板掉落一样，突然堵塞隧道，导致什么都无法通过。如果这种情况发生在冠状动脉中，血液流动就会中断，其结果可能是致命的心脏病发作。防止斑块形成这些危险的血管，与生成新的血管来维护心肌功能，这两者同样重要。6",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_06_plaque_vessels"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "soy",
+      "target": "isoflavones",
+      "relation": "书中描述大豆异黄酮的抗血管生成活性及发酵豆制品中浓度更高",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_06_soy_isoflavones",
+      "excerpt": "大豆含有抗血管生成的生物活性物质，被称为异黄酮，特别是染料木黄酮、大豆素、雌马酚和大豆抗毒素。这些活性物质在发酵豆制品中浓度更高。9被称为染料木黄酮浓缩多糖（GCP）的膳食补充剂是高度浓缩的染料木黄酮和大豆素。我们在血管生成基金会的实验室里测试了染料木黄酮浓缩多糖对人类血管细胞的作用，发现它具有强大的抗血管生成活性。染料木黄酮浓缩多糖还能直接杀死前列腺癌细胞和淋巴瘤细胞。10大豆生物活性物质不仅抑制癌症的生长，还通过其抗血管生成活性来阻止动脉粥样硬化斑块的生长。11亚洲的研究人员报告说，食用大豆可以将患心血管疾病的风险降低16%。12",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_06_soy_isoflavones",
+      "evidences": [
+        {
+          "excerpt": "大豆含有抗血管生成的生物活性物质，被称为异黄酮，特别是染料木黄酮、大豆素、雌马酚和大豆抗毒素。这些活性物质在发酵豆制品中浓度更高。9被称为染料木黄酮浓缩多糖（GCP）的膳食补充剂是高度浓缩的染料木黄酮和大豆素。我们在血管生成基金会的实验室里测试了染料木黄酮浓缩多糖对人类血管细胞的作用，发现它具有强大的抗血管生成活性。染料木黄酮浓缩多糖还能直接杀死前列腺癌细胞和淋巴瘤细胞。10大豆生物活性物质不仅抑制癌症的生长，还通过其抗血管生成活性来阻止动脉粥样硬化斑块的生长。11亚洲的研究人员报告说，食用大豆可以将患心血管疾病的风险降低16%。12",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_06_soy_isoflavones"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "soy",
+      "target": "breast_prostate_risk",
+      "relation": "书中引述大豆摄入较高的乳腺癌幸存者复发与死亡风险较低的观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_06_soy_breast_surv",
+      "excerpt": "在关于大豆有益而非有害的流行病学研究中，最具说服力的要数上海乳腺癌生存研究项目对5042名乳腺癌幸存者进行的研究。14在近四年的时间里，范德比尔特大学的研究人员记录了这些女性的大豆食用量，并将其与乳腺癌的复发和导致的死亡联系起来。如果大豆真的有任何潜在的危害，那么这群女性就会表现出相应的症状。然而，研究发现，大豆摄入量最高的女性，其癌症复发的风险降低了32%，她们的死亡风险降低了29%。无论女性是患有雌激素受体阳性乳腺癌还是阴性乳腺癌，这种与大豆相关的有益联系都是显而易见的。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_06_soy_breast_surv",
+      "evidences": [
+        {
+          "excerpt": "在关于大豆有益而非有害的流行病学研究中，最具说服力的要数上海乳腺癌生存研究项目对5042名乳腺癌幸存者进行的研究。14在近四年的时间里，范德比尔特大学的研究人员记录了这些女性的大豆食用量，并将其与乳腺癌的复发和导致的死亡联系起来。如果大豆真的有任何潜在的危害，那么这群女性就会表现出相应的症状。然而，研究发现，大豆摄入量最高的女性，其癌症复发的风险降低了32%，她们的死亡风险降低了29%。无论女性是患有雌激素受体阳性乳腺癌还是阴性乳腺癌，这种与大豆相关的有益联系都是显而易见的。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_06_soy_breast_surv"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "tomato",
+      "target": "angiogenesis_defense",
+      "relation": "书中描述番茄红素抑制血管生成，并说明烹饪与橄榄油可提高可吸收性",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_06_tomato_lycopene",
+      "excerpt": "番茄绝不是有毒的水果，它含有有用的生物活性物质，尤其是多种类胡萝卜素，如番茄红素、芦丁和β-隐藻黄素。其中番茄红素最重要，因为它已被证明可以有效抑制血管生成。虽然所有的番茄都含有番茄红素，但果皮的番茄红素含量是果肉的3~5倍，15所以带皮煮番茄是健康之道。事实上，烹饪是充分利用番茄的一个重要因素。自然状态下的番茄红素出现在仍然挂在藤上的番茄中，以一种叫作“反式”的化学形式存在。遗憾的是，反式番茄红素在体内的吸收相当差。然而，通过烹饪番茄，高温将番茄红素的结构从反式结构转化为顺式结构，而顺式结构很容易被人体吸收。16烹饪还能让番茄细胞释放出更多的番茄红素，从而增加其在番茄酱或番茄汁中的浓度。番茄红素是脂溶性的，也就是说它很容易溶于油。如果你用橄榄油烹饪一个番茄，那么你的血液吸收的番茄红素量会是原来的3倍。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_06_tomato_lycopene",
+      "evidences": [
+        {
+          "excerpt": "番茄绝不是有毒的水果，它含有有用的生物活性物质，尤其是多种类胡萝卜素，如番茄红素、芦丁和β-隐藻黄素。其中番茄红素最重要，因为它已被证明可以有效抑制血管生成。虽然所有的番茄都含有番茄红素，但果皮的番茄红素含量是果肉的3~5倍，15所以带皮煮番茄是健康之道。事实上，烹饪是充分利用番茄的一个重要因素。自然状态下的番茄红素出现在仍然挂在藤上的番茄中，以一种叫作“反式”的化学形式存在。遗憾的是，反式番茄红素在体内的吸收相当差。然而，通过烹饪番茄，高温将番茄红素的结构从反式结构转化为顺式结构，而顺式结构很容易被人体吸收。16烹饪还能让番茄细胞释放出更多的番茄红素，从而增加其在番茄酱或番茄汁中的浓度。番茄红素是脂溶性的，也就是说它很容易溶于油。如果你用橄榄油烹饪一个番茄，那么你的血液吸收的番茄红素量会是原来的3倍。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_06_tomato_lycopene"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "tomato",
+      "target": "breast_prostate_risk",
+      "relation": "书中引述番茄/番茄酱摄入与前列腺癌风险及侵袭性相关的人群观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_06_tomato_prostate",
+      "excerpt": "流行病学研究证实番茄对健康有益。30多项研究表明，食用番茄对前列腺癌有保护作用。17哈佛大学健康专家随访研究调查了46719名男性的番茄红素摄入量，发现每周吃2~3杯番茄酱可以使患前列腺癌的风险降低30%，这与番茄红素对癌症的抗血管生成作用是一致的。18在患有前列腺癌的男性中，那些吃更多番茄酱的人患血管生成性癌症和侵袭性癌症的概率更低。19",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_06_tomato_prostate",
+      "evidences": [
+        {
+          "excerpt": "流行病学研究证实番茄对健康有益。30多项研究表明，食用番茄对前列腺癌有保护作用。17哈佛大学健康专家随访研究调查了46719名男性的番茄红素摄入量，发现每周吃2~3杯番茄酱可以使患前列腺癌的风险降低30%，这与番茄红素对癌症的抗血管生成作用是一致的。18在患有前列腺癌的男性中，那些吃更多番茄酱的人患血管生成性癌症和侵袭性癌症的概率更低。19",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_06_tomato_prostate"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "cruciferous",
+      "target": "angiogenesis_defense",
+      "relation": "书中描述西蓝花含芸薹宁、萝卜硫素等抗血管生成活性物质，并列举与多种癌症风险相关的人群观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_06_broccoli",
+      "excerpt": "西蓝花是十字花科蔬菜，属于芸薹属植物。这个属的植物包括球花甘蓝、小白菜、花椰菜和罗马花椰菜。西蓝花原产于意大利，含有强效的抗血管生成活性物质，如芸薹宁和萝卜硫素。每周吃1~2杯西蓝花可以降低患很多癌症的风险。芝加哥大学、明尼苏达大学、哈佛大学和美国国立卫生研究院的研究表明，吃西蓝花能将患非霍奇金淋巴瘤的风险降低40%，肺癌风险降低28%，乳腺癌风险降低17%，卵巢癌风险降低33%，食管癌风险降低31%，前列腺癌风险降低59%，黑色素瘤风险降低28%。24",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_06_broccoli",
+      "evidences": [
+        {
+          "excerpt": "西蓝花是十字花科蔬菜，属于芸薹属植物。这个属的植物包括球花甘蓝、小白菜、花椰菜和罗马花椰菜。西蓝花原产于意大利，含有强效的抗血管生成活性物质，如芸薹宁和萝卜硫素。每周吃1~2杯西蓝花可以降低患很多癌症的风险。芝加哥大学、明尼苏达大学、哈佛大学和美国国立卫生研究院的研究表明，吃西蓝花能将患非霍奇金淋巴瘤的风险降低40%，肺癌风险降低28%，乳腺癌风险降低17%，卵巢癌风险降低33%，食管癌风险降低31%，前列腺癌风险降低59%，黑色素瘤风险降低28%。24",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_06_broccoli"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "berries_fruits",
+      "target": "angiogenesis_defense",
+      "relation": "书中描述浆果花青素与鞣花酸具抗血管生成活性，并引述浆果摄入与肺癌风险相关观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_06_berries",
+      "excerpt": "季节性浆果，如草莓、覆盆子、黑莓、蓝莓和蔓越莓，可以增强你身体的血管生成防御。它们鲜艳的颜色和强烈的酸味是一种暗示，表明其中存在着强大的生物活性物质，包括花青素和鞣花酸，而这两者都具有抗血管生成活性。欧洲癌症与营养前瞻性调查研究对10个欧洲国家478535个人的饮食和健康模式进行了20多年的调查，以确定它们与癌症和包括心血管疾病在内的其他慢性疾病之间的关系。一个关键的结论是：吃浆果可以降低患癌症的风险。研究发现，每天食用1/5杯任意种类浆果的人患肺癌的风险降低了22%。31\n\n覆盆子的一种特殊的变种是黑覆盆子，颜色之深反映了它生物活性的高浓度。用黑覆盆子对癌前病变[1]巴雷特食管患者进行了临床试验，以观察其效果。研究结果表明，黑覆盆子能降低病变的侵袭性，减少预示癌症发展的细胞变化。癌前病变结肠息肉也是如此，黑覆盆子还会减缓它们的生长。32蓝莓是深蓝色的，表明其含有抗血管生成的生物活性物质——飞燕草素。33对75929名女性的研究表明，每周吃一杯新鲜蓝莓的女性患乳腺癌的风险降低了31%。34正如我稍后将告诉你的，蓝莓具有激活多种健康防御系统的非凡能力。\n\n草莓是一种叫作鞣花酸的生物活性物质的重要来源，而鞣花酸具有很强的抗血管生成活性。35浆果的酸味便体现了这种酸。人们在三个品种中发现了高浓度的鞣花酸：红宝石（原产于新西兰）、卡麦罗莎（来自俄亥俄山谷）和奥斯曼（来自土耳其）。36这些品种值得你花时间在市场上寻找。蔓越莓虽然很酸，鞣花酸的含量却很低。不过，它有着高含量的生物活性物质——原花青素，也有抗癌和抗血管生成的作用。37\n\n海产品",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_06_berries",
+      "evidences": [
+        {
+          "excerpt": "季节性浆果，如草莓、覆盆子、黑莓、蓝莓和蔓越莓，可以增强你身体的血管生成防御。它们鲜艳的颜色和强烈的酸味是一种暗示，表明其中存在着强大的生物活性物质，包括花青素和鞣花酸，而这两者都具有抗血管生成活性。欧洲癌症与营养前瞻性调查研究对10个欧洲国家478535个人的饮食和健康模式进行了20多年的调查，以确定它们与癌症和包括心血管疾病在内的其他慢性疾病之间的关系。一个关键的结论是：吃浆果可以降低患癌症的风险。研究发现，每天食用1/5杯任意种类浆果的人患肺癌的风险降低了22%。31\n\n覆盆子的一种特殊的变种是黑覆盆子，颜色之深反映了它生物活性的高浓度。用黑覆盆子对癌前病变[1]巴雷特食管患者进行了临床试验，以观察其效果。研究结果表明，黑覆盆子能降低病变的侵袭性，减少预示癌症发展的细胞变化。癌前病变结肠息肉也是如此，黑覆盆子还会减缓它们的生长。32蓝莓是深蓝色的，表明其含有抗血管生成的生物活性物质——飞燕草素。33对75929名女性的研究表明，每周吃一杯新鲜蓝莓的女性患乳腺癌的风险降低了31%。34正如我稍后将告诉你的，蓝莓具有激活多种健康防御系统的非凡能力。\n\n草莓是一种叫作鞣花酸的生物活性物质的重要来源，而鞣花酸具有很强的抗血管生成活性。35浆果的酸味便体现了这种酸。人们在三个品种中发现了高浓度的鞣花酸：红宝石（原产于新西兰）、卡麦罗莎（来自俄亥俄山谷）和奥斯曼（来自土耳其）。36这些品种值得你花时间在市场上寻找。蔓越莓虽然很酸，鞣花酸的含量却很低。不过，它有着高含量的生物活性物质——原花青素，也有抗癌和抗血管生成的作用。37\n\n海产品",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_06_berries"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "seafood",
+      "target": "digestive_cancer_risk",
+      "relation": "书中引述海鲜/鱼摄入与乳腺癌、结肠癌风险降低相关的人群研究叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_06_seafood_cancer",
+      "excerpt": "吃海鲜的人更长寿。38吃鱼和贝类对血管生成的影响便是一种解释。许多海产品的肉中含有健康的多不饱和脂肪酸（PUFA），这些健康的脂肪来自鱼类在海洋中吃的浮游植物。大多数人都知道ω-3脂肪酸是健康的，但实际上这种脂肪主要有3种益于健康的形式：二十碳五烯酸（EPA）、二十二碳六烯酸（DHA）和α-亚麻酸（ALA）。海鲜中含有二十碳五烯酸和二十二碳六烯酸，α-亚麻酸主要存在于植物性食物中。抗血管生成活性存在于ω-3多不饱和脂肪酸中。39然而，在促进健康方面，发挥作用的不仅仅是ω-3多不饱和脂肪酸，还有ω-3和另一组被称为ω-6的脂肪酸之间的实际比例。数字3和6指的是脂肪酸的“不饱和”部分在分子上的位置。对预防癌症而言，研究人员发现饮食中总体摄入的来自海洋的ω-3脂肪酸越多，益处就越大。相比之下，植物油中的ω-6多不饱和脂肪酸与ω-3多不饱和脂肪酸之比更高，而摄入更多的ω-6多不饱和脂肪酸会导致不健康的炎症，增加疾病风险。40\n\n新加坡华人健康研究和欧洲癌症与营养前瞻性调查等大型人口研究发现，海鲜摄入量与癌症风险的降低之间存在着关联。新加坡的研究调查了35298名女性的健康状况，发现每天吃3盎司的鱼或贝类可以降低26%患乳腺癌的风险。41欧洲癌症与营养前瞻性调查的研究表明，每天吃3盎司或更多的鱼可以降低31%的结肠癌风险。42",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_06_seafood_cancer",
+      "evidences": [
+        {
+          "excerpt": "吃海鲜的人更长寿。38吃鱼和贝类对血管生成的影响便是一种解释。许多海产品的肉中含有健康的多不饱和脂肪酸（PUFA），这些健康的脂肪来自鱼类在海洋中吃的浮游植物。大多数人都知道ω-3脂肪酸是健康的，但实际上这种脂肪主要有3种益于健康的形式：二十碳五烯酸（EPA）、二十二碳六烯酸（DHA）和α-亚麻酸（ALA）。海鲜中含有二十碳五烯酸和二十二碳六烯酸，α-亚麻酸主要存在于植物性食物中。抗血管生成活性存在于ω-3多不饱和脂肪酸中。39然而，在促进健康方面，发挥作用的不仅仅是ω-3多不饱和脂肪酸，还有ω-3和另一组被称为ω-6的脂肪酸之间的实际比例。数字3和6指的是脂肪酸的“不饱和”部分在分子上的位置。对预防癌症而言，研究人员发现饮食中总体摄入的来自海洋的ω-3脂肪酸越多，益处就越大。相比之下，植物油中的ω-6多不饱和脂肪酸与ω-3多不饱和脂肪酸之比更高，而摄入更多的ω-6多不饱和脂肪酸会导致不健康的炎症，增加疾病风险。40\n\n新加坡华人健康研究和欧洲癌症与营养前瞻性调查等大型人口研究发现，海鲜摄入量与癌症风险的降低之间存在着关联。新加坡的研究调查了35298名女性的健康状况，发现每天吃3盎司的鱼或贝类可以降低26%患乳腺癌的风险。41欧洲癌症与营养前瞻性调查的研究表明，每天吃3盎司或更多的鱼可以降低31%的结肠癌风险。42",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_06_seafood_cancer"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "seafood",
+      "target": "age_related_macular_degeneration",
+      "relation": "书中引述富脂鱼类摄入与年龄相关性黄斑变性风险降低相关的人群与荟萃分析叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_06_fish_amd",
+      "excerpt": "鱼的益处远远超出癌症预防的范围。哈佛大学的女性健康研究项目追踪了38022名中年女性，研究人员发现，在10年的时间里，每周吃1份或更多富含脂肪的鱼类能减少42%患年龄相关性黄斑变性的风险。这种病是老年人失明最常见的病因，与眼睛后面破坏性的血管生成所造成的血管渗漏相关。43中国江苏省常熟市第二人民医院进行的一项大型荟萃分析[2]涉及来自冰岛、荷兰、美国和澳大利亚8个不同研究的128988个人。分析表明，不管是每月不到1次还是每周3~4次，吃鱼都可以降低24%患年龄相关性黄斑变性的风险。44该研究发现，不同种类的鱼在保护健康方面存在差异。鲭鱼、三文鱼、沙丁鱼、青鱼和剑鱼都是有益的，可以使患年龄相关性黄斑变性的风险降低32%。吃金枪鱼可以降低42%的风险。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_06_fish_amd",
+      "evidences": [
+        {
+          "excerpt": "鱼的益处远远超出癌症预防的范围。哈佛大学的女性健康研究项目追踪了38022名中年女性，研究人员发现，在10年的时间里，每周吃1份或更多富含脂肪的鱼类能减少42%患年龄相关性黄斑变性的风险。这种病是老年人失明最常见的病因，与眼睛后面破坏性的血管生成所造成的血管渗漏相关。43中国江苏省常熟市第二人民医院进行的一项大型荟萃分析[2]涉及来自冰岛、荷兰、美国和澳大利亚8个不同研究的128988个人。分析表明，不管是每月不到1次还是每周3~4次，吃鱼都可以降低24%患年龄相关性黄斑变性的风险。44该研究发现，不同种类的鱼在保护健康方面存在差异。鲭鱼、三文鱼、沙丁鱼、青鱼和剑鱼都是有益的，可以使患年龄相关性黄斑变性的风险降低32%。吃金枪鱼可以降低42%的风险。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_06_fish_amd"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "cacao",
+      "target": "regeneration_defense",
+      "relation": "书中引述高黄烷醇可可饮料使冠心病患者循环干细胞倍增并改善血流介导扩张的小规模试验叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_07_cocoa_epc",
+      "excerpt": "加州大学旧金山分校的研究人员探索了一种由可可制成、黄烷醇含量高的巧克力饮料是否会影响干细胞和血管健康。2他们招募了16名已知患有冠心病的人，将这些人分成两组。其中一组喝的是黄烷醇含量较低的热可可，每份只有9毫克。另一组喝的是黄烷醇含量高的热可可，每份375毫克（黄烷醇含量约为第一组的42倍），用一种叫可维诺的粉末制成。两组人每天喝两次热可可，持续30天。\n\n在研究结束时，研究人员比较了患者实验前后的血样。令人惊讶的是，喝高含量黄烷醇热可可的参与者血液循环中的干细胞数量是喝低含量黄烷醇可可的人的两倍。研究人员想看看可可是否能增加血流量，因此，他们采用了一种叫作“血流介导扩张”的测试。这个测试使用一个血压袖带和一台超声波扫描仪来测量在被压迫后要恢复血流量时血管扩张的速度。扩张速度快表明对血管壁的损害更小，总体上更健康。高含量黄烷醇可可组的实验结果比开始时好一倍，说明可可对循环功能有益。事实上，研究人员报告说，可可对干细胞水平的有益影响与他汀类药物相当。他汀类药物是一种常见的降胆固醇药物，也被认为可以提高干细胞水平。3",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_07_cocoa_epc",
+      "evidences": [
+        {
+          "excerpt": "加州大学旧金山分校的研究人员探索了一种由可可制成、黄烷醇含量高的巧克力饮料是否会影响干细胞和血管健康。2他们招募了16名已知患有冠心病的人，将这些人分成两组。其中一组喝的是黄烷醇含量较低的热可可，每份只有9毫克。另一组喝的是黄烷醇含量高的热可可，每份375毫克（黄烷醇含量约为第一组的42倍），用一种叫可维诺的粉末制成。两组人每天喝两次热可可，持续30天。\n\n在研究结束时，研究人员比较了患者实验前后的血样。令人惊讶的是，喝高含量黄烷醇热可可的参与者血液循环中的干细胞数量是喝低含量黄烷醇可可的人的两倍。研究人员想看看可可是否能增加血流量，因此，他们采用了一种叫作“血流介导扩张”的测试。这个测试使用一个血压袖带和一台超声波扫描仪来测量在被压迫后要恢复血流量时血管扩张的速度。扩张速度快表明对血管壁的损害更小，总体上更健康。高含量黄烷醇可可组的实验结果比开始时好一倍，说明可可对循环功能有益。事实上，研究人员报告说，可可对干细胞水平的有益影响与他汀类药物相当。他汀类药物是一种常见的降胆固醇药物，也被认为可以提高干细胞水平。3",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_07_cocoa_epc"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "red_wine",
+      "target": "regeneration_defense",
+      "relation": "书中引述适量红葡萄酒升高循环内皮祖细胞并增强其迁移成血管能力的人体观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_07_resveratrol_wine",
+      "excerpt": "3周后，血液检测显示，喝红葡萄酒的人血液循环中的内皮祖细胞水平增加了一倍。喝啤酒、伏特加或水的受试者并不享有同样的益处。当这些干细胞暴露于红葡萄酒或白藜芦醇中时，它们具有更强的迁移、形成血管和存活能力。此外，喝红葡萄酒的人血管扩张的能力提高了35%，这是血管健康的一个表现。喝红葡萄酒的人血液中一氧化氮这种强大信号的含量也增加了50%，而一氧化氮是人体保持健康的最基本信号之一。一氧化氮不仅能帮助血管扩张，还能刺激血管生成，促进愈合，并发出信号来激活干细胞。说到红葡萄酒，并非越多越好。研究人员报告说，每天喝1~2杯葡萄酒能看到这种益处，但喝得越多，益处就越小。大家必须知道一点：高浓度的酒精实际上会损害干细胞，并干扰它们再生器官的能力。所以，和饮食中的大多数食物一样，适度是关键。\n\n意大利马里奥·内格里药理研究所的研究人员分析了13项关于红葡萄酒及其对心血管疾病影响的临床研究，这一综合研究涉及209418人。他们分析后得出结论，饮用红葡萄酒与动脉粥样硬化整体风险降低32%有关。37\n\n啤酒\n\n啤酒经酵母发酵酿制而成，啤酒生产过程中使用的啤酒花含有生物活性多酚，如黄腐醇，这些多酚最终进入了啤酒。这些生物活性物质可以解释适度饮用啤酒（每天1~2杯）可使心血管疾病引起的死亡风险降低25%。38相比之下，杜松子酒或伏特加等鸡尾酒是蒸馏酒精饮料，不含多酚。毫不奇怪，这些饮料对健康没有好处。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_07_resveratrol_wine",
+      "evidences": [
+        {
+          "excerpt": "3周后，血液检测显示，喝红葡萄酒的人血液循环中的内皮祖细胞水平增加了一倍。喝啤酒、伏特加或水的受试者并不享有同样的益处。当这些干细胞暴露于红葡萄酒或白藜芦醇中时，它们具有更强的迁移、形成血管和存活能力。此外，喝红葡萄酒的人血管扩张的能力提高了35%，这是血管健康的一个表现。喝红葡萄酒的人血液中一氧化氮这种强大信号的含量也增加了50%，而一氧化氮是人体保持健康的最基本信号之一。一氧化氮不仅能帮助血管扩张，还能刺激血管生成，促进愈合，并发出信号来激活干细胞。说到红葡萄酒，并非越多越好。研究人员报告说，每天喝1~2杯葡萄酒能看到这种益处，但喝得越多，益处就越小。大家必须知道一点：高浓度的酒精实际上会损害干细胞，并干扰它们再生器官的能力。所以，和饮食中的大多数食物一样，适度是关键。\n\n意大利马里奥·内格里药理研究所的研究人员分析了13项关于红葡萄酒及其对心血管疾病影响的临床研究，这一综合研究涉及209418人。他们分析后得出结论，饮用红葡萄酒与动脉粥样硬化整体风险降低32%有关。37\n\n啤酒\n\n啤酒经酵母发酵酿制而成，啤酒生产过程中使用的啤酒花含有生物活性多酚，如黄腐醇，这些多酚最终进入了啤酒。这些生物活性物质可以解释适度饮用啤酒（每天1~2杯）可使心血管疾病引起的死亡风险降低25%。38相比之下，杜松子酒或伏特加等鸡尾酒是蒸馏酒精饮料，不含多酚。毫不奇怪，这些饮料对健康没有好处。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_07_resveratrol_wine"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "olive_oil",
+      "target": "regeneration_defense",
+      "relation": "书中引述含特级初榨橄榄油的地中海饮食与老年人干细胞/血流反应相关的人体观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_07_med_diet_stem",
+      "excerpt": "地中海饮食的有益影响包括刺激干细胞以帮助身体再生。西班牙科尔多瓦大学的研究人员调查了20名健康的老年人（65岁以上的10名男性和10名女性），他们食用含有特级初榨橄榄油的地中海饮食，或者高饱和脂肪酸的饮食（脂肪含量为38%的黄油），或者低脂肪、高碳水化合物的饮食（核桃、饼干、果酱、面包），持续4周。在研究开始和结束时，研究人员测量了这些老年人血液中的循环内皮祖细胞。研究结果显示，与含有饱和脂肪或高碳水化合物的不太健康的饮食相比，食用地中海饮食的人，其循环内皮祖细胞增加了4倍。44\n\n为了测试饮食是否影响血液流动，研究人员进行了一项叫作缺血反应性充血试验的测试。这项测试在受试者上臂绑上标准的血压袖带，并使用激光测量血管在被压迫4分钟后的恢复情况。给袖带充气以暂时切断血液流动。袖带松开后血液流动恢复正常的程度反映了受试者循环健康的整体状况。在西班牙的研究中，与食用饱和脂肪饮食的人相比，食用地中海饮食或低脂肪、高碳水化合物饮食的人的血流恢复速度高0.5倍，这与较高的内皮祖细胞水平有关。这些干细胞保护血管内壁，使血管更加健康。这项关于地中海饮食对干细胞影响的研究为理解其对心脏健康的益处提供了一个全新的视角。\n\n热量限制与禁食",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_07_med_diet_stem",
+      "evidences": [
+        {
+          "excerpt": "地中海饮食的有益影响包括刺激干细胞以帮助身体再生。西班牙科尔多瓦大学的研究人员调查了20名健康的老年人（65岁以上的10名男性和10名女性），他们食用含有特级初榨橄榄油的地中海饮食，或者高饱和脂肪酸的饮食（脂肪含量为38%的黄油），或者低脂肪、高碳水化合物的饮食（核桃、饼干、果酱、面包），持续4周。在研究开始和结束时，研究人员测量了这些老年人血液中的循环内皮祖细胞。研究结果显示，与含有饱和脂肪或高碳水化合物的不太健康的饮食相比，食用地中海饮食的人，其循环内皮祖细胞增加了4倍。44\n\n为了测试饮食是否影响血液流动，研究人员进行了一项叫作缺血反应性充血试验的测试。这项测试在受试者上臂绑上标准的血压袖带，并使用激光测量血管在被压迫4分钟后的恢复情况。给袖带充气以暂时切断血液流动。袖带松开后血液流动恢复正常的程度反映了受试者循环健康的整体状况。在西班牙的研究中，与食用饱和脂肪饮食的人相比，食用地中海饮食或低脂肪、高碳水化合物饮食的人的血流恢复速度高0.5倍，这与较高的内皮祖细胞水平有关。这些干细胞保护血管内壁，使血管更加健康。这项关于地中海饮食对干细胞影响的研究为理解其对心脏健康的益处提供了一个全新的视角。\n\n热量限制与禁食",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_07_med_diet_stem"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "added_sugar",
+      "target": "regeneration_defense",
+      "relation": "书中描述升高血糖的食物饮料会阻碍干细胞生成并破坏干细胞",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_07_sugar_stem",
+      "excerpt": "把这一条加到糖的“犯罪记录单”中：高水平的糖会使我们的再生防御系统丧失作战能力。使血糖升高的食物和饮料会阻碍干细胞的生成，降低身体修复器官的能力。情况还会变得更糟。高血糖已被证明会破坏和杀死所有重要的干细胞，从内皮祖细胞到骨祖细胞，再到心脏干细胞。54如果你需要让自己的干细胞处于最佳状态，那么你应该采用低血糖指数的饮食方案。这意味着尽量减少或完全避免含糖的加工食品，因为这些加工食品只有少量或不含纤维，会导致血糖飙升，如含糖饮料和许多包装零食。55\n\n高盐饮食",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_07_sugar_stem",
+      "evidences": [
+        {
+          "excerpt": "把这一条加到糖的“犯罪记录单”中：高水平的糖会使我们的再生防御系统丧失作战能力。使血糖升高的食物和饮料会阻碍干细胞的生成，降低身体修复器官的能力。情况还会变得更糟。高血糖已被证明会破坏和杀死所有重要的干细胞，从内皮祖细胞到骨祖细胞，再到心脏干细胞。54如果你需要让自己的干细胞处于最佳状态，那么你应该采用低血糖指数的饮食方案。这意味着尽量减少或完全避免含糖的加工食品，因为这些加工食品只有少量或不含纤维，会导致血糖飙升，如含糖饮料和许多包装零食。55\n\n高盐饮食",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_07_sugar_stem"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "green_tea",
+      "target": "cancer_stem_cells",
+      "relation": "书中引述绿茶EGCG使结肠癌干细胞数量减少并诱导凋亡的实验室叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_07_green_tea_csc",
+      "excerpt": "绿茶有很多有用的功能，包括杀死肿瘤干细胞。中国南京医科大学和中国中山大学肿瘤防治中心的科学家在实验室中研究了绿茶多酚——表没食子儿茶素没食子酸酯的作用，发现它能使结肠癌干细胞的数量减少50%。此外，这种绿茶多酚还通过凋亡过程迫使肿瘤干细胞自杀。59英国索尔福德大学的另一项研究显示，抹茶是一种粉末状的茶叶，它可以中断乳腺癌干细胞的代谢途径，剥夺它们的能量，导致它们死亡。60绿茶中表没食子儿茶素没食子酸酯对肿瘤干细胞的靶向作用可能有助于解释茶对结肠癌和其他癌症的防护作用。\n\n紫土豆",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_07_green_tea_csc",
+      "evidences": [
+        {
+          "excerpt": "绿茶有很多有用的功能，包括杀死肿瘤干细胞。中国南京医科大学和中国中山大学肿瘤防治中心的科学家在实验室中研究了绿茶多酚——表没食子儿茶素没食子酸酯的作用，发现它能使结肠癌干细胞的数量减少50%。此外，这种绿茶多酚还通过凋亡过程迫使肿瘤干细胞自杀。59英国索尔福德大学的另一项研究显示，抹茶是一种粉末状的茶叶，它可以中断乳腺癌干细胞的代谢途径，剥夺它们的能量，导致它们死亡。60绿茶中表没食子儿茶素没食子酸酯对肿瘤干细胞的靶向作用可能有助于解释茶对结肠癌和其他癌症的防护作用。\n\n紫土豆",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_07_green_tea_csc"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "turmeric",
+      "target": "regeneration_defense",
+      "relation": "书中描述姜黄素具抗炎抗氧化抗血管生成及促进再生特性，并引述相关干细胞研究叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_07_turmeric_regen",
+      "excerpt": "姜黄是姜科植物的根茎，通常用于东南亚菜中。它可以新鲜食用，但更常见的是干燥后把它磨成鲜艳的橙色粉末，用作香料和传统药物。姜黄中主要的生物活性成分是姜黄素，它具有抗炎、抗氧化、抗血管生成和促进再生的特性。中国苏州大学的一项研究检测了患有糖尿病且腿部循环不良的老鼠。19与没有糖尿病的老鼠相比，糖尿病老鼠循环内皮祖细胞的数量显著减少，只有一半，这与糖尿病人的情况相似。让糖尿病老鼠口服溶有姜黄素的橄榄油两周。在服用姜黄素之后，糖尿病老鼠的内皮祖细胞增加了一倍，或者恢复到了非糖尿病老鼠的正常水平。而且老鼠腿部的血流量也有了显著改善，增加了7倍之多。考虑到这是一种香料，可以增加许多菜肴的味道，糖尿病人不妨经常食用姜黄。\n\n白藜芦醇含量高的食物和饮料\n\n白藜芦醇是一种生物活性物质，大家都知道它存在于葡萄、红葡萄酒和葡萄汁中，但是它也存在于蓝莓、蔓越莓、花生，甚至开心果中。在自然界，白藜芦醇是一种天然的杀真菌剂，可以对抗破坏植物的真菌，因此这是属于植物健康防御系统首要组成部分的生物活性物质。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_07_turmeric_regen",
+      "evidences": [
+        {
+          "excerpt": "姜黄是姜科植物的根茎，通常用于东南亚菜中。它可以新鲜食用，但更常见的是干燥后把它磨成鲜艳的橙色粉末，用作香料和传统药物。姜黄中主要的生物活性成分是姜黄素，它具有抗炎、抗氧化、抗血管生成和促进再生的特性。中国苏州大学的一项研究检测了患有糖尿病且腿部循环不良的老鼠。19与没有糖尿病的老鼠相比，糖尿病老鼠循环内皮祖细胞的数量显著减少，只有一半，这与糖尿病人的情况相似。让糖尿病老鼠口服溶有姜黄素的橄榄油两周。在服用姜黄素之后，糖尿病老鼠的内皮祖细胞增加了一倍，或者恢复到了非糖尿病老鼠的正常水平。而且老鼠腿部的血流量也有了显著改善，增加了7倍之多。考虑到这是一种香料，可以增加许多菜肴的味道，糖尿病人不妨经常食用姜黄。\n\n白藜芦醇含量高的食物和饮料\n\n白藜芦醇是一种生物活性物质，大家都知道它存在于葡萄、红葡萄酒和葡萄汁中，但是它也存在于蓝莓、蔓越莓、花生，甚至开心果中。在自然界，白藜芦醇是一种天然的杀真菌剂，可以对抗破坏植物的真菌，因此这是属于植物健康防御系统首要组成部分的生物活性物质。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_07_turmeric_regen"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "akkermansia",
+      "target": "gut_microbiome",
+      "relation": "书中概述阿克曼氏菌虽占比不高却与免疫、代谢及黏膜健康密切相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_08_akkermansia",
+      "excerpt": "让我们来看一个例子，以了解我们的微生物组是如何强有力地影响我们的健康的。一种叫作嗜黏蛋白阿克曼氏菌的肠道细菌占肠道微生物组中所有细菌的1%~3%，但这一小群细菌却有着巨大的影响。阿克曼氏菌可以帮助控制免疫系统，改善体内的血糖代谢，减少肠道炎症和对抗肥胖。2它对免疫系统的影响尤其惊人。一些癌症患者正在接受突破性的免疫疗法，即免疫检查点抑制剂。这些抑制剂是治疗癌症的一种全新的方法。与破坏免疫系统的化疗不同，这种疗法专门利用一个人的免疫系统来消灭他体内的癌症。它的工作方式是剥去癌细胞用于隐藏的生化外衣，这些生化外衣存在的目的是让我们的免疫系统发现不了癌细胞。\n\n2015年，巴黎古斯塔夫·鲁西研究所的劳伦斯·齐特沃格尔博士带领的研究人员发现，对老鼠肠道微生物组做出哪怕是很小的改变，都可能影响它们对免疫疗法的反应。他们在人类癌症患者身上也发现了同样的联系，由此认为阿克曼氏菌是一种关键的健康肠道细菌，存在于从这种癌症疗法中获益的人的微生物组里。3如果患者的肠道中存在这种细菌，他们更有可能对治疗产生反应，并能够调用自己的免疫系统来对抗癌症。如果患者缺乏这种细菌，他们的免疫系统就会对检查点抑制剂没有反应，癌症仍然可以避开免疫系统，继续生长。在微生物组的39万亿细菌中，阿克曼氏菌的存在预示着患者对癌症免疫治疗的反应较好。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_08_akkermansia",
+      "evidences": [
+        {
+          "excerpt": "让我们来看一个例子，以了解我们的微生物组是如何强有力地影响我们的健康的。一种叫作嗜黏蛋白阿克曼氏菌的肠道细菌占肠道微生物组中所有细菌的1%~3%，但这一小群细菌却有着巨大的影响。阿克曼氏菌可以帮助控制免疫系统，改善体内的血糖代谢，减少肠道炎症和对抗肥胖。2它对免疫系统的影响尤其惊人。一些癌症患者正在接受突破性的免疫疗法，即免疫检查点抑制剂。这些抑制剂是治疗癌症的一种全新的方法。与破坏免疫系统的化疗不同，这种疗法专门利用一个人的免疫系统来消灭他体内的癌症。它的工作方式是剥去癌细胞用于隐藏的生化外衣，这些生化外衣存在的目的是让我们的免疫系统发现不了癌细胞。\n\n2015年，巴黎古斯塔夫·鲁西研究所的劳伦斯·齐特沃格尔博士带领的研究人员发现，对老鼠肠道微生物组做出哪怕是很小的改变，都可能影响它们对免疫疗法的反应。他们在人类癌症患者身上也发现了同样的联系，由此认为阿克曼氏菌是一种关键的健康肠道细菌，存在于从这种癌症疗法中获益的人的微生物组里。3如果患者的肠道中存在这种细菌，他们更有可能对治疗产生反应，并能够调用自己的免疫系统来对抗癌症。如果患者缺乏这种细菌，他们的免疫系统就会对检查点抑制剂没有反应，癌症仍然可以避开免疫系统，继续生长。在微生物组的39万亿细菌中，阿克曼氏菌的存在预示着患者对癌症免疫治疗的反应较好。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_08_akkermansia"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "akkermansia",
+      "target": "immune_balance",
+      "relation": "书中引述阿克曼氏菌与癌症患者免疫疗法反应相关的研究叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_08_akker_immuno",
+      "excerpt": "2015年，巴黎古斯塔夫·鲁西研究所的劳伦斯·齐特沃格尔博士带领的研究人员发现，对老鼠肠道微生物组做出哪怕是很小的改变，都可能影响它们对免疫疗法的反应。他们在人类癌症患者身上也发现了同样的联系，由此认为阿克曼氏菌是一种关键的健康肠道细菌，存在于从这种癌症疗法中获益的人的微生物组里。3如果患者的肠道中存在这种细菌，他们更有可能对治疗产生反应，并能够调用自己的免疫系统来对抗癌症。如果患者缺乏这种细菌，他们的免疫系统就会对检查点抑制剂没有反应，癌症仍然可以避开免疫系统，继续生长。在微生物组的39万亿细菌中，阿克曼氏菌的存在预示着患者对癌症免疫治疗的反应较好。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_08_akker_immuno",
+      "evidences": [
+        {
+          "excerpt": "2015年，巴黎古斯塔夫·鲁西研究所的劳伦斯·齐特沃格尔博士带领的研究人员发现，对老鼠肠道微生物组做出哪怕是很小的改变，都可能影响它们对免疫疗法的反应。他们在人类癌症患者身上也发现了同样的联系，由此认为阿克曼氏菌是一种关键的健康肠道细菌，存在于从这种癌症疗法中获益的人的微生物组里。3如果患者的肠道中存在这种细菌，他们更有可能对治疗产生反应，并能够调用自己的免疫系统来对抗癌症。如果患者缺乏这种细菌，他们的免疫系统就会对检查点抑制剂没有反应，癌症仍然可以避开免疫系统，继续生长。在微生物组的39万亿细菌中，阿克曼氏菌的存在预示着患者对癌症免疫治疗的反应较好。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_08_akker_immuno"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "pomegranate",
+      "target": "akkermansia",
+      "relation": "书中描述石榴汁鞣花单宁代谢产物可改善阿克曼氏菌生长环境",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_08_pomegranate_akker",
+      "excerpt": "有一点非常重要：你可以通过饮食来增加肠道中的阿克曼氏菌。某些果汁会影响肠道环境，将其变为阿克曼氏菌喜欢生长的地方。例如，石榴汁含有大量的鞣花单宁，这是一种特殊的生物活性物质，大约70%的人可以将其代谢成另一种生物活性物质——尿石素A。尿石素A具有抗氧化、抗炎和抗癌活性。人们认为阿克曼氏菌负责这种代谢。有一点或许不足为奇，即鞣花单宁已经被证明可以促进阿克曼氏菌的生长。蔓越莓也能改善肠道环境，帮助阿克曼氏菌茁壮成长。\n\n有关蔓越莓和石榴汁的数据显示，我们的饮食对我们体内的微生物组有着强大的影响，而微生物组反过来又能影响我们对癌症治疗的免疫反应，这简直是生死攸关。特定食物之间的联系，它们所影响的有益菌和有害菌，它们的代谢物，以及相关的健康状况——对这一切进行的研究正在改变我们对人类营养的看法，而这些发现将深刻地影响你的医生或营养师在饮食方面给你的建议。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_08_pomegranate_akker",
+      "evidences": [
+        {
+          "excerpt": "有一点非常重要：你可以通过饮食来增加肠道中的阿克曼氏菌。某些果汁会影响肠道环境，将其变为阿克曼氏菌喜欢生长的地方。例如，石榴汁含有大量的鞣花单宁，这是一种特殊的生物活性物质，大约70%的人可以将其代谢成另一种生物活性物质——尿石素A。尿石素A具有抗氧化、抗炎和抗癌活性。人们认为阿克曼氏菌负责这种代谢。有一点或许不足为奇，即鞣花单宁已经被证明可以促进阿克曼氏菌的生长。蔓越莓也能改善肠道环境，帮助阿克曼氏菌茁壮成长。\n\n有关蔓越莓和石榴汁的数据显示，我们的饮食对我们体内的微生物组有着强大的影响，而微生物组反过来又能影响我们对癌症治疗的免疫反应，这简直是生死攸关。特定食物之间的联系，它们所影响的有益菌和有害菌，它们的代谢物，以及相关的健康状况——对这一切进行的研究正在改变我们对人类营养的看法，而这些发现将深刻地影响你的医生或营养师在饮食方面给你的建议。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_08_pomegranate_akker"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "animal_foods",
+      "target": "gut_microbiome",
+      "relation": "书中主张减少动物蛋白摄入以利于微生物组",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_08_less_meat",
+      "excerpt": "第二个原则：少吃动物蛋白。吃肉对你的微生物组有害。在约公元前10000年的第一次农业革命之后，人类从缓慢发展的狩猎和采集转向了依靠人工种植的农作物，扩大了食物供应。尽管如此，人们主要还是吃植物性食物。那时，牲畜还只是当地的食物来源。但到了18世纪，农业的进步使得农作物栽种和牲畜养殖情况得到了改善，增加了食物供应。植物性食物和肉类都变得更加丰富。到20世纪下半叶，农业将食物的获取范围从当地扩大到全球。人类的饮食模式集中在摄入大量的动物蛋白上，而对植物性食物的关注日趋减少，从而减少了微生物组所需要的膳食纤维摄入量。纤维越少，肠道细菌的生态系统就越不健康，抗炎短链脂肪酸产生得也就越少。与此同时，更多的动物蛋白会改变细菌的行为方式，导致肠道出现更多的炎症。52",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_08_less_meat",
+      "evidences": [
+        {
+          "excerpt": "第二个原则：少吃动物蛋白。吃肉对你的微生物组有害。在约公元前10000年的第一次农业革命之后，人类从缓慢发展的狩猎和采集转向了依靠人工种植的农作物，扩大了食物供应。尽管如此，人们主要还是吃植物性食物。那时，牲畜还只是当地的食物来源。但到了18世纪，农业的进步使得农作物栽种和牲畜养殖情况得到了改善，增加了食物供应。植物性食物和肉类都变得更加丰富。到20世纪下半叶，农业将食物的获取范围从当地扩大到全球。人类的饮食模式集中在摄入大量的动物蛋白上，而对植物性食物的关注日趋减少，从而减少了微生物组所需要的膳食纤维摄入量。纤维越少，肠道细菌的生态系统就越不健康，抗炎短链脂肪酸产生得也就越少。与此同时，更多的动物蛋白会改变细菌的行为方式，导致肠道出现更多的炎症。52",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_08_less_meat"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "legumes",
+      "target": "gut_barrier_integrity",
+      "relation": "书中引述豆类减少有害菌并支持黏液与屏障功能的动物研究叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_08_beans_barrier",
+      "excerpt": "研究人员还研究了豆类对肠道内壁黏液的保护作用，以及对肠道屏障功能的影响，这两者都与肠道细菌有关。更多的黏液能保护肠道，而强大的肠道内壁则会形成一道屏障，防止炎症物质从肠道泄漏。吃豆类的人体内有害细菌的数量减少了81%，这些细菌能分解肠道内的保护性黏液。当科学家对吃豆子的老鼠的肠道进行实际检测时，他们发现吃菜豆的老鼠结肠上部分泌保护性黏液的细胞增加了60%，而吃黑豆的老鼠增加了120%。在结肠下部，吃黑豆的老鼠的黏液细胞增加了57%。这些研究表明黑豆和菜豆都有助于肠道健康。鹰嘴豆、小扁豆和豌豆都属于豆类，预计也有类似的益处。\n\n蘑菇\n\n蘑菇是生长在富含细菌的土壤中的真菌，和奶酪一样，它们也有自己的微生物组。69它们含有β-葡聚糖等生物活性物质，这些物质具有抗血管生成和激活免疫系统的作用。蘑菇也是很好的膳食纤维来源，膳食纤维能起到益生元的作用。\n\n蘑菇能增加我们微生物组的多样性，这是微生物组健康防御强大的一个标志。宾夕法尼亚州立大学的科学家研究了这种效果。他们给健康的老鼠喂食少量白蘑菇（体重的1%），或者给老鼠喂食普通食物，持续6周。在食用蘑菇的老鼠组中，每只老鼠每天的摄入量相当于白蘑菇平均大小的1/500。研究人员在整个实验过程中都收集并分析了血液、尿液和粪便样本。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_08_beans_barrier",
+      "evidences": [
+        {
+          "excerpt": "研究人员还研究了豆类对肠道内壁黏液的保护作用，以及对肠道屏障功能的影响，这两者都与肠道细菌有关。更多的黏液能保护肠道，而强大的肠道内壁则会形成一道屏障，防止炎症物质从肠道泄漏。吃豆类的人体内有害细菌的数量减少了81%，这些细菌能分解肠道内的保护性黏液。当科学家对吃豆子的老鼠的肠道进行实际检测时，他们发现吃菜豆的老鼠结肠上部分泌保护性黏液的细胞增加了60%，而吃黑豆的老鼠增加了120%。在结肠下部，吃黑豆的老鼠的黏液细胞增加了57%。这些研究表明黑豆和菜豆都有助于肠道健康。鹰嘴豆、小扁豆和豌豆都属于豆类，预计也有类似的益处。\n\n蘑菇\n\n蘑菇是生长在富含细菌的土壤中的真菌，和奶酪一样，它们也有自己的微生物组。69它们含有β-葡聚糖等生物活性物质，这些物质具有抗血管生成和激活免疫系统的作用。蘑菇也是很好的膳食纤维来源，膳食纤维能起到益生元的作用。\n\n蘑菇能增加我们微生物组的多样性，这是微生物组健康防御强大的一个标志。宾夕法尼亚州立大学的科学家研究了这种效果。他们给健康的老鼠喂食少量白蘑菇（体重的1%），或者给老鼠喂食普通食物，持续6周。在食用蘑菇的老鼠组中，每只老鼠每天的摄入量相当于白蘑菇平均大小的1/500。研究人员在整个实验过程中都收集并分析了血液、尿液和粪便样本。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_08_beans_barrier"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "mushrooms",
+      "target": "gut_microbiome",
+      "relation": "书中引述白蘑菇增加保护性肠道菌（含阿克曼氏菌相关类群）的动物叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_08_mushrooms",
+      "excerpt": "尿检显示，吃白蘑菇的老鼠体内一种名为马尿酸盐的酸的含量增加了6倍。马尿酸盐是微生物组多样性和健康的一个指标。70摄入蘑菇也增加了保护性肠道细菌的数量（拟杆菌和疣微菌门的细菌，其中包括值得拥有的阿克曼氏菌），同时减少了厚壁菌门的有害物种。6周后，研究人员将老鼠暴露在啮齿类柠檬酸杆菌中，这种有害的细菌会感染老鼠的肠道。科学家发现，吃白蘑菇的老鼠肠道炎症更轻，受感染后造成的损伤更小，这表明吃蘑菇对肠道有保护作用。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_08_mushrooms",
+      "evidences": [
+        {
+          "excerpt": "尿检显示，吃白蘑菇的老鼠体内一种名为马尿酸盐的酸的含量增加了6倍。马尿酸盐是微生物组多样性和健康的一个指标。70摄入蘑菇也增加了保护性肠道细菌的数量（拟杆菌和疣微菌门的细菌，其中包括值得拥有的阿克曼氏菌），同时减少了厚壁菌门的有害物种。6周后，研究人员将老鼠暴露在啮齿类柠檬酸杆菌中，这种有害的细菌会感染老鼠的肠道。科学家发现，吃白蘑菇的老鼠肠道炎症更轻，受感染后造成的损伤更小，这表明吃蘑菇对肠道有保护作用。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_08_mushrooms"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "berries_fruits",
+      "target": "akkermansia",
+      "relation": "书中描述蔓越莓原花青素增厚黏液层以利于阿克曼氏菌的动物研究叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_08_cranberry",
+      "excerpt": "蔓越莓含有原花青素，可以增加阿克曼氏菌所生活的肠道中黏液层的厚度。在一项对老鼠进行的研究中，拉瓦尔大学和魁北克大学蒙特利尔分校的科学家测试了蔓越莓提取物的效果，提取物的量相当于人类每天喝一杯蔓越莓汁。他们给健康老鼠喂食标准食物或者高脂肪食物。9周后，蔓越莓提取物能使阿克曼氏菌的数量增加30%，还能防止动物增加体重。77食用新鲜或冷冻的蔓越莓是获取其益处的最佳方式，因为将蔓越莓加工成果汁的过程会去除蔓越莓表皮和种子中的一些生物活性物质。78",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_08_cranberry",
+      "evidences": [
+        {
+          "excerpt": "蔓越莓含有原花青素，可以增加阿克曼氏菌所生活的肠道中黏液层的厚度。在一项对老鼠进行的研究中，拉瓦尔大学和魁北克大学蒙特利尔分校的科学家测试了蔓越莓提取物的效果，提取物的量相当于人类每天喝一杯蔓越莓汁。他们给健康老鼠喂食标准食物或者高脂肪食物。9周后，蔓越莓提取物能使阿克曼氏菌的数量增加30%，还能防止动物增加体重。77食用新鲜或冷冻的蔓越莓是获取其益处的最佳方式，因为将蔓越莓加工成果汁的过程会去除蔓越莓表皮和种子中的一些生物活性物质。78",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_08_cranberry"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "red_wine",
+      "target": "gut_microbiome",
+      "relation": "书中描述葡萄酒多酚抵达结肠滋养细菌并与炎症相关指标改善叙述相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_08_wine_micro",
+      "excerpt": "红葡萄酒的益处现在可以扩展到改善肠道微生物组和减少体内炎症方面。82人的小肠无法很好地吸收葡萄酒多酚，这意味着葡萄酒多酚会继续穿过肠道，到达结肠，并在那里滋养肠道细菌。这些细菌将多酚转化为可在粪便中被检测到的生物活性代谢物。西班牙巴塞罗那自治大学食品科学研究院的研究人员研究了喝一大杯红葡萄酒（250毫升）对粪便中红葡萄酒多酚的影响。83他们发现，连续4周每天饮用1大杯红葡萄酒后，细菌会摄入葡萄酒多酚，产生代谢物，尤其是丙酸、苯甲酸和戊酸，这些代谢物都具有有益的抗炎特性。84因此，无论你是不是葡萄酒鉴赏家，当你喝一两杯红葡萄酒时，好处不仅在于你的味觉所得到的享受，还在于你消化道的另一端摄入葡萄酒后产生的细菌代谢物。\n\n在西班牙的另一项研究中，奥维耶多大学和西班牙高等科学研究理事会阿斯图里亚斯乳制品研究所的研究人员发现，每天只喝2/3杯红葡萄酒可以降低血液中一种叫作丙二醛、能损伤DNA的毒素的水平，而丙二醛是衰老、氧化应激和体内细胞损伤的标志。研究人员将此归因于他们在这些受试者身上观察到的粪便微生物组的变化。85-86\n\n茶\n\n茶中的多酚除了具有抗氧化、抗炎和抗血管生成的特性，还能促进健康，帮助我们的肠道形成更有利的微生物组。正如我们所了解的，绿茶在健康方面具有明星效应，但它并不是增强健康防御能力的唯一一种茶。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_08_wine_micro",
+      "evidences": [
+        {
+          "excerpt": "红葡萄酒的益处现在可以扩展到改善肠道微生物组和减少体内炎症方面。82人的小肠无法很好地吸收葡萄酒多酚，这意味着葡萄酒多酚会继续穿过肠道，到达结肠，并在那里滋养肠道细菌。这些细菌将多酚转化为可在粪便中被检测到的生物活性代谢物。西班牙巴塞罗那自治大学食品科学研究院的研究人员研究了喝一大杯红葡萄酒（250毫升）对粪便中红葡萄酒多酚的影响。83他们发现，连续4周每天饮用1大杯红葡萄酒后，细菌会摄入葡萄酒多酚，产生代谢物，尤其是丙酸、苯甲酸和戊酸，这些代谢物都具有有益的抗炎特性。84因此，无论你是不是葡萄酒鉴赏家，当你喝一两杯红葡萄酒时，好处不仅在于你的味觉所得到的享受，还在于你消化道的另一端摄入葡萄酒后产生的细菌代谢物。\n\n在西班牙的另一项研究中，奥维耶多大学和西班牙高等科学研究理事会阿斯图里亚斯乳制品研究所的研究人员发现，每天只喝2/3杯红葡萄酒可以降低血液中一种叫作丙二醛、能损伤DNA的毒素的水平，而丙二醛是衰老、氧化应激和体内细胞损伤的标志。研究人员将此归因于他们在这些受试者身上观察到的粪便微生物组的变化。85-86\n\n茶\n\n茶中的多酚除了具有抗氧化、抗炎和抗血管生成的特性，还能促进健康，帮助我们的肠道形成更有利的微生物组。正如我们所了解的，绿茶在健康方面具有明星效应，但它并不是增强健康防御能力的唯一一种茶。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_08_wine_micro"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "green_tea",
+      "target": "gut_microbiome",
+      "relation": "书中引述绿/乌龙/红茶多酚抵达结肠影响肠道细菌的研究叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_08_tea_micro",
+      "excerpt": "中国宁波大学和温州科技职业学院的科学家进行了一项研究，测试绿茶、乌龙茶和红茶对肠道细菌的影响——这三种茶都有有益效果。87研究人员发现，这三种茶中的生物活性物质都是通过小肠进入结肠的，小肠并没有完全吸收它们，因而它们可以在结肠中影响微生物组。研究者用取自年轻、健康志愿者的粪便样本分别培育出了绿茶、乌龙茶和红茶的茶多酚，然后在实验室里观察微生物组的变化。他们发现，茶可以使有益菌双歧杆菌和乳酸菌增加3%，并且使有害的溶组织梭菌减少4%，其中乌龙茶的效果最好。研究人员还检测了志愿者喝茶36小时后粪便中抗炎短链脂肪酸的浓度。每一种茶都显著提升了醋酸盐、丙酸盐和丁酸盐这三种短链脂肪酸的浓度。令人惊讶的是，与绿茶或乌龙茶相比，红茶多酚的总体表现更好。因此，除了与干细胞有关的益处，红茶对微生物组尤其有益，完全是一种健康的茶。\n\n茶皂素是一种具有类似肥皂属性的天然化学物质，也是茶中发现的数百种生物活性物质之一。澳大利亚伍伦贡大学和中国徐州医科大学的科学家已经证明茶皂素对微生物组有影响。88他们给老鼠喂食高脂肪的食物，导致了老鼠的肠道微生物组受损，并引发了肥胖、脑部炎症和记忆力下降。但给老鼠同时喂食茶皂素和高脂肪食物时，它们肠道里生长的脱硫弧菌（产生有毒硫化氢的细菌）减少了40%。\n\n与只吃高脂肪食物的老鼠相比，吃茶皂素的老鼠体重增加更少，脑部炎症更轻，记忆力也更好。\n\n总的来说，喝红茶、乌龙茶和绿茶可以增加有益细菌，减少有害细菌，并帮助微生物组产生有益于健康的短链脂肪酸。\n\n避免人工甜味剂",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_08_tea_micro",
+      "evidences": [
+        {
+          "excerpt": "中国宁波大学和温州科技职业学院的科学家进行了一项研究，测试绿茶、乌龙茶和红茶对肠道细菌的影响——这三种茶都有有益效果。87研究人员发现，这三种茶中的生物活性物质都是通过小肠进入结肠的，小肠并没有完全吸收它们，因而它们可以在结肠中影响微生物组。研究者用取自年轻、健康志愿者的粪便样本分别培育出了绿茶、乌龙茶和红茶的茶多酚，然后在实验室里观察微生物组的变化。他们发现，茶可以使有益菌双歧杆菌和乳酸菌增加3%，并且使有害的溶组织梭菌减少4%，其中乌龙茶的效果最好。研究人员还检测了志愿者喝茶36小时后粪便中抗炎短链脂肪酸的浓度。每一种茶都显著提升了醋酸盐、丙酸盐和丁酸盐这三种短链脂肪酸的浓度。令人惊讶的是，与绿茶或乌龙茶相比，红茶多酚的总体表现更好。因此，除了与干细胞有关的益处，红茶对微生物组尤其有益，完全是一种健康的茶。\n\n茶皂素是一种具有类似肥皂属性的天然化学物质，也是茶中发现的数百种生物活性物质之一。澳大利亚伍伦贡大学和中国徐州医科大学的科学家已经证明茶皂素对微生物组有影响。88他们给老鼠喂食高脂肪的食物，导致了老鼠的肠道微生物组受损，并引发了肥胖、脑部炎症和记忆力下降。但给老鼠同时喂食茶皂素和高脂肪食物时，它们肠道里生长的脱硫弧菌（产生有毒硫化氢的细菌）减少了40%。\n\n与只吃高脂肪食物的老鼠相比，吃茶皂素的老鼠体重增加更少，脑部炎症更轻，记忆力也更好。\n\n总的来说，喝红茶、乌龙茶和绿茶可以增加有益细菌，减少有害细菌，并帮助微生物组产生有益于健康的短链脂肪酸。\n\n避免人工甜味剂",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_08_tea_micro"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "cruciferous",
+      "target": "dna_damage",
+      "relation": "书中引述西蓝花干预与年轻吸烟者DNA保护相关的人体研究叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_09_broccoli_smoke",
+      "excerpt": "的确，吃西蓝花对你有益处，其中一个就是保护你的DNA。10来自意大利米兰大学和丹麦哥本哈根大学的研究人员招募了27名每天吸烟超过10支的年轻的男大学生。11香烟烟雾中含有大量叫作活性氧的化学物质，这种化学物质肯定会导致DNA损伤。因此，吸烟者是一个完美的研究群体，以确定西蓝花是否能提供任何保护。研究人员将西蓝花（马拉松品种）蒸15分钟，然后每天给受试者吃1.3杯蒸熟的西蓝花，持续10天。他们在研究开始和结束时抽取血液样本，并通过彗星试验测试西蓝花减少DNA损伤的能力。西蓝花干预使吸烟者血液中的DNA断裂减少了23%。停止食用西蓝花后，研究人员再次对受试者进行血液检测。不出意料的是，吸烟者血液中DNA的损伤程度又回到了吃西蓝花之前的水平。\n\n富含番茄红素的食物：番茄、西瓜、番石榴、粉红葡萄柚\n\n你下次去海滩的时候，可以考虑在出发前喝一小杯番茄、西瓜、粉红葡萄柚或番石榴汁。它们会保护你免受阳光的伤害。这些水果的橙红色来自番茄红素，你在前几章中已经看到了番茄红素的其他好处，但它还可以保护DNA免受太阳电离辐射的伤害。12",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_09_broccoli_smoke",
+      "evidences": [
+        {
+          "excerpt": "的确，吃西蓝花对你有益处，其中一个就是保护你的DNA。10来自意大利米兰大学和丹麦哥本哈根大学的研究人员招募了27名每天吸烟超过10支的年轻的男大学生。11香烟烟雾中含有大量叫作活性氧的化学物质，这种化学物质肯定会导致DNA损伤。因此，吸烟者是一个完美的研究群体，以确定西蓝花是否能提供任何保护。研究人员将西蓝花（马拉松品种）蒸15分钟，然后每天给受试者吃1.3杯蒸熟的西蓝花，持续10天。他们在研究开始和结束时抽取血液样本，并通过彗星试验测试西蓝花减少DNA损伤的能力。西蓝花干预使吸烟者血液中的DNA断裂减少了23%。停止食用西蓝花后，研究人员再次对受试者进行血液检测。不出意料的是，吸烟者血液中DNA的损伤程度又回到了吃西蓝花之前的水平。\n\n富含番茄红素的食物：番茄、西瓜、番石榴、粉红葡萄柚\n\n你下次去海滩的时候，可以考虑在出发前喝一小杯番茄、西瓜、粉红葡萄柚或番石榴汁。它们会保护你免受阳光的伤害。这些水果的橙红色来自番茄红素，你在前几章中已经看到了番茄红素的其他好处，但它还可以保护DNA免受太阳电离辐射的伤害。12",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_09_broccoli_smoke"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "omega3",
+      "target": "dna_repair",
+      "relation": "书中描述海洋来源ω-3可保护DNA并改善修复",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_09_omega3_repair",
+      "excerpt": "海鲜中的多不饱和脂肪（ω-3多不饱和脂肪酸）除了具有抗血管生成的作用，还能保护你的DNA。海洋中的ω-3有很多来源，你可能会惊讶地发现，虽然三文鱼是其中一种来源，但它并没有排在名单的首位。下次你去鱼市或餐厅时，要考虑海洋ω-3的这些首要来源在DNA修复方面的优势，这也是你之前在第六章中读到的：鳕鱼（鳕鱼科的白肉鱼类）、海参（一种亚洲美食，与海星有亲缘关系）、菲律宾蛤仔和鸟蛤、金枪鱼（当心汞的高含量）、黄尾鱼和腌鲻鱼卵（风干的鲻鱼卵在地中海地区被视为美食）。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_09_omega3_repair",
+      "evidences": [
+        {
+          "excerpt": "海鲜中的多不饱和脂肪（ω-3多不饱和脂肪酸）除了具有抗血管生成的作用，还能保护你的DNA。海洋中的ω-3有很多来源，你可能会惊讶地发现，虽然三文鱼是其中一种来源，但它并没有排在名单的首位。下次你去鱼市或餐厅时，要考虑海洋ω-3的这些首要来源在DNA修复方面的优势，这也是你之前在第六章中读到的：鳕鱼（鳕鱼科的白肉鱼类）、海参（一种亚洲美食，与海星有亲缘关系）、菲律宾蛤仔和鸟蛤、金枪鱼（当心汞的高含量）、黄尾鱼和腌鲻鱼卵（风干的鲻鱼卵在地中海地区被视为美食）。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_09_omega3_repair"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "soy",
+      "target": "epigenetic_positive",
+      "relation": "书中引述大豆异黄酮与肿瘤抑制基因再激活相关的人体试验叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_09_soy_epi",
+      "excerpt": "密苏里大学和艾奥瓦州立大学的研究人员研究了给女性服用大豆生物活性物质（异黄酮）来激活这些肿瘤抑制基因的效果。22他们招募了34名健康女性，让她们参与一项具有前瞻性、随机、双盲[1]的临床试验。研究人员给这些女性服用高剂量或低剂量的大豆生物活性物质，每天2次，持续10天。每日的低剂量相当于吃1.2杯毛豆，而高剂量相当于4杯毛豆。当女性摄入高剂量的大豆时，血液中一种大豆异黄酮——染料木黄酮——的水平更高。\n\n研究人员专门研究了一种名为视黄酸受体-β2（RAR-β2）的肿瘤抑制基因。肿瘤抑制基因是基因组的守护者，可以预防癌症的发生。以视黄酸受体-β2为例，这种保护基因在乳腺癌中经常被发现失活或不起作用。大家可以回想一下，甲基化会阻碍DNA特定部分的功能。23研究人员发现，即使食用了低剂量的大豆异黄酮，视黄酸受体-β2这种肿瘤抑制基因仍然可以被激活。这意味着吃大豆能抑制更多的肿瘤，对癌症的生长也有更强的抑制作用。食用大豆异黄酮的受试者体内的另一种肿瘤抑制基因——细胞周期蛋白D2（CCND2）的水平也有所提高。24\n\n这些发现对携带乳腺癌易感基因突变的女性具有实际意义，因为携带这种基因的人患乳腺癌、卵巢癌和胰腺癌的风险更高。由于唾液可以很方便地用来对DNA进行检测，越来越多的女性开始了解她们乳腺癌易感基因的状况。因为乳腺癌易感基因是一种肿瘤抑制基因，一旦出现突变，就意味着你的身体对癌症的保护措施更少。一项对乳腺癌易感基因突变患者进行的研究表明，她们还有其他肿瘤抑制因子的活性被阻断，包括视黄酸受体-β2和细胞周期蛋白D2。25大豆通过表观遗传变化帮助激活这些抗癌基因，这在一定程度上解释了为什么大豆或许有助于消除乳腺癌易感基因突变带来的危险。吃大豆可以激发DNA的表观遗传变化，从而起到预防乳腺癌的作用。\n\n十字花科蔬菜",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_09_soy_epi",
+      "evidences": [
+        {
+          "excerpt": "密苏里大学和艾奥瓦州立大学的研究人员研究了给女性服用大豆生物活性物质（异黄酮）来激活这些肿瘤抑制基因的效果。22他们招募了34名健康女性，让她们参与一项具有前瞻性、随机、双盲[1]的临床试验。研究人员给这些女性服用高剂量或低剂量的大豆生物活性物质，每天2次，持续10天。每日的低剂量相当于吃1.2杯毛豆，而高剂量相当于4杯毛豆。当女性摄入高剂量的大豆时，血液中一种大豆异黄酮——染料木黄酮——的水平更高。\n\n研究人员专门研究了一种名为视黄酸受体-β2（RAR-β2）的肿瘤抑制基因。肿瘤抑制基因是基因组的守护者，可以预防癌症的发生。以视黄酸受体-β2为例，这种保护基因在乳腺癌中经常被发现失活或不起作用。大家可以回想一下，甲基化会阻碍DNA特定部分的功能。23研究人员发现，即使食用了低剂量的大豆异黄酮，视黄酸受体-β2这种肿瘤抑制基因仍然可以被激活。这意味着吃大豆能抑制更多的肿瘤，对癌症的生长也有更强的抑制作用。食用大豆异黄酮的受试者体内的另一种肿瘤抑制基因——细胞周期蛋白D2（CCND2）的水平也有所提高。24\n\n这些发现对携带乳腺癌易感基因突变的女性具有实际意义，因为携带这种基因的人患乳腺癌、卵巢癌和胰腺癌的风险更高。由于唾液可以很方便地用来对DNA进行检测，越来越多的女性开始了解她们乳腺癌易感基因的状况。因为乳腺癌易感基因是一种肿瘤抑制基因，一旦出现突变，就意味着你的身体对癌症的保护措施更少。一项对乳腺癌易感基因突变患者进行的研究表明，她们还有其他肿瘤抑制因子的活性被阻断，包括视黄酸受体-β2和细胞周期蛋白D2。25大豆通过表观遗传变化帮助激活这些抗癌基因，这在一定程度上解释了为什么大豆或许有助于消除乳腺癌易感基因突变带来的危险。吃大豆可以激发DNA的表观遗传变化，从而起到预防乳腺癌的作用。\n\n十字花科蔬菜",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_09_soy_epi"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "cruciferous",
+      "target": "epigenetic_positive",
+      "relation": "书中描述十字花科萝卜硫素可诱导有益表观遗传变化",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_09_cruciferous_epi",
+      "excerpt": "你已经知道了西蓝花的价值，但它所属的整个十字花科蔬菜家族也可以在DNA中诱发有益的表观遗传变化。西蓝花、小白菜、羽衣甘蓝和卷心菜都含有生物活性物质萝卜硫素。例如，英国诺里奇食品研究所的科学家发现，当结肠癌细胞暴露于萝卜硫素中时，该细胞内的基因活性发生了巨大的变化。萝卜硫素使这种癌症中63个基因的活性降低了一半。26其他研究表明，十字花科蔬菜中的萝卜硫素会使肿瘤抑制基因的活性出现一种表观遗传上的增强，这一点与大豆很相似，因为它能够激活一种对抗癌症的固有防御机制。27\n\n咖啡\n\n咖啡豆含有多酚类物质，可以触发对人体有益的DNA功能。与大豆相似，咖啡多酚在表观遗传学上也能激活肿瘤抑制基因视黄酸受体-β2。南卡罗来纳大学的科学家在实验室中记录了这些功能，他们将人类乳腺癌细胞暴露在咖啡中发现的两种生物活性物质里：绿原酸和咖啡酸。28这两种多酚都改变了癌细胞，使其DNA中的肿瘤抑制因子被释放，从而阻碍了癌细胞的生长。\n\n茶\n\n与咖啡类似，绿茶中的主要生物活性物质是表没食子儿茶素没食子酸酯，它会引起表观遗传变化，放大肿瘤抑制基因的影响，从而抑制癌症形成的能力。结合其抗血管生成功能和有益于微生物组的作用，茶有抗癌方面的临床证据就不足为奇了。29绿茶还会使细胞经历表观遗传变化，从而增加一种名为谷胱甘肽硫转移酶（GST）的天然抗氧化酶的产量，这种酶通过中和自由基而进一步保护DNA。30\n\n姜黄",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_09_cruciferous_epi",
+      "evidences": [
+        {
+          "excerpt": "你已经知道了西蓝花的价值，但它所属的整个十字花科蔬菜家族也可以在DNA中诱发有益的表观遗传变化。西蓝花、小白菜、羽衣甘蓝和卷心菜都含有生物活性物质萝卜硫素。例如，英国诺里奇食品研究所的科学家发现，当结肠癌细胞暴露于萝卜硫素中时，该细胞内的基因活性发生了巨大的变化。萝卜硫素使这种癌症中63个基因的活性降低了一半。26其他研究表明，十字花科蔬菜中的萝卜硫素会使肿瘤抑制基因的活性出现一种表观遗传上的增强，这一点与大豆很相似，因为它能够激活一种对抗癌症的固有防御机制。27\n\n咖啡\n\n咖啡豆含有多酚类物质，可以触发对人体有益的DNA功能。与大豆相似，咖啡多酚在表观遗传学上也能激活肿瘤抑制基因视黄酸受体-β2。南卡罗来纳大学的科学家在实验室中记录了这些功能，他们将人类乳腺癌细胞暴露在咖啡中发现的两种生物活性物质里：绿原酸和咖啡酸。28这两种多酚都改变了癌细胞，使其DNA中的肿瘤抑制因子被释放，从而阻碍了癌细胞的生长。\n\n茶\n\n与咖啡类似，绿茶中的主要生物活性物质是表没食子儿茶素没食子酸酯，它会引起表观遗传变化，放大肿瘤抑制基因的影响，从而抑制癌症形成的能力。结合其抗血管生成功能和有益于微生物组的作用，茶有抗癌方面的临床证据就不足为奇了。29绿茶还会使细胞经历表观遗传变化，从而增加一种名为谷胱甘肽硫转移酶（GST）的天然抗氧化酶的产量，这种酶通过中和自由基而进一步保护DNA。30\n\n姜黄",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_09_cruciferous_epi"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "turmeric",
+      "target": "epigenetic_regulation",
+      "relation": "书中描述姜黄素的表观遗传效应及其对血管相关蛋白表达的叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_09_turmeric_epi",
+      "excerpt": "如果你曾经在印度、印度尼西亚或泰国餐馆吃过饭，你很可能吃过姜黄，这是东南亚菜中常用的一种香料。这种香料也被用在芥末中，使其具有独特的金色。姜黄是一种热带植物，它的地下茎被收获、煮熟、在烤箱中干燥，然后磨成粉，制成一种橙色的香料，数千年来一直用在烹饪和阿育吠陀医学中。姜黄里的主要生物活性成分是姜黄素。姜黄素可引起许多有益的表观遗传效应，增加我们体内肿瘤抑制基因的活性，而我们已知这些基因可以对抗结肠癌和白血病的生长。31\n\n姜黄素的表观遗传效应也保护你的血管健康。32中国科学院的科学家发现，在患有高血压的实验鼠中，食用姜黄素可以让它们的基因产生一种名为金属蛋白酶组织抑制物（TIMP）的蛋白质，从而减少为心脏供血的冠状动脉的损伤。这种蛋白质能减少炎症。而炎症破坏血管壁，导致血管因胆固醇斑块而变窄，但姜黄素的表观遗传作用能够保护心脏免受炎症的影响，避免因动脉阻塞而最终导致心脏病发作。姜黄素对大脑也有益处。韩国釜山国立大学的科学家证明，当脑癌（胶质瘤）细胞暴露于姜黄素中时，姜黄素会引发表观遗传效应，造成癌细胞自杀并死亡。33在韩国，同一个研究小组将取自大脑的健康的神经干细胞暴露在姜黄素中，看看会发生什么。结果，姜黄素刺激干细胞成长为成熟的正常神经元。这意味着姜黄素这种香料所含的表观遗传能力可以起到三重作用：预防癌症，减少血管炎症，帮助神经元生长。\n\n香草\n\n地中海菜肴中常用的多种香草都含有一种叫作迷迭香酸的生物活性物质，因最初在迷迭香中被发现而得名。迷迭香酸也存在于罗勒、马郁兰、鼠尾草、百里香和薄荷中。波兰波兹南大学的科学家研究了迷迭香酸的表观遗传效应，发现它可以防止人类乳腺癌细胞中的肿瘤抑制基因被阻断。34\n\n保护端粒的食物\n\n端粒保护染色体末端免受损伤，从而在保护DNA方面发挥着重要作用。端粒会随着年龄的增长而自然缩短，就像保险丝慢慢烧光一样，所以任何能帮助端粒存活更长时间的行为都将有助于保护你的DNA并对抗衰老。让我们来看看那些被证明可以防止端粒缩短的食物和饮料。\n\n咖啡\n\n咖啡成为饮料已经有六百多年的历史了。如果你和我一样，那么你每天早晨也会习惯于喝杯咖啡来开启自己全新的一天，主要是因为它含有咖啡因。但事实证明，除了提神醒脑，咖啡还有其他益处和生物活性物质。它可以降低你的死亡风险。\n\n欧洲癌症与营养前瞻性调查对521330名男性和女性进行了一项大规模研究，结果显示，饮用含咖啡因和不含咖啡因的咖啡都能降低死亡率，具体来说，男性的死亡率会降低12%，女性的死亡率会降低7%。35咖啡最大的益处在于它降低了死于与消化相关的疾病的风险，这是有道理的，因为肠道会暴露在高浓度的咖啡所含有的生物活性物质中。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_09_turmeric_epi",
+      "evidences": [
+        {
+          "excerpt": "如果你曾经在印度、印度尼西亚或泰国餐馆吃过饭，你很可能吃过姜黄，这是东南亚菜中常用的一种香料。这种香料也被用在芥末中，使其具有独特的金色。姜黄是一种热带植物，它的地下茎被收获、煮熟、在烤箱中干燥，然后磨成粉，制成一种橙色的香料，数千年来一直用在烹饪和阿育吠陀医学中。姜黄里的主要生物活性成分是姜黄素。姜黄素可引起许多有益的表观遗传效应，增加我们体内肿瘤抑制基因的活性，而我们已知这些基因可以对抗结肠癌和白血病的生长。31\n\n姜黄素的表观遗传效应也保护你的血管健康。32中国科学院的科学家发现，在患有高血压的实验鼠中，食用姜黄素可以让它们的基因产生一种名为金属蛋白酶组织抑制物（TIMP）的蛋白质，从而减少为心脏供血的冠状动脉的损伤。这种蛋白质能减少炎症。而炎症破坏血管壁，导致血管因胆固醇斑块而变窄，但姜黄素的表观遗传作用能够保护心脏免受炎症的影响，避免因动脉阻塞而最终导致心脏病发作。姜黄素对大脑也有益处。韩国釜山国立大学的科学家证明，当脑癌（胶质瘤）细胞暴露于姜黄素中时，姜黄素会引发表观遗传效应，造成癌细胞自杀并死亡。33在韩国，同一个研究小组将取自大脑的健康的神经干细胞暴露在姜黄素中，看看会发生什么。结果，姜黄素刺激干细胞成长为成熟的正常神经元。这意味着姜黄素这种香料所含的表观遗传能力可以起到三重作用：预防癌症，减少血管炎症，帮助神经元生长。\n\n香草\n\n地中海菜肴中常用的多种香草都含有一种叫作迷迭香酸的生物活性物质，因最初在迷迭香中被发现而得名。迷迭香酸也存在于罗勒、马郁兰、鼠尾草、百里香和薄荷中。波兰波兹南大学的科学家研究了迷迭香酸的表观遗传效应，发现它可以防止人类乳腺癌细胞中的肿瘤抑制基因被阻断。34\n\n保护端粒的食物\n\n端粒保护染色体末端免受损伤，从而在保护DNA方面发挥着重要作用。端粒会随着年龄的增长而自然缩短，就像保险丝慢慢烧光一样，所以任何能帮助端粒存活更长时间的行为都将有助于保护你的DNA并对抗衰老。让我们来看看那些被证明可以防止端粒缩短的食物和饮料。\n\n咖啡\n\n咖啡成为饮料已经有六百多年的历史了。如果你和我一样，那么你每天早晨也会习惯于喝杯咖啡来开启自己全新的一天，主要是因为它含有咖啡因。但事实证明，除了提神醒脑，咖啡还有其他益处和生物活性物质。它可以降低你的死亡风险。\n\n欧洲癌症与营养前瞻性调查对521330名男性和女性进行了一项大规模研究，结果显示，饮用含咖啡因和不含咖啡因的咖啡都能降低死亡率，具体来说，男性的死亡率会降低12%，女性的死亡率会降低7%。35咖啡最大的益处在于它降低了死于与消化相关的疾病的风险，这是有道理的，因为肠道会暴露在高浓度的咖啡所含有的生物活性物质中。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_09_turmeric_epi"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "coffee",
+      "target": "telomere_integrity",
+      "relation": "书中对比咖啡因实验室缩短端粒与人群中喝咖啡与更长端粒相关的观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_09_coffee_telomere",
+      "excerpt": "咖啡因可能会给你想要的刺激，但它可能不会在你喝咖啡时对你的DNA起到重要的保护作用。在实验室研究中，咖啡因实际上缩短了端粒。36然而，喝咖啡却有相反的效果。在美国的一项名为国家健康与营养调查（NHANES）的研究中，研究人员记录了5826名成年人的咖啡和咖啡因摄入量，并表明多喝咖啡与端粒变长有关。37研究对象每天喝一杯咖啡，他们的端粒就会延长33.8个碱基对。这意味着每天喝一杯咖啡可以有效延缓衰老。咖啡所含的生物活性物质远不止咖啡因，很可能多种生物活性物质共同协作，发挥保护端粒的作用。（还记得吗？咖啡对血管生成防御也有好处。）\n\n第三项大型研究——护士健康研究支持咖啡有益这一发现。研究人员使用食物频率问卷调查了4780名女性的咖啡摄入量，然后通过血液样本测量了她们的端粒。38与不喝咖啡的女性相比，每天喝三杯或三杯以上咖啡的女性端粒更长。\n\n人们以前认为咖啡有可能带来患心脏病的风险，因为咖啡因会加快心率。从理论上讲，这是有道理的，可当对喝咖啡的人进行实际的人群研究时，情况正好相反。英国约克大学的研究人员对人类研究进行了荟萃分析，调查了3271人的咖啡摄入量和心脏病发作后的死亡率。（荟萃分析允许研究人员分析多项研究，并使用统计方法结合研究结果，综合所有的发现，用现有的证据得出一个共同的真相。）当荟萃分析被应用于咖啡时，人们发现，少量饮用咖啡的人（每天1~2杯）死于心脏病的风险降低了21%，而大量饮用咖啡的人（每天两杯或更多）死于心脏病的风险降低了31%。咖啡中的许多生物活性物质可能对心脏起作用，从而降低患病风险。依据所有临床证据得出的咖啡对健康的净效益就是一个很好的例子，足以说明我们为什么必须分析（并食用）整个食品，而不是只依据该食品中的某个成分（就咖啡而言，这个成分是咖啡因）就得出一个笼统的结论。\n\n茶",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_09_coffee_telomere",
+      "evidences": [
+        {
+          "excerpt": "咖啡因可能会给你想要的刺激，但它可能不会在你喝咖啡时对你的DNA起到重要的保护作用。在实验室研究中，咖啡因实际上缩短了端粒。36然而，喝咖啡却有相反的效果。在美国的一项名为国家健康与营养调查（NHANES）的研究中，研究人员记录了5826名成年人的咖啡和咖啡因摄入量，并表明多喝咖啡与端粒变长有关。37研究对象每天喝一杯咖啡，他们的端粒就会延长33.8个碱基对。这意味着每天喝一杯咖啡可以有效延缓衰老。咖啡所含的生物活性物质远不止咖啡因，很可能多种生物活性物质共同协作，发挥保护端粒的作用。（还记得吗？咖啡对血管生成防御也有好处。）\n\n第三项大型研究——护士健康研究支持咖啡有益这一发现。研究人员使用食物频率问卷调查了4780名女性的咖啡摄入量，然后通过血液样本测量了她们的端粒。38与不喝咖啡的女性相比，每天喝三杯或三杯以上咖啡的女性端粒更长。\n\n人们以前认为咖啡有可能带来患心脏病的风险，因为咖啡因会加快心率。从理论上讲，这是有道理的，可当对喝咖啡的人进行实际的人群研究时，情况正好相反。英国约克大学的研究人员对人类研究进行了荟萃分析，调查了3271人的咖啡摄入量和心脏病发作后的死亡率。（荟萃分析允许研究人员分析多项研究，并使用统计方法结合研究结果，综合所有的发现，用现有的证据得出一个共同的真相。）当荟萃分析被应用于咖啡时，人们发现，少量饮用咖啡的人（每天1~2杯）死于心脏病的风险降低了21%，而大量饮用咖啡的人（每天两杯或更多）死于心脏病的风险降低了31%。咖啡中的许多生物活性物质可能对心脏起作用，从而降低患病风险。依据所有临床证据得出的咖啡对健康的净效益就是一个很好的例子，足以说明我们为什么必须分析（并食用）整个食品，而不是只依据该食品中的某个成分（就咖啡而言，这个成分是咖啡因）就得出一个笼统的结论。\n\n茶",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_09_coffee_telomere"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "green_tea",
+      "target": "telomere_integrity",
+      "relation": "书中引述老年人喝茶与较长端粒相关的人群观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_09_tea_telomere",
+      "excerpt": "考虑到茶具有越来越多的健康特性，那么一个显而易见的问题是，喝茶是否有益于你的端粒。中国香港中文大学的研究人员对年龄在65岁以上的976名男性和1030名女性进行了研究。39参与者的平均年龄为72岁，这对端粒研究很重要，因为端粒会随着年龄的增长而缩短。研究中的每一个人都报告了他们对13种中国常见的食品类别的食用数量和频率，其中就包括茶。研究人员抽取血液，测量白细胞中的端粒长度。结果是惊人的：喝茶与端粒长度的增加有关，但这一关联仅在老年男性中存在，在女性中不存在。对男性饮茶量进行分析时发现那些每天喝3杯或以上茶的人与那些喝不到1/3杯茶的人相比端粒更长。端粒长度的差异相当于高饮茶量者和低饮茶量者之间增加了5年寿命的差异。在老年人群中，没有其他食物群与端粒延长有关。该研究没有具体询问哪种茶，但绿茶和乌龙茶是中国人最常喝的茶。\n\n为什么女性不能享受茶对端粒的延长作用呢？这项研究还有另一个在统计学上有意义的发现，那就是烹饪时产生的油烟对女性（而非男性）有负面影响，缩短了她们的端粒。研究人员指出，在中国文化中，承担大部分做饭任务的女性可能都会站在锅里加热到极高温度的食用油旁边，而此时产生的油烟会生成破坏端粒的化学副产品，从而有可能抹去茶的任何保护作用。\n\n坚果与种子",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_09_tea_telomere",
+      "evidences": [
+        {
+          "excerpt": "考虑到茶具有越来越多的健康特性，那么一个显而易见的问题是，喝茶是否有益于你的端粒。中国香港中文大学的研究人员对年龄在65岁以上的976名男性和1030名女性进行了研究。39参与者的平均年龄为72岁，这对端粒研究很重要，因为端粒会随着年龄的增长而缩短。研究中的每一个人都报告了他们对13种中国常见的食品类别的食用数量和频率，其中就包括茶。研究人员抽取血液，测量白细胞中的端粒长度。结果是惊人的：喝茶与端粒长度的增加有关，但这一关联仅在老年男性中存在，在女性中不存在。对男性饮茶量进行分析时发现那些每天喝3杯或以上茶的人与那些喝不到1/3杯茶的人相比端粒更长。端粒长度的差异相当于高饮茶量者和低饮茶量者之间增加了5年寿命的差异。在老年人群中，没有其他食物群与端粒延长有关。该研究没有具体询问哪种茶，但绿茶和乌龙茶是中国人最常喝的茶。\n\n为什么女性不能享受茶对端粒的延长作用呢？这项研究还有另一个在统计学上有意义的发现，那就是烹饪时产生的油烟对女性（而非男性）有负面影响，缩短了她们的端粒。研究人员指出，在中国文化中，承担大部分做饭任务的女性可能都会站在锅里加热到极高温度的食用油旁边，而此时产生的油烟会生成破坏端粒的化学副产品，从而有可能抹去茶的任何保护作用。\n\n坚果与种子",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_09_tea_telomere"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "nuts_seeds",
+      "target": "telomere_integrity",
+      "relation": "书中引述坚果摄入与死亡率及端粒长度相关的人群观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_09_nuts_telomere",
+      "excerpt": "坚果与种子如今是很受欢迎的零食，所有的证据都表明它们对健康有益。它们是膳食纤维的良好来源（对微生物组而言），并含有强大的生物活性物质，如没食子酸和鞣花酸。至少有两项大型研究表明，吃坚果和种子可以降低死亡率。40由22742名男性医生参与的医师健康研究表明，与很少吃坚果或根本不吃坚果的人相比，每周吃5份或5份以上坚果的人的死亡风险可以降低26%。地中海饮食预防研究显示了更高水平的益处。该研究评估了西班牙7447名有心血管疾病风险的健康人群，那些每周吃3份坚果的人与不吃任何坚果的人相比，死亡率降低了39%。\n\n考虑到坚果摄入量与死亡率之间的关联，犹他州杨百翰大学的研究人员研究了坚果摄入量是否会影响端粒长度。他们对5582名年龄在20岁至84岁之间的男性和女性进行了调查，这些人参加了由美国国家健康统计中心牵头的国家健康与营养调查项目，被询问坚果和种子的食用量与频率。41在这项研究中，“坚果和种子”包括杏仁、杏仁黄油和杏仁酱、巴西坚果、腰果和腰果酱、栗子、亚麻籽、榛子、夏威夷果、花生和花生酱、碧根果、松子、开心果、南瓜子、西葫芦籽、芝麻和芝麻酱、葵花子和核桃。研究人员随后检验了参与者的血液，以确定端粒长度，并寻找其与饮食的相关性。\n\n他们的分析表明，食用的坚果和种子越多，端粒就越长。每天食用10克坚果或种子，端粒在1年内就会延长8.5个单位。10克大约是1汤匙坚果，相当于9个腰果，或7个核桃，或6个杏仁，或4勺亚麻籽、南瓜子、葵花子，或2茶匙芝麻。这些量很容易就可以在一天内以多种不同的形式摄入，可以是纯粹的坚果、烘烤的一块糕点或者沙拉中的添加物。\n\n对衰老而言，这有什么好处呢？正常情况下，端粒每年减少15.4对碱基对。（美国）国家健康与营养调查的发现表明，每吃10克坚果或种子，端粒长度就会增加8.5个单位，研究人员计算出，每天吃半把坚果或种子，细胞衰老的速度大约会减慢1.5年。\n\n地中海饮食",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_09_nuts_telomere",
+      "evidences": [
+        {
+          "excerpt": "坚果与种子如今是很受欢迎的零食，所有的证据都表明它们对健康有益。它们是膳食纤维的良好来源（对微生物组而言），并含有强大的生物活性物质，如没食子酸和鞣花酸。至少有两项大型研究表明，吃坚果和种子可以降低死亡率。40由22742名男性医生参与的医师健康研究表明，与很少吃坚果或根本不吃坚果的人相比，每周吃5份或5份以上坚果的人的死亡风险可以降低26%。地中海饮食预防研究显示了更高水平的益处。该研究评估了西班牙7447名有心血管疾病风险的健康人群，那些每周吃3份坚果的人与不吃任何坚果的人相比，死亡率降低了39%。\n\n考虑到坚果摄入量与死亡率之间的关联，犹他州杨百翰大学的研究人员研究了坚果摄入量是否会影响端粒长度。他们对5582名年龄在20岁至84岁之间的男性和女性进行了调查，这些人参加了由美国国家健康统计中心牵头的国家健康与营养调查项目，被询问坚果和种子的食用量与频率。41在这项研究中，“坚果和种子”包括杏仁、杏仁黄油和杏仁酱、巴西坚果、腰果和腰果酱、栗子、亚麻籽、榛子、夏威夷果、花生和花生酱、碧根果、松子、开心果、南瓜子、西葫芦籽、芝麻和芝麻酱、葵花子和核桃。研究人员随后检验了参与者的血液，以确定端粒长度，并寻找其与饮食的相关性。\n\n他们的分析表明，食用的坚果和种子越多，端粒就越长。每天食用10克坚果或种子，端粒在1年内就会延长8.5个单位。10克大约是1汤匙坚果，相当于9个腰果，或7个核桃，或6个杏仁，或4勺亚麻籽、南瓜子、葵花子，或2茶匙芝麻。这些量很容易就可以在一天内以多种不同的形式摄入，可以是纯粹的坚果、烘烤的一块糕点或者沙拉中的添加物。\n\n对衰老而言，这有什么好处呢？正常情况下，端粒每年减少15.4对碱基对。（美国）国家健康与营养调查的发现表明，每吃10克坚果或种子，端粒长度就会增加8.5个单位，研究人员计算出，每天吃半把坚果或种子，细胞衰老的速度大约会减慢1.5年。\n\n地中海饮食",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_09_nuts_telomere"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "plant_based_diet",
+      "target": "telomere_integrity",
+      "relation": "书中引述地中海饮食模式与女性端粒长度相关的人群观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_09_med_telomere",
+      "excerpt": "除了美味和食材新鲜，以及所有对血管生成、干细胞和微生物组的益处，地中海饮食还与健康衰老和改善端粒长度有关。哈佛大学研究人员牵头的一项研究调查了护士健康研究中的4676名健康的中年女性，以研究饮食模式与端粒之间的关系。42这些女性填写一份食物频率问卷，然后研究人员分析她们所吃的食物与地中海饮食的相似程度。用于该分析的评分系统基于较高的蔬菜（不包括土豆）、水果、坚果、全谷物、豆类、鱼和单不饱和脂肪摄入量，适度的酒精摄入量，较低的红肉和加工肉类摄入量。研究人员抽取参与者的血液，测量她们白细胞中的端粒长度。饮食模式与地中海饮食最相似的女性端粒明显更长。相比之下，那些吃更典型的西方饮食（饱和脂肪和肉类含量较高）的女性则恰恰相反。事实上，那些饮食最不像地中海饮食的人的端粒比平均端粒要短。\n\n地中海饮食由富含抗氧化剂、DNA修复和抗炎活性的食物和饮料组成，可以减缓端粒缩短。43然而，这项研究的重要发现在于，饮食中的单一食物本身并不是增加端粒长度的灵丹妙药。整体饮食模式才是最重要的因素。\n\n富含蔬菜的亚洲饮食",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_09_med_telomere",
+      "evidences": [
+        {
+          "excerpt": "除了美味和食材新鲜，以及所有对血管生成、干细胞和微生物组的益处，地中海饮食还与健康衰老和改善端粒长度有关。哈佛大学研究人员牵头的一项研究调查了护士健康研究中的4676名健康的中年女性，以研究饮食模式与端粒之间的关系。42这些女性填写一份食物频率问卷，然后研究人员分析她们所吃的食物与地中海饮食的相似程度。用于该分析的评分系统基于较高的蔬菜（不包括土豆）、水果、坚果、全谷物、豆类、鱼和单不饱和脂肪摄入量，适度的酒精摄入量，较低的红肉和加工肉类摄入量。研究人员抽取参与者的血液，测量她们白细胞中的端粒长度。饮食模式与地中海饮食最相似的女性端粒明显更长。相比之下，那些吃更典型的西方饮食（饱和脂肪和肉类含量较高）的女性则恰恰相反。事实上，那些饮食最不像地中海饮食的人的端粒比平均端粒要短。\n\n地中海饮食由富含抗氧化剂、DNA修复和抗炎活性的食物和饮料组成，可以减缓端粒缩短。43然而，这项研究的重要发现在于，饮食中的单一食物本身并不是增加端粒长度的灵丹妙药。整体饮食模式才是最重要的因素。\n\n富含蔬菜的亚洲饮食",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_09_med_telomere"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "processed_meat",
+      "target": "telomere_integrity",
+      "relation": "书中引述加工肉类摄入与较短端粒相关的多项人群研究",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_09_processed_meat_telo",
+      "excerpt": "每个人都知道吃加工肉类算不上健康饮食，但更能说明问题的是，几项大规模研究表明，吃加工肉类实际上会缩短端粒。动脉粥样硬化的多种族研究（MESA）是对美国6个地区（来自巴尔的摩、芝加哥、北卡罗来纳州福赛斯县、纽约、洛杉矶、明尼苏达州圣保罗）不同种族的6000名男性和女性所进行的一项研究。51研究人员研究了这组人中的840名白人、非裔美国人和西班牙裔人，让他们记录自己在过去一年中对12个不同类别的食物的日常摄入量和频率：全谷物、细粮、水果、蔬菜、非煎炸海鲜、坚果和种子、乳制品、红肉、加工肉类（包括火腿、热狗、午餐肉、香肠、内脏和蹄髈）、油炸食品（包括土豆、鱼和鸡肉）、含糖汽水和咖啡。研究人员采集了他们的血液样本，测量了白细胞中端粒的长度，并将端粒长度与他们报告的饮食联系起来。\n\n动脉硬化的多种族研究的发现很有启发性。只有一种食物与端粒缩短有关：加工肉类。事实上，每天多吃一份加工肉类，端粒就会减少0.07个单位。正常的衰老每年会使端粒缩短15.4个单位，这意味着如果你每年吃220份加工肉类或者每周吃4~5天午餐肉，每一年都会使你的衰老加速一年。\n\n由美国国家心肺血液研究所资助的一项重大研究——强心家族研究也发现，加工肉类与较短的端粒之间存在联系。这项研究探索了美国13个印第安人部落中患心血管疾病的遗传因素和其他因素。研究人员让2864名美国印第安人报告他们在过去一年里食用的加工肉类和未加工肉类，然后抽他们的血并测量端粒长度。与动脉粥样硬化的多种族研究得出的发现一致，这项分析表明，每一份加工肉类都与端粒缩短0.021个单位有关。52食用加工肉类导致端粒缩短的原因尚不清楚。肉类加工可以产生一种叫作晚期糖基化终末产物（AGE）的化学物质。众所周知，这些化学物质会引发炎症，从而导致细胞发生氧化应激并损害DNA。人们可能还在加工肉中发现了其他影响端粒的化学物质。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_09_processed_meat_telo",
+      "evidences": [
+        {
+          "excerpt": "每个人都知道吃加工肉类算不上健康饮食，但更能说明问题的是，几项大规模研究表明，吃加工肉类实际上会缩短端粒。动脉粥样硬化的多种族研究（MESA）是对美国6个地区（来自巴尔的摩、芝加哥、北卡罗来纳州福赛斯县、纽约、洛杉矶、明尼苏达州圣保罗）不同种族的6000名男性和女性所进行的一项研究。51研究人员研究了这组人中的840名白人、非裔美国人和西班牙裔人，让他们记录自己在过去一年中对12个不同类别的食物的日常摄入量和频率：全谷物、细粮、水果、蔬菜、非煎炸海鲜、坚果和种子、乳制品、红肉、加工肉类（包括火腿、热狗、午餐肉、香肠、内脏和蹄髈）、油炸食品（包括土豆、鱼和鸡肉）、含糖汽水和咖啡。研究人员采集了他们的血液样本，测量了白细胞中端粒的长度，并将端粒长度与他们报告的饮食联系起来。\n\n动脉硬化的多种族研究的发现很有启发性。只有一种食物与端粒缩短有关：加工肉类。事实上，每天多吃一份加工肉类，端粒就会减少0.07个单位。正常的衰老每年会使端粒缩短15.4个单位，这意味着如果你每年吃220份加工肉类或者每周吃4~5天午餐肉，每一年都会使你的衰老加速一年。\n\n由美国国家心肺血液研究所资助的一项重大研究——强心家族研究也发现，加工肉类与较短的端粒之间存在联系。这项研究探索了美国13个印第安人部落中患心血管疾病的遗传因素和其他因素。研究人员让2864名美国印第安人报告他们在过去一年里食用的加工肉类和未加工肉类，然后抽他们的血并测量端粒长度。与动脉粥样硬化的多种族研究得出的发现一致，这项分析表明，每一份加工肉类都与端粒缩短0.021个单位有关。52食用加工肉类导致端粒缩短的原因尚不清楚。肉类加工可以产生一种叫作晚期糖基化终末产物（AGE）的化学物质。众所周知，这些化学物质会引发炎症，从而导致细胞发生氧化应激并损害DNA。人们可能还在加工肉中发现了其他影响端粒的化学物质。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_09_processed_meat_telo"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "added_sugar",
+      "target": "telomere_integrity",
+      "relation": "书中引述含糖饮料摄入与端粒缩短、加速衰老相关的人群分析",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_09_soda_telo",
+      "excerpt": "加州大学旧金山分校、加州大学伯克利分校和斯坦福大学的研究人员评估了糖对5309名成年人DNA的影响，这些人的健康数据是美国国家健康统计中心负责的国家健康与营养调查的一部分。这些多年收集的有关食品和健康参数的数据包括含糖汽水、非碳酸含糖饮料（果汁、能量和运动饮料、含糖水）、无糖汽水和100%果汁的摄入量。56除了饮食信息，参与者还提供了可以测量端粒长度的血样。\n\n国家健康与营养调查于2014年发表的研究成果显示，美国人平均每天摄入的含糖饮料为17液量盎司[3]（相当于一罐半汽水）。研究人员随后分析了现有的数据，发现每天喝一罐汽水会使端粒缩短0.01个单位，加速衰老。对那些每天喝一瓶20盎司汽水的人来说，端粒缩短相当于每年加速衰老4.6年。研究人员指出，这种端粒缩短的加速程度与吸烟引起的端粒缩短程度相似，也是4.6年。\n\n好消息是端粒缩短似乎是可逆的。适度体育锻炼所带来的积极作用能够增加端粒长度（4.4年），其增长幅度与国家健康与营养调查研究中含糖汽水和饮料造成的端粒减少的长度差不多。57这个例子说明我们所做的每件事都有一个加性（或净）效应[4]。做出更多好的选择会让你的端粒变长，而糟糕的选择则会损害你已经得到的益处。\n\n加州大学旧金山分校和加州大学伯克利分校的研究人员进行的另一项研究调查了饮用汽水对65名年龄在18岁至45岁之间的孕妇的影响。研究人员要求这些女性报告她们的饮料摄入量，并在研究开始时、分娩后3个月和9个月抽取她们的血液用于测量端粒。结果显示，当女性减少含糖饮料的摄入量时，她们的端粒会延长。58\n\n把它们组合在一起",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_09_soda_telo",
+      "evidences": [
+        {
+          "excerpt": "加州大学旧金山分校、加州大学伯克利分校和斯坦福大学的研究人员评估了糖对5309名成年人DNA的影响，这些人的健康数据是美国国家健康统计中心负责的国家健康与营养调查的一部分。这些多年收集的有关食品和健康参数的数据包括含糖汽水、非碳酸含糖饮料（果汁、能量和运动饮料、含糖水）、无糖汽水和100%果汁的摄入量。56除了饮食信息，参与者还提供了可以测量端粒长度的血样。\n\n国家健康与营养调查于2014年发表的研究成果显示，美国人平均每天摄入的含糖饮料为17液量盎司[3]（相当于一罐半汽水）。研究人员随后分析了现有的数据，发现每天喝一罐汽水会使端粒缩短0.01个单位，加速衰老。对那些每天喝一瓶20盎司汽水的人来说，端粒缩短相当于每年加速衰老4.6年。研究人员指出，这种端粒缩短的加速程度与吸烟引起的端粒缩短程度相似，也是4.6年。\n\n好消息是端粒缩短似乎是可逆的。适度体育锻炼所带来的积极作用能够增加端粒长度（4.4年），其增长幅度与国家健康与营养调查研究中含糖汽水和饮料造成的端粒减少的长度差不多。57这个例子说明我们所做的每件事都有一个加性（或净）效应[4]。做出更多好的选择会让你的端粒变长，而糟糕的选择则会损害你已经得到的益处。\n\n加州大学旧金山分校和加州大学伯克利分校的研究人员进行的另一项研究调查了饮用汽水对65名年龄在18岁至45岁之间的孕妇的影响。研究人员要求这些女性报告她们的饮料摄入量，并在研究开始时、分娩后3个月和9个月抽取她们的血液用于测量端粒。结果显示，当女性减少含糖饮料的摄入量时，她们的端粒会延长。58\n\n把它们组合在一起",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_09_soda_telo"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "immune_balance",
+      "target": "digestive_cancer_risk",
+      "relation": "书中描述免疫功能下降可为感染与癌症创造条件，并提及免疫疗法背景",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_10_immune_down",
+      "excerpt": "让我们先来看看免疫力下降导致的疾病。一个崩溃的免疫系统会为威胁生命的感染打开一扇门，但感染只是一种危险。癌症也会在人体内扎根，因为无效的免疫系统无法检测到癌细胞。这种免疫系统变弱的问题可以通过免疫疗法来解决，即帮助免疫系统定位并摧毁癌细胞的新型药物治疗。这些药物已经在一些癌症的治疗上取得了突破性进展，包括恶性黑色素瘤、肺癌、肾癌、膀胱癌、头颈部癌和宫颈癌，还有一些血癌（如大B细胞淋巴瘤和急性淋巴细胞白血病）。\n\n这些经美国食品药品管理局批准的疗法可以帮助你身体的免疫系统发现并摧毁癌症。但癌症是可以被身体自己发现的，并且可以被一个完整、最有效的免疫系统消灭。有些癌症，如多发性骨髓瘤和白血病，属于免疫细胞疾病，会毁掉免疫细胞保卫健康的能力。\n\n具有讽刺意味的是，基于高剂量化疗和放疗的传统癌症治疗实际上削弱了免疫系统。这些疗法摧毁快速生长的细胞，因而是一种有效的抗癌手段。但在治疗过程中，大量免疫细胞和其他健康的细胞也会受损，阻碍身体抵御癌症的能力。\n\n某些病毒引起的感染也会破坏人体产生适当的免疫反应的能力。如我在第五章所述，艾滋病是人体感染人类免疫缺陷病毒引起的免疫功能受损的典型例子。人乳头瘤病毒削弱了免疫系统检测和摧毁受感染细胞的能力，从而增加了宫颈癌、阴茎癌、口腔癌和上呼吸道癌的风险。3人乳头瘤病毒疫苗可以训练免疫系统摧毁致癌病毒。乙型肝炎和丙型肝炎是另一种感染，会损害人体免疫系统发动攻击以消灭受感染细胞的能力。4这些类型的肝炎也会导致肝癌。\n\n有些疾病实际上会破坏免疫系统。尽管1型和2型糖尿病是两种不同类型的疾病，但它们都会让人更容易被感染。肥胖也会使人更容易受到感染，并在体内造成慢性、低度的炎症状态，损害免疫反应。5在这些情况下，食用增强免疫力的食物是有益的。\n\n在我们继续了解之前，有一个重要的警告：并不是所有的免疫缺陷都可以通过饮食来解决。要想让食物发挥作用，你首先需要有一个完整的免疫系统，各方面都完好无损。然而，在某些遗传性疾病中，免疫细胞存在缺陷，无法正常工作，因而饮食因素不太可能有帮助。其中一些具有危及生命的免疫缺陷的疾病有着拗口的名字，如共济失调毛细血管扩张症、白细胞异常色素减退综合征和重症联合免疫缺陷病。\n\n免疫系统过度活跃造成的疾病",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_10_immune_down",
+      "evidences": [
+        {
+          "excerpt": "让我们先来看看免疫力下降导致的疾病。一个崩溃的免疫系统会为威胁生命的感染打开一扇门，但感染只是一种危险。癌症也会在人体内扎根，因为无效的免疫系统无法检测到癌细胞。这种免疫系统变弱的问题可以通过免疫疗法来解决，即帮助免疫系统定位并摧毁癌细胞的新型药物治疗。这些药物已经在一些癌症的治疗上取得了突破性进展，包括恶性黑色素瘤、肺癌、肾癌、膀胱癌、头颈部癌和宫颈癌，还有一些血癌（如大B细胞淋巴瘤和急性淋巴细胞白血病）。\n\n这些经美国食品药品管理局批准的疗法可以帮助你身体的免疫系统发现并摧毁癌症。但癌症是可以被身体自己发现的，并且可以被一个完整、最有效的免疫系统消灭。有些癌症，如多发性骨髓瘤和白血病，属于免疫细胞疾病，会毁掉免疫细胞保卫健康的能力。\n\n具有讽刺意味的是，基于高剂量化疗和放疗的传统癌症治疗实际上削弱了免疫系统。这些疗法摧毁快速生长的细胞，因而是一种有效的抗癌手段。但在治疗过程中，大量免疫细胞和其他健康的细胞也会受损，阻碍身体抵御癌症的能力。\n\n某些病毒引起的感染也会破坏人体产生适当的免疫反应的能力。如我在第五章所述，艾滋病是人体感染人类免疫缺陷病毒引起的免疫功能受损的典型例子。人乳头瘤病毒削弱了免疫系统检测和摧毁受感染细胞的能力，从而增加了宫颈癌、阴茎癌、口腔癌和上呼吸道癌的风险。3人乳头瘤病毒疫苗可以训练免疫系统摧毁致癌病毒。乙型肝炎和丙型肝炎是另一种感染，会损害人体免疫系统发动攻击以消灭受感染细胞的能力。4这些类型的肝炎也会导致肝癌。\n\n有些疾病实际上会破坏免疫系统。尽管1型和2型糖尿病是两种不同类型的疾病，但它们都会让人更容易被感染。肥胖也会使人更容易受到感染，并在体内造成慢性、低度的炎症状态，损害免疫反应。5在这些情况下，食用增强免疫力的食物是有益的。\n\n在我们继续了解之前，有一个重要的警告：并不是所有的免疫缺陷都可以通过饮食来解决。要想让食物发挥作用，你首先需要有一个完整的免疫系统，各方面都完好无损。然而，在某些遗传性疾病中，免疫细胞存在缺陷，无法正常工作，因而饮食因素不太可能有帮助。其中一些具有危及生命的免疫缺陷的疾病有着拗口的名字，如共济失调毛细血管扩张症、白细胞异常色素减退综合征和重症联合免疫缺陷病。\n\n免疫系统过度活跃造成的疾病",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_10_immune_down"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "autoimmune",
+      "target": "chronic_inflammation",
+      "relation": "书中概述自身免疫病中免疫系统错误攻击自身器官，并举1型糖尿病与甲状腺炎为例",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_10_autoimmune",
+      "excerpt": "免疫力下降的对立面是免疫系统过于活跃。其结果是患有自身免疫病，即免疫系统在错误的时间、错误的地点活跃，导致慢性炎症并损害器官。自身免疫病的一个典型例子是1型糖尿病，在这种疾病中，身体会对胰腺中产生胰岛素的胰岛β细胞产生所谓自身抗体。这些细胞被破坏后无法合成足够的胰岛素，身体就无法正常处理血糖。在类风湿关节炎中，自身抗体会破坏关节，导致严重的残疾和致残性疼痛。\n\n红斑狼疮俗称狼疮，实际上涵盖多种自身免疫病，这些疾病中的抗体对不同的器官发动恶性攻击，包括心脏、肺、肾脏、皮肤、关节、大脑和脊髓。\n\n硬皮病是一种潜伏的疾病，器官在受到免疫系统的攻击后，就会被坚硬的瘢痕组织所取代。\n\n尽管多发性硬化的确切病因仍不确定，但这种疾病所造成的损伤来自自身抗体，它破坏脊髓和大脑中神经细胞的绝缘层，并逐步摧毁它，直至死亡。\n\n甲状腺也可能成为自身免疫的目标。在桥本甲状腺炎中，抗体会攻击甲状腺，破坏其分泌甲状腺激素的能力。格雷夫斯病也涉及攻击甲状腺的抗体，但情况正好相反，人体会产生抗体，而这些抗体会模仿一种向人体发出产生甲状腺激素信号的激素。其结果是甲状腺释放出大量的甲状腺激素，并带来许多副作用。6患有乳糜泻的人会受到因饮食中麸质的刺激而产生的自身抗体的折磨，这种抗体会引发令人痛苦的肠道炎症，破坏小肠内壁的细胞。7\n\n过度活跃的免疫会导致慢性炎症。哮喘患者有一个“好战”的免疫系统，当他们暴露在各种环境中时就会导致肺部出现严重炎症。银屑病患者的皮肤和关节会发炎。在炎症性肠病（克罗恩病和溃疡性结肠炎）中，肠道会出现大量的炎症反应，导致肠出血、胃气胀和腹痛。在溃疡性结肠炎中，持续不断的炎症会导致结肠癌。\n\n刺激免疫系统的食物\n\n在了解那些有助于免疫防御的食物之前，我们先来看看增强免疫功能的食物。如果你需要从更活跃的免疫系统中获益，那么这些食物可能对你很重要。值得注意的是：网上有很多关于据说能够增强免疫力的食物的说法，但很多都没有证据支持。在这一章中，我将介绍那些已经被证明对人体具有免疫益处的特定食物的研究。\n\n蘑菇",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_10_autoimmune",
+      "evidences": [
+        {
+          "excerpt": "免疫力下降的对立面是免疫系统过于活跃。其结果是患有自身免疫病，即免疫系统在错误的时间、错误的地点活跃，导致慢性炎症并损害器官。自身免疫病的一个典型例子是1型糖尿病，在这种疾病中，身体会对胰腺中产生胰岛素的胰岛β细胞产生所谓自身抗体。这些细胞被破坏后无法合成足够的胰岛素，身体就无法正常处理血糖。在类风湿关节炎中，自身抗体会破坏关节，导致严重的残疾和致残性疼痛。\n\n红斑狼疮俗称狼疮，实际上涵盖多种自身免疫病，这些疾病中的抗体对不同的器官发动恶性攻击，包括心脏、肺、肾脏、皮肤、关节、大脑和脊髓。\n\n硬皮病是一种潜伏的疾病，器官在受到免疫系统的攻击后，就会被坚硬的瘢痕组织所取代。\n\n尽管多发性硬化的确切病因仍不确定，但这种疾病所造成的损伤来自自身抗体，它破坏脊髓和大脑中神经细胞的绝缘层，并逐步摧毁它，直至死亡。\n\n甲状腺也可能成为自身免疫的目标。在桥本甲状腺炎中，抗体会攻击甲状腺，破坏其分泌甲状腺激素的能力。格雷夫斯病也涉及攻击甲状腺的抗体，但情况正好相反，人体会产生抗体，而这些抗体会模仿一种向人体发出产生甲状腺激素信号的激素。其结果是甲状腺释放出大量的甲状腺激素，并带来许多副作用。6患有乳糜泻的人会受到因饮食中麸质的刺激而产生的自身抗体的折磨，这种抗体会引发令人痛苦的肠道炎症，破坏小肠内壁的细胞。7\n\n过度活跃的免疫会导致慢性炎症。哮喘患者有一个“好战”的免疫系统，当他们暴露在各种环境中时就会导致肺部出现严重炎症。银屑病患者的皮肤和关节会发炎。在炎症性肠病（克罗恩病和溃疡性结肠炎）中，肠道会出现大量的炎症反应，导致肠出血、胃气胀和腹痛。在溃疡性结肠炎中，持续不断的炎症会导致结肠癌。\n\n刺激免疫系统的食物\n\n在了解那些有助于免疫防御的食物之前，我们先来看看增强免疫功能的食物。如果你需要从更活跃的免疫系统中获益，那么这些食物可能对你很重要。值得注意的是：网上有很多关于据说能够增强免疫力的食物的说法，但很多都没有证据支持。在这一章中，我将介绍那些已经被证明对人体具有免疫益处的特定食物的研究。\n\n蘑菇",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_10_autoimmune"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "mushrooms",
+      "target": "immune_balance",
+      "relation": "书中引述白蘑菇β-葡聚糖与唾液IgA等免疫指标相关的人体观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_10_mushroom_immune",
+      "excerpt": "白蘑菇是所有可食用蘑菇中最常见的一种，可以做成沙拉生吃，也可以和世界各地的食材一起烹饪。白蘑菇是生物活性物质的良好来源，包括刺激免疫系统的膳食纤维β-葡聚糖。澳大利亚西悉尼大学的研究人员对20名健康的志愿者进行了研究，这些志愿者被要求正常饮食，或在正常饮食之外添加白蘑菇。8吃蘑菇的参与者每天吃100克煮过的蘑菇。为了测试蘑菇是否影响免疫功能，研究人员测量了受试者唾液中两种抗体（免疫球蛋白A和免疫球蛋白G）的水平。免疫被激活后，唾液中会产生更多的抗体。研究人员发现，参与者体内免疫球蛋白A的水平稳步上升。在食用蘑菇1周后，免疫球蛋白A的水平上升了55%；在食用蘑菇2周后，免疫球蛋白A的水平继续上升，比基线水平高出了58%。食用蘑菇会激活肠道，从而刺激免疫系统产生抗体。然后抗体循环至黏膜，并由黏膜在唾液中分泌抗体。\n\n实验室里的其他一些研究使用了香菇、舞茸、金针菇、鸡油菌和平菇等其他食用蘑菇的提取物，并证明它们也能激活免疫防御系统。9除了它们的烹饪价值，一些最受欢迎的食用蘑菇还有提高免疫力的功效。\n\n陈年大蒜\n\n大蒜作为一种食材和一种健康药物已为世人所知。古希腊人用大蒜来增强运动员和士兵的力量，并将其用于具有治愈效果的补品中。新鲜大蒜有一种强烈的刺鼻气味，因适合烹饪而受人喜爱，但是它放久了之后几乎没有任何气味。人们发现陈年大蒜是一种膳食补充剂，并保留了强大的生物活性物质，比如可以影响免疫系统的芹菜素。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_10_mushroom_immune",
+      "evidences": [
+        {
+          "excerpt": "白蘑菇是所有可食用蘑菇中最常见的一种，可以做成沙拉生吃，也可以和世界各地的食材一起烹饪。白蘑菇是生物活性物质的良好来源，包括刺激免疫系统的膳食纤维β-葡聚糖。澳大利亚西悉尼大学的研究人员对20名健康的志愿者进行了研究，这些志愿者被要求正常饮食，或在正常饮食之外添加白蘑菇。8吃蘑菇的参与者每天吃100克煮过的蘑菇。为了测试蘑菇是否影响免疫功能，研究人员测量了受试者唾液中两种抗体（免疫球蛋白A和免疫球蛋白G）的水平。免疫被激活后，唾液中会产生更多的抗体。研究人员发现，参与者体内免疫球蛋白A的水平稳步上升。在食用蘑菇1周后，免疫球蛋白A的水平上升了55%；在食用蘑菇2周后，免疫球蛋白A的水平继续上升，比基线水平高出了58%。食用蘑菇会激活肠道，从而刺激免疫系统产生抗体。然后抗体循环至黏膜，并由黏膜在唾液中分泌抗体。\n\n实验室里的其他一些研究使用了香菇、舞茸、金针菇、鸡油菌和平菇等其他食用蘑菇的提取物，并证明它们也能激活免疫防御系统。9除了它们的烹饪价值，一些最受欢迎的食用蘑菇还有提高免疫力的功效。\n\n陈年大蒜\n\n大蒜作为一种食材和一种健康药物已为世人所知。古希腊人用大蒜来增强运动员和士兵的力量，并将其用于具有治愈效果的补品中。新鲜大蒜有一种强烈的刺鼻气味，因适合烹饪而受人喜爱，但是它放久了之后几乎没有任何气味。人们发现陈年大蒜是一种膳食补充剂，并保留了强大的生物活性物质，比如可以影响免疫系统的芹菜素。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_10_mushroom_immune"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "alliums",
+      "target": "immune_resilience",
+      "relation": "书中引述陈年大蒜提取物与冷流感季节免疫细胞功能及症状天数相关的试验叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_10_garlic",
+      "excerpt": "位于盖恩斯维尔的佛罗里达大学的研究人员研究了在感冒和流感季节，陈年大蒜对120名20多岁和30岁出头的健康男性和女性免疫系统的影响。10研究人员让两组受试者分别服用放置了90天的陈年大蒜的提取物或安慰剂，并抽取他们的血液以分析免疫反应。受试者被要求每天写一份疾病日记，记录所有生病的症状，如流鼻涕、头部充血、喉咙痛、咳嗽、发烧或身体疼痛，并记录他们是否因病重而无法上学或工作。研究结束时，服用陈年大蒜提取物的那组受试者血液中循环的免疫T细胞和自然杀伤细胞明显多于服用安慰剂的那组。值得注意的是，服用陈年大蒜提取物的人体内的T细胞具有超强的能力，其自我复制速度是服用安慰剂的人的8倍。大蒜也能增强自然杀伤细胞的活性，使它们比服用安慰剂的人的类似细胞活跃30%。\n\n疾病日记显示，服用大蒜提取物的人感冒和流感的症状减少了20%，感到身体不适而无法参与常规活动的次数减少了60%，请病假的次数减少了58%。这项研究表明，陈年大蒜与增强免疫细胞活性、减少疾病之间有很好的关联性。\n\n日本京都府立医科大学的研究人员进行的另一项研究招募了无法做手术的癌症患者。11他们在服用陈年大蒜6个月后，血液中循环的自然杀伤细胞的活性有所增加。这为研究陈年大蒜是否有助于增强接受免疫治疗的患者的抗癌免疫反应打开了大门。\n\n这些研究提供了临床证据，证明陈年大蒜可以增强我们对日常感染甚至潜在癌症的免疫防御能力。\n\n西蓝花苗",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_10_garlic",
+      "evidences": [
+        {
+          "excerpt": "位于盖恩斯维尔的佛罗里达大学的研究人员研究了在感冒和流感季节，陈年大蒜对120名20多岁和30岁出头的健康男性和女性免疫系统的影响。10研究人员让两组受试者分别服用放置了90天的陈年大蒜的提取物或安慰剂，并抽取他们的血液以分析免疫反应。受试者被要求每天写一份疾病日记，记录所有生病的症状，如流鼻涕、头部充血、喉咙痛、咳嗽、发烧或身体疼痛，并记录他们是否因病重而无法上学或工作。研究结束时，服用陈年大蒜提取物的那组受试者血液中循环的免疫T细胞和自然杀伤细胞明显多于服用安慰剂的那组。值得注意的是，服用陈年大蒜提取物的人体内的T细胞具有超强的能力，其自我复制速度是服用安慰剂的人的8倍。大蒜也能增强自然杀伤细胞的活性，使它们比服用安慰剂的人的类似细胞活跃30%。\n\n疾病日记显示，服用大蒜提取物的人感冒和流感的症状减少了20%，感到身体不适而无法参与常规活动的次数减少了60%，请病假的次数减少了58%。这项研究表明，陈年大蒜与增强免疫细胞活性、减少疾病之间有很好的关联性。\n\n日本京都府立医科大学的研究人员进行的另一项研究招募了无法做手术的癌症患者。11他们在服用陈年大蒜6个月后，血液中循环的自然杀伤细胞的活性有所增加。这为研究陈年大蒜是否有助于增强接受免疫治疗的患者的抗癌免疫反应打开了大门。\n\n这些研究提供了临床证据，证明陈年大蒜可以增强我们对日常感染甚至潜在癌症的免疫防御能力。\n\n西蓝花苗",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_10_garlic"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "cruciferous",
+      "target": "immune_balance",
+      "relation": "书中描述西蓝花苗萝卜硫素含量显著高于成熟西蓝花，并引述与流感疫苗反应相关试验",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_10_broccoli_sprout",
+      "excerpt": "用西蓝花苗做沙拉很美味，这些3~4天大的植物卷须有一种清淡的坚果味道。记住，西蓝花含有萝卜硫素，这是一种有效的生物活性物质，能激活免疫系统，而且出乎意料的是，西蓝花苗中萝卜硫素的含量是普通成熟西蓝花的100倍。12你把西蓝花苗完全嚼碎时就能尝到它的味道了。咀嚼很重要，因为咀嚼会破坏植物细胞壁，释放一种叫作黑芥子酶的酶。这种酶也很重要，因为它能将萝卜硫素（自然状态下在植物中不活跃）转化为口腔中的活性形式。被激活的萝卜硫素可以影响你体内的细胞。\n\n北卡罗来纳大学教堂山分校、斯坦福大学和瑞士巴塞尔大学儿童医院的研究人员通过一项涉及流感疫苗的临床试验，研究了食用西蓝花苗对免疫系统的影响。13他们想知道西蓝花苗是否能帮助身体在接种疫苗后增强反应能力。科学家招募了29名将近30岁的健康志愿者，让他们连续4天每天喝2杯混合了西蓝花苗的奶昔，或者是添加了安慰剂的奶昔。志愿者在喝奶昔的第二天接种了鼻喷雾流感疫苗。该疫苗将一种活的但已变弱的流感病毒注入鼻腔黏膜。\n\n结果显示，喝西蓝花苗奶昔的志愿者血液中的自然杀伤细胞是喝安慰剂奶昔的志愿者的22倍，前者的自然杀伤细胞也有更强的杀伤力。事实证明，喝西蓝花苗奶昔的人鼻子的细胞中残留的流感病毒也更少，这表明他们的身体更有效地清除了入侵者，吃西蓝花苗可以增强你对流感病毒的免疫力。\n\n特级初榨橄榄油\n\n特级初榨橄榄油是地中海饮食的重要组成部分，它所含的生物活性物质，如羟基酪醇、刺激醛和油酸，可以增强你的免疫系统。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_10_broccoli_sprout",
+      "evidences": [
+        {
+          "excerpt": "用西蓝花苗做沙拉很美味，这些3~4天大的植物卷须有一种清淡的坚果味道。记住，西蓝花含有萝卜硫素，这是一种有效的生物活性物质，能激活免疫系统，而且出乎意料的是，西蓝花苗中萝卜硫素的含量是普通成熟西蓝花的100倍。12你把西蓝花苗完全嚼碎时就能尝到它的味道了。咀嚼很重要，因为咀嚼会破坏植物细胞壁，释放一种叫作黑芥子酶的酶。这种酶也很重要，因为它能将萝卜硫素（自然状态下在植物中不活跃）转化为口腔中的活性形式。被激活的萝卜硫素可以影响你体内的细胞。\n\n北卡罗来纳大学教堂山分校、斯坦福大学和瑞士巴塞尔大学儿童医院的研究人员通过一项涉及流感疫苗的临床试验，研究了食用西蓝花苗对免疫系统的影响。13他们想知道西蓝花苗是否能帮助身体在接种疫苗后增强反应能力。科学家招募了29名将近30岁的健康志愿者，让他们连续4天每天喝2杯混合了西蓝花苗的奶昔，或者是添加了安慰剂的奶昔。志愿者在喝奶昔的第二天接种了鼻喷雾流感疫苗。该疫苗将一种活的但已变弱的流感病毒注入鼻腔黏膜。\n\n结果显示，喝西蓝花苗奶昔的志愿者血液中的自然杀伤细胞是喝安慰剂奶昔的志愿者的22倍，前者的自然杀伤细胞也有更强的杀伤力。事实证明，喝西蓝花苗奶昔的人鼻子的细胞中残留的流感病毒也更少，这表明他们的身体更有效地清除了入侵者，吃西蓝花苗可以增强你对流感病毒的免疫力。\n\n特级初榨橄榄油\n\n特级初榨橄榄油是地中海饮食的重要组成部分，它所含的生物活性物质，如羟基酪醇、刺激醛和油酸，可以增强你的免疫系统。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_10_broccoli_sprout"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "berries_fruits",
+      "target": "immune_balance",
+      "relation": "书中引述蓝莓对代谢综合征人群及运动后天然杀伤细胞等指标的试验叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_10_blueberry",
+      "excerpt": "蓝莓凭借自己的生物活性物质，已被证明具有显著的影响免疫的能力。路易斯安那州立大学的研究人员对27名近60岁、患有代谢综合征的人进行了随机、用安慰剂做对照的临床试验，以研究蓝莓的免疫效果。24代谢综合征是心血管疾病发展的前兆。在6周的时间里，参与者每天在吃早餐和晚餐时都各喝一次蓝莓奶昔或安慰剂奶昔。蓝莓奶昔的量为12盎司（1.5杯），由冷冻干燥的蓝莓粉混合酸奶或牛奶制成。每杯奶昔中蓝莓粉的含量相当于两杯新鲜蓝莓。25安慰剂使用相同的原料，只不过没有蓝莓。研究前后的血液检测显示，饮用蓝莓奶昔的人血液中一种叫作髓样树突状细胞的免疫细胞增加了88%。这些细胞有助于启动身体对抗感染的免疫反应。饮用安慰剂奶昔的受试者的髓样树突状细胞或任何其他免疫细胞则没有变化。\n\n在研究结束时，饮用蓝莓奶昔的人的炎症标志物水平也下降了，这表明即便是在增强免疫功能的同时，蓝莓也能平息过度的炎症。\n\n北卡罗来纳州的阿巴拉契亚州立大学、蒙大拿大学和田纳西州的范德比尔特大学的研究人员合作进行了一项研究，旨在确定剧烈运动后蓝莓对身体的影响。26众所周知，高强度的锻炼会引发免疫细胞的短暂上升，在锻炼后又会立即下降。研究人员招募了25名30岁出头的身体健康的志愿者，测量了他们的基本氧气摄入量、心率和呼吸。其中有一半的人连续6周每天都吃包装好的袋装蓝莓（每份相当于1.7杯）。他们遵循严格的饮食指南，所以每个人都有相似的饮食。另一半人则按规定饮食进食，但不吃蓝莓。\n\n在吃蓝莓6周后，参与者在跑步机上跑步2.5小时。研究人员在他们跑步前抽取了他们的血液。然后，在锻炼前1小时，蓝莓组吃比平时更多的蓝莓（375克，或2.7杯新鲜蓝莓）。在参与者结束跑步后，研究人员立即采集了另一份血液样本。1小时后，他们最后一次抽血，观察参与者的免疫细胞发生了什么变化，以及吃蓝莓的效果。研究人员对血样中的不同免疫细胞（包括T细胞、B细胞和自然杀伤细胞）进行了分析。\n\n结果令人大开眼界。在运动前，吃蓝莓的人自然杀伤细胞的数量几乎是不吃蓝莓的人的两倍。正常情况下，自然杀伤细胞水平在剧烈运动后会迅速下降。但在食用蓝莓的那组人当中，自然杀伤细胞水平在停止运动后至少1小时仍继续上升。\n\n蓝莓增加自然杀伤细胞数量的能力是显著的。自然杀伤细胞对消除被病毒感染的细胞或肿瘤细胞的免疫反应至关重要，还可以帮助免疫系统形成对外来入侵者的记忆。这项研究特别有意思，因为它揭示了这种免疫效果所需的蓝莓量：每天1.7杯蓝莓。\n\n辣椒",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_10_blueberry",
+      "evidences": [
+        {
+          "excerpt": "蓝莓凭借自己的生物活性物质，已被证明具有显著的影响免疫的能力。路易斯安那州立大学的研究人员对27名近60岁、患有代谢综合征的人进行了随机、用安慰剂做对照的临床试验，以研究蓝莓的免疫效果。24代谢综合征是心血管疾病发展的前兆。在6周的时间里，参与者每天在吃早餐和晚餐时都各喝一次蓝莓奶昔或安慰剂奶昔。蓝莓奶昔的量为12盎司（1.5杯），由冷冻干燥的蓝莓粉混合酸奶或牛奶制成。每杯奶昔中蓝莓粉的含量相当于两杯新鲜蓝莓。25安慰剂使用相同的原料，只不过没有蓝莓。研究前后的血液检测显示，饮用蓝莓奶昔的人血液中一种叫作髓样树突状细胞的免疫细胞增加了88%。这些细胞有助于启动身体对抗感染的免疫反应。饮用安慰剂奶昔的受试者的髓样树突状细胞或任何其他免疫细胞则没有变化。\n\n在研究结束时，饮用蓝莓奶昔的人的炎症标志物水平也下降了，这表明即便是在增强免疫功能的同时，蓝莓也能平息过度的炎症。\n\n北卡罗来纳州的阿巴拉契亚州立大学、蒙大拿大学和田纳西州的范德比尔特大学的研究人员合作进行了一项研究，旨在确定剧烈运动后蓝莓对身体的影响。26众所周知，高强度的锻炼会引发免疫细胞的短暂上升，在锻炼后又会立即下降。研究人员招募了25名30岁出头的身体健康的志愿者，测量了他们的基本氧气摄入量、心率和呼吸。其中有一半的人连续6周每天都吃包装好的袋装蓝莓（每份相当于1.7杯）。他们遵循严格的饮食指南，所以每个人都有相似的饮食。另一半人则按规定饮食进食，但不吃蓝莓。\n\n在吃蓝莓6周后，参与者在跑步机上跑步2.5小时。研究人员在他们跑步前抽取了他们的血液。然后，在锻炼前1小时，蓝莓组吃比平时更多的蓝莓（375克，或2.7杯新鲜蓝莓）。在参与者结束跑步后，研究人员立即采集了另一份血液样本。1小时后，他们最后一次抽血，观察参与者的免疫细胞发生了什么变化，以及吃蓝莓的效果。研究人员对血样中的不同免疫细胞（包括T细胞、B细胞和自然杀伤细胞）进行了分析。\n\n结果令人大开眼界。在运动前，吃蓝莓的人自然杀伤细胞的数量几乎是不吃蓝莓的人的两倍。正常情况下，自然杀伤细胞水平在剧烈运动后会迅速下降。但在食用蓝莓的那组人当中，自然杀伤细胞水平在停止运动后至少1小时仍继续上升。\n\n蓝莓增加自然杀伤细胞数量的能力是显著的。自然杀伤细胞对消除被病毒感染的细胞或肿瘤细胞的免疫反应至关重要，还可以帮助免疫系统形成对外来入侵者的记忆。这项研究特别有意思，因为它揭示了这种免疫效果所需的蓝莓量：每天1.7杯蓝莓。\n\n辣椒",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_10_blueberry"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "green_tea",
+      "target": "autoimmune",
+      "relation": "书中描述EGCG可减少促炎T细胞、增加调节性T细胞，并引述多发性硬化动物模型叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_mechanistic",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_10_green_tea_auto",
+      "excerpt": "绿茶再一次成为健康的助推器，这次是针对自身免疫病。你所熟悉的主要生物活性物质——表没食子儿茶素没食子酸酯，能减少促炎T细胞的数量，从而降低免疫系统的活性。与此同时，这种物质能增加调节性T细胞的产量，使免疫系统的活动性恢复到正常水平。45别忘了，表没食子儿茶素没食子酸酯还具有抗血管生成和保护DNA的作用，充分显示了大自然母亲如何在单一的生物活性物质中融合多种益处。\n\n塔夫茨大学美国农业部老年人营养研究中心的科学家研究了表没食子儿茶素没食子酸酯对老鼠的影响，这些老鼠患有类似于人类多发性硬化的自身免疫性脑病。在老鼠身上，这被称为实验性自身免疫性脑炎。这些老鼠大脑中的神经被剥去了绝缘层，就像在多发性硬化患者身上看到的一样，结果导致神经耗损、大脑炎症和瘢痕形成。然而，在老鼠口服表没食子儿茶素没食子酸酯后，它们的症状远没有之前那般严重，而且免疫细胞产生的炎症蛋白更少。研究人员在检查老鼠的大脑时发现老鼠的整体炎症和神经损伤减少了。46因此，绿茶能够使过度活跃的免疫系统恢复到更平衡的状态，减少大脑中的免疫破坏。47\n\n日本静冈县立大学、关西医科大学、国立长寿科学研究所和东京大学的研究人员合作，研究绿茶对另一种自身免疫病——狼疮的疗效。48他们采用了不同的方法，让老鼠自行产生类似狼疮中的自身抗体。这些自身抗体会引发严重的肾脏损伤，而这正是狼疮患者害怕的并发症之一。科学家在第一组老鼠的饮食中加入绿茶粉，持续3个月。第二组则吃老鼠平时吃的食物。49血液检测显示，与正常进食的老鼠相比，食用绿茶提取物的老鼠体内的自身抗体水平明显较低。事实上，与吃普通食物的老鼠相比，吃绿茶提取物的老鼠的免疫沉积物水平下降了80%以上。当科学家检查肾脏时，他们发现被喂食绿茶提取物的老鼠因其自身免疫病造成的损害是另一组的1/4。由于肾脏损伤较少，吃绿茶提取物的老鼠存活的时间是正常饮食的老鼠的两倍。中国台湾“国防医学院”的科学家也发现了类似的保护作用。50当容易得狼疮的老鼠食用表没食子儿茶素没食子酸酯5个月后，它们的肾脏损伤减少了许多。此外，他们还发现绿茶能增加调节性T细胞的数量。这些细胞抑制了免疫反应，降低了疾病的严重程度。51",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_10_green_tea_auto",
+      "evidences": [
+        {
+          "excerpt": "绿茶再一次成为健康的助推器，这次是针对自身免疫病。你所熟悉的主要生物活性物质——表没食子儿茶素没食子酸酯，能减少促炎T细胞的数量，从而降低免疫系统的活性。与此同时，这种物质能增加调节性T细胞的产量，使免疫系统的活动性恢复到正常水平。45别忘了，表没食子儿茶素没食子酸酯还具有抗血管生成和保护DNA的作用，充分显示了大自然母亲如何在单一的生物活性物质中融合多种益处。\n\n塔夫茨大学美国农业部老年人营养研究中心的科学家研究了表没食子儿茶素没食子酸酯对老鼠的影响，这些老鼠患有类似于人类多发性硬化的自身免疫性脑病。在老鼠身上，这被称为实验性自身免疫性脑炎。这些老鼠大脑中的神经被剥去了绝缘层，就像在多发性硬化患者身上看到的一样，结果导致神经耗损、大脑炎症和瘢痕形成。然而，在老鼠口服表没食子儿茶素没食子酸酯后，它们的症状远没有之前那般严重，而且免疫细胞产生的炎症蛋白更少。研究人员在检查老鼠的大脑时发现老鼠的整体炎症和神经损伤减少了。46因此，绿茶能够使过度活跃的免疫系统恢复到更平衡的状态，减少大脑中的免疫破坏。47\n\n日本静冈县立大学、关西医科大学、国立长寿科学研究所和东京大学的研究人员合作，研究绿茶对另一种自身免疫病——狼疮的疗效。48他们采用了不同的方法，让老鼠自行产生类似狼疮中的自身抗体。这些自身抗体会引发严重的肾脏损伤，而这正是狼疮患者害怕的并发症之一。科学家在第一组老鼠的饮食中加入绿茶粉，持续3个月。第二组则吃老鼠平时吃的食物。49血液检测显示，与正常进食的老鼠相比，食用绿茶提取物的老鼠体内的自身抗体水平明显较低。事实上，与吃普通食物的老鼠相比，吃绿茶提取物的老鼠的免疫沉积物水平下降了80%以上。当科学家检查肾脏时，他们发现被喂食绿茶提取物的老鼠因其自身免疫病造成的损害是另一组的1/4。由于肾脏损伤较少，吃绿茶提取物的老鼠存活的时间是正常饮食的老鼠的两倍。中国台湾“国防医学院”的科学家也发现了类似的保护作用。50当容易得狼疮的老鼠食用表没食子儿茶素没食子酸酯5个月后，它们的肾脏损伤减少了许多。此外，他们还发现绿茶能增加调节性T细胞的数量。这些细胞抑制了免疫反应，降低了疾病的严重程度。51",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_10_green_tea_auto"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "green_tea",
+      "target": "autoimmune",
+      "relation": "书中引述绿茶干预与狼疮患者疾病活动相关的随机对照试验叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_10_green_tea_lupus",
+      "excerpt": "在对人类进行的研究中也已经观察到了这种益处。伊朗阿瓦士·荣迪沙帕尔医科大学的研究人员对68名年龄在15岁到55岁之间患有狼疮的女性进行了随机、双盲、用安慰剂做对照的临床试验。52在3个月的时间里，一组研究对象每天服用绿茶提取物胶囊，胶囊中含有相当于4.7杯绿茶里表没食子儿茶素没食子酸酯的量；另一组服用安慰剂。研究人员通过常规的医学检测和实验室测试来监测两组研究对象狼疮的活动性。参与者提供了血样和尿样，并填写了关于食物和生活方式的调查问卷。\n\n3个月后，研究人员发现，服用绿茶提取物的女性狼疮的活动性降低了1/2。相比之下，服用安慰剂的参与者没有明显变化。绿茶组血液中作为狼疮标志物的抗DNA抗体的水平较低。当对生活质量调查进行分析时，研究人员发现，与服用安慰剂的女性相比，服用绿茶提取物的女性在身体机能和整体健康方面有30%的改善。\n\n总的来说，这些研究为绿茶的作用描绘了一幅令人信服的画面，它能镇定过度活跃的免疫系统，防止出现症状和给器官带来损伤。\n\n可以镇定自身免疫病的饮食模式\n\n生素饮食",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_10_green_tea_lupus",
+      "evidences": [
+        {
+          "excerpt": "在对人类进行的研究中也已经观察到了这种益处。伊朗阿瓦士·荣迪沙帕尔医科大学的研究人员对68名年龄在15岁到55岁之间患有狼疮的女性进行了随机、双盲、用安慰剂做对照的临床试验。52在3个月的时间里，一组研究对象每天服用绿茶提取物胶囊，胶囊中含有相当于4.7杯绿茶里表没食子儿茶素没食子酸酯的量；另一组服用安慰剂。研究人员通过常规的医学检测和实验室测试来监测两组研究对象狼疮的活动性。参与者提供了血样和尿样，并填写了关于食物和生活方式的调查问卷。\n\n3个月后，研究人员发现，服用绿茶提取物的女性狼疮的活动性降低了1/2。相比之下，服用安慰剂的参与者没有明显变化。绿茶组血液中作为狼疮标志物的抗DNA抗体的水平较低。当对生活质量调查进行分析时，研究人员发现，与服用安慰剂的女性相比，服用绿茶提取物的女性在身体机能和整体健康方面有30%的改善。\n\n总的来说，这些研究为绿茶的作用描绘了一幅令人信服的画面，它能镇定过度活跃的免疫系统，防止出现症状和给器官带来损伤。\n\n可以镇定自身免疫病的饮食模式\n\n生素饮食",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_10_green_tea_lupus"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "plant_based_diet",
+      "target": "autoimmune",
+      "relation": "书中引述高蔬菜低蛋白饮食与多发性硬化复发率及抗炎菌群变化相关的小规模观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_10_plant_ms",
+      "excerpt": "免疫抑制饮食可以帮助多发性硬化患者避免疾病的突然发作或复发。意大利唐·卡洛·尼奥基基金会的研究人员探索了12个月的植物性饮食对多发性硬化的干预效果。55他们招募了20名志愿者，这些志愿者都有复发-缓解型多发性硬化的历史，也就是多次令人沮丧的疾病复发。之所以选择这些参与者，是因为他们在过去12个月里自我报告的饮食模式属于两个不同的组别。其中一组吃的是高蔬菜、低蛋白的饮食，主要包括新鲜水果、蔬菜、豆类、坚果、全谷物和特级初榨橄榄油。他们摄入的鱼、家禽肉、鸡蛋和乳制品非常少，吃少量糖或盐，不喝酒，不吃红肉或其他任何种类的饱和动物脂肪。另一组报告说，他们吃的是典型的西方饮食，包括普通的红肉、加工肉、精制谷物、含糖食品，以及其他饱和脂肪。在研究过程中，一名专业营养师每4个月对参与者进行一次回访，以确保他们的饮食模式仍然保持不变。\n\n在研究开始和结束时，参与者收到了一份对他们多发性硬化症状的评估。结果显示，与食用西方饮食的人相比，食用高蔬菜、低蛋白饮食的参与者多发性硬化的复发率降低为原来的1/3，而且他们报告中的残疾率也更低。事实上，那些吃西方饮食的人在过去12个月里的残疾率增加了。血液分析显示，素食者血液中被激活的免疫T细胞较少，单核细胞水平较低，而单核细胞与炎症有关。这与防止多发性硬化复发及其产生的症状是一致的。\n\n研究人员之所以采集粪便样本，是因为他们在寻找参与者的饮食、微生物组和免疫反应之间的联系。他们发现了一个联系：以植物饮食为主的参与者体内一种叫作毛螺菌科的肠道细菌的含量高出35%，这种细菌能产生我们在第八章了解到的抗炎短链脂肪酸。毛螺菌科还帮助调节性T细胞成熟。调节性T细胞可以抑制多发性硬化的免疫反应，从而抑制这种疾病。56虽然这项研究只涉及少数患者，但两种饮食模式和T细胞活性的关系在改善人体机能方面的差异是令人鼓舞的，并可能促使那些受多发性硬化影响的人改变他们的饮食模式，转而以植物为主。\n\n自身免疫方案饮食\n\n另一种饮食模式被称为自身免疫方案饮食，它在很大程度上借鉴了旧石器时代的饮食。人们已经对其进行探索，将其用作一种缓解炎症性肠病症状的策略。炎症性肠病患者有严重的胃肠道症状，如腹部绞痛、胃气胀、腹泻、直肠出血、食欲不振和体重意外下降。虽然被称为生物疗法的一些复杂的药物可能有疗效，但它们并不总能使疾病得到缓解，还伴有副作用。\n\n让我们先来看看旧石器时代的饮食。这种饮食是一种排除方案，所依据的观点是旧石器时代人类食用的食物与现代加工食品相比不会引起身体炎症。事实上，虽然很少有证据表明旧石器时代的人真正吃了什么，但一些小型研究已经对旧石器时代的饮食进行了评估，以确定其对肠道炎症的影响，并推测抗炎作用对过度活跃的免疫系统有益。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_10_plant_ms",
+      "evidences": [
+        {
+          "excerpt": "免疫抑制饮食可以帮助多发性硬化患者避免疾病的突然发作或复发。意大利唐·卡洛·尼奥基基金会的研究人员探索了12个月的植物性饮食对多发性硬化的干预效果。55他们招募了20名志愿者，这些志愿者都有复发-缓解型多发性硬化的历史，也就是多次令人沮丧的疾病复发。之所以选择这些参与者，是因为他们在过去12个月里自我报告的饮食模式属于两个不同的组别。其中一组吃的是高蔬菜、低蛋白的饮食，主要包括新鲜水果、蔬菜、豆类、坚果、全谷物和特级初榨橄榄油。他们摄入的鱼、家禽肉、鸡蛋和乳制品非常少，吃少量糖或盐，不喝酒，不吃红肉或其他任何种类的饱和动物脂肪。另一组报告说，他们吃的是典型的西方饮食，包括普通的红肉、加工肉、精制谷物、含糖食品，以及其他饱和脂肪。在研究过程中，一名专业营养师每4个月对参与者进行一次回访，以确保他们的饮食模式仍然保持不变。\n\n在研究开始和结束时，参与者收到了一份对他们多发性硬化症状的评估。结果显示，与食用西方饮食的人相比，食用高蔬菜、低蛋白饮食的参与者多发性硬化的复发率降低为原来的1/3，而且他们报告中的残疾率也更低。事实上，那些吃西方饮食的人在过去12个月里的残疾率增加了。血液分析显示，素食者血液中被激活的免疫T细胞较少，单核细胞水平较低，而单核细胞与炎症有关。这与防止多发性硬化复发及其产生的症状是一致的。\n\n研究人员之所以采集粪便样本，是因为他们在寻找参与者的饮食、微生物组和免疫反应之间的联系。他们发现了一个联系：以植物饮食为主的参与者体内一种叫作毛螺菌科的肠道细菌的含量高出35%，这种细菌能产生我们在第八章了解到的抗炎短链脂肪酸。毛螺菌科还帮助调节性T细胞成熟。调节性T细胞可以抑制多发性硬化的免疫反应，从而抑制这种疾病。56虽然这项研究只涉及少数患者，但两种饮食模式和T细胞活性的关系在改善人体机能方面的差异是令人鼓舞的，并可能促使那些受多发性硬化影响的人改变他们的饮食模式，转而以植物为主。\n\n自身免疫方案饮食\n\n另一种饮食模式被称为自身免疫方案饮食，它在很大程度上借鉴了旧石器时代的饮食。人们已经对其进行探索，将其用作一种缓解炎症性肠病症状的策略。炎症性肠病患者有严重的胃肠道症状，如腹部绞痛、胃气胀、腹泻、直肠出血、食欲不振和体重意外下降。虽然被称为生物疗法的一些复杂的药物可能有疗效，但它们并不总能使疾病得到缓解，还伴有副作用。\n\n让我们先来看看旧石器时代的饮食。这种饮食是一种排除方案，所依据的观点是旧石器时代人类食用的食物与现代加工食品相比不会引起身体炎症。事实上，虽然很少有证据表明旧石器时代的人真正吃了什么，但一些小型研究已经对旧石器时代的饮食进行了评估，以确定其对肠道炎症的影响，并推测抗炎作用对过度活跃的免疫系统有益。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_10_plant_ms"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "dairy",
+      "target": "cardiometabolic",
+      "relation": "书中引述适量奶酪摄入与心脏病风险相关的人群观察，同时提示饱和脂肪与盐的顾虑",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_13_cheese",
+      "excerpt": "奶酪确实含有饱和脂肪，而且含盐量可能较高，这本身就会对健康造成危害。但对瑞典数万人进行的研究表明，吃少量奶酪（每天最多6片）可以降低患心脏病的风险。17德国一项针对24340人开展的大型研究发现，每天吃两片硬质奶酪，如豪达奶酪、亚尔斯贝格奶酪、埃门塔尔奶酪或埃丹奶酪，可以降低患肺癌和前列腺癌的风险。18正如第六章所指出的，这些益处与维生素K2有关，后者存在于硬质奶酪中。其他奶酪，如帕尔马干酪、切达干酪和卡芒贝尔奶酪，能为你的微生物组提供健康的肠道细菌。\n\n巧克力",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_13_cheese",
+      "evidences": [
+        {
+          "excerpt": "奶酪确实含有饱和脂肪，而且含盐量可能较高，这本身就会对健康造成危害。但对瑞典数万人进行的研究表明，吃少量奶酪（每天最多6片）可以降低患心脏病的风险。17德国一项针对24340人开展的大型研究发现，每天吃两片硬质奶酪，如豪达奶酪、亚尔斯贝格奶酪、埃门塔尔奶酪或埃丹奶酪，可以降低患肺癌和前列腺癌的风险。18正如第六章所指出的，这些益处与维生素K2有关，后者存在于硬质奶酪中。其他奶酪，如帕尔马干酪、切达干酪和卡芒贝尔奶酪，能为你的微生物组提供健康的肠道细菌。\n\n巧克力",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_13_cheese"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "cacao",
+      "target": "polyphenols",
+      "relation": "书中区分黑巧克力因可可固体较高而与多项健康益处叙述相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_13_dark_chocolate",
+      "excerpt": "巧克力是一种糖果，也是一种含有饱和脂肪和加工糖的甜食，而脂肪和加工糖都不健康。但是黑巧克力含有大量的可可固体，这种核心成分能够带给健康许多益处。由于可可含量高，糖和乳制品含量少，黑巧克力成为一种更健康的甜食。研究发现，食用黑巧克力可以降低患心脏病和糖尿病的风险，保护你的DNA，并改善肠道细菌。19正如我们在第七章了解到的，饮用含有高浓度可可的热巧克力可以增加干细胞并改善血流量，甚至还可以将免疫系统中的细胞从促炎状态转变为抗炎状态。20\n\n帕尔马火腿和伊比利亚橡果火腿",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_13_dark_chocolate",
+      "evidences": [
+        {
+          "excerpt": "巧克力是一种糖果，也是一种含有饱和脂肪和加工糖的甜食，而脂肪和加工糖都不健康。但是黑巧克力含有大量的可可固体，这种核心成分能够带给健康许多益处。由于可可含量高，糖和乳制品含量少，黑巧克力成为一种更健康的甜食。研究发现，食用黑巧克力可以降低患心脏病和糖尿病的风险，保护你的DNA，并改善肠道细菌。19正如我们在第七章了解到的，饮用含有高浓度可可的热巧克力可以增加干细胞并改善血流量，甚至还可以将免疫系统中的细胞从促炎状态转变为抗炎状态。20\n\n帕尔马火腿和伊比利亚橡果火腿",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_13_dark_chocolate"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "herbs_spices",
+      "target": "cardiometabolic",
+      "relation": "书中引述中国辛辣饮食地区每日辛辣食物与较低死亡风险相关的大规模观察",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_13_chili",
+      "excerpt": "曾经有一段时间，辛辣食物仅仅因为有可能造成胃灼热就被认为对健康有害。不过相关研究彻底反思了辣椒素的生热和促进健康的特性，不管是新鲜辣椒还是干辣椒。来自中国食用辛辣菜肴地区的一项大规模研究表明，每天至少吃一次辛辣食物可以降低因癌症、心脏病、中风、糖尿病、呼吸系统疾病和感染等疾病而死亡的风险。21肠道细菌也喜欢辣椒素所带来的热度。研究表明，辣椒滋养的微生物组可以预防炎症和肥胖。22\n\n紫土豆\n\n这些独特的土豆有着墨色的外皮和蓝紫色的内瓤，现代化的市场和餐馆菜单上都能找到它。最健康的吃法可能是先将其烤熟或煮熟，然后切成片加入沙拉。但是科学家在实验室里发现紫土豆具有抗血管生成能力，可以杀死肿瘤干细胞。无论是煮、烤，还是做成片，紫土豆都能保持抗癌效果。23\n\n树坚果",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_13_chili",
+      "evidences": [
+        {
+          "excerpt": "曾经有一段时间，辛辣食物仅仅因为有可能造成胃灼热就被认为对健康有害。不过相关研究彻底反思了辣椒素的生热和促进健康的特性，不管是新鲜辣椒还是干辣椒。来自中国食用辛辣菜肴地区的一项大规模研究表明，每天至少吃一次辛辣食物可以降低因癌症、心脏病、中风、糖尿病、呼吸系统疾病和感染等疾病而死亡的风险。21肠道细菌也喜欢辣椒素所带来的热度。研究表明，辣椒滋养的微生物组可以预防炎症和肥胖。22\n\n紫土豆\n\n这些独特的土豆有着墨色的外皮和蓝紫色的内瓤，现代化的市场和餐馆菜单上都能找到它。最健康的吃法可能是先将其烤熟或煮熟，然后切成片加入沙拉。但是科学家在实验室里发现紫土豆具有抗血管生成能力，可以杀死肿瘤干细胞。无论是煮、烤，还是做成片，紫土豆都能保持抗癌效果。23\n\n树坚果",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_13_chili"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "nuts_seeds",
+      "target": "digestive_cancer_risk",
+      "relation": "书中引述树坚果摄入与癌症相关结局改善的欧洲大型研究叙述",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_13_nuts_cancer",
+      "excerpt": "坚果（杏仁、腰果、栗子、夏威夷果、碧根果、松子、开心果和核桃）本身并不会令人惊讶，因为我们知道吃坚果对人体有益，但它们改变癌症命运的能力却令人惊讶。欧洲的一项大型研究表明，每天食用一份半的树坚果（22个半瓣核桃）可以降低31%患结肠癌的风险。24更惊人的是13个主要的癌症研究中心（包括哈佛大学、杜克大学、加州大学旧金山分校和芝加哥大学）开展的研究显示，每周吃两份树坚果可以使接受传统化疗的结肠癌三期患者的死亡风险降低53%。25\n\n“大满贯”食物",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_13_nuts_cancer",
+      "evidences": [
+        {
+          "excerpt": "坚果（杏仁、腰果、栗子、夏威夷果、碧根果、松子、开心果和核桃）本身并不会令人惊讶，因为我们知道吃坚果对人体有益，但它们改变癌症命运的能力却令人惊讶。欧洲的一项大型研究表明，每天食用一份半的树坚果（22个半瓣核桃）可以降低31%患结肠癌的风险。24更惊人的是13个主要的癌症研究中心（包括哈佛大学、杜克大学、加州大学旧金山分校和芝加哥大学）开展的研究显示，每周吃两份树坚果可以使接受传统化疗的结肠癌三期患者的死亡风险降低53%。25\n\n“大满贯”食物",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_13_nuts_cancer"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "plant_based_diet",
+      "target": "metabolic_health",
+      "relation": "书中说明证据层级：优先人类数据，动物与细胞研究用于机制理解且不可直接外推",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_99_methods",
+      "excerpt": "我为本书选择的研究通常来自以下四种方法之一：人体临床研究、大规模真实世界人群的流行病学研究、动物研究，以及分析食物因素对人类细胞影响的实验室研究。我尝试关注每一个可能产生变化的人类数据，因为这才是最重要的。然而，对动物和细胞的研究可以提供事物如何以及为何会起作用的深刻见解。如果这些发现能够帮助弄清和理解同样存在于人类身上的数据，那么它们将是最有意义的。这些研究本身使用的方法与药物研发使用的方法类似：基因组测序、蛋白质组学、细胞培养、动物模型、随机安慰剂对照的人类临床试验，以及对大量人群开展的真实世界研究。我选择强调那些因为有特定假设或结果而脱颖而出的研究。这些也是我与从事医学前沿研究的科学家和医生谈论的那种研究。更多的研究是必要的，以进一步发展科学基础，并在此基础上给个人提供具体的饮食建议。食品科学家、生命科学家、营养学家、农业专家、医生、行为科学家和流行病学家需要联合起来，继续研究食物如何影响我们的身体。\n\n最后几点。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_99_methods",
+      "evidences": [
+        {
+          "excerpt": "我为本书选择的研究通常来自以下四种方法之一：人体临床研究、大规模真实世界人群的流行病学研究、动物研究，以及分析食物因素对人类细胞影响的实验室研究。我尝试关注每一个可能产生变化的人类数据，因为这才是最重要的。然而，对动物和细胞的研究可以提供事物如何以及为何会起作用的深刻见解。如果这些发现能够帮助弄清和理解同样存在于人类身上的数据，那么它们将是最有意义的。这些研究本身使用的方法与药物研发使用的方法类似：基因组测序、蛋白质组学、细胞培养、动物模型、随机安慰剂对照的人类临床试验，以及对大量人群开展的真实世界研究。我选择强调那些因为有特定假设或结果而脱颖而出的研究。这些也是我与从事医学前沿研究的科学家和医生谈论的那种研究。更多的研究是必要的，以进一步发展科学基础，并在此基础上给个人提供具体的饮食建议。食品科学家、生命科学家、营养学家、农业专家、医生、行为科学家和流行病学家需要联合起来，继续研究食物如何影响我们的身体。\n\n最后几点。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_99_methods"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "plant_based_diet",
+      "target": "immune_resilience",
+      "relation": "书中强调食物影响因人而异，本书聚焦其对健康防御的有益性叙述而非绝对好坏",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_99_not_absolute",
+      "excerpt": "任何一种天然食品都不是绝对好或者不好的。食物对每个人的影响都是独特的，这种影响取决于多种因素，包括人体的基因组成。本书的写作目的在于强调食物的有益性，因为它们对健康防御系统有积极的影响，但是在个人层面，当你选择吃什么时，还需要考虑其他因素。在对饮食做出重大改变之前，一定要和医生确认一下，尤其是在你生病或者正在服药的情况下。你还需要考虑哪些因素最适合你的病情，这可能包括糖尿病、心血管疾病或其他慢性疾病。",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_99_not_absolute",
+      "evidences": [
+        {
+          "excerpt": "任何一种天然食品都不是绝对好或者不好的。食物对每个人的影响都是独特的，这种影响取决于多种因素，包括人体的基因组成。本书的写作目的在于强调食物的有益性，因为它们对健康防御系统有积极的影响，但是在个人层面，当你选择吃什么时，还需要考虑其他因素。在对饮食做出重大改变之前，一定要和医生确认一下，尤其是在你生病或者正在服药的情况下。你还需要考虑哪些因素最适合你的病情，这可能包括糖尿病、心血管疾病或其他慢性疾病。",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_99_not_absolute"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "chronic_inflammation",
+      "target": "gut_microbiome",
+      "relation": "书中描述长期压力可改变菌群、破坏血管生成与干细胞功能并降低免疫",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "moderate",
+      "source_file": "植物性饮食与慢病_吃出自愈力.md",
+      "note_id": "eat_to_heal_b_stress",
+      "excerpt": "生活中有一点压力是好事，甚至能助你在工作和爱好上成功，但是长期的压力会给健康防御系统带来巨大且有害的负担。它会增加肾上腺分泌的皮质醇，对心脏提出过多要求，改变微生物组使其变得更糟，破坏血管生成，破坏干细胞的功能，降低免疫力。11压力可能与情绪、行为、身体、社会或经济因素有关。你是否一直生活在未能排解的压力、焦虑、恐惧或愤怒之中？或者你倾向于以最小的焦虑来处理生活中的周期性压力？把你的日常压力水平分为低、中、高。\n\n得分：如果你认为自己压力小，给自己打0分。如果你的压力适中，给自己打1分。如果你长期处于高压状态，给自己打2分。\n\n问题18：你父母当中是否有一人或两人因健康问题早逝（50岁之前）？",
+      "audience": "general",
+      "source_id": "eat_to_heal",
+      "source_title": "吃出自愈力",
+      "id": "eat_to_heal_b_stress",
+      "evidences": [
+        {
+          "excerpt": "生活中有一点压力是好事，甚至能助你在工作和爱好上成功，但是长期的压力会给健康防御系统带来巨大且有害的负担。它会增加肾上腺分泌的皮质醇，对心脏提出过多要求，改变微生物组使其变得更糟，破坏血管生成，破坏干细胞的功能，降低免疫力。11压力可能与情绪、行为、身体、社会或经济因素有关。你是否一直生活在未能排解的压力、焦虑、恐惧或愤怒之中？或者你倾向于以最小的焦虑来处理生活中的周期性压力？把你的日常压力水平分为低、中、高。\n\n得分：如果你认为自己压力小，给自己打0分。如果你的压力适中，给自己打1分。如果你长期处于高压状态，给自己打2分。\n\n问题18：你父母当中是否有一人或两人因健康问题早逝（50岁之前）？",
+          "source_title": "吃出自愈力",
+          "source_file": "植物性饮食与慢病_吃出自愈力.md",
+          "source_id": "eat_to_heal",
+          "note_id": "eat_to_heal_b_stress"
         }
       ],
       "domain": "health"
