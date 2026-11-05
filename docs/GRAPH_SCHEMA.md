@@ -1,4 +1,4 @@
-# 明膳知源 Graph Schema (v0.4)
+# 明膳知源 Graph Schema (v0.6)
 
 This document defines the canonical data model for the knowledge graph. All seed data, future open-data integrations, and the 3D visualization must conform to this schema.
 
@@ -17,6 +17,7 @@ This document defines the canonical data model for the knowledge graph. All seed
   "type": "string (see Node Types)",
   "label": "string (display name, Chinese preferred)",
   "group": "protective | risk | neutral | mixed",
+  "domain": "health | environment | culture (required in seed; omitted-at-runtime ⇒ health)",
   "description": "string (optional, short)",
   "aliases": ["string"],
   "sources": ["string (file or citation)"],
@@ -48,6 +49,7 @@ This document defines the canonical data model for the knowledge graph. All seed
   "target": "string (node id)",
   "relation": "string (human-readable relation)",
   "direction": "protective | risk | neutral | mixed",
+  "domain": "health | environment | culture (required in seed; omitted-at-runtime ⇒ health)",
   "evidence_type": "string (see Evidence Types)",
   "strength": "low | moderate | high | quantitative",
   "weight": "number (0.0–1.0, optional, derived from strength)",
@@ -155,7 +157,28 @@ Scope for 0.3:
 
 `ViewLayer` stays `layperson` | `expert`. These fields do not add a third presentation state.
 
+## Domain (schema 0.6)
+
+`domain` says which theme a node or link belongs to. It is a data-layer reservation for multi-theme expansion (`docs/MULTI_DOMAIN_EXPANSION.md` §4.1 / §5 phase 2 first bullet). It is **not** a `ViewLayer`, **not** GRADE, and **not** `audience`.
+
+| Concept | Layer | Values | What it is | What it is not |
+|---------|-------|--------|------------|----------------|
+| `domain` | Data, on `nodes[]` and `links[]` | `health` \| `environment` \| `culture` | Theme membership. Seed writes are explicit. Omitted at runtime means `health`. | Not ViewLayer. Not GRADE. Not audience. Not evidence strength. |
+| ViewLayer | UI presentation switch | `layperson` \| `expert` | How much detail the user asked to see | Unchanged; domain does not drive it. |
+| `audience` | Data, on `links[]` | `general` \| `deep_reader` | Content fit of that edge | Not a theme. |
+| GRADE | Not in this schema | — | — | Do not add GRADE labels. |
+
+Scope for 0.6:
+
+- `domain` is **required** in AJV for every node and every link in production seed.
+- Write path: always explicit. Aligned seed `data_version` 1.3 writes `"domain": "health"` on all 87 nodes and 121 links.
+- Read path: a loader may treat a missing `domain` as `"health"` for defensive compatibility; do not write omitted keys back into seed.
+- This release ships **only** `health`. `environment` / `culture` values, cross-domain edges, new node types, and theme-switch UI are out of scope (later tasks).
+- Future node types for environment/culture are sketched in `MULTI_DOMAIN_EXPANSION.md`; they are **not** enabled in this schema version.
+- Visualization must not color, filter, or hide by `domain` in this release.
+
 ## File Format
+
 
 Current seed files use a single JSON object:
 
@@ -172,7 +195,8 @@ Future versions may split into separate node and edge files or use a graph datab
 ## Validation Rules (to be enforced by CI later)
 
 - Every `source` and `target` in links must exist in nodes.
-- Required fields: id/type/label/group for nodes; source/target/relation/direction/evidence_type for links.
+- Required fields: id/type/label/group/domain for nodes; source/target/relation/direction/evidence_type/domain for links.
+- `domain` must be `health`, `environment`, or `culture`. Missing `domain` fails seed validation. Omitted-at-runtime may be read as `health`.
 - `direction` is an allowed enum (`protective`, `risk`, `neutral`, `mixed`). `evidence_type` stays an open string in AJV.
 - If `citation` is present, it must match the object above (including `doi` or `pmid`) and `evidence_type` must not start with `book_notes_`.
 - Every link must have `evidences` (length ≥ 1). Top-level `excerpt` / `limitations` / `source_title` / `source_file` / `source_id` / `citation` must mirror `evidences[0]`.
@@ -191,6 +215,7 @@ Future versions may split into separate node and edge files or use a graph datab
 | type           | Node shape or icon                  |
 | excerpt + source_file + limitations | Tooltip / side panel |
 | audience, mechanism_depth | Not mapped to color, thickness, or a view toggle |
+| domain | Not mapped to color, filter, or theme switch in 0.6 |
 
 ## Versioning
 
@@ -205,3 +230,5 @@ See also: `DATA_STRATEGY.md`, `ARCHITECTURE.md`.
 - **0.4**: documents `links[].source_title` (display name) and optional `links[].source_id` (book → `data/sources.json`). Literature edges set `source_title` from `citation.title` and omit `source_id`. Aligned seed `data_version` 0.9. Stage-1 validate rejects missing titles, unknown book ids, literature `source_id`, and any `evidences` key.
 
 - **0.5**: documents `links[].evidences[]` (multi-evidence). Top-level source fields remain as mirrors of `evidences[0]`. Excerpt limit 1200. Aligned seed `data_version` 1.0. Validate requires evidences, mirror equality, and per-evidence book/literature rules; stage-1 reject-evidences rule is removed.
+
+- **0.6**: required `nodes[].domain` and `links[].domain` (`health` | `environment` | `culture`). Seed writes are explicit; omitted-at-runtime means `health`. Not ViewLayer, not GRADE, not audience. Aligned seed `data_version` 1.3 ships every node/link as `health` only—no environment/culture data and no theme-switch UI in this release.
