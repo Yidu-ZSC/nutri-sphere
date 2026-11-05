@@ -12,7 +12,7 @@ const THEME_ID = /^[a-z0-9_-]+$/;
 /** Home, explore, pattern detail, compare, or the diet twin screen. Distinct from `view`, which stays `2d` | `3d`. */
 export type ScreenMode = 'home' | 'explore' | 'pattern' | 'compare' | 'twin' | 'source' | 'admin';
 
-export const ADMIN_SECTIONS = ['books', 'edges', 'nodes', 'validate', 'settings'] as const;
+export const ADMIN_SECTIONS = ['books', 'edges', 'nodes', 'candidates', 'validate', 'settings'] as const;
 export type AdminSection = (typeof ADMIN_SECTIONS)[number];
 
 export interface ParsedShare {
@@ -82,6 +82,7 @@ export function parseAdminSection(value: string | null): AdminSection | null {
     value === 'books' ||
     value === 'edges' ||
     value === 'nodes' ||
+    value === 'candidates' ||
     value === 'validate' ||
     value === 'settings'
   ) {
@@ -224,7 +225,7 @@ export function serializeViewQuery(state: ShareState): string {
     params.set('screen', 'admin');
     const section = state.adminSection ?? 'books';
     if (section !== 'books') params.set('section', section);
-    if (section === 'books' && state.book) params.set('book', state.book);
+    if ((section === 'books' || section === 'candidates') && state.book) params.set('book', state.book);
     if (section === 'edges' && state.edge) params.set('edge', state.edge);
     if (section === 'nodes' && state.node) params.set('node', state.node);
     writeDomain(params, state.domain);

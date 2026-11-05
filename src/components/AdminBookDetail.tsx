@@ -603,7 +603,7 @@ export function AdminBookDetail({
             const key = edgeDraftKey(selected.link);
             const edges = { ...drafts.edges };
             delete edges[key];
-            commit({ version: 1, books: drafts.books, edges });
+            commit({ ...drafts, version: 1, books: drafts.books, edges });
           }}
           onOpenGraph={onOpenGraph}
         />

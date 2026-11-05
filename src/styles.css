@@ -3825,6 +3825,8 @@ code {
   font-size: 12px;
 }
 .admin-table-row.is-selected { background: var(--accent-soft); }
+.admin-table-row.is-discarded td { opacity: 0.55; text-decoration: line-through; }
+.admin-table-row.is-discarded.is-selected td { text-decoration: none; }
 .admin-table-row.is-selected:hover { background: var(--accent-soft); }
 .admin-inspector-root { position: fixed; inset: 0; z-index: 40; }
 .admin-inspector-backdrop {

@@ -34,14 +34,27 @@ export interface EdgeFieldDraft {
   evidences: EvidenceFieldDraft[];
 }
 
+export type CandidateBatchStatus = 'pending_review' | 'exported' | 'ingested';
+
+export interface CandidateBatchDraft {
+  status?: CandidateBatchStatus;
+  discardedEdges?: string[];
+  discardedEvidences?: Record<string, string[]>;
+  relationOverrides?: Record<string, string>;
+  nodeRemaps?: Record<string, string>;
+  exportedAt?: string;
+}
+
 export interface AdminDraftFile {
   version: 1;
   books: Record<string, BookFieldDraft>;
   edges: Record<string, EdgeFieldDraft>;
+  /** Optional; absent on older drafts — treat as {}. */
+  candidates?: Record<string, CandidateBatchDraft>;
 }
 
 export function emptyAdminDrafts(): AdminDraftFile {
-  return { version: 1, books: {}, edges: {} };
+  return { version: 1, books: {}, edges: {}, candidates: {} };
 }
 
 function browserDraftStorage(): DraftStorage | null {
@@ -86,6 +99,36 @@ function isEdgeDraft(value: unknown): value is EdgeFieldDraft {
   );
 }
 
+function isCandidateStatus(value: unknown): value is CandidateBatchStatus {
+  return value === 'pending_review' || value === 'exported' || value === 'ingested';
+}
+
+function isStringArray(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every((item) => typeof item === 'string');
+}
+
+function isStringRecord(value: unknown): value is Record<string, string> {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  return Object.values(value).every((item) => typeof item === 'string');
+}
+
+function isDiscardedEvidences(value: unknown): value is Record<string, string[]> {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  return Object.values(value).every(isStringArray);
+}
+
+function isCandidateBatchDraft(value: unknown): value is CandidateBatchDraft {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  const row = value as CandidateBatchDraft;
+  if (row.status !== undefined && !isCandidateStatus(row.status)) return false;
+  if (row.discardedEdges !== undefined && !isStringArray(row.discardedEdges)) return false;
+  if (row.discardedEvidences !== undefined && !isDiscardedEvidences(row.discardedEvidences)) return false;
+  if (row.relationOverrides !== undefined && !isStringRecord(row.relationOverrides)) return false;
+  if (row.nodeRemaps !== undefined && !isStringRecord(row.nodeRemaps)) return false;
+  if (row.exportedAt !== undefined && typeof row.exportedAt !== 'string') return false;
+  return true;
+}
+
 export function parseAdminDrafts(raw: string | null): AdminDraftFile {
   if (!raw) return emptyAdminDrafts();
   try {
@@ -99,7 +142,13 @@ export function parseAdminDrafts(raw: string | null): AdminDraftFile {
     for (const [id, value] of Object.entries(data.edges)) {
       if (isEdgeDraft(value)) edges[id] = value;
     }
-    return { version: 1, books, edges };
+    const candidates: Record<string, CandidateBatchDraft> = {};
+    if (data.candidates && typeof data.candidates === 'object' && !Array.isArray(data.candidates)) {
+      for (const [id, value] of Object.entries(data.candidates)) {
+        if (isCandidateBatchDraft(value)) candidates[id] = value;
+      }
+    }
+    return { version: 1, books, edges, candidates };
   } catch {
     return emptyAdminDrafts();
   }
@@ -183,7 +232,7 @@ export function saveBookDraft(
   const next = normalizeBookDraft(draft);
   if (bookDraftsEqual(next, baseline)) delete books[bookId];
   else books[bookId] = next;
-  return { version: 1, books, edges: file.edges };
+  return { ...file, version: 1, books, edges: file.edges };
 }
 
 export function edgeDraftKey(link: GraphLink): string {
@@ -252,7 +301,44 @@ export function saveEdgeDraft(
   const next = normalizeEdgeDraft(draft);
   if (edgeDraftsEqual(next, baseline)) delete edges[key];
   else edges[key] = next;
-  return { version: 1, books: file.books, edges };
+  return { ...file, version: 1, books: file.books, edges };
+}
+
+export function emptyCandidateBatchDraft(): CandidateBatchDraft {
+  return {};
+}
+
+export function candidateBatchDraft(
+  file: AdminDraftFile,
+  sourceId: string,
+): CandidateBatchDraft {
+  return file.candidates?.[sourceId] ?? emptyCandidateBatchDraft();
+}
+
+function candidateDraftIsEmpty(draft: CandidateBatchDraft): boolean {
+  const discardedEdges = draft.discardedEdges ?? [];
+  const discardedEvidences = draft.discardedEvidences ?? {};
+  const relationOverrides = draft.relationOverrides ?? {};
+  const nodeRemaps = draft.nodeRemaps ?? {};
+  return (
+    discardedEdges.length === 0 &&
+    Object.keys(discardedEvidences).length === 0 &&
+    Object.keys(relationOverrides).length === 0 &&
+    Object.keys(nodeRemaps).length === 0 &&
+    draft.status === undefined &&
+    draft.exportedAt === undefined
+  );
+}
+
+export function saveCandidateBatchDraft(
+  file: AdminDraftFile,
+  sourceId: string,
+  draft: CandidateBatchDraft,
+): AdminDraftFile {
+  const candidates = { ...(file.candidates ?? {}) };
+  if (candidateDraftIsEmpty(draft)) delete candidates[sourceId];
+  else candidates[sourceId] = draft;
+  return { ...file, version: 1, candidates };
 }
 
 export function citeMatches(

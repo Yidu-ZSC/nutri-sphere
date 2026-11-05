@@ -15,6 +15,7 @@ import { AdminEdges } from './components/AdminEdges';
 import { AdminNodes } from './components/AdminNodes';
 import { AdminValidate } from './components/AdminValidate';
 import { AdminSettings } from './components/AdminSettings';
+import { AdminCandidates } from './components/AdminCandidates';
 import { VeganDietDetail } from './components/VeganDietDetail';
 import { SearchBar } from './components/SearchBar';
 import { DomainEmptyState } from './components/DomainEmptyState';
@@ -210,6 +211,8 @@ export function App() {
             if (section === 'books' && parsed.book) {
               const knownBook = adminBookById(adminBooksData, parsed.book);
               setBookId(knownBook ? knownBook.id : null);
+            } else if (section === 'candidates' && parsed.book) {
+              setBookId(parsed.book);
             } else {
               setBookId(null);
             }
@@ -379,7 +382,7 @@ export function App() {
       pattern: screen === 'pattern' ? patternId : null,
       patterns: screen === 'home' ? patterns : [],
       source: screen === 'source' ? sourceId : null,
-      book: screen === 'admin' && adminSection === 'books' ? bookId : null,
+      book: screen === 'admin' && (adminSection === 'books' || adminSection === 'candidates') ? bookId : null,
       adminSection: screen === 'admin' ? adminSection : 'books',
       edge: screen === 'admin' && adminSection === 'edges' ? adminEdge : null,
       layout,
@@ -826,6 +829,20 @@ export function App() {
     setScreen('admin');
   };
 
+  const openAdminCandidate = (id: string) => {
+    setAdminSection('candidates');
+    setAdminEdge(null);
+    setAdminNodeId(null);
+    setBookId(id);
+    setScreen('admin');
+    setShellMenuOpen(false);
+  };
+
+  const closeAdminCandidate = () => {
+    setBookId(null);
+    setScreen('admin');
+  };
+
   const openGraphNode = (id: string) => {
     if (!graph?.nodes.some((node) => node.id === id)) return;
     setSourceReturnSnapshot(null);
@@ -1167,6 +1184,13 @@ export function App() {
             {adminSection === 'nodes' && !graph ? <p className="admin-empty">图谱仍在加载。</p> : null}
             {adminSection === 'validate' && graph ? <AdminValidate graph={graph} sources={sources} /> : null}
             {adminSection === 'validate' && !graph ? <p className="admin-empty">图谱仍在加载。</p> : null}
+            {adminSection === 'candidates' ? (
+              <AdminCandidates
+                selectedId={bookId}
+                onOpen={openAdminCandidate}
+                onBack={closeAdminCandidate}
+              />
+            ) : null}
             {adminSection === 'settings' ? (
               <AdminSettings graph={graph} sources={sources} books={adminBooks} appTheme={appTheme} />
             ) : null}

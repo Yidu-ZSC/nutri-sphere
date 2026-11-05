@@ -1,0 +1,15 @@
+{
+  "source_id": "china_study",
+  "source_title": "救命饮食：中国健康调查报告",
+  "themes": [
+    "health"
+  ],
+  "status": "pending_review",
+  "edge_count": 141,
+  "evidence_count": 308,
+  "new_node_count": 20,
+  "reuse_node_count": 42,
+  "append_count": 18,
+  "aligned_data_version": "2.1",
+  "aligned_schema_version": "0.7"
+}
