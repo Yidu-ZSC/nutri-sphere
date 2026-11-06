@@ -551,8 +551,13 @@ button { cursor: pointer; }
 
 .flow-scroll {
   height: 100%;
-  overflow: auto;
-  touch-action: pan-x pan-y;
+  overflow: hidden;
+  touch-action: none;
+  cursor: grab;
+}
+
+.flow-scroll.is-panning {
+  cursor: grabbing;
 }
 
 .flow-scroll svg {

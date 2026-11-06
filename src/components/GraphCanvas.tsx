@@ -152,6 +152,7 @@ export function GraphCanvas({
           nodes={graph.nodes.filter((node) => shownNodeIds.has(node.id))}
           links={shownLinks}
           width={size.w}
+          height={size.h}
           anchors={flowAnchorIds}
           pinIndex={selection?.kind === 'link' ? selection.index : null}
           selection={selection}

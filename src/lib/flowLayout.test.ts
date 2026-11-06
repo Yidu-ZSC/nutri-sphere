@@ -1,6 +1,14 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { layoutFlow, selectFlowBands, type FlowEdgeInput, type FlowNodeInput } from './flowLayout.ts';
+import {
+  frameFlowCamera,
+  layoutFlow,
+  panFlowCamera,
+  selectFlowBands,
+  zoomFlowCamera,
+  type FlowEdgeInput,
+  type FlowNodeInput,
+} from './flowLayout.ts';
 
 const nodes: FlowNodeInput[] = [
   { id: 'sugar', label: '添加糖', type: 'food_category', group: 'risk' },
@@ -101,4 +109,23 @@ test('layout places food to the left of disease and draws a curve', () => {
   assert.match(layout.bands[0]?.d ?? '', /^M /);
   assert.match(layout.bands[0]?.d ?? '', / C /);
   assert.ok((layout.bands[0]?.width ?? 0) > 3);
+});
+
+test('framing fits a wide pathway and keeps a short one near the top', () => {
+  const wide = frameFlowCamera(1600, 400, 800, 600);
+  assert.ok(wide.k < 1);
+  assert.ok(Math.abs(wide.x + (1600 * wide.k - 800) / 2) < 0.01);
+  const short = frameFlowCamera(600, 200, 800, 600);
+  assert.equal(short.k, 1);
+  assert.equal(short.y, 20);
+});
+
+test('zoom keeps the pointer anchor still and pan shifts the camera', () => {
+  const start = { x: 40, y: 30, k: 1 };
+  const zoomed = zoomFlowCamera(start, 100, 80, 2);
+  assert.equal(zoomed.k, 2);
+  assert.equal(zoomed.x, 100 - (100 - 40) * 2);
+  assert.equal(zoomed.y, 80 - (80 - 30) * 2);
+  assert.deepEqual(panFlowCamera(zoomed, 12, -4), { x: zoomed.x + 12, y: zoomed.y - 4, k: 2 });
+  assert.equal(zoomFlowCamera(start, 0, 0, 20).k, 3.5);
 });

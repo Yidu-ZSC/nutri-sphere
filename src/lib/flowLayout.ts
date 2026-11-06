@@ -141,8 +141,7 @@ export interface FlowColumnCaption {
 const NODE_H = 30;
 const NODE_GAP = 12;
 const HEADER = 32;
-/** Room to scroll the last row clear of the legend card. */
-const BOTTOM = 220;
+const BOTTOM = 28;
 
 export function layoutFlow(
   nodes: readonly FlowNodeInput[],
@@ -279,4 +278,59 @@ function barycenter(id: string, incident: Map<string, string[]>, order: Map<stri
 
 function round(value: number): string {
   return value.toFixed(1);
+}
+
+export interface FlowCamera {
+  x: number;
+  y: number;
+  k: number;
+}
+
+export const FLOW_ZOOM_MIN = 0.4;
+export const FLOW_ZOOM_MAX = 3.5;
+
+function clampZoom(value: number): number {
+  return Math.min(FLOW_ZOOM_MAX, Math.max(FLOW_ZOOM_MIN, value));
+}
+
+/** Fit the pathway into the viewport. Content shorter than the view stays near the top. */
+export function frameFlowCamera(
+  layoutWidth: number,
+  layoutHeight: number,
+  viewWidth: number,
+  viewHeight: number,
+): FlowCamera {
+  const pad = 20;
+  const usableW = Math.max(viewWidth - pad * 2, 1);
+  const usableH = Math.max(viewHeight - pad * 2, 1);
+  const k = clampZoom(
+    Math.min(usableW / Math.max(layoutWidth, 1), usableH / Math.max(layoutHeight, 1), 1),
+  );
+  const scaledH = layoutHeight * k;
+  const y = scaledH + pad <= viewHeight ? pad : (viewHeight - scaledH) / 2;
+  return {
+    k,
+    x: (viewWidth - layoutWidth * k) / 2,
+    y,
+  };
+}
+
+/** Zoom around a viewport point so that point stays under the pointer. */
+export function zoomFlowCamera(
+  camera: FlowCamera,
+  anchorX: number,
+  anchorY: number,
+  factor: number,
+): FlowCamera {
+  const k = clampZoom(camera.k * factor);
+  const ratio = k / camera.k;
+  return {
+    k,
+    x: anchorX - (anchorX - camera.x) * ratio,
+    y: anchorY - (anchorY - camera.y) * ratio,
+  };
+}
+
+export function panFlowCamera(camera: FlowCamera, dx: number, dy: number): FlowCamera {
+  return { x: camera.x + dx, y: camera.y + dy, k: camera.k };
 }

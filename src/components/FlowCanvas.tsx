@@ -1,5 +1,14 @@
-import { useMemo } from 'react';
-import { layoutFlow, selectFlowBands, type FlowEdgeInput, type FlowNodeInput } from '../lib/flowLayout';
+import { useEffect, useMemo, useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from 'react';
+import {
+  frameFlowCamera,
+  layoutFlow,
+  panFlowCamera,
+  selectFlowBands,
+  zoomFlowCamera,
+  type FlowCamera,
+  type FlowEdgeInput,
+  type FlowNodeInput,
+} from '../lib/flowLayout';
 import { colorWithAlpha, semanticColor } from '../lib/palette';
 import type { CanvasStage } from '../lib/canvasStage';
 import type { GraphLink, GraphNode, Selection } from '../types/graph';
@@ -8,6 +17,7 @@ interface FlowCanvasProps {
   nodes: readonly GraphNode[];
   links: readonly (GraphLink & { graphIndex: number })[];
   width: number;
+  height: number;
   anchors: readonly string[];
   pinIndex: number | null;
   selection: Selection | null;
@@ -50,6 +60,7 @@ export function FlowCanvas({
   nodes,
   links,
   width,
+  height,
   anchors,
   pinIndex,
   selection,
@@ -68,6 +79,95 @@ export function FlowCanvas({
 
   const labels = useMemo(() => new Map(nodes.map((node) => [node.id, node.label])), [nodes]);
   const { laid } = picture;
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const cameraRef = useRef<FlowCamera>({ x: 0, y: 0, k: 1 });
+  const dragRef = useRef<{
+    id: number;
+    x: number;
+    y: number;
+    originX: number;
+    originY: number;
+    moved: boolean;
+  } | null>(null);
+  const suppressClick = useRef(false);
+  const [camera, setCamera] = useState<FlowCamera>({ x: 0, y: 0, k: 1 });
+  const [panning, setPanning] = useState(false);
+  const frameKey = `${laid.width}x${laid.height}@${width}x${height}`;
+
+  useEffect(() => {
+    const next = frameFlowCamera(laid.width, laid.height, width, height);
+    cameraRef.current = next;
+    setCamera(next);
+  }, [frameKey, height, laid.height, laid.width, width]);
+
+  useEffect(() => {
+    const element = viewportRef.current;
+    if (!element) return;
+    const onWheel = (event: WheelEvent) => {
+      event.preventDefault();
+      const rect = element.getBoundingClientRect();
+      const delta = event.deltaMode === 1 ? event.deltaY * 16 : event.deltaY;
+      const factor = Math.exp(-delta * 0.0016);
+      const next = zoomFlowCamera(
+        cameraRef.current,
+        event.clientX - rect.left,
+        event.clientY - rect.top,
+        factor,
+      );
+      cameraRef.current = next;
+      setCamera(next);
+    };
+    element.addEventListener('wheel', onWheel, { passive: false });
+    return () => element.removeEventListener('wheel', onWheel);
+  }, []);
+
+  const applyCamera = (next: FlowCamera) => {
+    cameraRef.current = next;
+    setCamera(next);
+  };
+
+  const onPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.button !== 0) return;
+    dragRef.current = {
+      id: event.pointerId,
+      x: event.clientX,
+      y: event.clientY,
+      originX: cameraRef.current.x,
+      originY: cameraRef.current.y,
+      moved: false,
+    };
+  };
+
+  const onPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current;
+    if (!drag || drag.id !== event.pointerId) return;
+    const dx = event.clientX - drag.x;
+    const dy = event.clientY - drag.y;
+    if (!drag.moved && Math.hypot(dx, dy) < 4) return;
+    if (!drag.moved) {
+      drag.moved = true;
+      event.currentTarget.setPointerCapture(event.pointerId);
+    }
+    setPanning(true);
+    applyCamera(panFlowCamera({ ...cameraRef.current, x: drag.originX, y: drag.originY }, dx, dy));
+  };
+
+  const onPointerUp = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current;
+    if (!drag || drag.id !== event.pointerId) return;
+    dragRef.current = null;
+    setPanning(false);
+    if (drag.moved) suppressClick.current = true;
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  };
+
+  const ignoreSuppressed = () => {
+    if (!suppressClick.current) return false;
+    suppressClick.current = false;
+    return true;
+  };
 
   const bandOpacity = (edge: FlowEdgeInput) => {
     const selected = selection?.kind === 'link' && selection.index === edge.graphIndex;
@@ -82,15 +182,31 @@ export function FlowCanvas({
 
   return (
     <div className="flow-view" data-testid="flow-canvas" data-bands={picture.picked.bands.length}>
-      <div className="flow-scroll">
+      <div
+        className={panning ? 'flow-scroll is-panning' : 'flow-scroll'}
+        ref={viewportRef}
+        data-zoom={camera.k.toFixed(2)}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+        onDoubleClick={(event: ReactMouseEvent<HTMLDivElement>) => {
+          if ((event.target as Element).closest('.flow-node, .flow-band-hit')) return;
+          applyCamera(frameFlowCamera(laid.width, laid.height, width, height));
+        }}
+      >
         <svg
-          width={laid.width}
-          height={laid.height}
-          viewBox={`0 0 ${laid.width} ${laid.height}`}
+          width={width}
+          height={height}
           role="img"
-          aria-label="饮食通路"
-          onClick={onBackground}
+          aria-label="饮食通路。拖动平移，滚轮缩放。"
+          onClick={(event) => {
+            if (ignoreSuppressed()) return;
+            if ((event.target as Element).closest('.flow-node, .flow-band-hit')) return;
+            onBackground();
+          }}
         >
+          <g transform={`translate(${camera.x} ${camera.y}) scale(${camera.k})`}>
           {laid.captions.map((caption) => (
             <text
               key={caption.label}
@@ -118,6 +234,7 @@ export function FlowCanvas({
                   data-index={band.edge.graphIndex}
                   onClick={(event) => {
                     event.stopPropagation();
+                    if (ignoreSuppressed()) return;
                     onSelectLink(band.edge.graphIndex);
                   }}
                 >
@@ -145,6 +262,7 @@ export function FlowCanvas({
                 transform={`translate(${node.x} ${node.y})`}
                 onClick={(event) => {
                   event.stopPropagation();
+                  if (ignoreSuppressed()) return;
                   onSelectNode(node.id);
                 }}
                 onKeyDown={(event) => {
@@ -186,6 +304,7 @@ export function FlowCanvas({
               这条筛选没有跨列通路
             </text>
           )}
+          </g>
         </svg>
       </div>
     </div>
