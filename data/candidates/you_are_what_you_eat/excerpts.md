@@ -1,0 +1,3588 @@
+# ClearDiet · 你是你吃出来的 · 原文摘录（主题：health）
+
+- source_id: `you_are_what_you_eat`；共 296 条证据贡献，归并为 176 条候选边（同端点 append 进 evidences[]）
+- 微信读书：https://weread.qq.com/web/reader/7bb32c305e0c557bbdeab81
+
+
+# spine 3 · 序言 Preface
+
+## yawye_c03_p6_metabolic_health
+
+- 端点：`chronic_disease` → `metabolic_health`
+- relation：慢病与亚健康背景下的营养失衡与代谢健康相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：6
+
+> 夏萌老师这本书不同于市面上常见的普通大众营养书——它是一部临床营养实践方面的经验总结，针对的是慢病患者、亚健康人群的营养问题。她在书中不仅分析了各种常见慢病的致病原因，更从临床医学角度提出了营养调理思路和解决方案。十年磨一剑，选自十万患者的经典案例分享值得一看。每一位读者都能从活生生的典型案例中找到自己的影子，这也是夏萌老师做电视节目和开专家讲座的一贯风格与特点——让枯燥的医学知识因生动的案例而变得通俗易懂，便于操作。
+
+
+# spine 4 · 前言 Preface
+
+## yawye_c04_p15_kidney_disease
+
+- 端点：`nutrient_supplements` → `kidney_disease`
+- relation：营养素与生活方式调整与肾脏相关指标变化相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：15–16
+
+> 我靠死记硬背终于考试过了关。带着对营养学知识的一知半解，围绕自己的肾病，我把当时所有能找到的营养学书籍都看遍了。抱着试试看的态度，我开始在自己身上做试验，每天认真地吃三顿饭，认真补充胡萝卜素、维生素E、维生素C和矿物质等保健品。
+>
+> 万万没想到，经过3个月的营养调整，尿蛋白消失了！潜血变成了1个+！又过了一段时间，潜血也消失了。
+
+## yawye_c04_p20_hypertension
+
+- 端点：`nutrient_supplements` → `hypertension`
+- relation：营养素与生活方式调整与血压相关指标变化相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：20
+
+> 继续翻书、上网查资料、看营养研究方面的视频，那段时间我几乎把所有精力都放在了学习营养上。半年后，我慢慢地觉悟了，有种破茧成蝶的感觉。营养素好像在我眼前跳舞，个个都有着丰富的表情。我对营养知识的应用变得得心应手，身体也越来越好，从此不再请病假，门诊、病房所有的工作量我都能与别人一样完成。不仅如此，我撤掉了降压药，血压、血脂、血糖完全恢复正常，脂肪肝也消失了。
+
+## yawye_c04_p20_blood_cholesterol
+
+- 端点：`nutrient_supplements` → `blood_cholesterol`
+- relation：营养素与生活方式调整与血脂相关指标变化相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：20
+
+> 继续翻书、上网查资料、看营养研究方面的视频，那段时间我几乎把所有精力都放在了学习营养上。半年后，我慢慢地觉悟了，有种破茧成蝶的感觉。营养素好像在我眼前跳舞，个个都有着丰富的表情。我对营养知识的应用变得得心应手，身体也越来越好，从此不再请病假，门诊、病房所有的工作量我都能与别人一样完成。不仅如此，我撤掉了降压药，血压、血脂、血糖完全恢复正常，脂肪肝也消失了。
+
+## yawye_c04_p20_fatty_liver
+
+- 端点：`nutrient_supplements` → `fatty_liver`
+- relation：营养素与生活方式调整与脂肪肝相关指标变化相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：20
+
+> 继续翻书、上网查资料、看营养研究方面的视频，那段时间我几乎把所有精力都放在了学习营养上。半年后，我慢慢地觉悟了，有种破茧成蝶的感觉。营养素好像在我眼前跳舞，个个都有着丰富的表情。我对营养知识的应用变得得心应手，身体也越来越好，从此不再请病假，门诊、病房所有的工作量我都能与别人一样完成。不仅如此，我撤掉了降压药，血压、血脂、血糖完全恢复正常，脂肪肝也消失了。
+
+## yawye_c04_p31_hypertension
+
+- 端点：`refined_carbs` → `hypertension`
+- relation：精制米面及高盐配菜习惯与血压相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：31
+
+> 高血压患者大多最爱的食物有两种：面条和咸菜。当我让他们把面条和咸菜都戒掉之后，血压开始明显下降。为什么叫作“戒掉”？因为患者对这类食物像成瘾一样不愿意舍弃，我每次都要费很大功夫向患者解释。好在每个月患者都要取药，复诊时我会再次强调这项医嘱。慢慢地，患者血压开始往下走，降压药也逐渐减少，多数患者能从原来的每天吃3种药减到一天吃1种药，感觉越来越舒服。我甚至不得不让一些患者把降压药完全停掉，为什么？因为血压太正常了，哪怕吃半片降压药，患者的血压都显示有点偏低。
+
+## yawye_c04_p33_type2_diabetes
+
+- 端点：`refined_carbs` → `type2_diabetes`
+- relation：精制主食及粥类偏好与血糖及糖尿病相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：33
+
+> 在很多糖尿病患者身上，我发现他们太喜欢喝粥、吃米和面了，满脑子都是“没有主食就不叫吃饭”。我让患者把粥戒掉，教患者吃饭怎样吃得杂、吃得健康。患者们用一次又一次的化验结果告诉我，饮食调整确实有效，血糖平稳下降，降糖药也在逐渐减少。
+
+## yawye_c04_p35_parkinson_disease
+
+- 端点：`omnivorous_balanced_diet` → `parkinson_disease`
+- relation：三餐营养供给与帕金森病患者病情稳定性相关的临床观察
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：35
+
+> 帕金森病是神经系统变性疾病，西医对帕金森病的传统治疗是最为无奈的，除了几种常用药以外没有其他办法。患者在这几种西药中换来换去，剂量越来越大，行动却越来越困难。几十年来，我们神经内科的大夫对这种情况已经司空见惯，因为全世界对帕金森病的治疗方法都一样，一直没有什么突破。但是近十年来，我把临床营养带入到患者的治疗过程中，经过观察证实，依从性好的患者一旦按照我说的办法去做，吃好三顿饭，用食物给大脑补充营养，病情大多都十分稳定，有的患者甚至患病十年都可以做到不增加药量，生活能力和身体状态不走下坡路。
+
+## yawye_c04_p47_chronic_disease
+
+- 端点：`protein_deficiency` → `chronic_disease`
+- relation：长期蛋白质缺乏与大手术后营养耗竭及慢病风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：47–48
+
+> 在给方案之前我们除了要仔细了解治疗过程以外，还要了解患者平时的习惯。一问患者家属，他夫人告诉我：他吃素，从来不吸烟，不饮酒，每天都运动。
+>
+> 我明白了，他由于长年缺乏蛋白质导致大血管变得很脆弱，手术前已经营养不良，经过大手术的打击，体内营养储备已被全部掏空。
+
+## yawye_c04_p61_type2_diabetes
+
+- 端点：`animal_foods` → `type2_diabetes`
+- relation：混合膳食中动物性食物与餐后血糖上升速度相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：动物性食品中持久性污染物暴露与糖尿病发病率相关）
+- 段落：61–64
+
+> 曾经有一个46岁的患者，体检时发现血糖高，查了两次都是16毫摩尔／升，医生让他服用两种降糖药来缓解。他自己也开始注意生活方式的管理，每天运动，控制喝酒。一周之后，他的血糖逐渐降到了8毫摩尔／升。经人介绍，他来到我的门诊咨询平时吃饭需要注意什么。我询问病情后，第一感觉是他要发生低血糖了，因为这一周血糖降得太快了。药物在一周后达到平衡浓度，所以他的血糖很有可能还会往下走，而且现在我若不对他的饮食进行调整，血糖下降的速度还会加快。
+>
+> 我给他做了饮食调查，发现他平时会吃很多米面，尤其爱吃面条，每天晚上如果不吃面条就很担心夜里会饿醒。
+>
+> 大家可能不知道，面条这种食物，吸收得太快，很容易升血糖，也很容易饿。他选了这种食物做晚餐，除了痛快痛快嘴，百害而无一利。我让他把晚饭的面条换成一根老玉米，平时多吃些瘦肉，每天必须喝牛奶。我一说增加肉类，这个患者的眼睛瞪得老大，惊讶地说：“我都糖尿病了，还能吃肉吗？”
+>
+> 当然可以吃，混合性食物中如果有肉类，会降低餐后血糖的上升速度。
+
+## yawye_c04_p69_type2_diabetes
+
+- 端点：`omnivorous_balanced_diet` → `type2_diabetes`
+- relation：荤素搭配与运动相结合的生活方式与血糖管理相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：69
+
+> 后来这个患者靠营养和运动相结合的方法，真的把两种降糖药全部停掉了，到现在已经四年了，血糖一直正常，腰部的游泳圈没有了，人也变得很干练。
+
+
+# spine 6 · 我们活在快餐当道的世界，身体却困在了石器时代
+
+## yawye_c06_p5_chronic_disease
+
+- 端点：`infectious_disease` → `chronic_disease`
+- relation：感染与外伤负担下降后慢病成为主要寿命限制因素的观察
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：5
+
+> 过去，影响中国人均寿命的因素主要是饥饿、战争，还有各种感染。另外，产妇死亡、婴幼儿夭折等也是影响平均寿命的因素之一。随着国民经济的发展和科技的进步，现在人们的温饱不成问题，妇幼保健也非常成熟。在经济不断发展的和平年代，一个人如果没有致命的外伤，没有严重的感染，也没有接触过像SARS病毒、埃博拉病毒这样感染性很强的病毒，为什么还是不能终其天年呢？
+
+
+# spine 7 · 疾病的本质：细胞损伤速度超过修复速度
+
+## yawye_c07_p3_chronic_disease
+
+- 端点：`cell_repair` → `chronic_disease`
+- relation：细胞损伤速度超过修复速度与慢病发生发展相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：3–6
+
+> 所以，人的一生中，体内大部分细胞都在不断更新，通过再生来修复损伤，这一生就是一个细胞不断自我修复的过程。而生病的本质，就是细胞损伤的速度超过了细胞修复的速度。 …… 答案就是不健康的心理或者不合理的饮食、运动、睡眠等生活方式。
+>
+> 我们最常见的冠心病、高血压、糖尿病、肿瘤、抑郁症、气管炎、哮喘、慢性肾病等疾病，都是由不恰当的生活方式引起的，医学工作者将这些疾病统一归类为慢性非传染性疾病，简称“慢病”。
+
+## yawye_c07_p6_coronary_heart_disease
+
+- 端点：`cell_repair` → `coronary_heart_disease`
+- relation：生活方式相关细胞损伤—修复失衡与冠心病相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：6
+
+> 我们最常见的冠心病、高血压、糖尿病、肿瘤、抑郁症、气管炎、哮喘、慢性肾病等疾病，都是由不恰当的生活方式引起的，医学工作者将这些疾病统一归类为慢性非传染性疾病，简称“慢病”。
+
+## yawye_c07_p6_hypertension
+
+- 端点：`cell_repair` → `hypertension`
+- relation：生活方式相关细胞损伤—修复失衡与高血压相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：6
+
+> 我们最常见的冠心病、高血压、糖尿病、肿瘤、抑郁症、气管炎、哮喘、慢性肾病等疾病，都是由不恰当的生活方式引起的，医学工作者将这些疾病统一归类为慢性非传染性疾病，简称“慢病”。
+
+## yawye_c07_p6_type2_diabetes
+
+- 端点：`cell_repair` → `type2_diabetes`
+- relation：生活方式相关细胞损伤—修复失衡与糖尿病相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：6
+
+> 我们最常见的冠心病、高血压、糖尿病、肿瘤、抑郁症、气管炎、哮喘、慢性肾病等疾病，都是由不恰当的生活方式引起的，医学工作者将这些疾病统一归类为慢性非传染性疾病，简称“慢病”。
+
+## yawye_c07_p6_cancer_overall
+
+- 端点：`cell_repair` → `cancer_overall`
+- relation：生活方式相关细胞损伤—修复失衡与肿瘤相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：6
+
+> 我们最常见的冠心病、高血压、糖尿病、肿瘤、抑郁症、气管炎、哮喘、慢性肾病等疾病，都是由不恰当的生活方式引起的，医学工作者将这些疾病统一归类为慢性非传染性疾病，简称“慢病”。
+
+## yawye_c07_p6_mental_health
+
+- 端点：`cell_repair` → `mental_health`
+- relation：生活方式相关细胞损伤—修复失衡与抑郁等相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：6
+
+> 我们最常见的冠心病、高血压、糖尿病、肿瘤、抑郁症、气管炎、哮喘、慢性肾病等疾病，都是由不恰当的生活方式引起的，医学工作者将这些疾病统一归类为慢性非传染性疾病，简称“慢病”。
+
+## yawye_c07_p6_kidney_disease
+
+- 端点：`cell_repair` → `kidney_disease`
+- relation：生活方式相关细胞损伤—修复失衡与慢性肾病相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：6
+
+> 我们最常见的冠心病、高血压、糖尿病、肿瘤、抑郁症、气管炎、哮喘、慢性肾病等疾病，都是由不恰当的生活方式引起的，医学工作者将这些疾病统一归类为慢性非传染性疾病，简称“慢病”。
+
+## yawye_c07_p7_iatrogenic_harm
+
+- 端点：`chronic_disease` → `iatrogenic_harm`
+- relation：慢病对抗疗法路径与高花费高病残负担相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7
+
+> 治疗慢病的医疗花费大，死亡率、残疾率高，比车祸、战争造成的死亡和残疾人数还要多得多。据统计，中国每5人中就有1人确诊为慢病患者，慢病导致的死亡人数占中国总死亡人数的85%。
+
+## yawye_c07_p12_cell_repair
+
+- 端点：`omnivorous_balanced_diet` → `cell_repair`
+- relation：饮食作为细胞修复原料供给与慢病进程相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：12–14
+
+> 追根究底，慢病源于各种不平衡，比如缺乏睡眠、长期吸烟、大量饮酒、不运动或者运动过量、饮食不平衡、压力太大，等等。这种不平衡加速度越快，累加种类越多，得慢病的可能性就越大，而且患病年龄大大提前。 …… 因为在细胞损伤和修复的博弈过程中，能给细胞修复提供原料的只有饮食。
+
+## yawye_c07_p19_lung_disease
+
+- 端点：`omnivorous_balanced_diet` → `lung_disease`
+- relation：减少损伤因素并补充营养与支气管炎等慢病转归相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：19
+
+> 当细胞损伤速度降低，增加了修复原料，也就是营养方向正确了，并且长期坚持，疾病就会向好的方向发展，甚至有可能痊愈。比如一个人戒烟了，对呼吸道的损伤减少，再对症补充些营养，这个人的慢病支气管炎就会好转。
+
+## yawye_c07_p21_chronic_disease
+
+- 端点：`cell_repair` → `chronic_disease`
+- relation：细胞损伤速度超过修复速度与慢病发生发展相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：21
+
+> 慢病患病时间较长，这实际上给了我们修复自己细胞的机会，也就是说我们可以有时间找出细胞损伤的原因，去除损伤因素，再加上有针对性地补充细胞修复成分，身体就会越来越健康。换句话说，慢病是可以预防和治愈的。当然这里有一个前提，就是细胞损伤程度还不到无可挽回的情况下。有些严重损伤是无法再修复的，比如肾功能衰竭、已经心肌梗死的组织、脑血栓之后坏死的脑组织等。
+
+
+# spine 8 · 修复细胞损伤的唯一原料：食物中的营养素
+
+## yawye_c08_p4_cell_repair
+
+- 端点：`omnivorous_balanced_diet` → `cell_repair`
+- relation：饮食作为细胞修复原料供给与慢病进程相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：4–13
+
+> 我们常说，不能偏食，要注意搭配。每一种食物都含有自己独特的营养素，但不全面。只有通过进食多种食物，适当搭配，平衡膳食，才能让身体获得所需的全部营养。这些营养，从临床医学角度准确地描述，叫作七大营养素，包括： …… 准确地说，平衡膳食是指选择的食物能满足成人和儿童对能量及各种营养素的需求。
+>
+> 这里的需求是指人每一天的输出，包括：为细胞新陈代谢提供能量，为新生细胞更新提供结构原料，为人体新陈代谢提供媒介，维持肠道细菌均衡，等等。这些都要消耗各种营养素，比如维生素、蛋白质、脂肪等。
+
+## yawye_c08_p18_cognitive_clarity
+
+- 端点：`omega3` → `cognitive_clarity`
+- relation：ω-3脂肪酸等脑营养素与认知用脑需求相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：18
+
+> 第二，心理方面。大脑消耗的营养素与肌肉消耗的营养素不一样，用脑越多越需要多补充蛋白质、维生素、矿物质，还有脂类中的胆固醇、磷脂和大家都很关注的DHA[注：DHA：俗称脑黄金，是一种对人体非常重要的不饱和脂肪酸，属于ω-3不饱和脂肪酸家族中的重要成员。]和EPA[注：EPA：又称血管清道夫，是鱼油的主要成分，是人体必需的几种ω-3脂肪酸之一。]。
+
+## yawye_c08_p20_lung_disease
+
+- 端点：`antioxidant_defense` → `lung_disease`
+- relation：吸烟相关氧化负担与抗氧化营养需求相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：20
+
+> 第四，吸烟。需要更多的抗氧化剂来对抗尼古丁等毒素对人体的伤害。
+
+## yawye_c08_p21_liver_chronic
+
+- 端点：`vitamin_b_complex` → `liver_chronic`
+- relation：饮酒相关肝细胞修复与B族维生素及蛋白质需求相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：21
+
+> 第五，喝酒。伤肝，需要更多的营养素来修复肝脏细胞，如维生素B族和蛋白质。
+
+
+# spine 9 · 藏在饮食中的七大营养素如何修复细胞损伤
+
+## yawye_c09_p2_cell_repair
+
+- 端点：`dietary_fat` → `cell_repair`
+- relation：磷脂与胆固醇等脂类作为细胞膜结构成分参与细胞修复
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：2
+
+> 如果把一个人身上所有细胞的膜收集起来进行检测，我们会发现里面实际上主要是三种成分：蛋白质、磷脂、胆固醇。磷脂所占的比例较高，占50%～70%，胆固醇占30%左右，蛋白质占20%左右。还有一点糖类物质，如糖蛋白或糖脂，占膜重的2%～10%。
+
+## yawye_c09_p15_cell_repair
+
+- 端点：`animal_foods` → `cell_repair`
+- relation：肉蛋奶鱼等动物性食物提供结构营养素参与细胞更新
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：15–18
+
+> 人体主要由蛋白质、脂类（脂肪酸、磷脂和胆固醇等）构成，同时需要维生素和矿物质的协助。 …… 另外，内分泌系统是调节细胞代谢的重要角色，而激素分为蛋白质类激素和胆固醇类激素，比如甲状腺素、胰岛素都属于蛋白质类激素，肾上腺素就属于胆固醇类激素。所以说一个人吃动物性食品，比如鸡蛋、内脏、肉类，里面有蛋白质和胆固醇，这些正好是形成激素的前体。
+
+## yawye_c09_p20_gut_microbiome
+
+- 端点：`dietary_fiber` → `gut_microbiome`
+- relation：膳食纤维作为肠道菌群底物与菌群维持相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：膳食纤维与胃肠道健康的综述归纳）
+- 段落：20
+
+> 肠道里尤其是结肠中存在大量细菌，体积很小，数量很多。人体由40万亿～60万亿个细胞组成，而我们身上的细菌数量是人体细胞数量的10倍，并且主要在肠道里，肠道里的细菌靠食物中的膳食纤维养活。
+
+## yawye_c09_p22_cell_repair
+
+- 端点：`omnivorous_balanced_diet` → `cell_repair`
+- relation：饮食作为细胞修复原料供给与慢病进程相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：22–25
+
+> 给细胞提供能量——主要靠碳水化合物类，也就是粮食、水果等。
+>
+> 成为细胞结构——主要靠蛋白质类和脂类，主要存在于肉、蛋、奶、鱼中。
+>
+> 调节细胞代谢——蛋白质类和胆固醇类，还有维生素、矿物质。
+>
+> 养肠道菌群——食物中的膳食纤维。
+
+
+# spine 11 · 旧石器时代：首次荤素搭配，脑容量激增
+
+## yawye_c11_p3_cognitive_clarity
+
+- 端点：`animal_foods` → `cognitive_clarity`
+- relation：荤素搭配与熟食动物蛋白脂类供给与大脑发育相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：较高肉类摄入频率与较高老年痴呆风险相关；长期素食与较低风险相关）
+- 段落：3–4
+
+> 大约80多万年前，有部分人种发现野火烧过的动物肉既好吃，又好消化，于是把火种引进了山洞，这使得人类又前进了一大步。把打来的动物煮熟或者烤熟了吃，摄入的蛋白质和脂类更容易消化吸收，大脑获得了更多滋养。
+>
+> 由于获得肉食要比采摘野果和树叶困难得多，在追逐和格杀野兽的过程中要斗智斗勇，人类体格变得更加强壮，生存技能日益精进，同时，荤素搭配的饮食变化又使大脑发育获得了更多的必需营养素。
+
+## yawye_c11_p6_cognitive_clarity
+
+- 端点：`omnivorous_balanced_diet` → `cognitive_clarity`
+- relation：约65%植物+35%动物的进化期膳食比例与脑体状态相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：6
+
+> 这时的人类在外形上有一些非常重要的特点：脑容量显著增大（由于大脑获得了更多的营养素，从而促进了大脑的快速发育），下巴逐渐收缩进去，牙齿也变小了（由于食物煮熟后容易咀嚼和消化）。
+
+
+# spine 12 · 农牧时代：食谱变窄，进化停滞
+
+## yawye_c12_p6_cognitive_clarity
+
+- 端点：`animal_foods` → `cognitive_clarity`
+- relation：荤素搭配与熟食动物蛋白脂类供给与大脑发育相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：较高肉类摄入频率与较高老年痴呆风险相关；长期素食与较低风险相关）
+- 段落：6–7
+
+> 但是从营养素的获取来讲，农业革命的开始实际上是食物营养下降的开始。人类不再需要与大型动物搏杀，每天吃的食物是主动种植的植物或者饲养的动物，食谱变窄了；由于植物类食物的增加，粮食、蔬菜、水果等从种植到收获到储存都变得越来越容易，动物类食品开始减少；再加上人们不再需要像一万年前那样在自然界追逐猎物和主动采集各种食物，而是去附近交换或购买，体质逐渐衰退。
+>
+> 农业的发展大大改变了人类的饮食结构，肉类食物比例减少，植物类食物所占比例明显增多，定居生活带来的是人类大脑增容和体质增强的戛然而止。
+
+
+# spine 13 · 工业革命时代：人工食物出现，慢病流行
+
+## yawye_c13_p2_chronic_disease
+
+- 端点：`ultra_processed` → `chronic_disease`
+- relation：工业加工食品与精制主食普及与慢病流行相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：2–6
+
+> 这一切带来的后果是，几乎所有食物中的营养素都在贬值。据日本2006年发布的一则调查显示，和20年前相比，菠菜的营养素只剩下了不到20%。 …… •工业生产的反式脂肪酸（人造黄油、起酥油）。
+>
+> •精米、精面。精米、精面是近几十年工业发展的结果，老祖宗吃的是五谷杂粮，那时候食物加工要靠手工，不可能制造出精细的米和面。
+
+## yawye_c13_p6_chronic_disease
+
+- 端点：`refined_carbs` → `chronic_disease`
+- relation：精米精面等工业化主食与营养不平衡及慢病相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：精制碳水化合物摄入与慢性病风险相关）
+- 段落：6
+
+> •精米、精面。精米、精面是近几十年工业发展的结果，老祖宗吃的是五谷杂粮，那时候食物加工要靠手工，不可能制造出精细的米和面。
+
+## yawye_c13_p11_chronic_disease
+
+- 端点：`omnivorous_balanced_diet` → `chronic_disease`
+- relation：接近进化期荤素比例的天然膳食与较低慢病负担相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：11–13
+
+> 回头看，人类曾经是地球上摄食种类最多的动物，以荤素搭配的饮食结构为最鲜明特色。相比其他动物要丰富得多的营养素摄取，让人类逐渐进化，成为世界的霸主。但是近1万年来的农业革命，以及近200年的工业革命，让一些细胞不认识的不速之客成为人类习以为常的盘中餐，人们对食物的追逐变成了等待它的成熟和不费吹灰之力的购买。
+>
+> 毫无疑问，从饮食方面而言，荤素搭配、食谱变宽是人类进化的催化剂，而饮食结构的变化、食物获取方式的颠覆正是饮食方面让人类受困于各种慢病的主要原因。
+>
+> 从数万年前茹毛饮血的旧石器时代到现在，我们的基因结构和消化系统基本上没有改变，然而我们的饮食结构却有翻天覆地的变化，特别是在最近100年间。正是由于旧基因和新饮食的矛盾，造成了今天慢病的蔓延流行。
+
+## yawye_c13_p13_chronic_disease
+
+- 端点：`ultra_processed` → `chronic_disease`
+- relation：工业加工食品与精制主食普及与慢病流行相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：13
+
+> 从数万年前茹毛饮血的旧石器时代到现在，我们的基因结构和消化系统基本上没有改变，然而我们的饮食结构却有翻天覆地的变化，特别是在最近100年间。正是由于旧基因和新饮食的矛盾，造成了今天慢病的蔓延流行。
+
+
+# spine 14 · 缔造最强大脑和体能的完美饮食
+
+## yawye_c14_p9_cognitive_clarity
+
+- 端点：`omnivorous_balanced_diet` → `cognitive_clarity`
+- relation：约65%植物+35%动物的进化期膳食比例与脑体状态相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：9–11
+
+> 植物性食物占65%左右，主要是水果、蔬菜、坚果、豆类和蜂蜜。
+>
+> 动物性食物占35%左右，主要是肉类、蛋类、鱼和虾贝类。
+>
+> 这样完美的饮食结构带来了大量的维生素和矿物质，低钠高钾、高纤维素、高蛋白质以及脂肪酸中ω-3脂肪酸的高含量，糖多为蜂蜜和水果提供的果糖，从而大大促进了人类的进化。我们的食谱与这个时期的食谱越接近，大脑和身体就越接近理想状态。
+
+## yawye_c14_p11_omega3
+
+- 端点：`omnivorous_balanced_diet` → `omega3`
+- relation：进化期膳食中较高ω-3比例与脑体营养状态相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：11
+
+> 这样完美的饮食结构带来了大量的维生素和矿物质，低钠高钾、高纤维素、高蛋白质以及脂肪酸中ω-3脂肪酸的高含量，糖多为蜂蜜和水果提供的果糖，从而大大促进了人类的进化。我们的食谱与这个时期的食谱越接近，大脑和身体就越接近理想状态。
+
+## yawye_c14_p14_chronic_disease
+
+- 端点：`refined_carbs` → `chronic_disease`
+- relation：精米精面等工业化主食与营养不平衡及慢病相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：精制碳水化合物摄入与慢性病风险相关）
+- 段落：14
+
+> 第一，我们必须意识到在餐桌食品丰富的背后，我们获得的营养其实十分匮乏，食物种类太少与营养素的含量太低并存。如果我们再挑食，或者总用精米、精面把自己喂饱，就更容易出现营养不平衡。
+
+## yawye_c14_p15_chronic_disease
+
+- 端点：`omnivorous_balanced_diet` → `chronic_disease`
+- relation：接近进化期荤素比例的天然膳食与较低慢病负担相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：15–16
+
+> 第二，尽量摄入天然食物，动物类、植物类食物每天都要吃，注意减少加工食品摄入量。
+>
+> 第三，动物类食物（肉、蛋、奶、鱼等）最好占一天食物的35%。当然如果能买到散养的畜禽类动物或者禽卵更好。植物类食物包括蔬菜、水果和粮食，占一天食物的65%。蔬菜和水果种类尽量多样化，粮食类食物种类要多，以粗粮为主，如全麦类、糙米、玉米、莜麦、薯类都很好，最不好的是精米、精面，因为精米、精面是工业化的产物。
+
+## yawye_c14_p16_chronic_disease
+
+- 端点：`refined_carbs` → `chronic_disease`
+- relation：精米精面等工业化主食与营养不平衡及慢病相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：精制碳水化合物摄入与慢性病风险相关）
+- 段落：16
+
+> 第三，动物类食物（肉、蛋、奶、鱼等）最好占一天食物的35%。当然如果能买到散养的畜禽类动物或者禽卵更好。植物类食物包括蔬菜、水果和粮食，占一天食物的65%。蔬菜和水果种类尽量多样化，粮食类食物种类要多，以粗粮为主，如全麦类、糙米、玉米、莜麦、薯类都很好，最不好的是精米、精面，因为精米、精面是工业化的产物。
+
+
+# spine 16 · 食物种类多不等于营养丰富
+
+## yawye_c16_p17_energy_vitality
+
+- 端点：`animal_foods` → `energy_vitality`
+- relation：结构营养素充足的动物性食物与生长发育及体能相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：蔬菜汤中添加肉类或牛奶补充动物蛋白，与病后/年老体弱者恢复体力相关）
+- 段落：17–20
+
+> 从营养素角度看，馒头、粥和米饭都是碳水化合物，蔬菜提供维生素，提供蛋白质的鸡蛋几乎没有，而脂类是完全缺席的。 …… 结构物质主要指磷脂、蛋白质、胆固醇。如果这些结构性营养缺失了，细胞无法按照DNA的指令完成增生和修复，身体发育就会受到限制。
+>
+> 粮食的主要成分是碳水化合物，提供的是能量，是葡萄糖，吃得太多只会转化成脂肪，变不成细胞的结构，所以这个孩子很胖，却不长个儿。
+
+## yawye_c16_p20_obesity_risk
+
+- 端点：`refined_carbs` → `obesity_risk`
+- relation：过量碳水化合物转化为脂肪储存与肥胖相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：精制碳水化合物摄入与肥胖风险相关）
+- 段落：20
+
+> 粮食的主要成分是碳水化合物，提供的是能量，是葡萄糖，吃得太多只会转化成脂肪，变不成细胞的结构，所以这个孩子很胖，却不长个儿。
+
+
+# spine 17 · 结构型营养可以变成能量原料，而能量原料未必能转化成结构型营养
+
+## yawye_c17_p11_chronic_wounds
+
+- 端点：`animal_foods` → `chronic_wounds`
+- relation：手术后结构营养素供给与伤口愈合相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：11
+
+> 我只能一点一点解释：“您平时特爱吃主食，对吧？主食是碳水化合物，吃到身体中会转化为脂肪存在肚子上，所以您的肚子大。但是皮肤、肌肉、骨头等部位的细胞主要成分是磷脂、蛋白质和胆固醇，您吃的食物没有这些营养，细胞就长不出来，所以您的胸骨怎么都长不好，伤口皮肤怎么都愈合不了。这种情况下，多吃肉类、鸡蛋、酸奶和猪肝，伤口才能快点儿长好。您现在吃的这些不长细胞结构成分只给能量，所以伤口总也长不好，出不了院。”
+
+## yawye_c17_p14_atherosclerosis
+
+- 端点：`dietary_cholesterol` → `atherosclerosis`
+- relation：膳食胆固醇作为细胞结构成分与肝脏内源胆固醇路径的区分观察
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：较低LDL水平与动脉粥样硬化进程停滞相关的降脂试验观察）
+- 段落：14
+
+> 我继续耐心解释：“吃进去的胆固醇会成为人体细胞结构的一部分，肝脏造的胆固醇才与动脉粥样硬化有关，不是一回事儿。”
+
+
+# spine 18 · 能量原料不足，结构原料受损
+
+## yawye_c18_p12_obesity_risk
+
+- 端点：`refined_carbs` → `obesity_risk`
+- relation：过量碳水化合物转化为脂肪储存与肥胖相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：精制碳水化合物摄入与肥胖风险相关）
+- 段落：12
+
+> 食物摄入不均衡，如果碳水化合物摄入太多，人体消耗不掉，就会造成肥胖、糖尿病等疾病；而为细胞提供结构和形成调节物质的营养素不足，会导致阿尔茨海默病、呆小症等。该消耗的消耗不掉，形成负担；该形成结构的不足以形成结构；该形成激素等调节物质的营养素也不足，最终造成人体功能缺失，这就是我们常说的“病从口入”。
+
+## yawye_c18_p12_type2_diabetes
+
+- 端点：`refined_carbs` → `type2_diabetes`
+- relation：精制主食及粥类偏好与血糖及糖尿病相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：12
+
+> 食物摄入不均衡，如果碳水化合物摄入太多，人体消耗不掉，就会造成肥胖、糖尿病等疾病；而为细胞提供结构和形成调节物质的营养素不足，会导致阿尔茨海默病、呆小症等。该消耗的消耗不掉，形成负担；该形成结构的不足以形成结构；该形成激素等调节物质的营养素也不足，最终造成人体功能缺失，这就是我们常说的“病从口入”。
+
+## yawye_c18_p12_cognitive_decline
+
+- 端点：`protein_deficiency` → `cognitive_decline`
+- relation：结构营养素不足与认知障碍相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：12
+
+> 食物摄入不均衡，如果碳水化合物摄入太多，人体消耗不掉，就会造成肥胖、糖尿病等疾病；而为细胞提供结构和形成调节物质的营养素不足，会导致阿尔茨海默病、呆小症等。该消耗的消耗不掉，形成负担；该形成结构的不足以形成结构；该形成激素等调节物质的营养素也不足，最终造成人体功能缺失，这就是我们常说的“病从口入”。
+
+
+# spine 19 · 最适合现代人的食物：低能量密度，高营养密度
+
+## yawye_c19_p6_obesity_risk
+
+- 端点：`refined_carbs` → `obesity_risk`
+- relation：过量碳水化合物转化为脂肪储存与肥胖相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：精制碳水化合物摄入与肥胖风险相关）
+- 段落：6
+
+> 一碗米饭里基本上就只有碳水化合物和少量植物蛋白，缺乏大多数营养素。我们把这种只有能量而没有其他营养素的食物叫作空能量食物，比如白米粥、甜饮料、白面馒头和大米饭。
+
+## yawye_c19_p7_hypertension
+
+- 端点：`mediterranean_diet` → `hypertension`
+- relation：地中海式饮食与高血压等慢病风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7
+
+> 最符合低能量、高营养这一标准的膳食结构，就是地中海膳食结构。多年的临床研究也证明，这是预防高血压、高血脂、糖尿病等现代慢病最有效的饮食方式。
+
+## yawye_c19_p7_blood_cholesterol
+
+- 端点：`mediterranean_diet` → `blood_cholesterol`
+- relation：地中海式饮食与血脂相关慢病风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7
+
+> 最符合低能量、高营养这一标准的膳食结构，就是地中海膳食结构。多年的临床研究也证明，这是预防高血压、高血脂、糖尿病等现代慢病最有效的饮食方式。
+
+## yawye_c19_p7_type2_diabetes
+
+- 端点：`mediterranean_diet` → `type2_diabetes`
+- relation：地中海式饮食与较低糖尿病风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7
+
+> 最符合低能量、高营养这一标准的膳食结构，就是地中海膳食结构。多年的临床研究也证明，这是预防高血压、高血脂、糖尿病等现代慢病最有效的饮食方式。
+
+## yawye_c19_p8_coronary_heart_disease
+
+- 端点：`mediterranean_diet` → `coronary_heart_disease`
+- relation：传统地中海式饮食与较低心血管病死亡风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：8
+
+> 澳大利亚研究人员一项历时10年的研究表明，传统地中海式饮食的确可以避免患心脏病。他们调查了不同来源地人群的饮食类型与心脏病死亡率之间的关系，发现最常吃传统地中海式食品的人，比很少吃地中海式食品的人死于心血管病的风险要低30%。
+
+## yawye_c19_p9_type2_diabetes
+
+- 端点：`mediterranean_diet` → `type2_diabetes`
+- relation：地中海式饮食与较低糖尿病风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：9–11
+
+> 一个来自希腊的研究显示，地中海式饮食还可能降低患糖尿病的风险，特别是同时伴有心脏疾病风险的时候。
+>
+> 研究人员分析了19项来自不同国家，数据采集超过16.2万人的相关研究。分析显示，与其他饮食相比，富含鱼类、坚果、蔬菜和水果的地中海式饮食，可以使人们患糖尿病的风险减少21%。对于患有心脏病的高危人群，地中海式饮食可以使人们患糖尿病的风险减少27%。
+>
+> 有人提出特定的地域因素如遗传、环境和生活方式可能会影响研究结果，但综合结果表明，地中海式饮食对欧洲人和非洲人同样可以降低糖尿病风险。也就是说，排除了环境因素、遗传因素、生活方式因素，单从饮食上注意，地中海式饮食也照样对预防疾病有效。
+
+## yawye_c19_p12_cognitive_decline
+
+- 端点：`mediterranean_diet` → `cognitive_decline`
+- relation：地中海式饮食与老年痴呆病程及死亡风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：12
+
+> 美国后来又连续几年做了这方面的对比研究，发现地中海式饮食可以减缓老年痴呆症病情的恶化，可使痴呆患者的死亡风险减少73%。
+
+## yawye_c19_p13_stroke
+
+- 端点：`mediterranean_diet` → `stroke`
+- relation：地中海式饮食与中风及记忆减退风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：13
+
+> 《神经病学文献》发表的一项研究报告称，地中海式饮食可以保护大脑免受血管损伤，降低发生中风和记忆力减退的风险。另外，许多研究还显示地中海式饮食可以起到预防乳腺癌的作用，可以减少30%的乳腺癌发病率。
+
+## yawye_c19_p13_breast_prostate_risk
+
+- 端点：`mediterranean_diet` → `breast_prostate_risk`
+- relation：地中海式饮食与乳腺癌发病风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：13
+
+> 《神经病学文献》发表的一项研究报告称，地中海式饮食可以保护大脑免受血管损伤，降低发生中风和记忆力减退的风险。另外，许多研究还显示地中海式饮食可以起到预防乳腺癌的作用，可以减少30%的乳腺癌发病率。
+
+
+# spine 23 · 能量摄入的四个来源
+
+## yawye_c23_p5_obesity_risk
+
+- 端点：`added_sugar` → `obesity_risk`
+- relation：含酒精饮料等额外能量与腹部脂肪堆积相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：5
+
+> 啤酒瓶上标明的酒精含量通常不会超过14%，如青岛啤酒的酒精含量是4%。一瓶啤酒500毫升，那么酒精含量就是500×4%=20克。啤酒也是碳水化合物做的，按照1克酒精产能7千卡计算，20克酒精产能为20×7=140千卡。换算成碳水化合物的话，1克碳水化合物产能4千卡：140÷4=35克。所以喝一瓶啤酒相当于吃了35克碳水化合物。如果一次喝两三瓶呢？自己算吧。而且大多数人喝了很多啤酒之后，还要再吃一碗米饭或者面条，这些能量累加，长期代谢不掉，转化成脂肪囤积在腹部周围，肚子也就越来越大。
+
+
+# spine 24 · 容易被忽视的能量失衡表现：体重正常而体脂偏高
+
+## yawye_c24_p10_cognitive_decline
+
+- 端点：`protein_deficiency` → `cognitive_decline`
+- relation：结构营养素不足与认知障碍相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：10–14
+
+> 我们又给她做了详细的饮食调查。发现，她每天所摄入的能量80%左右来自碳水化合物，蛋白质和脂肪合起来才占总能量的20%左右。她不吃肉、蛋、奶，不吃油炸食品，炒出来的菜还要用开水冲冲，每天的能量基本上都是靠三顿主食中的米和面提供。
+>
+> 这下算是找到病因了：
+>
+> 缺乏蛋白质，所以肌肉无力，消化能力差，睡眠不好。
+>
+> 缺乏必需脂肪酸，所以皮肤干燥，视力很差，记忆力减退。
+>
+> 我把病因仔细解释给她听，告诉她必须要吃肉、蛋、奶、鱼，减少碳水化合物摄入。她平常粮食吃得偏多，转化为脂肪存在身体中，所以尽管体重正常，但是人体必需的结构成分所占比例不够，而脂肪却占了大量比例。
+
+## yawye_c24_p10_energy_vitality
+
+- 端点：`protein_deficiency` → `energy_vitality`
+- relation：蛋白质与必需脂肪酸缺乏与乏力、消化不良等相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：10–13
+
+> 我们又给她做了详细的饮食调查。发现，她每天所摄入的能量80%左右来自碳水化合物，蛋白质和脂肪合起来才占总能量的20%左右。她不吃肉、蛋、奶，不吃油炸食品，炒出来的菜还要用开水冲冲，每天的能量基本上都是靠三顿主食中的米和面提供。
+>
+> 这下算是找到病因了：
+>
+> 缺乏蛋白质，所以肌肉无力，消化能力差，睡眠不好。
+>
+> 缺乏必需脂肪酸，所以皮肤干燥，视力很差，记忆力减退。
+
+## yawye_c24_p13_cognitive_decline
+
+- 端点：`omega3` → `cognitive_decline`
+- relation：必需脂肪酸缺乏与记忆力及认知相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：13
+
+> 缺乏必需脂肪酸，所以皮肤干燥，视力很差，记忆力减退。
+
+
+# spine 25 · 能量平衡的方法因人而异
+
+## yawye_c25_p7_type2_diabetes
+
+- 端点：`refined_carbs` → `type2_diabetes`
+- relation：精制主食及粥类偏好与血糖及糖尿病相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7
+
+> 我要特别说明一下，根据多年临床工作经验，如果想让身体保持更好的健康状态，根据中国居民饮食现状和身体状况，碳水化合物的摄入量我们尽量取其范围的低值，蛋白质和脂类我们尽量取其范围的高值，这样的目标设定效果会好得多。如果是脑病患者，脂类比例要远远大于30%；糖尿病患者的碳水化合物比例，我通常会要求降到40%～50%。
+
+
+# spine 28 · 蛋白质的摄入：动物类蛋白价值优于植物类蛋白
+
+## yawye_c28_p2_plant_protein
+
+- 端点：`animal_foods` → `plant_protein`
+- relation：动物蛋白生物利用率高于多数植物蛋白的观察
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：2–3
+
+> 从这一点来说，肉蛋类蛋白质的生物利用率高于植物类蛋白质。
+>
+> 举个例子，我们都知道大豆的蛋白质含量非常高，但是它是植物，缺乏某种人体必需的氨基酸。如果只靠喝豆浆、吃大豆来获取蛋白质，氨基酸被人体利用会受到影响，代谢产物增多，对肾脏的压力会很大，所以肾功能有问题的人我们都不让吃大豆。对于这种高蛋白质而氨基酸不完整的植物，最好采用食物互补的方法，也就是说缺哪种氨基酸就寻找含这种氨基酸高的食物来搭配。在这里再叮嘱一句：豆制品不要单吃。
+
+## yawye_c28_p3_kidney_disease
+
+- 端点：`legumes` → `kidney_disease`
+- relation：过量豆类蛋白利用不完全与肾脏负担相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：3
+
+> 举个例子，我们都知道大豆的蛋白质含量非常高，但是它是植物，缺乏某种人体必需的氨基酸。如果只靠喝豆浆、吃大豆来获取蛋白质，氨基酸被人体利用会受到影响，代谢产物增多，对肾脏的压力会很大，所以肾功能有问题的人我们都不让吃大豆。对于这种高蛋白质而氨基酸不完整的植物，最好采用食物互补的方法，也就是说缺哪种氨基酸就寻找含这种氨基酸高的食物来搭配。在这里再叮嘱一句：豆制品不要单吃。
+
+## yawye_c28_p8_cancer_overall
+
+- 端点：`protein_deficiency` → `cancer_overall`
+- relation：优质蛋白与脂溶性维生素长期不足与肺癌等风险相关的个案观察
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：8–13
+
+> 我曾经诊疗过一个患者，58岁，男性，身高178厘米，体重58千克，平时运动量很大，每天至少运动两个小时。他吃饭也非常讲究，绝对做到低脂低盐、少糖少油，人也不胖，却在一次体检中发现患了肺癌。他怎么也想不明白，自己的生活方式已经很科学了，怎么还会生病。 …… 于是我告诉他：“你的消耗很大。运动多的人能量消耗多，肌肉损伤大，修复的速度快，因此需要的磷脂、蛋白质、胆固醇以及铁、钙等营养素也要比正常人多。同时，油脂对人体也非常重要，维生素A属于脂溶性维生素，对上皮细胞的保护以及免疫系统十分重要，而脂溶性维生素必须在有油脂的环境中才能被人体吸收利用。肺癌不一定都是吸烟造成的，你看你不吸烟，不饮酒，坚持运动，但是缺乏人体最需要的各种营养素，而且蛋白质的摄入也与免疫系统功能强弱息息相关，所以你的癌症与你吃得不对有关。”
+
+## yawye_c28_p13_lung_disease
+
+- 端点：`vitamin_a` → `lung_disease`
+- relation：维生素A与呼吸道上皮修复及肺癌相关营养因素相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：13
+
+> 于是我告诉他：“你的消耗很大。运动多的人能量消耗多，肌肉损伤大，修复的速度快，因此需要的磷脂、蛋白质、胆固醇以及铁、钙等营养素也要比正常人多。同时，油脂对人体也非常重要，维生素A属于脂溶性维生素，对上皮细胞的保护以及免疫系统十分重要，而脂溶性维生素必须在有油脂的环境中才能被人体吸收利用。肺癌不一定都是吸烟造成的，你看你不吸烟，不饮酒，坚持运动，但是缺乏人体最需要的各种营养素，而且蛋白质的摄入也与免疫系统功能强弱息息相关，所以你的癌症与你吃得不对有关。”
+
+## yawye_c28_p13_immune_resilience
+
+- 端点：`animal_foods` → `immune_resilience`
+- relation：动物性优质蛋白摄入与免疫功能相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：13
+
+> 于是我告诉他：“你的消耗很大。运动多的人能量消耗多，肌肉损伤大，修复的速度快，因此需要的磷脂、蛋白质、胆固醇以及铁、钙等营养素也要比正常人多。同时，油脂对人体也非常重要，维生素A属于脂溶性维生素，对上皮细胞的保护以及免疫系统十分重要，而脂溶性维生素必须在有油脂的环境中才能被人体吸收利用。肺癌不一定都是吸烟造成的，你看你不吸烟，不饮酒，坚持运动，但是缺乏人体最需要的各种营养素，而且蛋白质的摄入也与免疫系统功能强弱息息相关，所以你的癌症与你吃得不对有关。”
+
+
+# spine 29 · 蛋白质失衡表现：频繁感冒、发育迟缓、贫血、易疲劳等
+
+## yawye_c29_p1_osteoporosis
+
+- 端点：`protein_deficiency` → `osteoporosis`
+- relation：蛋白质缺乏与骨胶原及骨质疏松相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–3
+
+> 如果蛋白质不是缺乏到很严重的程度，是很难表现出来的。通常有儿童生长发育迟缓、成人头发稀少干枯易断、人体代谢率下降、蛋白质类激素减少、新陈代谢所需各种酶的功能减弱等慢性表现，因为这些往往不以疾病的形式出现，很难引起人们重视。但如果不重视，饮食结构不加以改善，蛋白质更加缺乏，慢慢身体就会出现一些疾病的症状。
+>
+> 例如，抵抗力低下，容易感冒发烧或者发生泌尿系统感染；肌肉无力，容易疲劳；胃肠道蠕动能力下降和消化酶的缺乏，导致消化不良；全身发冷，没有力气，甲状腺功能低下；贫血，双下肢水肿或有腹水，骨质疏松，等等。
+>
+> 很多人以为骨质疏松只是缺钙，但其实很有可能是缺蛋白质。蛋白质在骨骼中以骨胶原的形式存在，增加了骨骼的韧性。此外，它还提供矿物质依附，保证骨骼的硬度。因此身体缺乏蛋白质，自然就会骨质疏松。
+
+## yawye_c29_p2_infectious_disease
+
+- 端点：`protein_deficiency` → `infectious_disease`
+- relation：蛋白质缺乏与抵抗力下降及感染易感性相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：2
+
+> 例如，抵抗力低下，容易感冒发烧或者发生泌尿系统感染；肌肉无力，容易疲劳；胃肠道蠕动能力下降和消化酶的缺乏，导致消化不良；全身发冷，没有力气，甲状腺功能低下；贫血，双下肢水肿或有腹水，骨质疏松，等等。
+
+## yawye_c29_p2_iron_status
+
+- 端点：`protein_deficiency` → `iron_status`
+- relation：蛋白质缺乏与贫血等相关表现
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：2
+
+> 例如，抵抗力低下，容易感冒发烧或者发生泌尿系统感染；肌肉无力，容易疲劳；胃肠道蠕动能力下降和消化酶的缺乏，导致消化不良；全身发冷，没有力气，甲状腺功能低下；贫血，双下肢水肿或有腹水，骨质疏松，等等。
+
+## yawye_c29_p3_osteoporosis
+
+- 端点：`protein_deficiency` → `osteoporosis`
+- relation：蛋白质缺乏与骨胶原及骨质疏松相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：3
+
+> 很多人以为骨质疏松只是缺钙，但其实很有可能是缺蛋白质。蛋白质在骨骼中以骨胶原的形式存在，增加了骨骼的韧性。此外，它还提供矿物质依附，保证骨骼的硬度。因此身体缺乏蛋白质，自然就会骨质疏松。
+
+## yawye_c29_p19_kidney_disease
+
+- 端点：`animal_foods` → `kidney_disease`
+- relation：动物蛋白过量摄入与肾脏滤过负担相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：西式高动物蛋白等饮食结构与肾脏功能损伤相关）
+- 段落：19–22
+
+> 如果蛋白质摄入过多，大多数营养书都会告诉我们以下几种危害：
+>
+> 第一，胃肠道功能紊乱。当摄入的蛋白质太多，超过胃肠道的消化能力，会造成胃肠道功能紊乱。
+>
+> 第二，肝脏损伤。当蛋白质摄入过量，肠道的有毒气体堆积过多，这些气体就会被吸收入血液，最终到达肝脏进行解毒。所以，如果蛋白质摄入过多，超过了肝脏的解毒能力，将会造成肝脏的损害。
+>
+> 第三，肾脏损害。不能被人体利用的蛋白质代谢产物如尿素、肌酐、肌酸和尿酸需经肾脏滤过进入尿中，继而排出体外。如果代谢废物量大，肾脏滤过量增大，将加重肾脏的负担，造成肾损害。
+
+## yawye_c29_p27_kidney_disease
+
+- 端点：`plant_protein` → `kidney_disease`
+- relation：低生物利用率植物蛋白过量与肝肾代谢负担相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：27
+
+> 从动物性食物中获得的是优质蛋白，吸收利用率高，而且受身体的限制，很难吃多。但是植物性蛋白容易吃多，比如豆类（各种豆制品），还有一些食用菌。这些植物蛋白的生物利用度比较低，不能被利用的部分只能经肝脏转化再经肾脏排出体外，从而加重肝脏和肾脏的负担。
+
+
+# spine 30 · 蛋白质的平衡：动物类蛋白应占到蛋白总量的一半
+
+## yawye_c30_p14_protein_deficiency
+
+- 端点：`animal_foods` → `protein_deficiency`
+- relation：动物蛋白占蛋白总量约一半与优质蛋白供给相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：14
+
+> 上面介绍的是普通人的蛋白质摄入原则。对于特殊人群，要用特殊标准。比如说，运动员、孕妇、少年儿童以及营养不良的患者，就需要补充较多的蛋白质，以满足身体所需。而对于肾衰竭的人，则要严格控制蛋白质的质量和数量，以防进一步损害肾功能。当然肝硬化的患者更要注意。
+
+
+# spine 33 · 碳水化合物的摄入：谷薯杂豆等粮食类主食
+
+## yawye_c33_p15_metabolic_health
+
+- 端点：`whole_grains` → `metabolic_health`
+- relation：粗粮谷薯类主食与代谢健康相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：全谷物摄入与糖尿病肥胖及中风风险相关）
+- 段落：15–18
+
+> 我看着他，乐了：“过去干农活，要用力气，要耗能量，而且还要出汗。汗水是什么味道的？是咸味，所以多吃面条绝对正确。但是您从地头搬到了楼房，运动少了，再这样吃，食物进到身体中成了负担，血压、血糖就都升高了。” …… 老先生笑了，终于明白环境不同了，饮食的确要改一改。他回去后吃饭时增加了粗粮，有时把土豆蒸一蒸，当主食吃。土豆也是他从小的最爱，既能吃饱，还补充了膳食纤维、钾等元素。同时，他饮食中还增加了绿叶菜，水果也坚持每天吃一个。
+
+
+# spine 34 · 碳水化合物失衡表现：血糖不正常、腹部肥胖
+
+## yawye_c34_p1_obesity_risk
+
+- 端点：`refined_carbs` → `obesity_risk`
+- relation：过量碳水化合物转化为脂肪储存与肥胖相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：精制碳水化合物摄入与肥胖风险相关）
+- 段落：1
+
+> 如果碳水化合物摄入不足，人就容易出现低血糖症状，皮下脂肪及肌肉也会分解来供能，长期下去就会明显消瘦；反之，如果一个人很胖，特别是腹部肥胖，或者血浆中甘油三酯明显增高，排除饮酒的因素，则提示碳水化合物摄入过多。
+
+## yawye_c34_p1_type2_diabetes
+
+- 端点：`refined_carbs` → `type2_diabetes`
+- relation：精制主食及粥类偏好与血糖及糖尿病相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1
+
+> 如果碳水化合物摄入不足，人就容易出现低血糖症状，皮下脂肪及肌肉也会分解来供能，长期下去就会明显消瘦；反之，如果一个人很胖，特别是腹部肥胖，或者血浆中甘油三酯明显增高，排除饮酒的因素，则提示碳水化合物摄入过多。
+
+## yawye_c34_p4_type2_diabetes
+
+- 端点：`refined_carbs` → `type2_diabetes`
+- relation：精制主食及粥类偏好与血糖及糖尿病相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：4–6
+
+> 她的身高160厘米，体重82千克，BMI为32，腰围110厘米，属于向心性肥胖[注：向心性肥胖：亦称中心型肥胖，指的是患者体内脂肪沉积是以心脏、腹部为中心的一种肥胖。]。
+>
+> 她特别喜欢吃粮食，白米白面、蛋糕面包、粉丝粉条等，都是她的最爱。平日家里水果不断，每天要吃500克（1斤）以上。每周她还要吃两三次甜食，量不多，用她的话讲“非常控制自己”。她每天吃一个鸡蛋，几乎不吃肉，不喝牛奶。蔬菜一天250克（半斤）左右，她尤其喜欢吃土豆，总是把土豆当菜，一边吃米饭，一边吃土豆丝，再加上个黄瓜拌粉丝。
+>
+> 其实这些食物中，米饭、土豆、粉丝、粉条都是碳水化合物。很明显这个患者的能量基本上来自碳水化合物，总量太多，比例太高，运动量又太少，造成血糖居高不下。同时，过多的碳水化合物转变成脂肪储存在身上，所以才引起向心性肥胖。
+
+## yawye_c34_p6_obesity_risk
+
+- 端点：`refined_carbs` → `obesity_risk`
+- relation：过量碳水化合物转化为脂肪储存与肥胖相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：精制碳水化合物摄入与肥胖风险相关）
+- 段落：6
+
+> 其实这些食物中，米饭、土豆、粉丝、粉条都是碳水化合物。很明显这个患者的能量基本上来自碳水化合物，总量太多，比例太高，运动量又太少，造成血糖居高不下。同时，过多的碳水化合物转变成脂肪储存在身上，所以才引起向心性肥胖。
+
+
+# spine 35 · 碳水化合物的平衡：每天至少要吃够150克粮食
+
+## yawye_c35_p3_type2_diabetes
+
+- 端点：`whole_grains` → `type2_diabetes`
+- relation：主食结构中粗粮比例与血糖管理相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：全谷物摄入与较低2型糖尿病风险相关）
+- 段落：3
+
+> 平时可以少吃多餐，多吃复合型碳水化合物（天然的食物都是复合型，比如土豆、燕麦、莲藕等），少吃蔗糖和精米精面。消化能力很差的人可以暂时吃糊精（白米粥里的汤汁），但是要注意搭配其他营养素，并且时间不要持续太长，摄入量上要注意。
+
+
+# spine 37 · 脂类的消耗：提供热量和构建细胞膜
+
+## yawye_c37_p4_cell_repair
+
+- 端点：`dietary_fat` → `cell_repair`
+- relation：磷脂与胆固醇等脂类作为细胞膜结构成分参与细胞修复
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：4–7
+
+> 第一，供给人体热量。虽然三大产能营养素都能供能，但是有先后顺序。先利用的是葡萄糖，脂肪只有在人体中的葡萄糖使用完了以后才会被分解去提供能量。我们看竞走运动员都很瘦，而铅球运动员都很胖，只因竞走是长时间的运动，身体中储存的葡萄糖被分解完后，运动的后半截靠分解脂肪产生能量；而铅球是一瞬间的运动，糖还没有被消耗完，所以脂肪还留存在皮下。
+>
+> 第二，是脂溶性维生素的载体。维生素A、D、E、K等脂溶性维生素，只有在有油脂的环境下才可以被吸收。因此，不吃油脂的人常会出现脂溶性维生素不足等症状。
+>
+> 第三，提供必需脂肪酸。ω-6系列的亚油酸和ω-3系列的亚麻酸是人体必需的两种脂肪酸。这类脂肪酸只能依赖从外界的摄入，且往往在身体里承担了重要的角色，是合成很多生物活性物质的原料，比如：磷脂、前列腺素（PG）、血栓素（TXA）、白三烯（LT）和调节胆固醇等。
+>
+> 有一次，一位女患者过来就诊，45岁，特别瘦，平时做事小心谨慎，每一样食物都不多吃，血压、血糖和体重都比较正常，每天还运动1～2个小时。
+
+## yawye_c37_p14_cognitive_clarity
+
+- 端点：`omega3` → `cognitive_clarity`
+- relation：ω-3脂肪酸等脑营养素与认知用脑需求相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：14–21
+
+> 我们把患者的这些症状综合在一起看，就能得出“营养不良”的结论，这是由于摄入的营养素低于人体消耗量造成的，尤其是脂类食物摄入太少。现在大家都非常注重健康，注重身材保养，但是对一些知识却一知半解，对一些概念也不求甚解，随随便便就拿来用，“脂肪恐惧”是一个尤为突出的重灾区。是的，脂肪多了自然不好，但是没有脂肪呢？脂肪不够呢？一样会带来很多疾病，大家要追求适度而不是盲目地减少。 …… 磷脂不仅对活化细胞，维持细胞新陈代谢、基础代谢及荷尔蒙的均衡分泌有重大作用，而且在增强人体免疫力和细胞的再生力方面也十分关键，在调节血脂、保持血管通畅方面更是扮演着重要的角色。
+>
+> 尤其要强调的一点是：人体的神经细胞和大脑细胞结构中大约有一半是磷脂。磷脂的质量和数量决定了大脑细胞间信息传递的速度，因此具有增强记忆力、预防老年痴呆的功能。
+>
+> 所以，要让一个人保持聪明、减缓衰老，磷脂、胆固醇和蛋白质的摄入必不可少。大家都知道小孩子半岁时就要开始增加鸡蛋、猪肝、肉类等辅食，主要原因是大脑的发育很快，鸡蛋里的卵磷脂，猪肝和肉里的铁、蛋白质及磷脂正是孩子最需要的营养素。另外，增加鱼油类食物（如DHA、EPA）也可以提高脑细胞的磷脂的质量。
+
+## yawye_c37_p20_cognitive_decline
+
+- 端点：`dietary_fat` → `cognitive_decline`
+- relation：脂类不足与脑萎缩及认知相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：高脂肪低谷物膳食与较高阿尔茨海默病发生的跨国关联观察）
+- 段落：20–21
+
+> 尤其要强调的一点是：人体的神经细胞和大脑细胞结构中大约有一半是磷脂。磷脂的质量和数量决定了大脑细胞间信息传递的速度，因此具有增强记忆力、预防老年痴呆的功能。
+>
+> 所以，要让一个人保持聪明、减缓衰老，磷脂、胆固醇和蛋白质的摄入必不可少。大家都知道小孩子半岁时就要开始增加鸡蛋、猪肝、肉类等辅食，主要原因是大脑的发育很快，鸡蛋里的卵磷脂，猪肝和肉里的铁、蛋白质及磷脂正是孩子最需要的营养素。另外，增加鱼油类食物（如DHA、EPA）也可以提高脑细胞的磷脂的质量。
+
+
+# spine 38 · 脂类的摄入：肉蛋奶鱼、植物油和坚果等
+
+## yawye_c38_p1_dietary_fat
+
+- 端点：`animal_foods` → `dietary_fat`
+- relation：肉蛋奶鱼作为膳食脂类重要来源
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：膳食脂肪摄入与动物性食物摄入高度共变）
+- 段落：1–5
+
+> 食物中含脂类的有植物油、动物油、坚果、加工食品中的脂肪、动物的皮下脂肪、动物大脑中的脂质（磷脂、胆固醇、糖脂），还有鱼油。 …… 在这30%左右的脂类中，饱和脂肪酸、单不饱和脂肪酸和多不饱和脂肪酸这三种脂肪酸应各占10%。 …… 有个简单办法可以进行判断：在室温下饱和脂肪酸大多处于凝固状态，比如大肥肉、腊肉。植物油中的椰子油和棕榈油也是饱和脂肪酸。
+
+## yawye_c38_p21_cardiometabolic
+
+- 端点：`omega3` → `cardiometabolic`
+- relation：ω-3等多不饱和脂肪酸与心血管代谢相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：21–26
+
+> 动物脂肪在肥肉和瘦肉里都有，鱼肉、牛奶里也有。鸡蛋和内脏里含有许多磷脂和胆固醇，这些类脂参与构成人体的框架结构，绝对不能缺少。 …… ω-3和ω-6系列不饱和脂肪酸都是人体必需脂肪酸，一定要从食物中获得，一般认为应不少于总能量的3%。
+
+## yawye_c38_p28_cardiometabolic
+
+- 端点：`olive_oil` → `cardiometabolic`
+- relation：橄榄油等单不饱和脂肪酸来源与心血管相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：28–29
+
+> ω-3系列的脂肪酸都在哪里呢？动物中有深海鱼、贝类，植物中有亚麻籽、坚果和马齿苋，保健品中品质较好的鱼油中也含有ω-3不饱和脂肪酸。
+>
+> ω-3和ω-6之间比较好的比例是1∶4～6。由于大家获取植物油要比获取深海鱼、贝类、坚果以及鱼油等容易得多，所以现实生活中大多数人摄入的实际比例几乎到了1∶20，甚至更夸张。
+
+
+# spine 39 · 脂类失衡表现：肥胖、脑萎缩、不孕不育
+
+## yawye_c39_p1_obesity_risk
+
+- 端点：`dietary_fat` → `obesity_risk`
+- relation：脂类能量比例失衡与肥胖等相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–5
+
+> 当脂类食物的摄入大于消耗时，主要表现为肥胖。这种肥胖表现为全身胖，四肢粗壮，同时皮肤细腻、有光泽、有弹性。 …… 第二，出现脂溶性维生素缺乏的症状，脂溶性维生素指的是维生素A、维生素D、维生素E和维生素K。
+>
+> •缺乏维生素A的症状：皮肤干燥，脱皮屑，出皮疹。严重的患者脱衣服时就能掉下许多皮屑，甚至一些人早晨起床时都会发现床单上有许多皮屑。
+
+## yawye_c39_p11_cognitive_decline
+
+- 端点：`dietary_fat` → `cognitive_decline`
+- relation：脂类不足与脑萎缩及认知相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：高脂肪低谷物膳食与较高阿尔茨海默病发生的跨国关联观察）
+- 段落：11
+
+> 在这一点上，作为全球饮食标杆的地中海式饮食已经给出了规范。地中海地区的一些国家直到今天还保持着原始的饮食结构，比如希腊克里特岛的居民脂类摄入量占到整体能量摄入的40%，比我们现在要求的高多了，但他们的癌症死亡率却只有美国的一半，冠心病死亡率是美国的1/20。他们摄入的脂类主要来源于鱼、坚果和橄榄油，完全符合我们前面提到的三种类型脂肪酸的比例，所以在脂类摄入中合适的比例要比量的控制重要得多。
+
+## yawye_c39_p22_energy_vitality
+
+- 端点：`dietary_fat` → `energy_vitality`
+- relation：脂类与体能及激素相关营养状态相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：22
+
+> 这个病例让我感到特别痛心，我千叮咛万嘱咐这位学员，回去一定要给孩子加营养。不仅是因为孩子正在长个子、长身体，更如前面所说的，细胞膜最主要的结构成分是磷脂、蛋白质和胆固醇，如果没有这些，正在发育的孩子怎么长大脑呢？人体有了这些原料才能从一个细胞不断分裂成几十万亿个细胞，而且每天还要新陈代谢，所以这些结构成分要不断地补充。
+
+## yawye_c39_p27_cognitive_clarity
+
+- 端点：`omega3` → `cognitive_clarity`
+- relation：ω-3脂肪酸等脑营养素与认知用脑需求相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：27–36
+
+> 她以前有高血压和糖尿病，一直吃药，控制得还可以。最近却麻烦了，她总是心里紧张，担心一些不该担心的事，总给老伴打电话，要不就让儿子、儿媳妇陪着她，搞得家里乱成一团。 …… 说来说去，她的食物只有两部分来源：粮食和蔬菜。磷脂、蛋白质、胆固醇、必需脂肪酸这些大脑需要的最基本的养分一样都没有，脑细胞怎么可能不萎缩？出现以上症状不足为奇。
+
+
+# spine 40 · 脂类平衡的方法：一半来自动物，另一半取自植物
+
+## yawye_c40_p7_dietary_fat
+
+- 端点：`omnivorous_balanced_diet` → `dietary_fat`
+- relation：动物与植物来源各半的脂类平衡与健康相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7–8
+
+> 在脂肪中最需要控制摄入的是反式脂肪酸，而肥肉是可以吃的，适量就好；鱼油是多不饱和脂肪酸，而且是必需脂肪酸，最好经常摄入，可以多吃一些深海鱼；如果有条件，也可以选择高质量的鱼油。
+>
+> 另外，并不是说我们必须严格按照计算出来的脂肪摄入量执行，在不同情况下我们还要灵活调整。例如，运动较多的人可以多吃一些油性食物，包括饱和脂肪，体力劳动者可以多吃一些肥肉，这样可以保证有足够的能量。
+
+
+# spine 42 · 我们太容易缺维生素了
+
+## yawye_c42_p2_chronic_disease
+
+- 端点：`vitamin_a` → `chronic_disease`
+- relation：维生素缺乏易感性与慢病营养背景相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：2–4
+
+> 一类叫作脂溶性维生素，包括维生素A、D、E、K。这类维生素必须溶解在油脂里才能被吸收。
+>
+> 另一类叫作水溶性维生素，包括维生素B族和维生素C，水溶性维生素可溶解在水中，很容易流失。
+>
+> 前面讲到营养素失衡时，都会说到两种情况：一种是消耗大于摄入，另一种是摄入大于消耗。
+
+## yawye_c42_p11_energy_vitality
+
+- 端点：`vitamin_b_complex` → `energy_vitality`
+- relation：B族维生素与能量代谢及疲劳相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：11–16
+
+> 有一次，我遇到一位患者，她的周围神经炎特别明显。一般来讲，这个病和维生素B族缺乏关系密切，于是我问她平时怎么吃菜和肉类的。她说：“不是讲白菜豆腐保平安吗？我每天都吃白菜炖豆腐。不爱吃肉，一周吃一个鸡蛋。” …… 第三，偏食。有的人家里条件不差，每天桌上摆满丰富的食物，但是却只吃自己喜欢的食物，不喜欢的食物一口也不沾，这样也会造成某种营养素缺乏。有一些人会用白面做出各种食物，看似丰富，但是白面中几乎不含维生素，如果食物中不增加蔬菜、水果和肉类，也会出现身体亏空。
+>
+> 需要提醒的是，由于脂溶性维生素不溶于水，难以从肾脏排出，易在身体里积存过多产生毒性作用，所以我们在补充维生素A、D、E等脂溶性维生素制剂时要注意用量，别过犹不及。比如咱们给孩子吃鱼肝油的时候都要严格按照说明书吃。
+
+## yawye_c42_p20_antioxidant_defense
+
+- 端点：`vitamin_c` → `antioxidant_defense`
+- relation：维生素C参与抗氧化防御
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：蔬菜基质中维生素C与其他抗氧化物质共存时，加热后仍可大量保留于汤中）
+- 段落：20–21
+
+> 另外，还有一些特殊人群很容易出现维生素缺乏。例如，长期腹泻、胆汁分泌受限、胃酸分泌减少都会造成消化能力变差，影响维生素的吸收；如果膳食中脂肪含量低，也会影响脂溶性维生素的吸收。
+>
+> 再如妊娠期与哺乳期妇女、生长发育期儿童以及特殊生活环境条件下，某些疾病（长期高热、慢性消耗性疾患等）均会使维生素需求量相对增高。服用异烟肼、青霉胺及避孕药等也会增加对维生素B_{6}的需求。比如一些吃抗结核药的人容易出现四肢麻木的感觉，这是由于服药以后会影响维生素B族的代谢。
+
+
+# spine 43 · 维生素A的需求量从未像现在这么多
+
+## yawye_c43_p2_cancer_overall
+
+- 端点：`vitamin_a` → `cancer_overall`
+- relation：维生素A与上皮细胞分化及肿瘤相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：2–10
+
+> 因为视神经的光敏感作用需要维生素A，尤其是黑暗中的视觉状态与维生素A关系更为密切。
+>
+> 另外，上皮组织的形成、发育以及维持上皮组织的健全方面，维生素A也是积极的贡献者。 …… 维生素A缺乏最常见的症状是眼干燥症：角膜、结膜上皮、泪腺等组织的修复过程非常需要维生素A的参与，如果缺乏维生素A，会出现眼睛干涩、发炎，严重者会出现角膜软化、溃疡、角质化等一系列变化，角膜损伤严重常会导致不可逆转的失明。
+
+## yawye_c43_p12_lung_disease
+
+- 端点：`vitamin_a` → `lung_disease`
+- relation：维生素A与呼吸道上皮修复及肺癌相关营养因素相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：12–13
+
+> 除了暗适应差、眼干燥症外，皮肤和黏膜也会发生病变：维生素A对上皮细胞的再生、分化、稳定起到非常重要的作用。所以维生素A缺乏会出现全身各种上皮组织的问题。
+>
+> 我坐地铁时，常常发现一些女性，尽管脸上抹了化妆品，但是肩部、上肢、腿部的皮肤角化干燥，呈小疙瘩状，这都是维生素A缺乏的表现。
+
+## yawye_c43_p15_vitamin_a
+
+- 端点：`animal_foods` → `vitamin_a`
+- relation：动物肝脏蛋黄等与维生素A供给相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：15–20
+
+> 家里如果有经常出现支气管肺炎的孩子，父母一定要好好想想，孩子日常生活中是不是缺维生素A了。 …… 第二，制造一个油性的环境，把植物中的胡萝卜素溶进去，比如吃胡萝卜炖牛腩、猪肉炖南瓜、炒西蓝花、炒油菜、炒菠菜等来吸收维生素A。肠道黏膜可以根据身体中对维生素A的需求量来决定对胡萝卜素的吸收量。一个胡萝卜素分子可以转化为两个维生素A分子，身体缺维生素A时肠道对胡萝卜素转化吸收的就多，够了就减少吸收，这样就不会出现体内维生素A中毒问题。
+
+
+# spine 44 · 维生素D缺乏是现代人的通病
+
+## yawye_c44_p1_osteoporosis
+
+- 端点：`vitamin_d` → `osteoporosis`
+- relation：维生素D缺乏与骨健康相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：维生素D缺乏与骨骼生长和维持异常相关）
+- 段落：1–5
+
+> 近年来对维生素D的研究越来越多，现在已经把它上升到激素的高度。研究发现，维生素D不仅与骨骼有关，还与细胞功能的调节及基因转录相关。 …… 维生素D缺乏现在已经成为非常广泛而严重的健康问题，患者中居住在城市里的人多于农村人，女性多于男性，冬天和春天最为高发。
+>
+> 缺乏维生素D的表现形式有：骨质疏松、小儿盗汗等缺钙表现，容易过敏，容易感冒，好发肿瘤、抑郁等。此外，冠心病、高血压、糖尿病等也与维生素D缺乏有关。因此患这些疾病的患者在检查时也应该查一下自己血液里维生素D的浓度。
+
+## yawye_c44_p9_immune_resilience
+
+- 端点：`vitamin_d` → `immune_resilience`
+- relation：维生素D状态与免疫相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：9–11
+
+> 第一，从动物类食物中直接获得。含维生素D的食物有：动物的肝脏、大脑、肺、脾，鸡蛋，牛奶，三文鱼，大马哈鱼，动物的骨头和皮肤也含有少量维生素D。
+>
+> 第二，人体皮肤合成。人体的表皮与真皮内含有一定量的7-脱氢胆固醇，当受到阳光或紫外光照射时，可以经光化学反应形成前维生素D_{3}，再经过肝脏和肾脏的羟化作用，最后转化为有活性的维生素D_{3}。我们的老祖宗都不缺维生素D，因为他们的食物中不缺乏肉类，在外面打猎时又能获得充足的阳光。
+>
+> 国际上有超过2500篇公开发表成果的研究证实维生素D在预防癌症中有重要作用。无论是来自阳光照射自我合成的内源性维生素D，还是由营养补充方式获得的维生素D，都能够阻止身体内部癌症的发生，将乳腺癌、前列腺癌和结肠癌的风险减少50%，还能减少痴呆和神经系统失调的风险。
+
+## yawye_c44_p13_chronic_disease
+
+- 端点：`vitamin_d` → `chronic_disease`
+- relation：维生素D缺乏作为常见营养问题与慢病背景相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：活性维生素D水平与多种慢性病风险相关）
+- 段落：13
+
+> 是日晒。我们每天要花半个小时接触阳光，哪怕是在背阴的地方接受散射的太阳光线也好。较少外出的人需要补充一些维生素D，可以通过吃前文提到的动物类食物来补充，以将血液中的维生素D保持在40～60纳克／毫升。
+
+
+# spine 45 · 维生素B族平衡需要讲求配比
+
+## yawye_c45_p1_energy_vitality
+
+- 端点：`vitamin_b_complex` → `energy_vitality`
+- relation：B族维生素与能量代谢及疲劳相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–4
+
+> 维生素B族是个大家庭，成员有12种以上，被世界公认的有9种，全部是水溶性维生素，包括维生素B_{1}、维生素B_{2}、维生素B_{6}、维生素B_{12}、烟酸、叶酸、泛酸、生物素和胆碱。 …… 第二，完善神经细胞功能，尤其是维生素B_{1}、维生素B_{6}、维生素B_{12}与神经系统的功能完善密切相关。
+
+## yawye_c45_p7_peripheral_neuropathy
+
+- 端点：`vitamin_b_complex` → `peripheral_neuropathy`
+- relation：B族维生素配比失衡与周围神经相关问题相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7–12
+
+> 维生素B族是个大家族，往往一种维生素缺乏时，其他种类维生素也缺乏。缺乏维生素B族最常见的症状是上火，表现为眼结膜充血，烦躁，口腔溃疡。
+>
+> 熬夜加班之后也容易出现类似症状，为什么？因为在加班熬夜时要消耗大量能量，脑细胞快速运转，在这个过程中要消耗大量维生素B族。
+>
+> 感冒也是同样的道理。感冒之后，许多人都说自己上火了，这是由于免疫系统在与病毒作战的过程中要加快碳水化合物、蛋白质、脂类这三大能量的代谢，而维生素B族作为三大能量代谢的辅酶，会大量被消耗。
+>
+> 缺乏维生素B族最容易表现出神经系统症状：人会出现记忆力下降，反应迟钝，没有精神，容易头痛，严重者会出现眩晕，感觉到头晕目眩，躺在床上不敢翻身，稍微一动就会呕吐。
+>
+> 往往工作特别刻苦的人会出现这种情况，如果好好休息后注意补充维生素B，症状就会很快消失。但是大多数人都不会想到是B族维生素的缺乏，想到比较多的原因是脑供血不足。还有一些人由于反复头痛，跑去做CT和核磁，结果都是阴性，其实就是体内维生素B不平衡了。
+>
+> 最突出的问题是周围神经症状：当维生素B_{1}、维生素B_{6}、维生素B_{12}缺乏时，人会出现四肢和手脚套袜套样的感觉障碍，手脚是木的。开始时早晨出现这种症状，活动后好转，后来症状越来越严重。严重者不仅感觉麻木，最后手和足运动时也呈现无力症状。
+
+
+# spine 46 · 维生素C平衡：最好每天吃3种以上水果
+
+## yawye_c46_p1_antioxidant_defense
+
+- 端点：`vitamin_c` → `antioxidant_defense`
+- relation：维生素C参与抗氧化防御
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：蔬菜基质中维生素C与其他抗氧化物质共存时，加热后仍可大量保留于汤中）
+- 段落：1–4
+
+> 维生素C在皮下、血液中、细胞内外都起着抗氧化的作用，参与胶原蛋白的形成。当缺乏维生素C时，胶原蛋白形成障碍，会造成创伤愈合延缓和不同程度的出血。 …… 如果体内的毒物如铅、苯、砷及某些药物和细菌、毒素蓄积，给予大量的维生素C可缓解其毒性。
+
+## yawye_c46_p6_vitamin_c
+
+- 端点：`berries_fruits` → `vitamin_c`
+- relation：多种水果与维生素C供给相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：6–7
+
+> 维生素C缺乏症又称为坏血病，早期症状是倦怠、疲乏、急躁、呼吸急促、牙龈疼痛出血、伤口愈合不良、关节肌肉短暂性疼痛、易骨折等。
+>
+> 典型症状是牙龈肿胀出血、牙床溃烂、牙齿松动、毛细血管脆性增加。严重者可导致皮下、肌肉和关节出血及血肿形成，最终出现贫血，心脏衰竭，直至死亡。
+
+## yawye_c46_p9_immune_resilience
+
+- 端点：`vitamin_c` → `immune_resilience`
+- relation：维生素C与免疫相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：9–10
+
+> 我一问平时如何吃水果，回答都差不多：“血糖高，哪敢吃呀。”要不就说：“老了，咬不动。”
+>
+> 每次我都会和患者说，不能因噎废食，不吃水果哪儿来的维生素？咬不动可以榨汁喝，怕血糖高，还有血糖高的吃法。很多患者照着我说的去做，身体状况大为改善。
+
+## yawye_c46_p12_chronic_wounds
+
+- 端点：`vitamin_c` → `chronic_wounds`
+- relation：维生素C与胶原形成及出血倾向相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：12–13
+
+> 维生素C主要来源于新鲜蔬菜与水果，如韭菜、菠菜、柿子椒等深色蔬菜和花椰菜，以及柑橘、山楂、柚子等水果，野生的苋菜、刺梨、沙棘、猕猴桃、酸枣等维生素C含量尤其丰富。
+>
+> 需要说明的是，中国人的饮食习惯中，蔬菜基本上是炒熟了吃，但维生素C怕热，这样会损失很多维生素C。因此水果就成了中国人维生素C的主要来源了。但是许多人一周不见得能吃一次水果，甚至看着水果烂了都不去吃，大家主要是没有意识到水果对人体的保健作用。
+
+
+# spine 49 · 矿物质的摄入要遵循适量和天然原则
+
+## yawye_c49_p7_osteoporosis
+
+- 端点：`calcium` → `osteoporosis`
+- relation：膳食钙与骨矿化相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7–8
+
+> •有构成体内特殊物质的矿物质。比如铁构成血红蛋白和细胞色素酶系，碘构成甲状腺素和谷胱甘肽过氧化物酶。这些物质就是一些激素和酶。打个比方，激素和酶就相当于“扩音器”，把信息扩大后传出去，让身体内更多的细胞能感知到这个信号。
+>
+> 矿物质还会构成“扩音器”的开关，这个开关的名称就叫作酶系统的活化剂，如氯离子会激活唾液淀粉酶，盐酸会激活胃蛋白酶，镁离子会激活氧化磷酸化酶类等。
+
+
+# spine 50 · 钙平衡：和维生素D关系最紧密
+
+## yawye_c50_p7_osteoporosis
+
+- 端点：`calcium` → `osteoporosis`
+- relation：膳食钙与骨矿化相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7–12
+
+> 早期钙缺乏主要表现为神经肌肉的兴奋，出现这种症状时身体已缺钙，但是血钙浓度测出来是正常的。如果是孩子，主要表现为生长痛、枕秃、出汗多、出牙晚。成人和孩子都会出现腿抽筋、睡眠质量差、烦躁、易怒、出虚汗、过敏等症状，另外还有一些人会表现为夜里磨牙、肠痉挛等。 …… 晚期钙缺乏在儿童主要表现为身材不够高，或者佝偻病；成年人会出现明显的骨质疏松表现，脚后跟疼，驼背，身高降低，髋部的股骨颈骨折，前臂骨折，胸腰椎的压缩性骨折等。
+>
+> 我有一位朋友，男性，42岁，一次上楼时不小心崴了脚，没想到拍片显示有骨折线，说明有轻度的骨折，同时有很明显的骨质疏松表现。他很困惑，问了我许多问题，很有代表性。
+>
+> 他说：“人家说老年人容易骨折，女性更年期后容易骨折，我可不属于这个年龄范围。我还特别注意不吃甜食、不喝汽水，因为人家说吃甜食、喝甜饮料会引起骨质疏松。那我怎么还会出现骨折呢？”
+>
+> 我说：“是的，年龄是个因素，但是造成骨质疏松的原因有很多，比如缺钙、缺乏运动。你平时喝牛奶吗？”
+
+## yawye_c50_p14_calcium
+
+- 端点：`dairy` → `calcium`
+- relation：牛奶及奶制品作为高吸收率钙来源
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：14–16
+
+> 我告诉他：“喝牛奶是最好的补钙方法，芝麻、虾皮、海带等食物含钙量也较多。另外钙充足也不一定就不患骨质疏松，人体中要有一定的维生素D才能使吸收的钙质沉积在骨头上。现在的年轻人在室内活动多，缺乏户外运动的机会，而多晒日光是获取维生素D的简易方法。维生素D的活性不高，必须经肝脏及肾脏的酶转换之后作为一种激素重新进入循环，调节钙和磷的吸收，促进骨骼的生长和重构，所以肝脏、肾脏有问题的人也会出现骨质疏松。现在中青年出现缺钙的主要原因一个是缺乏户外运动，胆固醇不能转化为维生素D_{3}，另一个原因是不注意喝牛奶。” …… 大多数人都不重视缺钙的早期症状和预防，当骨折了才发现补钙很重要，这是不是太晚了？有些老年人甚至因为骨折加速了衰老。早期缺钙有许多症状表现，比如出虚汗、夜里磨牙、全身骨头疼等，我们都要注意早点发现这些征兆，及时补钙。
+
+## yawye_c50_p19_calcium
+
+- 端点：`vitamin_d` → `calcium`
+- relation：维生素D与钙吸收利用相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：19
+
+> 第二，维生素D不足。足不出户，晒不到太阳，或者摄入动物性食物中的维生素D不够，另外就是该补维生素D的时候没有去补。
+
+
+# spine 51 · 镁平衡：马拉松一族最容易出现镁流失
+
+## yawye_c51_p18_energy_vitality
+
+- 端点：`magnesium` → `energy_vitality`
+- relation：镁流失与运动人群疲劳等相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：18
+
+> 由于镁与钙、钾、钠离子共同维持着神经肌肉的兴奋性，所以如果患者出现肌肉抽搐，就是咱们平时所说的“抽筋”，我们脑海中要反应的是“一定缺钙，还有可能缺镁”。所以一来一定要补充钙，二来看看补钙效果；如果补钙效果不好，还要关注是不是缺镁。
+
+
+# spine 52 · 铁平衡：水果是最好的补铁伴侣
+
+## yawye_c52_p7_iron_status
+
+- 端点：`heme_iron` → `iron_status`
+- relation：血红素铁与铁营养状况相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7–10
+
+> 所以，有了铁我们才能利用氧。有了氧，三大产能营养素才能燃烧产生能量，维持生命的基本运转。“没有氧则窒息，没有铁则缺氧。”
+>
+> 第二，功能性铁参与人体很多酶的组成，尤其是氧化呼吸酶类，而酶决定着化学反应的进程。所以，从这个层面来说，铁决定着人体的代谢速度。
+>
+> 第三，铁还影响蛋白质和脱氧核糖核酸的合成。脱氧核糖核酸其实就是众所周知的DNA——细胞的遗传物质。若因为缺铁导致遗传物质合成不足，则肝脏的发育会减慢，肝细胞及其他细胞内的线粒体与微粒体发生异常，影响生长期孩子的身高发育，严重者会导致贫血。
+>
+> 第四，铁和免疫功能也息息相关。实验表明缺铁时，中性粒细胞的杀菌能力降低，淋巴细胞的作用受损，在补充铁后免疫功能可以得到改善。所以，凡是贫血的人，感冒发烧会经常发生。
+
+## yawye_c52_p13_iron_status
+
+- 端点：`animal_foods` → `iron_status`
+- relation：动物性食物铁吸收率高于植物性来源的观察
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：13–16
+
+> 贫血的发生是隐伏的，进展缓慢，患者常能很好地适应，并能继续从事工作，不易察觉。但在日常生活中还是会有一些不适，表现出来的症状有头晕、头痛、乏力、易倦、心悸，活动后气短、眼花、耳鸣等。
+>
+> 还有一些特殊表现会被忽视：口角炎、舌乳突萎缩、舌炎，严重的缺铁可有匙状指甲（反甲）、食欲减退、恶心及便秘等。
+>
+> 若是儿童缺铁则常发生生长发育迟缓或行为异常，表现为烦躁、易怒、上课注意力不集中及学习成绩下降。还有一种比较极端的异食癖，是缺铁的特殊表现，但目前其发生的机制仍然不是很清楚。患者常控制不住地拼命进食一种“食物”，如冰块、黏土、淀粉等。经铁剂治疗后，症状可消失。
+>
+> 缺铁不易被察觉，但其实有很多身体特征会提醒我们，如皮肤黏膜苍白，毛发干枯，口唇角化，指甲扁平、失光泽、易碎裂，约18%的患者有反甲，约10%的患者脾脏轻度肿大。
+
+## yawye_c52_p14_iron_status
+
+- 端点：`red_meat` → `iron_status`
+- relation：红肉及动物血制品与缺铁性贫血相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：14
+
+> 还有一些特殊表现会被忽视：口角炎、舌乳突萎缩、舌炎，严重的缺铁可有匙状指甲（反甲）、食欲减退、恶心及便秘等。
+
+
+# spine 53 · 锌平衡：每日摄取量不要超过15毫克
+
+## yawye_c53_p3_immune_resilience
+
+- 端点：`zinc` → `immune_resilience`
+- relation：锌与免疫相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：3–7
+
+> 锌的作用非常重要，很多朋友尤其是儿童家长会比较熟悉，因为它能促进生长发育和组织再生，对伤口愈合、毛发、指甲及口腔黏膜等多处部位有修补作用，并且可以调节基因表现，维持味觉功能与促进食欲，促进胰岛素的正常分泌，支持增强大脑记忆系统，影响体内维生素A的代谢，参与机体的免疫功能，还是酵素的重要组成成分。 …… 不仅如此，如果人体缺乏锌元素，创伤则不易愈合，免疫功能也会降低，易于感染。如果孕妇缺锌，还会导致胎儿畸形。另外，胰岛素功能减退也与锌元素缺乏有关。
+
+## yawye_c53_p13_chronic_disease
+
+- 端点：`zinc` → `chronic_disease`
+- relation：锌摄入过量或不足与健康结局相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：13
+
+> 锌的吸收会受到很多因素的影响，膳食因素中的植酸、膳食纤维以及过多的铜、镉、钙和亚铁离子等会妨碍锌的吸收，而维生素D、柠檬酸盐等则有利于锌的吸收。
+
+
+# spine 54 · 碘平衡：缺乏和过量都致病
+
+## yawye_c54_p1_thyroid_disease
+
+- 端点：`iodine` → `thyroid_disease`
+- relation：碘缺乏或过量与甲状腺结节及甲功异常相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–5
+
+> 成人体内约含碘20～50毫克，其中50%分布在肌肉，20%分布在甲状腺，10%分布在皮肤，6%分布在骨骼，其余存在于其他内分泌腺及中枢神经系统。血液中的碘主要为蛋白结合碘（PBI），含量为40～80微克／升。 …… 甲状腺素的生理功能是维持和调节机体的代谢，促进生长发育。它能促进生物氧化，协调氧化磷酸化过程，调节能量的转化，并且对蛋白质、碳水化合物、脂肪的代谢以及水盐代谢都有重要影响。
+>
+> 饮食中的碘多为无机碘化物，在胃肠道可被迅速吸收，随血流送至全身组织。甲状腺摄碘能力最强，因此甲状腺碘含量为血浆的25倍以上，可用于合成甲状腺素（T_{4}）和三碘甲状腺原氨酸（T_{3}），并与甲状腺球蛋白结合而储存。甲状腺素被分解代谢后，部分碘被重新利用，其余碘主要经肾脏排出体外。
+
+## yawye_c54_p8_thyroid_disease
+
+- 端点：`iodine` → `thyroid_disease`
+- relation：碘缺乏或过量与甲状腺结节及甲功异常相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：8–10
+
+> 饮食中长期摄入不足或生理需求量增加，都可引起碘缺乏。缺碘会使甲状腺素分泌不足，生物氧化过程受到抑制，基础代谢率降低，并可引起甲状腺代偿性增生、肥大，出现甲状腺肿，多见于青春期、妊娠期和哺乳期。 …… 碘缺乏常具有地区性特点，称为地方性甲状腺肿。内陆山区的土壤和水中含碘较少，食物中碘的含量不高，属于碘缺乏比较高发的地区。如果长期大量摄入含碘高的食物，以及摄入过量的碘剂，均可致高碘性甲状腺肿。
+
+
+# spine 57 · 膳食纤维是肠道菌群的最爱
+
+## yawye_c57_p1_gut_microbiome
+
+- 端点：`dietary_fiber` → `gut_microbiome`
+- relation：膳食纤维作为肠道菌群底物与菌群维持相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：膳食纤维与胃肠道健康的综述归纳）
+- 段落：1–6
+
+> 蔬菜里的维生素、矿物质和水在肠道被吸收，进入血液，余下的是什么？是膳食纤维。它穿过小肠，来到了大肠。这里有许许多多的细菌开着欢迎大会，喜笑颜开，口水横流，因为它是细菌的食物。
+>
+> 在肠道中能够被细菌发酵分解的膳食纤维称为可溶性膳食纤维，它们是肠道细菌的食物，可促进细菌的繁殖，增加粪便中的细菌数量。 …… 它不是被人体直接消耗了，而是被肠道细菌吃了，转化为细菌的能量，有助于肠道正常菌群的繁殖。这种可溶性膳食纤维包括胶质、树脂、菊粉、低聚糖等，主要存在于水果、蔬菜、海带、紫菜及豆类中。
+
+## yawye_c57_p9_gut_comfort
+
+- 端点：`dietary_fiber` → `gut_comfort`
+- relation：膳食纤维与肠道舒适相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：9–15
+
+> 膳食纤维的四大功能说起来，会让很多人眼前一亮，深受肠道菌群喜欢的它，功能实在是强大。 …… 益生菌的增加具有保护肠道黏膜和滋养结肠的功效，并且可以抑制致病菌对结肠黏膜的伤害。当结肠细菌得不到可溶性膳食纤维时，会造成益生菌减少，结肠癌的发生率增加。
+
+## yawye_c57_p17_obesity_risk
+
+- 端点：`dietary_fiber` → `obesity_risk`
+- relation：膳食纤维与肥胖相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：膳食纤维带来的饱腹感与较少热量摄入相关）
+- 段落：17
+
+> 膳食纤维会减缓食物的吸收速度，因此有利于减缓血糖上升的速度，所以糖尿病人要多吃一些蔬菜、薯类这些含膳食纤维多的食物。
+
+
+# spine 58 · 膳食纤维平衡失调的表现：肥胖、血糖高、便秘、营养不良
+
+## yawye_c58_p3_obesity_risk
+
+- 端点：`dietary_fiber` → `obesity_risk`
+- relation：膳食纤维与肥胖相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：膳食纤维带来的饱腹感与较少热量摄入相关）
+- 段落：3–6
+
+> 许多人通过多摄入膳食纤维的方法瘦身，吃蔬菜和水果再加上各种膳食纤维。的确，这样很快就会瘦下去，但是长期这样会造成身体中其他重要营养素的缺乏。也就是说，如果只想着给细菌吃饭，却忽略了自己身体细胞的需求，容易造成营养不良，严重者会因为缺乏人体必需的营养素而生病。
+>
+> 如果说摄入过多是刻意而为，摄入不足则和我们现在的饮食习惯相关，一不小心就会出现膳食纤维缺乏的情况。
+>
+> 现在人们吃细粮较多，肉类较以前也增加许多。一些人的日常饮食中粮食类只选择米饭、馒头，或者面包、面条，吃菜少，吃水果时还削皮，大大减少了对膳食纤维的摄入，非常容易出现腹胀，肥胖，血糖高，大便干，或者大便黏的症状。
+>
+> 我曾经接诊过一位患者，男性，32岁，体重为120千克。他血糖高，一直在打胰岛素。在糖尿病和肥胖的治疗中，膳食管理是第一位的，所以内分泌科医生让他到我们门诊来咨询。
+
+## yawye_c58_p3_type2_diabetes
+
+- 端点：`dietary_fiber` → `type2_diabetes`
+- relation：膳食纤维与血糖相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：高纤维膳食与较好血糖控制相关）
+- 段落：3–5
+
+> 许多人通过多摄入膳食纤维的方法瘦身，吃蔬菜和水果再加上各种膳食纤维。的确，这样很快就会瘦下去，但是长期这样会造成身体中其他重要营养素的缺乏。也就是说，如果只想着给细菌吃饭，却忽略了自己身体细胞的需求，容易造成营养不良，严重者会因为缺乏人体必需的营养素而生病。
+>
+> 如果说摄入过多是刻意而为，摄入不足则和我们现在的饮食习惯相关，一不小心就会出现膳食纤维缺乏的情况。
+>
+> 现在人们吃细粮较多，肉类较以前也增加许多。一些人的日常饮食中粮食类只选择米饭、馒头，或者面包、面条，吃菜少，吃水果时还削皮，大大减少了对膳食纤维的摄入，非常容易出现腹胀，肥胖，血糖高，大便干，或者大便黏的症状。
+
+## yawye_c58_p5_constipation
+
+- 端点：`dietary_fiber` → `constipation`
+- relation：膳食纤维不足与便秘相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：5–6
+
+> 现在人们吃细粮较多，肉类较以前也增加许多。一些人的日常饮食中粮食类只选择米饭、馒头，或者面包、面条，吃菜少，吃水果时还削皮，大大减少了对膳食纤维的摄入，非常容易出现腹胀，肥胖，血糖高，大便干，或者大便黏的症状。
+>
+> 我曾经接诊过一位患者，男性，32岁，体重为120千克。他血糖高，一直在打胰岛素。在糖尿病和肥胖的治疗中，膳食管理是第一位的，所以内分泌科医生让他到我们门诊来咨询。
+
+## yawye_c58_p9_protein_deficiency
+
+- 端点：`dietary_fiber` → `protein_deficiency`
+- relation：粗粮过量挤占其他营养与营养不良风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：9
+
+> 我算了一下，他一天的膳食纤维摄入不到10克（正常人一天要吃30克左右），这种饮食习惯很容易出现大便问题，应该会有便秘腹胀的症状。
+
+
+# spine 59 · 膳食纤维摄入平衡靠重视水果和蔬菜
+
+## yawye_c59_p1_dietary_fiber
+
+- 端点：`vegetables_greens` → `dietary_fiber`
+- relation：蔬菜作为膳食纤维主要来源
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–4
+
+> 《中国居民膳食指南（2016）》要求中国成年人每天应摄入膳食纤维25～35克，而目前中国人平均摄入量仅为13.3克，存在严重不足，而且这种情况越来越紧迫。美国人在这方面问题更严重，平均每人每天膳食纤维摄入量只有4～6克，所以美国人结肠癌的发生率很高。 …… 蔬菜中膳食纤维的计算方式是指100克新鲜蔬菜里的膳食纤维含量。其中，瓜类、茎类蔬菜含水量高，膳食纤维含量并不高，100克西红柿中膳食纤维只有0.5克，如果一个西红柿有200克，那么吃一个西红柿只摄入了1克的膳食纤维，因此大家还是尽量选择叶菜类和菇类蔬菜。
+>
+> 有一些属于蔬菜但不是新鲜蔬菜的菜类，比如紫菜、海带，计算膳食纤维的时候是在晒干的状态下去计算的，经过水泡发之后，含量也会大打折扣。
+
+## yawye_c59_p8_dietary_fiber
+
+- 端点：`berries_fruits` → `dietary_fiber`
+- relation：水果可溶与不可溶纤维与肠道健康相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：8
+
+> 我在门诊做了些调查，十有八九的人膳食纤维不足，吃蔬菜每天250克以上的人不到一半，大概有一半人做不到每天吃水果，就这一半吃水果的人，大部分还把水果皮削了。所以现在大便干燥的人多，肥胖的人多，结肠癌发生率也高。
+
+
+# spine 64 · 七大营养素平衡小结：学会听懂身体的语言
+
+## yawye_c64_p1_chronic_disease
+
+- 端点：`omnivorous_balanced_diet` → `chronic_disease`
+- relation：接近进化期荤素比例的天然膳食与较低慢病负担相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–3
+
+> 人类每一天身体的输出都是按照基因赋予我们的任务去执行，包括四个方面：能量输出、新陈代谢、修复自身结构和免疫防卫。
+>
+> 也有一些需要额外消耗的事情，比如吸烟的人身体中自由基过多，要多补充抗氧化剂去对抗自由基。最常见的抗氧化剂是维生素A、C、E，所以吸烟的人摄入维生素A、C、E要比一般人多一些。但是我们往往看到很多吸烟的人特别不喜欢吃水果，于是，身体内自由基多，对身体的伤害大，得病的概率就高。
+>
+> 一个人每天的生命原料输入只有一个渠道，就是吃，通过每一餐摄取大自然的营养素来满足自己身体输出的需求。
+
+## yawye_c64_p14_metabolic_health
+
+- 端点：`omnivorous_balanced_diet` → `metabolic_health`
+- relation：七大营养素平衡的膳食结构与代谢健康相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：14
+
+> •在营养素方面摄入＞消耗，这就要看是哪种营养素了，以什么方式，摄入时间的长短等，症状的表现形式也会不一样。
+
+## yawye_c64_p26_cell_repair
+
+- 端点：`omnivorous_balanced_diet` → `cell_repair`
+- relation：饮食作为细胞修复原料供给与慢病进程相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：26–27
+
+> 肠道黏膜有个特殊功能，叫作营养素的调节功能。肠道黏膜铺展开来面积可达200～400平方米，专门负责筛选可以吸收的营养素。同时它还能自己判断血液里缺哪种营养素，缺得多的就多吸收，缺得少的就少吸收，因此各种营养素在不同人不同时期之间的吸收率能差很多倍。
+>
+> 还有一些信号会告诉我们吃多了：血糖高了，说明碳水化合物吃多了；尿酸高，说明含嘌呤的食物吃多了；血压高可就不一定，它的影响因素太多了。
+
+
+# spine 66 · 全世界平衡膳食标杆——地中海式饮食
+
+## yawye_c66_p1_cardiometabolic
+
+- 端点：`mediterranean_diet` → `cardiometabolic`
+- relation：地中海式饮食作为平衡膳食标杆与心血管代谢相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–4
+
+> 七大营养素存在于我们的日常食物中，但要想在一日三餐中保证营养素全面平衡非常不容易，需要有科学有效的方法。
+>
+> 多年来，世界上很多国家致力于通过饮食来预防疾病，各国的营养工作者根据自己国家的饮食特点不断更新饮食指导，最终研究发现生活在欧洲地中海沿岸的意大利、西班牙、希腊、摩洛哥等国居民心脏病发病率很低，普遍寿命长，且很少患有糖尿病、高胆固醇等现代病，是世界上长寿地区之一。经过大量调查分析，谜底逐渐被揭开，分析发现这个现象与该地区的饮食结构——“地中海式饮食”有关，因此地中海式饮食成了全世界各个国家政府追捧的对象和学习的榜样。 …… 各国在制定饮食指南之前会对本国的健康问题进行研究，然后指明一个健康的方向。美国根据自己国家人们饮食中存在高脂肪摄入、低膳食纤维、低微营养素的问题，建议向地中海式饮食看齐，因此提出了降低饱和脂肪酸、减少四条腿的肉类、增加没有腿的鱼类、增加蔬菜和水果等建议。
+
+## yawye_c66_p11_coronary_heart_disease
+
+- 端点：`mediterranean_diet` → `coronary_heart_disease`
+- relation：传统地中海式饮食与较低心血管病死亡风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：11–15
+
+> •当地鱼类资源丰富，以前当地人用鱼类充饥，现在仍保留了这个传统。地中海海域盛产沙丁鱼，沙丁鱼肉中含有丰富的ω-3脂肪酸。 …… 第五，油类。地中海式饮食中的油类总的来说比较多，包括橄榄油、坚果中的油和鱼类体内的油，占膳食总能量的35%。其中饱和脂肪酸不到7%～8%，以单不饱和脂肪酸和多不饱和脂肪酸为主。当地居民普遍有生吃橄榄的习惯，并用橄榄油作为食用油来烹饪、烘烤食品和调拌沙拉。
+
+
+# spine 68 · 1997—2016年版本：从强调食物种类到重视食物结构
+
+## yawye_c68_p1_chronic_disease
+
+- 端点：`omnivorous_balanced_diet` → `chronic_disease`
+- relation：接近进化期荤素比例的天然膳食与较低慢病负担相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–6
+
+> 1997年以前，由于当时中国居民的经济状况普遍处于温饱，饮食以粗茶淡饭为主，人们需要健康饮食方向的指导。因此《中国居民膳食指南（1997）》首先要保证粮食的供应（每人每天300～500克），同时明确将食物分成五大层，每一层所代表的营养素不一样，尽量每一层都吃到，保证食物多样。 …… 1997—2007年，这个阶段人们生活条件开始有所好转，许多人开始吃西方食品，面包等精米精面制品开始增多，但人的运动量却越来越少，各种各样的饮料充斥市场……调查结果显示，在人们的饮食中蛋白质缺乏仍然存在，维生素A、铁和钙的缺乏非常普遍。因此2007年的中国居民膳食指南在1997年的基础上修改了一些内容，比如：粮食总量有所减少，并鼓励吃些粗粮；牛奶摄入量建议大家增加到300克；肉类和鱼虾类的总量基本没变，但是希望大家增加一些鱼虾类，水果的建议摄入量也比1997年增加了一倍。1997年以前人们的运动量比较大，而这之后人们的生活条件越来越便利，高血压问题成为主要的社会问题，因此在《中国居民膳食指南（2007）》里增加了每日食盐量不要超过6克，并且提出来需要增加运动量，要每日步行6000步，做到吃动平衡。 …… 2007—2016年，这10年人们的生活方式变得更加方便快捷，糖尿病、高血压等慢病成为非常严重的社会问题，更多研究资料显示工业化加工食品对人体健康产生了严重的副作用。同时，蛋白质、维生素A、铁、钙的普遍缺乏仍然存在，营养不平衡成为普遍现象。大家在享受各种美味食品时，往往忘记了食物多样化以及正确的膳食结构给健康带来的益处，所以，这一版的膳食指南除了宝塔外，还增加了膳食餐盘，提醒人们重视食物结构。
+
+
+# spine 70 · 2016版本对蔬果、奶制品和豆制品的要求：多吃
+
+## yawye_c70_p2_chronic_disease
+
+- 端点：`vegetables_greens` → `chronic_disease`
+- relation：足量蔬果摄入与慢病风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：2
+
+> 在临床上，我们发现大多数慢病患者吃蔬菜很少，因此维生素和膳食纤维普遍缺乏。《中国居民膳食指南（2016）》中明确强调了蔬菜的摄入数量，同时对水果、豆、奶都有了明确要求：
+
+## yawye_c70_p12_osteoporosis
+
+- 端点：`dairy` → `osteoporosis`
+- relation：奶制品与骨健康相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：乳制品与高钙摄入与髋骨骨折率的跨国关联观察）
+- 段落：12
+
+> 这一版本的指南还强调大家要适量吃坚果。坚果是不饱和脂肪酸和微量元素很好的来源，如果大家能够用心坚持摄入，日积月累，会有很好的防病效果。
+
+
+# spine 71 · 2016版本对鱼禽蛋肉的要求：适量，不弃蛋黄
+
+## yawye_c71_p10_metabolic_health
+
+- 端点：`animal_foods` → `metabolic_health`
+- relation：适量鱼禽蛋肉与代谢健康相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：10–11
+
+> 一周吃鸡蛋280～350克，相当于每天一个全蛋。我们可以看到，指南专门提出不能丢掉蛋黄，是不是有人看到这里觉得很惊讶：自己原来的印象中不是这样的啊，吃鸡蛋不是会导致胆固醇升高吗？其实，临床研究证明，鸡蛋黄里有多种营养成分，对人体各个器官的功能都非常有利，并且大量的调查研究显示蛋黄与冠心病没有直接关系，所以这一版指南特意强调不要扔掉鸡蛋黄。
+>
+> 咱们中国许多地方还保留着吃肥肉、烟熏和腌制肉制品的习惯。这些年的许多研究表明，这样的饮食习惯与心脑血管病和肿瘤的高发息息相关，因此这一版指南强调这些传统饮食要少吃。
+
+
+# spine 72 · 2016版本对烟糖酒的要求：限量
+
+## yawye_c72_p1_chronic_disease
+
+- 端点：`added_sugar` → `chronic_disease`
+- relation：过量糖酒与慢病风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–9
+
+> 咱们中国人盐的摄入量非常高，导致高血压患者逐年增加。油炸食品作为过去逢年过节才能吃到的美食，也逐渐日常化，解馋的小零食摄入更加频繁。根据人们已经发生变化的饮食习惯，《中国居民膳食指南（2016）》对烟、酒、糖、茶、油、盐甚至反式脂肪酸和饮料等的摄入量都进行了说明，具体有以下五条： …… 咱们中国的年轻人现在也是饮料控了，有的人把饮料当水喝，这会增加患肥胖症的概率。所以这一版指南特别强调要控制添加糖的摄入量，控制各种饮料的摄入量。
+>
+> 近些年的研究都显示反式脂肪酸是造成慢性病的元凶之一，必须限制。但是很多人也不是很了解，反式脂肪酸除了在蛋糕、面包、薯片、咖啡伴侣等食物中出现外，还存在于哪里呢？关于反式脂肪酸都会在什么食物中出现，我已在前文中进行了详细叙述，相信大家已有所了解。
+
+
+# spine 75 · 切忌拿着国外指南当本国指南
+
+## yawye_c75_p6_protein_deficiency
+
+- 端点：`plant_based_diet` → `protein_deficiency`
+- relation：过度限制动物性食物的素食倾向与蛋白质不足风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：6–15
+
+> 第一种是经济发达国家模式，也称富裕型模式，主要以动物性食物为主，粮食类中等，蔬菜水果比较少。富裕型模式属于高能量、高脂肪、高蛋白、低膳食纤维型，如大家经常看到的麦当劳、肯德基、星巴克等都是这类典型模式。 …… 我在出诊时，只要见到营养不良的中老年人，总要告诉他们多吃些蛋白质，肉类每天至少吃自己拳头这么大，一天可以吃1～2个鸡蛋。可大多数患者都会紧张地说：“我怕血脂高，不敢吃。一个星期只吃一个鸡蛋，而且也很少吃肉。”
+
+## yawye_c75_p21_chronic_disease
+
+- 端点：`omnivorous_balanced_diet` → `chronic_disease`
+- relation：接近进化期荤素比例的天然膳食与较低慢病负担相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：21–27
+
+> 我们是中国人，我们的体质和饮食习惯和美国人差异巨大，我们首先要完成摄入30%的脂肪份额，再说饱和不饱和。 …… 我们营养科的医生哭笑不得：“您是个中国人，怎么按照美国饮食指南去做？美国人喝牛奶多，所以他们说喝多了不好。他们有个规定，每天摄入牛奶不要超过720毫升。他们每天会吃很多四条腿的畜肉，比如猪排、牛排，或者禽类的鸡腿，所以饱和脂肪酸摄入比较多，再加上喝牛奶多，因此人家说喝脱脂奶。咱们和他们饮食习惯不一样，不能按照他们的饮食指南做，您说是不是？”
+
+
+# spine 77 · 早餐一定要吃够100分
+
+## yawye_c77_p8_metabolic_health
+
+- 端点：`omnivorous_balanced_diet` → `metabolic_health`
+- relation：七大营养素平衡的膳食结构与代谢健康相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：8–14
+
+> 第三，每个人的盘子里都有3片培根。特别提一下，这个培根是烤熟的，基本把油烤出去了，但没有煳，这样饱和脂肪就减少了很多。 …… 加拿大早餐的主食和我国有很大的不同：早餐中的主食包括薯类和全麦制品，二选一，里面根本没有精米和精面的影子，为什么呢？欧美国家认为精米和精面没有营养，而且容易升血糖，所以面包越来越回归到100年前的模样，选择用全麦来制作面包，而不用白面。土豆在欧美国家都算作粮食，并不像我们一样当成蔬菜。 …… 每个人早餐必有的蔬菜是西蓝花和小西红柿，一红一绿，很是漂亮。从营养学上讲，这两类颜色代表营养素含量很高，并且有所区别。
+
+## yawye_c77_p27_energy_vitality
+
+- 端点：`animal_foods` → `energy_vitality`
+- relation：结构营养素充足的动物性食物与生长发育及体能相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：蔬菜汤中添加肉类或牛奶补充动物蛋白，与病后/年老体弱者恢复体力相关）
+- 段落：27–29
+
+> 各种粥类在我们的传统饮食中一直以来都是早餐主角，但是粥太容易消化，很难持续供应一上午的能量。很多人选择白馒头和白面包，口感虽然不错，但依然太好消化，而且升血糖很快，因此最好还是改一改。 …… 过去中国人有早上吃油饼、油条的习惯，好不好呢？我个人认为只要油的质量好（不是地沟油），不是反复油炸，都是可以吃的。早上吃了有油的食物，会有饱腹感，一上午不容易饿。早晨如果能吃煎鸡蛋更好，如溏心蛋，既保证了磷脂的完好保存，还因为有一些油脂，也有利于胆汁的排出。同时再喝一杯牛奶，加上一小把坚果，这样，不饱和脂肪酸、磷脂和胆固醇就都补充全了，一上午脑细胞需要的营养素也都准备好了。
+
+## yawye_c77_p38_metabolic_health
+
+- 端点：`dairy` → `metabolic_health`
+- relation：奶制品纳入早餐结构与代谢健康相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：38–40
+
+> 中国人有喝粥的习惯，这样的饮食方式世代相传，但是现在我们必须要重新审视一下这个传统了。我们判断某种食物的营养价值，是看食物中含有多少能量，含有哪些营养素，而不是我们原本习惯于吃什么，觉得什么有营养。
+>
+> 很多患者告诉我，在家里自己测血糖时，一喝粥血糖上来得特别快，血糖波动得特别厉害。即使没有糖尿病的人，经常喝粥也容易发胖，这种胖往往是虚胖。
+>
+> 一碗粥的营养到底有多少呢？基本上就是碳水化合物，其他营养素都不足。老年人大都爱喝粥，觉得养胃，实际上粥并不适合老年人，因为它营养成分少，吸收得太快，升糖指数很高。
+
+
+# spine 78 · 午餐请遵循“三足鼎立”原则
+
+## yawye_c78_p6_metabolic_health
+
+- 端点：`omnivorous_balanced_diet` → `metabolic_health`
+- relation：七大营养素平衡的膳食结构与代谢健康相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：6–10
+
+> 虽然国家颁布了膳食餐盘，但是许多人中午吃饭还是比较凑合，来一碗面条就打发了。一碗面条中碳水化合物占大多数，肉类、菜类很少，淀粉过多，会让人午饭后觉得昏昏欲睡，影响下午的工作。如果午餐经常吃大量米饭或面条之类的食物，会很容易引起血糖迅速上升，同时肥胖的可能性会加大。
+>
+> 建议中午的主食可以吃些粗粮，这样既有饱腹感，也增加了膳食纤维，还不容易发胖和犯困。比如老玉米、红薯和土豆，既方便又有营养。 …… 很多女士为了保持苗条的身材而选择素食，以为吃了荤菜就会长胖。殊不知，肥胖的罪魁祸首是女孩子爱吃的甜点，还有大量的精米和精面。午餐时补充必要的优质蛋白质和脂肪是提高工作效率、保持机体活力的不二法则。
+
+## yawye_c78_p15_metabolic_health
+
+- 端点：`vegetables_greens` → `metabolic_health`
+- relation：午餐蔬菜搭配与代谢健康相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：较高绿叶菜摄入与较低慢性病及死亡风险相关）
+- 段落：15–28
+
+> 第二，忌省事。中午就餐时间短，为了不影响下午的工作，很多人喜欢用快餐、泡面来应付自己的胃。这些食物极不健康，是高脂肪、高热量的食品。吃了这些食物，容易导致血脂升高，身材走样，长时间食用会导致营养不良。 …… 故事讲到这里，大家是不是发现，乾隆皇帝在饮食上可不简单，不但做到了食物多样化，还早睡早起，同时每天还要吃小吃和夜宵。当然乾隆皇帝吃的夜宵不过是些小点心、莲藕羹之类的清淡食物，那个时候还没有发明反式脂肪酸，也没有精米、精面。
+
+## yawye_c78_p37_type2_diabetes
+
+- 端点：`animal_foods` → `type2_diabetes`
+- relation：混合膳食中动物性食物与餐后血糖上升速度相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：动物性食品中持久性污染物暴露与糖尿病发病率相关）
+- 段落：37
+
+> 第三，抵抗力下降。过午不食减肥法虽然在某种程度上是可以减掉体重的，但是减少的这些重量里包含了许多肌肉丢失的成分，这不仅会导致肌肉无力，你还会发现你的抵抗力在下降，感冒、发烧也一直困扰着你。
+
+
+# spine 83 · 一天最好吃够30种食物
+
+## yawye_c83_p2_chronic_disease
+
+- 端点：`omnivorous_balanced_diet` → `chronic_disease`
+- relation：接近进化期荤素比例的天然膳食与较低慢病负担相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：2–16
+
+> 我们不必搞清楚具体的种类，重要的是要明白食谱一定要宽，天上飞的、树上长的、地上跑的、水里游的，只要是允许吃的食物我们都应该纳入自己平时的食谱中。每一类食物都有其特殊的营养素，各取一点，才能营养全面。 …… 因为一种食物中的营养素是有限的，进入人体后需要其他营养素小伙伴们一起代谢。如果隔的时间太长，比如几个小时，那么前一拨的营养素没有找到小伙伴，后一拨的营养素也没有找到小伙伴，这样就不能达到互补的效果。 …… 白米一碗（约100克）、土豆1个、枸杞30粒、熟肉100克、胡萝卜1根，有的时候把胡萝卜换成南瓜。这样仅主食就已经包含5样食品，碳水化合物、脂肪、蛋白质、维生素以及微量元素等各种营养素在同一时间出现，营养相互搭配，味道非常不错。
+
+
+# spine 84 · 食物加工越少越好
+
+## yawye_c84_p4_chronic_disease
+
+- 端点：`ultra_processed` → `chronic_disease`
+- relation：工业加工食品与精制主食普及与慢病流行相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：4–8
+
+> 看看这复杂的过程，就知道从地里到超市麦子要损失多少营养素。分离出去的皮含有大量的维生素、矿物质和膳食纤维，而白面里除了碳水化合物和少量植物蛋白，其他营养素已经所剩无几。 …… 烹调的温度和时间对食物的营养影响较大，特别是维生素C等水溶性维生素，一经加热，就会损失，且温度越高，受热时间越长，损失越大。虽然生吃黄瓜、西红柿等果蔬能摄取更多维生素，但并不是所有食物都可以生吃的。另外，做熟吃可以使食物口感更好，还能清除微生物污染对健康的威胁。因此在烹调食物时，要尽可能地控制烹调温度和时间，最大限度地保留食物的营养。
+
+
+# spine 85 · 少食多餐有门道
+
+## yawye_c85_p11_obesity_risk
+
+- 端点：`refined_carbs` → `obesity_risk`
+- relation：过量碳水化合物转化为脂肪储存与肥胖相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：精制碳水化合物摄入与肥胖风险相关）
+- 段落：11–13
+
+> 蛋糕？饼干？不是，要补充自己消耗的营养素，选择富有营养的食物，比如几粒坚果加一个水果加一杯酸奶，这样选择三类不同的食物搭配，不仅营养价值高，同时饱腹感也很强。 …… 有些人饿了就去吃面包、甜点或者饼干，这样的加餐只是在一类食物中转悠，营养素单一，而且会增加糖尿病和肥胖的危险。
+
+## yawye_c85_p15_metabolic_health
+
+- 端点：`omnivorous_balanced_diet` → `metabolic_health`
+- relation：七大营养素平衡的膳食结构与代谢健康相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：15–17
+
+> 在这里我还要和大家讲一下运动时如何加餐。糖尿病患者要特别注重生活方式管理，吃动平衡。运动方面要注意一点：一定要吃完饭再运动。如果到了吃饭时间你正好要出去运动，请先吃些东西再走，否则一次低血糖发作就会死掉许多脑细胞。
+>
+> 想要瘦身塑形的人更要注意科学加餐。运动中人体会消耗大量的碳水化合物、维生素、矿物质和蛋白质，而且运动后肌肉组织要重组，如果增加的营养素合理的话，肌肉将变得更加协调有形。运动后可以吃鸡蛋+牛奶+蔬菜+坚果+水果，也可以把牛奶换成牛肉或者三文鱼。假如消耗的能量很多，而且身材已经很好，那么运动后的加餐里可以增加一些全麦面包类食物。
+>
+> 特别要提醒的是，在运动加餐里去掉蛋黄是个极其错误的做法。肌肉细胞的细胞膜中需要大量的磷脂和胆固醇，这些都需要蛋黄提供。
+
+
+# spine 89 · 千万别错过孩子营养摄入的窗口期
+
+## yawye_c89_p8_energy_vitality
+
+- 端点：`animal_foods` → `energy_vitality`
+- relation：结构营养素充足的动物性食物与生长发育及体能相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：蔬菜汤中添加肉类或牛奶补充动物蛋白，与病后/年老体弱者恢复体力相关）
+- 段落：8–13
+
+> 我又忍不住劝道：“总是输液对孩子不好，一方面抗生素对慢性咳嗽无效；另一方面抗生素会杀死肠道很多正常菌群，将来对孩子一生的健康都会产生不好的影响。还是要找原因啊。”
+>
+> 聊着天，我自己在心里琢磨：没有去根应该是一直没有找到造成咳嗽的原因，慢性干性咳嗽是呼吸道黏膜干燥所致。从营养学的角度来说是呼吸道内膜的柱状上皮萎缩，杯状细胞分泌黏液不足，应该是磷脂、蛋白质、胆固醇这些细胞的结构成分不足以及维生素A摄入不足所致。我一问，果然如此。 …… 我想了想，跟孩子妈妈说：“现在孩子才五岁，已经出现慢性气管炎的问题，这与身体缺乏蛋白质、油脂、维生素、钙等营养素有关。我们的气管是结缔组织，需要大量的蛋白质和维生素C，尽管孩子吃水果，可以补充维生素C，但是蛋白质不够。呼吸道的上皮细胞更新很快，需要不断地供应营养素。你们家孩子要多喝牛奶、吃猪肝，多吃各种肉类和鱼类。孩子在长身体，吃的饭不能和大人一样，否则会影响孩子一辈子的健康，这也叫输在起跑线上。”
+
+## yawye_c89_p17_cognitive_clarity
+
+- 端点：`protein_deficiency` → `cognitive_clarity`
+- relation：儿童青少年蛋白质不足与大脑发育及认知相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：17–19
+
+> 0～6个月，脂肪在营养素中所占比例最高，达到47%，几乎占了一半。随着年龄的增加，脂肪比例逐渐降低，到了4岁，与成年人的比例相当，占总能量的25%～30%。这个量不能再降低，否则会影响大脑发育和脂溶性维生素的摄入。 …… 孩子6个月时，开始加辅食。第一个加的辅食就是鸡蛋，鸡蛋里有磷脂、蛋白质和胆固醇，而且鸡蛋富含的磷脂是卵磷脂，正好是大脑生长发育最好的原材料。以后孩子的辅食再逐渐增加粮食和蔬菜，慢慢过渡到普通饮食。
+
+
+# spine 90 · 青春期营养不良最容易伤及大脑
+
+## yawye_c90_p1_cognitive_clarity
+
+- 端点：`protein_deficiency` → `cognitive_clarity`
+- relation：儿童青少年蛋白质不足与大脑发育及认知相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–15
+
+> 孩子在生长发育期，细胞有丝分裂活跃，细胞总数在增加，相当于正在盖高楼。虽然与成年人一样每天会有细胞死亡，但是合成细胞的速度一定比细胞死掉的速度快，数量也多得多。因此，孩子吃饭时要特别注意多供应些与结构成分有关的营养素。 …… 女孩子从青春期开始，生长发育增快，同时有月经出现，每个月都会流失一些血液，之后需要尽快补充蛋白质、脂类、铁、钙、镁等营养素。另外，这个孩子喜欢用手机，用手机会大量消耗维生素A和必需脂肪酸。但是这个孩子的饮食不是根据需要来改变，而是根据口味喜好来决定。大脑长时间缺乏营养素，造成大脑的神经结构出现问题，神经递质也会出现紊乱，于是某些大脑细胞出现异常放电，导致癫痫发作。
+
+
+# spine 92 · 老年人吃好比吃饱更重要
+
+## yawye_c92_p3_energy_vitality
+
+- 端点：`animal_foods` → `energy_vitality`
+- relation：结构营养素充足的动物性食物与生长发育及体能相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：蔬菜汤中添加肉类或牛奶补充动物蛋白，与病后/年老体弱者恢复体力相关）
+- 段落：3–5
+
+> 特别提醒老年人们，在吃食物以前先看看吃的食物里面含有什么营养素，有多少种，然后再想怎么加工才好消化和吸收。 …… 粥是通过长时间加热把米粒熬成糊精，虽然易消化吸收，但容易迅速升血糖。如果您血糖不高，又特别想喝粥，可以往粥里加入多种食物，做成更有营养的食物，比如粗粮粥、瘦肉粥、猪肝粥等。而且一次要少喝，再增加一些蔬菜、肉类，这样升糖力量会弱一些。
+
+
+# spine 93 · 病人饮食要侧重纠偏
+
+## yawye_c93_p1_chronic_disease
+
+- 端点：`omnivorous_balanced_diet` → `chronic_disease`
+- relation：接近进化期荤素比例的天然膳食与较低慢病负担相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–9
+
+> 如果说我们的健康是一条康庄大道，那平衡膳食就是走在大路的中间道，但如果饮食不平衡，就如同走路朝一个方向偏，短时间内可能还在路上，时间长了，早晚会掉进两边的“沟”里。为什么说是两边的“沟”？一些人吃米面和肉类很多，喝饮料，不爱吃菜，造成腹胀、便秘和肥胖，血压高，血糖高，这属于往左偏的一类；另外一类人怕多吃，不敢吃肉类，躲避油类，整天吃粗粮吃蔬菜，属于往右偏的一类。这两类人都容易早早出现健康问题。 …… 某些食物在一段时间内甚至要禁止吃。如高血压患者，不许吃咸菜、面条，连汤都不许喝。同时，有些东西要狠补，要比正常人吃得还多，比如蔬菜要大量吃，还有牛奶，一般人每天喝300毫升，而患者每天要喝500毫升。 …… 我有一位高血压患者，刚开始我不让他吃面条，不让他喝汤，而是喝牛奶，多吃瘦肉、蔬菜、水果，让他多运动。他执行得特别好，整体健康状态越来越好，降压药从三种降到一种。
+
+
+# spine 94 · 工种不同，饮食有别
+
+## yawye_c94_p9_energy_vitality
+
+- 端点：`omnivorous_balanced_diet` → `energy_vitality`
+- relation：按工种调整的荤素能量结构与体能相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：9–13
+
+> 接触电离辐射多的人员应保证充足的营养，尤其要注意优质蛋白质的摄入，如肉、蛋、奶；宜选富含必需脂肪酸和油酸的油脂，如葵花籽油、大豆油、玉米油，这些营养素可降低对辐射损伤的敏感性；还要多吃蔬菜、水果。 …… 长期面对电脑工作，要特别注意维生素A的补充，这对提高视力、防止眼睛干涩有好处。而补充维生素A最好的方法是吃动物肝脏，另外也可以补充植物中的胡萝卜素。
+>
+> 另外，女性与男性的生理结构、饮食偏好、个人嗜好等方面的不同，对于营养素的需求量及需求种类也是不同的。
+
+## yawye_c94_p15_obesity_risk
+
+- 端点：`refined_carbs` → `obesity_risk`
+- relation：过量碳水化合物转化为脂肪储存与肥胖相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：精制碳水化合物摄入与肥胖风险相关）
+- 段落：15–19
+
+> 一些男性喜欢熬夜、吸烟、喝酒，导致体内多种维生素的需求增大，所以更应该多吃蔬菜、水果，多吃动物内脏，多吃坚果，多补充维生素A。
+>
+> 女士每个月有月经血的输出，所以应该更多地补充些动物肝脏、血制品和有补铁效果的植物性食物，比如猪肝、猪血、鸭血、芝麻、蘑菇、木耳、海带、紫菜、桂圆等。补铁同时补充维生素C，可以促进铁吸收，所以要多吃水果。
+>
+> 男性精液里含有大量的锌，体内锌不足，会影响精子的数量与品质，而维生素E、维生素A都对提升男性生殖能力非常有帮助。所以，男士应多摄入一些富含锌、维生素E和维生素A的食物，如牡蛎、杏仁、榛子、胡桃、小麦胚芽、白萝卜和动物内脏等。
+>
+> 女性在备孕期、怀孕期以及哺乳期对营养素有更多的需求。比如叶酸对想要生孩子的女性尤其重要，如果在怀孕前3个月内缺乏叶酸，可引起胎儿神经管发育缺陷，导致畸形。所以准备怀孕的女性要多吃富含叶酸、锌、铁、钙的食物，为孕早期胚胎正常发育打下坚实基础。
+>
+> 女性要侧重补充维生素C、维生素E、叶酸、维生素A、铁、钙等营养素。更年期、孕期和哺乳期时女性都需要更多的钙，所以一定要多喝牛奶或者吃奶制品和鸡蛋。
+
+
+# spine 95 · PART 04 我们到底应该怎么吃
+
+## yawye_c95_p7_chronic_disease
+
+- 端点：`omnivorous_balanced_diet` → `chronic_disease`
+- relation：接近进化期荤素比例的天然膳食与较低慢病负担相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7–14
+
+> 在欧美国家，孩子每天吃的蛋白质、脂类非常多，如第一章中我们强调的，蛋白质、脂类这些营养素是人体细胞的结构成分。而中国的传统饮食以碳水化合物为主，碳水化合物为细胞提供的是什么呢？能量。差别显而易见。 …… 这种情况主要集中在经济落后地区。这些地区的孩子和大人一年中很少能吃上肉、鸡蛋，更谈不上牛奶，所以普遍较矮，抵抗力较差，容易患感染性疾病，肿瘤以胃癌和食道癌居多。
+>
+> 然而近些年来在大城市也出现许多营养不良的人，包括老人、孩子和白领，经济情况很好，但是孩子挑食，大人怕胖、怕胆固醇高，造成新一轮的营养不良。
+
+## yawye_c95_p16_metabolic_health
+
+- 端点：`animal_foods` → `metabolic_health`
+- relation：适量鱼禽蛋肉与代谢健康相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：16–17
+
+> 这种情况主要发生在经济水平较好的地区。发生这种情况主要有两种原因：一是不恰当的节食，肉类、内脏、鸡蛋很少摄入，但是蔬菜、米面一点不少；二是暴饮暴食，不懂得营养搭配，肉类、糖类、酒类摄入过多，蔬菜、水果摄入偏少，维生素、矿物质以及现在越来越受重视的膳食纤维欠缺。
+>
+> 在肥胖、高血压、糖尿病、高脂血症日益高发的今天，饮食已经不仅是养生的问题，更是一个防病治病的方法。我们必须重视每一天的饮食，不仅要关注舌尖上的味道，更要关注舌尖上的科学。
+
+
+# spine 96 · 肉蛋奶类：普遍吃得太少而不是过多
+
+## yawye_c96_p1_protein_deficiency
+
+- 端点：`animal_foods` → `protein_deficiency`
+- relation：动物蛋白占蛋白总量约一半与优质蛋白供给相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1
+
+> 2015年，《中国居民营养与慢性病状况报告》发布了一组统计数字，中国成年男性的平均身高为1.71米，女性为1.58米，引起不少人质疑。
+
+
+# spine 97 · 猪肉、鸡肉和鱼肉，哪个最有营养
+
+## yawye_c97_p11_omega3
+
+- 端点：`seafood` → `omega3`
+- relation：海鱼作为ω-3重要食物来源
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：11
+
+> 从脂肪质量上讲，没有腿的鱼类胜出，因为鱼类（尤其是深海鱼类）体内主要含不饱和脂肪酸。
+
+
+# spine 98 · 豆类代替不了肉、蛋、奶、鱼
+
+## yawye_c98_p1_kidney_disease
+
+- 端点：`legumes` → `kidney_disease`
+- relation：过量豆类蛋白利用不完全与肾脏负担相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–5
+
+> 虽然肉、蛋、奶、豆、鱼都富含蛋白质，而且很多资料告诉我们豆类中的蛋白质含量要高于肉、蛋、奶、鱼，但绝不能用豆类来代替肉、蛋、奶、鱼。
+>
+> 因为如果要全面评判食物中的某种营养素，不仅要看其含量是否高，还要看摄入后是否能被人体吸收，最后还要看其能否被人体充分利用。因此吸收了不等于被利用，只有被细胞利用了，才能证明这个食物吃进去是有意义的。否则，吸收了不被利用，还需要从肾脏排出去，反而会加重器官的负担，豆类就属于这种情况。 …… 《中国居民膳食指南》指出，建议每天可以吃25～50克豆类食物。可是有些人早上豆浆加各种杂豆粉，中午吃豆腐，晚上还要炒豆角、青椒炒干丝，这样一天摄入的豆类食物太多，会对肾脏造成压力，从而引发痛风，出现尿酸高和尿素高的症状。
+
+## yawye_c98_p5_kidney_stones
+
+- 端点：`legumes` → `kidney_stones`
+- relation：过量豆制品草酸盐磷酸盐与肾结石风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：5
+
+> 《中国居民膳食指南》指出，建议每天可以吃25～50克豆类食物。可是有些人早上豆浆加各种杂豆粉，中午吃豆腐，晚上还要炒豆角、青椒炒干丝，这样一天摄入的豆类食物太多，会对肾脏造成压力，从而引发痛风，出现尿酸高和尿素高的症状。
+
+## yawye_c98_p16_kidney_stones
+
+- 端点：`legumes` → `kidney_stones`
+- relation：过量豆制品草酸盐磷酸盐与肾结石风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：16–17
+
+> 还有一种说法是豆制品吃多了会得肾结石，其实这不是谣传，豆制品吃多了的确容易得肾结石。原因是大豆食品含草酸盐和磷酸盐较高，这两种成分要从肾脏排出。
+>
+> 当尿液中草酸钙的含量增多，达到饱和状态时就会形成草酸钙结晶。小的草酸钙结晶可排出体外，但如果结晶没能及时排出，加之尿液中草酸钙长期处于饱和状态，就会使结晶变大，形成草酸钙结石。所以，豆制品的食用不能过量。
+
+
+# spine 99 · 因为食品安全而不吃肉是因小失大
+
+## yawye_c99_p2_immune_resilience
+
+- 端点：`animal_foods` → `immune_resilience`
+- relation：动物性优质蛋白摄入与免疫功能相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：2–7
+
+> 食品安全的确是现在以及未来人们生活需要面临的重要问题，但是不能因为存在这样那样的问题而放弃这一类食品。放弃意味着从这类食物获得的营养素会不够，长期拒绝这类食品会造成身体中某一类营养素亏空。我们不可能回到狩猎时代，带着刀子、斧子、棒子，或者好一点的话带着猎枪，去森林中打猎，然后现烤现吃，所以你只能选择到市场上购买。在这种情况下，不吃意味着什么呢？ …… 这个患者以前没有糖尿病，血压平时比较低。她是个知识分子，看过一些书，也很喜欢看与养生相关的电视节目，尤其是牵涉食品安全的新闻更是关心。
+>
+> 听多了，看多了，她开始不敢吃肉，说是有抗生素；不敢吃鸡蛋，说是鸡吃了有污染的饲料；每一次炒菜前都要把菜洗很多遍，再煮得烂一些，这样心里才踏实。要么不吃，吃也都是破坏营养素的吃法，时间久了，缺乏营养，她的身体健康状态也越来越差，经常到我们医院看病，一病就输抗生素或者吃抗生素。
+>
+> 她这次发病是因为感染引起发烧，站起来的时候头晕，导致摔倒而不省人事。究其原因还是由于血管中血液太少，血压低，往大脑输送的血不能送到脑组织，于是出现了脑血栓。
+
+## yawye_c99_p6_stroke
+
+- 端点：`protein_deficiency` → `stroke`
+- relation：拒食动物性食物导致的营养不良与脑梗死相关的个案观察
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：6–7
+
+> 听多了，看多了，她开始不敢吃肉，说是有抗生素；不敢吃鸡蛋，说是鸡吃了有污染的饲料；每一次炒菜前都要把菜洗很多遍，再煮得烂一些，这样心里才踏实。要么不吃，吃也都是破坏营养素的吃法，时间久了，缺乏营养，她的身体健康状态也越来越差，经常到我们医院看病，一病就输抗生素或者吃抗生素。
+>
+> 她这次发病是因为感染引起发烧，站起来的时候头晕，导致摔倒而不省人事。究其原因还是由于血管中血液太少，血压低，往大脑输送的血不能送到脑组织，于是出现了脑血栓。
+
+## yawye_c99_p16_immune_resilience
+
+- 端点：`animal_foods` → `immune_resilience`
+- relation：动物性优质蛋白摄入与免疫功能相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：16
+
+> 所以大家千万别因为食品安全问题，就完全舍弃肉类、蛋类，动物类食物和植物类食物都要吃。人体有自己的排毒能力，如果我们能做到不挑食不偏食，少吃多餐，即便是吃进去一点有害物质，我们的身体也是能够排出去一部分的。对身体来讲，做任何选择都要考虑风险收益，吃获得的好处比坏处要大得多，事关健康，不可因小失大。
+
+
+# spine 101 · 贫血人群要特别注意肉食摄入
+
+## yawye_c101_p1_iron_status
+
+- 端点：`red_meat` → `iron_status`
+- relation：红肉及动物血制品与缺铁性贫血相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–10
+
+> 有一天，我在我的微信朋友圈里看到一张化验单，是位30多岁女性的血常规，其中血红蛋白只有7克，同时红细胞压积、平均红细胞体积、平均血红蛋白浓度等显示都是向下的箭头，这些指标综合起来可以诊断为典型的缺铁性贫血。 …… 为什么？因为红肉、肝脏、鸭血中含血红蛋白铁，吸收利用率高，可以有效补铁。 …… 动物性食物不仅含铁丰富，其吸收率也高，可达25%。而植物性食物中的铁元素受食物中所含的植酸盐、草酸盐等的干扰，吸收率很低，仅仅为3%。
+
+## yawye_c101_p7_iron_status
+
+- 端点：`plant_based_diet` → `iron_status`
+- relation：以素食减肥倾向与女性缺铁性贫血风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：植物性膳食模式与铁营养状况的关联观察）
+- 段落：7
+
+> 第二，许多女性总以为吃肉会导致肥胖，总想通过吃素食来减肥，但是大多数这样的人不但损害了健康，而且肥胖稳如泰山。
+
+## yawye_c101_p10_iron_status
+
+- 端点：`heme_iron` → `iron_status`
+- relation：血红素铁与铁营养状况相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：10–12
+
+> 动物性食物不仅含铁丰富，其吸收率也高，可达25%。而植物性食物中的铁元素受食物中所含的植酸盐、草酸盐等的干扰，吸收率很低，仅仅为3%。
+>
+> 在所有食物当中，红肉是铁元素的重要来源，其中牛肉中铁含量尤其丰富，每100克牛肉中铁元素的含量为3.3毫克，是相同质量猪肉的2倍，也高于羊肉中的铁含量。
+>
+> 值得一提的是，牛肉遇到西红柿后，可以使牛肉中的铁更好地被人体吸收，有效预防缺铁性贫血。而且在炖牛肉时，加上些西红柿，能帮助牛肉更快软烂，两者是很好的组合。
+
+
+# spine 102 · 牛奶是一种近乎完美的食物
+
+## yawye_c102_p1_gastritis
+
+- 端点：`dairy` → `gastritis`
+- relation：牛奶成分与胃酸中和及溃疡病灶相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–5
+
+> 人体所需要的各种营养物质除了膳食纤维外，其他营养素都可以在牛奶中获取。牛奶由近300种元素组成，其中含有多种丰富的人体所必需的营养元素，如蛋白质、脂肪、乳糖、维生素、钙、磷等。 …… 此外，喝牛奶有保护消化系统的作用，同时还能够有效地促进溃疡病灶的愈合。这是因为牛奶中所含有的一些物质能够中和胃酸，加强胃功能，特别是在胃炎的恢复以及治疗上更具有一定特效。
+
+## yawye_c102_p6_calcium
+
+- 端点：`dairy` → `calcium`
+- relation：牛奶及奶制品作为高吸收率钙来源
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：6–7
+
+> 而且，牛奶是补钙最好的食物。每100克牛奶可提供110～120毫克钙。对补钙来说，吸收好尤其关键。如果一种食物含钙量极高，但却不能被人体吸收，吃再多也无济于事。牛奶和奶制品不仅含钙量高，进入人体后还便于吸收，因此是补钙的最好食物。
+>
+> 同时，补钙对于高血压的治疗是十分重要的。许多研究都显示钙的补充对于血压平稳、降低中风的发病概率和心脏病发病概率都十分有益。
+
+## yawye_c102_p7_hypertension
+
+- 端点：`calcium` → `hypertension`
+- relation：钙状态与血压平稳相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7
+
+> 同时，补钙对于高血压的治疗是十分重要的。许多研究都显示钙的补充对于血压平稳、降低中风的发病概率和心脏病发病概率都十分有益。
+
+## yawye_c102_p7_stroke
+
+- 端点：`calcium` → `stroke`
+- relation：钙状态与中风发病概率相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7
+
+> 同时，补钙对于高血压的治疗是十分重要的。许多研究都显示钙的补充对于血压平稳、降低中风的发病概率和心脏病发病概率都十分有益。
+
+## yawye_c102_p7_coronary_heart_disease
+
+- 端点：`calcium` → `coronary_heart_disease`
+- relation：钙状态与心脏病发病概率相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7
+
+> 同时，补钙对于高血压的治疗是十分重要的。许多研究都显示钙的补充对于血压平稳、降低中风的发病概率和心脏病发病概率都十分有益。
+
+
+# spine 103 · 牛奶是更年期女性最好的静心药
+
+## yawye_c103_p2_calcium
+
+- 端点：`dairy` → `calcium`
+- relation：牛奶及奶制品作为高吸收率钙来源
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：2–13
+
+> 我曾经诊断过一位49岁的女患者。她告诉我，自己心悸气短，出虚汗，一阵一阵潮热，睡眠质量不好，脾气平时还可以，但是一阵心烦上来，就要跑到外面狂走一阵，很明显，这是更年期综合征。她很想知道有没有食疗的办法来度过更年期。 …… 我劝患者把早晨的粥改成喝牛奶，可是患者说：“不是喝多了牛奶不好吗？人家说牛奶喝多了容易得乳腺癌、结肠癌……” …… 更年期的女性由于雌激素的减退，短期内身体中的钙大量流失。缺钙早期会出现心悸、出虚汗、睡眠障碍，严重者情绪不稳定，脾气暴躁，影响家庭和睦也影响工作，还会容易引起高血压。如果等到稍微受点外力就出现骨折的时候才明白是缺钙，那个时候就太晚了。因此，更年期女性要特别注意身体是否缺钙，注意在饮食上补充。
+
+## yawye_c103_p13_hypertension
+
+- 端点：`calcium` → `hypertension`
+- relation：钙状态与血压平稳相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：13
+
+> 更年期的女性由于雌激素的减退，短期内身体中的钙大量流失。缺钙早期会出现心悸、出虚汗、睡眠障碍，严重者情绪不稳定，脾气暴躁，影响家庭和睦也影响工作，还会容易引起高血压。如果等到稍微受点外力就出现骨折的时候才明白是缺钙，那个时候就太晚了。因此，更年期女性要特别注意身体是否缺钙，注意在饮食上补充。
+
+## yawye_c103_p13_mental_health
+
+- 端点：`calcium` → `mental_health`
+- relation：更年期缺钙早期表现与心悸情绪波动等相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：13
+
+> 更年期的女性由于雌激素的减退，短期内身体中的钙大量流失。缺钙早期会出现心悸、出虚汗、睡眠障碍，严重者情绪不稳定，脾气暴躁，影响家庭和睦也影响工作，还会容易引起高血压。如果等到稍微受点外力就出现骨折的时候才明白是缺钙，那个时候就太晚了。因此，更年期女性要特别注意身体是否缺钙，注意在饮食上补充。
+
+## yawye_c103_p15_osteoporosis
+
+- 端点：`dairy` → `osteoporosis`
+- relation：奶制品与骨健康相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：乳制品与高钙摄入与髋骨骨折率的跨国关联观察）
+- 段落：15–16
+
+> 第一，补足蛋白质。蛋白质是生命的物质基础，而且钙与之结合容易吸收和利用。
+>
+> 第二，补足牛奶或者奶制品。牛奶是补钙最好的方法，不仅含钙量高，还非常易于被人体吸收。更年期女性的需求量要比一般人多一些，尤其是有症状的人，要注意补足奶制品，酸奶、奶酪都可以。
+
+
+# spine 104 · 乳糖不耐受人群也可以喝牛奶
+
+## yawye_c104_p1_gut_comfort
+
+- 端点：`dairy` → `gut_comfort`
+- relation：酸奶奶酪等低乳糖奶制品与乳糖不耐受人群耐受相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–12
+
+> 有些人喝牛奶后会出现腹胀、腹痛，这是乳糖不耐症的表现，是因为身体里缺少乳糖酶。有人会理解为，这是对牛奶过敏吗？并不是，乳糖不耐受不是疾病，也不能算对牛奶过敏。 …… 酸奶易于被人体消化吸收，乳糖被分解形成乳酸，这样酸奶中的乳糖就消失了，其他营养成分基本没有变化。因此酸奶更适宜于乳糖不耐受者、消化不良的患者、老年人和儿童等食用。
+>
+> 奶酪又称干酪，是在原料乳中加入适量的乳酸菌发酵剂或凝乳酶，使蛋白质发生凝固，并加盐、压榨排除乳清之后的产品。制作1千克奶酪大约需要10千克牛乳。奶酪含有丰富的营养成分，奶酪中的蛋白质、脂肪、钙、维生素A和维生素B_{2}是鲜奶的7～8倍。在奶酪生产过程中，大多数乳糖随乳清排出，余下的也都通过发酵作用生成了乳酸，因此奶酪非常适合乳糖不耐受的人群。
+
+
+# spine 106 · 到底该吃多少粮食
+
+## yawye_c106_p1_chronic_disease
+
+- 端点：`refined_carbs` → `chronic_disease`
+- relation：精米精面等工业化主食与营养不平衡及慢病相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：精制碳水化合物摄入与慢性病风险相关）
+- 段落：1
+
+> 在中国人的饮食中，碳水化合物类食物能提供总能量的50%～70%，而在前面说过的地中海式饮食中，碳水化合物类食物所提供的能量仅占总能量的25%左右。这说明与更为先进的饮食结构相比，中国人吃的碳水化合物太多了，得压一压。
+
+## yawye_c106_p5_obesity_risk
+
+- 端点：`refined_carbs` → `obesity_risk`
+- relation：过量碳水化合物转化为脂肪储存与肥胖相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：精制碳水化合物摄入与肥胖风险相关）
+- 段落：5
+
+> 第三，看腰围和腰臀比[注：腰臀比是腰围和臀围的比值，是判定中心性肥胖的重要指标。]。如果男性腰围大于90厘米，女性大于80厘米，或者腰臀比男性大于0.9，女性大于0.8，那么，也要相应减少主食。
+
+## yawye_c106_p13_type2_diabetes
+
+- 端点：`refined_carbs` → `type2_diabetes`
+- relation：精制主食及粥类偏好与血糖及糖尿病相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：13–21
+
+> 这位患者是女性，比较胖，血糖稍高。她找到我的时候，一方面想减肥，另一方面也想通过饮食把血糖值调到正常。 …… “吃进去的米面消化成葡萄糖后进入血液，你吃得过多，身体中有大量葡萄糖，血糖就一直较高。正常人身体中有葡萄糖、维生素、蛋白质等营养素，它们之间是平衡的，所以身体中不长霉菌。但是，如果其他营养素都不够，只有葡萄糖过量，就为霉菌滋生创造了条件，再加上阴道环境阴湿，就容易出现霉菌性阴道炎。”
+
+## yawye_c106_p37_obesity_risk
+
+- 端点：`refined_carbs` → `obesity_risk`
+- relation：过量碳水化合物转化为脂肪储存与肥胖相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：精制碳水化合物摄入与肥胖风险相关）
+- 段落：37
+
+> 还有很多，在这里不再一一列举。大家吃饭时要盯住那些表面上是菜，实际上是淀粉的食物，这些都是隐性主食，也许你的胖和血糖高都与这些隐性主食有关。
+
+
+# spine 107 · 喝粥其实不养胃
+
+## yawye_c107_p7_type2_diabetes
+
+- 端点：`refined_carbs` → `type2_diabetes`
+- relation：精制主食及粥类偏好与血糖及糖尿病相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7
+
+> 过去熬粥熬的是五谷杂粮，是全麦食品，而现在大多数人熬的是细粮。细粮熬成粥吸收得特别快，容易造成血糖波动。临床上调查糖尿病患者，十有八九爱喝粥。
+
+## yawye_c107_p11_hypertension
+
+- 端点：`refined_carbs` → `hypertension`
+- relation：精制米面及高盐配菜习惯与血压相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：11
+
+> 我问他们为什么这么喜欢面条和粥，他们很自豪地说：“这是我们这里的传统习惯。”我只好耐心地跟他们讲：“过去的山东是农业大省，很穷。曾经很多人闯关东，那是不得已，背井离乡，只为不被饿死。如果每天能喝上粥、吃上面条，在那时就很幸福了。现在老百姓生活环境变了，还坚持过去的饮食习惯，高血压、糖尿病就都跟着来了，这种饮食不平衡如果不改变，慢病会越来越多。”
+
+## yawye_c107_p11_type2_diabetes
+
+- 端点：`refined_carbs` → `type2_diabetes`
+- relation：精制主食及粥类偏好与血糖及糖尿病相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：11
+
+> 我问他们为什么这么喜欢面条和粥，他们很自豪地说：“这是我们这里的传统习惯。”我只好耐心地跟他们讲：“过去的山东是农业大省，很穷。曾经很多人闯关东，那是不得已，背井离乡，只为不被饿死。如果每天能喝上粥、吃上面条，在那时就很幸福了。现在老百姓生活环境变了，还坚持过去的饮食习惯，高血压、糖尿病就都跟着来了，这种饮食不平衡如果不改变，慢病会越来越多。”
+
+
+# spine 108 · 肥胖人群要自查主食摄入
+
+## yawye_c108_p1_obesity_risk
+
+- 端点：`refined_carbs` → `obesity_risk`
+- relation：过量碳水化合物转化为脂肪储存与肥胖相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：精制碳水化合物摄入与肥胖风险相关）
+- 段落：1–5
+
+> 关于肥胖这个问题，很多人都觉得是吃肉、鱼、奶导致的，很少考虑到主食的问题。其实，从每种营养素在人体内的转化过程这个角度来思考一下，就很清晰了。 …… 碳水化合物进入人体后，分解变成葡萄糖。葡萄糖经过胃肠道黏膜吸收后进入肝脏，在肝脏内被磷酸化（生成“葡萄糖-6-磷酸”，这样的葡萄糖就不能再逸出肝细胞），“固定”在肝细胞内接受进一步处理，形成三部分能量：一部分葡萄糖肝脏留下来为自己的细胞提供能量；另一部分葡萄糖在肝细胞胞液中合成糖原，给肝脏自己和人体其他器官留下一些储存以备随时调用，尤其在空腹时调动出来调节血糖；最后一部分葡萄糖合成脂肪（甘油三酯），以极低密度脂蛋白（VLDL）的形式输出到血液中，并运至脂肪组织储存。
+>
+> 走最后一条路的葡萄糖非常多，在理论上可以是无限多。也就是说，不论你吃多少碳水化合物（消化吸收为葡萄糖），前两种途径的葡萄糖用量满足后，其余都可以用于合成脂肪。我们可以看到很多胖人胖得出奇，甚至躺在床上不能下地，仔细看看他们的饮食，往往是面包、饮料摄入太多。
+
+## yawye_c108_p6_obesity_risk
+
+- 端点：`refined_carbs` → `obesity_risk`
+- relation：过量碳水化合物转化为脂肪储存与肥胖相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：精制碳水化合物摄入与肥胖风险相关）
+- 段落：6–8
+
+> 我们抽血化验中有一项是“甘油三酯”，这项指标测量的就是这些移动中的脂肪，代表了葡萄糖转化成脂肪的状态，而并不是我们通常以为吃大鱼大肉的结果。 …… 所以，你吃的碳水化合物越多，合成的脂肪越多；主食吃得越多，人就会越胖。
+
+
+# spine 109 · 糖尿病患者群要特别注意控制主食
+
+## yawye_c109_p1_type2_diabetes
+
+- 端点：`refined_carbs` → `type2_diabetes`
+- relation：精制主食及粥类偏好与血糖及糖尿病相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–11
+
+> 中国现在是世界上的第一糖尿病大国，第二是哪个国家？印度。印度也是个喜欢主食的国家，最有名的是手抓饭和抛饼，也是精米、精面做成的食物，这说明什么呢？
+>
+> 糖尿病与主食关系最为密切。
+>
+> 有一次，一位糖尿病患者来看病，希望我们给他出个饮食方子。我们先调查了一下他的病史和饮食习惯，一起来看看他的饮食习惯。 …… 早上的粥、包子都是碳水化合物，中午的2两米饭、晚上的2碗面条、睡前的点心都是碳水化合物，还有下午的水果也可以换算成碳水化合物，所有食物加起来，他一天大概吃了7～8两（350～400克）碳水化合物。他的个子不高，也就160厘米，而且不运动，过多的能量无法代谢，分解后成为葡萄糖，从而造成血糖增高。
+
+
+# spine 111 · 油不怕多，只怕比例不当
+
+## yawye_c111_p2_cardiometabolic
+
+- 端点：`dietary_fat` → `cardiometabolic`
+- relation：脂肪数量与脂肪酸比例与心血管代谢相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：2–5
+
+> 在前面说到食物和人类进化的关系时，大家已经能够感受到脂肪的重要性，所以，脂肪必须吃，不能一味怕油多。脂肪的数量是指在能量营养素中所占的比例，让人体产生能量的营养素是碳水化合物（糖类）、脂肪和蛋白质，而为细胞提供结构的磷脂、胆固醇无不来源于脂肪，绝对不可或缺。 …… 我们前面说到了，每个国家的膳食指南都是针对自己国家居民的饮食习惯制定的。美国人的饮食习惯中，脂肪平均占总能量的34%左右，摄入饱和脂肪酸太多，比如牛排、猪排、鸡肉、牛奶、奶酪和黄油等食物。而地中海式饮食中脂肪比例占到35%左右，但是主要是单不饱和脂肪酸和多不饱和脂肪酸。美国希望向地中海式饮食学习，才提出要减少饱和脂肪酸，增加鱼类、蔬菜和水果。
+
+## yawye_c111_p10_cardiometabolic
+
+- 端点：`olive_oil` → `cardiometabolic`
+- relation：橄榄油等单不饱和脂肪酸来源与心血管相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：10–12
+
+> 这些年大量的流行病调查发现，地中海地区居民患心脑血管疾病的比率较低。在调查饮食特点时发现原因中有两个特点和脂肪相关：首先，他们鱼吃得多。鱼肉除了能提供优质蛋白质以外，还能提供脂肪，而且重点在于深海鱼的多不饱和脂肪酸含量很高。其次，地中海式饮食用的油是橄榄油，橄榄油的特点是单不饱和脂肪酸含量高。
+>
+> 综合这两点可以看到，采用地中海式饮食的人摄入的油脂中，单不饱和脂肪酸和多不饱和脂肪酸都比较多。
+>
+> 同时，临床实验研究也证明，多不饱和脂肪酸和单不饱和脂肪酸对心血管是有益的。
+
+## yawye_c111_p10_cardiometabolic_2
+
+- 端点：`seafood` → `cardiometabolic`
+- relation：深海鱼多不饱和脂肪酸与心血管相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：10
+
+> 这些年大量的流行病调查发现，地中海地区居民患心脑血管疾病的比率较低。在调查饮食特点时发现原因中有两个特点和脂肪相关：首先，他们鱼吃得多。鱼肉除了能提供优质蛋白质以外，还能提供脂肪，而且重点在于深海鱼的多不饱和脂肪酸含量很高。其次，地中海式饮食用的油是橄榄油，橄榄油的特点是单不饱和脂肪酸含量高。
+
+## yawye_c111_p21_cardiometabolic
+
+- 端点：`omega3` → `cardiometabolic`
+- relation：ω-3等多不饱和脂肪酸与心血管代谢相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：21–23
+
+> 美国人现在的饮食中，ω-6脂肪酸和ω-3脂肪酸比例为15～20∶1，中国现在暂时没有这方面的调查结果。
+>
+> 那多少合适呢？
+>
+> 还是回到我们人类几百万年的发展进程中来看。人类发展最快的阶段是在距今2万～1万年前，饮食当中脂肪比例达到了40%左右，同时，ω-6脂肪酸∶ω-3脂肪酸为1～2∶1，所以增加ω-3系列的脂肪酸是保证身体健康的基本法则之一，也是各国膳食指南都在引导的方向。
+
+## yawye_c111_p28_cognitive_clarity
+
+- 端点：`nuts_seeds` → `cognitive_clarity`
+- relation：坚果单不饱和脂肪酸与脑营养及饱腹感相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：28
+
+> 另外，可以多吃些坚果。坚果里也有非常好的单不饱和脂肪酸，养脑又有饱腹感，还不容易升血糖。
+
+## yawye_c111_p29_omega3
+
+- 端点：`seafood` → `omega3`
+- relation：海鱼作为ω-3重要食物来源
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：29
+
+> 平时还可以多吃鱼，尤其是海鱼，蛋白质质量好还好吸收，脂肪的质量更是优秀。但是，我看许多人都明白这个道理，就是很少去吃，说吃鱼麻烦。其实只要想吃，自然会琢磨出快捷好吃的方法。
+
+
+# spine 114 · 蔬菜营养藏在颜色、部位和时令里
+
+## yawye_c114_p1_digestive_cancer_risk
+
+- 端点：`vegetables_greens` → `digestive_cancer_risk`
+- relation：足量深色新鲜蔬菜与结肠癌风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：蔬果为主饮食与辐射暴露人群较低癌症风险相关）
+- 段落：1
+
+> 蔬菜中含有丰富的维生素，如维生素C、胡萝卜素和维生素B_{2}等，而且还是膳食纤维的主要来源，对减肥、降低血糖等非常重要，尤其对防止结肠癌的发生有显著的意义。
+
+## yawye_c114_p1_digestive_cancer_risk_2
+
+- 端点：`dietary_fiber` → `digestive_cancer_risk`
+- relation：膳食纤维不足与结肠癌发生率相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：不可溶性膳食纤维促进排便并吸附有害物质，与大肠癌预防相关）
+- 段落：1
+
+> 蔬菜中含有丰富的维生素，如维生素C、胡萝卜素和维生素B_{2}等，而且还是膳食纤维的主要来源，对减肥、降低血糖等非常重要，尤其对防止结肠癌的发生有显著的意义。
+
+## yawye_c114_p1_obesity_risk
+
+- 端点：`vegetables_greens` → `obesity_risk`
+- relation：蔬菜膳食纤维与体重管理相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1
+
+> 蔬菜中含有丰富的维生素，如维生素C、胡萝卜素和维生素B_{2}等，而且还是膳食纤维的主要来源，对减肥、降低血糖等非常重要，尤其对防止结肠癌的发生有显著的意义。
+
+## yawye_c114_p1_type2_diabetes
+
+- 端点：`vegetables_greens` → `type2_diabetes`
+- relation：蔬菜膳食纤维与血糖管理相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1
+
+> 蔬菜中含有丰富的维生素，如维生素C、胡萝卜素和维生素B_{2}等，而且还是膳食纤维的主要来源，对减肥、降低血糖等非常重要，尤其对防止结肠癌的发生有显著的意义。
+
+
+# spine 116 · 患结肠癌的原因之一：吃错菜
+
+## yawye_c116_p1_digestive_cancer_risk
+
+- 端点：`dietary_fiber` → `digestive_cancer_risk`
+- relation：膳食纤维不足与结肠癌发生率相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：不可溶性膳食纤维促进排便并吸附有害物质，与大肠癌预防相关）
+- 段落：1
+
+> 大家知道吗？即便中国人习惯吃蔬菜，但是统计学结果显示，中国人膳食纤维仍然不足，而且有些城市人们的结肠癌发生率还在增加，其中一个很重要的原因就是，大家分不清菜与蔬菜。
+
+## yawye_c116_p1_digestive_cancer_risk_2
+
+- 端点：`vegetables_greens` → `digestive_cancer_risk`
+- relation：足量深色新鲜蔬菜与结肠癌风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：蔬果为主饮食与辐射暴露人群较低癌症风险相关）
+- 段落：1–9
+
+> 大家知道吗？即便中国人习惯吃蔬菜，但是统计学结果显示，中国人膳食纤维仍然不足，而且有些城市人们的结肠癌发生率还在增加，其中一个很重要的原因就是，大家分不清菜与蔬菜。 …… 在《中国居民膳食指南（2016）》里，关于蔬菜的建议是每人每天摄入量为1斤（500克），一半为深色蔬菜。深色蔬菜指的是绿色、红色、紫色这样的新鲜蔬菜。所以大家不能仅仅看有多少种菜，还要关心有多少种新鲜蔬菜，这样吃才能保证营养摄取到位。
+
+## yawye_c116_p11_digestive_cancer_risk
+
+- 端点：`dietary_nitrates` → `digestive_cancer_risk`
+- relation：腌菜咸菜中亚硝酸盐与新鲜蔬菜区分的结肠健康观察
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：亚硝酸盐曾被怀疑致胃癌，现更强调幽门螺杆菌慢性感染；其抗氧化与降压作用获讨论）
+- 段落：11
+
+> 例如，在东北和内蒙古地区，很多人都喜欢吃酸菜炒肉，过去这个菜是最受欢迎的菜，只有来客人和过年时才拿出来。东北的冬天非常寒冷，以前冬天食物匮乏，就用这种办法把秋天的白菜储存起来，留到冬天吃。但是酸菜不能算新鲜蔬菜，盐和亚硝酸盐都比较多，作为传统食物偶尔尝一尝还是可以的。
+
+
+# spine 119 · 湿疹可能是因为体内缺乏辅酶
+
+## yawye_c119_p1_atopic_dermatitis
+
+- 端点：`ultra_processed` → `atopic_dermatitis`
+- relation：甜食等垃圾食品与儿童湿疹相关诱因观察
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–5
+
+> 有一个5岁的男孩，从3岁开始面部、前胸、颈部出现多处湿疹，抹过多种药，反反复复，一直不好，特别痒，孩子可受罪了。家里人急得团团转，带着他到处看，也没有什么好的办法。
+>
+> 孩子妈妈在我一次讲课的时候认识了我，抱着试试看的态度给我发微信，还把孩子满身湿疹的照片发给我。照片里的孩子脸上、颈部、前胸都是湿疹，看着真让人揪心。
+>
+> 孩子患上湿疹的主要原因有两大方面：一方面可能来自外界，比如皮肤接触了一些刺激物；另一方面可能来自自身。这个孩子是全家的宝贝，不太可能出现第一个因素。 …… 第一种可能是吃了一些有害物质，身体要把这些垃圾排出去。像一些孩子特别喜欢吃甜食等垃圾食品，吃得多了，皮肤会排出一些毒素，所以大家可以看到这样的孩子面部有大量的红色结节。因此我首先问妈妈，是不是孩子吃了垃圾食品。孩子妈妈说：“肯定没有，家里人很注意不给孩子买这样的食物。”
+
+## yawye_c119_p11_atopic_dermatitis
+
+- 端点：`vitamin_b_complex` → `atopic_dermatitis`
+- relation：辅酶相关B族维生素与湿疹转归相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：11–14
+
+> 看来这个孩子蛋白质足够而辅酶不足，辅酶的成分主要是维生素和矿物质。 …… 为了增加他的排毒能力，我必须在这三个方面下功夫。于是我给孩子制订的营养方案是增加蔬菜、水果，起到通便的效果；补充一些儿童用的B族维生素，起到增加酶活性的作用，促进毒素排泄；同时多喝水，加快通过泌尿系统排毒。
+>
+> 两周之后，奇迹发生了，孩子的湿疹慢慢退去。一个月后，孩子妈妈发来一张照片，干干净净、漂漂亮亮的小男孩出现在眼前，孩子笑眯眯的，大概很久没有这么清爽了。
+
+## yawye_c119_p14_atopic_dermatitis
+
+- 端点：`vegetables_greens` → `atopic_dermatitis`
+- relation：蔬果通便及排毒路径与湿疹相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：14
+
+> 两周之后，奇迹发生了，孩子的湿疹慢慢退去。一个月后，孩子妈妈发来一张照片，干干净净、漂漂亮亮的小男孩出现在眼前，孩子笑眯眯的，大概很久没有这么清爽了。
+
+
+# spine 120 · 水果：吃得实在太少了
+
+## yawye_c120_p11_chronic_wounds
+
+- 端点：`vitamin_c` → `chronic_wounds`
+- relation：维生素C与胶原形成及出血倾向相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：11
+
+> 于是，我对大家说：“维生素C在胶原蛋白形成中会起到非常重要的作用。大家都知道胶原蛋白是用来连接、支撑、保护人体的，同时它还有一个重要功能，就是粘连细胞。如果血管的内皮细胞粘连不佳，血细胞就会渗漏到周围组织，这就是可怕的坏血病。以前的船员在船上可以吃各种肉罐头，但是由于吃不到新鲜水果和蔬菜会出现大量死亡的现象。这是因为维生素C是胶原蛋白的组成成分，而且人体不能合成，只能从食物中来。”
+
+## yawye_c120_p13_vitamin_c
+
+- 端点：`berries_fruits` → `vitamin_c`
+- relation：多种水果与维生素C供给相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：13
+
+> 可能有人会说：蔬菜里也有维生素C，吃蔬菜就可以代替水果。但是大家要知道，中国人吃菜和欧美国家不同。中国人喜欢吃熟食，欧美国家的人喜欢吃生的蔬菜。维生素C怕热，生食能避免营养素在烹调中损失，最大程度发挥其营养作用，所以欧美国家的饮食习惯可以保证他们从蔬菜中获得维生素C，而我们就需要水果来作补充。
+
+
+# spine 121 · 每种水果都是营养宝藏
+
+## yawye_c121_p3_cancer_overall
+
+- 端点：`vitamin_c` → `cancer_overall`
+- relation：富含维生素C的水果与抗氧化及肿瘤风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：膳食维生素C水平与较低癌症死亡率相关）
+- 段落：3
+
+> 如鲜枣、橘子、橙子、柠檬、杧果、猕猴桃、草莓等。维生素C具有增强人的免疫力、抗氧化、预防癌症和保护神经系统的作用，是人体必不可少的营养元素。
+
+## yawye_c121_p3_immune_resilience
+
+- 端点：`vitamin_c` → `immune_resilience`
+- relation：维生素C与免疫相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：3
+
+> 如鲜枣、橘子、橙子、柠檬、杧果、猕猴桃、草莓等。维生素C具有增强人的免疫力、抗氧化、预防癌症和保护神经系统的作用，是人体必不可少的营养元素。
+
+## yawye_c121_p5_digestive_cancer_risk
+
+- 端点：`dietary_fiber` → `digestive_cancer_risk`
+- relation：膳食纤维不足与结肠癌发生率相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：不可溶性膳食纤维促进排便并吸附有害物质，与大肠癌预防相关）
+- 段落：5–6
+
+> 如苹果、西柚、火龙果等水果中含有许多可溶性膳食纤维。奉劝大家，如果能吃水果皮的话尽量吃，水果皮是不可溶的膳食纤维，可溶与不可溶膳食纤维合起来是我们身体的宝贝。在精细食品满天下的今天，多吃膳食纤维可以帮助我们少生很多病。
+>
+> 膳食纤维可以帮助我们滋养肠道菌群，防止结肠息肉、结肠癌的发生。膳食纤维还可以帮助通便，从而预防和治疗便秘。由于膳食纤维与其他食物混合后，各种能量元素吸收速度减慢，因此可以降低餐后血糖值，同时达到减肥的效果。
+
+## yawye_c121_p6_constipation
+
+- 端点：`dietary_fiber` → `constipation`
+- relation：膳食纤维不足与便秘相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：6
+
+> 膳食纤维可以帮助我们滋养肠道菌群，防止结肠息肉、结肠癌的发生。膳食纤维还可以帮助通便，从而预防和治疗便秘。由于膳食纤维与其他食物混合后，各种能量元素吸收速度减慢，因此可以降低餐后血糖值，同时达到减肥的效果。
+
+## yawye_c121_p6_type2_diabetes
+
+- 端点：`dietary_fiber` → `type2_diabetes`
+- relation：膳食纤维与血糖相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：高纤维膳食与较好血糖控制相关）
+- 段落：6
+
+> 膳食纤维可以帮助我们滋养肠道菌群，防止结肠息肉、结肠癌的发生。膳食纤维还可以帮助通便，从而预防和治疗便秘。由于膳食纤维与其他食物混合后，各种能量元素吸收速度减慢，因此可以降低餐后血糖值，同时达到减肥的效果。
+
+## yawye_c121_p6_obesity_risk
+
+- 端点：`dietary_fiber` → `obesity_risk`
+- relation：膳食纤维与肥胖相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：膳食纤维带来的饱腹感与较少热量摄入相关）
+- 段落：6
+
+> 膳食纤维可以帮助我们滋养肠道菌群，防止结肠息肉、结肠癌的发生。膳食纤维还可以帮助通便，从而预防和治疗便秘。由于膳食纤维与其他食物混合后，各种能量元素吸收速度减慢，因此可以降低餐后血糖值，同时达到减肥的效果。
+
+## yawye_c121_p8_type2_diabetes
+
+- 端点：`berries_fruits` → `type2_diabetes`
+- relation：水果果糖升糖指数相对较低与血糖相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：8–10
+
+> 如番石榴、木瓜、柚子、樱桃、苹果、梨等水果，糖尿病患者也可以食用。 …… 大家可能想不到，100克馒头的升糖指数是88，而果糖只有23。所以水果类食物不太容易升血糖，而吃精米、精面升血糖反而很快。
+
+## yawye_c121_p13_atherosclerosis
+
+- 端点：`antioxidant_defense` → `atherosclerosis`
+- relation：食物抗氧化剂与动脉粥样硬化相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：13–14
+
+> 维生素C和E具有很好的抗氧化作用，大家千万别小看这个抗氧化功能。人在自然中生存，无时无刻不在被氧化。比如一个苹果被切开，果肉很快变成黄色，逐渐变成黑色，说明空气中有大量的自由基。紫外线也会氧化我们的皮肤，由于西藏地区紫外线强烈，当地人皮肤普遍较黑，患眼部疾病的也比较多，因此咱们的常识是在紫外线强烈的地区要戴太阳镜，并且把皮肤覆盖住。
+>
+> 好在我们日常食物中有对抗自由基的抗氧化剂，食物中的维生素A、C、E是非常好的抗氧化剂，可以对冲掉身体内的自由基，让人体保持健康旺盛的状态，并且能防治动脉粥样硬化、大脑退化、关节炎等问题。
+
+## yawye_c121_p14_cognitive_decline
+
+- 端点：`antioxidant_defense` → `cognitive_decline`
+- relation：抗氧化营养与大脑退化相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：抗氧化防御水平与认知衰退风险相关）
+- 段落：14
+
+> 好在我们日常食物中有对抗自由基的抗氧化剂，食物中的维生素A、C、E是非常好的抗氧化剂，可以对冲掉身体内的自由基，让人体保持健康旺盛的状态，并且能防治动脉粥样硬化、大脑退化、关节炎等问题。
+
+## yawye_c121_p17_antioxidant_defense
+
+- 端点：`berries_fruits` → `antioxidant_defense`
+- relation：水果维生素与吸烟人群抗氧化需求相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：全食物蔬果摄入相较抗氧化补充剂与哮喘控制及肺功能改善更相关）
+- 段落：17–19
+
+> 于是我再问：“你抽烟吗？你吃坚果吗？你吃肝脏吗？” …… 这下我就明白了：吸烟造成体内自由基增多，正常人一天一个苹果，基本上能保证维生素C的需要，对他来说显然是不够的，抽烟越多的人对维生素C的需求量越大。另外，肝脏里的维生素A、坚果里的维生素E与水果里的维生素C有协同作用，处于三足鼎立的联盟状态，缺少一个，整个抗氧化防线就会坍塌。
+
+## yawye_c121_p21_cancer_overall
+
+- 端点：`berries_fruits` → `cancer_overall`
+- relation：经常吃水果与较低肿瘤等慢病危险性相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：21
+
+> 科学研究表明，经常吃水果可明显降低患肿瘤等慢性疾病的危险性，大量维生素可维持细胞的正常分化。
+
+
+# spine 122 · 水果的正确“打开”方式
+
+## yawye_c122_p1_chronic_disease
+
+- 端点：`berries_fruits` → `chronic_disease`
+- relation：水果作为正餐成分与慢病风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–2
+
+> 在中国居民的膳食中，水果一般是作为零食和甜品来吃的。很多人认为它是造成肥胖和糖尿病的祸首，敬而远之。这样的观念影响了人们对水果健康价值的正确认识，降低了人们摄取水果的积极性，导致膳食中的水果摄入量不够。
+>
+> 水果不是可有可无的零食，相反，它对我们的健康和疾病预防具有非常积极的作用。由于维生素C在体内代谢速度很快，因此最好“每天必吃”水果。
+
+## yawye_c122_p6_obesity_risk
+
+- 端点：`berries_fruits` → `obesity_risk`
+- relation：饭后额外水果能量与肥胖概率相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：6
+
+> 吃饱饭后再吃水果，会增加能量的额外摄入，增加肥胖的概率。另外吃饱饭后胃被充满，肠道开始工作，此时再增加许多水果会加重胃的负担。
+
+## yawye_c122_p16_cognitive_decline
+
+- 端点：`plant_based_diet` → `cognitive_decline`
+- relation：仅水果蔬菜代餐导致磷脂胆固醇不足与认知风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：植物性食物来源营养素与较低认知障碍风险相关）
+- 段落：16–17
+
+> 他是卖水果的，为了省钱，他不吃肉、蛋、奶，也很少吃其他食物，每天就把剩下卖不出去的水果当饭吃，虽然吃饱了，而且血糖血压都正常，但是身体中蛋白质、脂肪、脂溶性维生素及一些矿物质极度缺乏。后来，他的心脏二尖瓣和三尖瓣都出现了问题，最终只能住院做手术换心脏瓣膜。
+>
+> 现在有许多女孩为了减肥，只吃水果、蔬菜，认为这样既能减肥又能美容。实际上由于没有合理的饮食结构，饮食中缺乏蛋白质、磷脂以及其他营养素，长此以往，会出现贫血、营养不良、全身无力、抵抗力下降、内分泌紊乱等症状。有的人脑子也越来越不好使，得了现在的时髦病——阿尔茨海默病。为什么？因为人的大脑里70%左右的物质是类脂，从食物中获取不到磷脂和胆固醇，脑子就空了，轻者记忆力下降，严重者出现痴呆。
+
+## yawye_c122_p17_cognitive_decline
+
+- 端点：`protein_deficiency` → `cognitive_decline`
+- relation：结构营养素不足与认知障碍相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：17
+
+> 现在有许多女孩为了减肥，只吃水果、蔬菜，认为这样既能减肥又能美容。实际上由于没有合理的饮食结构，饮食中缺乏蛋白质、磷脂以及其他营养素，长此以往，会出现贫血、营养不良、全身无力、抵抗力下降、内分泌紊乱等症状。有的人脑子也越来越不好使，得了现在的时髦病——阿尔茨海默病。为什么？因为人的大脑里70%左右的物质是类脂，从食物中获取不到磷脂和胆固醇，脑子就空了，轻者记忆力下降，严重者出现痴呆。
+
+
+# spine 124 · 吸烟人群更离不开水果
+
+## yawye_c124_p1_lung_disease
+
+- 端点：`berries_fruits` → `lung_disease`
+- relation：吸烟相关肺损伤背景下富含维生素C水果与氧化对抗相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：增加蔬果摄入与哮喘发作率降低相关）
+- 段落：1
+
+> 我们都知道吸烟不好，长期吸烟会让肺部负担很重，大量毒素刺激肺组织造成炎症甚至形成肿瘤，同时烟里的有害物质还会增加动脉粥样硬化、冠心病、脑卒中的危险性。即便如此，每年我国吸烟的人还是在不断增多。
+
+## yawye_c124_p1_atherosclerosis
+
+- 端点：`berries_fruits` → `atherosclerosis`
+- relation：吸烟人群水果抗氧化成分与动脉粥样硬化风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1
+
+> 我们都知道吸烟不好，长期吸烟会让肺部负担很重，大量毒素刺激肺组织造成炎症甚至形成肿瘤，同时烟里的有害物质还会增加动脉粥样硬化、冠心病、脑卒中的危险性。即便如此，每年我国吸烟的人还是在不断增多。
+
+## yawye_c124_p1_coronary_heart_disease
+
+- 端点：`berries_fruits` → `coronary_heart_disease`
+- relation：吸烟人群水果摄入与冠心病风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1
+
+> 我们都知道吸烟不好，长期吸烟会让肺部负担很重，大量毒素刺激肺组织造成炎症甚至形成肿瘤，同时烟里的有害物质还会增加动脉粥样硬化、冠心病、脑卒中的危险性。即便如此，每年我国吸烟的人还是在不断增多。
+
+## yawye_c124_p1_stroke
+
+- 端点：`berries_fruits` → `stroke`
+- relation：吸烟人群水果摄入与脑卒中风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：柑橘类水果及橙皮苷与脑血流量及较低中风风险相关）
+- 段落：1
+
+> 我们都知道吸烟不好，长期吸烟会让肺部负担很重，大量毒素刺激肺组织造成炎症甚至形成肿瘤，同时烟里的有害物质还会增加动脉粥样硬化、冠心病、脑卒中的危险性。即便如此，每年我国吸烟的人还是在不断增多。
+
+## yawye_c124_p4_lung_disease
+
+- 端点：`vitamin_c` → `lung_disease`
+- relation：富含维生素C水果与烟毒氧化反应相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：4–6
+
+> 其次，如果你仔细研究吸烟也还算长寿的人，他们一般都有一些其他好的习惯，比如不挑食，爱运动，心态好。这些人的饮食肯定是荤素搭配，而且很爱吃水果，富含维生素C的水果可以抵抗一部分烟毒造成的人体氧化反应。 …… 我看着他那黑黑的面色，耐心地解释：“吸烟的人总的来讲比不吸烟的人容易患病，但是有些人比较特殊。比如一个人喜欢吸烟，但是吃饭非常简单，还不吃水果，这种人可能50岁左右就出健康问题了。而另外一个人同样吸烟，但是他吃饭很全面，荤素搭配，每天吃很多水果，这样食物中的抗氧化成分较多，抵消了很多烟毒造成的伤害。并且他每天运动，不熬夜，乐观开朗，这样的人往往比较长寿。”
+
+## yawye_c124_p10_lung_disease
+
+- 端点：`vitamin_a` → `lung_disease`
+- relation：维生素A与呼吸道上皮修复及肺癌相关营养因素相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：10
+
+> 第二，要多摄入维生素A和胡萝卜素，这类食物有保护支气管与肺组织的正常生长与分化的作用；维生素B_{2}能抵消烟中焦油一部分的毒性；维生素B_{12}能消除烟中一氧化碳与氧气争夺血红蛋白而导致的氧气输送障碍。
+
+## yawye_c124_p11_lung_disease
+
+- 端点：`vitamin_a` → `lung_disease`
+- relation：维生素A与呼吸道上皮修复及肺癌相关营养因素相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：11
+
+> 胡萝卜、柑橘等红色、黄色的蔬菜和水果含胡萝卜素较多，动物肝脏含维生素A较多，动物心脏、肾、香菇、新鲜蔬菜富含维生素B_{2}，动物肝脏、肉类富含维生素B_{12}较多。茶叶含多种抗氧化成分，建议吸烟的朋友可以多喝茶。
+
+
+# spine 125 · PART 05 病了怎样吃？知道这四点就够了
+
+## yawye_c125_p2_chronic_disease
+
+- 端点：`omnivorous_balanced_diet` → `chronic_disease`
+- relation：接近进化期荤素比例的天然膳食与较低慢病负担相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：2
+
+> 作为一名临床医生，26年的神经内科临床经验和10年的临床营养科工作经验告诉我，要想快速找到营养治病的良方，找对组织很重要。人体组织的种类就四种，碰到一个病例，我们先要想什么组织出了问题，然后再去想这些组织需要的营养素，这样可以简化治病思路，使患者快速掌握自我食疗，缓解病情甚至达到治愈，而不是一味地借助药品，不管治的是标还是本。
+
+
+# spine 126 · 上皮组织：人体80%以上肿瘤的发生地
+
+## yawye_c126_p4_chronic_disease
+
+- 端点：`cancer_overall` → `chronic_disease`
+- relation：上皮来源肿瘤占肿瘤总量大部分的组织分布观察
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：4
+
+> 由于位于各个器官组织的最表面，上皮细胞受到的不良刺激也就非常多。如果修复遇到阻碍，屏障的作用降低，人就容易生病，轻则表现为长期慢性炎症，重则会产生癌症。据统计，来自上皮细胞的肿瘤占了肿瘤总量80%以上，以至于现在把上皮细胞肿瘤直接称为“癌”。
+
+
+# spine 127 · 冠心病大误区，95%的人还在错下去
+
+## yawye_c127_p2_coronary_heart_disease
+
+- 端点：`animal_foods` → `coronary_heart_disease`
+- relation：动物性结构营养素与血管内皮日常更新修复相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：动物性产品与加工食品来源的血脂相关因素与冠心病风险相关）
+- 段落：2–3
+
+> 有科学家统计，人体内的动脉、静脉和毛细血管连起来，长度可达十多万千米，相当于沿着赤道绕了两圈。每个细胞都有生命周期，新细胞会不断代替旧细胞。而血管内皮的生命周期格外短，实验证明，只有1天左右。在1天的周期内，老的血管内皮细胞释放凋亡因子，告诉基底细胞要努力分裂以补充足量的内皮细胞，于是内皮及时得到补充，这样保证血管的内腔表面光滑。如果血管内腔表面出现缺损，很容易引发血小板的聚集，造成血栓形成。
+>
+> 我们都知道，维持细胞生长需要原料，也就是营养素。那么，这些血管内皮细胞究竟喜欢什么样的营养素呢？
+
+## yawye_c127_p5_atherosclerosis
+
+- 端点：`animal_foods` → `atherosclerosis`
+- relation：动物性食物与肝脏合成路径共同支持内皮结构营养
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：传统西式饮食背景下动脉粥样硬化斑块在冠状动脉累积与冠心病相关）
+- 段落：5–9
+
+> 第一，直接从动物身上来，含有大量蛋白质、磷质和胆固醇的动物类食品，比如肉、蛋、奶、鱼是极好的来源。 …… 你看，肝脏利用各种生化反应，来默默合成内皮细胞需要的营养素，然后借助“低密度脂蛋白”这个快递员将营养素快递给血管内皮细胞。
+
+## yawye_c127_p11_atherosclerosis
+
+- 端点：`blood_cholesterol` → `atherosclerosis`
+- relation：低密度脂蛋白被氧化后与动脉粥样硬化斑块形成相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：11–12
+
+> 低密度脂蛋白其实并不是人们眼中的“坏孩子”，它的本质是“活雷锋”，很有奉献精神。它给内皮细胞提供磷脂、蛋白质、胆固醇和甘油三酯，多余的成分通过高密度脂蛋白再运回到肝脏，以节约资源。
+>
+> 但是好孩子有时也会做坏事。当低密度脂蛋白一旦被氧化，它的空间结构发生了变化，此时血液中的“清道夫”（单核细胞）发现了问题，会立即吞噬被氧化的低密度脂蛋白，然后变成了巨噬细胞，移动到内皮细胞下面，慢慢地分解，这就是咱们常说的动脉粥样硬化斑块。
+
+## yawye_c127_p12_atherosclerosis
+
+- 端点：`reactive_oxygen` → `atherosclerosis`
+- relation：脂蛋白氧化与动脉粥样硬化启动相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：12
+
+> 但是好孩子有时也会做坏事。当低密度脂蛋白一旦被氧化，它的空间结构发生了变化，此时血液中的“清道夫”（单核细胞）发现了问题，会立即吞噬被氧化的低密度脂蛋白，然后变成了巨噬细胞，移动到内皮细胞下面，慢慢地分解，这就是咱们常说的动脉粥样硬化斑块。
+
+## yawye_c127_p14_coronary_heart_disease
+
+- 端点：`animal_foods` → `coronary_heart_disease`
+- relation：动物性结构营养素与血管内皮日常更新修复相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：动物性产品与加工食品来源的血脂相关因素与冠心病风险相关）
+- 段落：14–16
+
+> 低密度脂蛋白承担了多年的骂名，大家都认为冠心病就是它所导致的。殊不知，如果低密度脂蛋白不这样做，血管内皮早就损伤了。内皮下面的胶原纤维一旦暴露，内源性凝血系统就会被激活，可以快速地形成血栓。
+>
+> 如果我们明白了内皮细胞每天的需求，就会知道我们应该怎样吃饭了。
+>
+> 一方面，直接吃动物性食物，给内皮细胞送去结构营养素和能量。结构营养素是蛋白质、磷脂和胆固醇，能量营养素是甘油三酯和葡萄糖。毕竟血管内皮细胞数量多，凋亡速度快，重新复制细胞时间紧、任务重，我们对自己的身体马虎不得，要注意及时补充营养素。
+
+
+# spine 128 · 甲状腺结节该多吃碘还是少吃碘
+
+## yawye_c128_p11_thyroid_disease
+
+- 端点：`protein_deficiency` → `thyroid_disease`
+- relation：蛋白质与碘等原料不足与甲状腺结节及甲减相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：11–20
+
+> 甲状腺细胞的日常工作是生产甲状腺激素，而制造甲状腺激素最基本的原料是碘和氨基酸。其中的碘我们每人每天的摄入量为成人150微克，孕妇200微克，哺乳期女性200微克。摄入的碘中有1/3进入甲状腺。而氨基酸主要由蛋白质提供，在人体内合成甲状腺球蛋白，和碘共同助力甲状腺激素的分泌。 …… 当一个人吃含碘的食物和蛋白质类食物不足时，甲状腺细胞合成T_{3}、T_{4}的原料减少，上级领导一道一道的命令下达，不仅促进甲状腺激素的合成，还会促进甲状腺细胞的恶性增生。此时做B超的话会显示出甲状腺多发结节，化验检查T_{3}、T_{4}正常，而TSH增加。 …… 归根结底，甲状腺结节是身体长期缺乏蛋白质、碘等营养物质的结果。可能是两者都缺乏，也有可能是缺乏其中之一。
+
+## yawye_c128_p16_thyroid_disease
+
+- 端点：`iodine` → `thyroid_disease`
+- relation：碘缺乏或过量与甲状腺结节及甲功异常相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：16–20
+
+> 当一个人吃含碘的食物和蛋白质类食物不足时，甲状腺细胞合成T_{3}、T_{4}的原料减少，上级领导一道一道的命令下达，不仅促进甲状腺激素的合成，还会促进甲状腺细胞的恶性增生。此时做B超的话会显示出甲状腺多发结节，化验检查T_{3}、T_{4}正常，而TSH增加。 …… 归根结底，甲状腺结节是身体长期缺乏蛋白质、碘等营养物质的结果。可能是两者都缺乏，也有可能是缺乏其中之一。
+
+## yawye_c128_p20_thyroid_disease
+
+- 端点：`animal_foods` → `thyroid_disease`
+- relation：肉蛋奶与甲状腺激素合成原料供给相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：20
+
+> 归根结底，甲状腺结节是身体长期缺乏蛋白质、碘等营养物质的结果。可能是两者都缺乏，也有可能是缺乏其中之一。
+
+## yawye_c128_p22_thyroid_disease
+
+- 端点：`animal_foods` → `thyroid_disease`
+- relation：肉蛋奶与甲状腺激素合成原料供给相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：22–24
+
+> 我有一位患者，是个大学生，常年不吃肉，饮食也很清淡，但是学习非常努力，每天还要跑1000米。
+>
+> 但是她不知道坚持这样的饮食习惯是不对的。她身体里的T_{3}、T_{4}逐年减少，最终被诊断为“甲状腺功能低下”，出现反应迟钝、脸部和眼睑轻度水肿、皮肤干燥、体温低等症状，学习成绩一落千丈。
+>
+> 她来到我的门诊，我把甲状腺结节形成和甲状腺功能低下的原因明明白白告诉了她，同时跟她说：“你吃饭太简单了，除了粮食就是一些蔬菜。而甲状腺需要蛋白质和碘以及其他一些营养素，只有营养素够了，它们才能分泌足够的T_{3}、T_{4}，甲状腺增生就能得到改善。调整好饮食方式，这个结节说解就解了。”
+
+## yawye_c128_p26_thyroid_disease
+
+- 端点：`seafood` → `thyroid_disease`
+- relation：海产品碘供给与甲状腺结节管理相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：26–28
+
+> ◆甲状腺结节别太指望碘盐，吃点海产品是正道
+>
+> 有的人可能会问，究竟怎样才能补碘，光吃碘盐就够吗？
+>
+> 其实不要太指望碘盐，多吃点海产品才是正道。
+
+## yawye_c128_p35_thyroid_disease
+
+- 端点：`iodine` → `thyroid_disease`
+- relation：碘缺乏或过量与甲状腺结节及甲功异常相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：35–37
+
+> 许多人觉得应对甲状腺结节问题，吃含碘盐就万事大吉了，实际上，在现实中由于制盐、储存、运输、食物加工等过程非常复杂，碘的损耗很多。中国卫生部2000年发布了关于碘盐的规定，规定我国碘盐含碘浓度（以碘离子计）加工时为50毫克／千克，出厂时不低于40毫克／千克，销售时不低于30毫克／千克，到用户手上时不低于20毫克／千克，以保证不同年龄阶层达到国际推荐的平均每日碘的摄取量。
+>
+> 为什么出厂、销售和用户这三个阶段的含碘浓度不同呢？因为碘元素的化学性质非常活泼，很容易在风吹、日晒、潮湿、受热等外界因素的影响下而挥发。就算一个人一天吃6克含碘盐，可以摄入120微克碘，但是如果在烹饪当中损失一些，或者他没有每天吃到6克含碘盐，或者他拿到的盐已经存放了多年，又或者他吃的根本就不是加碘盐，那么中国营养学会要求的每天正常人碘的最基本摄入量100～200微克就不能实现。其实这个碘摄入量已经是最低标准了，美国20世纪60年代也是要求国民人均碘摄入量为100～200微克／天，到了90年代已经改成了240～740微克／天。
+>
+> 可见，仅仅靠吃碘盐来解决甲状腺结节是过于理想化了，所以，我们在缺碘时，最好多吃海产品来补充。
+
+## yawye_c128_p50_thyroid_disease
+
+- 端点：`seafood` → `thyroid_disease`
+- relation：海产品碘供给与甲状腺结节管理相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：50–52
+
+> 在海边生活的人们祖祖辈辈都把海产品当作饮食中最常见、最重要的部分，甚至以此来充饥。以前的人们接触碘比较多，因此基因表达方面胃肠道吸收碘的能力比较低，以保证每天的碘吸收量限制在100～200微克，保护人体正常运转。
+>
+> 但是现在的人们吃米面、蔬菜和肉类的机会多，因为采购方便和物美价廉，慢慢地，沿海城市很多人的饮食习惯也倾向于内陆地区人们的饮食习惯。长此以往，人们忘记了老祖宗的生存法则，更不知道基因中还有老祖宗的基因表达。如果海边生活的人不注重碘的摄入，会比内陆人更容易出现甲状腺结节甚至甲状腺功能低下或者甲状腺癌。
+>
+> 有甲状腺结节的人一方面要自查一下自己吃含碘的食物是否充足；另一方面要注意补充肉蛋奶，通过正确饮食把甲状腺细胞需要的原料备齐，细胞才能以精确的程序完美分泌出甲状腺激素。
+
+## yawye_c128_p57_thyroid_disease
+
+- 端点：`iodine` → `thyroid_disease`
+- relation：碘缺乏或过量与甲状腺结节及甲功异常相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：57
+
+> 碘摄入量与甲状腺疾病的关系呈现一个“U”字形，即机体摄碘不足或者过量都将影响甲状腺功能，造成甲状腺的损伤，导致甲状腺疾病的发生。所以，我们要充分了解自己的病史、饮食习惯，判断到底是因为缺碘还是碘过量导致的结节，碘不够了多吃海产品来补充，碘过量了限制海产品的摄食，如此，才能保证甲状腺的健康。
+
+## yawye_c128_p63_thyroid_disease
+
+- 端点：`iodine` → `thyroid_disease`
+- relation：碘缺乏或过量与甲状腺结节及甲功异常相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：63–65
+
+> 我一下豁然开朗。
+>
+> 中国有句古话：一方水土养一方人。这位患者是内蒙古人，平时很少吃海鲜，胃肠道日常习惯的食物也不包括海鲜，所以对碘的吸收率极高，突然暴饮暴食，顿顿海鲜，摄碘过多才会引起甲亢。
+>
+> 我告诉他，只要他回到原来的生活环境，吃原来的饮食，甲亢也就不治而愈了。
+
+
+# spine 129 · 胃炎到胃癌之路如何逆转
+
+## yawye_c129_p2_gastritis
+
+- 端点：`cell_repair` → `gastritis`
+- relation：胃黏膜损伤修复失衡与慢性萎缩性胃炎相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：2–3
+
+> 正常情况下，上皮细胞会不断地老化和死亡，基底层细胞则会不断地分裂和补充，按理讲细胞的损伤与修复应该是平衡的，但当修复的速度低于损伤的速度时，就会出现我们常见的消化道疾病。比如，常见的慢性萎缩性胃炎就是这样得的。
+>
+> 由于胃镜的普及，慢性萎缩性胃炎的诊断率持续升高。面对大夫的诊断，很多患者都非常苦恼，因为目前还没有哪种药能明确逆转慢性萎缩性胃炎，我们最常听到有关病理报告：胃黏膜细胞萎缩；出现了息肉；甚至出现肠上皮化生，这是将来会有癌变可能的信号。
+
+## yawye_c129_p3_digestive_cancer_risk
+
+- 端点：`gastritis` → `digestive_cancer_risk`
+- relation：萎缩性胃炎肠上皮化生与癌变风险相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：3
+
+> 由于胃镜的普及，慢性萎缩性胃炎的诊断率持续升高。面对大夫的诊断，很多患者都非常苦恼，因为目前还没有哪种药能明确逆转慢性萎缩性胃炎，我们最常听到有关病理报告：胃黏膜细胞萎缩；出现了息肉；甚至出现肠上皮化生，这是将来会有癌变可能的信号。
+
+## yawye_c129_p11_gastritis
+
+- 端点：`animal_foods` → `gastritis`
+- relation：结构营养素供给与胃黏膜修复相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：11
+
+> 方法总比问题多，关键在于思路——启动人体与生俱来的修复机制。这位患者必须补充胃黏膜所需要的营养素，全面并且足量，满足胃黏膜柱状上皮细胞结构和功能的需求。如果仅仅喝粥，碳水化合物最多只能提供能量，无法补充磷脂、蛋白质、胆固醇和维生素。
+
+## yawye_c129_p11_gastritis_2
+
+- 端点：`protein_deficiency` → `gastritis`
+- relation：长期粥类素食与胃黏膜修复原料不足相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：11
+
+> 方法总比问题多，关键在于思路——启动人体与生俱来的修复机制。这位患者必须补充胃黏膜所需要的营养素，全面并且足量，满足胃黏膜柱状上皮细胞结构和功能的需求。如果仅仅喝粥，碳水化合物最多只能提供能量，无法补充磷脂、蛋白质、胆固醇和维生素。
+
+## yawye_c129_p38_gastritis
+
+- 端点：`animal_foods` → `gastritis`
+- relation：结构营养素供给与胃黏膜修复相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：38
+
+> 一年后，这位患者再次来到医院时，身体已经完全恢复，胃黏膜萎缩消失，月经也正常了。她的体重增长到了49千克，比一年前增长了10千克。
+
+## yawye_c129_p41_gastritis
+
+- 端点：`refined_carbs` → `gastritis`
+- relation：过烫粥面等热损伤与浅表性胃炎相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：41–45
+
+> 另外还有一种常见疾病，就是浅表性胃炎。
+>
+> 当一个人吃很烫的食物，比如面条，如果不慎倒在了手上，会立即把手抽回，大喊：“好烫！把手都烫红了！”
+>
+> 可是吃饭的时候，好多人生怕凉了，非得烫着吃。咱们中国有一句老话叫作“趁热吃”，可这么热的面条、粥，或者热茶对于食道的鳞状上皮细胞和胃的柱状上皮细胞来说却是个灾难，一下子就能把食道和胃的表皮烫红或者烫出泡来。
+>
+> 但由于内脏神经传导不像皮肤那样敏感，人们吃了烫的食物不会觉得烫得很难受，甚至有些人会觉得很舒服。
+>
+> 长期食用滚烫过热的食物，会多次烫伤食道和胃，胃镜下显示黏膜表面发红、充血，甚至有出血、渗出，这样的情况会被诊断为浅表性胃炎。
+
+## yawye_c129_p46_gastritis
+
+- 端点：`vitamin_a` → `gastritis`
+- relation：维生素A不足与胃黏膜修复及化生相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：46–47
+
+> 疾病出现了，细胞损伤后需要自我修复，修复的原料还是我们常常提到的那些：磷脂、蛋白质和胆固醇。但是如果这个人吃得比较素，细胞缺乏修复原料，那么浅表性胃炎将长期不愈。
+>
+> 胃黏膜的修复需要两个条件：一个是稳定的环境，另一个是修复的原料，也就是营养素。如果黏膜不断被烫伤、出血，环境不稳定；同时胃的主人又没有及时补充修复的原料，尤其是维生素A，DNA的片段就会慢慢出现残缺，从而不断复制错误的细胞。错误的细胞越堆越多，也就形成我们在临床上常说的“化生”，化生进一步发展，就成为肿瘤。
+
+## yawye_c129_p47_digestive_cancer_risk
+
+- 端点：`vitamin_a` → `digestive_cancer_risk`
+- relation：维生素A与消化道上皮肿瘤抑制相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：47
+
+> 胃黏膜的修复需要两个条件：一个是稳定的环境，另一个是修复的原料，也就是营养素。如果黏膜不断被烫伤、出血，环境不稳定；同时胃的主人又没有及时补充修复的原料，尤其是维生素A，DNA的片段就会慢慢出现残缺，从而不断复制错误的细胞。错误的细胞越堆越多，也就形成我们在临床上常说的“化生”，化生进一步发展，就成为肿瘤。
+
+
+# spine 130 · 为什么有些人吸烟却没有呼吸道疾病
+
+## yawye_c130_p5_lung_disease
+
+- 端点：`reactive_oxygen` → `lung_disease`
+- relation：香烟刺激与呼吸道上皮纤毛损伤相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：5
+
+> 有些人有一个不好的习惯，会伤害这种上皮细胞，这个习惯就是吸烟。香烟中的烟尘、尼古丁会让这些上皮细胞的纤毛消失，于是病原菌会更轻易进入到气管和肺，引起气管炎或者肺炎；同时，香烟还会使气管中的平滑肌收缩，增加呼吸阻力，于是我们会觉得喘憋，气不够用。
+
+## yawye_c130_p7_lung_disease
+
+- 端点：`vitamin_a` → `lung_disease`
+- relation：维生素A与呼吸道上皮修复及肺癌相关营养因素相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7–9
+
+> 这其实跟我们上皮细胞的更新速度和更新能力有关。正常情况下，呼吸道的假复层纤毛柱状上皮细胞的生命期是18～24小时，也就是说每隔18～24小时就更新一次。而之所以会患上疾病，是因为纤毛柱状上皮的新生速度赶不上它被破坏的速度。刺激越多，黏膜损伤越多，修复速度也需要随之加快。
+>
+> 如果想要上皮细胞修复完好，唯一能做的就是给它补充足量的养料。那么，假复层纤毛柱状上皮需要什么样的养料呢？
+>
+> 想必你已经想到了，就是细胞的结构物质，如磷脂、蛋白质和胆固醇。但只有这些，还远远不够，因为对这种上皮细胞来说，它还需要一种重要的营养素，这个营养素就是维生素A，它对呼吸道黏膜的修复非常重要，常常存在于胡萝卜、绿叶蔬菜、动物肝脏以及蛋黄中。
+
+## yawye_c130_p9_lung_disease
+
+- 端点：`animal_foods` → `lung_disease`
+- relation：肉蛋奶及肝脏维生素A与呼吸道黏膜修复相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：肉类与蛋类摄入与哮喘及儿童呼吸道症状风险相关）
+- 段落：9
+
+> 想必你已经想到了，就是细胞的结构物质，如磷脂、蛋白质和胆固醇。但只有这些，还远远不够，因为对这种上皮细胞来说，它还需要一种重要的营养素，这个营养素就是维生素A，它对呼吸道黏膜的修复非常重要，常常存在于胡萝卜、绿叶蔬菜、动物肝脏以及蛋黄中。
+
+## yawye_c130_p11_lung_disease
+
+- 端点：`animal_foods` → `lung_disease`
+- relation：肉蛋奶及肝脏维生素A与呼吸道黏膜修复相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：肉类与蛋类摄入与哮喘及儿童呼吸道症状风险相关）
+- 段落：11–14
+
+> 有一次，一个呼吸道反复感染的年轻人找到我，向我咨询，让我明确告诉他该吃什么药。这个年轻人又黑又瘦，皮肤干燥，一进诊室就带来了一股浓浓的烟味。由于全家人都吃素，他从小就没养成吃肉的习惯。由于长期生病，他吃了各种各样的抗生素。
+>
+> 我给他详细地讲了一遍营养和疾病的关系：药物是治标不治本的，要想从根本上把问题解决，必须吃磷脂、蛋白质、胆固醇和各种营养素，因为你的症状是你的细胞在向你求援。其实所有的症状都是细胞不舒服发出来的信号，需要好好听明白这些症状，因为症状是会“说话”的，症状是细胞的表达方式之一。
+>
+> 我们每一天吃的食物不仅是让我们有饱腹感和享受感，更深层的意义在于修复我们的身体。人之所以能够活着，是因为细胞在不断地自我修复。只要修复速度大于损伤速度，只要你提供的修复原料符合基因编码要求，你就一定是健康的。
+>
+> 所以，为了呼吸道纤毛细胞的完好，为了不得气管炎、肺炎，为了跟得上细胞更新的速率，你一定要开始摄食肉、蛋、奶。肝脏里含有维生素A，可以一块儿补充。不要一味依赖药物，加上饮食的改善，才能标本兼治。
+
+## yawye_c130_p14_lung_disease
+
+- 端点：`vitamin_a` → `lung_disease`
+- relation：维生素A与呼吸道上皮修复及肺癌相关营养因素相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：14
+
+> 所以，为了呼吸道纤毛细胞的完好，为了不得气管炎、肺炎，为了跟得上细胞更新的速率，你一定要开始摄食肉、蛋、奶。肝脏里含有维生素A，可以一块儿补充。不要一味依赖药物，加上饮食的改善，才能标本兼治。
+
+
+# spine 131 · 所有上皮组织类疾病的克星——维生素A
+
+## yawye_c131_p6_cancer_overall
+
+- 端点：`vitamin_a` → `cancer_overall`
+- relation：维生素A与上皮细胞分化及肿瘤相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：6–7
+
+> 那么对上皮来说，除了为细胞提供结构物质的蛋白质、脂类、胆固醇等营养素，最需要的就是维生素A，前面我们只是稍稍提了一下，这里会详细讲讲维生素A。
+>
+> 维生素A能维持上皮细胞的正常生长与分化，防止呼吸道、消化道、泌尿道、肠道的上皮细胞功能减退，抑制上皮细胞肿瘤的发生。如果维生素A摄入不足，就会使上皮细胞分化不良，细胞再生的速度受阻。
+
+## yawye_c131_p7_lung_disease
+
+- 端点：`vitamin_a` → `lung_disease`
+- relation：维生素A与呼吸道上皮修复及肺癌相关营养因素相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7
+
+> 维生素A能维持上皮细胞的正常生长与分化，防止呼吸道、消化道、泌尿道、肠道的上皮细胞功能减退，抑制上皮细胞肿瘤的发生。如果维生素A摄入不足，就会使上皮细胞分化不良，细胞再生的速度受阻。
+
+## yawye_c131_p7_gastritis
+
+- 端点：`vitamin_a` → `gastritis`
+- relation：维生素A不足与胃黏膜修复及化生相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7
+
+> 维生素A能维持上皮细胞的正常生长与分化，防止呼吸道、消化道、泌尿道、肠道的上皮细胞功能减退，抑制上皮细胞肿瘤的发生。如果维生素A摄入不足，就会使上皮细胞分化不良，细胞再生的速度受阻。
+
+## yawye_c131_p9_vitamin_a
+
+- 端点：`animal_foods` → `vitamin_a`
+- relation：动物肝脏蛋黄等与维生素A供给相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：9–10
+
+> 中国营养普查发现中国人维生素A普遍缺乏，千万不要以为吃了胡萝卜了就可以了，没有油脂做媒介还是不行。
+>
+> 经济发达的美国也容易缺乏维生素A。他们吃油脂很多，但是很少吃肝脏和蔬菜，因此仍然好发上皮组织类疾病。
+
+
+# spine 134 · 食补胶原蛋白，别忘了维生素C
+
+## yawye_c134_p1_chronic_wounds
+
+- 端点：`vitamin_c` → `chronic_wounds`
+- relation：维生素C与胶原形成及出血倾向相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–7
+
+> 胶原蛋白合成过程中除了需要氨基酸之外，还需要一个重要的合成原料——维生素C。它在胶原组织形成过程中主要起到稳定胶原蛋白的作用。 …… 如果一个人仅吃蛋白质类食物，不吃水果、蔬菜，或者蔬菜在加工过程中熬煮的时间过长，维生素C遭到破坏，就会影响胶原蛋白的合成。当胶原蛋白不足时，毛细血管内皮细胞裂隙增大，血细胞经这些裂隙渗出明显增加。毛细血管的脆性也会增加，就会出现皮下出血，牙龈肿胀与出血，牙齿松动、脱落，骨骼发育不良等症状。
+
+## yawye_c134_p7_osteoporosis
+
+- 端点：`vitamin_c` → `osteoporosis`
+- relation：维生素C参与胶原稳定与骨骼发育相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7
+
+> 如果一个人仅吃蛋白质类食物，不吃水果、蔬菜，或者蔬菜在加工过程中熬煮的时间过长，维生素C遭到破坏，就会影响胶原蛋白的合成。当胶原蛋白不足时，毛细血管内皮细胞裂隙增大，血细胞经这些裂隙渗出明显增加。毛细血管的脆性也会增加，就会出现皮下出血，牙龈肿胀与出血，牙齿松动、脱落，骨骼发育不良等症状。
+
+## yawye_c134_p8_type2_diabetes
+
+- 端点：`berries_fruits` → `type2_diabetes`
+- relation：水果果糖升糖指数相对较低与血糖相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：8
+
+> 一些糖尿病患者正是由于听信一些不科学的传言，不敢吃水果，结果吃一点儿阿司匹林就出现出血征象，被认为是阿司匹林不耐受，实际上很有可能是缺乏生命的基本元素——维生素C。
+
+
+# spine 135 · 关节痛、头晕、心悸等连锁反应与蛋白质缺乏有关
+
+## yawye_c135_p8_energy_vitality
+
+- 端点：`protein_deficiency` → `energy_vitality`
+- relation：蛋白质与必需脂肪酸缺乏与乏力、消化不良等相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：8–10
+
+> “其实在碳水化合物转变为多糖的过程中需要许多酶，而酶的成分是蛋白质、维生素和矿物质，我们只要在饮食中注意补充这些营养素就可以了。”
+>
+> 再问：“当一个人关节疼时，往往是蛋白质和多糖的比例发生了问题，或者是胶原蛋白的合成发生了障碍，请问是蛋白质缺乏还是糖缺乏？”
+>
+> 学员们非常痛快地回答：“蛋白质缺乏。”
+
+## yawye_c135_p13_coronary_heart_disease
+
+- 端点：`protein_deficiency` → `coronary_heart_disease`
+- relation：低蛋白饮食与关节痛心悸头晕等结缔组织相关症状相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：13–19
+
+> 有位女患者，63岁，多年糖尿病，因为膝关节痛造成行走困难前来就诊，风湿科大夫非常仔细地给她开了许多化验检查，结果显示没有风湿，于是给了一些止痛药。
+>
+> 因为她近来还经常心悸，于是又转到心内科，心内科大夫给她做了心电图和超声心动图，心电图正常，超声心动图显示有二尖瓣和主动脉瓣轻度狭窄。
+>
+> 因为她经常头晕，所以又转到神经内科。我看到这个患者，仔细问她在什么情况下头晕，她十分明确地说：“在行走时头晕，头重脚轻。”
+>
+> 我让她把裤腿提起来，用手指在她的胫骨前面摁了几下，凹陷非常明显。
+>
+> 我问她：“你平时怎么吃饭的？”
+>
+> 患者说：“我有糖尿病，不敢吃肉，鸡蛋一周吃两个，不喜欢喝牛奶。”
+>
+> 果然是低蛋白饮食造成体内的蛋白质缺乏，引起关节痛、心悸、头晕等一系列症状。
+
+## yawye_c135_p19_energy_vitality
+
+- 端点：`animal_foods` → `energy_vitality`
+- relation：结构营养素充足的动物性食物与生长发育及体能相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：蔬菜汤中添加肉类或牛奶补充动物蛋白，与病后/年老体弱者恢复体力相关）
+- 段落：19
+
+> 果然是低蛋白饮食造成体内的蛋白质缺乏，引起关节痛、心悸、头晕等一系列症状。
+
+
+# spine 137 · 便秘很可能因为身体缺肉
+
+## yawye_c137_p1_constipation
+
+- 端点：`protein_deficiency` → `constipation`
+- relation：动物蛋白不足致平滑肌无力与便秘相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–7
+
+> 了解了肌肉组织分布的特点，我们就能猜到，如果这些肌肉发生营养不良，就会在以上所说的那些身体部位出现问题，比如骨骼肌收缩无力会表现出肌肉无力，平滑肌收缩无力会表现出胃肠道动力不足，心肌收缩无力会产生扩张性心肌病等问题。 …… 在了解了她母亲的饮食后，我说：“因为你妈妈吃动物蛋白太少，平滑肌无力。” …… 我告诉她：“第一，平滑肌首先是细胞，细胞的主要成分是磷脂、蛋白质和胆固醇，另外还有许多矿物质，比如钙、镁、钾、钠。第二，平滑肌之所以能收缩，是因为含有可以滑动的肌球蛋白和肌动蛋白。如果不摄入蛋白质，这两种收缩用的蛋白结构会发育不良。”
+
+## yawye_c137_p7_constipation
+
+- 端点：`animal_foods` → `constipation`
+- relation：动物性蛋白供给与胃肠平滑肌动力相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：7
+
+> 我告诉她：“第一，平滑肌首先是细胞，细胞的主要成分是磷脂、蛋白质和胆固醇，另外还有许多矿物质，比如钙、镁、钾、钠。第二，平滑肌之所以能收缩，是因为含有可以滑动的肌球蛋白和肌动蛋白。如果不摄入蛋白质，这两种收缩用的蛋白结构会发育不良。”
+
+
+# spine 138 · 腿抽筋、痛经、高血压的食疗密码：钙
+
+## yawye_c138_p13_hypertension
+
+- 端点：`calcium` → `hypertension`
+- relation：钙状态与血压平稳相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：13
+
+> 所以，当一个人出现小腿肌肉痉挛时，一定要马上意识到可能是因为缺钙，而且此刻很有可能全身的平滑肌也都处于缺钙的状态，也会痉挛，有可能会同时出现呼吸道痉挛（哮喘）、血管痉挛（血压高）、子宫痉挛（痛经）、膀胱痉挛（尿频）。因此一个痛经的人，要知道自己很有可能该补钙了；一个高血压的人，也应该知道补钙可以降低血管平滑肌的收缩，从而对降血压有帮助。
+
+## yawye_c138_p13_energy_vitality
+
+- 端点：`calcium` → `energy_vitality`
+- relation：缺钙与肌肉痉挛、痛经等兴奋—收缩耦联相关表现相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：13
+
+> 所以，当一个人出现小腿肌肉痉挛时，一定要马上意识到可能是因为缺钙，而且此刻很有可能全身的平滑肌也都处于缺钙的状态，也会痉挛，有可能会同时出现呼吸道痉挛（哮喘）、血管痉挛（血压高）、子宫痉挛（痛经）、膀胱痉挛（尿频）。因此一个痛经的人，要知道自己很有可能该补钙了；一个高血压的人，也应该知道补钙可以降低血管平滑肌的收缩，从而对降血压有帮助。
+
+## yawye_c138_p18_hypertension
+
+- 端点：`dairy` → `hypertension`
+- relation：牛奶酸奶等钙来源与高血压患者膳食调整相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：18
+
+> 治疗时，我一方面会告诉他们吃咸菜和吃面条会造成盐摄入过多，另一方面要求患者一定要喝牛奶或者酸奶，一天要喝500毫升，比一般人要多一些，这样才能把以前亏欠的养分补回来。
+
+## yawye_c138_p19_energy_vitality
+
+- 端点：`animal_foods` → `energy_vitality`
+- relation：结构营养素充足的动物性食物与生长发育及体能相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：蔬菜汤中添加肉类或牛奶补充动物蛋白，与病后/年老体弱者恢复体力相关）
+- 段落：19
+
+> 当然，说到肌肉组织，就一定不能少了蛋白质。许多健身的人都在努力补充动物蛋白，这个方向是对的，因为运动时所需要的蛋白质很多，肌细胞的细胞膜也好，细胞里的肌球蛋白、肌动蛋白也好，都需要从食物的优质蛋白质获得氨基酸。
+
+## yawye_c138_p20_energy_vitality
+
+- 端点：`heme_iron` → `energy_vitality`
+- relation：铁与肌肉氧传递及能量产生相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：20
+
+> 另外，铁离子在肌肉中起到了传递氧的功能，铁不足，自然氧不足，氧不足，葡萄糖在线粒体里氧化产生的能量就会少。因此，营养师总是不厌其烦地跟大家说，不要偏食，红肉要吃，猪肝也要吃。
+
+
+# spine 140 · 聪明都是吃出来的
+
+## yawye_c140_p2_mental_health
+
+- 端点：`protein_deficiency` → `mental_health`
+- relation：养脑营养素缺乏与抑郁焦虑失眠等相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：2
+
+> 我在神经内科工作了26年，后来做神经+营养的工作，有一个很深刻的体会是物质决定精神，完好的精神活动一定是在大脑所需物质奠基完整的平台上进行。而一个人吃的食物里缺乏养脑的营养素，大脑的思维就会出现问题，要么痴呆、精神分裂，要么抑郁、焦虑，最轻的是失眠。
+
+## yawye_c140_p2_cognitive_decline
+
+- 端点：`protein_deficiency` → `cognitive_decline`
+- relation：结构营养素不足与认知障碍相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：2
+
+> 我在神经内科工作了26年，后来做神经+营养的工作，有一个很深刻的体会是物质决定精神，完好的精神活动一定是在大脑所需物质奠基完整的平台上进行。而一个人吃的食物里缺乏养脑的营养素，大脑的思维就会出现问题，要么痴呆、精神分裂，要么抑郁、焦虑，最轻的是失眠。
+
+## yawye_c140_p4_cognitive_clarity
+
+- 端点：`animal_foods` → `cognitive_clarity`
+- relation：荤素搭配与熟食动物蛋白脂类供给与大脑发育相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：较高肉类摄入频率与较高老年痴呆风险相关；长期素食与较低风险相关）
+- 段落：4
+
+> 神经元细胞的主要成分就是蛋白质、磷质和胆固醇，尤其大脑中磷脂含量更高，几乎占到了成分的一半。许多微量营养素对大脑都是宝贝，比如锌、碘、维生素B_{1}、维生素B_{12}。
+
+## yawye_c140_p4_cognitive_clarity_2
+
+- 端点：`omega3` → `cognitive_clarity`
+- relation：ω-3脂肪酸等脑营养素与认知用脑需求相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：4
+
+> 神经元细胞的主要成分就是蛋白质、磷质和胆固醇，尤其大脑中磷脂含量更高，几乎占到了成分的一半。许多微量营养素对大脑都是宝贝，比如锌、碘、维生素B_{1}、维生素B_{12}。
+
+## yawye_c140_p13_cognitive_clarity
+
+- 端点：`animal_foods` → `cognitive_clarity`
+- relation：荤素搭配与熟食动物蛋白脂类供给与大脑发育相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：较高肉类摄入频率与较高老年痴呆风险相关；长期素食与较低风险相关）
+- 段落：13–14
+
+> 长期缺乏营养会影响脑功能，所以高二的时候他的学习开始越来越吃力。
+>
+> 我告诉他：“神经细胞最喜欢动物类食物、坚果类食物和蔬菜水果，你吃的都是粮食，而且是精面做的，是空能量，你必须吃鸡蛋、肉类、鱼类、蔬菜和水果。”
+
+
+# spine 141 · 抑郁其实是大脑营养不良
+
+## yawye_c141_p1_mental_health
+
+- 端点：`protein_deficiency` → `mental_health`
+- relation：养脑营养素缺乏与抑郁焦虑失眠等相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–2
+
+> 相信大家对抑郁症多多少少都有些了解，这种精神状态跟一种神经递质5-羟色胺的缺乏有很大关系，那么5-羟色胺是干什么的呢？
+>
+> 5-羟色胺也称血清素，在认知功能方面扮演着重要角色，如大脑记忆和情绪等，因此缺乏这种递质时会患上抑郁症。
+
+## yawye_c141_p4_mental_health
+
+- 端点：`animal_foods` → `mental_health`
+- relation：动物性食物色氨酸等与5-羟色胺合成相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：鸡肉蛋等来源花生四烯酸与神经炎症及抑郁风险相关）
+- 段落：4–5
+
+> 胺类化学物质与氮元素有关，人体中只有蛋白质含氮元素。所以说到底，胺与蛋白质有关。那么色氨酸是什么？它首先是必需氨基酸，也就是只有吃进去的食物里才有。那么什么样的食物里含有色氨酸呢？含量最多的是动物类食物，另外豆类里有一些，尽管某些水果里有色氨酸，但量不多，而蔬菜和米面中色氨酸几乎为零。
+>
+> 研究表明，参与合成5-羟色胺的营养素包括色氨酸、ω-3脂肪酸、镁和锌。ω-3脂肪酸藏在深海鱼类食物中。镁在粗粮、绿叶蔬菜和海产品中都有，含量最高的是牡蛎，其次是动物内脏。所以，我们必须吃一些动物类食物，四条腿、两条腿、没有腿的都要吃，内脏也要每周吃一些，这样才能从根本上缓解抑郁症状。
+
+## yawye_c141_p5_mental_health
+
+- 端点：`omega3` → `mental_health`
+- relation：ω-3脂肪酸参与5-羟色胺合成相关营养观察
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：5
+
+> 研究表明，参与合成5-羟色胺的营养素包括色氨酸、ω-3脂肪酸、镁和锌。ω-3脂肪酸藏在深海鱼类食物中。镁在粗粮、绿叶蔬菜和海产品中都有，含量最高的是牡蛎，其次是动物内脏。所以，我们必须吃一些动物类食物，四条腿、两条腿、没有腿的都要吃，内脏也要每周吃一些，这样才能从根本上缓解抑郁症状。
+
+## yawye_c141_p5_mental_health_2
+
+- 端点：`seafood` → `mental_health`
+- relation：深海鱼等与抑郁相关营养素供给相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：5
+
+> 研究表明，参与合成5-羟色胺的营养素包括色氨酸、ω-3脂肪酸、镁和锌。ω-3脂肪酸藏在深海鱼类食物中。镁在粗粮、绿叶蔬菜和海产品中都有，含量最高的是牡蛎，其次是动物内脏。所以，我们必须吃一些动物类食物，四条腿、两条腿、没有腿的都要吃，内脏也要每周吃一些，这样才能从根本上缓解抑郁症状。
+
+## yawye_c141_p6_mental_health
+
+- 端点：`omnivorous_balanced_diet` → `mental_health`
+- relation：增加营养辅导与抗抑郁药物减停及复发相关的临床观察
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：6
+
+> 以前我在门诊看到抑郁症的人只用抗抑郁药，自从2004年我学习营养学之后，就开始给患者增加了饮食指导。我发现增加了营养方面的辅导以后，患者一方面身体状态越来越好，另一方面抗抑郁药能够很快撤下来，并且不容易复发。
+
+
+# spine 142 · 周围神经炎是神经系统丢卒保帅的结果
+
+## yawye_c142_p6_peripheral_neuropathy
+
+- 端点：`protein_deficiency` → `peripheral_neuropathy`
+- relation：髓鞘结构营养不足与周围神经炎及脱髓鞘相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：6–7
+
+> 以前她有糖尿病，一直用药控制，血糖控制得基本还不错。查体时，我发现患者记忆力不好，听力不好，一个问题要反复说好几遍。我们神经科医生查体是用叩诊锤敲击肢体的肌腱，看反射好不好。这个患者检查结果是四肢腱反射完全消失，针刺患者的手，发现还算比较敏感。
+>
+> 最终她被诊断为“周围神经炎”，这是糖尿病的并发症之一。
+
+## yawye_c142_p11_cognitive_decline
+
+- 端点：`protein_deficiency` → `cognitive_decline`
+- relation：结构营养素不足与认知障碍相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：11–12
+
+> 大脑的主要成分是磷脂、蛋白质和胆固醇，髓鞘里蛋白质较多，呈白色，被称作白质。
+>
+> 白质脱髓鞘，指大脑里白质集中的部位萎缩了，这个部位是胶质细胞形成髓鞘的部位，也就是说胶质细胞数量少了或者萎缩了。由于髓鞘发生了质量的改变，自然导致神经传导速度发生变化，临床表现就是这个人记忆力下降，反应速度减慢。
+
+## yawye_c142_p15_peripheral_neuropathy
+
+- 端点：`protein_deficiency` → `peripheral_neuropathy`
+- relation：髓鞘结构营养不足与周围神经炎及脱髓鞘相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：15–17
+
+> 我问了一下她的饮食。这个患者平时特别爱吃米面；瘦肉一天25克，鸡蛋一周吃1个，鱼大概两周吃一次，也就吃带鱼段这么一小块儿，肥肉不吃，内脏不吃，牛奶不喝；一周吃1～2次豆腐，一次能吃50克；蔬菜每天能吃半斤左右，水果不吃；坚果一天吃1～2次，约25克。
+>
+> 很明显，饮食太偏了，以主食为中心而忽略了细胞真正需要的营养。瘦肉一天25克，一周才吃一个鸡蛋，鱼吃得也不多，这样的蛋白质摄入量怎么能够修复身体？
+>
+> 身体是很聪明的，“丢卒保帅”是它的本能。对单个神经元细胞来说，大树的树枝和树叶是细胞的最重要部分，而树干延伸出去的神经末梢是远端部分。当细胞里的营养成分不足时，细胞只能下狠心牺牲掉远端，保证中心细胞的存活，也就是让大树的树枝和树叶存活。而牺牲了远端的树根，此时在患者身上就会表现为肢体发麻和反应迟钝。
+
+## yawye_c142_p23_peripheral_neuropathy
+
+- 端点：`animal_foods` → `peripheral_neuropathy`
+- relation：蛋肉肝脏等髓鞘营养来源与周围神经病变相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：23–25
+
+> 髓鞘的成分是磷脂、蛋白质和胆固醇，这个小伙子很有可能是饮食中缺乏这些成分。
+>
+> 果不其然，小伙子说：“我不喜欢吃肉，很少吃鸡蛋，我喜欢吃面食和蔬菜。”
+>
+> 我耐心地开导他：“你如果想治好你的病，必须把神经髓鞘需要的成分补上。你干的是力气活，消耗量大，不仅消耗大量的碳水化合物，也需要很多蛋白质和脂肪。”
+
+## yawye_c142_p31_cognitive_clarity
+
+- 端点：`animal_foods` → `cognitive_clarity`
+- relation：荤素搭配与熟食动物蛋白脂类供给与大脑发育相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：append（live：较高肉类摄入频率与较高老年痴呆风险相关；长期素食与较低风险相关）
+- 段落：31–33
+
+> 第一，中枢神经系统需要持续稳定的葡萄糖供应，原因是大脑里没有糖原，也不会直接转化，利用脂肪生成能量。
+>
+> 第二，与其他细胞需求一样，神经细胞除需要组成结构的磷脂、蛋白质和胆固醇之外，还需要维生素和矿物质。
+>
+> 第三，神经细胞还需要一些特殊的成分，如卵磷脂、胆碱、维生素B_{1}、维生素B_{6}、维生素B_{12}、维生素E、锌和不饱和脂肪酸等。
+
+## yawye_c142_p36_vitamin_b_complex
+
+- 端点：`animal_foods` → `vitamin_b_complex`
+- relation：动物性食物作为维生素B12主要来源
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：36
+
+> 什么样的食物中维生素B_{12}多？在人类的饮食中，维生素B_{12}的主要来源是动物类食物，而植物类食物基本上都不含维生素B_{12}。
+
+## yawye_c142_p39_peripheral_neuropathy
+
+- 端点：`animal_foods` → `peripheral_neuropathy`
+- relation：蛋肉肝脏等髓鞘营养来源与周围神经病变相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：39
+
+> 大家是不是发现神经细胞所需的重要营养成分主要在这几类食物中？蛋类、肉类、肝脏、坚果、植物油类、深海鱼及黄绿色蔬菜，这几类食物是大脑最重要的营养源。
+
+
+# spine 143 · 后记
+
+## yawye_c143_p1_chronic_disease
+
+- 端点：`omnivorous_balanced_diet` → `chronic_disease`
+- relation：接近进化期荤素比例的天然膳食与较低慢病负担相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：1–2
+
+> 回顾前面的内容，大家只需记得，七大营养素组成了细胞，并且是细胞代谢的基本底物，吃东西不仅是为了让我们有饱腹感，更重要的是为了让我们活下来，不但要活下来，还要活得更好。
+>
+> 大家看过此书后，可以逆转思路，对身体不适不要只想着治标，多从治本上想想。遇到疾病，先从自己的饮食习惯上反思，先从营养素这个角度找找原因，想想办法，有了这样的思维方法，对于疾病的痊愈一定会非常有助力。
+
+## yawye_c143_p4_cell_repair
+
+- 端点：`omnivorous_balanced_diet` → `cell_repair`
+- relation：饮食作为细胞修复原料供给与慢病进程相关
+- evidence_type · strength：book_notes_observational_synthesis · low
+- merge：new
+- 段落：4
+
+> 希望我们每个人都可以将疾病与营养素相联系思考问题，找到疾病的解决方法，谨以此书来帮助大家“吃对饭，少生病”。

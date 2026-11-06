@@ -1,0 +1,386 @@
+{
+  "task": "TASK-NS-075",
+  "from_data_version": "2.2",
+  "to_data_version": "2.3",
+  "schema_version": "0.7",
+  "before": {
+    "nodes": 159,
+    "links": 448
+  },
+  "after": {
+    "nodes": 173,
+    "links": 591
+  },
+  "new_nodes": [
+    "calcium",
+    "cell_repair",
+    "constipation",
+    "gastritis",
+    "iodine",
+    "magnesium",
+    "mediterranean_diet",
+    "omnivorous_balanced_diet",
+    "peripheral_neuropathy",
+    "protein_deficiency",
+    "thyroid_disease",
+    "vitamin_a",
+    "vitamin_b_complex",
+    "zinc"
+  ],
+  "new_node_count": 14,
+  "append_candidates": 33,
+  "append_evidence_rows": 68,
+  "new_edges": 143,
+  "batch_internal_appends_flagged_new": 0,
+  "parallel_pairs_after": 0,
+  "you_are_what_you_eat_top_level": 143,
+  "you_are_what_you_eat_citing": 176,
+  "direction_new": {
+    "risk": 56,
+    "protective": 87
+  },
+  "type_counts_after": {
+    "diet_pattern": 5,
+    "food_category": 7,
+    "nutrient": 22,
+    "food": 25,
+    "compound": 17,
+    "metabolite": 6,
+    "mechanism": 41,
+    "disease": 45,
+    "biomarker": 5
+  },
+  "sources_registered": true,
+  "append_hosts": [
+    {
+      "candidate_note_id": "yawye_c04_p61_type2_diabetes",
+      "endpoints": "animal_foods->type2_diabetes",
+      "host_id": "hntd_ch06_food_pollutants",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "动物性食品中持久性污染物暴露与糖尿病发病率相关",
+      "candidate_relation": "混合膳食中动物性食物与餐后血糖上升速度相关",
+      "existing_relation": "动物性食品中持久性污染物暴露与糖尿病发病率相关",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "yawye_c09_p20_gut_microbiome",
+      "endpoints": "dietary_fiber->gut_microbiome",
+      "host_id": "lit_fiber_gi_gill_2021",
+      "host_source_id": "(lit)",
+      "host_relation": "膳食纤维与胃肠道健康的综述归纳",
+      "candidate_relation": "膳食纤维作为肠道菌群底物与菌群维持相关",
+      "existing_relation": "膳食纤维与胃肠道健康的综述归纳",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "yawye_c11_p3_cognitive_clarity",
+      "endpoints": "animal_foods->cognitive_clarity",
+      "host_id": "hntd_ch03_meat_dementia",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "较高肉类摄入频率与较高老年痴呆风险相关；长期素食与较低风险相关",
+      "candidate_relation": "荤素搭配与熟食动物蛋白脂类供给与大脑发育相关",
+      "existing_relation": "较高肉类摄入频率与较高老年痴呆风险相关；长期素食与较低风险相关",
+      "evidences_appended": 5
+    },
+    {
+      "candidate_note_id": "yawye_c13_p6_chronic_disease",
+      "endpoints": "refined_carbs->chronic_disease",
+      "host_id": "cs_c13_p150_chronic_disease",
+      "host_source_id": "china_study",
+      "host_relation": "精制碳水化合物摄入与慢性病风险相关",
+      "candidate_relation": "精米精面等工业化主食与营养不平衡及慢病相关",
+      "existing_relation": "精制碳水化合物摄入与慢性病风险相关",
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "yawye_c16_p17_energy_vitality",
+      "endpoints": "animal_foods->energy_vitality",
+      "host_id": "avs_ch2_protein_recover",
+      "host_source_id": "amazing_veggie_soup",
+      "host_relation": "蔬菜汤中添加肉类或牛奶补充动物蛋白，与病后/年老体弱者恢复体力相关",
+      "candidate_relation": "结构营养素充足的动物性食物与生长发育及体能相关",
+      "existing_relation": "蔬菜汤中添加肉类或牛奶补充动物蛋白，与病后/年老体弱者恢复体力相关",
+      "evidences_appended": 6
+    },
+    {
+      "candidate_note_id": "yawye_c16_p20_obesity_risk",
+      "endpoints": "refined_carbs->obesity_risk",
+      "host_id": "cs_c15_p32_obesity_risk",
+      "host_source_id": "china_study",
+      "host_relation": "精制碳水化合物摄入与肥胖风险相关",
+      "candidate_relation": "过量碳水化合物转化为脂肪储存与肥胖相关",
+      "existing_relation": "精制碳水化合物摄入与肥胖风险相关",
+      "evidences_appended": 11
+    },
+    {
+      "candidate_note_id": "yawye_c17_p14_atherosclerosis",
+      "endpoints": "dietary_cholesterol->atherosclerosis",
+      "host_id": "hntd_ch01_ldl_target",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "较低LDL水平与动脉粥样硬化进程停滞相关的降脂试验观察",
+      "candidate_relation": "膳食胆固醇作为细胞结构成分与肝脏内源胆固醇路径的区分观察",
+      "existing_relation": "较低LDL水平与动脉粥样硬化进程停滞相关的降脂试验观察",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "yawye_c29_p19_kidney_disease",
+      "endpoints": "animal_foods->kidney_disease",
+      "host_id": "hntd_ch10_diet_kidney",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "西式高动物蛋白等饮食结构与肾脏功能损伤相关",
+      "candidate_relation": "动物蛋白过量摄入与肾脏滤过负担相关",
+      "existing_relation": "西式高动物蛋白等饮食结构与肾脏功能损伤相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "yawye_c33_p15_metabolic_health",
+      "endpoints": "whole_grains->metabolic_health",
+      "host_id": "hntd_ch27_wg_diabetes",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "全谷物摄入与糖尿病肥胖及中风风险相关",
+      "candidate_relation": "粗粮谷薯类主食与代谢健康相关",
+      "existing_relation": "全谷物摄入与糖尿病肥胖及中风风险相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "yawye_c35_p3_type2_diabetes",
+      "endpoints": "whole_grains->type2_diabetes",
+      "host_id": "cs_c16_p36_type2_diabetes",
+      "host_source_id": "china_study",
+      "host_relation": "全谷物摄入与较低2型糖尿病风险相关",
+      "candidate_relation": "主食结构中粗粮比例与血糖管理相关",
+      "existing_relation": "全谷物摄入与较低2型糖尿病风险相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "yawye_c37_p20_cognitive_decline",
+      "endpoints": "dietary_fat->cognitive_decline",
+      "host_id": "cs_c19_p97_cognitive_decline",
+      "host_source_id": "china_study",
+      "host_relation": "高脂肪低谷物膳食与较高阿尔茨海默病发生的跨国关联观察",
+      "candidate_relation": "脂类不足与脑萎缩及认知相关",
+      "existing_relation": "高脂肪低谷物膳食与较高阿尔茨海默病发生的跨国关联观察",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "yawye_c38_p1_dietary_fat",
+      "endpoints": "animal_foods->dietary_fat",
+      "host_id": "cs_c13_p75_dietary_fat",
+      "host_source_id": "china_study",
+      "host_relation": "膳食脂肪摄入与动物性食物摄入高度共变",
+      "candidate_relation": "肉蛋奶鱼作为膳食脂类重要来源",
+      "existing_relation": "膳食脂肪摄入与动物性食物摄入高度共变",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "yawye_c42_p20_antioxidant_defense",
+      "endpoints": "vitamin_c->antioxidant_defense",
+      "host_id": "avs_ch3_vitc_heat",
+      "host_source_id": "amazing_veggie_soup",
+      "host_relation": "蔬菜基质中维生素C与其他抗氧化物质共存时，加热后仍可大量保留于汤中",
+      "candidate_relation": "维生素C参与抗氧化防御",
+      "existing_relation": "蔬菜基质中维生素C与其他抗氧化物质共存时，加热后仍可大量保留于汤中",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "yawye_c44_p1_osteoporosis",
+      "endpoints": "vitamin_d->osteoporosis",
+      "host_id": "cs_c20_p60_osteoporosis",
+      "host_source_id": "china_study",
+      "host_relation": "维生素D缺乏与骨骼生长和维持异常相关",
+      "candidate_relation": "维生素D缺乏与骨健康相关",
+      "existing_relation": "维生素D缺乏与骨骼生长和维持异常相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "yawye_c44_p13_chronic_disease",
+      "endpoints": "vitamin_d->chronic_disease",
+      "host_id": "cs_c17_p141_chronic_disease",
+      "host_source_id": "china_study",
+      "host_relation": "活性维生素D水平与多种慢性病风险相关",
+      "candidate_relation": "维生素D缺乏作为常见营养问题与慢病背景相关",
+      "existing_relation": "活性维生素D水平与多种慢性病风险相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "yawye_c57_p17_obesity_risk",
+      "endpoints": "dietary_fiber->obesity_risk",
+      "host_id": "cs_c13_p105_obesity_risk",
+      "host_source_id": "china_study",
+      "host_relation": "膳食纤维带来的饱腹感与较少热量摄入相关",
+      "candidate_relation": "膳食纤维与肥胖相关",
+      "existing_relation": "膳食纤维带来的饱腹感与较少热量摄入相关",
+      "evidences_appended": 3
+    },
+    {
+      "candidate_note_id": "yawye_c58_p3_type2_diabetes",
+      "endpoints": "dietary_fiber->type2_diabetes",
+      "host_id": "cs_c16_p35_type2_diabetes",
+      "host_source_id": "china_study",
+      "host_relation": "高纤维膳食与较好血糖控制相关",
+      "candidate_relation": "膳食纤维与血糖相关",
+      "existing_relation": "高纤维膳食与较好血糖控制相关",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "yawye_c70_p12_osteoporosis",
+      "endpoints": "dairy->osteoporosis",
+      "host_id": "cs_c19_p22_osteoporosis",
+      "host_source_id": "china_study",
+      "host_relation": "乳制品与高钙摄入与髋骨骨折率的跨国关联观察",
+      "candidate_relation": "奶制品与骨健康相关",
+      "existing_relation": "乳制品与高钙摄入与髋骨骨折率的跨国关联观察",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "yawye_c78_p15_metabolic_health",
+      "endpoints": "vegetables_greens->metabolic_health",
+      "host_id": "hntd_ch22_leafy_longevity",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "较高绿叶菜摄入与较低慢性病及死亡风险相关",
+      "candidate_relation": "午餐蔬菜搭配与代谢健康相关",
+      "existing_relation": "较高绿叶菜摄入与较低慢性病及死亡风险相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "yawye_c101_p7_iron_status",
+      "endpoints": "plant_based_diet->iron_status",
+      "host_id": "cs_c08_p9_iron_status",
+      "host_source_id": "china_study",
+      "host_relation": "植物性膳食模式与铁营养状况的关联观察",
+      "candidate_relation": "以素食减肥倾向与女性缺铁性贫血风险相关",
+      "existing_relation": "植物性膳食模式与铁营养状况的关联观察",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "yawye_c114_p1_digestive_cancer_risk",
+      "endpoints": "vegetables_greens->digestive_cancer_risk",
+      "host_id": "hntd_ch15_hiroshima_fv",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "蔬果为主饮食与辐射暴露人群较低癌症风险相关",
+      "candidate_relation": "足量深色新鲜蔬菜与结肠癌风险相关",
+      "existing_relation": "蔬果为主饮食与辐射暴露人群较低癌症风险相关",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "yawye_c114_p1_digestive_cancer_risk_2",
+      "endpoints": "dietary_fiber->digestive_cancer_risk",
+      "host_id": "avs_ch6_fiber_colon",
+      "host_source_id": "amazing_veggie_soup",
+      "host_relation": "不可溶性膳食纤维促进排便并吸附有害物质，与大肠癌预防相关",
+      "candidate_relation": "膳食纤维不足与结肠癌发生率相关",
+      "existing_relation": "不可溶性膳食纤维促进排便并吸附有害物质，与大肠癌预防相关",
+      "evidences_appended": 3
+    },
+    {
+      "candidate_note_id": "yawye_c116_p11_digestive_cancer_risk",
+      "endpoints": "dietary_nitrates->digestive_cancer_risk",
+      "host_id": "avs_ch6_nitrite_reframe",
+      "host_source_id": "amazing_veggie_soup",
+      "host_relation": "亚硝酸盐曾被怀疑致胃癌，现更强调幽门螺杆菌慢性感染；其抗氧化与降压作用获讨论",
+      "candidate_relation": "腌菜咸菜中亚硝酸盐与新鲜蔬菜区分的结肠健康观察",
+      "existing_relation": "亚硝酸盐曾被怀疑致胃癌，现更强调幽门螺杆菌慢性感染；其抗氧化与降压作用获讨论",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "yawye_c121_p3_cancer_overall",
+      "endpoints": "vitamin_c->cancer_overall",
+      "host_id": "cs_c13_p124_cancer_overall",
+      "host_source_id": "china_study",
+      "host_relation": "膳食维生素C水平与较低癌症死亡率相关",
+      "candidate_relation": "富含维生素C的水果与抗氧化及肿瘤风险相关",
+      "existing_relation": "膳食维生素C水平与较低癌症死亡率相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "yawye_c121_p14_cognitive_decline",
+      "endpoints": "antioxidant_defense->cognitive_decline",
+      "host_id": "cs_c09_p24_cognitive_decline",
+      "host_source_id": "china_study",
+      "host_relation": "抗氧化防御水平与认知衰退风险相关",
+      "candidate_relation": "抗氧化营养与大脑退化相关",
+      "existing_relation": "抗氧化防御水平与认知衰退风险相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "yawye_c121_p17_antioxidant_defense",
+      "endpoints": "berries_fruits->antioxidant_defense",
+      "host_id": "hntd_ch02_wholefood_vs_pills",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "全食物蔬果摄入相较抗氧化补充剂与哮喘控制及肺功能改善更相关",
+      "candidate_relation": "水果维生素与吸烟人群抗氧化需求相关",
+      "existing_relation": "全食物蔬果摄入相较抗氧化补充剂与哮喘控制及肺功能改善更相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "yawye_c122_p16_cognitive_decline",
+      "endpoints": "plant_based_diet->cognitive_decline",
+      "host_id": "cs_c19_p100_cognitive_decline",
+      "host_source_id": "china_study",
+      "host_relation": "植物性食物来源营养素与较低认知障碍风险相关",
+      "candidate_relation": "仅水果蔬菜代餐导致磷脂胆固醇不足与认知风险相关",
+      "existing_relation": "植物性食物来源营养素与较低认知障碍风险相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "yawye_c124_p1_lung_disease",
+      "endpoints": "berries_fruits->lung_disease",
+      "host_id": "hntd_ch02_asthma_increase_fv",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "增加蔬果摄入与哮喘发作率降低相关",
+      "candidate_relation": "吸烟相关肺损伤背景下富含维生素C水果与氧化对抗相关",
+      "existing_relation": "增加蔬果摄入与哮喘发作率降低相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "yawye_c124_p1_stroke",
+      "endpoints": "berries_fruits->stroke",
+      "host_id": "hntd_ch03_citrus_hesperidin",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "柑橘类水果及橙皮苷与脑血流量及较低中风风险相关",
+      "candidate_relation": "吸烟人群水果摄入与脑卒中风险相关",
+      "existing_relation": "柑橘类水果及橙皮苷与脑血流量及较低中风风险相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "yawye_c127_p2_coronary_heart_disease",
+      "endpoints": "animal_foods->coronary_heart_disease",
+      "host_id": "hntd_ch01_animal_ldl_trio",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "动物性产品与加工食品来源的血脂相关因素与冠心病风险相关",
+      "candidate_relation": "动物性结构营养素与血管内皮日常更新修复相关",
+      "existing_relation": "动物性产品与加工食品来源的血脂相关因素与冠心病风险相关",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "yawye_c127_p5_atherosclerosis",
+      "endpoints": "animal_foods->atherosclerosis",
+      "host_id": "hntd_ch01_athero_plaque",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "传统西式饮食背景下动脉粥样硬化斑块在冠状动脉累积与冠心病相关",
+      "candidate_relation": "动物性食物与肝脏合成路径共同支持内皮结构营养",
+      "existing_relation": "传统西式饮食背景下动脉粥样硬化斑块在冠状动脉累积与冠心病相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "yawye_c130_p9_lung_disease",
+      "endpoints": "animal_foods->lung_disease",
+      "host_id": "hntd_ch02_asthma_meat_egg",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "肉类与蛋类摄入与哮喘及儿童呼吸道症状风险相关",
+      "candidate_relation": "肉蛋奶及肝脏维生素A与呼吸道黏膜修复相关",
+      "existing_relation": "肉类与蛋类摄入与哮喘及儿童呼吸道症状风险相关",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "yawye_c141_p4_mental_health",
+      "endpoints": "animal_foods->mental_health",
+      "host_id": "hntd_ch12_arachidonic",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "鸡肉蛋等来源花生四烯酸与神经炎症及抑郁风险相关",
+      "candidate_relation": "动物性食物色氨酸等与5-羟色胺合成相关",
+      "existing_relation": "鸡肉蛋等来源花生四烯酸与神经炎症及抑郁风险相关",
+      "evidences_appended": 1
+    }
+  ]
+}

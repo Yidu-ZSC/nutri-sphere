@@ -1,0 +1,14 @@
+{
+  "source_id": "you_are_what_you_eat",
+  "source_title": "你是你吃出来的",
+  "aligned_data_version": "2.3",
+  "aligned_schema_version": "0.7",
+  "candidate_count": 176,
+  "evidence_count": 296,
+  "append_count": 33,
+  "new_endpoint_pairs": 143,
+  "new_node_count": 14,
+  "reuse_node_count": 58,
+  "weread_link": "https://weread.qq.com/web/reader/7bb32c305e0c557bbdeab81",
+  "note": "NS-075 全量入库样例同步；seed 已 ingested；只读候选包。"
+}
