@@ -349,6 +349,42 @@ function shareState(partial: Partial<import('./shareUrl.ts').ShareState> & { scr
   };
 }
 
+test('lens opens explore with hide on by default and supersedes theme anchors', () => {
+  const parsed = parseViewQuery('?lens=animal_foods');
+  assert.equal(parsed.lens, 'animal_foods');
+  assert.equal(parsed.hideUnmatched, true);
+  assert.equal(resolveScreen(parsed), 'explore');
+  assert.deepEqual(filtersFromShare(parsed), { disease: null, mechanism: null, food: null });
+
+  const mixed = parseViewQuery('?lens=plant_based_diet&theme=fatty_liver&disease=cardiometabolic');
+  assert.equal(mixed.lens, 'plant_based_diet');
+  assert.deepEqual(filtersFromShare(mixed), { disease: null, mechanism: null, food: null });
+  assert.equal(parseViewQuery('?lens=animal_foods&hide=0').hideUnmatched, false);
+  assert.equal(parseViewQuery('?lens=../etc').lens, null);
+});
+
+test('serializing a lens omits theme and filter anchors', () => {
+  const query = serializeViewQuery(
+    shareState({
+      screen: 'explore',
+      lens: 'animal_foods',
+      theme: 'fatty_liver',
+      disease: 'fatty_liver',
+      mechanism: 'chronic_inflammation',
+      food: 'ultra_processed',
+      hideUnmatched: true,
+      node: 'animal_foods',
+    }),
+  );
+  assert.match(query, /lens=animal_foods/);
+  assert.match(query, /node=animal_foods/);
+  assert.match(query, /hide=1/);
+  assert.equal(query.includes('theme='), false);
+  assert.equal(query.includes('disease='), false);
+  assert.equal(query.includes('mechanism='), false);
+  assert.equal(query.includes('food='), false);
+});
+
 test('pattern and compare screens serialize only screen and pattern', () => {
   const patternQuery = serializeViewQuery(
     shareState({

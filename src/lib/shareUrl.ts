@@ -23,6 +23,8 @@ export interface ParsedShare {
   disease: string | null;
   mechanism: string | null;
   food: string | null;
+  /** One-hop node lens. Mutually exclusive with theme/disease/mechanism/food anchors. */
+  lens: string | null;
   pattern: string | null;
   patterns: string[];
   source: string | null;
@@ -44,6 +46,8 @@ export interface ShareState {
   disease: string | null;
   mechanism: string | null;
   food: string | null;
+  /** Optional for older call sites; when set it suppresses theme/filter anchors in the URL. */
+  lens?: string | null;
   pattern: string | null;
   patterns: readonly string[];
   source: string | null;
@@ -116,14 +120,14 @@ function writeDomain(params: URLSearchParams, domain: Domain | undefined): void 
 export function resolveScreen(
   parsed: Pick<
     ParsedShare,
-    'screen' | 'theme' | 'disease' | 'mechanism' | 'food' | 'pattern' | 'source' | 'node' | 'link'
+    'screen' | 'theme' | 'disease' | 'mechanism' | 'food' | 'lens' | 'pattern' | 'source' | 'node' | 'link'
   >,
 ): ScreenMode {
   if (parsed.screen === 'pattern') return parsed.pattern ? 'pattern' : 'home';
   if (parsed.screen === 'source') return parsed.source ? 'source' : 'home';
   if (parsed.screen === 'admin') return 'admin';
   if (parsed.screen) return parsed.screen;
-  if (parsed.disease || parsed.mechanism || parsed.food || parsed.node || parsed.link) return 'explore';
+  if (parsed.disease || parsed.mechanism || parsed.food || parsed.lens || parsed.node || parsed.link) return 'explore';
   if (themeById(parsed.theme)) return 'explore';
   if (parsed.pattern) return 'pattern';
   return 'home';
@@ -159,6 +163,7 @@ export function parseViewQuery(search: string): ParsedShare {
     disease: cleanId(params.get('disease')),
     mechanism: cleanId(params.get('mechanism')),
     food: cleanId(params.get('food')),
+    lens: cleanId(params.get('lens')),
     pattern: knownPatternId(params.get('pattern')),
     patterns: parsePatternList(params.get('patterns')),
     source: cleanId(params.get('source')),
@@ -189,14 +194,14 @@ export function resolveHideUnmatched(
   hideParam: string | null,
   parsed: Pick<
     ParsedShare,
-    'screen' | 'theme' | 'disease' | 'mechanism' | 'food' | 'pattern' | 'source' | 'node' | 'link'
+    'screen' | 'theme' | 'disease' | 'mechanism' | 'food' | 'lens' | 'pattern' | 'source' | 'node' | 'link'
   >,
 ): boolean {
   const screen = resolveScreen(parsed);
   if (screen === 'pattern' || screen === 'compare' || screen === 'twin' || screen === 'source' || screen === 'admin') return false;
   if (hideParam === '1') return true;
   if (hideParam === '0') return false;
-  if (screen === 'explore' && (parsed.theme || parsed.disease || parsed.mechanism || parsed.food)) {
+  if (screen === 'explore' && (parsed.theme || parsed.disease || parsed.mechanism || parsed.food || parsed.lens)) {
     return true;
   }
   return false;
@@ -234,10 +239,14 @@ export function serializeViewQuery(state: ShareState): string {
   const params = new URLSearchParams();
   params.set('screen', state.screen);
   if (state.screen === 'explore') {
-    if (state.theme) params.set('theme', state.theme);
-    if (state.disease) params.set('disease', state.disease);
-    if (state.mechanism) params.set('mechanism', state.mechanism);
-    if (state.food) params.set('food', state.food);
+    if (state.lens) {
+      params.set('lens', state.lens);
+    } else {
+      if (state.theme) params.set('theme', state.theme);
+      if (state.disease) params.set('disease', state.disease);
+      if (state.mechanism) params.set('mechanism', state.mechanism);
+      if (state.food) params.set('food', state.food);
+    }
     params.set('view', state.view);
     if (state.layout === 'force') params.set('layout', 'force');
     params.set('hide', state.hideUnmatched ? '1' : '0');

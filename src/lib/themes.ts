@@ -239,7 +239,9 @@ export function filtersFromShare(input: {
   mechanism: string | null;
   food?: string | null;
   theme: string | null;
+  lens?: string | null;
 }): { disease: string | null; mechanism: string | null; food: string | null } {
+  if (input.lens) return { disease: null, mechanism: null, food: null };
   const food = input.food ?? null;
   if (input.disease || input.mechanism || food) {
     return { disease: input.disease, mechanism: input.mechanism, food };

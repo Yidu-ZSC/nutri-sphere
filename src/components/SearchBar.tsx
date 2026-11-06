@@ -6,19 +6,44 @@ interface SearchBarProps {
   truncated: boolean;
   onQuery: (query: string) => void;
   onSelect: (hit: SearchHit) => void;
+  nodesOnly?: boolean;
+  placeholder?: string;
+  label?: string;
+  emptyText?: string;
+  /** When false, an empty result is not shown as “no match” (the graph may still be loading). */
+  ready?: boolean;
 }
 
-export function SearchBar({ hits, truncated, onQuery, onSelect }: SearchBarProps) {
+export function SearchBar({
+  hits,
+  truncated,
+  onQuery,
+  onSelect,
+  nodesOnly = false,
+  placeholder = '搜索名称、别名、编号或关联',
+  label = '搜索节点或关联',
+  emptyText = '无匹配结果',
+  ready = true,
+}: SearchBarProps) {
   const [text, setText] = useState('');
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
+  const [issued, setIssued] = useState('');
+  const [echo, setEcho] = useState('');
   const listId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => onQuery(text), SEARCH_DEBOUNCE_MS);
+    const timer = window.setTimeout(() => {
+      onQuery(text);
+      setIssued(text);
+    }, SEARCH_DEBOUNCE_MS);
     return () => window.clearTimeout(timer);
   }, [text, onQuery]);
+
+  useEffect(() => {
+    setEcho(issued);
+  }, [hits, issued]);
 
   useEffect(() => {
     setActive(0);
@@ -32,9 +57,11 @@ export function SearchBar({ hits, truncated, onQuery, onSelect }: SearchBarProps
     return () => window.removeEventListener('pointerdown', onPointerDown);
   }, []);
 
-  const showList = open && text.trim() !== '';
   const nodeHits = useMemo(() => hits.filter((hit) => hit.kind === 'node'), [hits]);
   const linkHits = useMemo(() => hits.filter((hit) => hit.kind === 'link'), [hits]);
+  const visibleHits = nodesOnly ? nodeHits : hits;
+  const settled = ready && issued === text && echo === issued;
+  const showList = open && text.trim() !== '' && settled;
 
   const choose = (hit: SearchHit) => {
     onSelect(hit);
@@ -53,13 +80,13 @@ export function SearchBar({ hits, truncated, onQuery, onSelect }: SearchBarProps
     }
     if (event.key === 'ArrowDown') {
       event.preventDefault();
-      setActive((index) => Math.min(index + 1, Math.max(hits.length - 1, 0)));
+      setActive((index) => Math.min(index + 1, Math.max(visibleHits.length - 1, 0)));
     } else if (event.key === 'ArrowUp') {
       event.preventDefault();
       setActive((index) => Math.max(index - 1, 0));
     } else if (event.key === 'Enter') {
       event.preventDefault();
-      const hit = hits[active] ?? hits[0];
+      const hit = visibleHits[active] ?? visibleHits[0];
       if (hit) choose(hit);
     }
   };
@@ -91,7 +118,7 @@ export function SearchBar({ hits, truncated, onQuery, onSelect }: SearchBarProps
   return (
     <div className="search" ref={rootRef}>
       <label className="sr-only" htmlFor={`${listId}-input`}>
-        搜索节点或关联
+        {label}
       </label>
       <input
         id={`${listId}-input`}
@@ -99,8 +126,8 @@ export function SearchBar({ hits, truncated, onQuery, onSelect }: SearchBarProps
         aria-autocomplete="list"
         aria-expanded={showList}
         aria-controls={listId}
-        aria-activedescendant={showList && hits[active] ? `${listId}-${active}` : undefined}
-        placeholder="搜索名称、别名、编号或关联"
+        aria-activedescendant={showList && visibleHits[active] ? `${listId}-${active}` : undefined}
+        placeholder={placeholder}
         autoComplete="off"
         value={text}
         onChange={(event) => {
@@ -126,23 +153,23 @@ export function SearchBar({ hits, truncated, onQuery, onSelect }: SearchBarProps
       )}
       {showList && (
         <div className="search-pop" id={listId} role="listbox" aria-label="搜索结果">
-          {hits.length === 0 ? (
-            <p className="search-empty">无匹配结果</p>
+          {visibleHits.length === 0 ? (
+            <p className="search-empty">{emptyText}</p>
           ) : (
             <>
               {nodeHits.length > 0 && (
                 <div>
-                  <p className="search-group">节点</p>
+                  {!nodesOnly && <p className="search-group">节点</p>}
                   <ul>{nodeHits.map((hit) => renderHit(hit))}</ul>
                 </div>
               )}
-              {linkHits.length > 0 && (
+              {!nodesOnly && linkHits.length > 0 && (
                 <div>
                   <p className="search-group">关联</p>
                   <ul>{linkHits.map((hit) => renderHit(hit))}</ul>
                 </div>
               )}
-              {truncated && <p className="search-note">仅显示前 20 条</p>}
+              {truncated && !nodesOnly && <p className="search-note">仅显示前 20 条</p>}
             </>
           )}
         </div>

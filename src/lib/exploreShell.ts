@@ -1,3 +1,5 @@
+import { FLOW_BAND_BUDGET } from './flowLayout.ts';
+
 /** Lobby header copy (product source of truth). Keep educational tone; no clinical claims. */
 export const LOBBY_KICKER = '饮食自我探索之路';
 
@@ -7,7 +9,19 @@ export const LOBBY_TAGLINE = '了解饮食与健康主题在图书与公开资�
 
 /** Secondary line under the lobby tagline. */
 export const LOBBY_INTRO =
-  '先选一个你想了解的问题，再看图书与公开资料里饮食与它常被怎么一起讨论。';
+  '输入想了解的食物、机制或健康主题，或从下面几项看资料里的讨论。';
+
+export const LOBBY_SEARCH_PLACEHOLDER = '输入想了解的概念';
+
+export const LOBBY_SEARCH_EMPTY = '资料里还没有这个概念';
+
+export const LOBBY_RECOMMENDED_HEADING = '先看这些';
+
+export const LOBBY_CONTRAST_NOTE = '对照着看资料里另一类食物如何被讨论';
+
+export const LOBBY_OUTCOMES_SUMMARY = '按结局浏览';
+
+export const HIERARCHY_BUDGET_NOTE = `这一视图画出 ${FLOW_BAND_BUDGET} 条关联，其余仍留在资料和搜索里。`;
 
 /** Method-help lead: how to read the graph. The legal disclaimer stays in the footer. */
 export const LOBBY_EDU_FOOTER = '下面说明图谱怎么读、证据怎么标。';

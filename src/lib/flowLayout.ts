@@ -57,7 +57,7 @@ export function selectFlowBands(
 
   const anchorSet = new Set(anchors);
   const ranked = [...cross].sort(
-    (a, b) => score(b, anchorSet) - score(a, anchorSet) || a.graphIndex - b.graphIndex,
+    (a, b) => edgePriority(b, anchorSet) - edgePriority(a, anchorSet) || a.graphIndex - b.graphIndex,
   );
   let kept: FlowEdgeInput[];
   if (ranked.length <= budget) {
@@ -101,7 +101,7 @@ export function selectFlowBands(
   };
 }
 
-function score(link: FlowEdgeInput, anchors: ReadonlySet<string>): number {
+export function edgePriority(link: FlowEdgeInput, anchors: ReadonlySet<string>): number {
   const strength =
     link.strength === 'high' ? 300 : link.strength === 'moderate' || link.strength === 'quantitative' ? 200 : 40;
   const evidence = Math.min(Math.max(link.evidenceCount, 1), 12) * 10;
