@@ -191,7 +191,12 @@
       "theme": "零散",
       "relevance": "edge",
       "kb_file": "零散_习惯的力量_7Ue2cj0Ax.md",
-      "status": "index_only"
+      "status": "ingested",
+      "source_id": "power_of_habit",
+      "publisher": "中信出版集团",
+      "isbn": "9787508638010",
+      "cover_url": "https://cdn.weread.qq.com/weread/cover/49/YueWen_621673/t6_YueWen_621673.jpg",
+      "authors": "查尔斯·都希格"
     },
     {
       "id": "flow",

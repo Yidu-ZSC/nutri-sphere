@@ -1,10 +1,10 @@
 {
   "meta": {
     "schema_version": "0.7",
-    "data_version": "2.7",
+    "data_version": "2.8",
     "extracted_from": "knowledge-base Project (high relevance files)",
     "extraction_date": "2026-10-31",
-    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 book-note nodes and excerpts are unchanged. data 0.5 adds schema 0.2 optional citation and nine literature edges with verified DOIs. data 0.6 / schema 0.3 writes audience on every link and mechanism_depth on mechanism nodes. These labels are not an evidence grade and not a view toggle. Educational use only. The original 20 excerpts are unchanged. data 0.7 aligns the 14 existing mechanism descriptions to MECHANISM_DICTIONARY.md v0.2 concept sentences and adds 10 dictionary mechanism nodes (aliases empty; mechanism_depth mechanism). Mechanism nodes still carry no source or limitations fields. Educational use only; schema_version remains 0.3. data 0.8 aligns 11 existing disease/biomarker labels and descriptions to HEALTH_DISEASE_DICTIONARY.md v0.2 concept sentences and adds 8 protective health-direction disease nodes (aliases empty). Column caption becomes 健康/疾病. Status nodes still carry no source or limitations fields. No new edges in this increment. Educational use only; schema_version remains 0.3. data 0.9 / schema 0.4 adds source_title on every link, source_id on book-note links, and data/sources.json (six cited books) for the source intro screen. Literature links set source_title from citation.title and omit source_id. Excerpt bodies and limitations are unchanged; evidences arrays are not introduced. Educational use only. NS-056：evidences[]+顶层镜像；合并同端点 125→121；EXCERPT_LIMIT 1200；加长主摘录（微信读书书摘/PubMed 摘要，未编造）。 data 1.1 / NS-058：按 EXCERPT_EXPANSION 将优先主题短摘录替换为知识库原文（目标 400–800；evidences[0]+顶层镜像；schema 0.5 / sources 1.1 不动）。 data 1.2 / NS-061：六书微信划线映射进已有边 evidences[]（个人为主、热门去重补充；默认 append；短主摘录可 promote0）；schema 0.5 / sources 1.1 / admin_books 1.1 不动；语料 JSON 正文不改。 data 1.3 / schema 0.6 · NS-062：全量节点与边显式 domain: health；无环境/文化数据；无 UI 主题切换。 data 1.4 · NS-064 删除 gut_brain 旧边并按 EPUB 候选全量录入 15 节点 + 55 边贡献；schema 仍 0.6。 data 1.5 / schema 0.7 · NS-065：全量删除边顶层与 evidences[].limitations（「局限」）；大厅饮食模式同步去掉；DISCLAIMER_TEXT 不动；拓扑仍 102+158。 data 1.6 · NS-066（B2+D）：清五本薄书摘边与 weread 语料/Admin 笔记数；先 promote 2 条 gut_brain 挂载 + 4 条嵌套文献；保留 gut_brain EPUB、纯文献与全部 102 节点（含 degree-0）；DISCLAIMER 不动；schema 仍 0.7；admin_books → 1.2（去 note_count）。 data 1.7 / schema 0.7 adds eat_to_heal EPUB full ingest (NS-067). data 1.8 · NS-068：将 eat_to_heal/gut_brain 书框 relation 批量改写为公共观察关系；excerpt/evidences/source_*/拓扑不动；schema 仍 0.7。 data 1.9 · NS-069：amazing_veggie_soup EPUB 全量录入（10 新节点 + 81 边贡献；同端点 4 append，其余新建）；schema 仍 0.7。 data 2.0 · NS-071：how_not_to_die（《救命》）EPUB 全量录入（14 新节点 + 195 边贡献；同端点 28 append，其余新建）；schema 仍 0.7。 data 2.1 · NS-072：全图同端点平行边折叠为 1 边 + evidences[]；入库约定批内/对基线同端点必须 append，禁止平行双开；schema 仍 0.7。 data 2.2 · NS-074：china_study（《救命饮食：中国健康调查报告》）EPUB 全量录入（20 新节点 + 141 边贡献；同端点 18 append，其余新建）；schema 仍 0.7。 data 2.3 · NS-075：you_are_what_you_eat（《你是你吃出来的》）EPUB 全量录入（14 新节点 + 176 边贡献；同端点 33 append，其余新建）；schema 仍 0.7。 data 2.4 · NS-076：know_your_gut（《晓肚知肠》）EPUB 全量录入（12 新节点 + 219 边贡献；同端点 32 append，其余新建）；schema 仍 0.7。 data 2.5 · NS-077：quit_sugar（《戒糖》）EPUB 全量录入（7 新节点 + 197 边贡献；同端点 48 append，其余新建）；schema 仍 0.7。 data 2.6 · NS-078：body_story（《人体的故事》）EPUB 全量录入（8 新节点 + 231 边贡献；同端点 89 append，其余新建）；schema 仍 0.7。 data 2.7 · NS-079：body_unlimited（《无限可能的身体》）EPUB 全量录入（5 新节点 + 201 边贡献；同端点 104 append，其余新建）；schema 仍 0.7。",
+    "note": "Aligned to GRAPH_SCHEMA.md. data 0.4 book-note nodes and excerpts are unchanged. data 0.5 adds schema 0.2 optional citation and nine literature edges with verified DOIs. data 0.6 / schema 0.3 writes audience on every link and mechanism_depth on mechanism nodes. These labels are not an evidence grade and not a view toggle. Educational use only. The original 20 excerpts are unchanged. data 0.7 aligns the 14 existing mechanism descriptions to MECHANISM_DICTIONARY.md v0.2 concept sentences and adds 10 dictionary mechanism nodes (aliases empty; mechanism_depth mechanism). Mechanism nodes still carry no source or limitations fields. Educational use only; schema_version remains 0.3. data 0.8 aligns 11 existing disease/biomarker labels and descriptions to HEALTH_DISEASE_DICTIONARY.md v0.2 concept sentences and adds 8 protective health-direction disease nodes (aliases empty). Column caption becomes 健康/疾病. Status nodes still carry no source or limitations fields. No new edges in this increment. Educational use only; schema_version remains 0.3. data 0.9 / schema 0.4 adds source_title on every link, source_id on book-note links, and data/sources.json (six cited books) for the source intro screen. Literature links set source_title from citation.title and omit source_id. Excerpt bodies and limitations are unchanged; evidences arrays are not introduced. Educational use only. NS-056：evidences[]+顶层镜像；合并同端点 125→121；EXCERPT_LIMIT 1200；加长主摘录（微信读书书摘/PubMed 摘要，未编造）。 data 1.1 / NS-058：按 EXCERPT_EXPANSION 将优先主题短摘录替换为知识库原文（目标 400–800；evidences[0]+顶层镜像；schema 0.5 / sources 1.1 不动）。 data 1.2 / NS-061：六书微信划线映射进已有边 evidences[]（个人为主、热门去重补充；默认 append；短主摘录可 promote0）；schema 0.5 / sources 1.1 / admin_books 1.1 不动；语料 JSON 正文不改。 data 1.3 / schema 0.6 · NS-062：全量节点与边显式 domain: health；无环境/文化数据；无 UI 主题切换。 data 1.4 · NS-064 删除 gut_brain 旧边并按 EPUB 候选全量录入 15 节点 + 55 边贡献；schema 仍 0.6。 data 1.5 / schema 0.7 · NS-065：全量删除边顶层与 evidences[].limitations（「局限」）；大厅饮食模式同步去掉；DISCLAIMER_TEXT 不动；拓扑仍 102+158。 data 1.6 · NS-066（B2+D）：清五本薄书摘边与 weread 语料/Admin 笔记数；先 promote 2 条 gut_brain 挂载 + 4 条嵌套文献；保留 gut_brain EPUB、纯文献与全部 102 节点（含 degree-0）；DISCLAIMER 不动；schema 仍 0.7；admin_books → 1.2（去 note_count）。 data 1.7 / schema 0.7 adds eat_to_heal EPUB full ingest (NS-067). data 1.8 · NS-068：将 eat_to_heal/gut_brain 书框 relation 批量改写为公共观察关系；excerpt/evidences/source_*/拓扑不动；schema 仍 0.7。 data 1.9 · NS-069：amazing_veggie_soup EPUB 全量录入（10 新节点 + 81 边贡献；同端点 4 append，其余新建）；schema 仍 0.7。 data 2.0 · NS-071：how_not_to_die（《救命》）EPUB 全量录入（14 新节点 + 195 边贡献；同端点 28 append，其余新建）；schema 仍 0.7。 data 2.1 · NS-072：全图同端点平行边折叠为 1 边 + evidences[]；入库约定批内/对基线同端点必须 append，禁止平行双开；schema 仍 0.7。 data 2.2 · NS-074：china_study（《救命饮食：中国健康调查报告》）EPUB 全量录入（20 新节点 + 141 边贡献；同端点 18 append，其余新建）；schema 仍 0.7。 data 2.3 · NS-075：you_are_what_you_eat（《你是你吃出来的》）EPUB 全量录入（14 新节点 + 176 边贡献；同端点 33 append，其余新建）；schema 仍 0.7。 data 2.4 · NS-076：know_your_gut（《晓肚知肠》）EPUB 全量录入（12 新节点 + 219 边贡献；同端点 32 append，其余新建）；schema 仍 0.7。 data 2.5 · NS-077：quit_sugar（《戒糖》）EPUB 全量录入（7 新节点 + 197 边贡献；同端点 48 append，其余新建）；schema 仍 0.7。 data 2.6 · NS-078：body_story（《人体的故事》）EPUB 全量录入（8 新节点 + 231 边贡献；同端点 89 append，其余新建）；schema 仍 0.7。 data 2.7 · NS-079：body_unlimited（《无限可能的身体》）EPUB 全量录入（5 新节点 + 201 边贡献；同端点 104 append，其余新建）；schema 仍 0.7。 data 2.8 · NS-080：power_of_habit（《习惯的力量》）EPUB 全量录入（3 新节点 + 31 边贡献；同端点 15 append，其余新建）；schema 仍 0.7。",
     "disclaimer": "Educational / research use only. Not medical advice."
   },
   "nodes": [
@@ -2651,6 +2651,48 @@
       ],
       "domain": "health",
       "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "smoking",
+      "type": "mechanism",
+      "label": "吸烟 / 烟草暴露",
+      "group": "risk",
+      "description": "香烟与尼古丁使用及暴露；叙述中与体重、运动、成瘾渴求及整体健康行为转变相关。",
+      "aliases": [
+        "抽烟",
+        "烟草",
+        "尼古丁使用",
+        "香烟"
+      ],
+      "domain": "health",
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "craving",
+      "type": "mechanism",
+      "label": "渴求 / 奖赏预期",
+      "group": "risk",
+      "description": "大脑对奖赏的预期与渴求驱动；叙述中推动饮食、吸烟、运动等习惯回路持续运转，并与成瘾样反应相关。",
+      "aliases": [
+        "奖赏渴求",
+        "神经渴求",
+        "习惯性渴求"
+      ],
+      "domain": "health",
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "gambling_addiction",
+      "type": "disease",
+      "label": "赌博成瘾 / 强迫性赌博",
+      "group": "risk",
+      "description": "对赌博行为失控的强迫性模式；叙述中与焦虑缓解、差点儿赢的神经反应及决策受损相关。",
+      "aliases": [
+        "强迫性赌博",
+        "问题赌博",
+        "赌瘾"
+      ],
+      "domain": "health"
     }
   ],
   "links": [
@@ -2758,6 +2800,13 @@
           "source_file": "身心与疾病_无限可能的身体.md",
           "source_id": "body_unlimited",
           "note_id": "bu_c16_p32"
+        },
+        {
+          "excerpt": "然而，随着年纪越来越大，尤金的习惯开始对他的生活产生了负面影响。他总是坐着不动，有时候看电视一看就是几个小时，因为他永远不会觉得无聊。他的医生开始担心他的心脏。医生告诉贝弗利，得让他严格按照健康食谱吃东西。贝弗利试了试，但她很难影响尤金的进食频率和他进食的选择。尤金从来都不记得她的警告。即便冰箱里塞满了水果和蔬菜，尤金也会到处翻，直到找出培根和鸡蛋为止。这就是他的惯常行为。由于上了年纪，他的骨头也越来越脆弱，医生说他四处走动时需要更小心。不过，尤金老是认为自己还是20年前那样年轻，他从来都不记得要小心走路。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c08_p6"
         }
       ],
       "domain": "health"
@@ -3062,6 +3111,34 @@
           "source_file": "身心与疾病_无限可能的身体.md",
           "source_id": "body_unlimited",
           "note_id": "bu_c16_p81"
+        },
+        {
+          "excerpt": "在人类世界里寻找并模拟这种实验并不难。比如想想快餐店，你就理解了。小孩子饿了，而你工作了一天开车回家，不过这一次，你把车停在了麦当劳或汉堡王快餐店边上。吃得不贵，味道很棒。毕竟，一小份加工过的肉，比较咸的炸薯条，还有很甜的苏打水，这点儿量对健康的威胁相对来说并不是很大，对吧？你不大可能会天天吃。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c08_p3"
+        },
+        {
+          "excerpt": "然而习惯不经我们允许就会出现。很多研究表明，通常家里不会有经常去吃快餐的倾向，但结果是每个月吃一次的行为模式慢慢变成了每个星期吃一次，然后每星期两次，这里头的暗示和奖赏创造出了一种习惯，频率会越来越高，最后孩子们吃的汉堡和薯条已经到了会危害健康的程度。北德州大学和耶鲁大学的研究人员想弄清楚，为什么这些家庭会逐渐增加吃快餐的次数，他们发现了一连串的暗示和奖赏，而大多数顾客都不知道这些东西影响了自己的行为。研究人员发现了其中的习惯回路。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c08_p4"
+        },
+        {
+          "excerpt": "举个例子，所有的麦当劳看起来都是一样的，这是麦当劳公司刻意将店铺的设计标准化，也统一了员工对顾客的说辞，所以所有的东西都有一致性的暗示，能够触发进去用餐的惯常行为。有些连锁店的食物经过特别加工，要的就是能够向顾客送出即时的奖赏，像薯条就被设计成能够尽快地让你尝到盐和油脂的味道，让你的快感中心启动，让大脑沉溺在这一行为模式中。这都有利于让习惯回路更紧凑。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c08_p5"
+        },
+        {
+          "excerpt": "开始时这很难保持。被试者不是忘记带上他们的饮食记录本，就是吃了零食后忘记记下。但慢慢地，他们开始每周一次记下他们的饮食，有时甚至记得更频繁。很多参加者开始每天都记录自己的饮食，最后这变成了一个习惯。然后意外的事情发生了。他们开始留意自己的记录，并发现以前没注意到的行为模式。一些人注意到自己总是在早上10点吃零食，于是他们就在桌上放一个苹果或者香蕉作为这时的小点心。还有人开始利用他们的记录去制订新的饮食计划，正餐时吃计划里写下的健康餐，而不是冰箱里的垃圾食品。这些都不是研究人员让他们做的，研究人员最初只是让他们每周一天记录自己吃过的东西。但记录饮食这个核心习惯创造了一个架构，使得其他习惯得以形成。研究进行到第六个月，那些每天作饮食记录的人比其他人多减了一倍的体重。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c15_p6"
         }
       ],
       "domain": "health"
@@ -13160,6 +13237,83 @@
           "source_file": "植物性饮食与慢病_救命饮食中国健康调查报告.md",
           "source_id": "china_study",
           "note_id": "cs_c14_p76_iatrogenic_harm"
+        },
+        {
+          "excerpt": "“这地方有时候很糟糕，”面对记者，一位护士回忆说，“这里的医生会让你觉得自己的存在一文不值，就好像用后即弃的垃圾，就好像你应该为他们的提携感恩戴德。”医院的行政人员最终同意限制护士们的强制加班时间，但紧张事态还是进一步升级了。几年后，一名外科医生正在准备一例常规的腹部手术，但护士却坚决要求手术“暂停”。这种医疗中止在其他医院也是标准程序之一，医生和其他工作人员可通过短暂的休息来避免错误和事故的发生。在一次医疗事故后，罗德岛医院的护理工作人员对“暂停”的问题态度更为坚决。在那次事故中，一位本应接受眼部手术的女孩却在手术中一不小心被切除了扁桃体。“暂停”是为了在错误发生之前对其进行有效地遏制。在这次腹部手术中，当护士请求“暂停”以便医护人员聚集在病人周围探讨治疗计划时，医生却摔门而去。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c19_p1"
+        },
+        {
+          "excerpt": "罗德岛医院充斥着一种极具腐蚀性的文化。在美铝，经过精心设计的核心习惯都以工人的安全为核心，这种做法让公司一步一步取得了更大的成功。而罗德岛医院则不同，护士们形成的习惯是用来应对医生傲慢态度的。这间医院的惯例明显没有经过深思熟虑。相反，在护士们不敢声张的警告中，事故频频出现，愈演愈烈，最终形成了一种病态的模式。在那些没有精心设计习惯的组织中，这种情况极易出现。一个精心构建的习惯可以创造令人惊喜的改变，同样，错误的习惯会带来灾难性的结果。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c19_p2"
+        },
+        {
+          "excerpt": "之后，病人被送到了重症监护病房，但他再也没有完全恢复意识。两周后，病人就去世了。随后的一项调查说病人的准确死因很难查出，但病人家属强调，病人孱弱的身体根本承受不住如此严重的医疗事故。两侧开颅手术的压力，手术时间过长，因手术延迟而造成的血肿扩散，都是将老人推向死亡的诱因。他们声称，如果不是手术的差错，老人可能也不会死。医院向家属支付了赔偿，主刀医生则被永远开除出了罗德岛医院。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c19_p3"
+        },
+        {
+          "excerpt": "一些护士说，这样的事故是不可避免的。罗德岛医院的制度习惯存在机能障碍，这样严重的医疗事故的发生只是时间问题[6]。当然，并不是只有医院才会形成如此危险的习惯模式，在成百上千的行业和企业中都有可能存在这种破坏性的组织习惯。而且，几乎所有的破坏性习惯都是轻率的产物，是那些拒绝构建企业文化、任其放任自流的领导者种下的恶果。没有制度习惯的组织是不存在的，一些组织没有去精心设计习惯，没有深谋远虑去创造习惯，所以往往在发展的过程中会有争斗和恐惧相伴。有时，一些能够审时度势、抓住机遇的领导者，能够转化破坏性的习惯。有时，在危机的煎熬中，正确的习惯也会应运而生。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c19_p4"
+        },
+        {
+          "excerpt": "在那位老年患者接受了拙劣的颅骨手术一命呜呼后，仅仅4个月，罗德岛医院的另一位外科医生犯了一个相似的错误，在另一位患者头部错误的区域实施了手术。这一误诊行为受到了美国国家卫生部的谴责，并对该医院处以5万美元的罚款。18个月后，又一位外科医生在一名儿童的腭裂手术中搞错了施刀位置。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c19_p5"
+        },
+        {
+          "excerpt": "5个月后，一位外科医生在手术中搞错了病人的手指。10个月后，一个钻头被遗漏在患者的头颅中。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c19_p6"
+        },
+        {
+          "excerpt": "对于这些医疗事故和误诊现象，罗德岛医院已经赔付了高达45万美元的罚款。当然，罗德岛医院并不是唯一出现事故的医疗机构，但它却十分不幸地成为了反面教材。当地的报纸对每个事故都进行了详尽的报道，电视台的记者也在医院门外安营扎寨。最终连国家媒体都参与进来。“这个问题已经旷日持久。”一名国家医院认证组织的副会长对美联社记者如是说。国家卫生部向记者们发布声明，罗德岛医院是一家十分混乱的医疗机构。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c19_p7"
+        },
+        {
+          "excerpt": "罗德岛医院将所有非紧急手术部门关闭了一整天（当然这也是一笔巨大的损失），并安排所有员工参与到一项高强度的培训计划中，这项计划强调了在护士和医务人员中下放权力的重要性，并强调了团队合作。会议罢免了原来的神经科主任，并选举了新的领导。医院还邀请了领先的医疗机构联盟——医疗保健改革中心来帮助并重新设计了手术保障机制。管理人员在每一间手术室内安装了摄像头，来监督手术过程中“暂停”和手术一览表确认的执行情况。医院的所有员工都可以通过一套计算机系统匿名举报那些危及病人健康的医疗错误。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c19_p8"
+        },
+        {
+          "excerpt": "在发现错误之后，其他的医院也做出了类似的改变。几年前原本拒绝做出改善的医院的手术错误率也不断下降。一些机构，如罗德岛医院，在发现危机感充斥全局的时候，通常就会进行改革。例如，在20世纪90年代末，哈佛大学的附属医院之一柏斯以色列狄肯尼斯医学中心，就经历了一段事故和内耗相继爆发的时期。争端不仅见诸报端，在公开会议上也常常上演护士和管理人员对骂的闹剧。有传闻说，如果这种情况继续，将会有政府官员出面强制关闭医院的一些部门。面对外界的重重压力，医院内部不得不集思广益寻求方法，改变自己的机构文化。其中一种办法是“安全探讨”，即每三个月，都有一位资深医师都要在上百名同事面前针对特定的手术或诊断开展探讨，或对一次有惊无险的医疗事故进行细致入微的描述。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c19_p9"
+        },
+        {
+          "excerpt": "86岁患者的死亡和其他医疗事故给罗德岛医院敲响了警钟。自2009年罗德岛医院开始全面实行全新的安全规程，类似的医疗错误再也没有出现过。最近，罗德岛医院还获得了美国外科学院授予的灯塔奖。这是对医院在癌症病患护理质量的赞誉，也是对医院重症护理水平的最高认可。更重要的是，罗德岛医院的医生和护士纷纷表示，这家医院已经焕然一新了。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c19_p10"
+        },
+        {
+          "excerpt": "研究人员基于这个发现，对各种现象做出了解释。一些人提出这个发现阐明了成功人士会抵受不住婚外情诱惑的原因（因为他们在漫长的白天过多使用了意志力，这就解释了为什么婚外情大多在晚上发生），解释了为什么一些优秀的医师会犯低级的医疗错误（这些错误通常发生在医生完成一项需要精神高度集中的任务之后）。姆拉文向我解释道：“如果你想完成一些需要意志力支持的事情，例如在工作后跑步，在白天就应该着意节省意志的力量。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c17_p5"
         }
       ],
       "domain": "health"
@@ -16920,6 +17074,48 @@
           "source_file": "营养基础_人体的故事.md",
           "source_id": "body_story",
           "note_id": "bs_c35_p60"
+        },
+        {
+          "excerpt": "但坐出租车那时，丽莎并不知道会这样。对实验室的科学家来说，她这趟出行的细节并不重要，因为他们明白，那天在开罗，丽莎下定决心戒烟以实现她的目标，这种思想的细微变化触发了一系列的变化，最终影响到了她生活的方方面面。在那之后的6个月，她用跑步代替了吸烟，这也改变了她的饮食习惯、工作习惯、睡眠习惯、储蓄习惯、工作日的安排、未来的计划等。她先开始跑半程马拉松，然后是全程马拉松。她重新回学校读书，买了套房子，并且订婚了。最后她受邀参与科学家的研究，当研究人员开始检查她大脑的图像时，他们发现旧习惯在大脑中形成的神经模式完全被新模式取代。研究人员依然能看见以前行为引发的神经活动，但这些神经脉冲在大量的新脉冲面前显得微不足道。丽莎的习惯改变了，她的大脑也发生了变化。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p7"
+        },
+        {
+          "excerpt": "这解释了为什么很难创造出锻炼的习惯或者饮食习惯。一旦你养成了长时间坐在沙发上而不是跑步的习惯，或者养成了每次经过装甜甜圈的盒子都要拿一块的习惯，那这些行为模式就永远留在了大脑内。不过，同理，如果我们学会去创造可以压制这些习惯引发的常规神经活动，也就是控制习惯回路的话，我们就可以把坏习惯压制到幕后，就像丽莎·艾伦在开罗之旅后做的那样。而且研究表明，一旦新模式诞生，那么跑步锻炼或者对甜甜圈视而不见就会像其他习惯一样变成自然而然的活动。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c08_p1"
+        },
+        {
+          "excerpt": "如果你想减肥，就应了解自己的习惯，看看为什么每天休息时，自己都会离开办公桌去吃点心？然后，每到休息时，就找朋友去散步，或到他们办公桌那里闲聊，而不是去咖啡厅，或者加入一个跟踪减肥过程的小组，还可以找一个跟你一样，想在手边放一些苹果而不是薯片的伙伴。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c12_p12"
+        },
+        {
+          "excerpt": "核心习惯解释了迈克尔·菲尔普斯成为奥运冠军，以及一些大学生比同龄人更优秀的原因。它们解释了为什么一些人减肥多年没有成效，却在自己的工作效率提高，同时又准时下班回家和孩子共聚晚餐的情况下突然减了40磅。这些核心习惯也使美铝成为道琼斯指数中表现最佳的股票之一，使公司成为全球最安全的工作场所之一。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c15_p2"
+        },
+        {
+          "excerpt": "举个例子来说，过去10年有研究人员调查运动对日常行为的影响。当人们开始养成运动的习惯时，即使是一周一次的运动，他们也会不知不觉改变其他与之无关的行为模式。通常来说，做运动的人会吃得更香，工作更有效率。他们更少吸烟，对同事和家人更有耐心。而且更少使用信用卡，压力也更小。研究人员还没弄清楚这种变化的原因，但对于很多人来说，运动是引发广泛变化的核心习惯。美国罗德岛大学的研究人员詹姆斯·普罗查斯卡说：“运动有很大影响，它包含某些让其他好习惯更易形成的因素。”",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c15_p3"
+        },
+        {
+          "excerpt": "奥尼尔相信一些习惯具有引起连锁反应的能力，当它们扩展到整个组织时，会引起其他习惯的改变。换言之，一些习惯比起其他习惯在重塑商业和生活方式上更有影响力，它们就是“核心习惯”，影响着人们的工作、饮食、玩乐、消费和沟通方式。核心习惯能启动一个进程，久而久之将改变一切。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c15_p1"
         }
       ],
       "domain": "health"
@@ -27970,6 +28166,13 @@
           "source_file": "身心与疾病_无限可能的身体.md",
           "source_id": "body_unlimited",
           "note_id": "bu_c19_p80"
+        },
+        {
+          "excerpt": "她的头太晕了，直到闻到塑料烧焦的味道才意识到自己把钢笔当万宝路香烟点着了。在过去的4个月中，哭泣、暴饮暴食、失眠、无助、抑郁、愤怒填满了她的生活，伴随的还有被羞辱的感觉。丽莎躺在床上，感觉自己崩溃了，她说：“当时感到一阵难受，我觉得我想要的一切都变得支离破碎，连抽烟都出问题。然后我开始想我的前夫，还有回去之后找新工作会有多难，我又会有多讨厌那个工作。此外，我一直以来都觉得自己的健康状况很差。我从床上起来，结果打翻了水罐，它掉在地板上摔得粉碎，我哭得更厉害了。心里满是绝望，好像我不得不有所改变，至少改变一样我可以控制的东西。”",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p5"
         }
       ],
       "domain": "health"
@@ -28232,6 +28435,104 @@
           "source_file": "身心与疾病_无限可能的身体.md",
           "source_id": "body_unlimited",
           "note_id": "bu_c11_p80"
+        },
+        {
+          "excerpt": "她的头太晕了，直到闻到塑料烧焦的味道才意识到自己把钢笔当万宝路香烟点着了。在过去的4个月中，哭泣、暴饮暴食、失眠、无助、抑郁、愤怒填满了她的生活，伴随的还有被羞辱的感觉。丽莎躺在床上，感觉自己崩溃了，她说：“当时感到一阵难受，我觉得我想要的一切都变得支离破碎，连抽烟都出问题。然后我开始想我的前夫，还有回去之后找新工作会有多难，我又会有多讨厌那个工作。此外，我一直以来都觉得自己的健康状况很差。我从床上起来，结果打翻了水罐，它掉在地板上摔得粉碎，我哭得更厉害了。心里满是绝望，好像我不得不有所改变，至少改变一样我可以控制的东西。”",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p5"
+        },
+        {
+          "excerpt": "一位研究人员在测试接近尾声时跟丽莎说：“我想让你看看最近的扫描结果。”他在电脑上打开了一张照片。“你看到食物的时候，”他一边说一边指着大脑中心附近的一块地方，“大脑与欲望和饥饿有关的区域依然活跃，大脑依然在制造让你暴饮暴食的冲动，但是，这个区域有新活动。”研究人员指着离她前额最近的区域接着说，“我们相信大脑的这部分开始抑制你的行为，让自律行为开始了，这里的活动随着你成功的次数越来越多，变得越来越明显。”",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p9"
+        },
+        {
+          "excerpt": "贝弗利想用自己对习惯的了解帮助尤金避免因为年迈而要碰到的问题。她发现自己可以通过插入新的暗示，让尤金最糟糕的行为模式短路。如果她不在冰箱里放培根，尤金是不会多次吃不健康的早餐的。当她把沙拉放在他椅子边时，他有时候会吃点儿，慢慢地这种吃法变成了一种习惯，他不再跑到厨房找吃的了。就这样，尤金的饮食习惯逐渐得到了改善。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c08_p7"
+        },
+        {
+          "excerpt": "想打造新的饮食习惯吗？与美国国家体重控制登记处合作的科研人员进行了一个有6 000人参与的项目，他们减掉的体重都超过了30磅。在这个项目中，科研人员检查了节食成功者的习惯，发现他们中78%的人每天都吃早餐，这是一天中变成暗示的一餐。最成功的节食者为自己的食谱构想了一个特定的奖赏，比如一件想穿的比基尼或者他们每天站在秤上看到体重下降带来的自豪感，这种奖赏是他们选择的，也是他们真心想要的。当诱惑出现时，他们的注意力都集中在对奖赏的渴求上，并将这种渴求变成了一种轻度的沉迷。研究人员发现他们对奖赏的渴求将诱惑挤出了食谱，这种渴求驱动着他们的习惯回路。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p17"
+        },
+        {
+          "excerpt": "黄金法则的影响面很广，对治疗酗酒、肥胖、强迫症以及其他数百种具有破坏性的行为都有效果。如果了解这条法则，任何人都可以改变自己的习惯（比如尝试戒掉零食的行为往往会失败，除非出现新的能满足旧暗示和奖赏欲望的惯常行为，才可以戒掉。烟民一般无法戒烟，除非他对尼古丁的渴求被触发时，能找到其他可以替代吸烟的活动）。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c12_p1"
+        },
+        {
+          "excerpt": "如果你想减肥，就应了解自己的习惯，看看为什么每天休息时，自己都会离开办公桌去吃点心？然后，每到休息时，就找朋友去散步，或到他们办公桌那里闲聊，而不是去咖啡厅，或者加入一个跟踪减肥过程的小组，还可以找一个跟你一样，想在手边放一些苹果而不是薯片的伙伴。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c12_p12"
+        },
+        {
+          "excerpt": "同样的事也发生在人们的生活中。比如说，20年前，传统的观点一直认为减肥的最好办法是彻底改变人们的生活。医生会给过胖的病人制订严格的节食计划，让他们去健身房健身，还要参加定期的甚至每天举办的咨询讲习会，通过以爬楼梯代替搭电梯改变他们的日常行为等。这种想法认为，只有彻底改变一个人的生活，才能改变他们的坏习惯。但当研究者去了解这些方法的长期有效性时，发现它们都行不通。病人爬了几个星期的楼梯，但不到一个月，他们就觉得麻烦了。他们开始节食和参加健身，但当初的热情消磨掉后，他们就会像原来一样暴饮暴食，待在家里看电视。所以一次性做了太多改变，结果往往是很难坚持下去。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c15_p4"
+        },
+        {
+          "excerpt": "接着，在2009年，美国国立卫生研究院资助的一组研究人员发表了关于一种减肥新方法的研究。他们召集了1 600位有肥胖问题的人，让他们每周至少有一天记下自己吃的所有东西。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c15_p5"
+        },
+        {
+          "excerpt": "开始时这很难保持。被试者不是忘记带上他们的饮食记录本，就是吃了零食后忘记记下。但慢慢地，他们开始每周一次记下他们的饮食，有时甚至记得更频繁。很多参加者开始每天都记录自己的饮食，最后这变成了一个习惯。然后意外的事情发生了。他们开始留意自己的记录，并发现以前没注意到的行为模式。一些人注意到自己总是在早上10点吃零食，于是他们就在桌上放一个苹果或者香蕉作为这时的小点心。还有人开始利用他们的记录去制订新的饮食计划，正餐时吃计划里写下的健康餐，而不是冰箱里的垃圾食品。这些都不是研究人员让他们做的，研究人员最初只是让他们每周一天记录自己吃过的东西。但记录饮食这个核心习惯创造了一个架构，使得其他习惯得以形成。研究进行到第六个月，那些每天作饮食记录的人比其他人多减了一倍的体重。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c15_p6"
+        },
+        {
+          "excerpt": "一位参与者告诉我说：“一段时间后，这个饮食记录进入了我的脑子里，我开始以一种不同的方式考虑饮食。记录的过程为我建立了一个新的系统，让我不用一考虑食物就感到沮丧。”",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c15_p7"
+        },
+        {
+          "excerpt": "比如你有一个坏习惯，就像我为撰写本书做研究时的习惯一样，喜欢每天下午去咖啡厅买巧克力豆饼干。假设这个习惯让你胖了几磅，或者说这个习惯实际上让你胖了8磅，然后你妻子针对你的体重说了一些让你不爽的话。于是你总是强迫自己停止吃饼干，但徒劳无益，你觉得很累，你甚至还在电脑上贴了即时贴，写着再也不吃饼干了。但是每天下午你都会当这张即时贴不存在，照样晃悠着去咖啡厅，然后买饼干，接着在收银台附近与同事闲聊时就开始吃。吃的时候感觉很好，吃完就难受了。你跟自己发誓，说你明天会用全部的意志力来抵制饼干的诱惑，明天会是新的一天。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c27_p2"
+        },
+        {
+          "excerpt": "有这三天的记录，已经可以清楚地看到是什么暗示诱发了我买饼干的习惯，让我每天在固定的时间有吃零食的冲动。在第二步我就发现我有这个习惯并不是因为饿。我找寻的奖赏是暂时散散心，也就是通过与朋友闲聊得到消遣。我现在知道这一习惯诱发的时间是在下午3点到4点之间。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c27_p7"
+        },
+        {
+          "excerpt": "比如，拿我在下午买饼干的习惯作为例子，通过这个框架，我发现我的暗示一般大约出现在下午的3点半。我知道我的惯常行为是去咖啡厅买饼干，同时还与朋友聊天。通过实验，我发现我渴求的并不是饼干本身，而是那一小段时间的悠闲以及与别人交往的机会。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c27_p8"
+        },
+        {
+          "excerpt": "房间里的科学家——有神经学家、心理学家、遗传学家和社会学家，在过去的3年里，依靠美国国家健康研究所的资金，研究测试了包括丽莎在内的24个人——有吸烟上瘾的，暴饮暴食的，酗酒成性的，疯狂购物的，以及有其他破坏性习惯的人。所有这些研究参与人员都有一个共同点，他们的生活都在较短的时间内焕然一新。研究人员想弄清楚这是怎么发生的。所以他们测量了所有被试者的主要表征，在他们家中安装摄像头，观察被试者的日常活动，研究他们的DNA序列。在科技的帮助下，科学家们可以实时观察人类大脑。当受试者接触到诸如吸烟和美食的时候，研究人员能观测到他们大脑中血液和电脉冲的情况。研究人员的目标是从神经层面上弄清楚人类习惯的运作机理，以及如何才能改变习惯。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p4"
         }
       ],
       "domain": "health"
@@ -28965,6 +29266,20 @@
           "source_file": "营养基础_人体的故事.md",
           "source_id": "body_story",
           "note_id": "bs_c43_p6"
+        },
+        {
+          "excerpt": "那么奖赏是什么？是饼干吗？还是换了环境？或者是暂时散散心？又或者是与同事聊天？也有可能通过突然摄入那么多糖获得了能量充沛的感觉?",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c27_p4"
+        },
+        {
+          "excerpt": "那为什么闹钟设的时间是15分钟后呢？因为这些测试的重点是找出你渴求的奖赏是什么。如果吃掉甜甜圈15分钟后，你还是有冲动起身去咖啡厅，那驱动你习惯的就不是对糖的渴求。如果在和同事闲聊之后，你还是想吃饼干，那么与人接触的需求就不是你吃饼干行为的诱因。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c27_p6"
         }
       ],
       "domain": "health"
@@ -32303,6 +32618,13 @@
           "source_file": "营养基础_人体的故事.md",
           "source_id": "body_story",
           "note_id": "bs_c39_p8"
+        },
+        {
+          "excerpt": "然而，当霍普金斯的老朋友向他提到白速得牙膏时，这位广告人看上去不太感兴趣。当时，美国人口腔健康水平的急剧下降已经不是秘密。随着国家越来越富足，人们开始越来越多地购买含糖量高、制作精细的食品。等到美国政府为第一次世界大战征兵时，就出现了大批患有龋齿的新兵，因此政府宣称国民糟糕的牙齿健康状况已经危害到了国家安全。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p1"
         }
       ],
       "domain": "health"
@@ -32363,6 +32685,13 @@
           "source_file": "营养基础_人体的故事.md",
           "source_id": "body_story",
           "note_id": "bs_c29_p41"
+        },
+        {
+          "excerpt": "然而，当霍普金斯的老朋友向他提到白速得牙膏时，这位广告人看上去不太感兴趣。当时，美国人口腔健康水平的急剧下降已经不是秘密。随着国家越来越富足，人们开始越来越多地购买含糖量高、制作精细的食品。等到美国政府为第一次世界大战征兵时，就出现了大批患有龋齿的新兵，因此政府宣称国民糟糕的牙齿健康状况已经危害到了国家安全。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p1"
         }
       ],
       "domain": "health"
@@ -34839,6 +35168,13 @@
           "source_file": "身心与疾病_无限可能的身体.md",
           "source_id": "body_unlimited",
           "note_id": "bu_c16_p30"
+        },
+        {
+          "excerpt": "举个例子，所有的麦当劳看起来都是一样的，这是麦当劳公司刻意将店铺的设计标准化，也统一了员工对顾客的说辞，所以所有的东西都有一致性的暗示，能够触发进去用餐的惯常行为。有些连锁店的食物经过特别加工，要的就是能够向顾客送出即时的奖赏，像薯条就被设计成能够尽快地让你尝到盐和油脂的味道，让你的快感中心启动，让大脑沉溺在这一行为模式中。这都有利于让习惯回路更紧凑。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c08_p5"
         }
       ],
       "domain": "health"
@@ -36419,6 +36755,20 @@
           "source_file": "身心与疾病_无限可能的身体.md",
           "source_id": "body_unlimited",
           "note_id": "bu_c17_p43"
+        },
+        {
+          "excerpt": "我们每天做出的大部分选择似乎都是精心考虑的决策结果，其实不然。这些选择都是习惯的结果。虽然每种习惯的影响相对有限，但随着时间的推移，你吃饭时点的菜，每天晚上对孩子们说的话，你是储蓄还是消费，锻炼的频率，以及你的思维组织与日常工作安排，对你的健康、工作效率、经济保障以及幸福都会有巨大的影响。杜克大学2006年发布的研究报告表明，人每天有40%的行为并不是真正由决定促成的，而是出于习惯。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p10"
+        },
+        {
+          "excerpt": "这解释了为什么很难创造出锻炼的习惯或者饮食习惯。一旦你养成了长时间坐在沙发上而不是跑步的习惯，或者养成了每次经过装甜甜圈的盒子都要拿一块的习惯，那这些行为模式就永远留在了大脑内。不过，同理，如果我们学会去创造可以压制这些习惯引发的常规神经活动，也就是控制习惯回路的话，我们就可以把坏习惯压制到幕后，就像丽莎·艾伦在开罗之旅后做的那样。而且研究表明，一旦新模式诞生，那么跑步锻炼或者对甜甜圈视而不见就会像其他习惯一样变成自然而然的活动。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c08_p1"
         }
       ],
       "domain": "health"
@@ -41036,6 +41386,13 @@
           "source_file": "身心与疾病_无限可能的身体.md",
           "source_id": "body_unlimited",
           "note_id": "bu_c16_p117"
+        },
+        {
+          "excerpt": "不过这一切都有点儿让人出乎意料，因为匿名戒酒互助社几乎没有科学根据，或者也没有被广为接受的治疗方法作为基础。当然，酗酒不仅仅是一种习惯，这是一种具有心理根源，可能还有基因根源的生理成瘾。更有趣的是，匿名戒酒互助社的治疗项目并不直接针对很多精神病学或生物化学方面的问题，而研究人员说这些东西往往是酒精成瘾的核心。实际上，匿名戒酒互助社的方法似乎将科学与医学发现都抛在了一边，也没有去管很多精神病专家所说的酗酒之人真正需要的各种干涉疗法[3]。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c12_p3"
         }
       ],
       "domain": "health"
@@ -41811,6 +42168,34 @@
           "source_file": "身心与疾病_无限可能的身体.md",
           "source_id": "body_unlimited",
           "note_id": "bu_c16_p58"
+        },
+        {
+          "excerpt": "想打造新的饮食习惯吗？与美国国家体重控制登记处合作的科研人员进行了一个有6 000人参与的项目，他们减掉的体重都超过了30磅。在这个项目中，科研人员检查了节食成功者的习惯，发现他们中78%的人每天都吃早餐，这是一天中变成暗示的一餐。最成功的节食者为自己的食谱构想了一个特定的奖赏，比如一件想穿的比基尼或者他们每天站在秤上看到体重下降带来的自豪感，这种奖赏是他们选择的，也是他们真心想要的。当诱惑出现时，他们的注意力都集中在对奖赏的渴求上，并将这种渴求变成了一种轻度的沉迷。研究人员发现他们对奖赏的渴求将诱惑挤出了食谱，这种渴求驱动着他们的习惯回路。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p17"
+        },
+        {
+          "excerpt": "接着，在2009年，美国国立卫生研究院资助的一组研究人员发表了关于一种减肥新方法的研究。他们召集了1 600位有肥胖问题的人，让他们每周至少有一天记下自己吃的所有东西。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c15_p5"
+        },
+        {
+          "excerpt": "开始时这很难保持。被试者不是忘记带上他们的饮食记录本，就是吃了零食后忘记记下。但慢慢地，他们开始每周一次记下他们的饮食，有时甚至记得更频繁。很多参加者开始每天都记录自己的饮食，最后这变成了一个习惯。然后意外的事情发生了。他们开始留意自己的记录，并发现以前没注意到的行为模式。一些人注意到自己总是在早上10点吃零食，于是他们就在桌上放一个苹果或者香蕉作为这时的小点心。还有人开始利用他们的记录去制订新的饮食计划，正餐时吃计划里写下的健康餐，而不是冰箱里的垃圾食品。这些都不是研究人员让他们做的，研究人员最初只是让他们每周一天记录自己吃过的东西。但记录饮食这个核心习惯创造了一个架构，使得其他习惯得以形成。研究进行到第六个月，那些每天作饮食记录的人比其他人多减了一倍的体重。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c15_p6"
+        },
+        {
+          "excerpt": "一位参与者告诉我说：“一段时间后，这个饮食记录进入了我的脑子里，我开始以一种不同的方式考虑饮食。记录的过程为我建立了一个新的系统，让我不用一考虑食物就感到沮丧。”",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c15_p7"
         }
       ],
       "domain": "health"
@@ -43929,6 +44314,34 @@
           "source_file": "身心与疾病_无限可能的身体.md",
           "source_id": "body_unlimited",
           "note_id": "bu_c4_p17"
+        },
+        {
+          "excerpt": "不过今天站在研究人员面前的这位女士苗条而充满活力，有着两条长跑运动员的腿。她看上去比档案照片上的自己要年轻10岁，比房间里其他人都要健康。根据丽莎最近的情况资料，她不再拖欠外债，也不再喝酒，而且已经在一家图形设计公司连续干了39个月。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p2"
+        },
+        {
+          "excerpt": "但坐出租车那时，丽莎并不知道会这样。对实验室的科学家来说，她这趟出行的细节并不重要，因为他们明白，那天在开罗，丽莎下定决心戒烟以实现她的目标，这种思想的细微变化触发了一系列的变化，最终影响到了她生活的方方面面。在那之后的6个月，她用跑步代替了吸烟，这也改变了她的饮食习惯、工作习惯、睡眠习惯、储蓄习惯、工作日的安排、未来的计划等。她先开始跑半程马拉松，然后是全程马拉松。她重新回学校读书，买了套房子，并且订婚了。最后她受邀参与科学家的研究，当研究人员开始检查她大脑的图像时，他们发现旧习惯在大脑中形成的神经模式完全被新模式取代。研究人员依然能看见以前行为引发的神经活动，但这些神经脉冲在大量的新脉冲面前显得微不足道。丽莎的习惯改变了，她的大脑也发生了变化。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p7"
+        },
+        {
+          "excerpt": "如果你想在每天早上起来晨跑，那你就得选择一个简单的暗示（比如吃早餐前绑好跑鞋的鞋带或者把运动衣放在床边）和一个清晰的奖赏（作为一天之中的奖励，可以通过记录你的运动英里数来获得成就感，或者在跑步中产生大量的内啡肽）。但是众多研究表明，暗示加上奖赏本身并不足以让新习惯长期持续。只有你的大脑开始预期奖赏，渴求内啡肽的分泌或成就感时，你才会自觉地在每天早上绑好跑鞋鞋带。而暗示除了能够触发惯常行为，还必须能够触发人对即将到来的奖赏的渴求。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p13"
+        },
+        {
+          "excerpt": "任何人都可以用这个基本的方法来创造自己的习惯。想多多锻炼？选择一个暗示（比如每次一醒来就去健身房），然后找一个奖赏（比如每次健身后来一杯奶昔）。想想奶昔或者你会感觉到身体里涌出的内啡肽。让自己去预期奖赏的出现，最终，这种渴求会让你每天更想去健身。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p16"
         }
       ],
       "domain": "health"
@@ -45849,6 +46262,735 @@
           "source_file": "身心与疾病_无限可能的身体.md",
           "source_id": "body_unlimited",
           "note_id": "bu_c19_p96"
+        },
+        {
+          "excerpt": "在其中一个研究组中，92%的参与者说他们习惯性锻炼是因为这让他们“感觉很好”，他们变得越来越期盼并渴求运动时产生的内啡肽和其他神经化学物质。在另一组人中，67%的人说锻炼让他们有一种“成就感”，他们从追踪自己的运动表现中渴求一种经常出现的胜利感。这种自我奖赏足够让体育活动变成一种习惯。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p12"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "smoking",
+      "target": "obesity_risk",
+      "relation": "戒烟等吸烟行为改变与体重管理及肥胖风险相关的行为观察",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+      "note_id": "poh_c05_p1",
+      "excerpt": "她是科学家最喜欢的研究对象。 丽莎·艾伦是一位34岁的女士。她16岁就开始吸烟喝酒，之后的大部分时间都在和肥胖作斗争。她曾借债度日，在她20多岁的时候，讨债公司追着她索要1万美元的债务。简历显示她干得最长的工作持续时间还不到一年。",
+      "audience": "general",
+      "source_id": "power_of_habit",
+      "source_title": "习惯的力量",
+      "id": "poh_c05_p1",
+      "evidences": [
+        {
+          "excerpt": "她是科学家最喜欢的研究对象。 丽莎·艾伦是一位34岁的女士。她16岁就开始吸烟喝酒，之后的大部分时间都在和肥胖作斗争。她曾借债度日，在她20多岁的时候，讨债公司追着她索要1万美元的债务。简历显示她干得最长的工作持续时间还不到一年。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p1"
+        },
+        {
+          "excerpt": "不过今天站在研究人员面前的这位女士苗条而充满活力，有着两条长跑运动员的腿。她看上去比档案照片上的自己要年轻10岁，比房间里其他人都要健康。根据丽莎最近的情况资料，她不再拖欠外债，也不再喝酒，而且已经在一家图形设计公司连续干了39个月。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p2"
+        },
+        {
+          "excerpt": "“几乎是4年前了，”她回答道，“从那时起，我减掉了60磅的体重，开始跑马拉松。”她还开始攻读硕士学位，并买了房，这可是个不小的转变。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p3"
+        },
+        {
+          "excerpt": "但坐出租车那时，丽莎并不知道会这样。对实验室的科学家来说，她这趟出行的细节并不重要，因为他们明白，那天在开罗，丽莎下定决心戒烟以实现她的目标，这种思想的细微变化触发了一系列的变化，最终影响到了她生活的方方面面。在那之后的6个月，她用跑步代替了吸烟，这也改变了她的饮食习惯、工作习惯、睡眠习惯、储蓄习惯、工作日的安排、未来的计划等。她先开始跑半程马拉松，然后是全程马拉松。她重新回学校读书，买了套房子，并且订婚了。最后她受邀参与科学家的研究，当研究人员开始检查她大脑的图像时，他们发现旧习惯在大脑中形成的神经模式完全被新模式取代。研究人员依然能看见以前行为引发的神经活动，但这些神经脉冲在大量的新脉冲面前显得微不足道。丽莎的习惯改变了，她的大脑也发生了变化。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p7"
+        },
+        {
+          "excerpt": "房间里的科学家——有神经学家、心理学家、遗传学家和社会学家，在过去的3年里，依靠美国国家健康研究所的资金，研究测试了包括丽莎在内的24个人——有吸烟上瘾的，暴饮暴食的，酗酒成性的，疯狂购物的，以及有其他破坏性习惯的人。所有这些研究参与人员都有一个共同点，他们的生活都在较短的时间内焕然一新。研究人员想弄清楚这是怎么发生的。所以他们测量了所有被试者的主要表征，在他们家中安装摄像头，观察被试者的日常活动，研究他们的DNA序列。在科技的帮助下，科学家们可以实时观察人类大脑。当受试者接触到诸如吸烟和美食的时候，研究人员能观测到他们大脑中血液和电脉冲的情况。研究人员的目标是从神经层面上弄清楚人类习惯的运作机理，以及如何才能改变习惯。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p4"
+        },
+        {
+          "excerpt": "丽莎知道这想法很疯狂。她当时身体状况不好，又胖，银行也没有存款。她连自己眼前的这片沙漠叫什么都不知道，也不知道穿越沙漠能否成行。不过，这都不重要，她只需要一件能集中精神的事。丽莎下了决心，要花一年的时间来准备这次穿越。要想活着完成这次远行，她就必定要作些牺牲。具体来说，她得先戒烟。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p6"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "smoking",
+      "target": "energy_vitality",
+      "relation": "吸烟习惯改变与身体活力及运动参与相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+      "note_id": "poh_c05_p2",
+      "excerpt": "不过今天站在研究人员面前的这位女士苗条而充满活力，有着两条长跑运动员的腿。她看上去比档案照片上的自己要年轻10岁，比房间里其他人都要健康。根据丽莎最近的情况资料，她不再拖欠外债，也不再喝酒，而且已经在一家图形设计公司连续干了39个月。",
+      "audience": "general",
+      "source_id": "power_of_habit",
+      "source_title": "习惯的力量",
+      "id": "poh_c05_p2",
+      "evidences": [
+        {
+          "excerpt": "不过今天站在研究人员面前的这位女士苗条而充满活力，有着两条长跑运动员的腿。她看上去比档案照片上的自己要年轻10岁，比房间里其他人都要健康。根据丽莎最近的情况资料，她不再拖欠外债，也不再喝酒，而且已经在一家图形设计公司连续干了39个月。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p2"
+        },
+        {
+          "excerpt": "“几乎是4年前了，”她回答道，“从那时起，我减掉了60磅的体重，开始跑马拉松。”她还开始攻读硕士学位，并买了房，这可是个不小的转变。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p3"
+        },
+        {
+          "excerpt": "但坐出租车那时，丽莎并不知道会这样。对实验室的科学家来说，她这趟出行的细节并不重要，因为他们明白，那天在开罗，丽莎下定决心戒烟以实现她的目标，这种思想的细微变化触发了一系列的变化，最终影响到了她生活的方方面面。在那之后的6个月，她用跑步代替了吸烟，这也改变了她的饮食习惯、工作习惯、睡眠习惯、储蓄习惯、工作日的安排、未来的计划等。她先开始跑半程马拉松，然后是全程马拉松。她重新回学校读书，买了套房子，并且订婚了。最后她受邀参与科学家的研究，当研究人员开始检查她大脑的图像时，他们发现旧习惯在大脑中形成的神经模式完全被新模式取代。研究人员依然能看见以前行为引发的神经活动，但这些神经脉冲在大量的新脉冲面前显得微不足道。丽莎的习惯改变了，她的大脑也发生了变化。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p7"
+        },
+        {
+          "excerpt": "丽莎知道这想法很疯狂。她当时身体状况不好，又胖，银行也没有存款。她连自己眼前的这片沙漠叫什么都不知道，也不知道穿越沙漠能否成行。不过，这都不重要，她只需要一件能集中精神的事。丽莎下了决心，要花一年的时间来准备这次穿越。要想活着完成这次远行，她就必定要作些牺牲。具体来说，她得先戒烟。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p6"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "aerobic_exercise",
+      "target": "smoking",
+      "relation": "规律运动作为核心习惯与较少吸烟相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+      "note_id": "poh_c05_p7",
+      "excerpt": "但坐出租车那时，丽莎并不知道会这样。对实验室的科学家来说，她这趟出行的细节并不重要，因为他们明白，那天在开罗，丽莎下定决心戒烟以实现她的目标，这种思想的细微变化触发了一系列的变化，最终影响到了她生活的方方面面。在那之后的6个月，她用跑步代替了吸烟，这也改变了她的饮食习惯、工作习惯、睡眠习惯、储蓄习惯、工作日的安排、未来的计划等。她先开始跑半程马拉松，然后是全程马拉松。她重新回学校读书，买了套房子，并且订婚了。最后她受邀参与科学家的研究，当研究人员开始检查她大脑的图像时，他们发现旧习惯在大脑中形成的神经模式完全被新模式取代。研究人员依然能看见以前行为引发的神经活动，但这些神经脉冲在大量的新脉冲面前显得微不足道。丽莎的习惯改变了，她的大脑也发生了变化。",
+      "audience": "general",
+      "source_id": "power_of_habit",
+      "source_title": "习惯的力量",
+      "id": "poh_c05_p7",
+      "evidences": [
+        {
+          "excerpt": "但坐出租车那时，丽莎并不知道会这样。对实验室的科学家来说，她这趟出行的细节并不重要，因为他们明白，那天在开罗，丽莎下定决心戒烟以实现她的目标，这种思想的细微变化触发了一系列的变化，最终影响到了她生活的方方面面。在那之后的6个月，她用跑步代替了吸烟，这也改变了她的饮食习惯、工作习惯、睡眠习惯、储蓄习惯、工作日的安排、未来的计划等。她先开始跑半程马拉松，然后是全程马拉松。她重新回学校读书，买了套房子，并且订婚了。最后她受邀参与科学家的研究，当研究人员开始检查她大脑的图像时，他们发现旧习惯在大脑中形成的神经模式完全被新模式取代。研究人员依然能看见以前行为引发的神经活动，但这些神经脉冲在大量的新脉冲面前显得微不足道。丽莎的习惯改变了，她的大脑也发生了变化。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p7"
+        },
+        {
+          "excerpt": "举个例子来说，过去10年有研究人员调查运动对日常行为的影响。当人们开始养成运动的习惯时，即使是一周一次的运动，他们也会不知不觉改变其他与之无关的行为模式。通常来说，做运动的人会吃得更香，工作更有效率。他们更少吸烟，对同事和家人更有耐心。而且更少使用信用卡，压力也更小。研究人员还没弄清楚这种变化的原因，但对于很多人来说，运动是引发广泛变化的核心习惯。美国罗德岛大学的研究人员詹姆斯·普罗查斯卡说：“运动有很大影响，它包含某些让其他好习惯更易形成的因素。”",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c15_p3"
+        },
+        {
+          "excerpt": "两个月后，研究人员通过观察参与者日常锻炼之外的生活状况，来确定在体育锻炼中增长的意志力是否能够提高日常生活中的意志力。在实验开始前，多数参与者表明自己生活懒散。当然，现在他们的身体状况好多了。不仅如此，他们在生活的其他方面也变得更加健康。参与者在体育锻炼上花费的时间越长，用来吸烟、饮酒、喝咖啡、吃垃圾食品的时间就越短，而且会多干家务、少看电视，心情也舒畅起来。但欧顿和成怀疑这个结果和意志力的提高没什么关系。万一是体育锻炼本身就能使人精神愉悦、健康饮食呢？",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c17_p7"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "craving",
+      "target": "aerobic_exercise",
+      "relation": "对内啡肽或成就感的渴求与持续运动习惯相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+      "note_id": "poh_c10_p5",
+      "excerpt": "根据那些相同的原则，另外有上千种习惯被创造了出来。人们往往没有意识到他们是多么严格地遵守着霍普金斯的公式。比方说，对成功开始新锻炼习惯的人群的研究表明，如果他们选择一个具体的暗示，例如下班后尽快跑回家；以及一个清晰的奖赏，例如一杯啤酒或者看一个晚上的电视而不必心怀内疚，他们会更有可能坚持锻炼。关于节食减肥的研究表明，创造新的饮食习惯需要一个预设暗示，例如事先设定的菜单，以及为坚持节食的人们提供的简单奖赏。",
+      "audience": "general",
+      "source_id": "power_of_habit",
+      "source_title": "习惯的力量",
+      "id": "poh_c10_p5",
+      "evidences": [
+        {
+          "excerpt": "根据那些相同的原则，另外有上千种习惯被创造了出来。人们往往没有意识到他们是多么严格地遵守着霍普金斯的公式。比方说，对成功开始新锻炼习惯的人群的研究表明，如果他们选择一个具体的暗示，例如下班后尽快跑回家；以及一个清晰的奖赏，例如一杯啤酒或者看一个晚上的电视而不必心怀内疚，他们会更有可能坚持锻炼。关于节食减肥的研究表明，创造新的饮食习惯需要一个预设暗示，例如事先设定的菜单，以及为坚持节食的人们提供的简单奖赏。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p5"
+        },
+        {
+          "excerpt": "为了弄清楚“渴求”在创造习惯方面具有的力量，科研人员开始研究锻炼习惯是如何养成的。2002年，美国新墨西哥州州立大学的科研人员想找到一些人习惯性锻炼的原因。他们研究了266个人，这些人中的大部分每周至少运动三次。研究人员发现这些人中有很多人要么是一时兴起开始跑步或练举重的，要么是因为他们突然有了自由支配的时间，要么是想释放一下生活中不期而遇的压力。不过，他们持续运动以及这种运动变成习惯的原因，是他们开始渴求一种特殊的奖赏。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p11"
+        },
+        {
+          "excerpt": "在其中一个研究组中，92%的参与者说他们习惯性锻炼是因为这让他们“感觉很好”，他们变得越来越期盼并渴求运动时产生的内啡肽和其他神经化学物质。在另一组人中，67%的人说锻炼让他们有一种“成就感”，他们从追踪自己的运动表现中渴求一种经常出现的胜利感。这种自我奖赏足够让体育活动变成一种习惯。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p12"
+        },
+        {
+          "excerpt": "如果你想在每天早上起来晨跑，那你就得选择一个简单的暗示（比如吃早餐前绑好跑鞋的鞋带或者把运动衣放在床边）和一个清晰的奖赏（作为一天之中的奖励，可以通过记录你的运动英里数来获得成就感，或者在跑步中产生大量的内啡肽）。但是众多研究表明，暗示加上奖赏本身并不足以让新习惯长期持续。只有你的大脑开始预期奖赏，渴求内啡肽的分泌或成就感时，你才会自觉地在每天早上绑好跑鞋鞋带。而暗示除了能够触发惯常行为，还必须能够触发人对即将到来的奖赏的渴求。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p13"
+        },
+        {
+          "excerpt": "任何人都可以用这个基本的方法来创造自己的习惯。想多多锻炼？选择一个暗示（比如每次一醒来就去健身房），然后找一个奖赏（比如每次健身后来一杯奶昔）。想想奶昔或者你会感觉到身体里涌出的内啡肽。让自己去预期奖赏的出现，最终，这种渴求会让你每天更想去健身。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p16"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "craving",
+      "target": "appetite_regulation",
+      "relation": "对食物奖赏的神经渴求与食欲调控相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+      "note_id": "poh_c10_p6",
+      "excerpt": "不过，我们把暗示和特定的奖赏关联起来，大脑中就出现了潜意识的渴求，这让习惯回路继续运转。比如，美国康奈尔大学的一位研究人员就发现，人对食物和气味的渴求非常强，如果注意一下辛那邦连锁糕饼店在购物商城里都在什么位置，你就会意识到这种渴求影响了我们的行为。大多数食品店都把店铺设在美食街这种地方，但是辛那邦却让自己的店远离其他食品店，原因是辛那邦的高管想让辛那邦肉桂卷的香味畅通无阻地飘过走廊，在角落挥之不散，这样消费者就会下意识地渴求肉桂卷。等到消费者转弯看到辛那邦糕饼店时，大脑中的这种渴求就会像怪兽一样咆哮，他会不假思索地掏钱包。因为渴求感的出现，这一习惯回路开始工作。",
+      "audience": "general",
+      "source_id": "power_of_habit",
+      "source_title": "习惯的力量",
+      "id": "poh_c10_p6",
+      "evidences": [
+        {
+          "excerpt": "不过，我们把暗示和特定的奖赏关联起来，大脑中就出现了潜意识的渴求，这让习惯回路继续运转。比如，美国康奈尔大学的一位研究人员就发现，人对食物和气味的渴求非常强，如果注意一下辛那邦连锁糕饼店在购物商城里都在什么位置，你就会意识到这种渴求影响了我们的行为。大多数食品店都把店铺设在美食街这种地方，但是辛那邦却让自己的店远离其他食品店，原因是辛那邦的高管想让辛那邦肉桂卷的香味畅通无阻地飘过走廊，在角落挥之不散，这样消费者就会下意识地渴求肉桂卷。等到消费者转弯看到辛那邦糕饼店时，大脑中的这种渴求就会像怪兽一样咆哮，他会不假思索地掏钱包。因为渴求感的出现，这一习惯回路开始工作。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p6"
+        },
+        {
+          "excerpt": "舒尔茨跟我说：“我们脑子里没有被编排进让我们看到一盒甜甜圈就禁不住想吃的东西，不过，一旦大脑知道甜甜圈里有香甜的糖和其他碳水化合物，它就会对糖有非常高的预期。大脑会将我们推向盒子。然后，如果我们不吃甜甜圈，那就会感到失望。”",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p7"
+        },
+        {
+          "excerpt": "科学家研究了酗酒者、烟民、暴饮暴食者的大脑，随着这些人的渴求根深蒂固，科研人员测量了他们神经的变化，即大脑的结构和颅骨内的神经化学物质的流动。美国密歇根大学的两位研究人员在论文里说，那些习惯特别强时会让人出现上瘾一样的反应，于是“需求变成了让人沉溺其中的渴求”，这种变化让大脑进入了自动运转的状态，“甚至在丧失名誉、丢掉工作、无家可归和失去家人这样很强的抑制因素面前也无法停止”。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p10"
+        },
+        {
+          "excerpt": "并不是说不存在秘诀，问题是改变习惯的秘诀不止一种。人各不同，习惯也有无数种，所以，判断和改变我们生活中这些习惯的细节也因人而异，也因为具体的行为不同而不同。戒烟与戒掉暴饮暴食不同，这和改变你与配偶交流的方式也不同，工作时把工作内容排序也有自己的方法。此外，每个人的习惯都受不同的渴求驱动。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c27_p1"
+        },
+        {
+          "excerpt": "比如你有一个坏习惯，就像我为撰写本书做研究时的习惯一样，喜欢每天下午去咖啡厅买巧克力豆饼干。假设这个习惯让你胖了几磅，或者说这个习惯实际上让你胖了8磅，然后你妻子针对你的体重说了一些让你不爽的话。于是你总是强迫自己停止吃饼干，但徒劳无益，你觉得很累，你甚至还在电脑上贴了即时贴，写着再也不吃饼干了。但是每天下午你都会当这张即时贴不存在，照样晃悠着去咖啡厅，然后买饼干，接着在收银台附近与同事闲聊时就开始吃。吃的时候感觉很好，吃完就难受了。你跟自己发誓，说你明天会用全部的意志力来抵制饼干的诱惑，明天会是新的一天。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c27_p2"
+        },
+        {
+          "excerpt": "接着，还有一些较为隐蔽的问题：这一惯常行为的暗示是什么？是饥饿吗？是无聊吗？是因为低血糖？还是说你在全身心投入到下一件工作前，需要休息下，而吃饼干就是休息的一种方式？",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c27_p3"
+        },
+        {
+          "excerpt": "那么奖赏是什么？是饼干吗？还是换了环境？或者是暂时散散心？又或者是与同事聊天？也有可能通过突然摄入那么多糖获得了能量充沛的感觉?",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c27_p4"
+        },
+        {
+          "excerpt": "这下你应该懂了。你选择用什么行为取代买饼干并不重要，重要的是要测试各种假设，确定哪种渴求在驱动你的惯常行为。你是因为渴求饼干本身，还是想休息一下再工作？如果是饼干本身，那是因为你饿了吗？（如果是这样，苹果应该也可以满足你。）",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c27_p5"
+        },
+        {
+          "excerpt": "那为什么闹钟设的时间是15分钟后呢？因为这些测试的重点是找出你渴求的奖赏是什么。如果吃掉甜甜圈15分钟后，你还是有冲动起身去咖啡厅，那驱动你习惯的就不是对糖的渴求。如果在和同事闲聊之后，你还是想吃饼干，那么与人接触的需求就不是你吃饼干行为的诱因。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c27_p6"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "craving",
+      "target": "obesity_risk",
+      "relation": "对高糖高脂食物的渴求驱动与较高肥胖风险相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+      "note_id": "poh_c10_p6",
+      "excerpt": "不过，我们把暗示和特定的奖赏关联起来，大脑中就出现了潜意识的渴求，这让习惯回路继续运转。比如，美国康奈尔大学的一位研究人员就发现，人对食物和气味的渴求非常强，如果注意一下辛那邦连锁糕饼店在购物商城里都在什么位置，你就会意识到这种渴求影响了我们的行为。大多数食品店都把店铺设在美食街这种地方，但是辛那邦却让自己的店远离其他食品店，原因是辛那邦的高管想让辛那邦肉桂卷的香味畅通无阻地飘过走廊，在角落挥之不散，这样消费者就会下意识地渴求肉桂卷。等到消费者转弯看到辛那邦糕饼店时，大脑中的这种渴求就会像怪兽一样咆哮，他会不假思索地掏钱包。因为渴求感的出现，这一习惯回路开始工作。",
+      "audience": "general",
+      "source_id": "power_of_habit",
+      "source_title": "习惯的力量",
+      "id": "poh_c10_p6",
+      "evidences": [
+        {
+          "excerpt": "不过，我们把暗示和特定的奖赏关联起来，大脑中就出现了潜意识的渴求，这让习惯回路继续运转。比如，美国康奈尔大学的一位研究人员就发现，人对食物和气味的渴求非常强，如果注意一下辛那邦连锁糕饼店在购物商城里都在什么位置，你就会意识到这种渴求影响了我们的行为。大多数食品店都把店铺设在美食街这种地方，但是辛那邦却让自己的店远离其他食品店，原因是辛那邦的高管想让辛那邦肉桂卷的香味畅通无阻地飘过走廊，在角落挥之不散，这样消费者就会下意识地渴求肉桂卷。等到消费者转弯看到辛那邦糕饼店时，大脑中的这种渴求就会像怪兽一样咆哮，他会不假思索地掏钱包。因为渴求感的出现，这一习惯回路开始工作。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p6"
+        },
+        {
+          "excerpt": "舒尔茨跟我说：“我们脑子里没有被编排进让我们看到一盒甜甜圈就禁不住想吃的东西，不过，一旦大脑知道甜甜圈里有香甜的糖和其他碳水化合物，它就会对糖有非常高的预期。大脑会将我们推向盒子。然后，如果我们不吃甜甜圈，那就会感到失望。”",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p7"
+        },
+        {
+          "excerpt": "想打造新的饮食习惯吗？与美国国家体重控制登记处合作的科研人员进行了一个有6 000人参与的项目，他们减掉的体重都超过了30磅。在这个项目中，科研人员检查了节食成功者的习惯，发现他们中78%的人每天都吃早餐，这是一天中变成暗示的一餐。最成功的节食者为自己的食谱构想了一个特定的奖赏，比如一件想穿的比基尼或者他们每天站在秤上看到体重下降带来的自豪感，这种奖赏是他们选择的，也是他们真心想要的。当诱惑出现时，他们的注意力都集中在对奖赏的渴求上，并将这种渴求变成了一种轻度的沉迷。研究人员发现他们对奖赏的渴求将诱惑挤出了食谱，这种渴求驱动着他们的习惯回路。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p17"
+        },
+        {
+          "excerpt": "比如你有一个坏习惯，就像我为撰写本书做研究时的习惯一样，喜欢每天下午去咖啡厅买巧克力豆饼干。假设这个习惯让你胖了几磅，或者说这个习惯实际上让你胖了8磅，然后你妻子针对你的体重说了一些让你不爽的话。于是你总是强迫自己停止吃饼干，但徒劳无益，你觉得很累，你甚至还在电脑上贴了即时贴，写着再也不吃饼干了。但是每天下午你都会当这张即时贴不存在，照样晃悠着去咖啡厅，然后买饼干，接着在收银台附近与同事闲聊时就开始吃。吃的时候感觉很好，吃完就难受了。你跟自己发誓，说你明天会用全部的意志力来抵制饼干的诱惑，明天会是新的一天。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c27_p2"
+        },
+        {
+          "excerpt": "有这三天的记录，已经可以清楚地看到是什么暗示诱发了我买饼干的习惯，让我每天在固定的时间有吃零食的冲动。在第二步我就发现我有这个习惯并不是因为饿。我找寻的奖赏是暂时散散心，也就是通过与朋友闲聊得到消遣。我现在知道这一习惯诱发的时间是在下午3点到4点之间。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c27_p7"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "craving",
+      "target": "smoking",
+      "relation": "对尼古丁奖赏的渴求与持续吸烟行为相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+      "note_id": "poh_c10_p8",
+      "excerpt": "习惯是这样产生的：把暗示、惯常行为和奖赏拼在一起，然后培养一种渴求来驱动这一回路。吸烟就是这样。烟民看到暗示，比如一包万宝路，那么烟民的大脑就会开始预期尼古丁的味道。",
+      "audience": "general",
+      "source_id": "power_of_habit",
+      "source_title": "习惯的力量",
+      "id": "poh_c10_p8",
+      "evidences": [
+        {
+          "excerpt": "习惯是这样产生的：把暗示、惯常行为和奖赏拼在一起，然后培养一种渴求来驱动这一回路。吸烟就是这样。烟民看到暗示，比如一包万宝路，那么烟民的大脑就会开始预期尼古丁的味道。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p8"
+        },
+        {
+          "excerpt": "单是看到香烟就足够让大脑产生对尼古丁渴求的冲动。如果没抽到烟，这种渴求就会一直增长，直到烟民不经思考就拿起万宝路为止。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p9"
+        },
+        {
+          "excerpt": "科学家研究了酗酒者、烟民、暴饮暴食者的大脑，随着这些人的渴求根深蒂固，科研人员测量了他们神经的变化，即大脑的结构和颅骨内的神经化学物质的流动。美国密歇根大学的两位研究人员在论文里说，那些习惯特别强时会让人出现上瘾一样的反应，于是“需求变成了让人沉溺其中的渴求”，这种变化让大脑进入了自动运转的状态，“甚至在丧失名誉、丢掉工作、无家可归和失去家人这样很强的抑制因素面前也无法停止”。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c10_p10"
+        },
+        {
+          "excerpt": "如果你想戒烟，就问问自己：吸烟是因为喜欢尼古丁，因为能获得强烈的刺激，还是因为它是你日常生活固定的一部分，是社交方式的一种？一些研究表明，如果你吸烟是想获得刺激，那午后摄入一些咖啡因，能提高你戒烟成功的概率。超过1/3对已经戒烟者的研究发现，找出他们与香烟相关联的暗示和奖赏，然后选择具有相同回报的惯常行为来替代，更可能让他们成功戒烟。比如说吃一片尼古清、做几组快速的俯卧撑，甚至仅仅是花几分钟伸展放松一下，都能达到这个效果。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c12_p9"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "alcohol",
+      "target": "mental_health",
+      "relation": "过量饮酒与情绪焦虑及成瘾相关心理健康负担相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+      "note_id": "poh_c12_p1",
+      "excerpt": "黄金法则的影响面很广，对治疗酗酒、肥胖、强迫症以及其他数百种具有破坏性的行为都有效果。如果了解这条法则，任何人都可以改变自己的习惯（比如尝试戒掉零食的行为往往会失败，除非出现新的能满足旧暗示和奖赏欲望的惯常行为，才可以戒掉。烟民一般无法戒烟，除非他对尼古丁的渴求被触发时，能找到其他可以替代吸烟的活动）。",
+      "audience": "general",
+      "source_id": "power_of_habit",
+      "source_title": "习惯的力量",
+      "id": "poh_c12_p1",
+      "evidences": [
+        {
+          "excerpt": "黄金法则的影响面很广，对治疗酗酒、肥胖、强迫症以及其他数百种具有破坏性的行为都有效果。如果了解这条法则，任何人都可以改变自己的习惯（比如尝试戒掉零食的行为往往会失败，除非出现新的能满足旧暗示和奖赏欲望的惯常行为，才可以戒掉。烟民一般无法戒烟，除非他对尼古丁的渴求被触发时，能找到其他可以替代吸烟的活动）。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c12_p1"
+        },
+        {
+          "excerpt": "据估计，每年有210万人到匿名戒酒互助社寻求帮助，有高达1 000万人在匿名戒酒互助社里成功戒酒。当然，匿名戒酒互助社并不能帮到所有人，而且因为有匿名机制，所以很难测算戒酒的成功率，但有数以百万计的人能证明戒酒的项目拯救了他们的生活。匿名戒酒互助社的创办信条（即著名的戒酒12步法），已经成了一种文化磁铁，嵌入到了对各种破坏性行为的治疗中。治疗的内容包括暴饮暴食、赌博成瘾、欠债成瘾、性瘾、毒瘾、存储东西成瘾、自残成瘾、吸烟成瘾、电视游戏成瘾、情绪依赖成瘾等。从多个角度来看，这个组织的方法是改变习惯最有效的方法。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c12_p2"
+        },
+        {
+          "excerpt": "不过这一切都有点儿让人出乎意料，因为匿名戒酒互助社几乎没有科学根据，或者也没有被广为接受的治疗方法作为基础。当然，酗酒不仅仅是一种习惯，这是一种具有心理根源，可能还有基因根源的生理成瘾。更有趣的是，匿名戒酒互助社的治疗项目并不直接针对很多精神病学或生物化学方面的问题，而研究人员说这些东西往往是酒精成瘾的核心。实际上，匿名戒酒互助社的方法似乎将科学与医学发现都抛在了一边，也没有去管很多精神病专家所说的酗酒之人真正需要的各种干涉疗法[3]。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c12_p3"
+        },
+        {
+          "excerpt": "匿名戒酒互助社提供的办法是针对与酒精使用有关的习惯展开治疗。从本质上，匿名戒酒互助社是改变习惯回路的一架大型机器。虽然与酒精成瘾的习惯都比较极端，但那时匿名戒酒互助社提供的治疗课程显示，几乎所有的习惯，甚至最顽固的那种，都是可以被改变的。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c12_p4"
+        },
+        {
+          "excerpt": "房间里的科学家——有神经学家、心理学家、遗传学家和社会学家，在过去的3年里，依靠美国国家健康研究所的资金，研究测试了包括丽莎在内的24个人——有吸烟上瘾的，暴饮暴食的，酗酒成性的，疯狂购物的，以及有其他破坏性习惯的人。所有这些研究参与人员都有一个共同点，他们的生活都在较短的时间内焕然一新。研究人员想弄清楚这是怎么发生的。所以他们测量了所有被试者的主要表征，在他们家中安装摄像头，观察被试者的日常活动，研究他们的DNA序列。在科技的帮助下，科学家们可以实时观察人类大脑。当受试者接触到诸如吸烟和美食的时候，研究人员能观测到他们大脑中血液和电脉冲的情况。研究人员的目标是从神经层面上弄清楚人类习惯的运作机理，以及如何才能改变习惯。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c05_p4"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "alcohol",
+      "target": "psychological_stress",
+      "relation": "以饮酒逃避压力与心理应激应对相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+      "note_id": "poh_c12_p6",
+      "excerpt": "接着，匿名戒酒互助社让酗酒者找出他们从酒中得到了什么奖赏。这个项目要找的是哪些渴求感在驱使着你的习惯回路。通常来说，喝醉本身并不属于渴求。酗酒者之所以想喝酒，是因为酒让他们能逃避现实，放松心情，又有人陪伴，而且缓解焦虑，情感也得到释放。或许他们想喝杯鸡尾酒来忘记烦心事，但并不一定想“买醉”。酒精的物理作用往往是嗜酒成瘾这个习惯回路中最次要的奖赏之一。",
+      "audience": "general",
+      "source_id": "power_of_habit",
+      "source_title": "习惯的力量",
+      "id": "poh_c12_p6",
+      "evidences": [
+        {
+          "excerpt": "接着，匿名戒酒互助社让酗酒者找出他们从酒中得到了什么奖赏。这个项目要找的是哪些渴求感在驱使着你的习惯回路。通常来说，喝醉本身并不属于渴求。酗酒者之所以想喝酒，是因为酒让他们能逃避现实，放松心情，又有人陪伴，而且缓解焦虑，情感也得到释放。或许他们想喝杯鸡尾酒来忘记烦心事，但并不一定想“买醉”。酒精的物理作用往往是嗜酒成瘾这个习惯回路中最次要的奖赏之一。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c12_p6"
+        },
+        {
+          "excerpt": "“酒精能让人感到快乐，”德国研究酗酒者大脑活动的神经学家穆勒乌尔夫·穆勒说，“但人们也会用喝酒来让自己忘记一些事情，或者满足其他渴求感。而比起对身体愉悦的渴求感，这些精神上宽慰的渴求感会在大脑完全不同的部位发生。”为了给酗酒者提供他们在酒吧中能获得的同等奖赏，匿名戒酒互助社建立了一种集会与陪伴的制度，每一位成员配一位咨询师。这种制度尽力向他们提供和周五狂饮派对同等的逃避现实、分散注意力和精神发泄的作用。如果某个人想得到宽慰，他们可以跟他的咨询师交谈，或者参加团体聚会，而不是和朋友 狂饮。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c12_p7"
+        },
+        {
+          "excerpt": "然而，中断酗酒者神经上的渴求，并不足以让他们戒除酗酒习惯。他们中的4人，在手术后不久酒瘾又复发了，而这通常是在经历有压力的事件之后。他们又开始喝酒，因为这就是他们处理焦虑的常用方法。而他们一旦养成了其他处理压力的惯常行为，就能永久戒掉酒瘾。比如，一个病人选择的是参加匿名戒酒互助社的集会，其他人则选择接受治疗。当他们将这些新的惯常行为融入到生活中，戒酒成效非常惊人。之前戒酒60多次的那个人，再也没喝过酒。另外两个在12岁开始喝酒，18岁后嗜酒成瘾，每天必喝，现在他们已经4年没喝酒了。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c12_p8"
+        },
+        {
+          "excerpt": "比如，在研究人员与美国国家防止酒精滥用与酒精中毒研究所合作的一系列实验中，老鼠被训练得可以根据特定的暗示去按压杠杆，直到这个行为变成一种习惯。研究人员每次都会用食物奖励老鼠。然后，在食物中下药，让老鼠得病，或者在地板上通电，这样的话，当老鼠走向奖品时就会触电。在吃过碗里有毒的食物或者在被通电的地板电过时，老鼠知道了食物和笼子有危险，于是它们躲得远远的。不过，等它们看到以前的暗示时，它们仍会毫不犹豫地去按压杠杆并吃食物，或者会走过地板，甚至在吃了食物后发生呕吐或者被电得跳起来后，它们依然不放弃。这一习惯在老鼠身上如此根深蒂固，以至于它们根本没法让自己停下来。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c08_p2"
+        },
+        {
+          "excerpt": "匿名戒酒互助社单靠重塑参与者的习惯就取得成功的理论，在大约10年前开始出现漏洞，而导致漏洞的原因就是约翰这样的酗酒者的案例。研究人员发现，这种习惯替代对于多数人有效，但当生活的压力太大的时候，他们就会旧瘾复发。比如说发现母亲患上癌症，或婚姻破裂时，就会出现复发的情况。学者们不禁问，如果习惯替代法这么有效，为什么在关键时刻似乎失效了？当研究人员深入了解酗酒者的案例时，他们认识到，只有当作为替代的习惯和其他因素配合时，这些习惯才会永久持续。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c12_p10"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "craving",
+      "target": "alcohol",
+      "relation": "对酒精相关宽慰奖赏的渴求与持续饮酒相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+      "note_id": "poh_c12_p5",
+      "excerpt": "研究人员说匿名戒酒互助社的方法之所以有效，是因为它强迫参与者识别能鼓励他们酗酒习惯的暗示和奖赏，然后帮助他们发现新的行为。克劳德·霍普金斯在营销白速得牙膏时，找到了一种可以触发新渴求感的新习惯。但是要改变旧习惯，你必须处理掉旧的渴求感——要保留以前同样的暗示和奖赏，并通过插入新的惯常行为来满足这种渴求。",
+      "audience": "general",
+      "source_id": "power_of_habit",
+      "source_title": "习惯的力量",
+      "id": "poh_c12_p5",
+      "evidences": [
+        {
+          "excerpt": "研究人员说匿名戒酒互助社的方法之所以有效，是因为它强迫参与者识别能鼓励他们酗酒习惯的暗示和奖赏，然后帮助他们发现新的行为。克劳德·霍普金斯在营销白速得牙膏时，找到了一种可以触发新渴求感的新习惯。但是要改变旧习惯，你必须处理掉旧的渴求感——要保留以前同样的暗示和奖赏，并通过插入新的惯常行为来满足这种渴求。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c12_p5"
+        },
+        {
+          "excerpt": "接着，匿名戒酒互助社让酗酒者找出他们从酒中得到了什么奖赏。这个项目要找的是哪些渴求感在驱使着你的习惯回路。通常来说，喝醉本身并不属于渴求。酗酒者之所以想喝酒，是因为酒让他们能逃避现实，放松心情，又有人陪伴，而且缓解焦虑，情感也得到释放。或许他们想喝杯鸡尾酒来忘记烦心事，但并不一定想“买醉”。酒精的物理作用往往是嗜酒成瘾这个习惯回路中最次要的奖赏之一。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c12_p6"
+        },
+        {
+          "excerpt": "“酒精能让人感到快乐，”德国研究酗酒者大脑活动的神经学家穆勒乌尔夫·穆勒说，“但人们也会用喝酒来让自己忘记一些事情，或者满足其他渴求感。而比起对身体愉悦的渴求感，这些精神上宽慰的渴求感会在大脑完全不同的部位发生。”为了给酗酒者提供他们在酒吧中能获得的同等奖赏，匿名戒酒互助社建立了一种集会与陪伴的制度，每一位成员配一位咨询师。这种制度尽力向他们提供和周五狂饮派对同等的逃避现实、分散注意力和精神发泄的作用。如果某个人想得到宽慰，他们可以跟他的咨询师交谈，或者参加团体聚会，而不是和朋友 狂饮。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c12_p7"
+        },
+        {
+          "excerpt": "虽然成瘾机制很复杂，人们对其知之甚少，但很多研究人员一般都认为我们很多与成瘾有关的行为都受到了习惯的驱动。比如药物、香烟、酒精这些东西都会让人出现生理上的依赖。但是，这些生理渴求在使用有关物品后会迅速消退，不会持续。例如对尼古丁的生理成瘾只有当化学物质存在于血管中才会持续，时间为抽掉最后一支烟之后约100小时内。有很多挥之不去，被我们认为是尼古丁成瘾带来的痛苦其实是表现出来的行为性习惯。一个月以后，我们渴望在早餐时候抽一支烟并不是因为生理需要，而是在回味以前每个早上抽烟带来的那种快感。在临床研究中，通过改变成瘾行为的周边习惯被证明是戒除成瘾的最有效的治疗模式之一。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c12_p14"
+        },
+        {
+          "excerpt": "比如，在研究人员与美国国家防止酒精滥用与酒精中毒研究所合作的一系列实验中，老鼠被训练得可以根据特定的暗示去按压杠杆，直到这个行为变成一种习惯。研究人员每次都会用食物奖励老鼠。然后，在食物中下药，让老鼠得病，或者在地板上通电，这样的话，当老鼠走向奖品时就会触电。在吃过碗里有毒的食物或者在被通电的地板电过时，老鼠知道了食物和笼子有危险，于是它们躲得远远的。不过，等它们看到以前的暗示时，它们仍会毫不犹豫地去按压杠杆并吃食物，或者会走过地板，甚至在吃了食物后发生呕吐或者被电得跳起来后，它们依然不放弃。这一习惯在老鼠身上如此根深蒂固，以至于它们根本没法让自己停下来。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c08_p2"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "smoking",
+      "target": "mental_health",
+      "relation": "吸烟成瘾与情绪及心理健康负担相关的关联观察",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+      "note_id": "poh_c12_p14",
+      "excerpt": "虽然成瘾机制很复杂，人们对其知之甚少，但很多研究人员一般都认为我们很多与成瘾有关的行为都受到了习惯的驱动。比如药物、香烟、酒精这些东西都会让人出现生理上的依赖。但是，这些生理渴求在使用有关物品后会迅速消退，不会持续。例如对尼古丁的生理成瘾只有当化学物质存在于血管中才会持续，时间为抽掉最后一支烟之后约100小时内。有很多挥之不去，被我们认为是尼古丁成瘾带来的痛苦其实是表现出来的行为性习惯。一个月以后，我们渴望在早餐时候抽一支烟并不是因为生理需要，而是在回味以前每个早上抽烟带来的那种快感。在临床研究中，通过改变成瘾行为的周边习惯被证明是戒除成瘾的最有效的治疗模式之一。",
+      "audience": "general",
+      "source_id": "power_of_habit",
+      "source_title": "习惯的力量",
+      "id": "poh_c12_p14",
+      "evidences": [
+        {
+          "excerpt": "虽然成瘾机制很复杂，人们对其知之甚少，但很多研究人员一般都认为我们很多与成瘾有关的行为都受到了习惯的驱动。比如药物、香烟、酒精这些东西都会让人出现生理上的依赖。但是，这些生理渴求在使用有关物品后会迅速消退，不会持续。例如对尼古丁的生理成瘾只有当化学物质存在于血管中才会持续，时间为抽掉最后一支烟之后约100小时内。有很多挥之不去，被我们认为是尼古丁成瘾带来的痛苦其实是表现出来的行为性习惯。一个月以后，我们渴望在早餐时候抽一支烟并不是因为生理需要，而是在回味以前每个早上抽烟带来的那种快感。在临床研究中，通过改变成瘾行为的周边习惯被证明是戒除成瘾的最有效的治疗模式之一。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c12_p14"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "aerobic_exercise",
+      "target": "psychological_stress",
+      "relation": "规律运动与较低压力感知相关",
+      "direction": "protective",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+      "note_id": "poh_c15_p3",
+      "excerpt": "举个例子来说，过去10年有研究人员调查运动对日常行为的影响。当人们开始养成运动的习惯时，即使是一周一次的运动，他们也会不知不觉改变其他与之无关的行为模式。通常来说，做运动的人会吃得更香，工作更有效率。他们更少吸烟，对同事和家人更有耐心。而且更少使用信用卡，压力也更小。研究人员还没弄清楚这种变化的原因，但对于很多人来说，运动是引发广泛变化的核心习惯。美国罗德岛大学的研究人员詹姆斯·普罗查斯卡说：“运动有很大影响，它包含某些让其他好习惯更易形成的因素。”",
+      "audience": "general",
+      "source_id": "power_of_habit",
+      "source_title": "习惯的力量",
+      "id": "poh_c15_p3",
+      "evidences": [
+        {
+          "excerpt": "举个例子来说，过去10年有研究人员调查运动对日常行为的影响。当人们开始养成运动的习惯时，即使是一周一次的运动，他们也会不知不觉改变其他与之无关的行为模式。通常来说，做运动的人会吃得更香，工作更有效率。他们更少吸烟，对同事和家人更有耐心。而且更少使用信用卡，压力也更小。研究人员还没弄清楚这种变化的原因，但对于很多人来说，运动是引发广泛变化的核心习惯。美国罗德岛大学的研究人员詹姆斯·普罗查斯卡说：“运动有很大影响，它包含某些让其他好习惯更易形成的因素。”",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c15_p3"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "gambling_addiction",
+      "target": "mental_health",
+      "relation": "强迫性赌博与焦虑缓解渴求及决策受损相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+      "note_id": "poh_c26_p1",
+      "excerpt": "巴赫曼从来没有酗酒、吸毒或者暴饮暴食的问题。她只是一位普通的母亲，经历了平凡人都有的起起落落。所以，那让她陷入赌博无法自拔的，是一日不去赌场就会心烦意乱或者烦躁不安的感觉，是她发现自己无时无刻不在想着赌博，还有那放开赌给人的冲动，这一切让她猝不及防。这种情况是曾经没有过的，直到赌博主宰了她的生活时，她才突然发现这是个问题。回顾过去，这成瘾的整个过程似乎找不到一条清晰的分界线，某天赌博是一种乐趣，但是第二天就赌得一发不可收拾了。",
+      "audience": "general",
+      "source_id": "power_of_habit",
+      "source_title": "习惯的力量",
+      "id": "poh_c26_p1",
+      "evidences": [
+        {
+          "excerpt": "巴赫曼从来没有酗酒、吸毒或者暴饮暴食的问题。她只是一位普通的母亲，经历了平凡人都有的起起落落。所以，那让她陷入赌博无法自拔的，是一日不去赌场就会心烦意乱或者烦躁不安的感觉，是她发现自己无时无刻不在想着赌博，还有那放开赌给人的冲动，这一切让她猝不及防。这种情况是曾经没有过的，直到赌博主宰了她的生活时，她才突然发现这是个问题。回顾过去，这成瘾的整个过程似乎找不到一条清晰的分界线，某天赌博是一种乐趣，但是第二天就赌得一发不可收拾了。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c26_p1"
+        },
+        {
+          "excerpt": "到2001年，她每天都去赌场。每当她跟丈夫吵架，或者觉得孩子们不领情时，她就去赌场。在赌桌旁，她觉得麻木而且兴奋，那一瞬间她的焦虑烟消云散，自己都感觉不到了。赢钱的兴奋是如此立竿见影，而输钱的痛苦也消失得十分迅速。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c26_p2"
+        },
+        {
+          "excerpt": "哈比卜声称：“在那些案例中，我们可以肯定地说所有的病人都无法控制自己的沉迷行为，因为我们可以找到影响了他们神经化学活动的药物。但是当我们观察赌博成瘾者的大脑时，发现他们大脑的活动情况与那些因为药物影响而成瘾的人十分相似，不过这些赌徒却不能把这怪到药身上。他们跟研究人员说自己不想赌，但是无法抑制内心的渴求感。所以我们为什么要说帕金森氏综合征患者无法控制自己的行为，而赌博的人可以呢？”",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c26_p7"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "gambling_addiction",
+      "target": "psychological_stress",
+      "relation": "赌博行为与压力及负面情绪短暂麻木相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+      "note_id": "poh_c26_p2",
+      "excerpt": "到2001年，她每天都去赌场。每当她跟丈夫吵架，或者觉得孩子们不领情时，她就去赌场。在赌桌旁，她觉得麻木而且兴奋，那一瞬间她的焦虑烟消云散，自己都感觉不到了。赢钱的兴奋是如此立竿见影，而输钱的痛苦也消失得十分迅速。",
+      "audience": "general",
+      "source_id": "power_of_habit",
+      "source_title": "习惯的力量",
+      "id": "poh_c26_p2",
+      "evidences": [
+        {
+          "excerpt": "到2001年，她每天都去赌场。每当她跟丈夫吵架，或者觉得孩子们不领情时，她就去赌场。在赌桌旁，她觉得麻木而且兴奋，那一瞬间她的焦虑烟消云散，自己都感觉不到了。赢钱的兴奋是如此立竿见影，而输钱的痛苦也消失得十分迅速。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c26_p2"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "gambling_addiction",
+      "target": "cognitive_clarity",
+      "relation": "赌博成瘾者对「差点儿赢」的神经反应与持续下注决策相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+      "note_id": "poh_c26_p3",
+      "excerpt": "2010年，一位名叫雷扎·哈比卜的认知神经科学家做了一个实验，他请22个人躺进核磁共振成像机中，让他们看着一台老虎机一轮又一轮地转。其中有11个人是赌博成瘾的人，这些人瞒着家里人去赌，旷工去赌，或者在赌场靠签承诺期票来继续赌；而另一半人只是在交际时玩几把，并没有表现出任何行为问题。所有这些人都躺在机器狭窄的管道里，被要求看着老虎机的幸运玻璃框7秒钟。苹果以及金条的图案在电视屏幕上反复闪过。按照设计，老虎机只会给出三种结果——赢、输以及“差点儿赢”，在最后一种结果中，老虎机几乎让你赢，但最后一刻就是没出现赢钱的组合。所有这些人都没有真的去赌，而是只需要看着屏幕，这个时候通过核磁共振可以记录下他们的神经活动。",
+      "audience": "general",
+      "source_id": "power_of_habit",
+      "source_title": "习惯的力量",
+      "id": "poh_c26_p3",
+      "evidences": [
+        {
+          "excerpt": "2010年，一位名叫雷扎·哈比卜的认知神经科学家做了一个实验，他请22个人躺进核磁共振成像机中，让他们看着一台老虎机一轮又一轮地转。其中有11个人是赌博成瘾的人，这些人瞒着家里人去赌，旷工去赌，或者在赌场靠签承诺期票来继续赌；而另一半人只是在交际时玩几把，并没有表现出任何行为问题。所有这些人都躺在机器狭窄的管道里，被要求看着老虎机的幸运玻璃框7秒钟。苹果以及金条的图案在电视屏幕上反复闪过。按照设计，老虎机只会给出三种结果——赢、输以及“差点儿赢”，在最后一种结果中，老虎机几乎让你赢，但最后一刻就是没出现赢钱的组合。所有这些人都没有真的去赌，而是只需要看着屏幕，这个时候通过核磁共振可以记录下他们的神经活动。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c26_p3"
+        },
+        {
+          "excerpt": "哈比卜告诉我说：“我们特别感兴趣的是研究大脑与习惯和成瘾有关的部分的变化。结果，我们发现，从神经学的角度来看，赌博成瘾的人在赢钱的组合出现时会更兴奋。当老虎机赢钱的符号组合出现时，即便他们没有赢，大脑中与情绪和奖赏有关联的区域也会比其他人更为活跃。",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c26_p4"
+        },
+        {
+          "excerpt": "“而真正有趣的时候是差点儿赢的时候。对赌博成瘾的人而言，差点儿赢看起来和赢了差不多。他们的大脑对二者的反应几乎一样。但是对非赌博成瘾的人来说，差点儿赢和输掉没什么区别。没有赌博成瘾问题的人更容易承认差点儿赢意味着你还是输了。”",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c26_p5"
+        },
+        {
+          "excerpt": "赌博成瘾者的大脑和普通人的大脑存在区别，原因是否是他们天生如此或者因为经常接触老虎机、网络扑克游戏以及经常去赌场的行为改变了他们大脑工作的方式，我们对此并不清楚。但可以确定的是，神经活动上的区别的确影响到了这些赌博成瘾者的大脑处理信息的方式，这就解释了为什么安琪·巴赫曼每次走进赌场都会失控。赌博公司当然对这类人的这种倾向非常清楚，所以在过去的几十年里，按照设计，老虎机会不断地给出更多“差点儿赢”的结果。[10]而那些在“差点儿赢”的结果后还不断下注的赌客，为赌场、赛场还有州彩票带来丰厚的利润。一位不愿意透露姓名的州彩票顾问跟我说：“在彩票中增加‘几乎买中’的概率就像火上浇油，你想知道为什么彩票销量会爆炸性地增长？所有的刮刮乐彩票都是按照让你觉得你几乎要赢来设计的。”",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c26_p6"
+        }
+      ],
+      "domain": "health"
+    },
+    {
+      "source": "craving",
+      "target": "gambling_addiction",
+      "relation": "奖赏渴求与强迫性赌博行为持续相关",
+      "direction": "risk",
+      "evidence_type": "book_notes_observational_synthesis",
+      "strength": "low",
+      "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+      "note_id": "poh_c26_p7",
+      "excerpt": "哈比卜声称：“在那些案例中，我们可以肯定地说所有的病人都无法控制自己的沉迷行为，因为我们可以找到影响了他们神经化学活动的药物。但是当我们观察赌博成瘾者的大脑时，发现他们大脑的活动情况与那些因为药物影响而成瘾的人十分相似，不过这些赌徒却不能把这怪到药身上。他们跟研究人员说自己不想赌，但是无法抑制内心的渴求感。所以我们为什么要说帕金森氏综合征患者无法控制自己的行为，而赌博的人可以呢？”",
+      "audience": "general",
+      "source_id": "power_of_habit",
+      "source_title": "习惯的力量",
+      "id": "poh_c26_p7",
+      "evidences": [
+        {
+          "excerpt": "哈比卜声称：“在那些案例中，我们可以肯定地说所有的病人都无法控制自己的沉迷行为，因为我们可以找到影响了他们神经化学活动的药物。但是当我们观察赌博成瘾者的大脑时，发现他们大脑的活动情况与那些因为药物影响而成瘾的人十分相似，不过这些赌徒却不能把这怪到药身上。他们跟研究人员说自己不想赌，但是无法抑制内心的渴求感。所以我们为什么要说帕金森氏综合征患者无法控制自己的行为，而赌博的人可以呢？”",
+          "source_title": "习惯的力量",
+          "source_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+          "source_id": "power_of_habit",
+          "note_id": "poh_c26_p7"
         }
       ],
       "domain": "health"

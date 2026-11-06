@@ -1,0 +1,54 @@
+{
+  "source_id": "power_of_habit",
+  "title": "习惯的力量",
+  "title_short": "习惯的力量",
+  "author": "查尔斯·都希格",
+  "authors": [
+    "查尔斯·都希格"
+  ],
+  "translator": null,
+  "publisher": "中信出版集团",
+  "isbn": "9787508638010",
+  "published": "2013-03-01",
+  "epub_date": "2013-03-21T16:00:00+00:00",
+  "epub_creator": "[美] 查尔斯·杜希格 (Charles Duhigg)",
+  "language": "zh",
+  "themes": [
+    "health"
+  ],
+  "kb_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+  "epub_copyright_note": "EPUB dc:creator 为「[美] 查尔斯·杜希格 (Charles Duhigg)」；微信读书作者显示为「查尔斯·都希格」。book_meta 以微信读书「都希格」为主，并备注 EPUB creator。本题为精编图文版 ISBN 9787508638010（bookId 621673），非新版 9787508674421（bookId 635922）。",
+  "weread": {
+    "bookId": "621673",
+    "readerLink": "https://weread.qq.com/web/reader/43a32f30597c6943ad87298",
+    "deepLink": "https://weread.qq.com/book-detail?type=1&v=43a32f30597c6943ad87298",
+    "cover": "https://cdn.weread.qq.com/weread/cover/49/YueWen_621673/t6_YueWen_621673.jpg"
+  },
+  "note": "仅元数据与外链；未使用微信读书划线/笔记作为证据。admin_books 已有 power_of_habit（index_only）。candidate extraction counts 以最终 JSON / 抽取说明为准。",
+  "admin_books": {
+    "id": "power_of_habit",
+    "title": "习惯的力量",
+    "theme": "零散",
+    "kb_file": "零散_习惯的力量_7Ue2cj0Ax.md",
+    "status": "index_only"
+  },
+  "extraction": {
+    "candidate_count": 31,
+    "evidence_count": 116,
+    "excerpt_count": 96,
+    "append_count": 15,
+    "new_endpoint_pairs": 16,
+    "new_node_count": 3,
+    "reuse_node_count": 18,
+    "themes": [
+      "health"
+    ],
+    "note": "counts are post-QA; seed untouched",
+    "spot_check_excerpt_ids": [
+      "poh_c05_p7",
+      "poh_c15_p6",
+      "poh_c19_p3"
+    ],
+    "excerpt_used_count": 74
+  }
+}

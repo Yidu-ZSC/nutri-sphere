@@ -1,0 +1,270 @@
+{
+  "task": "TASK-NS-080",
+  "from_data_version": "2.7",
+  "to_data_version": "2.8",
+  "schema_version": "0.7",
+  "before": {
+    "nodes": 205,
+    "links": 1166
+  },
+  "after": {
+    "nodes": 208,
+    "links": 1182
+  },
+  "new_nodes": [
+    "smoking",
+    "craving",
+    "gambling_addiction"
+  ],
+  "new_node_count": 3,
+  "reuse_node_count": 18,
+  "append_candidates": 15,
+  "append_evidence_rows": 54,
+  "new_edges": 16,
+  "batch_internal_appends_flagged_new": 0,
+  "parallel_pairs_after": 0,
+  "power_of_habit_top_level": 16,
+  "power_of_habit_citing": 31,
+  "direction_new": {
+    "risk": 14,
+    "protective": 2
+  },
+  "type_counts_after": {
+    "diet_pattern": 9,
+    "food_category": 10,
+    "nutrient": 22,
+    "food": 25,
+    "compound": 18,
+    "metabolite": 6,
+    "mechanism": 56,
+    "disease": 56,
+    "biomarker": 6
+  },
+  "sources_registered": true,
+  "authors": "查尔斯·都希格",
+  "append_hosts_sample": [
+    {
+      "candidate_note_id": "poh_c05_p7",
+      "endpoints": "aerobic_exercise->obesity_risk",
+      "host_id": "cs_c15_p48_obesity_risk",
+      "host_source_id": "china_study",
+      "host_relation": "规律身体活动与较低体重及肥胖风险相关",
+      "live_relation_before": "规律身体活动与较低体重及肥胖风险相关",
+      "candidate_relation": "规律身体活动与较低体重及肥胖风险相关",
+      "existing_relation": null,
+      "evidences_appended": 6
+    },
+    {
+      "candidate_note_id": "poh_c05_p2",
+      "endpoints": "aerobic_exercise->energy_vitality",
+      "host_id": "bu_c14_p7",
+      "host_source_id": "body_unlimited",
+      "host_relation": "规律运动与能量活力相关",
+      "live_relation_before": "规律运动与能量活力相关",
+      "candidate_relation": "规律运动与能量活力相关",
+      "existing_relation": null,
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "poh_c05_p5",
+      "endpoints": "psychological_stress->mental_health",
+      "host_id": "kyg_c11_p10_mental_health",
+      "host_source_id": "know_your_gut",
+      "host_relation": "精神压力与情绪低落相关的关联观察",
+      "live_relation_before": "精神压力与情绪低落相关的关联观察",
+      "candidate_relation": "精神压力与情绪低落相关的关联观察",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "poh_c05_p5",
+      "endpoints": "appetite_regulation->obesity_risk",
+      "host_id": "kyg_c11_p33_obesity_risk",
+      "host_source_id": "know_your_gut",
+      "host_relation": "食欲激素与迷走调控失衡与肥胖相关",
+      "live_relation_before": "食欲激素与迷走调控失衡与肥胖相关",
+      "candidate_relation": "食欲激素与迷走调控失衡与肥胖相关",
+      "existing_relation": null,
+      "evidences_appended": 14
+    },
+    {
+      "candidate_note_id": "poh_c10_p12",
+      "endpoints": "aerobic_exercise->mental_health",
+      "host_id": "bu_c19_p45",
+      "host_source_id": "body_unlimited",
+      "host_relation": "自然运动与情绪及心理恢复相关",
+      "live_relation_before": "自然运动与情绪及心理恢复相关",
+      "candidate_relation": "自然运动与情绪及心理恢复相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    }
+  ],
+  "append_hosts_count": 15,
+  "append_hosts_all": [
+    {
+      "candidate_note_id": "poh_c05_p7",
+      "endpoints": "aerobic_exercise->obesity_risk",
+      "host_id": "cs_c15_p48_obesity_risk",
+      "host_source_id": "china_study",
+      "host_relation": "规律身体活动与较低体重及肥胖风险相关",
+      "live_relation_before": "规律身体活动与较低体重及肥胖风险相关",
+      "candidate_relation": "规律身体活动与较低体重及肥胖风险相关",
+      "existing_relation": null,
+      "evidences_appended": 6
+    },
+    {
+      "candidate_note_id": "poh_c05_p2",
+      "endpoints": "aerobic_exercise->energy_vitality",
+      "host_id": "bu_c14_p7",
+      "host_source_id": "body_unlimited",
+      "host_relation": "规律运动与能量活力相关",
+      "live_relation_before": "规律运动与能量活力相关",
+      "candidate_relation": "规律运动与能量活力相关",
+      "existing_relation": null,
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "poh_c05_p5",
+      "endpoints": "psychological_stress->mental_health",
+      "host_id": "kyg_c11_p10_mental_health",
+      "host_source_id": "know_your_gut",
+      "host_relation": "精神压力与情绪低落相关的关联观察",
+      "live_relation_before": "精神压力与情绪低落相关的关联观察",
+      "candidate_relation": "精神压力与情绪低落相关的关联观察",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "poh_c05_p5",
+      "endpoints": "appetite_regulation->obesity_risk",
+      "host_id": "kyg_c11_p33_obesity_risk",
+      "host_source_id": "know_your_gut",
+      "host_relation": "食欲激素与迷走调控失衡与肥胖相关",
+      "live_relation_before": "食欲激素与迷走调控失衡与肥胖相关",
+      "candidate_relation": "食欲激素与迷走调控失衡与肥胖相关",
+      "existing_relation": null,
+      "evidences_appended": 14
+    },
+    {
+      "candidate_note_id": "poh_c10_p12",
+      "endpoints": "aerobic_exercise->mental_health",
+      "host_id": "bu_c19_p45",
+      "host_source_id": "body_unlimited",
+      "host_relation": "自然运动与情绪及心理恢复相关",
+      "live_relation_before": "自然运动与情绪及心理恢复相关",
+      "candidate_relation": "自然运动与情绪及心理恢复相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "poh_c05_p10",
+      "endpoints": "physical_inactivity->obesity_risk",
+      "host_id": "bs_c05_p7",
+      "host_source_id": "body_story",
+      "host_relation": "体力活动不足与较高肥胖风险相关",
+      "live_relation_before": "体力活动不足与较高肥胖风险相关",
+      "candidate_relation": "体力活动不足与较高肥胖风险相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "poh_c08_p3",
+      "endpoints": "ultra_processed->obesity_risk",
+      "host_id": "lit_upf_outcomes_elizabeth_2020",
+      "host_source_id": "(lit)",
+      "host_relation": "超加工食品与多种健康结局的叙述性综述",
+      "live_relation_before": "超加工食品与多种健康结局的叙述性综述",
+      "candidate_relation": "超加工食品与多种健康结局的叙述性综述",
+      "existing_relation": null,
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "poh_c08_p5",
+      "endpoints": "ultra_processed->appetite_regulation",
+      "host_id": "qs_c59_p6",
+      "host_source_id": "quit_sugar",
+      "host_relation": "加工食品打破对食物天然控制力与停不下来相关",
+      "live_relation_before": "加工食品打破对食物天然控制力与停不下来相关",
+      "candidate_relation": "加工食品打破对食物天然控制力与停不下来相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "poh_c08_p6",
+      "endpoints": "ultra_processed->cardiometabolic",
+      "host_id": "lit_upf_cvd_srour_2019",
+      "host_source_id": "(lit)",
+      "host_relation": "超加工食品摄入与心血管疾病风险的队列观察",
+      "live_relation_before": "超加工食品摄入与心血管疾病风险的队列观察",
+      "candidate_relation": "超加工食品摄入与心血管疾病风险的队列观察",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "poh_c10_p1",
+      "endpoints": "added_sugar->oral_disease",
+      "host_id": "qs_c15_p3",
+      "host_source_id": "quit_sugar",
+      "host_relation": "高糖膳食与小学生及成年人蛀牙高患病率相关",
+      "live_relation_before": "高糖膳食与小学生及成年人蛀牙高患病率相关",
+      "candidate_relation": "高糖膳食与小学生及成年人蛀牙高患病率相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "poh_c10_p1",
+      "endpoints": "refined_carbs->oral_disease",
+      "host_id": "qs_c15_p4",
+      "host_source_id": "quit_sugar",
+      "host_relation": "快消化淀粉与蛀牙风险相关",
+      "live_relation_before": "快消化淀粉与蛀牙风险相关",
+      "candidate_relation": "快消化淀粉与蛀牙风险相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "poh_c10_p17",
+      "endpoints": "appetite_regulation->healthy_weight",
+      "host_id": "bu_c11_p79",
+      "host_source_id": "body_unlimited",
+      "host_relation": "食欲自我调节与健康体重维持相关",
+      "live_relation_before": "食欲自我调节与健康体重维持相关",
+      "candidate_relation": "食欲自我调节与健康体重维持相关",
+      "existing_relation": null,
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "poh_c12_p3",
+      "endpoints": "alcohol->chronic_disease",
+      "host_id": "bs_c41_p52",
+      "host_source_id": "body_story",
+      "host_relation": "过量饮酒与可预防健康损害相关",
+      "live_relation_before": "过量饮酒与可预防健康损害相关",
+      "candidate_relation": "过量饮酒与可预防健康损害相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "poh_c19_p1",
+      "endpoints": "medical_care_exposure->iatrogenic_harm",
+      "host_id": "hntd_ch15_iatrogenic_scale",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "药物不良反应与医疗失误相关死亡负担观察",
+      "live_relation_before": "药物不良反应与医疗失误相关死亡负担观察",
+      "candidate_relation": "药物不良反应与医疗失误相关死亡负担观察",
+      "existing_relation": null,
+      "evidences_appended": 11
+    },
+    {
+      "candidate_note_id": "poh_c27_p4",
+      "endpoints": "added_sugar->appetite_regulation",
+      "host_id": "kyg_c11_p142_appetite_regulation_2",
+      "host_source_id": "know_your_gut",
+      "host_relation": "添加糖与食欲调控相关的关联观察",
+      "live_relation_before": "添加糖与食欲调控相关的关联观察",
+      "candidate_relation": "添加糖与食欲调控相关的关联观察",
+      "existing_relation": null,
+      "evidences_appended": 2
+    }
+  ]
+}
