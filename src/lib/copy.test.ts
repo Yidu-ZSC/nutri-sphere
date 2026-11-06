@@ -10,6 +10,7 @@ import {
   evidenceStatus,
   evidenceTrack,
   visibleGraphStats,
+  flowGraphStats,
 } from './copy.ts';
 
 const SPEC_TEXT =
@@ -29,6 +30,11 @@ test('disclaimer copy matches the Phase 1 spec exactly', () => {
 test('visible graph stats name the rendered set', () => {
   assert.equal(visibleGraphStats(12, 7), '当前可见 12 个概念 · 7 条关联');
   assert.ok([...visibleGraphStats(0, 0)].length <= 20);
+});
+
+test('pathway stats name drawn bands and what stayed off the picture', () => {
+  assert.equal(flowGraphStats(24, 0, 0), '通路上 24 条');
+  assert.equal(flowGraphStats(36, 80, 12), '通路上 36 条 · 另有 80 条跨列未画出 · 同列 12 条不在通路上');
 });
 
 test('evidence chips use plain source names', () => {

@@ -92,7 +92,8 @@ test('a node selection wins over a link in the serialized query', () => {
 test('unknown view values are dropped', () => {
   const parsed = parseViewQuery('?view=table&layer=layperson');
   assert.equal(parsed.view, null);
-    assert.equal(resolveScreen(parsed), 'home');
+  assert.equal(resolveScreen(parsed), 'home');
+  assert.equal(parseViewQuery('?screen=explore&view=flow').view, 'flow');
 });
 
 test('default screen is home when the query has no deep link', () => {

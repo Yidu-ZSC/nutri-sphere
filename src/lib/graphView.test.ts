@@ -13,10 +13,10 @@ function memoryStorage(initial?: string) {
   };
 }
 
-test('graph view defaults to the 2d pathway', () => {
-  assert.equal(readGraphView(memoryStorage()), '2d');
-  assert.equal(readGraphView(memoryStorage('nope')), '2d');
-  assert.equal(readGraphView(null), '2d');
+test('graph view defaults to the pathway', () => {
+  assert.equal(readGraphView(memoryStorage()), 'flow');
+  assert.equal(readGraphView(memoryStorage('nope')), 'flow');
+  assert.equal(readGraphView(null), 'flow');
 });
 
 test('graph view preference round-trips', () => {
@@ -25,4 +25,6 @@ test('graph view preference round-trips', () => {
   assert.equal(readGraphView(storage), '3d');
   writeGraphView('2d', storage);
   assert.equal(readGraphView(storage), '2d');
+  writeGraphView('flow', storage);
+  assert.equal(readGraphView(storage), 'flow');
 });

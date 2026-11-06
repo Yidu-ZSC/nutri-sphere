@@ -543,6 +543,31 @@ button { cursor: pointer; }
   inset: 0;
 }
 
+.flow-view {
+  position: absolute;
+  inset: 0;
+  min-height: 0;
+}
+
+.flow-scroll {
+  height: 100%;
+  overflow: auto;
+  touch-action: pan-x pan-y;
+}
+
+.flow-scroll svg {
+  display: block;
+}
+
+.flow-node,
+.flow-band-hit {
+  cursor: pointer;
+}
+
+.flow-node text {
+  pointer-events: none;
+}
+
 
 .click-focus-banner {
   position: absolute;

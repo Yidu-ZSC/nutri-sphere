@@ -1,4 +1,4 @@
-export type GraphView = '2d' | '3d';
+export type GraphView = 'flow' | '2d' | '3d';
 
 export const GRAPH_VIEW_STORAGE_KEY = 'cleardiet.graphView';
 
@@ -15,11 +15,11 @@ export function readGraphView(storage?: Pick<Storage, 'getItem'> | null): GraphV
   const store = storage === undefined ? browserStorage() : storage;
   try {
     const stored = store?.getItem(GRAPH_VIEW_STORAGE_KEY);
-    if (stored === '2d' || stored === '3d') return stored;
+    if (stored === 'flow' || stored === '2d' || stored === '3d') return stored;
   } catch {
     // Private mode or blocked storage: fall through to the default.
   }
-  return '2d';
+  return 'flow';
 }
 
 export function writeGraphView(view: GraphView, storage?: Pick<Storage, 'setItem'> | null): void {

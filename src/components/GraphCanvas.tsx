@@ -6,6 +6,7 @@ import type { GraphData, GraphLink, Selection, SimNode } from '../types/graph';
 import { canvasStageForTheme } from '../lib/canvasStage';
 import type { AppTheme } from '../lib/themePreference';
 import type { LayoutMode } from '../lib/layout';
+import { FlowCanvas } from './FlowCanvas';
 import { GraphScene2D } from './GraphScene2D';
 import { GraphScene3D } from './GraphScene3D';
 import { pickFramedNode, type DrawLink } from './graphShared';
@@ -21,6 +22,7 @@ interface GraphCanvasProps {
   compact: boolean;
   autoRotate: boolean;
   anchorId: string | null;
+  flowAnchorIds: readonly string[];
   onSelectNode: (id: string) => void;
   onSelectLink: (index: number) => void;
   onBackground: () => void;
@@ -38,6 +40,7 @@ export function GraphCanvas({
   compact,
   autoRotate,
   anchorId,
+  flowAnchorIds,
   onSelectNode,
   onSelectLink,
   onBackground,
@@ -94,13 +97,14 @@ export function GraphCanvas({
   useEffect(() => {
     const element = wrapRef.current;
     if (!element) return;
-    const observer = new ResizeObserver((entries) => {
-      const rect = entries[0]?.contentRect;
-      if (!rect) return;
+    const measure = () => {
+      const rect = element.getBoundingClientRect();
       const w = Math.round(rect.width);
       const h = Math.round(rect.height);
       setSize((prev) => (prev.w === w && prev.h === h ? prev : { w, h }));
-    });
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
@@ -142,6 +146,21 @@ export function GraphCanvas({
         <div className="banner banner--error" role="alert">
           <p>当前环境无法创建 WebGL 画布，三维图谱不能显示。</p>
         </div>
+      )}
+      {size.w > 0 && size.h > 0 && graphView === 'flow' && (
+        <FlowCanvas
+          nodes={graph.nodes.filter((node) => shownNodeIds.has(node.id))}
+          links={shownLinks}
+          width={size.w}
+          anchors={flowAnchorIds}
+          pinIndex={selection?.kind === 'link' ? selection.index : null}
+          selection={selection}
+          focusIds={focusIds}
+          canvasStage={canvasStage}
+          onSelectNode={onSelectNode}
+          onSelectLink={onSelectLink}
+          onBackground={onBackground}
+        />
       )}
       {ready && graphView === '2d' && <GraphScene2D {...scene} />}
       {ready && graphView === '3d' && webgl && <GraphScene3D {...scene} autoRotate={autoRotate} />}

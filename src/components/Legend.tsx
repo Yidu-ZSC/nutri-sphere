@@ -39,7 +39,7 @@ function ShapeIcon({ kind }: { kind: ShapeKind }) {
   );
 }
 
-function LegendBlocks() {
+function LegendBlocks({ flow }: { flow: boolean }) {
   return (
     <>
       <div className="legend-block">
@@ -54,7 +54,7 @@ function LegendBlocks() {
         </ul>
       </div>
       <div className="legend-block">
-        <p>强度（线越粗越高）</p>
+        <p>{flow ? '通路宽度（强度与书摘）' : '强度（线越粗越高）'}</p>
         <ul>
           <li>
             <span className="legend-line legend-line--low" aria-hidden="true" />
@@ -98,11 +98,12 @@ function LegendBlocks() {
 export interface LegendProps {
   /** ≤768 explore: enable collapse chip. Desktop leaves this false/undefined. */
   compact?: boolean;
+  flow?: boolean;
   /** Notifies parent so HUD can apply `.hud--legend-collapsed`. */
   onExpandedChange?: (expanded: boolean) => void;
 }
 
-export function Legend({ compact = false, onExpandedChange }: LegendProps) {
+export function Legend({ compact = false, flow = false, onExpandedChange }: LegendProps) {
   const [expanded, setExpanded] = useState(() => (compact ? readLegendExpanded() : true));
 
   useEffect(() => {
@@ -127,7 +128,7 @@ export function Legend({ compact = false, onExpandedChange }: LegendProps) {
   if (!compact) {
     return (
       <div className="legend" data-testid="legend" aria-label="图例">
-        <LegendBlocks />
+        <LegendBlocks flow={flow} />
       </div>
     );
   }
@@ -155,7 +156,7 @@ export function Legend({ compact = false, onExpandedChange }: LegendProps) {
       </button>
       {expanded && (
         <div id="legend-details" className="legend-details">
-          <LegendBlocks />
+          <LegendBlocks flow={flow} />
         </div>
       )}
     </div>
