@@ -293,7 +293,7 @@ function clampZoom(value: number): number {
   return Math.min(FLOW_ZOOM_MAX, Math.max(FLOW_ZOOM_MIN, value));
 }
 
-/** Fit the pathway into the viewport. Content shorter than the view stays near the top. */
+/** Fit the pathway into the viewport, centered. Taller content starts at the top so it is pannable. */
 export function frameFlowCamera(
   layoutWidth: number,
   layoutHeight: number,
@@ -307,7 +307,7 @@ export function frameFlowCamera(
     Math.min(usableW / Math.max(layoutWidth, 1), usableH / Math.max(layoutHeight, 1), 1),
   );
   const scaledH = layoutHeight * k;
-  const y = scaledH + pad <= viewHeight ? pad : (viewHeight - scaledH) / 2;
+  const y = scaledH + pad <= viewHeight ? (viewHeight - scaledH) / 2 : pad;
   return {
     k,
     x: (viewWidth - layoutWidth * k) / 2,
