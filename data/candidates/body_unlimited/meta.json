@@ -1,0 +1,54 @@
+{
+  "source_id": "body_unlimited",
+  "title": "无限可能的身体",
+  "title_short": "无限可能的身体",
+  "author": "[英]卢永利",
+  "authors": [
+    "[英]卢永利"
+  ],
+  "translator": "邬璐雪",
+  "publisher": "贵州人民出版社",
+  "isbn": "9787221179357",
+  "published": "2024-02-04",
+  "epub_date": "2023-10-31T16:00:00+00:00",
+  "epub_creator": "卢永利",
+  "language": "zh",
+  "themes": [
+    "health"
+  ],
+  "kb_file": "身心与疾病_无限可能的身体.md",
+  "epub_copyright_note": "EPUB dc:creator 为「卢永利」（无国籍标）；微信读书作者显示为「[英]卢永利」、译者邬璐雪。书目字段以微信读书为主，并备注 EPUB creator/date。",
+  "weread": {
+    "bookId": "3300115471",
+    "readerLink": "https://weread.qq.com/web/reader/17032c40813ab939bg011b20",
+    "deepLink": "https://weread.qq.com/book-detail?type=1&v=17032c40813ab939bg011b20",
+    "cover": "https://cdn.weread.qq.com/weread/cover/90/cpplatform_eehwxgbxaxvgx2ffptkaud/t6_cpplatform_eehwxgbxaxvgx2ffptkaud1726822010.jpg"
+  },
+  "note": "仅元数据与外链；未使用微信读书划线/笔记作为证据。admin_books 已有 body_unlimited（index_only）。candidate extraction counts 以最终 JSON / 抽取说明为准。 NS-079 入库 authors 写卢永利（不含国籍标）。",
+  "admin_books": {
+    "id": "body_unlimited",
+    "title": "无限可能的身体",
+    "theme": "身心与疾病",
+    "kb_file": "身心与疾病_无限可能的身体.md",
+    "status": "index_only"
+  },
+  "extraction": {
+    "candidate_count": 201,
+    "evidence_count": 772,
+    "excerpt_count": 307,
+    "append_count": 104,
+    "new_endpoint_pairs": 97,
+    "new_node_count": 5,
+    "reuse_node_count": 84,
+    "themes": [
+      "health"
+    ],
+    "note": "counts match ClearDiet-无限可能的身体-候选边/节点/原文摘录/抽取说明；未改 seed",
+    "spot_check_excerpt_ids": [
+      "bu_c4_p17",
+      "bu_c5_p5",
+      "bu_c5_p7"
+    ]
+  },
+  "authors_canonical": "卢永利"
+}
