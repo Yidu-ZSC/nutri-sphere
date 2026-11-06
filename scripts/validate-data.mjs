@@ -26,6 +26,7 @@ const STAGE1_SOURCE_IDS = [
   'quit_sugar',
   'body_story',
   'body_unlimited',
+  'power_of_habit',
 ];
 
 /**
@@ -442,8 +443,12 @@ export function validateAdminBooks(payload, sourcesPayload) {
     if (!bu || /** @type {any} */ (bu).status !== 'ingested' || /** @type {any} */ (bu).source_id !== 'body_unlimited') {
       errors.push('admin_books.json body_unlimited 须为 ingested + source_id（NS-079）');
     }
-    if (ingested !== 10) {
-      errors.push(`admin_books.json NS-079 后应恰有 10 本 ingested（+body_unlimited），实为 ${ingested}`);
+    const poh = books.find((b) => b && typeof b === 'object' && /** @type {any} */ (b).id === 'power_of_habit');
+    if (!poh || /** @type {any} */ (poh).status !== 'ingested' || /** @type {any} */ (poh).source_id !== 'power_of_habit') {
+      errors.push('admin_books.json power_of_habit 须为 ingested + source_id（NS-080）');
+    }
+    if (ingested !== 11) {
+      errors.push(`admin_books.json NS-080 后应恰有 11 本 ingested（+power_of_habit），实为 ${ingested}`);
     }
   }
 

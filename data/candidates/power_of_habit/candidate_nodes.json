@@ -1,0 +1,76 @@
+{
+ "meta": {
+  "source_id": "power_of_habit",
+  "source_title": "习惯的力量",
+  "schema_align": "seed snapshot data 2.7 / schema 0.7",
+  "themes": [
+   "health"
+  ],
+  "note": "独立验收后已剔除错挂证据（营销段落、章末综述、意志力实验误挂医源性伤害等）；同端点 append；勿直接改 seed；禁止 limitations；relation 为公共共享关系；入库须另开 TASK + 合并闸门",
+  "weread_link": "https://weread.qq.com/web/reader/43a32f30597c6943ad87298",
+  "new_node_count": 3,
+  "reuse_node_count": 18
+ },
+ "new_nodes": [
+  {
+   "id": "smoking",
+   "domain": "health",
+   "type": "mechanism",
+   "label": "吸烟 / 烟草暴露",
+   "group": "risk",
+   "description": "香烟与尼古丁使用及暴露；叙述中与体重、运动、成瘾渴求及整体健康行为转变相关。",
+   "aliases": [
+    "抽烟",
+    "烟草",
+    "尼古丁使用",
+    "香烟"
+   ]
+  },
+  {
+   "id": "craving",
+   "domain": "health",
+   "type": "mechanism",
+   "label": "渴求 / 奖赏预期",
+   "group": "risk",
+   "description": "大脑对奖赏的预期与渴求驱动；叙述中推动饮食、吸烟、运动等习惯回路持续运转，并与成瘾样反应相关。",
+   "aliases": [
+    "奖赏渴求",
+    "神经渴求",
+    "习惯性渴求"
+   ]
+  },
+  {
+   "id": "gambling_addiction",
+   "domain": "health",
+   "type": "disease",
+   "label": "赌博成瘾 / 强迫性赌博",
+   "group": "risk",
+   "description": "对赌博行为失控的强迫性模式；叙述中与焦虑缓解、差点儿赢的神经反应及决策受损相关。",
+   "aliases": [
+    "强迫性赌博",
+    "问题赌博",
+    "赌瘾"
+   ]
+  }
+ ],
+ "reuse_nodes": [
+  "added_sugar",
+  "aerobic_exercise",
+  "alcohol",
+  "appetite_regulation",
+  "cardiometabolic",
+  "chronic_disease",
+  "cognitive_clarity",
+  "energy_vitality",
+  "healthy_weight",
+  "iatrogenic_harm",
+  "medical_care_exposure",
+  "mental_health",
+  "obesity_risk",
+  "oral_disease",
+  "physical_inactivity",
+  "psychological_stress",
+  "refined_carbs",
+  "ultra_processed"
+ ]
+}
