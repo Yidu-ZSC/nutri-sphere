@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DetailDrawer } from './components/DetailDrawer';
-import { DietTwin } from './components/DietTwin';
+import { DietTwinCanvas, DietTwinControls, useDietTwinController } from './components/DietTwin';
 import { DisclaimerBar } from './components/DisclaimerBar';
 import { FilterPanel } from './components/FilterPanel';
 import { GraphCanvas } from './components/GraphCanvas';
@@ -19,24 +19,29 @@ import { AdminCandidates } from './components/AdminCandidates';
 import { VeganDietDetail } from './components/VeganDietDetail';
 import { SearchBar } from './components/SearchBar';
 import { DomainEmptyState } from './components/DomainEmptyState';
-import { DomainOptions, DomainSwitcher } from './components/DomainSwitcher';
+import { DomainSwitcher } from './components/DomainSwitcher';
 import { ThemeBar } from './components/ThemeBar';
-import { ThemeLobby } from './components/ThemeLobby';
-import { ThemeOptions, ThemeSwitcher } from './components/ThemeSwitcher';
+import { ThemeSwitcher } from './components/ThemeSwitcher';
+import { Shell } from './components/Shell';
+import { ShellRail, type WorkspaceId } from './components/ShellRail';
+import { RailRecommendations } from './components/RailRecommendations';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import { evidenceCounts, flowGraphStats, visibleGraphStats } from './lib/copy';
 import { selectFlowBands, type FlowEdgeInput, type FlowNodeInput } from './lib/flowLayout';
 import { selectHierarchyLinks } from './lib/hierarchyBudget';
 import {
-  BACK_TO_LOBBY,
   CLEAR_CLICK_FOCUS,
   CLICK_FOCUS_PREFIX,
   EXPLORE_EMPTY_ACTION,
   HIERARCHY_BUDGET_NOTE,
+  LOBBY_SEARCH_EMPTY,
+  LOBBY_SEARCH_PLACEHOLDER,
+  RAIL_TOGGLE_LABEL,
+  SHELL_SEARCH_LABEL,
+  SHELL_VEGAN_ENTRY,
   THEME_HINT_CLOSE,
   themeHintVisible,
   EXPLORE_EMPTY_COPY,
-  RAIL_TOGGLE_LABEL,
 } from './lib/exploreShell';
 import { effectiveFocusIds, focusedNodeIds, isFocusEmpty } from './lib/focus';
 import { readGraphView, writeGraphView, type GraphView } from './lib/graphView';
@@ -52,7 +57,7 @@ import { loadAdminBooks, adminBookById } from './lib/loadAdminBooks';
 import { findLinkByKey, nodeById } from './lib/adminCatalog';
 import { isVeganDietHubPattern, normalizeVeganDietPatternId, VEGAN_DIET_HUB_ID } from './lib/dietPatternDetails';
 import { patternsForTheme } from './lib/patternLinks';
-import { searchGraph, type SearchHit } from './lib/search';
+import { searchNodes, type SearchHit } from './lib/search';
 import {
   findLinkIndex,
   linkKey,
@@ -65,6 +70,13 @@ import {
 import { EXPLORE_THEMES, filtersFromShare, themeById, themeForFilters, type ExploreTheme } from './lib/themes';
 import { selectionPinIds } from './lib/visibility';
 import { applyTheme, readTheme, writeTheme, type AppTheme } from './lib/themePreference';
+import {
+  railMode,
+  readShellRailPreference,
+  writeShellRailPreference,
+  type ShellRailFocusTarget,
+  type ShellRailPreference,
+} from './lib/shellRail';
 import type { AdminBooksData, Domain, GraphData, Selection, SourcesData } from './types/graph';
 
 interface ExploreSnapshot {
@@ -90,6 +102,7 @@ function readInitialQuery(): ParsedShare {
 
 export function App() {
   const mobile = useMediaQuery('(max-width: 768px)');
+  const wide = useMediaQuery('(min-width: 1280px)');
   const [legendExpanded, setLegendExpanded] = useState(() => readLegendExpanded());
   const onLegendExpandedChange = useCallback((expanded: boolean) => {
     setLegendExpanded(expanded);
@@ -121,15 +134,6 @@ export function App() {
   const [lensId, setLensId] = useState<string | null>(() =>
     resolveScreen(initialQuery.current) === 'explore' ? initialQuery.current.lens : null,
   );
-  const [patterns, setPatterns] = useState<string[]>(() => {
-    const parsed = initialQuery.current;
-    return resolveScreen(parsed) === 'home' ? parsed.patterns : [];
-  });
-  const [patternSourceTheme, setPatternSourceTheme] = useState<string | null>(() => {
-    const parsed = initialQuery.current;
-    return resolveScreen(parsed) === 'home' && parsed.patterns.length > 0 ? parsed.theme : null;
-  });
-  const [returnSnapshot, setReturnSnapshot] = useState<ExploreSnapshot | null>(null);
   const [patternId, setPatternId] = useState<string | null>(() => {
     const parsed = initialQuery.current;
     return resolveScreen(parsed) === 'pattern' ? parsed.pattern : null;
@@ -168,11 +172,20 @@ export function App() {
   const [aboutOpen, setAboutOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [autoRotate, setAutoRotate] = useState(false);
-  const [shellMenuOpen, setShellMenuOpen] = useState(false);
   const [appTheme, setAppTheme] = useState<AppTheme>(() => readTheme());
   const [activeDomain, setActiveDomain] = useState<Domain>(() => initialQuery.current.domain);
-  const [sideOpen, setSideOpen] = useState(false);
-  const shellMenuRef = useRef<HTMLDivElement>(null);
+  const [railPreference, setRailPreference] = useState<ShellRailPreference | null>(() => readShellRailPreference());
+  const [railDrawerOpen, setRailDrawerOpen] = useState(false);
+  const [railFocusTarget, setRailFocusTarget] = useState<{
+    target: ShellRailFocusTarget;
+    nonce: number;
+  } | null>(null);
+  const railRef = useRef<HTMLElement>(null);
+  const railTriggerRef = useRef<HTMLButtonElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const twinRecordRef = useRef<HTMLTextAreaElement>(null);
+  const twin = useDietTwinController();
+  const prevMobile = useRef(mobile);
 
   useEffect(() => {
     let cancelled = false;
@@ -220,7 +233,7 @@ export function App() {
               setScreen('source');
             } else {
               setSourceId(null);
-              setScreen('home');
+              setScreen('explore');
             }
           }
           if (parsed.screen === 'admin') {
@@ -268,46 +281,63 @@ export function App() {
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return;
-      if (shellMenuOpen) {
-        setShellMenuOpen(false);
-        return;
-      }
       if (aboutOpen) {
         setAboutOpen(false);
         return;
       }
-      if (mobile && sideOpen) {
-        setSideOpen(false);
-        return;
-      }
+      if (mobile && railDrawerOpen) return;
       if (selection) setSelection(null);
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [aboutOpen, mobile, shellMenuOpen, selection, sideOpen]);
+  }, [aboutOpen, mobile, railDrawerOpen, selection]);
 
   useEffect(() => {
-    if (!shellMenuOpen) return;
-    const onPointer = (event: PointerEvent) => {
-      const root = shellMenuRef.current;
-      if (root && event.target instanceof Node && !root.contains(event.target)) {
-        setShellMenuOpen(false);
-      }
-    };
-    window.addEventListener('pointerdown', onPointer);
-    return () => window.removeEventListener('pointerdown', onPointer);
-  }, [shellMenuOpen]);
+    if (mobile && !prevMobile.current) setRailDrawerOpen(false);
+    prevMobile.current = mobile;
+  }, [mobile]);
 
-  const closeShellMenu = useCallback(() => {
-    setShellMenuOpen(false);
+  const railPresentation = railMode(mobile ? 0 : wide ? 1280 : 1024, railPreference);
+  const railExpanded = railPresentation === 'expanded';
+
+  const persistRailPreference = useCallback((next: ShellRailPreference) => {
+    setRailPreference(next);
+    writeShellRailPreference(next);
   }, []);
 
+  const openRail = useCallback(
+    (target?: ShellRailFocusTarget) => {
+      if (mobile) {
+        setRailDrawerOpen(true);
+      } else if (railPresentation === 'collapsed') {
+        persistRailPreference('expanded');
+      }
+      if (target) setRailFocusTarget({ target, nonce: Date.now() });
+    },
+    [mobile, persistRailPreference, railPresentation],
+  );
+
   useEffect(() => {
-    if (!mobile) {
-      setShellMenuOpen(false);
-      setSideOpen(false);
-    }
-  }, [mobile]);
+    if (!railFocusTarget) return;
+    const visible = mobile ? railDrawerOpen : railPresentation === 'expanded';
+    if (!visible) return;
+    const timer = window.setTimeout(() => {
+      if (railFocusTarget.target === 'search') {
+        searchInputRef.current?.focus();
+      } else if (railFocusTarget.target === 'record') {
+        twinRecordRef.current?.focus();
+      } else {
+        const root = document.querySelector<HTMLElement>('[data-testid="theme-chips"]');
+        const target =
+          root?.querySelector<HTMLElement>('[aria-pressed="true"]') ??
+          root?.querySelector<HTMLElement>('button');
+        root?.scrollIntoView({ block: 'nearest' });
+        target?.focus();
+      }
+      setRailFocusTarget(null);
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, [mobile, railDrawerOpen, railFocusTarget, railPresentation]);
 
   const domainView = useMemo(
     () => (graph ? filterGraphByDomain(graph, activeDomain) : null),
@@ -335,7 +365,7 @@ export function App() {
     const normalized = normalizeVeganDietPatternId(patternId);
     if (!normalized) {
       setPatternId(null);
-      setScreen('home');
+      setScreen('explore');
       return;
     }
     if (patternId !== normalized) setPatternId(normalized);
@@ -347,7 +377,7 @@ export function App() {
     if (!sourceId || !sourceById(sources, sourceId)) {
       setSourceId(null);
       setSourceReturnSnapshot(null);
-      setScreen('home');
+      setScreen('explore');
     }
   }, [screen, sourceId, sources]);
 
@@ -395,15 +425,13 @@ export function App() {
         ? safeLens
           ? null
           : (themeForFilters(safeDisease, safeMechanism, safeFood)?.id ?? null)
-        : screen === 'home' && patterns.length > 0
-          ? patternSourceTheme
-          : null,
+        : null,
       disease: exploring && !safeLens ? safeDisease : null,
       mechanism: exploring && !safeLens ? safeMechanism : null,
       food: exploring && !safeLens ? safeFood : null,
       lens: exploring ? safeLens : null,
       pattern: screen === 'pattern' ? patternId : null,
-      patterns: screen === 'home' ? patterns : [],
+      patterns: [],
       source: screen === 'source' ? sourceId : null,
       book: screen === 'admin' && (adminSection === 'books' || adminSection === 'candidates') ? bookId : null,
       adminSection: screen === 'admin' ? adminSection : 'books',
@@ -428,8 +456,6 @@ export function App() {
     hideUnmatched,
     layout,
     patternId,
-    patternSourceTheme,
-    patterns,
     safeDisease,
     safeFood,
     safeLens,
@@ -538,12 +564,9 @@ export function App() {
   }, [graph, rendered, selection]);
 
   const search = useMemo(() => {
-    if (!graph || !rendered) return { hits: [], truncated: false };
-    return searchGraph(query, graph, {
-      nodeIds: rendered.nodeIds,
-      linkIndices: rendered.linkIndices,
-    });
-  }, [graph, query, rendered]);
+    if (!graph) return { hits: [] as SearchHit[], truncated: false };
+    return { hits: searchNodes(query, exploreNodes), truncated: false };
+  }, [exploreNodes, graph, query]);
 
   const counts = useMemo(() => (graph ? evidenceCounts(graph.links) : {}), [graph]);
 
@@ -558,15 +581,6 @@ export function App() {
   const onGraphView = (next: GraphView) => {
     setGraphView(next);
     setLayout('hierarchy');
-  };
-
-  const onSelectHit = (hit: SearchHit) => {
-    if (hit.kind === 'node' && hit.id) {
-      setClickFocusId(hit.id);
-      setSelection({ kind: 'node', id: hit.id });
-    }
-    if (hit.kind === 'link' && hit.index != null) setSelection({ kind: 'link', index: hit.index });
-    setShellMenuOpen(false);
   };
 
   const leaveLens = () => {
@@ -594,9 +608,7 @@ export function App() {
       setClickFocusId(null);
       setHideUnmatched(false);
       setQuery('');
-      setSideOpen(false);
       setThemeHintDismissed(false);
-      setShellMenuOpen(false);
       return next;
     });
   }, []);
@@ -617,26 +629,10 @@ export function App() {
     if (id) setFoodId(null);
   };
 
-  const focusThemeList = () => {
-    const root = document.querySelector('[data-testid="theme-chips"]');
-    const target =
-      root?.querySelector<HTMLElement>('[aria-pressed="true"]') ??
-      root?.querySelector<HTMLElement>('button');
-    target?.focus();
-  };
-
   const chooseTheme = () => {
-    if (mobile) {
-      setSideOpen(true);
-      window.setTimeout(focusThemeList, 0);
-      return;
-    }
-    // Desktop rail is always open, so sideOpen alone changed nothing: scroll, flash, focus.
-    const root = document.querySelector<HTMLElement>('[data-testid="theme-chips"]');
-    root?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    openRail('themes');
     setThemeChipsFlash(true);
     window.setTimeout(() => setThemeChipsFlash(false), 1200);
-    window.setTimeout(focusThemeList, 0);
   };
 
   const onTheme = (theme: ExploreTheme | null) => {
@@ -650,13 +646,6 @@ export function App() {
       setMechanismId(theme.mechanismId);
       setFoodId(theme.foodId);
     }
-    if (mobile) setSideOpen(false);
-  };
-
-  const clearPatternHighlight = () => {
-    setPatterns([]);
-    setPatternSourceTheme(null);
-    setReturnSnapshot(null);
   };
 
   const selectNode = (id: string) => {
@@ -687,11 +676,10 @@ export function App() {
     setHideUnmatched(true);
     setClickFocusId(null);
     setSelection(null);
-    setShellMenuOpen(false);
     setPatternId(null);
     setPatternReturnSnapshot(null);
     setScreen('explore');
-    clearPatternHighlight();
+    setRailDrawerOpen(false);
   };
 
   const enterLens = (nodeId: string) => {
@@ -705,26 +693,14 @@ export function App() {
     setHideUnmatched(true);
     setClickFocusId(nodeId);
     setSelection({ kind: 'node', id: nodeId });
-    setShellMenuOpen(false);
     setPatternId(null);
     setPatternReturnSnapshot(null);
     setScreen('explore');
-    clearPatternHighlight();
+    setRailDrawerOpen(false);
   };
 
-  const goHome = () => {
-    setClickFocusId(null);
-    setThemeHintDismissed(false);
-    setSelection(null);
-    setShellMenuOpen(false);
-    setPatternId(null);
-    setPatternReturnSnapshot(null);
-    setSourceId(null);
-    setSourceReturnSnapshot(null);
-    setBookId(null);
-    setLensId(null);
-    setScreen('home');
-    clearPatternHighlight();
+  const onSelectHit = (hit: SearchHit) => {
+    if (hit.kind === 'node' && hit.id) enterLens(hit.id);
   };
 
   const captureExplore = (): ExploreSnapshot => ({
@@ -738,29 +714,22 @@ export function App() {
     selection,
   });
 
-  const openVeganDietDetail = (fromExplore: boolean) => {
-    if (fromExplore) setPatternReturnSnapshot(captureExplore());
-    else setPatternReturnSnapshot(null);
+  const openVeganDietDetail = () => {
+    setPatternReturnSnapshot(captureExplore());
     setPatternId(VEGAN_DIET_HUB_ID);
     setClickFocusId(null);
     setSelection(null);
-    setShellMenuOpen(false);
     setScreen('pattern');
-    clearPatternHighlight();
-  };
-
-  const openCompare = () => {
-    openVeganDietDetail(false);
+    setRailDrawerOpen(false);
   };
 
   const openTwin = () => {
     setClickFocusId(null);
     setSelection(null);
-    setShellMenuOpen(false);
     setPatternId(null);
     setPatternReturnSnapshot(null);
     setScreen('twin');
-    clearPatternHighlight();
+    setRailDrawerOpen(false);
   };
 
   const openTwinIndicator = (indicator: TwinIndicatorId) => {
@@ -788,11 +757,10 @@ export function App() {
       setLayout('hierarchy');
       setGraphView('flow');
       selectNode(target.nodeId);
-      setShellMenuOpen(false);
       setPatternId(null);
       setPatternReturnSnapshot(null);
       setScreen('explore');
-      clearPatternHighlight();
+      setRailDrawerOpen(false);
       return;
     }
     if (theme) enterTheme(theme);
@@ -812,53 +780,7 @@ export function App() {
     setHideUnmatched(snapshot.hideUnmatched);
     setClickFocusId(null);
     setSelection(snapshot.selection);
-    setShellMenuOpen(false);
     setScreen('explore');
-    clearPatternHighlight();
-  };
-
-  const showRelatedPatterns = () => {
-    const theme = themeForFilters(safeDisease, safeMechanism, safeFood);
-    const linked = patternsForTheme(theme?.id);
-    if (!theme || linked.length === 0) return;
-    setReturnSnapshot({
-      diseaseId: safeDisease,
-      mechanismId: safeMechanism,
-      foodId: safeFood,
-      lensId: safeLens,
-      layout,
-      graphView,
-      hideUnmatched,
-      selection,
-    });
-    setPatternSourceTheme(theme.id);
-    setPatterns([...linked]);
-    setPatternId(null);
-    setPatternReturnSnapshot(null);
-    setSelection(null);
-    setShellMenuOpen(false);
-    setScreen('home');
-  };
-
-  const returnToGraph = () => {
-    const snapshot = returnSnapshot;
-    const source = themeById(patternSourceTheme);
-    clearPatternHighlight();
-    if (snapshot) {
-      setDiseaseId(snapshot.diseaseId);
-      setMechanismId(snapshot.mechanismId);
-      setFoodId(snapshot.foodId);
-      setLensId(snapshot.lensId);
-      setLayout(snapshot.layout);
-      setGraphView(snapshot.graphView);
-      setHideUnmatched(snapshot.hideUnmatched);
-      setClickFocusId(null);
-      setSelection(snapshot.selection);
-      setShellMenuOpen(false);
-      setScreen('explore');
-      return;
-    }
-    if (source) enterTheme(source);
   };
 
   const openSourcePage = (id: string) => {
@@ -868,10 +790,9 @@ export function App() {
     setSourceId(id);
     setClickFocusId(null);
     setSelection(null);
-    setShellMenuOpen(false);
     setPatternId(null);
     setScreen('source');
-    clearPatternHighlight();
+    setRailDrawerOpen(false);
   };
 
   const returnFromSource = () => {
@@ -891,7 +812,6 @@ export function App() {
     setHideUnmatched(snapshot.hideUnmatched);
     setClickFocusId(null);
     setSelection(snapshot.selection);
-    setShellMenuOpen(false);
     setScreen('explore');
   };
 
@@ -911,9 +831,7 @@ export function App() {
     setGraphView('flow');
     setClickFocusId(null);
     setSelection({ kind: 'link', index });
-    setShellMenuOpen(false);
     setScreen('explore');
-    clearPatternHighlight();
   };
 
   const openAdminSection = (section: AdminSection) => {
@@ -922,7 +840,6 @@ export function App() {
     setAdminEdge(null);
     setAdminNodeId(null);
     setScreen('admin');
-    setShellMenuOpen(false);
   };
 
   const openAdminBook = (id: string) => {
@@ -932,7 +849,6 @@ export function App() {
     setAdminNodeId(null);
     setBookId(id);
     setScreen('admin');
-    setShellMenuOpen(false);
   };
 
   const closeAdminBook = () => {
@@ -946,7 +862,6 @@ export function App() {
     setAdminNodeId(null);
     setBookId(id);
     setScreen('admin');
-    setShellMenuOpen(false);
   };
 
   const closeAdminCandidate = () => {
@@ -970,17 +885,17 @@ export function App() {
     setGraphView('flow');
     setClickFocusId(null);
     setSelection({ kind: 'node', id });
-    setShellMenuOpen(false);
     setScreen('explore');
-    clearPatternHighlight();
   };
 
-  const exploring = screen === 'explore';
+  const graphWorkspace = screen === 'explore' || screen === 'pattern' || screen === 'source';
+  const activeWorkspace: WorkspaceId = screen === 'twin' ? 'twin' : 'explore';
   const showVeganDietDetail = screen === 'pattern' && isVeganDietHubPattern(patternId);
   const activeSource = sourceById(sources, sourceId);
   const showSourceDetail = screen === 'source' && activeSource != null && graph != null;
   const activeAdminBook = adminBookById(adminBooks, bookId);
-  const showAdmin = screen === 'admin' && adminBooks != null;
+  const isAdmin = screen === 'admin';
+  const showReadingLayer = showVeganDietDetail || showSourceDetail;
   const relatedPatternIds = patternsForTheme(themeForFilters(safeDisease, safeMechanism, safeFood)?.id);
 
   const copyViewLink = () => {
@@ -1017,9 +932,14 @@ export function App() {
     writeTheme(next);
   }, []);
 
-  const viewControls = exploring ? <LayoutToggle view={graphView} onChange={onGraphView} /> : null;
+  const openAbout = useCallback(() => {
+    setRailDrawerOpen(false);
+    setAboutOpen(true);
+  }, []);
+
+  const viewControls = graphWorkspace && !showReadingLayer ? <LayoutToggle view={graphView} onChange={onGraphView} /> : null;
   const rotateControl =
-    exploring && graphView === '3d' && layout === 'force' ? (
+    graphWorkspace && !showReadingLayer && graphView === '3d' && layout === 'force' ? (
       <button
         type="button"
         className="btn btn--ghost"
@@ -1030,231 +950,125 @@ export function App() {
       </button>
     ) : null;
   const copyControl =
-    screen === 'twin' || screen === 'source' || screen === 'admin' ? null : (
+    graphWorkspace && !showReadingLayer ? (
       <button type="button" className="btn btn--ghost" onClick={copyViewLink}>
         {copied ? '已复制' : '复制链接'}
       </button>
-    );
+    ) : null;
 
-  return (
-    <div className="app">
-      <header
-        className={
-          mobile
-            ? exploring
-              ? 'topbar topbar--narrow topbar--mobile'
-              : 'topbar topbar--mobile'
-            : exploring
-              ? 'topbar topbar--compact'
-              : 'topbar'
-        }
-      >
-        <div className="brand">
-          <span className="mark" aria-hidden="true" />
-          <div>
-            <p className="brand-title" data-testid="brand-title" title="明膳知源" aria-label="明膳知源">
-              明膳知源
-            </p>
-            {!exploring && !mobile && (
-              <p className="brand-sub">仅供学习：饮食、机制与健康结局的关联图谱</p>
-            )}
-          </div>
-        </div>
-        {!mobile && (
-          <nav className="shell-nav" aria-label="主视图">
-            <button
-              type="button"
-              className="shell-nav-btn"
-              aria-current={screen === 'home' || screen === 'pattern' ? 'page' : undefined}
-              onClick={goHome}
-            >
-              主题大厅
-            </button>
-            <button
-              type="button"
-              className="shell-nav-btn"
-              aria-current={exploring ? 'page' : undefined}
-              disabled={!graph}
-              onClick={() => {
-                if (graph) setScreen('explore');
-              }}
-            >
-              图谱探索
-            </button>
-          </nav>
-        )}
-        {!mobile && screen !== 'admin' && (
-          <DomainSwitcher domain={activeDomain} onChange={onDomainChange} />
-        )}
-        {exploring && graph && (
-          <div className="header-tools">
-            <SearchBar
-              hits={search.hits}
-              truncated={search.truncated}
-              onQuery={onQuery}
-              onSelect={onSelectHit}
-            />
-          </div>
-        )}
-        <div className="header-actions">
-          {exploring && !mobile && (
-            <button
-              type="button"
-              className="btn btn--ghost"
-              data-testid="back-to-home"
-              aria-label="返回主题大厅"
-              onClick={goHome}
-            >
-              {BACK_TO_LOBBY}
-            </button>
-          )}
-          {mobile ? (
-            <div className="shell-menu" ref={shellMenuRef}>
-              <button
-                type="button"
-                className="btn btn--ghost shell-menu-trigger"
-                aria-expanded={shellMenuOpen}
-                aria-controls="shell-menu-panel"
-                aria-label="菜单"
-                data-testid="shell-menu-trigger"
-                onClick={() => setShellMenuOpen((open) => !open)}
-              >
-                <svg className="shell-menu-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path
-                    d="M5 7h14M5 12h14M5 17h14"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.75"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </button>
-              {shellMenuOpen && (
-                <>
-                  <button
-                    type="button"
-                    className="shell-menu-backdrop"
-                    aria-label="关闭菜单"
-                    data-testid="shell-menu-backdrop"
-                    onClick={closeShellMenu}
-                  />
-                  <div
-                    id="shell-menu-panel"
-                    className="shell-menu-panel"
-                    data-testid="shell-menu-panel"
-                    role="menu"
-                    aria-label="应用菜单"
-                  >
-                    <p className="shell-menu-kicker">导航</p>
-                    <nav className="shell-menu-nav" aria-label="主视图">
-                      <button
-                        type="button"
-                        role="menuitem"
-                        className="shell-menu-item"
-                        aria-current={screen === 'home' || screen === 'pattern' ? 'true' : undefined}
-                        onClick={() => {
-                          goHome();
-                          closeShellMenu();
-                        }}
-                      >
-                        主题大厅
-                      </button>
-                      <button
-                        type="button"
-                        role="menuitem"
-                        className="shell-menu-item"
-                        aria-current={exploring ? 'true' : undefined}
-                        disabled={!graph}
-                        onClick={() => {
-                          if (graph) {
-                            setScreen('explore');
-                            closeShellMenu();
-                          }
-                        }}
-                      >
-                        图谱探索
-                      </button>
-                    </nav>
-                    {screen !== 'admin' && (
-                      <DomainOptions
-                        domain={activeDomain}
-                        onChange={(next) => {
-                          onDomainChange(next);
-                          closeShellMenu();
-                        }}
-                      />
-                    )}
-                    {exploring && (
-                      <>
-                        <p className="shell-menu-kicker">探索</p>
-                        {viewControls}
-                        {rotateControl}
-                      </>
-                    )}
-                    {copyControl}
-                    <ThemeOptions theme={appTheme} onChange={onAppTheme} />
-                  </div>
-                </>
-              )}
-            </div>
-          ) : exploring ? null : (
-            <>{copyControl}</>
-          )}
-          {!mobile && <ThemeSwitcher theme={appTheme} onChange={onAppTheme} />}
-        </div>
-      </header>
+  const focusSearch = () => {
+    if (screen !== 'explore') setScreen('explore');
+    openRail('search');
+  };
 
-      <div
-        className={
-          exploring && graph && rendered && !domainEmpty
-            ? selection
-              ? 'stage stage--explore stage--detail'
-              : 'stage stage--explore'
-            : exploring && domainEmpty
-              ? 'stage stage--domain-empty'
-              : 'stage'
-        }
+  const selectWorkspace = (next: WorkspaceId) => {
+    if (next === 'twin') {
+      if (activeWorkspace === 'twin' && !mobile && railPresentation === 'collapsed') {
+        openRail('record');
+        return;
+      }
+      openTwin();
+      return;
+    }
+    if (screen !== 'explore') {
+      setPatternId(null);
+      setPatternReturnSnapshot(null);
+      setSourceId(null);
+      setSourceReturnSnapshot(null);
+      setScreen('explore');
+    }
+    setRailDrawerOpen(false);
+  };
+
+  const graphRailTools = (
+    <>
+      <section className="shell-rail-section" aria-label={SHELL_SEARCH_LABEL}>
+        <SearchBar
+          inputRef={searchInputRef}
+          hits={search.hits}
+          truncated={search.truncated}
+          onQuery={onQuery}
+          onSelect={onSelectHit}
+          placeholder={LOBBY_SEARCH_PLACEHOLDER}
+          label={LOBBY_SEARCH_PLACEHOLDER}
+          emptyText={LOBBY_SEARCH_EMPTY}
+          ready={graph != null}
+          nodesOnly
+        />
+      </section>
+      <section className="shell-rail-section shell-rail-domain">
+        <DomainSwitcher domain={activeDomain} onChange={onDomainChange} />
+      </section>
+      <RailRecommendations
+        nodes={graph?.nodes ?? []}
+        onEnterTheme={enterTheme}
+        onOpenLens={enterLens}
+      />
+      <section className="shell-rail-section" aria-label="主题与筛选">
+        <ThemeBar
+          themes={EXPLORE_THEMES}
+          diseaseId={safeDisease}
+          mechanismId={safeMechanism}
+          foodId={safeFood}
+          layout={layout}
+          hideUnmatched={hideUnmatched}
+          onTheme={onTheme}
+          onHideUnmatched={setHideUnmatched}
+          flash={themeChipsFlash}
+        />
+        <FilterPanel
+          diseases={diseases}
+          mechanisms={mechanisms}
+          diseaseId={safeDisease}
+          mechanismId={safeMechanism}
+          onDisease={selectDisease}
+          onMechanism={selectMechanism}
+          onClear={clearFilters}
+        />
+      </section>
+      <button
+        type="button"
+        className="btn btn--ghost shell-rail-action"
+        data-testid="rail-vegan-detail"
+        onClick={openVeganDietDetail}
       >
-        {exploring && load.status === 'loading' && (
-          <p className="banner" role="status">
-            正在加载知识图谱…
-          </p>
-        )}
-        {load.status === 'error' && (
-          <div className="banner banner--error" role="alert">
-            <p>图谱数据加载失败</p>
-            <p>{load.message}</p>
-            <button type="button" className="btn" onClick={() => setAttempt((value) => value + 1)}>
-              重试
-            </button>
-          </div>
-        )}
-        {(screen === 'home' || (screen === 'pattern' && !showVeganDietDetail)) && (
-          <ThemeLobby
-            onEnter={enterTheme}
-            onOpenLens={enterLens}
-            onOpenCompare={openCompare}
-            onOpenTwin={openTwin}
-            highlightedPatterns={patterns}
-            patternSourceTheme={patternSourceTheme}
-            onReturnToGraph={returnToGraph}
-            activeDomain={activeDomain}
-            onReturnHealth={returnToHealthDomain}
-            graphNodes={graph?.nodes ?? []}
-            searchReady={graph != null}
-          />
-        )}
-        {screen === 'twin' && <DietTwin onBack={goHome} onOpenIndicator={openTwinIndicator} />}
-        {showVeganDietDetail && (
-          <VeganDietDetail
-            onBack={goHome}
-            onEnterTheme={enterTheme}
-            onReturnToGraph={patternReturnSnapshot ? returnFromPatternToGraph : undefined}
-          />
-        )}
-        {showAdmin && adminBooks && (
+        {SHELL_VEGAN_ENTRY}
+      </button>
+    </>
+  );
+
+  const railVariant = mobile ? 'drawer' : railExpanded ? 'expanded' : 'collapsed';
+  const rail = (
+    <ShellRail
+      ref={railRef}
+      variant={railVariant}
+      activeWorkspace={activeWorkspace}
+      graphReady={graph != null}
+      hidden={mobile && !railDrawerOpen}
+      tools={
+        activeWorkspace === 'explore' ? (
+          graphRailTools
+        ) : (
+          <DietTwinControls controller={twin} recordRef={twinRecordRef} />
+        )
+      }
+      footer={<ThemeSwitcher theme={appTheme} onChange={onAppTheme} />}
+      onWorkspace={selectWorkspace}
+      onOpenSearch={focusSearch}
+      onOpenRecord={() => openRail('record')}
+      onExpand={() => persistRailPreference('expanded')}
+      onCollapse={() => persistRailPreference('collapsed')}
+      onClose={() => setRailDrawerOpen(false)}
+      onMethods={openAbout}
+    />
+  );
+
+  if (isAdmin) {
+    return (
+      <div className="app app--admin">
+        <div className="admin-stage">
           <AdminShell section={adminSection} onSection={openAdminSection}>
-            {adminSection === 'books' && activeAdminBook ? (
+            {adminBooks && adminSection === 'books' && activeAdminBook ? (
               <AdminBookDetail
                 book={activeAdminBook}
                 sources={sources}
@@ -1264,7 +1078,7 @@ export function App() {
                 onOpenGraph={openCitedLink}
               />
             ) : null}
-            {adminSection === 'books' && !activeAdminBook ? (
+            {adminBooks && adminSection === 'books' && !activeAdminBook ? (
               <AdminBooksList
                 books={adminBooks.books}
                 sources={sources}
@@ -1306,177 +1120,221 @@ export function App() {
                 onBack={closeAdminCandidate}
               />
             ) : null}
-            {adminSection === 'settings' ? (
+            {adminSection === 'settings' && adminBooks ? (
               <AdminSettings graph={graph} sources={sources} books={adminBooks} appTheme={appTheme} />
             ) : null}
           </AdminShell>
-        )}
-        {showSourceDetail && activeSource && graph && (
-          <SourceDetail
-            source={activeSource}
-            graph={graph}
-            onBack={sourceReturnSnapshot ? returnFromSource : () => { setSourceId(null); setScreen('explore'); }}
-            onOpenLink={openCitedLink}
-          />
-        )}
-        {exploring && graph && domainEmpty && activeDomain !== 'health' && (
-          <div className="stage-main stage-main--domain-empty" data-testid="explore-screen">
-            <DomainEmptyState domain={activeDomain} onReturnHealth={returnToHealthDomain} />
-          </div>
-        )}
-        {exploring && graph && rendered && !domainEmpty && (
-          <>
-            <aside
-              id="explore-rail"
-              className={sideOpen ? 'explore-rail is-open' : 'explore-rail'}
-              data-testid="explore-rail"
-              aria-label="主题与筛选"
-              hidden={mobile && !sideOpen}
+        </div>
+        <DisclaimerBar
+          meta={graph?.meta ?? null}
+          aboutOpen={aboutOpen}
+          nodeCount={graph?.nodes.length ?? null}
+          linkCount={graph?.links.length ?? null}
+          evidenceCounts={counts}
+          onAboutOpen={openAbout}
+          onAboutClose={() => setAboutOpen(false)}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className="app">
+      <Shell
+        mobile={mobile}
+        railVariant={railVariant}
+        drawerOpen={railDrawerOpen}
+        onDrawerClose={() => setRailDrawerOpen(false)}
+        railRef={railRef}
+        triggerRef={railTriggerRef}
+        rail={rail}
+      >
+        <div
+          className={`workspace ${
+            activeWorkspace === 'twin' ? 'workspace--twin' : 'workspace--graph'
+          }${selection && !showReadingLayer ? ' workspace--detail' : ''}${
+            domainEmpty ? ' workspace--domain-empty' : ''
+          }`}
+          data-testid="workspace"
+        >
+          {!showReadingLayer && (
+            <button
+              ref={railTriggerRef}
+              type="button"
+              className="btn btn--ghost rail-toggle"
+              data-testid="rail-toggle"
+              aria-expanded={mobile ? railDrawerOpen : railExpanded}
+              aria-controls="shell-rail"
+              aria-label={RAIL_TOGGLE_LABEL}
+              onClick={() => openRail()}
             >
-              <ThemeBar
-                themes={EXPLORE_THEMES}
-                diseaseId={safeDisease}
-                mechanismId={safeMechanism}
-                foodId={safeFood}
-                layout={layout}
-                hideUnmatched={hideUnmatched}
-                onTheme={onTheme}
-                onHideUnmatched={setHideUnmatched}
-                flash={themeChipsFlash}
-              />
-              <FilterPanel
-                diseases={diseases}
-                mechanisms={mechanisms}
-                diseaseId={safeDisease}
-                mechanismId={safeMechanism}
-                onDisease={selectDisease}
-                onMechanism={selectMechanism}
-                onClear={clearFilters}
-              />
-              <div className="rail-tools">
-                {viewControls}
-                {rotateControl}
-                {copyControl}
-              </div>
-            </aside>
-            <div className="stage-main" data-testid="explore-screen">
-              <GraphCanvas
-                graph={graph}
-                focusIds={brightFocusIds}
-                selection={selection}
-                layout={layout}
-                graphView={graphView}
-                shownNodeIds={rendered.nodeIds}
-                shownLinks={drawnLinks}
-                compact={mobile}
-                autoRotate={autoRotate}
-                anchorId={anchorId}
-                flowAnchorIds={flowAnchorIds}
-                onSelectNode={selectNode}
-                onSelectLink={selectLink}
-                onBackground={clearSelectionAndClickFocus}
-                appTheme={appTheme}
-              />
-              <button
-                type="button"
-                className="btn btn--ghost rail-toggle"
-                data-testid="rail-toggle"
-                aria-expanded={sideOpen}
-                aria-controls="explore-rail"
-                onClick={() => setSideOpen((open) => !open)}
-              >
-                {RAIL_TOGGLE_LABEL}
+              {RAIL_TOGGLE_LABEL}
+            </button>
+          )}
+
+          {graphWorkspace && load.status === 'loading' && (
+            <p className="banner workspace-banner" role="status">
+              正在加载知识图谱…
+            </p>
+          )}
+          {graphWorkspace && load.status === 'error' && (
+            <div className="banner banner--error workspace-banner" role="alert">
+              <p>图谱数据加载失败</p>
+              <p>{load.message}</p>
+              <button type="button" className="btn" onClick={() => setAttempt((value) => value + 1)}>
+                重试
               </button>
-              {mobile && sideOpen && (
-                <button
-                  type="button"
-                  className="rail-backdrop"
-                  aria-label="关闭主题筛选"
-                  onClick={() => setSideOpen(false)}
-                />
-              )}
-              {clickFocusId && clickFocusLabel && (
-                <div className="click-focus-banner" data-testid="click-focus-banner" role="status">
-                  <span className="click-focus-label">
-                    {CLICK_FOCUS_PREFIX}
-                    {clickFocusLabel}
-                  </span>
-                  <button
-                    type="button"
-                    className="btn btn--ghost"
-                    data-testid="clear-click-focus"
-                    onClick={clearClickFocus}
-                  >
-                    {CLEAR_CLICK_FOCUS}
-                  </button>
-                </div>
-              )}
-              <div className={mobile && !legendExpanded ? 'hud hud--legend-collapsed' : 'hud'}>
-                <Legend
+            </div>
+          )}
+
+          {graphWorkspace && graph && domainEmpty && activeDomain !== 'health' && (
+            <div className="stage-main stage-main--domain-empty" data-testid="explore-screen">
+              <DomainEmptyState domain={activeDomain} onReturnHealth={returnToHealthDomain} />
+            </div>
+          )}
+
+          {graphWorkspace && graph && rendered && !domainEmpty && (
+            <div className="graph-layout">
+              <div className="stage-main graph-canvas-stage" data-testid="explore-screen">
+                <GraphCanvas
+                  graph={graph}
+                  focusIds={brightFocusIds}
+                  selection={selection}
+                  layout={layout}
+                  graphView={graphView}
+                  shownNodeIds={rendered.nodeIds}
+                  shownLinks={drawnLinks}
                   compact={mobile}
-                  flow={graphView === 'flow' || (graphView === '3d' && layout === 'hierarchy')}
-                  onExpandedChange={onLegendExpandedChange}
+                  autoRotate={autoRotate}
+                  anchorId={anchorId}
+                  flowAnchorIds={flowAnchorIds}
+                  onSelectNode={selectNode}
+                  onSelectLink={selectLink}
+                  onBackground={clearSelectionAndClickFocus}
+                  appTheme={appTheme}
                 />
-                <p className="counts" data-testid="graph-stats">
-                  {(graphView === 'flow' || (graphView === '3d' && layout === 'hierarchy')) && flowSummary
-                    ? flowGraphStats(flowSummary.bands.length, flowSummary.omittedBudget, flowSummary.omittedSameColumn)
-                    : visibleGraphStats(rendered.nodeIds.size, rendered.links.length)}
-                </p>
-                <p className="hud-note">
-                  {graphView === '2d' && hierarchyPick && hierarchyPick.omittedBudget > 0
-                    ? HIERARCHY_BUDGET_NOTE
-                    : graphView === '3d' && layout === 'hierarchy'
-                    ? '四块列板由近到远是膳食到健康。拖动可小幅转动，带子越宽表示书摘越多。'
-                    : graphView === 'flow'
-                      ? '颜色表示关联方向，带子越宽表示书摘越多。同列关联不画在通路上。'
-                      : '颜色表示关联方向，线越粗表示强度越高。形状区分节点类型。'}
-                </p>
+
+                {(viewControls || rotateControl || copyControl) && (
+                  <div className="canvas-hud-controls" data-testid="canvas-hud-controls">
+                    {viewControls}
+                    {rotateControl}
+                    {copyControl}
+                  </div>
+                )}
+
+                {clickFocusId && clickFocusLabel && (
+                  <div className="click-focus-banner" data-testid="click-focus-banner" role="status">
+                    <span className="click-focus-label">
+                      {CLICK_FOCUS_PREFIX}
+                      {clickFocusLabel}
+                    </span>
+                    <button
+                      type="button"
+                      className="btn btn--ghost"
+                      data-testid="clear-click-focus"
+                      onClick={clearClickFocus}
+                    >
+                      {CLEAR_CLICK_FOCUS}
+                    </button>
+                  </div>
+                )}
+
+                <div className={mobile && !legendExpanded ? 'hud hud--legend-collapsed' : 'hud'}>
+                  <Legend
+                    compact={mobile}
+                    flow={graphView === 'flow' || (graphView === '3d' && layout === 'hierarchy')}
+                    onExpandedChange={onLegendExpandedChange}
+                  />
+                  <p className="counts" data-testid="graph-stats">
+                    {(graphView === 'flow' || (graphView === '3d' && layout === 'hierarchy')) && flowSummary
+                      ? flowGraphStats(flowSummary.bands.length, flowSummary.omittedBudget, flowSummary.omittedSameColumn)
+                      : visibleGraphStats(rendered.nodeIds.size, rendered.links.length)}
+                  </p>
+                  <p className="hud-note">
+                    {graphView === '2d' && hierarchyPick && hierarchyPick.omittedBudget > 0
+                      ? HIERARCHY_BUDGET_NOTE
+                      : graphView === '3d' && layout === 'hierarchy'
+                        ? '四块列板由近到远是膳食到健康。拖动可小幅转动，带子越宽表示书摘越多。'
+                        : graphView === 'flow'
+                          ? '颜色表示关联方向，带子越宽表示书摘越多。同列关联不画在通路上。'
+                          : '颜色表示关联方向，线越粗表示强度越高。形状区分节点类型。'}
+                  </p>
+                </div>
+
+                {!showReadingLayer && themeHintShown && (
+                  <div className="empty-theme" role="status" data-testid="theme-empty">
+                    <p>{EXPLORE_EMPTY_COPY}</p>
+                    <button type="button" className="btn btn--primary" data-testid="choose-theme" onClick={chooseTheme}>
+                      {EXPLORE_EMPTY_ACTION}
+                    </button>
+                    <button
+                      type="button"
+                      className="empty-theme-close"
+                      aria-label={THEME_HINT_CLOSE}
+                      data-testid="theme-empty-close"
+                      onClick={() => setThemeHintDismissed(true)}
+                    >
+                      ×
+                    </button>
+                  </div>
+                )}
+                {!showReadingLayer && filterEmpty && (
+                  <div className="empty-filter" role="status">
+                    <p>无匹配，清除过滤</p>
+                    <button type="button" className="btn btn--primary" onClick={clearFilters}>
+                      清除全部
+                    </button>
+                  </div>
+                )}
               </div>
-              {themeHintShown && (
-                <div className="empty-theme" role="status" data-testid="theme-empty">
-                  <p>{EXPLORE_EMPTY_COPY}</p>
-                  <button type="button" className="btn btn--primary" data-testid="choose-theme" onClick={chooseTheme}>
-                    {EXPLORE_EMPTY_ACTION}
-                  </button>
-                  <button
-                    type="button"
-                    className="empty-theme-close"
-                    aria-label={THEME_HINT_CLOSE}
-                    data-testid="theme-empty-close"
-                    onClick={() => setThemeHintDismissed(true)}
-                  >
-                    ×
-                  </button>
-                </div>
-              )}
-              {filterEmpty && (
-                <div className="empty-filter" role="status">
-                  <p>无匹配，清除过滤</p>
-                  <button type="button" className="btn btn--primary" onClick={clearFilters}>
-                    清除全部
-                  </button>
-                </div>
+
+              {selection && !showReadingLayer && (
+                <DetailDrawer
+                  graph={graph}
+                  selection={selection}
+                  mobile={mobile}
+                  evidenceCounts={counts}
+                  visibleLinkIndices={rendered.linkIndices}
+                  onClose={() => setSelection(null)}
+                  onSelectNode={selectNode}
+                  onSelectLink={selectLink}
+                  onOpenSource={openSourcePage}
+                  relatedPatternIds={relatedPatternIds}
+                  onOpenPattern={relatedPatternIds.length > 0 ? openVeganDietDetail : undefined}
+                />
               )}
             </div>
-            {selection && (
-              <DetailDrawer
-                graph={graph}
-                selection={selection}
-                mobile={mobile}
-                evidenceCounts={counts}
-                visibleLinkIndices={rendered.linkIndices}
-                onClose={() => setSelection(null)}
-                onSelectNode={selectNode}
-                onSelectLink={selectLink}
-                onOpenSource={openSourcePage}
-                onShowPatterns={relatedPatternIds.length > 0 ? showRelatedPatterns : undefined}
-                relatedPatternIds={relatedPatternIds}
-                onOpenPattern={relatedPatternIds.length > 0 ? () => openVeganDietDetail(true) : undefined}
+          )}
+
+          {screen === 'twin' && <DietTwinCanvas controller={twin} onOpenIndicator={openTwinIndicator} />}
+
+          {showVeganDietDetail && (
+            <div className="workspace-reading-layer" data-testid="pattern-reading-layer">
+              <VeganDietDetail
+                onBack={patternReturnSnapshot ? returnFromPatternToGraph : () => {
+                  setPatternId(null);
+                  setScreen('explore');
+                }}
+                onEnterTheme={enterTheme}
               />
-            )}
-          </>
-        )}
-      </div>
+            </div>
+          )}
+
+          {showSourceDetail && activeSource && graph && (
+            <div className="workspace-reading-layer" data-testid="source-reading-layer">
+              <SourceDetail
+                source={activeSource}
+                graph={graph}
+                onBack={sourceReturnSnapshot ? returnFromSource : () => {
+                  setSourceId(null);
+                  setScreen('explore');
+                }}
+                onOpenLink={openCitedLink}
+              />
+            </div>
+          )}
+        </div>
+      </Shell>
 
       <DisclaimerBar
         meta={graph?.meta ?? null}
@@ -1484,7 +1342,7 @@ export function App() {
         nodeCount={graph?.nodes.length ?? null}
         linkCount={graph?.links.length ?? null}
         evidenceCounts={counts}
-        onAboutOpen={() => setAboutOpen(true)}
+        onAboutOpen={openAbout}
         onAboutClose={() => setAboutOpen(false)}
       />
     </div>

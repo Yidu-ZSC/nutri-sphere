@@ -1,4 +1,12 @@
-import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react';
+import {
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+  type KeyboardEvent,
+  type Ref,
+} from 'react';
 import { SEARCH_DEBOUNCE_MS, type SearchHit } from '../lib/search';
 
 interface SearchBarProps {
@@ -12,6 +20,7 @@ interface SearchBarProps {
   emptyText?: string;
   /** When false, an empty result is not shown as “no match” (the graph may still be loading). */
   ready?: boolean;
+  inputRef?: Ref<HTMLInputElement>;
 }
 
 export function SearchBar({
@@ -24,6 +33,7 @@ export function SearchBar({
   label = '搜索节点或关联',
   emptyText = '无匹配结果',
   ready = true,
+  inputRef,
 }: SearchBarProps) {
   const [text, setText] = useState('');
   const [open, setOpen] = useState(false);
@@ -121,6 +131,7 @@ export function SearchBar({
         {label}
       </label>
       <input
+        ref={inputRef}
         id={`${listId}-input`}
         role="combobox"
         aria-autocomplete="list"

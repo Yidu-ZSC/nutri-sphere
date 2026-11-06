@@ -56,7 +56,7 @@ test('Legend compact collapse wiring and desktop always-open', () => {
   assert.match(app, /onExpandedChange/);
 });
 
-test('NS-051 CSS: muted tokens, HUD 180/280, narrow topbar 40', () => {
+test('NS-051 CSS: muted tokens, HUD 180/280, compact rail targets', () => {
   const css = fs.readFileSync(path.join(root, 'src/styles.css'), 'utf8');
 
   const shape = css.match(/\.shape-icon\s*\{([^}]*)\}/)?.[1] ?? '';
@@ -73,15 +73,15 @@ test('NS-051 CSS: muted tokens, HUD 180/280, narrow topbar 40', () => {
   const mobileIdx = css.indexOf('@media (max-width: 768px)');
   assert.ok(mobileIdx >= 0);
   const mobile = css.slice(mobileIdx);
-  assert.match(mobile, /\.stage--explore\s+\.hud\.hud--legend-collapsed\s*\{[^}]*max-width:\s*180px/);
+  assert.match(mobile, /\.graph-canvas-stage\s+\.hud\.hud--legend-collapsed\s*\{[^}]*max-width:\s*180px/);
   assert.match(
     mobile,
-    /\.stage--explore\s+\.hud:not\(\.hud--legend-collapsed\)\s*\{[^}]*max-width:\s*min\(280px,\s*calc\(100%\s*-\s*16px\)\)/,
+    /\.graph-canvas-stage\s+\.hud:not\(\.hud--legend-collapsed\)\s*\{[^}]*max-width:\s*min\(280px,\s*calc\(100%\s*-\s*16px\)\)/,
   );
-  assert.match(mobile, /\.topbar\.topbar--narrow\s*\{[^}]*gap:\s*6px/);
-  assert.match(mobile, /\.topbar\.topbar--narrow\s*\{[^}]*padding:\s*6px\s+8px/);
-  assert.match(mobile, /\.topbar--narrow\s+\.search\s+input\s*\{[^}]*min-height:\s*40px/);
+  assert.equal(css.includes('.topbar'), false);
+  assert.match(css, /\.shell-rail--collapsed \.theme-switch-btn,[^{]*\.shell-rail--collapsed \.shell-rail-icon-btn\s*\{[^}]*width:\s*44px/s);
+  assert.match(css, /\.shell-rail--collapsed \.shell-rail-item\s*\{[^}]*min-height:\s*44px/s);
 
   // Desktop explore HUD baseline remains 300
-  assert.match(css, /\.stage--explore\s+\.hud\s*\{[^}]*max-width:\s*min\(300px,\s*calc\(100%\s*-\s*24px\)\)/s);
+  assert.match(css, /\.graph-canvas-stage\s+\.hud\s*\{[^}]*max-width:\s*min\(300px,\s*calc\(100%\s*-\s*24px\)\)/s);
 });

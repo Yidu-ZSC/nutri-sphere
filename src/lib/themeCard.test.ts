@@ -3,51 +3,29 @@ import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
+import { LOBBY_RECOMMENDED } from './lobbyEntry.ts';
+import { EXPLORE_THEMES } from './themes.ts';
+import { themeAccent } from './themeAccent.ts';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
-test('lobby theme cards use the locked surface without retuning global radii', () => {
+test('rail recommendations and theme chips reuse the locked direction surface', () => {
   const tokens = fs.readFileSync(path.join(root, 'src/styles/tokens.css'), 'utf8');
   const css = fs.readFileSync(path.join(root, 'src/styles.css'), 'utf8');
-  const lobby = fs.readFileSync(path.join(root, 'src/components/ThemeLobby.tsx'), 'utf8');
+  const recommendations = fs.readFileSync(path.join(root, 'src/components/RailRecommendations.tsx'), 'utf8');
   const themeBar = fs.readFileSync(path.join(root, 'src/components/ThemeBar.tsx'), 'utf8');
 
   assert.match(tokens, /--radius-card:\s*14px/);
   assert.match(tokens, /--radius-btn:\s*10px/);
-  assert.match(tokens, /--radius-theme-card:\s*16px/);
-  assert.match(tokens, /--radius-theme-cta:\s*10px/);
   assert.match(tokens, /--border-hover:\s*rgba\(24,\s*24,\s*27,\s*0?\.16\)/);
   assert.match(tokens, /--shadow-card:\s*0 1px 2px rgba\(24,\s*24,\s*27,\s*0?\.04\)/);
 
-  const card = css.match(/\.theme-card\s*\{([^}]*)\}/)?.[1] ?? '';
-  assert.match(card, /border-radius:\s*var\(--radius-theme-card\)/);
-  assert.match(card, /background-color:\s*var\(--panel\)/);
-  assert.equal(card.includes('backdrop-filter'), false);
+  const card = css.match(/\.rail-recommendation\s*\{([^}]*)\}/)?.[1] ?? '';
+  assert.match(card, /border-radius:\s*var\(--radius-card\)/);
+  assert.match(card, /background:\s*var\(--bg\)/);
   assert.match(card, /box-shadow:\s*var\(--shadow-card\)/);
-  assert.match(card, /min-height:\s*148px/);
-  assert.match(card, /padding:\s*var\(--space-4\)\s+var\(--space-4\)\s+var\(--space-5\)/);
-  assert.match(card, /cursor:\s*pointer/);
-
-  // TASK-NS-050: mobile density overrides (desktop 148 above must remain)
-  const mobileMediaIdx = css.indexOf('@media (max-width: 768px)');
-  assert.ok(mobileMediaIdx >= 0, 'expected max-width 768px media query');
-  const mobileBlock = css.slice(mobileMediaIdx);
-  assert.match(mobileBlock, /\.theme-card\s*\{[^}]*min-height:\s*104px/);
-  assert.match(mobileBlock, /\.theme-card\s*\{[^}]*padding:\s*12px/);
-  assert.match(mobileBlock, /\.theme-card\s*\{[^}]*gap:\s*6px/);
-  assert.match(
-    mobileBlock,
-    /\.theme-grid,\s*\.mechanism-list\s*\{[^}]*gap:\s*12px/,
-  );
-  assert.match(
-    mobileBlock,
-    /\.theme-grid,\s*\.mechanism-list\s*\{[^}]*margin-top:\s*12px/,
-  );
-  assert.match(mobileBlock, /\.lobby\s*\{\s*padding:\s*14px\s+12px\s+20px/);
-  assert.match(mobileBlock, /\.lobby-primary h2\s*\{\s*margin-top:\s*14px/);
-  assert.equal(card.includes('var(--radius-card)'), false);
-  assert.equal(card.includes('+ 3px'), false);
-  assert.equal(card.includes('calc('), false);
+  assert.match(card, /text-align:\s*left/);
+  assert.equal(card.includes('backdrop-filter'), false);
 
   const top = css.match(/\.dir-top\s*\{([^}]*)\}/)?.[1] ?? '';
   assert.match(top, /height:\s*3px/);
@@ -65,78 +43,36 @@ test('lobby theme cards use the locked surface without retuning global radii', (
   assert.match(bar, /background:\s*var\(--card-accent,\s*var\(--dir-neutral\)\)/);
   assert.match(themeBar, /className="dir-bar"/);
 
-  const hover = css.match(/\.theme-card:hover\s*\{([^}]*)\}/)?.[1] ?? '';
-  assert.match(hover, /transform:\s*translateY\(-2px\)/);
-  assert.match(hover, /border-color:\s*var\(--border-color\)/);
-  assert.match(hover, /box-shadow:/);
+  const hover = css.match(/\.rail-recommendation:hover,\s*\.rail-recommendation:focus-visible\s*\{([^}]*)\}/)?.[1] ?? '';
+  assert.match(hover, /border-color:\s*var\(--border-hover\)/);
+  assert.match(hover, /background:\s*var\(--panel-hover\)/);
   assert.equal(hover.includes('rgba(255, 255, 255'), false);
-  assert.match(css, /\.theme-card:hover \.dir-top\s*\{[^}]*filter:\s*brightness\(1\.15\)/);
-  assert.equal(css.includes('.theme-card:hover .dir-bar'), false);
 
-  const focus = css.match(/\.theme-card:focus-visible\s*\{([^}]*)\}/)?.[1] ?? '';
-  assert.match(focus, /outline:\s*2px solid var\(--accent\)/);
-  assert.match(focus, /outline-offset:\s*2px/);
+  assert.match(recommendations, /className="dir-top"/);
+  assert.match(recommendations, /data-testid=\{`theme-card-\$\{primaryTheme\.id\}`\}/);
+  assert.match(recommendations, /data-direction=\{themeAccent\(primaryTheme\)\}/);
+  assert.match(recommendations, /onClick=\{\(\) => onEnterTheme\(primaryTheme\)\}/);
+  assert.match(recommendations, /data-testid=\{`lens-card-\$\{entry\.id\}`\}/);
+  assert.match(recommendations, /onClick=\{\(\) => onOpenLens\(entry\.anchorNodeId\)\}/);
+  assert.equal(recommendations.includes('ThemeLobby'), false);
+  assert.equal(recommendations.includes('DietTwinPortal'), false);
+});
 
-  const chevron = css.match(/\.theme-card-chevron\s*\{([^}]*)\}/)?.[1] ?? '';
-  assert.match(chevron, /color:\s*var\(--muted\)/);
-  assert.match(
-    css,
-    /\.theme-card:hover \.theme-card-chevron,\s*\.theme-card:focus-visible \.theme-card-chevron\s*\{[^}]*color:\s*var\(--text\)/,
-  );
+test('recommendations keep the locked theme-first order from the retired lobby', () => {
+  const primary = LOBBY_RECOMMENDED[0];
+  assert.equal(primary.kind, 'theme');
+  assert.ok(EXPLORE_THEMES.some((theme) => theme.id === primary.id));
+  assert.ok(LOBBY_RECOMMENDED.slice(1).every((entry) => entry.kind !== 'theme'));
+});
 
-  assert.match(css, /\.theme-card:active\s*\{[^}]*transform:\s*scale\(0\.99\)/);
-  assert.equal(css.includes('.theme-cta'), false);
-
-  assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)/);
-  const reduced = css.slice(css.indexOf('@media (prefers-reduced-motion: reduce)'));
-  assert.match(reduced, /\.theme-card:hover/);
-  assert.match(reduced, /\.theme-card:active/);
-  assert.match(reduced, /\.diet-twin-entry:hover/);
-  assert.match(reduced, /\.diet-twin-entry:active/);
-  assert.match(reduced, /transition:\s*none/);
-  assert.match(reduced, /transform:\s*none/);
-  assert.equal(reduced.includes('.theme-cta'), false);
-  assert.equal(reduced.includes('translateY'), false);
-
-  const heading = lobby.slice(lobby.indexOf('function CardHeading'), lobby.indexOf('function ThemeCard'));
-  assert.match(heading, /className="theme-card-chevron"/);
-  assert.match(heading, /aria-hidden="true"/);
-
-  const themeCard = lobby.slice(lobby.indexOf('function ThemeCard'), lobby.indexOf('function PatternCard'));
-  assert.match(
-    themeCard,
-    /<button[\s\S]*type="button"[\s\S]*className=\{featured \? 'theme-card theme-card--featured' : 'theme-card'\}/,
-  );
-  assert.match(themeCard, /aria-label=\{theme\.title\}/);
-  assert.match(themeCard, /onClick=\{\(\) => onEnter\(theme\)\}/);
-  assert.match(themeCard, /className="dir-top"/);
-  assert.match(themeCard, /<CardHeading title=\{theme\.title\} \/>/);
-  assert.equal(themeCard.includes('<article'), false);
-  assert.equal(themeCard.includes('theme-cta'), false);
-  assert.equal(themeCard.includes('dir-bar'), false);
-  assert.equal(themeCard.includes('THEME_CTA'), false);
-
-  const portal = fs.readFileSync(path.join(root, 'src/components/DietTwinPortal.tsx'), 'utf8');
-  assert.equal(lobby.includes('className="theme-card diet-twin-entry"'), false);
-  assert.match(lobby, /<DietTwinPortal onOpen=\{onOpenTwin\} \/>/);
-  assert.match(portal, /className="diet-twin-entry"/);
-  assert.match(portal, /type="button"/);
-  assert.match(portal, /<h2 className="diet-twin-title">/);
-  assert.equal(portal.includes('theme-card'), false);
-  assert.equal(portal.includes('CardHeading'), false);
-  assert.equal(portal.includes('dir-top'), false);
-  assert.equal(portal.includes('theme-cta'), false);
-  assert.equal(portal.includes('theme-card-chevron'), false);
-  assert.equal(portal.includes('data-direction'), false);
-  assert.equal(portal.includes('--card-accent'), false);
-  assert.equal(portal.includes('btn--primary'), false);
-  assert.equal(/\.diet-twin-entry\s*\{[^}]*max-width:\s*520px/.test(css), false);
-
-  assert.equal(lobby.includes('theme-cta'), false);
-  assert.equal(lobby.includes('dir-bar'), false);
-  assert.ok(lobby.includes('pattern-facets'));
-  assert.match(lobby, /className="pattern-card pattern-card--journey"/);
-  assert.equal(lobby.includes('data-testid="open-pattern-detail"'), false);
-  assert.match(lobby, /data-testid="vegan-section-detail"/);
-  assert.match(lobby, /data-testid="vegan-section-graph"/);
+test('theme accent bars follow the seed anchor group', () => {
+  const seed = JSON.parse(fs.readFileSync(path.join(root, 'data/seed_triples_v0.3_aligned.json'), 'utf8')) as {
+    nodes: { id: string; group: string }[];
+  };
+  const byId = new Map(seed.nodes.map((node) => [node.id, node.group]));
+  for (const theme of EXPLORE_THEMES) {
+    const anchor = theme.diseaseId ?? theme.mechanismId ?? theme.foodId;
+    assert.ok(anchor, theme.id);
+    assert.equal(themeAccent(theme), byId.get(anchor), theme.id);
+  }
 });

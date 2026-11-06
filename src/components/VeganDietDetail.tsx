@@ -11,29 +11,23 @@ import { themeById, type ExploreTheme } from '../lib/themes';
 interface VeganDietDetailProps {
   onBack: () => void;
   onEnterTheme: (theme: ExploreTheme) => void;
-  onReturnToGraph?: () => void;
 }
 
-export function VeganDietDetail({ onBack, onEnterTheme, onReturnToGraph }: VeganDietDetailProps) {
+export function VeganDietDetail({ onBack, onEnterTheme }: VeganDietDetailProps) {
   const graphTheme = themeById(VEGAN_DIET_GRAPH_THEME_ID);
 
   return (
     <main className="pattern-screen pattern-screen--hub" data-testid="vegan-diet-detail">
       <div className="pattern-screen-inner">
         <div className="pattern-toolbar">
-          <button type="button" className="btn btn--ghost pattern-main-btn" onClick={onBack}>
-            {PATTERN_SHELL.backLobby}
+          <button
+            type="button"
+            className="btn btn--ghost pattern-main-btn"
+            data-testid="pattern-return-graph"
+            onClick={onBack}
+          >
+            {PATTERN_SHELL.backGraph}
           </button>
-          {onReturnToGraph && (
-            <button
-              type="button"
-              className="btn btn--ghost pattern-main-btn"
-              data-testid="pattern-return-graph"
-              onClick={onReturnToGraph}
-            >
-              {PATTERN_SHELL.backGraph}
-            </button>
-          )}
         </div>
         <header className="pattern-hero pattern-section">
           <p className="kicker">{PATTERN_SHELL.sectionKicker}</p>

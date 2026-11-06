@@ -33,11 +33,6 @@ export interface TwinExploreTarget {
 }
 
 export const DIET_TWIN_COPY = {
-  entryKicker: '饮食观察 · 非诊断',
-  entryTitle: '我的饮食孪生',
-  entryAria: '我的饮食孪生，教育模拟，非诊断',
-  entryPrompt: '用三道短问对照公开资料里的饮食叙述',
-  entryBlurb: '模拟对照，不是个人检测',
   title: '我的饮食孪生',
   badge: '模拟，非诊断',
   persistent: '这是个人饮食记录与观察，不是你个人的健康监测或诊断。',
@@ -58,7 +53,6 @@ export const DIET_TWIN_COPY = {
   bandLow: '低',
   bandMid: '中',
   bandHigh: '高',
-  back: '返回大厅',
   recordsTitle: '饮食记录',
   dateLabel: '日期',
   mealLabel: '餐次',
@@ -84,7 +78,7 @@ export const DIET_TWIN_COPY = {
   hypothesisTitle: '假设',
   modeRecords: '基于记录',
   modeHypothesis: '假设',
-  guide: '先记一笔饮食，或完成下面的假设三问。',
+  guide: '先记一笔饮食，或完成假设三问。',
   mealBreakfast: '早餐',
   mealLunch: '午餐',
   mealDinner: '晚餐',
