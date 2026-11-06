@@ -138,7 +138,12 @@
       "theme": "身心与疾病",
       "relevance": "edge",
       "kb_file": "身心与疾病_无限可能的身体.md",
-      "status": "index_only"
+      "status": "ingested",
+      "source_id": "body_unlimited",
+      "publisher": "贵州人民出版社",
+      "isbn": "9787221179357",
+      "cover_url": "https://cdn.weread.qq.com/weread/cover/90/cpplatform_eehwxgbxaxvgx2ffptkaud/t6_cpplatform_eehwxgbxaxvgx2ffptkaud1726822010.jpg",
+      "authors": "卢永利"
     },
     {
       "id": "seasoning_of_love",

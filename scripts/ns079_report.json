@@ -1,0 +1,105 @@
+{
+  "task": "TASK-NS-079",
+  "from_data_version": "2.6",
+  "to_data_version": "2.7",
+  "schema_version": "0.7",
+  "before": {
+    "nodes": 200,
+    "links": 1069
+  },
+  "after": {
+    "nodes": 205,
+    "links": 1166
+  },
+  "new_nodes": [
+    "industrial_seed_oils",
+    "autophagy",
+    "cold_exposure",
+    "heat_exposure",
+    "social_isolation"
+  ],
+  "new_node_count": 5,
+  "reuse_node_count": 84,
+  "append_candidates": 104,
+  "append_evidence_rows": 341,
+  "new_edges": 97,
+  "batch_internal_appends_flagged_new": 0,
+  "parallel_pairs_after": 0,
+  "body_unlimited_top_level": 97,
+  "body_unlimited_citing": 201,
+  "direction_new": {
+    "risk": 53,
+    "protective": 44
+  },
+  "type_counts_after": {
+    "diet_pattern": 9,
+    "food_category": 10,
+    "nutrient": 22,
+    "food": 25,
+    "compound": 18,
+    "metabolite": 6,
+    "mechanism": 54,
+    "disease": 55,
+    "biomarker": 6
+  },
+  "sources_registered": true,
+  "authors": "卢永利",
+  "append_hosts_sample": [
+    {
+      "candidate_note_id": "bu_c5_p5",
+      "endpoints": "circadian_alignment->metabolic_health",
+      "host_id": "qs_c67_p1",
+      "host_source_id": "quit_sugar",
+      "host_relation": "昼夜节律与血糖反应的科学实验证实相关",
+      "live_relation_before": "昼夜节律与血糖反应的科学实验证实相关",
+      "candidate_relation": "昼夜节律与血糖反应的科学实验证实相关",
+      "existing_relation": null,
+      "evidences_appended": 20
+    },
+    {
+      "candidate_note_id": "bu_c5_p5",
+      "endpoints": "hunter_gatherer_diet->metabolic_health",
+      "host_id": "bs_c07_p8",
+      "host_source_id": "body_story",
+      "host_relation": "接近狩猎采集的肉坚果蔬果种子饮食模式与代谢健康讨论相关",
+      "live_relation_before": "接近狩猎采集的肉坚果蔬果种子饮食模式与代谢健康讨论相关",
+      "candidate_relation": "接近狩猎采集的肉坚果蔬果种子饮食模式与代谢健康讨论相关",
+      "existing_relation": null,
+      "evidences_appended": 12
+    },
+    {
+      "candidate_note_id": "bu_c5_p5",
+      "endpoints": "omnivorous_balanced_diet->metabolic_health",
+      "host_id": "yawye_c64_p14_metabolic_health",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "七大营养素平衡的膳食结构与代谢健康相关",
+      "live_relation_before": "七大营养素平衡的膳食结构与代谢健康相关",
+      "candidate_relation": "七大营养素平衡的膳食结构与代谢健康相关",
+      "existing_relation": null,
+      "evidences_appended": 10
+    },
+    {
+      "candidate_note_id": "bu_c5_p8",
+      "endpoints": "ultra_processed->chronic_disease",
+      "host_id": "yawye_c13_p2_chronic_disease",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "工业加工食品与精制主食普及与慢病流行相关",
+      "live_relation_before": "工业加工食品与精制主食普及与慢病流行相关",
+      "candidate_relation": "工业加工食品与精制主食普及与慢病流行相关",
+      "existing_relation": null,
+      "evidences_appended": 19
+    },
+    {
+      "candidate_note_id": "bu_c5_p8",
+      "endpoints": "physical_inactivity->chronic_disease",
+      "host_id": "bs_c05_p4",
+      "host_source_id": "body_story",
+      "host_relation": "体力活动不足与多种慢性可预防疾病负担相关",
+      "live_relation_before": "体力活动不足与多种慢性可预防疾病负担相关",
+      "candidate_relation": "体力活动不足与多种慢性可预防疾病负担相关",
+      "existing_relation": null,
+      "evidences_appended": 8
+    }
+  ],
+  "append_hosts_count": 104
+}
