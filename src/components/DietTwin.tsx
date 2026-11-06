@@ -565,25 +565,26 @@ export function DietTwinIcon({ onOpen }: { onOpen: () => void }) {
     >
       <span className="twin-entry-glow" aria-hidden="true" />
       <svg className="twin-entry-silhouette" viewBox="0 0 200 180" focusable="false" aria-hidden="true">
-        <circle className="twin-entry-ring" cx="100" cy="90" r="80" />
+        <circle className="twin-entry-ring" cx="100" cy="90" r="68" />
+        <circle className="twin-entry-core" cx="100" cy="90" r="56" />
         <g className="twin-entry-figure">
-          <circle className="twin-entry-head" cx="100" cy="46" r="14" />
+          <circle className="twin-entry-head" cx="100" cy="41" r="15.5" />
           <path
             className="twin-entry-body"
-            d="M100 60C90 62 84 68 82 76C84 92 86 108 90 122C94 128 106 128 110 122C114 108 116 92 118 76C116 68 110 62 100 60Z"
+            d="M100 57C88 60 80 66 78 76C80 94 83 110 89 122C93 129 107 129 111 122C117 110 120 94 122 76C120 66 112 60 100 57Z"
           />
           <g className="twin-entry-arm twin-entry-arm--left">
-            <path className="twin-entry-limb" d="M82 76C72 58 66 44 60 32" />
+            <path className="twin-entry-limb" d="M78 74C70 56 64 41 59 27" />
           </g>
           <g className="twin-entry-arm twin-entry-arm--right">
-            <path className="twin-entry-limb" d="M118 76C128 58 134 44 140 32" />
+            <path className="twin-entry-limb" d="M122 74C130 56 136 41 141 27" />
           </g>
-          <path className="twin-entry-limb" d="M94 122C92 138 90 152 88 164" />
-          <path className="twin-entry-limb" d="M106 122C108 138 110 152 112 164" />
+          <path className="twin-entry-limb" d="M91 122C89 135 88 147 87 158" />
+          <path className="twin-entry-limb" d="M109 122C111 135 112 147 113 158" />
         </g>
-        <circle className="twin-entry-dot" cx="100" cy="78" r="3" />
-        <circle className="twin-entry-dot" cx="100" cy="95" r="3" />
-        <circle className="twin-entry-dot" cx="100" cy="112" r="3" />
+        <circle className="twin-entry-dot" cx="100" cy="73" r="3.2" />
+        <circle className="twin-entry-dot" cx="100" cy="91" r="3.2" style={{ animationDelay: '0.5s' }} />
+        <circle className="twin-entry-dot" cx="100" cy="109" r="3.2" style={{ animationDelay: '1s' }} />
       </svg>
     </button>
   );

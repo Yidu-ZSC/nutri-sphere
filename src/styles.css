@@ -3309,7 +3309,7 @@ code {
   position: absolute;
   z-index: 7;
   top: var(--space-3);
-  right: calc(var(--space-3) + 52px);
+  right: calc(var(--space-3) + 56px);
   max-width: calc(100% - 24px);
   display: flex;
   flex-wrap: wrap;
@@ -3621,14 +3621,16 @@ code {
   top: var(--space-3);
   right: var(--space-3);
   z-index: 30;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   padding: 0;
   display: grid;
   place-items: center;
   border: var(--border);
   border-radius: 50%;
-  background: var(--panel);
+  background:
+    radial-gradient(circle at 50% 38%, color-mix(in srgb, var(--dir-protective) 14%, transparent), transparent 64%),
+    var(--panel);
   box-shadow: var(--shadow-card);
   color: var(--text);
   cursor: pointer;
@@ -3638,34 +3640,47 @@ code {
 
 .twin-entry-icon:hover {
   transform: translateY(-1px);
-  border-color: var(--border-hover);
+  border-color: color-mix(in srgb, var(--dir-protective) 42%, var(--border-hover));
   box-shadow: var(--shadow);
 }
 
 .twin-entry-glow {
   position: absolute;
-  inset: 5px;
+  inset: 7px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.5) 0%, rgba(34, 197, 94, 0) 70%);
-  opacity: 0.28;
+  background: radial-gradient(circle, color-mix(in srgb, var(--dir-protective) 58%, transparent) 0%, transparent 70%);
+  opacity: 0.26;
   pointer-events: none;
+  animation: twin-glow 3.4s ease-in-out infinite;
 }
 
 .twin-entry-silhouette {
   position: relative;
-  width: 30px;
-  height: 27px;
+  width: 36px;
+  height: 32px;
   overflow: visible;
 }
 
 .twin-entry-ring {
   fill: none;
   stroke: var(--muted);
-  stroke-width: 2.2;
+  stroke-width: 1.7;
   opacity: 0.5;
   transform-box: view-box;
   transform-origin: 100px 90px;
   animation: twin-ring 6.4s ease-in-out infinite;
+}
+
+.twin-entry-core {
+  fill: none;
+  stroke: color-mix(in srgb, var(--dir-protective) 55%, transparent);
+  stroke-width: 1.1;
+  stroke-dasharray: 3 6;
+  stroke-linecap: round;
+  opacity: 0.8;
+  transform-box: view-box;
+  transform-origin: 100px 90px;
+  animation: twin-core 22s linear infinite;
 }
 
 .twin-entry-figure { color: var(--text); }
@@ -3673,16 +3688,18 @@ code {
 .twin-entry-head,
 .twin-entry-body {
   fill: currentColor;
-  opacity: 0.85;
+  stroke: color-mix(in srgb, var(--muted) 55%, transparent);
+  stroke-width: 1.4;
+  opacity: 0.9;
 }
 
 .twin-entry-limb {
   fill: none;
   stroke: currentColor;
-  stroke-width: 9;
+  stroke-width: 7.5;
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: 0.85;
+  opacity: 0.88;
 }
 
 .twin-entry-arm {
@@ -3690,35 +3707,53 @@ code {
   animation: twin-arm 3.6s ease-in-out infinite;
 }
 
-.twin-entry-arm--left { transform-origin: 82px 76px; }
+.twin-entry-arm--left { transform-origin: 78px 74px; }
 .twin-entry-arm--right {
-  transform-origin: 118px 76px;
+  transform-origin: 122px 74px;
   animation-name: twin-arm-right;
 }
 
 .twin-entry-dot {
-  fill: #22c55e;
-  filter: drop-shadow(0 0 4px rgba(34, 197, 94, 0.7));
+  fill: var(--dir-protective);
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--dir-protective) 72%, transparent));
+  animation: twin-breathe 3.4s ease-in-out infinite;
 }
 
 @keyframes twin-arm {
   0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(16deg); }
+  50% { transform: rotate(15deg); }
 }
 
 @keyframes twin-arm-right {
   0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(-16deg); }
+  50% { transform: rotate(-15deg); }
 }
 
 @keyframes twin-ring {
-  0%, 100% { opacity: 0.36; }
-  50% { opacity: 0.62; }
+  0%, 100% { opacity: 0.34; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes twin-core {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes twin-breathe {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes twin-glow {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.34; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .twin-entry-ring,
-  .twin-entry-arm { animation: none; }
+  .twin-entry-core,
+  .twin-entry-arm,
+  .twin-entry-dot,
+  .twin-entry-glow { animation: none; }
 }
 
 .twin-modal-layer {
@@ -3804,5 +3839,5 @@ code {
     padding: var(--space-4);
   }
   /* Keep the transient empty hint clear of the fixed twin entry. */
-  .empty-theme { right: calc(var(--space-2) + 48px); }
+  .empty-theme { right: calc(var(--space-2) + 56px); }
 }
