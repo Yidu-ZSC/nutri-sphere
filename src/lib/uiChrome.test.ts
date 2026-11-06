@@ -55,10 +55,6 @@ test('shell keeps the rail, one workspace, and the disclaimer as siblings', () =
 
   assert.match(rail, /data-testid=\{drawer \? 'shell-rail-close' : 'shell-rail-collapse'\}/);
   assert.match(rail, /data-testid="shell-rail-expand"/);
-  assert.match(rail, /aria-current=\{current \? 'page' : undefined\}/);
-  assert.match(rail, /selectWorkspace\('explore'\)/);
-  assert.match(rail, /selectWorkspace\('twin'\)/);
-  assert.match(rail, /activeWorkspace === 'twin' && \(/);
   assert.match(rail, /title="明膳知源"/);
   assert.match(rail, /aria-label="明膳知源"/);
 

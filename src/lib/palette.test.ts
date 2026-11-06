@@ -121,15 +121,14 @@ test('locked shell copy stays short, local, and non-clinical', () => {
   assert.deepEqual(hits, []);
 });
 
-test('the rail owns search, themes, recommendations, filters, and workspace controls', () => {
+test('the rail owns search, themes, recommendations, and filters; the twin is a modal', () => {
   const app = readSource('src/App.tsx');
   const rail = readSource('src/components/ShellRail.tsx');
+  const twin = readSource('src/components/DietTwin.tsx');
   const recommendations = readSource('src/components/RailRecommendations.tsx');
 
-  assert.match(app, /const activeWorkspace: WorkspaceId = screen === 'twin' \? 'twin' : 'explore'/);
   assert.match(app, /const twin = useDietTwinController\(\)/);
-  assert.match(app, /<ShellRail[\s\S]*activeWorkspace=\{activeWorkspace\}/);
-  assert.match(app, /activeWorkspace === 'explore' \? \([\s\S]*graphRailTools[\s\S]*\) : \([\s\S]*<DietTwinControls/);
+  assert.match(app, /<ShellRail[\s\S]*tools=\{graphRailTools\}/);
   assert.match(app, /<SearchBar[\s\S]*inputRef=\{searchInputRef\}/);
   assert.match(app, /searchNodes\(query, exploreNodes\)/);
   assert.match(app, /if \(hit\.kind === 'node' && hit\.id\) enterLens\(hit\.id\)/);
@@ -138,16 +137,17 @@ test('the rail owns search, themes, recommendations, filters, and workspace cont
   assert.match(app, /<ThemeBar[\s\S]*onTheme=\{onTheme\}/);
   assert.match(app, /<FilterPanel/);
   assert.match(app, /data-testid="rail-vegan-detail"/);
-  assert.match(app, /screen === 'twin' && <DietTwinCanvas controller=\{twin\}/);
   assert.match(recommendations, /onEnterTheme\(primaryTheme\)/);
 
-  assert.match(rail, /aria-label=\{label\}/);
-  assert.match(rail, /label=\{SHELL_GRAPH_LABEL\}/);
-  assert.match(rail, /label=\{SHELL_TWIN_LABEL\}/);
-  assert.match(rail, /current=\{activeWorkspace === 'explore'\}/);
-  assert.match(rail, /current=\{activeWorkspace === 'twin'\}/);
+  assert.match(app, /<DietTwinIcon onOpen=\{openTwin\} \/>/);
+  assert.match(app, /<DietTwinModal[\s\S]*controller=\{twin\}/);
+  assert.match(app, /onOpenIndicator=\{openTwinIndicator\}/);
+  assert.match(twin, /data-testid="diet-twin-entry"/);
+  assert.match(twin, /data-testid="diet-twin-modal"/);
+
   assert.match(rail, /data-testid="shell-rail-tools"/);
   assert.match(rail, /data-testid="shell-rail-expand"/);
+  assert.equal(rail.includes('activeWorkspace'), false);
   assert.match(app, /onMethods=\{openAbout\}/);
 });
 

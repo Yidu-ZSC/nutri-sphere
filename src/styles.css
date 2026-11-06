@@ -3309,7 +3309,7 @@ code {
   position: absolute;
   z-index: 7;
   top: var(--space-3);
-  right: var(--space-3);
+  right: calc(var(--space-3) + 52px);
   max-width: calc(100% - 24px);
   display: flex;
   flex-wrap: wrap;
@@ -3610,4 +3610,199 @@ code {
   .workspace--detail .graph-layout {
     display: flex;
   }
+}
+
+/* --------------------------------------------------------------------------
+   Diet twin: fixed top-right entry + modal (revives the NS-037 holographic icon)
+   -------------------------------------------------------------------------- */
+
+.twin-entry-icon {
+  position: fixed;
+  top: var(--space-3);
+  right: var(--space-3);
+  z-index: 30;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: var(--border);
+  border-radius: 50%;
+  background: var(--panel);
+  box-shadow: var(--shadow-card);
+  color: var(--text);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.twin-entry-icon:hover {
+  transform: translateY(-1px);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow);
+}
+
+.twin-entry-glow {
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.5) 0%, rgba(34, 197, 94, 0) 70%);
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+.twin-entry-silhouette {
+  position: relative;
+  width: 30px;
+  height: 27px;
+  overflow: visible;
+}
+
+.twin-entry-ring {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 2.2;
+  opacity: 0.5;
+  transform-box: view-box;
+  transform-origin: 100px 90px;
+  animation: twin-ring 6.4s ease-in-out infinite;
+}
+
+.twin-entry-figure { color: var(--text); }
+
+.twin-entry-head,
+.twin-entry-body {
+  fill: currentColor;
+  opacity: 0.85;
+}
+
+.twin-entry-limb {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.85;
+}
+
+.twin-entry-arm {
+  transform-box: view-box;
+  animation: twin-arm 3.6s ease-in-out infinite;
+}
+
+.twin-entry-arm--left { transform-origin: 82px 76px; }
+.twin-entry-arm--right {
+  transform-origin: 118px 76px;
+  animation-name: twin-arm-right;
+}
+
+.twin-entry-dot {
+  fill: #22c55e;
+  filter: drop-shadow(0 0 4px rgba(34, 197, 94, 0.7));
+}
+
+@keyframes twin-arm {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(16deg); }
+}
+
+@keyframes twin-arm-right {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-16deg); }
+}
+
+@keyframes twin-ring {
+  0%, 100% { opacity: 0.36; }
+  50% { opacity: 0.62; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .twin-entry-ring,
+  .twin-entry-arm { animation: none; }
+}
+
+.twin-modal-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(24, 24, 27, 0.42);
+  backdrop-filter: blur(4px);
+}
+
+.twin-modal {
+  width: min(960px, 100%);
+  max-height: min(88dvh, 900px);
+  display: flex;
+  flex-direction: column;
+  background: var(--panel-solid);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.twin-modal-head {
+  flex: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--line);
+}
+
+.twin-modal-title { min-width: 0; }
+
+.twin-modal-title h2 {
+  margin: 8px 0 0;
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.twin-modal-title .twin-persistent {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  max-width: 48em;
+}
+
+.twin-modal-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: var(--space-5);
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.twin-status {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .twin-modal-layer { padding: 0; align-items: stretch; }
+  .twin-modal {
+    width: 100%;
+    height: 100dvh;
+    max-height: none;
+    border-radius: 0;
+    border: 0;
+  }
+  .twin-modal-head { padding: var(--space-3) var(--space-4); }
+  .twin-modal-body {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--space-4);
+  }
+  /* Keep the transient empty hint clear of the fixed twin entry. */
+  .empty-theme { right: calc(var(--space-2) + 48px); }
 }

@@ -3,65 +3,33 @@ import {
   SHELL_CLOSE_NAV,
   SHELL_COLLAPSE_NAV,
   SHELL_EXPAND_NAV,
-  SHELL_GRAPH_LABEL,
   SHELL_METHODS_LABEL,
-  SHELL_RECORD_LABEL,
   SHELL_SEARCH_LABEL,
-  SHELL_TWIN_LABEL,
 } from '../lib/exploreShell';
 
-export type WorkspaceId = 'explore' | 'twin';
 export type ShellRailVariant = 'expanded' | 'collapsed' | 'drawer';
 
 interface ShellRailProps {
   variant: ShellRailVariant;
-  activeWorkspace: WorkspaceId;
   graphReady: boolean;
   hidden: boolean;
   tools: ReactNode;
   footer: ReactNode;
-  onWorkspace: (workspace: WorkspaceId) => void;
   onOpenSearch: () => void;
-  onOpenRecord: () => void;
   onExpand: () => void;
   onCollapse: () => void;
   onClose: () => void;
   onMethods: () => void;
 }
 
-type IconName = 'graph' | 'twin' | 'search' | 'record' | 'expand' | 'collapse' | 'close';
+type IconName = 'search' | 'expand' | 'collapse' | 'close';
 
 function Icon({ name }: { name: IconName }) {
-  if (name === 'graph') {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <circle cx="6" cy="7" r="2.4" />
-        <circle cx="18" cy="6" r="2.1" />
-        <circle cx="12" cy="18" r="2.5" />
-        <path d="M8.1 8.2 10.7 16M15.9 7.3l-2.4 8.5M8.3 6.8l7.5-.6" />
-      </svg>
-    );
-  }
-  if (name === 'twin') {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <circle cx="12" cy="5.5" r="2.4" />
-        <path d="M12 8.2v6.1M8.5 10.5l3.5-1.2 3.5 1.2M9.2 19l2.8-4.7 2.8 4.7" />
-      </svg>
-    );
-  }
   if (name === 'search') {
     return (
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <circle cx="10.5" cy="10.5" r="5.7" />
         <path d="m15 15 4.2 4.2" />
-      </svg>
-    );
-  }
-  if (name === 'record') {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path d="M5 5.5h9M5 10h9M5 14.5h6M15.5 18.5h5M18 16v5" />
       </svg>
     );
   }
@@ -79,47 +47,14 @@ function Icon({ name }: { name: IconName }) {
   );
 }
 
-function RailButton({
-  icon,
-  label,
-  current,
-  expanded,
-  onClick,
-}: {
-  icon: IconName;
-  label: string;
-  current?: boolean;
-  expanded: boolean;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      className="shell-rail-item"
-      aria-label={label}
-      aria-current={current ? 'page' : undefined}
-      title={expanded ? undefined : label}
-      onClick={onClick}
-    >
-      <span className="shell-rail-icon" aria-hidden="true">
-        <Icon name={icon} />
-      </span>
-      {expanded && <span>{label}</span>}
-    </button>
-  );
-}
-
 export const ShellRail = forwardRef<HTMLElement, ShellRailProps>(function ShellRail(
   {
     variant,
-    activeWorkspace,
     graphReady,
     hidden,
     tools,
     footer,
-    onWorkspace,
     onOpenSearch,
-    onOpenRecord,
     onExpand,
     onCollapse,
     onClose,
@@ -129,7 +64,6 @@ export const ShellRail = forwardRef<HTMLElement, ShellRailProps>(function ShellR
 ) {
   const expanded = variant !== 'collapsed';
   const drawer = variant === 'drawer';
-  const selectWorkspace = (workspace: WorkspaceId) => onWorkspace(workspace);
 
   return (
     <aside
@@ -172,41 +106,25 @@ export const ShellRail = forwardRef<HTMLElement, ShellRailProps>(function ShellR
         )}
       </header>
 
-      <nav className="shell-rail-nav" aria-label="工作区">
-        <RailButton
-          icon="graph"
-          label={SHELL_GRAPH_LABEL}
-          current={activeWorkspace === 'explore'}
-          expanded={expanded}
-          onClick={() => selectWorkspace('explore')}
-        />
-        <RailButton
-          icon="twin"
-          label={SHELL_TWIN_LABEL}
-          current={activeWorkspace === 'twin'}
-          expanded={expanded}
-          onClick={() => selectWorkspace('twin')}
-        />
-        {!expanded && (
-          <>
-            <RailButton
-              icon="search"
-              label={SHELL_SEARCH_LABEL}
-              expanded={false}
-              onClick={onOpenSearch}
-            />
-            {activeWorkspace === 'twin' && (
-              <RailButton icon="record" label={SHELL_RECORD_LABEL} expanded={false} onClick={onOpenRecord} />
-            )}
-          </>
-        )}
-      </nav>
+      {!expanded && (
+        <nav className="shell-rail-nav" aria-label="工具">
+          <button
+            type="button"
+            className="shell-rail-item"
+            aria-label={SHELL_SEARCH_LABEL}
+            title={SHELL_SEARCH_LABEL}
+            onClick={onOpenSearch}
+          >
+            <span className="shell-rail-icon" aria-hidden="true">
+              <Icon name="search" />
+            </span>
+          </button>
+        </nav>
+      )}
 
       {expanded ? (
         <div className="shell-rail-tools" data-testid="shell-rail-tools">
-          {!graphReady && activeWorkspace === 'explore' && (
-            <p className="shell-rail-note">知识图谱仍在加载。</p>
-          )}
+          {!graphReady && <p className="shell-rail-note">知识图谱仍在加载。</p>}
           {tools}
         </div>
       ) : null}
