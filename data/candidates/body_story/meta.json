@@ -1,0 +1,52 @@
+{
+  "source_id": "body_story",
+  "title": "人体的故事：进化、健康与疾病",
+  "title_short": "人体的故事",
+  "author": "丹尼尔·利伯曼",
+  "authors": [
+    "丹尼尔·利伯曼"
+  ],
+  "translator": "蔡晓峰",
+  "publisher": "浙江人民出版社",
+  "isbn": "9787213080159",
+  "published": "2017-06-01",
+  "epub_date": "2017-05-31T16:00:00+00:00",
+  "language": "zh",
+  "themes": [
+    "health"
+  ],
+  "kb_file": "营养基础_人体的故事.md",
+  "epub_copyright_note": "电子版版权页写纸版由北京联合出版有限公司于2017年6月出版，作者授权湛庐文化作中国大陆电子版发行；微信读书书目出版社为浙江人民出版社，ISBN 9787213080159。入库书目用微信读书对齐字段。",
+  "weread": {
+    "bookId": "23691293",
+    "readerLink": "https://weread.qq.com/web/reader/15632be07169801d156a3c3",
+    "deepLink": "https://weread.qq.com/book-detail?type=1&v=15632be07169801d156a3c3",
+    "cover": "https://cdn.weread.qq.com/weread/cover/71/YueWen_23691293/t6_YueWen_23691293.jpg",
+    "newRating": 789,
+    "newRatingCount": 1421,
+    "category": "医学健康-医学",
+    "intro": "这是一部从现代语境出发、回溯人类历史的人体进化简史，一本从进化、健康与疾病的相互关系着手、审视人体命运的权威著作。作为哈佛大学进化生物学教授，作者丹尼尔·利伯曼在书中汇集了多年来针对人体进化展开的深入研究，详细讲述了人类如何一步步落入了当前失配性疾病频发的泥沼。而进化无疑是帮助我们寻找病因、预防并治疗失配性疾病的一剂良方，得以让我们重新思考人类的过去、现在和未来！"
+  },
+  "note": "仅元数据与外链；未使用微信读书划线/笔记作为证据。admin_books 已有 body_story（index_only，theme=营养基础）。candidate extraction counts 以最终 JSON / 抽取说明为准。",
+  "admin_books": {
+    "id": "body_story",
+    "title": "人体的故事",
+    "theme": "营养基础",
+    "relevance": "high",
+    "kb_file": "营养基础_人体的故事.md",
+    "status": "index_only"
+  },
+  "extraction": {
+    "candidate_count": 231,
+    "evidence_count": 509,
+    "excerpt_count": 164,
+    "append_count": 89,
+    "new_endpoint_pairs": 142,
+    "new_node_count": 8,
+    "reuse_node_count": 66,
+    "themes": [
+      "health"
+    ],
+    "note": "counts match ClearDiet-人体的故事-候选边/节点/原文摘录/抽取说明；未改 seed"
+  }
+}

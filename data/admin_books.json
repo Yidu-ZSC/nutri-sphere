@@ -117,7 +117,12 @@
       "theme": "营养基础",
       "relevance": "high",
       "kb_file": "营养基础_人体的故事.md",
-      "status": "index_only"
+      "status": "ingested",
+      "source_id": "body_story",
+      "publisher": "浙江人民出版社",
+      "isbn": "9787213080159",
+      "cover_url": "https://cdn.weread.qq.com/weread/cover/71/YueWen_23691293/t6_YueWen_23691293.jpg",
+      "authors": "丹尼尔·利伯曼"
     },
     {
       "id": "self_healing_method",

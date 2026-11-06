@@ -95,6 +95,7 @@ const SYNCED_KB_FILES = new Set([
   '营养基础_你是你吃出来的.md',
   '肠道菌群_晓肚知肠.md',
   '糖与代谢_戒糖.md',
+  '营养基础_人体的故事.md',
 ]);
 
 export function kbBodySynced(kbFile: string): boolean {
