@@ -1,0 +1,183 @@
+{
+ "meta": {
+  "source_id": "quit_sugar",
+  "source_title": "戒糖",
+  "schema_align": "seed snapshot origin/main data 2.4 / schema 0.7",
+  "themes": [
+   "health"
+  ],
+  "note": "候选；同端点 append；勿直接改 seed；禁止 limitations；relation 为公共共享关系；入库须另开 TASK + 合并闸门",
+  "weread_link": "https://weread.qq.com/web/reader/9e7326707234165d9e78773",
+  "new_node_count": 7,
+  "reuse_node_count": 66
+ },
+ "new_nodes": [
+  {
+   "id": "acne",
+   "domain": "health",
+   "type": "disease",
+   "label": "痤疮 / 痘痘",
+   "group": "risk",
+   "description": "毛囊皮脂腺慢性炎症性皮肤问题；叙述中与高血糖、胰岛素及IGF-1相关皮脂分泌活跃相关。",
+   "aliases": [
+    "痘痘",
+    "痤疮",
+    "青春痘",
+    "长痘"
+   ]
+  },
+  {
+   "id": "diabetic_retinopathy",
+   "domain": "health",
+   "type": "disease",
+   "label": "糖尿病视网膜病变",
+   "group": "risk",
+   "description": "高血糖相关的视网膜微血管损伤；叙述中作为糖尿病并发症之一与糖化损伤相关。",
+   "aliases": [
+    "视网膜病变",
+    "糖网"
+   ]
+  },
+  {
+   "id": "gout_uric_acid",
+   "domain": "health",
+   "type": "disease",
+   "label": "高尿酸血症 / 痛风",
+   "group": "risk",
+   "description": "血尿酸升高及相关痛风发作；叙述中与过量果糖代谢及甜饮料相关。",
+   "aliases": [
+    "高尿酸",
+    "痛风",
+    "尿酸升高",
+    "高尿酸血症"
+   ]
+  },
+  {
+   "id": "intermittent_fasting",
+   "domain": "health",
+   "type": "diet_pattern",
+   "label": "轻断食 / 间歇性限制进食",
+   "group": "mixed",
+   "description": "在特定时间窗限制热量或禁食的进食模式（如5+2、16:8等）；叙述中与代谢、体重及血糖相关。",
+   "aliases": [
+    "轻断食",
+    "间歇性断食",
+    "限时进食",
+    "5+2饮食",
+    "16小时禁食"
+   ]
+  },
+  {
+   "id": "ketogenic_diet",
+   "domain": "health",
+   "type": "diet_pattern",
+   "label": "生酮饮食",
+   "group": "mixed",
+   "description": "极低碳水、以脂肪供能并诱导酮体生成的饮食模式；书中对其长期健康影响持审慎态度。",
+   "aliases": [
+    "生酮",
+    "生酮饮食法",
+    "酮症饮食"
+   ]
+  },
+  {
+   "id": "skin_aging",
+   "domain": "health",
+   "type": "disease",
+   "label": "皮肤衰老 / 皱纹色斑",
+   "group": "risk",
+   "description": "真皮胶原与弹性蛋白损伤相关的皮肤老化表现；叙述中与糖化与氧化相关。",
+   "aliases": [
+    "皮肤老化",
+    "皱纹",
+    "皮肤暗沉",
+    "皮肤松弛",
+    "老年斑"
+   ]
+  },
+  {
+   "id": "sugar_sweetened_beverages",
+   "domain": "health",
+   "type": "food_category",
+   "label": "含糖饮料 / 软饮料",
+   "group": "risk",
+   "description": "添加游离糖的碳酸饮料、甜饮等液体食物；叙述中为空热量与龋齿、代谢负担的主要游离糖来源之一。",
+   "aliases": [
+    "含糖饮料",
+    "软饮料",
+    "碳酸饮料",
+    "甜饮料",
+    "糖饮料",
+    "肥宅水"
+   ]
+  }
+ ],
+ "reuse_nodes": [
+  "added_sugar",
+  "aerobic_exercise",
+  "animal_foods",
+  "antioxidant_defense",
+  "appetite_regulation",
+  "artificial_sweeteners",
+  "atherosclerosis",
+  "berries_fruits",
+  "blood_cholesterol",
+  "cancer_overall",
+  "cardiometabolic",
+  "cell_repair",
+  "chronic_disease",
+  "chronic_inflammation",
+  "circadian_alignment",
+  "cognitive_clarity",
+  "coronary_heart_disease",
+  "dairy",
+  "dietary_cholesterol",
+  "dietary_fat",
+  "dietary_fiber",
+  "dna_damage",
+  "epigenetic_regulation",
+  "fatty_liver",
+  "fructose",
+  "genetic_predisposition",
+  "glycation",
+  "glycemic_stability",
+  "gut_barrier_integrity",
+  "gut_barrier_leak",
+  "gut_brain_axis",
+  "gut_microbiome",
+  "hba1c",
+  "healthy_weight",
+  "hypertension",
+  "igf1_signaling",
+  "immune_activation",
+  "immune_balance",
+  "immune_resilience",
+  "insulin_resistance",
+  "irritable_bowel",
+  "legumes",
+  "low_carb_diet",
+  "mental_health",
+  "metabolic_health",
+  "mushrooms",
+  "obesity_risk",
+  "omnivorous_balanced_diet",
+  "oral_disease",
+  "oral_microbiome",
+  "phytochemicals",
+  "plant_based_diet",
+  "probiotics",
+  "psychological_stress",
+  "reactive_oxygen",
+  "refined_carbs",
+  "resistant_starch",
+  "scfa",
+  "stroke",
+  "telomere_integrity",
+  "type2_diabetes",
+  "ultra_processed",
+  "vegetables_greens",
+  "vitamin_c",
+  "vitamin_e",
+  "whole_grains"
+ ]
+}

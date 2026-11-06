@@ -132,10 +132,10 @@ test('SourceDetail markup: breadcrumb, filter default, no description/file, summ
   assert.match(source, /citingLinks/);
 });
 
-test('seed data_version is 2.4 after NS-076 know_your_gut ingest; schema is 0.7', () => {
+test('seed data_version is 2.5 after NS-077 quit_sugar ingest; schema is 0.7', () => {
   const seed = JSON.parse(
     fs.readFileSync(new URL('../../data/seed_triples_v0.3_aligned.json', import.meta.url), 'utf8'),
   ) as { meta: { data_version: string; schema_version: string } };
-  assert.equal(seed.meta.data_version, '2.4');
+  assert.equal(seed.meta.data_version, '2.5');
   assert.equal(seed.meta.schema_version, '0.7');
 });

@@ -1,0 +1,13 @@
+{
+  "source_id": "quit_sugar",
+  "source_title": "戒糖",
+  "aligned_data_version": "2.5",
+  "aligned_schema_version": "0.7",
+  "candidate_edges": 197,
+  "evidence_count": 455,
+  "append_count": 48,
+  "new_nodes": 7,
+  "reuse_nodes": 66,
+  "note": "NS-077 同步；候选源 /workspace/epub-cleardiet/quit_sugar/；authors=初夏之菡",
+  "weread_link": "https://weread.qq.com/web/reader/9e7326707234165d9e78773"
+}
