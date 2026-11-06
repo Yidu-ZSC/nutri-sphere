@@ -170,7 +170,6 @@ export function App() {
   const [themeHintDismissed, setThemeHintDismissed] = useState(false);
   const [themeChipsFlash, setThemeChipsFlash] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
   const [autoRotate, setAutoRotate] = useState(false);
   const [appTheme, setAppTheme] = useState<AppTheme>(() => readTheme());
   const [activeDomain, setActiveDomain] = useState<Domain>(() => initialQuery.current.domain);
@@ -898,19 +897,6 @@ export function App() {
   const showReadingLayer = showVeganDietDetail || showSourceDetail;
   const relatedPatternIds = patternsForTheme(themeForFilters(safeDisease, safeMechanism, safeFood)?.id);
 
-  const copyViewLink = () => {
-    const href = window.location.href;
-    const done = () => {
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1400);
-    };
-    if (navigator.clipboard?.writeText) {
-      void navigator.clipboard.writeText(href).then(done).catch(done);
-      return;
-    }
-    done();
-  };
-
   const filterEmpty = domainView != null && isFocusEmpty(focusIds, exploreNodes.map((node) => node.id));
   const showThemeEmpty = !safeDisease && !safeMechanism && !safeFood && !safeLens;
   const themeHintShown = themeHintVisible({
@@ -949,13 +935,6 @@ export function App() {
         旋转{autoRotate ? '开' : '关'}
       </button>
     ) : null;
-  const copyControl =
-    graphWorkspace && !showReadingLayer ? (
-      <button type="button" className="btn btn--ghost" onClick={copyViewLink}>
-        {copied ? '已复制' : '复制链接'}
-      </button>
-    ) : null;
-
   const focusSearch = () => {
     if (screen !== 'explore') setScreen('explore');
     openRail('search');
@@ -1214,11 +1193,10 @@ export function App() {
                   appTheme={appTheme}
                 />
 
-                {(viewControls || rotateControl || copyControl) && (
+                {(viewControls || rotateControl) && (
                   <div className="canvas-hud-controls" data-testid="canvas-hud-controls">
                     {viewControls}
                     {rotateControl}
-                    {copyControl}
                   </div>
                 )}
 
