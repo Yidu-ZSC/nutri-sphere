@@ -1,7 +1,6 @@
 import { DIET_PATTERN_CARDS, type DietPatternCard } from './dietPatterns.ts';
 import {
   VEGAN_DIET_SECTION_GRAPH_CTA,
-  VEGAN_DIET_SECTION_INTRO,
   VEGAN_DIET_SECTION_TITLE,
 } from './exploreShell.ts';
 
@@ -15,14 +14,11 @@ export const VEGAN_DIET_HUB_EVIDENCE = {
 } as const;
 
 export const PATTERN_SHELL = {
-  backLobby: '返回大厅',
   sectionKicker: VEGAN_DIET_SECTION_TITLE,
   journeyHeading: '试做顺序（可快可慢）',
   graphTitle: '与图谱的关联',
   evidenceTitle: '证据说明',
   backGraph: '返回图谱',
-  openDetail: '查看详情',
-  lobbyIntro: VEGAN_DIET_SECTION_INTRO,
   hubTitle: '素食饮食方式说明',
   hubNote:
     '下面三步是 ClearDiet 常用的试做顺序，不是三种互斥的「定义」。你可以只停留在某一步，也可以对照表格与图谱继续探索。',

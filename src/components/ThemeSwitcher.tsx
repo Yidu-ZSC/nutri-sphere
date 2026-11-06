@@ -99,25 +99,3 @@ export function ThemeSwitcher({ theme, onChange }: ThemeControlProps) {
     </div>
   );
 }
-
-export function ThemeOptions({ theme, onChange }: ThemeControlProps) {
-  const labelId = useId();
-  return (
-    <div className="more-theme" data-testid="more-theme">
-      <p className="more-theme-label" id={labelId}>
-        主题
-      </p>
-      <div className="more-theme-options" role="group" aria-labelledby={labelId}>
-        {THEME_OPTIONS.map((option) => (
-          <ThemeChoice
-            key={option.id}
-            theme={theme}
-            option={option}
-            testId={`more-theme-option-${option.id}`}
-            onChange={onChange}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}

@@ -92,15 +92,15 @@ test('a node selection wins over a link in the serialized query', () => {
 test('unknown view values are dropped', () => {
   const parsed = parseViewQuery('?view=table&layer=layperson');
   assert.equal(parsed.view, null);
-  assert.equal(resolveScreen(parsed), 'home');
+  assert.equal(resolveScreen(parsed), 'explore');
   assert.equal(parseViewQuery('?screen=explore&view=flow').view, 'flow');
 });
 
-test('default screen is home when the query has no deep link', () => {
+test('default screen opens the graph workspace when the query has no deep link', () => {
   const parsed = parseViewQuery('');
   assert.equal(parsed.screen, null);
   assert.equal(parsed.theme, null);
-  assert.equal(resolveScreen(parsed), 'home');
+  assert.equal(resolveScreen(parsed), 'explore');
   const home = serializeViewQuery({
     screen: 'home',
     theme: 'fatty_liver',
@@ -121,17 +121,17 @@ test('default screen is home when the query has no deep link', () => {
   assert.equal(home.includes('disease='), false);
   assert.equal(home.includes('view='), false);
   assert.equal(home.includes('hide='), false);
-  assert.equal(resolveScreen(parseViewQuery(home)), 'home');
+  assert.equal(resolveScreen(parseViewQuery(home)), 'explore');
 });
 
 test('legacy ?layer= is ignored and does not restore a mode', () => {
   const parsed = parseViewQuery('?layer=expert');
   assert.equal(parsed.view, null);
   assert.equal(parsed.screen, null);
-  assert.equal(resolveScreen(parsed), 'home');
+  assert.equal(resolveScreen(parsed), 'explore');
   assert.equal('layer' in parsed, false);
-  assert.equal(resolveScreen(parseViewQuery('?layer=glance')), 'home');
-  assert.equal(resolveScreen(parseViewQuery('?layer=layperson')), 'home');
+  assert.equal(resolveScreen(parseViewQuery('?layer=glance')), 'explore');
+  assert.equal(resolveScreen(parseViewQuery('?layer=layperson')), 'explore');
 });
 
 test('legacy disease, node, and link deep links infer explore', () => {
@@ -172,13 +172,13 @@ test('theme maps to a disease or mechanism filter and does not reuse view', () =
   assert.equal(resolveScreen(themeOnly), 'explore');
   assert.deepEqual(filtersFromShare(themeOnly), { disease: null, mechanism: 'gut_barrier_leak', food: null });
   assert.equal(themeById('not_a_theme'), null);
-  assert.equal(resolveScreen(parseViewQuery('?theme=not_a_theme')), 'home');
+  assert.equal(resolveScreen(parseViewQuery('?theme=not_a_theme')), 'explore');
   assert.deepEqual(filtersFromShare(parseViewQuery('?theme=../etc')), {
     disease: null,
     mechanism: null,
     food: null,
   });
-  assert.equal(resolveScreen(parseViewQuery('?screen=home&disease=fatty_liver')), 'home');
+  assert.equal(resolveScreen(parseViewQuery('?screen=home&disease=fatty_liver')), 'explore');
   assert.equal(parseViewQuery('?screen=atlas').screen, null);
 });
 
@@ -214,7 +214,7 @@ test('omitted hide defaults on only for explore with a theme anchor', () => {
   assert.equal(parseViewQuery('?screen=explore&node=soy').hideUnmatched, false);
   assert.equal(parseViewQuery('?screen=explore&link=gut_barrier_leak~lps').hideUnmatched, false);
   assert.equal(parseViewQuery('?screen=home').hideUnmatched, false);
-  assert.equal(parseViewQuery('?screen=home&disease=fatty_liver').hideUnmatched, false);
+  assert.equal(parseViewQuery('?screen=home&disease=fatty_liver').hideUnmatched, true);
   assert.equal(parseViewQuery('?theme=not_a_theme').hideUnmatched, false);
   assert.equal(parseViewQuery('?disease=cardiometabolic&hide=0').hideUnmatched, false);
   assert.equal(parseViewQuery('?hide=1').hideUnmatched, true);
@@ -249,8 +249,8 @@ test('legacy share links stay free of food and pattern params', () => {
   assert.equal(fatty.hideUnmatched, true);
   assert.deepEqual(filtersFromShare(fatty), { disease: 'fatty_liver', mechanism: null, food: null });
   const homeDisease = parseViewQuery('?screen=home&disease=fatty_liver');
-  assert.equal(resolveScreen(homeDisease), 'home');
-  assert.equal(homeDisease.hideUnmatched, false);
+  assert.equal(resolveScreen(homeDisease), 'explore');
+  assert.equal(homeDisease.hideUnmatched, true);
   assert.deepEqual(filtersFromShare(homeDisease), { disease: 'fatty_liver', mechanism: null, food: null });
 });
 
@@ -295,12 +295,12 @@ test('food themes serialize a food anchor and default hide on', () => {
   assert.equal(parseViewQuery('?food=../etc').food, null);
 });
 
-test('home pattern links keep the source theme and drop unknown ids', () => {
+test('legacy home pattern links still parse but resolve to the graph workspace', () => {
   const parsed = parseViewQuery(
     '?screen=home&theme=cardiometabolic&patterns=foo,plant_forward,lacto_ovo,plant_forward',
   );
-  assert.equal(resolveScreen(parsed), 'home');
-  assert.equal(parsed.hideUnmatched, false);
+  assert.equal(resolveScreen(parsed), 'explore');
+  assert.equal(parsed.hideUnmatched, true);
   assert.equal(parsed.theme, 'cardiometabolic');
   assert.deepEqual(parsed.patterns, ['plant_forward', 'lacto_ovo']);
   const query = serializeViewQuery({
@@ -435,14 +435,14 @@ test('pattern links open a detail only without explore anchors', () => {
   assert.equal(parseViewQuery('?pattern=plant_forward').hideUnmatched, false);
   assert.equal(parseViewQuery('?pattern=plant_forward&hide=1').hideUnmatched, false);
   assert.equal(resolveScreen(parseViewQuery('?screen=pattern&pattern=lacto_ovo')), 'pattern');
-  assert.equal(resolveScreen(parseViewQuery('?pattern=mediterranean')), 'home');
+  assert.equal(resolveScreen(parseViewQuery('?pattern=mediterranean')), 'explore');
   assert.equal(parseViewQuery('?pattern=mediterranean').pattern, null);
-  assert.equal(resolveScreen(parseViewQuery('?screen=pattern&pattern=dash')), 'home');
-  assert.equal(resolveScreen(parseViewQuery('?screen=pattern&pattern=nope')), 'home');
-  assert.equal(resolveScreen(parseViewQuery('?screen=pattern')), 'home');
+  assert.equal(resolveScreen(parseViewQuery('?screen=pattern&pattern=dash')), 'explore');
+  assert.equal(resolveScreen(parseViewQuery('?screen=pattern&pattern=nope')), 'explore');
+  assert.equal(resolveScreen(parseViewQuery('?screen=pattern')), 'explore');
   assert.equal(parseViewQuery('?pattern=nope').pattern, null);
   assert.equal(parseViewQuery('?pattern=../lacto_ovo').pattern, null);
-  assert.equal(resolveScreen(parseViewQuery('?pattern=NOT')), 'home');
+  assert.equal(resolveScreen(parseViewQuery('?pattern=NOT')), 'explore');
   assert.equal(resolveScreen(parseViewQuery('?pattern=plant_forward&disease=cardiometabolic')), 'explore');
   assert.equal(resolveScreen(parseViewQuery('?pattern=plant_forward&theme=cardiometabolic')), 'explore');
   assert.equal(resolveScreen(parseViewQuery('?pattern=plant_forward&food=ultra_processed')), 'explore');
@@ -479,7 +479,7 @@ test('pattern links open a detail only without explore anchors', () => {
   assert.equal(/(^|[?&])pattern=/.test(explore), false);
   assert.match(explore, /screen=explore/);
   assert.match(explore, /hide=1/);
-  assert.equal(resolveScreen(parseViewQuery('?screen=home&patterns=plant_forward,lacto_ovo')), 'home');
+  assert.equal(resolveScreen(parseViewQuery('?screen=home&patterns=plant_forward,lacto_ovo')), 'explore');
   assert.deepEqual(parseViewQuery('?screen=home&patterns=plant_forward,lacto_ovo').patterns, [
     'plant_forward',
     'lacto_ovo',
@@ -514,7 +514,7 @@ test('twin screen is explicit and does not carry explore anchors', () => {
 });
 
 
-test('source screen round-trips and unknown source falls back to home', () => {
+test('source screen round-trips and unknown source falls back to the graph', () => {
   const query = serializeViewQuery({
     screen: 'source',
     theme: null,
@@ -540,11 +540,11 @@ test('source screen round-trips and unknown source falls back to home', () => {
   const missing = parseViewQuery('?screen=source');
   assert.equal(missing.screen, 'source');
   assert.equal(missing.source, null);
-  assert.equal(resolveScreen(missing), 'home');
+  assert.equal(resolveScreen(missing), 'explore');
 
   const bad = parseViewQuery('?screen=source&source=../etc');
   assert.equal(bad.source, null);
-  assert.equal(resolveScreen(bad), 'home');
+  assert.equal(resolveScreen(bad), 'explore');
 });
 
 test('admin screen round-trips list and book detail; invalid book id stripped at parse', () => {

@@ -112,10 +112,9 @@ function writeDomain(params: URLSearchParams, domain: Domain | undefined): void 
 
 
 /**
- * Missing `screen` is home, unless the link already points at a filter,
- * a food anchor, a node, a link, or a known theme — those open explore.
- * A lone known `pattern` id opens that detail. An explicit `screen` still wins,
- * except `screen=pattern` without a known id, which falls back to home.
+ * Missing `screen` opens the graph workspace. `screen=home` is kept as a legacy
+ * alias for the graph. A lone known `pattern` id opens that reading layer.
+ * Invalid pattern/source ids fall back to the graph rather than a lobby page.
  */
 export function resolveScreen(
   parsed: Pick<
@@ -123,14 +122,15 @@ export function resolveScreen(
     'screen' | 'theme' | 'disease' | 'mechanism' | 'food' | 'lens' | 'pattern' | 'source' | 'node' | 'link'
   >,
 ): ScreenMode {
-  if (parsed.screen === 'pattern') return parsed.pattern ? 'pattern' : 'home';
-  if (parsed.screen === 'source') return parsed.source ? 'source' : 'home';
+  if (parsed.screen === 'pattern') return parsed.pattern ? 'pattern' : 'explore';
+  if (parsed.screen === 'source') return parsed.source ? 'source' : 'explore';
   if (parsed.screen === 'admin') return 'admin';
+  if (parsed.screen === 'home') return 'explore';
   if (parsed.screen) return parsed.screen;
   if (parsed.disease || parsed.mechanism || parsed.food || parsed.lens || parsed.node || parsed.link) return 'explore';
   if (themeById(parsed.theme)) return 'explore';
   if (parsed.pattern) return 'pattern';
-  return 'home';
+  return 'explore';
 }
 
 export function linkKey(source: string, target: string): string {
@@ -187,7 +187,8 @@ export function parseViewQuery(search: string): ParsedShare {
 /**
  * `hide=1` on, `hide=0` explicitly off.
  * Omitted on explore with a theme, disease, mechanism, or food anchor defaults on.
- * Home never uses the flag. Explore without an anchor stays off.
+ * The legacy home alias resolves to explore, so it follows the same anchor rule.
+ * Explore without an anchor stays off.
  * Pattern, compare, and twin screens stay off even if `hide` is present.
  */
 export function resolveHideUnmatched(
@@ -201,7 +202,10 @@ export function resolveHideUnmatched(
   if (screen === 'pattern' || screen === 'compare' || screen === 'twin' || screen === 'source' || screen === 'admin') return false;
   if (hideParam === '1') return true;
   if (hideParam === '0') return false;
-  if (screen === 'explore' && (parsed.theme || parsed.disease || parsed.mechanism || parsed.food || parsed.lens)) {
+  if (
+    screen === 'explore' &&
+    (themeById(parsed.theme) || parsed.disease || parsed.mechanism || parsed.food || parsed.lens)
+  ) {
     return true;
   }
   return false;

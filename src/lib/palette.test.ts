@@ -15,14 +15,24 @@ import {
   LOBBY_SEARCH_PLACEHOLDER,
   LOBBY_TAGLINE,
   LOBBY_TITLE,
+  SHELL_CLOSE_NAV,
+  SHELL_COLLAPSE_NAV,
+  SHELL_EXPAND_NAV,
+  SHELL_GRAPH_LABEL,
+  SHELL_METHODS_LABEL,
+  SHELL_OPEN_NAV,
+  SHELL_RECORD_LABEL,
+  SHELL_SEARCH_LABEL,
+  SHELL_TWIN_LABEL,
+  SHELL_VEGAN_ENTRY,
   THEME_CTA,
 } from './exploreShell.ts';
 import { CANVAS_BG, PALETTE } from './palette.ts';
 import { EXPLORE_THEMES } from './themes.ts';
-import { DIET_TWIN_COPY } from './dietTwin.ts';
 import { themeAccent } from './themeAccent.ts';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const readSource = (relative: string) => fs.readFileSync(path.join(root, relative), 'utf8');
 
 test('protective color is the PRO token and the retired green is gone from src', () => {
   assert.equal(PALETTE.protective, '#34d399');
@@ -31,7 +41,7 @@ test('protective color is the PRO token and the retired green is gone from src',
   assert.equal(PALETTE.neutral, '#94a3b8');
   assert.equal(CANVAS_BG, '#0a0c11');
 
-  const tokens = fs.readFileSync(path.join(root, 'src/styles/tokens.css'), 'utf8');
+  const tokens = readSource('src/styles/tokens.css');
   assert.match(tokens, /--dir-protective:\s*#34d399/);
   assert.match(tokens, /--bg:\s*#f4f4f5/);
   assert.match(tokens, /--brand:\s*#18181b/);
@@ -56,109 +66,45 @@ test('protective color is the PRO token and the retired green is gone from src',
 
 const RETIRED_LOBBY_DISCLAIMER = '供科普学习与核对来源，不是医疗建议。';
 
-test('locked lobby and explore shell strings stay short and non-clinical', () => {
+test('locked shell copy stays short, local, and non-clinical', () => {
   assert.equal(LOBBY_KICKER, '饮食自我探索之路');
   assert.equal(LOBBY_TITLE, '饮食科普');
   assert.equal(LOBBY_TAGLINE, '了解饮食与健康主题在图书与公开资料里都做了哪些描述');
-  assert.equal(
-    LOBBY_INTRO,
-    '输入想了解的食物、机制或健康主题，或从下面几项看资料里的讨论。',
-  );
+  assert.equal(LOBBY_INTRO, '输入想了解的食物、机制或健康主题，或从下面几项看资料里的讨论。');
   assert.equal(LOBBY_SEARCH_PLACEHOLDER, '输入想了解的概念');
   assert.equal(LOBBY_SEARCH_EMPTY, '资料里还没有这个概念');
   assert.equal(LOBBY_RECOMMENDED_HEADING, '先看这些');
   assert.equal(LOBBY_OUTCOMES_SUMMARY, '按结局浏览');
   assert.equal(LOBBY_EDU_FOOTER, '下面说明图谱怎么读、证据怎么标。');
+  assert.equal(THEME_CTA, '查看关联');
+  assert.equal(EXPLORE_EMPTY_ACTION, SHELL_OPEN_NAV);
+  assert.equal(SHELL_GRAPH_LABEL, '图谱');
+  assert.equal(SHELL_TWIN_LABEL, '我的饮食');
+  assert.equal(SHELL_OPEN_NAV, '打开导航');
+  assert.equal(SHELL_CLOSE_NAV, '关闭导航');
+  assert.equal(SHELL_COLLAPSE_NAV, '收起导航');
+  assert.equal(SHELL_EXPAND_NAV, '展开导航');
+  assert.equal(SHELL_SEARCH_LABEL, '搜索');
+  assert.equal(SHELL_RECORD_LABEL, '记录');
+  assert.equal(SHELL_METHODS_LABEL, '方法说明');
+  assert.equal(SHELL_VEGAN_ENTRY, '素食饮食方式');
+  assert.ok([...EXPLORE_EMPTY_COPY].length <= 20);
+  assert.ok([...EXPLORE_EMPTY_ACTION].length <= 20);
   assert.equal(LOBBY_INTRO.includes('不是医疗建议'), false);
   assert.equal(LOBBY_EDU_FOOTER.includes('不是医疗建议'), false);
   assert.equal(LOBBY_INTRO.includes(RETIRED_LOBBY_DISCLAIMER), false);
   assert.equal(LOBBY_EDU_FOOTER.includes(RETIRED_LOBBY_DISCLAIMER), false);
-  assert.equal(THEME_CTA, '查看关联');
-  assert.equal(EXPLORE_EMPTY_ACTION, '选择主题');
-  assert.ok([...EXPLORE_EMPTY_COPY].length <= 20);
-  assert.ok([...EXPLORE_EMPTY_ACTION].length <= 20);
-  const lobby = fs.readFileSync(path.join(root, 'src/components/ThemeLobby.tsx'), 'utf8');
-  assert.equal(lobby.includes('看清膳食，知道来源'), false);
-  assert.equal(lobby.includes('查看相关主题'), false);
-  assert.equal(lobby.includes('从饮食科普开始'), false);
-  assert.equal(lobby.includes(RETIRED_LOBBY_DISCLAIMER), false);
-  assert.ok(lobby.includes('LOBBY_TAGLINE'));
-  assert.ok(lobby.includes('LOBBY_KICKER'));
-  assert.ok(lobby.includes('LOBBY_TITLE'));
-  assert.ok(lobby.includes('LOBBY_INTRO'));
-  assert.ok(lobby.includes('VEGAN_DIET_SECTION_INTRO'));
-  assert.ok(lobby.includes('pattern-facets'));
-  const app = fs.readFileSync(path.join(root, 'src/App.tsx'), 'utf8');
-  assert.ok(app.includes('explore-rail'));
-  assert.ok(app.includes('EXPLORE_EMPTY_COPY'));
-});
 
-test('lobby pillars place science and diet twin as peers above the full-width grids', () => {
-  const lobby = fs.readFileSync(path.join(root, 'src/components/ThemeLobby.tsx'), 'utf8');
-  const css = fs.readFileSync(path.join(root, 'src/styles.css'), 'utf8');
-  const bar = fs.readFileSync(path.join(root, 'src/components/DisclaimerBar.tsx'), 'utf8');
-  const marks = [
-    'className="kicker lobby-lead"',
-    'className="lobby-pillars"',
-    'className="lobby-title-row"',
-    '<h2>{LOBBY_TITLE}</h2>',
-    'className="lobby-twin"',
-    '<DietTwinPortal onOpen={onOpenTwin} />',
-    'className="lobby-intro"',
-    'className="lobby-search"',
-    'data-testid="lobby-search"',
-    '{LOBBY_RECOMMENDED_HEADING}',
-    '从食物/模式看',
-    '{LOBBY_OUTCOMES_SUMMARY}',
-    '{VEGAN_DIET_SECTION_TITLE}',
-    'className="mechanism-fold"',
-  ];
-  let cursor = -1;
-  for (const mark of marks) {
-    const at = lobby.indexOf(mark);
-    assert.ok(at > cursor, mark);
-    cursor = at;
-  }
-
-  assert.match(lobby, /<h1 className="sr-only">\{LOBBY_KICKER\}<\/h1>/);
-  assert.equal(lobby.includes('<h1>{LOBBY_TITLE}</h1>'), false);
-  assert.equal(lobby.includes('theme-cta'), false);
-
-  const pillars = css.match(/\.lobby-pillars\s*\{([^}]*)\}/)?.[1] ?? '';
-  assert.match(pillars, /display:\s*grid/);
-  assert.match(pillars, /grid-template-columns:\s*1fr 1fr/);
-  assert.match(pillars, /grid-template-areas:/);
-  assert.match(pillars, /"title twin"/);
-  assert.match(pillars, /"body twin"/);
-  assert.match(pillars, /gap:\s*16px/);
-  assert.equal(/\.diet-twin-entry\s*\{[^}]*max-width:\s*520px/.test(css), false);
-
-  assert.match(css, /\.lobby-title-row\s*\{[^}]*display:\s*contents/);
-  assert.match(css, /\.lobby-twin\s*\{[^}]*grid-area:\s*twin/);
-  assert.match(css, /\.lobby-intro\s*\{[^}]*grid-area:\s*body/);
-
-  const peer = css.match(/\.lobby-title-row h2,\s*\.diet-twin-title\s*\{([^}]*)\}/)?.[1] ?? '';
-  assert.match(peer, /font-size:\s*20px/);
-  assert.match(peer, /font-weight:\s*600/);
-
-  const mobile = css.slice(
-    css.indexOf('@media (max-width: 768px)'),
-    css.indexOf('@media (prefers-reduced-motion: reduce)'),
-  );
-  assert.match(mobile, /\.lobby-title-row\s*\{[^}]*display:\s*flex/);
-  assert.match(mobile, /\.lobby-pillars\s*\{[^}]*grid-template-areas:[^}]*"title"[^}]*"body"/s);
-  assert.match(mobile, /\.lobby-title-row > h2\s*\{[^}]*font-size:\s*20px/);
-  // Mobile must not stack twin as a full-width row after the whole intro body.
-  assert.equal(/\.lobby-pillars\s*\{[^}]*grid-template-columns:\s*1fr\s*;\s*\}/.test(mobile), false);
-
-  const leadStart = bar.indexOf('className="about-lead"');
-  const lead = bar.slice(leadStart, bar.indexOf('</div>', leadStart));
-  assert.ok(leadStart > 0);
-  assert.match(lead, /\{LOBBY_EDU_FOOTER\}/);
-  assert.equal(lead.includes('不是医疗建议'), false);
-  assert.equal(lead.includes(RETIRED_LOBBY_DISCLAIMER), false);
-  assert.match(bar, /重要提醒/);
-  assert.match(bar, /\{DISCLAIMER_TEXT\}/);
+  const recommendations = readSource('src/components/RailRecommendations.tsx');
+  const app = readSource('src/App.tsx');
+  const bar = readSource('src/components/DisclaimerBar.tsx');
+  assert.match(recommendations, /\{LOBBY_RECOMMENDED_HEADING\}/);
+  assert.match(recommendations, /data-testid="lobby-recommended-grid"/);
+  assert.match(app, /placeholder=\{LOBBY_SEARCH_PLACEHOLDER\}/);
+  assert.match(app, /emptyText=\{LOBBY_SEARCH_EMPTY\}/);
+  assert.match(app, /EXPLORE_EMPTY_COPY/);
+  assert.match(bar, /\{LOBBY_EDU_FOOTER\}/);
+  assert.equal(bar.includes('不是医疗建议'), false);
   assert.equal(bar.includes(RETIRED_LOBBY_DISCLAIMER), false);
 
   const hits: string[] = [];
@@ -175,111 +121,45 @@ test('lobby pillars place science and diet twin as peers above the full-width gr
   assert.deepEqual(hits, []);
 });
 
-test('diet twin lobby entry is a silhouette portal with only the title visible', () => {
-  const lobby = fs.readFileSync(path.join(root, 'src/components/ThemeLobby.tsx'), 'utf8');
-  const portal = fs.readFileSync(path.join(root, 'src/components/DietTwinPortal.tsx'), 'utf8');
-  const css = fs.readFileSync(path.join(root, 'src/styles.css'), 'utf8');
-  const copy = fs.readFileSync(path.join(root, 'src/lib/copy.ts'), 'utf8');
+test('the rail owns search, themes, recommendations, filters, and workspace controls', () => {
+  const app = readSource('src/App.tsx');
+  const rail = readSource('src/components/ShellRail.tsx');
+  const recommendations = readSource('src/components/RailRecommendations.tsx');
 
-  assert.equal(DIET_TWIN_COPY.entryTitle, '我的饮食孪生');
-  assert.equal(DIET_TWIN_COPY.entryAria, '我的饮食孪生，教育模拟，非诊断');
-  assert.equal(DIET_TWIN_COPY.entryKicker, '饮食观察 · 非诊断');
-  assert.equal(DIET_TWIN_COPY.entryPrompt, '用三道短问对照公开资料里的饮食叙述');
-  assert.equal(DIET_TWIN_COPY.entryBlurb, '模拟对照，不是个人检测');
+  assert.match(app, /const activeWorkspace: WorkspaceId = screen === 'twin' \? 'twin' : 'explore'/);
+  assert.match(app, /const twin = useDietTwinController\(\)/);
+  assert.match(app, /<ShellRail[\s\S]*activeWorkspace=\{activeWorkspace\}/);
+  assert.match(app, /activeWorkspace === 'explore' \? \([\s\S]*graphRailTools[\s\S]*\) : \([\s\S]*<DietTwinControls/);
+  assert.match(app, /<SearchBar[\s\S]*inputRef=\{searchInputRef\}/);
+  assert.match(app, /searchNodes\(query, exploreNodes\)/);
+  assert.match(app, /if \(hit\.kind === 'node' && hit\.id\) enterLens\(hit\.id\)/);
+  assert.match(app, /<DomainSwitcher domain=\{activeDomain\} onChange=\{onDomainChange\}/);
+  assert.match(app, /<RailRecommendations/);
+  assert.match(app, /<ThemeBar[\s\S]*onTheme=\{onTheme\}/);
+  assert.match(app, /<FilterPanel/);
+  assert.match(app, /data-testid="rail-vegan-detail"/);
+  assert.match(app, /screen === 'twin' && <DietTwinCanvas controller=\{twin\}/);
+  assert.match(recommendations, /onEnterTheme\(primaryTheme\)/);
 
-  assert.equal(lobby.includes('entryKicker'), false);
-  assert.equal(lobby.includes('entryPrompt'), false);
-  assert.equal(lobby.includes('entryBlurb'), false);
-  assert.equal(lobby.includes('theme-card diet-twin-entry'), false);
-  assert.match(lobby, /className="lobby-title-row"/);
-  assert.match(lobby, /<section className="lobby-twin"/);
-  assert.match(lobby, /<DietTwinPortal onOpen=\{onOpenTwin\} \/>/);
-  const titleRowAt = lobby.indexOf('className="lobby-title-row"');
-  const twinAt = lobby.indexOf('className="lobby-twin"', titleRowAt);
-  const introAt = lobby.indexOf('className="lobby-intro"', titleRowAt);
-  assert.ok(titleRowAt > 0 && twinAt > titleRowAt && introAt > twinAt);
+  assert.match(rail, /aria-label=\{label\}/);
+  assert.match(rail, /label=\{SHELL_GRAPH_LABEL\}/);
+  assert.match(rail, /label=\{SHELL_TWIN_LABEL\}/);
+  assert.match(rail, /current=\{activeWorkspace === 'explore'\}/);
+  assert.match(rail, /current=\{activeWorkspace === 'twin'\}/);
+  assert.match(rail, /data-testid="shell-rail-tools"/);
+  assert.match(rail, /data-testid="shell-rail-expand"/);
+  assert.match(app, /onMethods=\{openAbout\}/);
+});
 
-  assert.match(portal, /data-testid="diet-twin-entry"/);
-  assert.match(portal, /aria-label=\{DIET_TWIN_COPY\.entryAria\}/);
-  assert.match(portal, /<h2 className="diet-twin-title">\{DIET_TWIN_COPY\.entryTitle\}<\/h2>/);
-  assert.match(portal, /<svg className="diet-twin-silhouette"/);
-  assert.match(portal, /<circle className="diet-twin-ring"/);
-  assert.match(portal, /diet-twin-arm--left/);
-  assert.match(portal, /diet-twin-arm--right/);
-  assert.match(portal, /diet-twin-forearm--left/);
-  assert.match(portal, /diet-twin-forearm--right/);
-  assert.match(portal, /diet-twin-leg--left/);
-  assert.match(portal, /diet-twin-leg--right/);
-  assert.match(portal, /diet-twin-shin--left/);
-  assert.match(portal, /diet-twin-shin--right/);
-  assert.equal(portal.includes('diet-twin-meridian'), false);
-  assert.equal(portal.includes('entryKicker'), false);
-  assert.equal(portal.includes('entryPrompt'), false);
-  assert.equal(portal.includes('entryBlurb'), false);
-  assert.equal(portal.includes('饮食观察 · 非诊断'), false);
-  assert.equal(portal.includes(DIET_TWIN_COPY.entryPrompt), false);
-  assert.equal(portal.includes(DIET_TWIN_COPY.entryBlurb), false);
-  assert.equal(portal.includes('theme-card'), false);
-  assert.equal(portal.includes('theme-prompt'), false);
-  assert.equal(portal.includes('theme-blurb'), false);
-  assert.equal(portal.includes('title='), false);
-  assert.equal(portal.includes('from \'three\''), false);
-  assert.equal(portal.includes('WebGL'), false);
-  assert.equal((portal.match(/className="diet-twin-hotspot/g) ?? []).length, 3);
-
-  const entry = css.match(/\.diet-twin-entry\s*\{([^}]*)\}/)?.[1] ?? '';
-  assert.match(entry, /min-height:\s*44px/);
-  assert.match(entry, /--twin-glow:\s*0\.32/);
-  assert.match(entry, /background:\s*transparent/);
-  assert.match(entry, /border:\s*0/);
-  assert.equal(entry.includes('var(--shadow-card)'), false);
-  assert.equal(entry.includes('backdrop-filter'), false);
-
-  const stage = css.match(/\.diet-twin-stage\s*\{([^}]*)\}/)?.[1] ?? '';
-  assert.match(stage, /height:\s*168px/);
-  const figure = css.match(/\.diet-twin-figure-wrap\s*\{([^}]*)\}/)?.[1] ?? '';
-  assert.match(figure, /height:\s*148px/);
-  const ring = css.match(/\.diet-twin-ring\s*\{([^}]*)\}/)?.[1] ?? '';
-  assert.equal(ring.includes('stroke-dasharray'), false);
-  const spot = css.match(/\.diet-twin-hotspot\s*\{([^}]*)\}/)?.[1] ?? '';
-  assert.match(spot, /width:\s*8px/);
-  assert.match(spot, /height:\s*8px/);
-  assert.match(spot, /var\(--accent\)/);
-  assert.match(spot, /pointer-events:\s*none/);
-  assert.equal(spot.includes('#f87171'), false);
-  assert.equal(css.includes('.diet-twin-hotspot:hover'), false);
-
-  for (const theme of ['paper', 'stone', 'contrast']) {
-    const block = css.match(new RegExp(`:root\\[data-theme='${theme}'\\] \\.diet-twin-entry\\s*\\{([^}]*)\\}`))?.[1] ?? '';
-    assert.match(block, /--twin-glow:/, theme);
-    assert.match(block, /--twin-figure:/, theme);
-    assert.match(block, /--twin-hotspot:/, theme);
-    assert.equal(/#[0-9a-fA-F]{3,8}/.test(block), false, theme);
-    assert.equal(block.includes('d='), false, theme);
-  }
-
-  const mobile = css.slice(
-    css.indexOf('@media (max-width: 768px)'),
-    css.indexOf('@media (prefers-reduced-motion: reduce)'),
-  );
-  assert.match(mobile, /\.diet-twin-entry\s*\{[^}]*flex-direction:\s*row/);
-  assert.match(mobile, /\.diet-twin-stage\s*\{[^}]*height:\s*44px/);
-  assert.match(mobile, /\.diet-twin-figure-wrap\s*\{[^}]*height:\s*40px/);
-  assert.equal(/\.diet-twin-stage\s*\{[^}]*height:\s*136px/.test(mobile), false);
-
-  const reduced = css.slice(css.indexOf('@media (prefers-reduced-motion: reduce)'));
-  assert.match(reduced, /\.diet-twin-hotspot,\s*\.diet-twin-glow\s*\{[^}]*animation:\s*none/);
-  assert.match(reduced, /\.diet-twin-arm,\s*\.diet-twin-ring\s*\{[^}]*animation:\s*none/);
-  assert.match(reduced, /\.diet-twin-forearm,\s*\.diet-twin-leg,\s*\.diet-twin-shin\s*\{[^}]*animation:\s*none/);
-
-  assert.match(copy, /export const DISCLAIMER_TEXT/);
-  assert.match(copy, /export const DISCLAIMER_SHORT/);
-  assert.match(copy, /export const DISCLAIMER_EN/);
-  assert.equal(portal.includes('DISCLAIMER_'), false);
+test('the retired lobby is not shipped beside the shell', () => {
+  assert.equal(fs.existsSync(path.join(root, 'src/components/ThemeLobby.tsx')), false);
+  assert.equal(fs.existsSync(path.join(root, 'src/components/DietTwinPortal.tsx')), false);
+  assert.equal(readSource('src/App.tsx').includes('ThemeLobby'), false);
+  assert.equal(readSource('src/styles.css').includes('.lobby {'), false);
 });
 
 test('theme accent bars follow the seed anchor group', () => {
-  const seed = JSON.parse(fs.readFileSync(path.join(root, 'data/seed_triples_v0.3_aligned.json'), 'utf8')) as {
+  const seed = JSON.parse(readSource('data/seed_triples_v0.3_aligned.json')) as {
     nodes: { id: string; group: string }[];
   };
   const byId = new Map(seed.nodes.map((node) => [node.id, node.group]));
@@ -291,16 +171,15 @@ test('theme accent bars follow the seed anchor group', () => {
 });
 
 test('brand title always shows full 明膳知源 without short label', () => {
-  const app = fs.readFileSync(path.join(root, 'src/App.tsx'), 'utf8');
-  const css = fs.readFileSync(path.join(root, 'src/styles.css'), 'utf8');
-  assert.match(app, /data-testid="brand-title"/);
-  assert.match(app, /aria-label="明膳知源"/);
-  assert.match(app, /title="明膳知源"/);
-  assert.match(app, />\s*明膳知源\s*</);
-  assert.equal(app.includes('brand-title-short'), false);
-  assert.equal(app.includes('aria-hidden="true">明膳<'), false);
+  const rail = readSource('src/components/ShellRail.tsx');
+  const css = readSource('src/styles.css');
+  assert.match(rail, /data-testid="brand-title"/);
+  assert.match(rail, /aria-label="明膳知源"/);
+  assert.match(rail, /title="明膳知源"/);
+  assert.match(rail, />\s*明膳知源\s*</);
+  assert.equal(rail.includes('brand-title-short'), false);
+  assert.equal(rail.includes('aria-hidden="true">明膳<'), false);
   assert.equal(css.includes('.brand-title-short'), false);
   assert.equal(css.includes('.brand-title-full'), false);
   assert.equal(/@media \(max-width:\s*639px\)/.test(css), false);
 });
-

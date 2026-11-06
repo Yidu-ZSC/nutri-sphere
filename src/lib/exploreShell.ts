@@ -33,35 +33,32 @@ export const VEGAN_DIET_SECTION_TITLE = '素食饮食方式';
 export const VEGAN_DIET_SECTION_INTRO =
   '从认识自己的餐盘开始，在试做与反馈里慢慢理解全食物植物性选择。ClearDiet 希望帮你把「我吃什么」当回事：先看见过去习以为常的观念，再用小步实践对照书摘与公开资料里的讨论，决定是否更主动走向素食，乃至全素生活方式。';
 
-/** Lobby section actions (whole hub, not per-card). */
-export const VEGAN_DIET_SECTION_DETAIL_CTA = '查看详情';
-
 export const VEGAN_DIET_SECTION_GRAPH_CTA = '在图谱里了解素食';
 
 /** Default explore theme for the section graph entry. */
 export const VEGAN_DIET_GRAPH_THEME_ID = 'plant-based';
 
-/** @deprecated Use VEGAN_DIET_SECTION_INTRO — kept for tests that slice the first sentence. */
-export const VEGAN_DIET_SECTION_TAGLINE =
-  '从认识自己的盘子开始，在试做与反馈里慢慢理解全食物植物性选择。';
-
-/** @deprecated Merged into VEGAN_DIET_SECTION_INTRO. */
-export const VEGAN_DIET_SECTION_MISSION =
-  'ClearDiet 希望帮你把「我吃什么」当回事：先看见过去习以为常的观念，再用小步实践对照书摘与公开资料里的讨论，决定是否更主动走向素食，乃至全素生活方式。';
-
 /** Theme-card and related-theme action. */
 export const THEME_CTA = '查看关联';
 
-/** Compact explore top bar. */
-export const BACK_TO_LOBBY = '回大厅';
+export const SHELL_GRAPH_LABEL = '图谱';
+export const SHELL_TWIN_LABEL = '我的饮食';
+export const SHELL_OPEN_NAV = '打开导航';
 
-/** Mobile control that opens the collapsed left column. */
-export const RAIL_TOGGLE_LABEL = '主题/筛选';
+/** Canvas control that opens the shell rail. */
+export const RAIL_TOGGLE_LABEL = SHELL_OPEN_NAV;
+export const SHELL_CLOSE_NAV = '关闭导航';
+export const SHELL_COLLAPSE_NAV = '收起导航';
+export const SHELL_EXPAND_NAV = '展开导航';
+export const SHELL_SEARCH_LABEL = '搜索';
+export const SHELL_RECORD_LABEL = '记录';
+export const SHELL_METHODS_LABEL = '方法说明';
+export const SHELL_VEGAN_ENTRY = '素食饮食方式';
 
 /** Shown when explore has no theme and no manual filter. ≤20 字. */
 export const EXPLORE_EMPTY_COPY = '先选择一个主题';
 
-export const EXPLORE_EMPTY_ACTION = '选择主题';
+export const EXPLORE_EMPTY_ACTION = SHELL_OPEN_NAV;
 
 /** Click-focus chrome: shown while a node one-hop focus is active. */
 export const CLICK_FOCUS_PREFIX = '已聚焦：';

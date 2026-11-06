@@ -6,8 +6,9 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
-test('desktop header and mobile more panel share the theme switcher', () => {
+test('the single shell rail footer owns the appearance theme switcher', () => {
   const app = fs.readFileSync(path.join(root, 'src/App.tsx'), 'utf8');
+  const rail = fs.readFileSync(path.join(root, 'src/components/ShellRail.tsx'), 'utf8');
   const switcher = fs.readFileSync(path.join(root, 'src/components/ThemeSwitcher.tsx'), 'utf8');
   const preference = fs.readFileSync(path.join(root, 'src/lib/themePreference.ts'), 'utf8');
   const css = fs.readFileSync(path.join(root, 'src/styles.css'), 'utf8');
@@ -19,17 +20,12 @@ test('desktop header and mobile more panel share the theme switcher', () => {
   assert.match(preference, /label: '高对比'/);
   assert.match(switcher, /THEME_OPTIONS/);
   assert.match(switcher, /aria-checked=\{selected\}/);
-  assert.match(app, /!mobile && <ThemeSwitcher theme=\{appTheme\} onChange=\{onAppTheme\} \/>/);
-  assert.match(app, /<ThemeOptions theme=\{appTheme\} onChange=\{onAppTheme\} \/>/);
+  assert.match(app, /footer=\{<ThemeSwitcher theme=\{appTheme\} onChange=\{onAppTheme\} \/>\}/);
+  assert.match(rail, /\{footer\}/);
+  assert.equal(app.includes('ThemeOptions'), false);
+  assert.equal(rail.includes('ThemeOptions'), false);
 
-  const morePanel = app.match(/data-testid="shell-menu-panel"[\s\S]*?<\/div>/)?.[0] ?? '';
-  assert.match(morePanel, /ThemeOptions/);
-  assert.equal(morePanel.includes('ThemeSwitcher'), false);
-
-  const options = switcher.match(/export function ThemeOptions[\s\S]*$/)?.[0] ?? '';
-  assert.match(options, />\s*主题\s*</);
-  assert.equal(options.includes('ThemeSwitcher'), false);
-
-  assert.match(css, /\.pattern-card\[data-highlighted='true'\]\s*\{[^}]*box-shadow:\s*inset 4px 0 0 var\(--brand\)/);
-  assert.equal(app.includes('选择主题'), false);
+  assert.match(css, /\.shell-rail \.theme-menu\s*\{[^}]*bottom:\s*calc\(100% \+ 8px\)/s);
+  assert.match(css, /\.rail-recommendation\s*\{[^}]*border-radius:\s*var\(--radius-card\)/s);
+  assert.equal(css.includes('.pattern-card[data-highlighted'), false);
 });
