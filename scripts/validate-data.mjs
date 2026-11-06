@@ -397,7 +397,7 @@ export function validateAdminBooks(payload, sourcesPayload) {
       errors.push(`admin_books.json 缺少已入库书目 id "${expected}"`);
     }
   }
-  // NS-075: +you_are_what_you_eat ingested; know_your_gut remains index_only.
+  // NS-076: +know_your_gut ingested (was index_only).
   if (books.length === 19) {
     const gut = books.find((b) => b && typeof b === 'object' && /** @type {any} */ (b).id === 'gut_brain');
     if (!gut || /** @type {any} */ (gut).status !== 'ingested' || /** @type {any} */ (gut).source_id !== 'gut_brain') {
@@ -423,8 +423,12 @@ export function validateAdminBooks(payload, sourcesPayload) {
     if (!yawye || /** @type {any} */ (yawye).status !== 'ingested' || /** @type {any} */ (yawye).source_id !== 'you_are_what_you_eat') {
       errors.push('admin_books.json you_are_what_you_eat 须为 ingested + source_id（NS-075）');
     }
-    if (ingested !== 6) {
-      errors.push(`admin_books.json NS-075 后应恰有 6 本 ingested（+you_are_what_you_eat），实为 ${ingested}`);
+    const kyg = books.find((b) => b && typeof b === 'object' && /** @type {any} */ (b).id === 'know_your_gut');
+    if (!kyg || /** @type {any} */ (kyg).status !== 'ingested' || /** @type {any} */ (kyg).source_id !== 'know_your_gut') {
+      errors.push('admin_books.json know_your_gut 须为 ingested + source_id（NS-076）');
+    }
+    if (ingested !== 7) {
+      errors.push(`admin_books.json NS-076 后应恰有 7 本 ingested（+know_your_gut），实为 ${ingested}`);
     }
   }
 
@@ -437,7 +441,7 @@ export function validateAdminBooks(payload, sourcesPayload) {
 
 
 /**
- * Validate data/weread/<source_id>.json for the six ingested books.
+ * Validate data/weread/<source_id>.json for ingested books (weread gate deprecated).
  * @returns {{ ok: boolean, errors: string[], counts: { files: number, bookmarks: number } }}
  */
 export function validateWereadCorpora() {

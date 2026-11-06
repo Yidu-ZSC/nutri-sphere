@@ -93,6 +93,7 @@ const SYNCED_KB_FILES = new Set([
   HOW_NOT_TO_DIE_KB,
   '植物性饮食与慢病_救命饮食中国健康调查报告.md',
   '营养基础_你是你吃出来的.md',
+  '肠道菌群_晓肚知肠.md',
 ]);
 
 export function kbBodySynced(kbFile: string): boolean {
