@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "source_id": "flow",
+    "source_title": "心流",
+    "schema_align": "seed snapshot data 2.8 / schema 0.7",
+    "themes": [
+      "health"
+    ],
+    "note": "候选；同端点 append；勿直接改 seed；禁止 limitations；relation 为公共共享关系；入库须另开 TASK + 合并闸门",
+    "weread_link": "https://weread.qq.com/web/reader/65e328b05e10e265eb76e03",
+    "new_node_count": 2,
+    "reuse_node_count": 12,
+    "qa_note": "独立主题验收后更新；mechanism 节点补 mechanism_depth"
+  },
+  "new_nodes": [
+    {
+      "id": "flow_state",
+      "domain": "health",
+      "type": "mechanism",
+      "label": "心流 / 最优体验",
+      "group": "protective",
+      "description": "全神贯注、挑战与技巧匹配时的最优意识状态；叙述中与精神熵降低、压力适应、身心和谐及情绪恢复相关。",
+      "aliases": [
+        "心流",
+        "最优体验",
+        "Flow",
+        "心流体验"
+      ],
+      "mechanism_depth": "mechanism"
+    },
+    {
+      "id": "attention",
+      "domain": "health",
+      "type": "mechanism",
+      "label": "注意力 / 注意控制",
+      "group": "protective",
+      "description": "对意识内容进行选择与聚焦的精神能量；叙述中注意力失调、过度包摄与心理健康及乐趣体验受损相关，受控注意力与压力应对相关。",
+      "aliases": [
+        "注意控制",
+        "精神能量聚焦",
+        "注意力集中",
+        "注意筛选"
+      ],
+      "mechanism_depth": "mechanism"
+    }
+  ],
+  "reuse_nodes": [
+    "aerobic_exercise",
+    "alcohol",
+    "appetite_regulation",
+    "chronic_disease",
+    "cognitive_clarity",
+    "emotional_stability",
+    "energy_vitality",
+    "good_sleep",
+    "healthy_weight",
+    "mental_health",
+    "psychological_stress",
+    "social_isolation"
+  ]
+}

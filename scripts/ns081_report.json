@@ -1,0 +1,214 @@
+{
+  "task": "TASK-NS-081",
+  "from_data_version": "2.8",
+  "to_data_version": "2.9",
+  "schema_version": "0.7",
+  "before": {
+    "nodes": 208,
+    "links": 1182
+  },
+  "after": {
+    "nodes": 210,
+    "links": 1196
+  },
+  "new_nodes": [
+    "flow_state",
+    "attention"
+  ],
+  "new_node_count": 2,
+  "reuse_node_count": 12,
+  "append_candidates": 10,
+  "append_evidence_rows": 45,
+  "new_edges": 14,
+  "batch_internal_appends_flagged_new": 0,
+  "parallel_pairs_after": 0,
+  "flow_top_level": 14,
+  "flow_citing": 24,
+  "direction_new": {
+    "protective": 13,
+    "risk": 1
+  },
+  "type_counts_after": {
+    "diet_pattern": 9,
+    "food_category": 10,
+    "nutrient": 22,
+    "food": 25,
+    "compound": 18,
+    "metabolite": 6,
+    "mechanism": 58,
+    "disease": 56,
+    "biomarker": 6
+  },
+  "sources_registered": true,
+  "authors": "米哈里·契克森米哈赖",
+  "append_hosts_sample": [
+    {
+      "candidate_note_id": "flw_c03_p2",
+      "endpoints": "alcohol->mental_health",
+      "host_id": "poh_c12_p1",
+      "host_source_id": "power_of_habit",
+      "host_relation": "过量饮酒与情绪焦虑及成瘾相关心理健康负担相关",
+      "live_relation_before": "过量饮酒与情绪焦虑及成瘾相关心理健康负担相关",
+      "candidate_relation": "过量饮酒与情绪焦虑及成瘾相关心理健康负担相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "flw_c03_p2",
+      "endpoints": "appetite_regulation->mental_health",
+      "host_id": "kyg_c11_p40_mental_health",
+      "host_source_id": "know_your_gut",
+      "host_relation": "食欲调控与情绪低落相关的关联观察",
+      "live_relation_before": "食欲调控与情绪低落相关的关联观察",
+      "candidate_relation": "食欲调控与情绪低落相关的关联观察",
+      "existing_relation": null,
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "flw_c03_p3",
+      "endpoints": "psychological_stress->mental_health",
+      "host_id": "kyg_c11_p10_mental_health",
+      "host_source_id": "know_your_gut",
+      "host_relation": "精神压力与情绪低落相关的关联观察",
+      "live_relation_before": "精神压力与情绪低落相关的关联观察",
+      "candidate_relation": "精神压力与情绪低落相关的关联观察",
+      "existing_relation": null,
+      "evidences_appended": 19
+    },
+    {
+      "candidate_note_id": "flw_c12_p3",
+      "endpoints": "alcohol->psychological_stress",
+      "host_id": "poh_c12_p6",
+      "host_source_id": "power_of_habit",
+      "host_relation": "以饮酒逃避压力与心理应激应对相关",
+      "live_relation_before": "以饮酒逃避压力与心理应激应对相关",
+      "candidate_relation": "以饮酒逃避压力与心理应激应对相关",
+      "existing_relation": null,
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "flw_c16_p2",
+      "endpoints": "appetite_regulation->healthy_weight",
+      "host_id": "bu_c11_p79",
+      "host_source_id": "body_unlimited",
+      "host_relation": "食欲自我调节与健康体重维持相关",
+      "live_relation_before": "食欲自我调节与健康体重维持相关",
+      "candidate_relation": "食欲自我调节与健康体重维持相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    }
+  ],
+  "append_hosts_count": 10,
+  "append_hosts_all": [
+    {
+      "candidate_note_id": "flw_c03_p2",
+      "endpoints": "alcohol->mental_health",
+      "host_id": "poh_c12_p1",
+      "host_source_id": "power_of_habit",
+      "host_relation": "过量饮酒与情绪焦虑及成瘾相关心理健康负担相关",
+      "live_relation_before": "过量饮酒与情绪焦虑及成瘾相关心理健康负担相关",
+      "candidate_relation": "过量饮酒与情绪焦虑及成瘾相关心理健康负担相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "flw_c03_p2",
+      "endpoints": "appetite_regulation->mental_health",
+      "host_id": "kyg_c11_p40_mental_health",
+      "host_source_id": "know_your_gut",
+      "host_relation": "食欲调控与情绪低落相关的关联观察",
+      "live_relation_before": "食欲调控与情绪低落相关的关联观察",
+      "candidate_relation": "食欲调控与情绪低落相关的关联观察",
+      "existing_relation": null,
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "flw_c03_p3",
+      "endpoints": "psychological_stress->mental_health",
+      "host_id": "kyg_c11_p10_mental_health",
+      "host_source_id": "know_your_gut",
+      "host_relation": "精神压力与情绪低落相关的关联观察",
+      "live_relation_before": "精神压力与情绪低落相关的关联观察",
+      "candidate_relation": "精神压力与情绪低落相关的关联观察",
+      "existing_relation": null,
+      "evidences_appended": 19
+    },
+    {
+      "candidate_note_id": "flw_c12_p3",
+      "endpoints": "alcohol->psychological_stress",
+      "host_id": "poh_c12_p6",
+      "host_source_id": "power_of_habit",
+      "host_relation": "以饮酒逃避压力与心理应激应对相关",
+      "live_relation_before": "以饮酒逃避压力与心理应激应对相关",
+      "candidate_relation": "以饮酒逃避压力与心理应激应对相关",
+      "existing_relation": null,
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "flw_c16_p2",
+      "endpoints": "appetite_regulation->healthy_weight",
+      "host_id": "bu_c11_p79",
+      "host_source_id": "body_unlimited",
+      "host_relation": "食欲自我调节与健康体重维持相关",
+      "live_relation_before": "食欲自我调节与健康体重维持相关",
+      "candidate_relation": "食欲自我调节与健康体重维持相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "flw_c20_p2",
+      "endpoints": "social_isolation->psychological_stress",
+      "host_id": "bu_c19_p7",
+      "host_source_id": "body_unlimited",
+      "host_relation": "社交联结不足与心理应激相关",
+      "live_relation_before": "社交联结不足与心理应激相关",
+      "candidate_relation": "社交联结不足与心理应激相关",
+      "existing_relation": null,
+      "evidences_appended": 5
+    },
+    {
+      "candidate_note_id": "flw_c33_p1",
+      "endpoints": "aerobic_exercise->mental_health",
+      "host_id": "bu_c19_p45",
+      "host_source_id": "body_unlimited",
+      "host_relation": "自然运动与情绪及心理恢复相关",
+      "live_relation_before": "自然运动与情绪及心理恢复相关",
+      "candidate_relation": "自然运动与情绪及心理恢复相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "flw_c33_p1",
+      "endpoints": "aerobic_exercise->energy_vitality",
+      "host_id": "bu_c14_p7",
+      "host_source_id": "body_unlimited",
+      "host_relation": "规律运动与能量活力相关",
+      "live_relation_before": "规律运动与能量活力相关",
+      "candidate_relation": "规律运动与能量活力相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "flw_c55_p1",
+      "endpoints": "social_isolation->mental_health",
+      "host_id": "bu_c14_p3",
+      "host_source_id": "body_unlimited",
+      "host_relation": "社交隔离与孤独抑郁等情绪问题相关",
+      "live_relation_before": "社交隔离与孤独抑郁等情绪问题相关",
+      "candidate_relation": "社交隔离与孤独抑郁等情绪问题相关",
+      "existing_relation": null,
+      "evidences_appended": 6
+    },
+    {
+      "candidate_note_id": "flw_c56_p2",
+      "endpoints": "social_isolation->chronic_disease",
+      "host_id": "bu_c14_p4",
+      "host_source_id": "body_unlimited",
+      "host_relation": "社交隔离与整体健康损害相关",
+      "live_relation_before": "社交隔离与整体健康损害相关",
+      "candidate_relation": "社交隔离与整体健康损害相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    }
+  ]
+}

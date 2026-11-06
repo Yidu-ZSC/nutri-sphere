@@ -1,0 +1,60 @@
+{
+  "source_id": "flow",
+  "title": "心流：最优体验心理学",
+  "title_short": "心流",
+  "author": "米哈里·契克森米哈赖",
+  "authors": [
+    "米哈里·契克森米哈赖"
+  ],
+  "translator": "张定绮",
+  "publisher": "中信出版集团",
+  "isbn": "9787508675534",
+  "published": "2017-12-01",
+  "epub_date": "2017-11-22",
+  "epub_creator": "米哈里·契克森米哈赖",
+  "language": "zh",
+  "themes": [
+    "health"
+  ],
+  "kb_file": "零散_心流_2796-2924.md",
+  "epub_copyright_note": "EPUB 题名「心流：最优体验心理学」；admin_books title=心流；ISBN 9787508675534 与微信读书 bookId 921826 精确匹配。勿与《从内耗到心流》《心流：内在秩序的觉醒》混淆。",
+  "weread": {
+    "bookId": "921826",
+    "readerLink": "https://weread.qq.com/web/reader/65e328b05e10e265eb76e03",
+    "deepLink": "https://weread.qq.com/book-detail?type=1&v=65e328b05e10e265eb76e03",
+    "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/826/921826/t6_921826.jpg"
+  },
+  "note": "仅元数据与外链；未使用微信读书划线/笔记作为证据。admin_books 已有 flow（index_only）。candidate extraction counts 以最终 JSON / 抽取说明为准。",
+  "admin_books": {
+    "id": "flow",
+    "title": "心流",
+    "theme": "零散",
+    "kb_file": "零散_心流_2796-2924.md",
+    "status": "index_only"
+  },
+  "extraction": {
+    "candidate_count": 24,
+    "evidence_count": 93,
+    "excerpt_count": 89,
+    "excerpt_used_count": 69,
+    "append_count": 10,
+    "new_endpoint_pairs": 14,
+    "new_node_count": 2,
+    "reuse_node_count": 12,
+    "themes": [
+      "health"
+    ],
+    "note": "counts are post independent thematic QA; seed untouched",
+    "spot_check_excerpt_ids": [
+      "flw_c16_p1",
+      "flw_c56_p2",
+      "flw_c63_p2"
+    ],
+    "raw_before_qa": {
+      "candidate_count": 30,
+      "evidence_count": 132,
+      "append_count": 14,
+      "new_endpoint_pairs": 16
+    }
+  }
+}
