@@ -25,15 +25,15 @@ const THIN = [
   'know_your_gut',
 ];
 
-test('admin_books.json asserts 19 books with five ingested after NS-074', () => {
+test('admin_books.json asserts 19 books with six ingested after NS-075', () => {
   const payload = readJson('data/admin_books.json');
   const data = assertAdminBooks(payload);
   assert.equal(data.schema_version, '1.2');
   assert.equal(data.books.length, 19);
   const ingested = data.books.filter((book) => book.status === 'ingested');
-  assert.equal(ingested.length, 5);
-  assert.deepEqual(ingested.map((b) => b.id).sort(), ['amazing_veggie_soup', 'china_study', 'eat_to_heal', 'gut_brain', 'how_not_to_die']);
-  for (const id of ['gut_brain', 'eat_to_heal', 'amazing_veggie_soup', 'how_not_to_die', 'china_study']) {
+  assert.equal(ingested.length, 6);
+  assert.deepEqual(ingested.map((b) => b.id).sort(), ['amazing_veggie_soup', 'china_study', 'eat_to_heal', 'gut_brain', 'how_not_to_die', 'you_are_what_you_eat']);
+  for (const id of ['gut_brain', 'eat_to_heal', 'amazing_veggie_soup', 'how_not_to_die', 'china_study', 'you_are_what_you_eat']) {
     const book = data.books.find((row) => row.id === id);
     assert.equal(book?.status, 'ingested');
     assert.equal(book?.source_id, id);
@@ -87,7 +87,7 @@ test('admin filters theme / relevance / status', () => {
     relevance: 'all',
     status: 'ingested',
   });
-  assert.equal(ingested.length, 5);
+  assert.equal(ingested.length, 6);
   const gut = filterAndSortAdminBooks(data.books, {
     theme: '肠道菌群',
     relevance: 'all',
@@ -104,7 +104,7 @@ test('admin filters theme / relevance / status', () => {
   assert.equal(STATUS_LABEL.index_only, '仅索引');
 });
 
-test('runtime edge counts after NS-074 china_study ingest', () => {
+test('runtime edge counts after NS-075 you_are_what_you_eat ingest', () => {
   const seed = readJson('data/seed_triples_v0.3_aligned.json') as GraphData;
   assert.equal(citingLinks(seed, 'gut_brain').length, 55);
   assert.equal(edgeCountForBook(seed, 'gut_brain'), 55);
@@ -117,6 +117,8 @@ test('runtime edge counts after NS-074 china_study ingest', () => {
   assert.equal(edgeCountForBook(seed, 'how_not_to_die'), 131);
   assert.equal(citingLinks(seed, 'china_study').length, 141);
   assert.equal(edgeCountForBook(seed, 'china_study'), 141);
+  assert.equal(citingLinks(seed, 'you_are_what_you_eat').length, 176);
+  assert.equal(edgeCountForBook(seed, 'you_are_what_you_eat'), 176);
   for (const id of THIN) {
     assert.equal(citingLinks(seed, id).length, 0, id);
     assert.equal(edgeCountForBook(seed, id), 0, id);
@@ -131,5 +133,6 @@ test('kb body sync flag follows files committed under data/kb', () => {
   assert.equal(kbBodySynced('植物性饮食与慢病_惊人的蔬菜汤.md'), true);
   assert.equal(kbBodySynced('植物性饮食与慢病_救命逆转和预防致命疾病的科学饮食.md'), true);
   assert.equal(kbBodySynced('植物性饮食与慢病_救命饮食中国健康调查报告.md'), true);
+  assert.equal(kbBodySynced('营养基础_你是你吃出来的.md'), true);
   assert.equal(kbBodySynced('肠道菌群_晓肚知肠.md'), false);
 });

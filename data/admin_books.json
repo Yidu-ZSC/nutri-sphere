@@ -99,7 +99,11 @@
       "theme": "营养基础",
       "relevance": "high",
       "kb_file": "营养基础_你是你吃出来的.md",
-      "status": "index_only"
+      "status": "ingested",
+      "source_id": "you_are_what_you_eat",
+      "publisher": "江西科技出版社",
+      "isbn": "9787539060453",
+      "cover_url": "https://cdn.weread.qq.com/weread/cover/86/YueWen_920661/t6_YueWen_920661.jpg"
     },
     {
       "id": "body_story",
