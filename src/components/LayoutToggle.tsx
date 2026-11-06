@@ -15,7 +15,7 @@ export function LayoutToggle({ view, onChange }: LayoutToggleProps) {
         层次
       </button>
       <button type="button" aria-pressed={view === '3d'} onClick={() => onChange('3d')}>
-        3D 探索
+        列板
       </button>
     </div>
   );

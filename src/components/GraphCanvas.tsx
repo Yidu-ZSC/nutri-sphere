@@ -7,6 +7,7 @@ import { canvasStageForTheme } from '../lib/canvasStage';
 import type { AppTheme } from '../lib/themePreference';
 import type { LayoutMode } from '../lib/layout';
 import { FlowCanvas } from './FlowCanvas';
+import { FlowSlabScene } from './FlowSlabScene';
 import { GraphScene2D } from './GraphScene2D';
 import { GraphScene3D } from './GraphScene3D';
 import { pickFramedNode, type DrawLink } from './graphShared';
@@ -152,6 +153,7 @@ export function GraphCanvas({
           nodes={graph.nodes.filter((node) => shownNodeIds.has(node.id))}
           links={shownLinks}
           width={size.w}
+          height={size.h}
           anchors={flowAnchorIds}
           pinIndex={selection?.kind === 'link' ? selection.index : null}
           selection={selection}
@@ -163,7 +165,25 @@ export function GraphCanvas({
         />
       )}
       {ready && graphView === '2d' && <GraphScene2D {...scene} />}
-      {ready && graphView === '3d' && webgl && <GraphScene3D {...scene} autoRotate={autoRotate} />}
+      {size.w > 0 && size.h > 0 && graphView === '3d' && webgl && layout !== 'force' && (
+        <FlowSlabScene
+          nodes={graph.nodes.filter((node) => shownNodeIds.has(node.id))}
+          links={shownLinks}
+          width={size.w}
+          height={size.h}
+          anchors={flowAnchorIds}
+          pinIndex={selection?.kind === 'link' ? selection.index : null}
+          selection={selection}
+          focusIds={focusIds}
+          canvasStage={canvasStage}
+          onSelectNode={onSelectNode}
+          onSelectLink={onSelectLink}
+          onBackground={onBackground}
+        />
+      )}
+      {ready && graphView === '3d' && webgl && layout === 'force' && (
+        <GraphScene3D {...scene} autoRotate={autoRotate} />
+      )}
     </div>
   );
 }
