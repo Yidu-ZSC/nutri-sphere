@@ -26,11 +26,13 @@ import { ThemeOptions, ThemeSwitcher } from './components/ThemeSwitcher';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import { evidenceCounts, flowGraphStats, visibleGraphStats } from './lib/copy';
 import { selectFlowBands, type FlowEdgeInput, type FlowNodeInput } from './lib/flowLayout';
+import { selectHierarchyLinks } from './lib/hierarchyBudget';
 import {
   BACK_TO_LOBBY,
   CLEAR_CLICK_FOCUS,
   CLICK_FOCUS_PREFIX,
   EXPLORE_EMPTY_ACTION,
+  HIERARCHY_BUDGET_NOTE,
   THEME_HINT_CLOSE,
   themeHintVisible,
   EXPLORE_EMPTY_COPY,
@@ -69,6 +71,7 @@ interface ExploreSnapshot {
   diseaseId: string | null;
   mechanismId: string | null;
   foodId: string | null;
+  lensId: string | null;
   layout: LayoutMode;
   graphView: GraphView;
   hideUnmatched: boolean;
@@ -102,7 +105,12 @@ export function App() {
   const [layout, setLayout] = useState<LayoutMode>(() => initialQuery.current.layout ?? 'hierarchy');
   const [graphView, setGraphView] = useState<GraphView>(() => {
     if (initialQuery.current.view) return initialQuery.current.view;
-    if (initialQuery.current.theme && resolveScreen(initialQuery.current) === 'explore') return 'flow';
+    if (
+      (initialQuery.current.theme || initialQuery.current.lens) &&
+      resolveScreen(initialQuery.current) === 'explore'
+    ) {
+      return 'flow';
+    }
     return readGraphView();
   });
   const [hideUnmatched, setHideUnmatched] = useState(() => initialQuery.current.hideUnmatched);
@@ -110,6 +118,9 @@ export function App() {
   const [diseaseId, setDiseaseId] = useState<string | null>(() => initialFilters.current.disease);
   const [mechanismId, setMechanismId] = useState<string | null>(() => initialFilters.current.mechanism);
   const [foodId, setFoodId] = useState<string | null>(() => initialFilters.current.food);
+  const [lensId, setLensId] = useState<string | null>(() =>
+    resolveScreen(initialQuery.current) === 'explore' ? initialQuery.current.lens : null,
+  );
   const [patterns, setPatterns] = useState<string[]>(() => {
     const parsed = initialQuery.current;
     return resolveScreen(parsed) === 'home' ? parsed.patterns : [];
@@ -173,7 +184,13 @@ export function App() {
         setAdminBooks(adminBooksData);
         const parsed = initialQuery.current;
         if (screenRef.current === resolveScreen(parsed)) {
-          const shared = filtersFromShare(parsed);
+          const validLens =
+            resolveScreen(parsed) === 'explore' &&
+            parsed.lens &&
+            graph.nodes.some((node) => node.id === parsed.lens)
+              ? parsed.lens
+              : null;
+          const shared = filtersFromShare({ ...parsed, lens: validLens });
           const disease =
             shared.disease && graph.nodes.some((node) => node.id === shared.disease && node.type === 'disease')
               ? shared.disease
@@ -194,6 +211,7 @@ export function App() {
           setDiseaseId(disease);
           setMechanismId(mechanism);
           setFoodId(food);
+          setLensId(validLens);
           setSelection(nextSelection);
           if (parsed.screen === 'source') {
             const known = sourceById(sourcesData, parsed.source);
@@ -310,6 +328,7 @@ export function App() {
   const safeDisease = diseases.some((node) => node.id === diseaseId) ? diseaseId : null;
   const safeMechanism = mechanisms.some((node) => node.id === mechanismId) ? mechanismId : null;
   const safeFood = exploreNodes.some((node) => node.id === foodId) ? foodId : null;
+  const safeLens = exploreNodes.some((node) => node.id === lensId) ? lensId : null;
 
   useEffect(() => {
     if (screen !== 'pattern') return;
@@ -373,13 +392,16 @@ export function App() {
       screen,
       domain: activeDomain,
       theme: exploring
-        ? (themeForFilters(safeDisease, safeMechanism, safeFood)?.id ?? null)
+        ? safeLens
+          ? null
+          : (themeForFilters(safeDisease, safeMechanism, safeFood)?.id ?? null)
         : screen === 'home' && patterns.length > 0
           ? patternSourceTheme
           : null,
-      disease: exploring ? safeDisease : null,
-      mechanism: exploring ? safeMechanism : null,
-      food: exploring ? safeFood : null,
+      disease: exploring && !safeLens ? safeDisease : null,
+      mechanism: exploring && !safeLens ? safeMechanism : null,
+      food: exploring && !safeLens ? safeFood : null,
+      lens: exploring ? safeLens : null,
       pattern: screen === 'pattern' ? patternId : null,
       patterns: screen === 'home' ? patterns : [],
       source: screen === 'source' ? sourceId : null,
@@ -410,6 +432,7 @@ export function App() {
     patterns,
     safeDisease,
     safeFood,
+    safeLens,
     safeMechanism,
     activeDomain,
     adminEdge,
@@ -422,8 +445,8 @@ export function App() {
   ]);
 
   const focusIds = useMemo(
-    () => (domainView ? focusedNodeIds(domainView.links, safeDisease, safeMechanism, safeFood) : null),
-    [domainView, safeDisease, safeFood, safeMechanism],
+    () => (domainView ? focusedNodeIds(domainView.links, safeDisease, safeMechanism, safeFood, safeLens) : null),
+    [domainView, safeDisease, safeFood, safeLens, safeMechanism],
   );
 
   /** Bright/dim only — click-focus dims outsiders; does not hard-hide nodes. */
@@ -456,9 +479,32 @@ export function App() {
   }, [domainView, focusIds, graph, hideUnmatched, selection]);
 
   const flowAnchorIds = useMemo(() => {
-    const ids = [safeDisease, safeMechanism, safeFood];
+    const ids = [safeLens, safeDisease, safeMechanism, safeFood];
     return ids.filter((id): id is string => Boolean(id));
-  }, [safeDisease, safeFood, safeMechanism]);
+  }, [safeDisease, safeFood, safeLens, safeMechanism]);
+
+  const hierarchyPick = useMemo(() => {
+    // Budget only the narrowed neighborhood. The unfiltered hierarchy keeps every edge.
+    if (graphView !== '2d' || !rendered || !hideUnmatched || focusIds == null) return null;
+    const links: FlowEdgeInput[] = rendered.links.map((link) => ({
+      source: link.source,
+      target: link.target,
+      graphIndex: link.graphIndex,
+      direction: link.direction,
+      strength: link.strength,
+      relation: link.relation,
+      evidenceCount: link.evidences?.length ?? 1,
+    }));
+    const pinIndex = selection?.kind === 'link' ? selection.index : null;
+    return selectHierarchyLinks(links, flowAnchorIds, pinIndex);
+  }, [flowAnchorIds, focusIds, graphView, hideUnmatched, rendered, selection]);
+
+  const drawnLinks = useMemo(() => {
+    if (!rendered) return [];
+    if (graphView !== '2d' || !hierarchyPick) return rendered.links;
+    const kept = new Set(hierarchyPick.links.map((link) => link.graphIndex));
+    return rendered.links.filter((link) => kept.has(link.graphIndex));
+  }, [graphView, hierarchyPick, rendered]);
 
   const flowSummary = useMemo(() => {
     if ((graphView !== 'flow' && !(graphView === '3d' && layout === 'hierarchy')) || !graph || !rendered) return null;
@@ -502,10 +548,10 @@ export function App() {
   const counts = useMemo(() => (graph ? evidenceCounts(graph.links) : {}), [graph]);
 
   const anchorId = useMemo(() => {
-    if (!graph || !selection) return safeMechanism ?? safeDisease ?? safeFood;
+    if (!graph || !selection) return safeLens ?? safeMechanism ?? safeDisease ?? safeFood;
     if (selection.kind === 'node') return selection.id;
-    return graph.links[selection.index]?.target ?? safeMechanism ?? safeDisease ?? safeFood;
-  }, [graph, safeDisease, safeFood, safeMechanism, selection]);
+    return graph.links[selection.index]?.target ?? safeLens ?? safeMechanism ?? safeDisease ?? safeFood;
+  }, [graph, safeDisease, safeFood, safeLens, safeMechanism, selection]);
 
   const onQuery = useCallback((value: string) => setQuery(value), []);
 
@@ -523,7 +569,15 @@ export function App() {
     setShellMenuOpen(false);
   };
 
+  const leaveLens = () => {
+    if (!lensId) return;
+    setLensId(null);
+    setClickFocusId(null);
+    setSelection(null);
+  };
+
   const clearFilters = () => {
+    leaveLens();
     setDiseaseId(null);
     setMechanismId(null);
     setFoodId(null);
@@ -535,6 +589,7 @@ export function App() {
       setDiseaseId(null);
       setMechanismId(null);
       setFoodId(null);
+      setLensId(null);
       setSelection(null);
       setClickFocusId(null);
       setHideUnmatched(false);
@@ -551,11 +606,13 @@ export function App() {
   }, [onDomainChange]);
 
   const selectDisease = (id: string | null) => {
+    leaveLens();
     setDiseaseId(id);
     if (id) setFoodId(null);
   };
 
   const selectMechanism = (id: string | null) => {
+    leaveLens();
     setMechanismId(id);
     if (id) setFoodId(null);
   };
@@ -583,6 +640,7 @@ export function App() {
   };
 
   const onTheme = (theme: ExploreTheme | null) => {
+    leaveLens();
     if (!theme) {
       setDiseaseId(null);
       setMechanismId(null);
@@ -623,11 +681,30 @@ export function App() {
     setDiseaseId(theme.diseaseId);
     setMechanismId(theme.mechanismId);
     setFoodId(theme.foodId);
+    setLensId(null);
     setLayout('hierarchy');
     setGraphView('flow');
     setHideUnmatched(true);
     setClickFocusId(null);
     setSelection(null);
+    setShellMenuOpen(false);
+    setPatternId(null);
+    setPatternReturnSnapshot(null);
+    setScreen('explore');
+    clearPatternHighlight();
+  };
+
+  const enterLens = (nodeId: string) => {
+    if (!graph?.nodes.some((node) => node.id === nodeId)) return;
+    setDiseaseId(null);
+    setMechanismId(null);
+    setFoodId(null);
+    setLensId(nodeId);
+    setLayout('hierarchy');
+    setGraphView('flow');
+    setHideUnmatched(true);
+    setClickFocusId(nodeId);
+    setSelection({ kind: 'node', id: nodeId });
     setShellMenuOpen(false);
     setPatternId(null);
     setPatternReturnSnapshot(null);
@@ -645,6 +722,7 @@ export function App() {
     setSourceId(null);
     setSourceReturnSnapshot(null);
     setBookId(null);
+    setLensId(null);
     setScreen('home');
     clearPatternHighlight();
   };
@@ -653,6 +731,7 @@ export function App() {
     diseaseId: safeDisease,
     mechanismId: safeMechanism,
     foodId: safeFood,
+    lensId: safeLens,
     layout,
     graphView,
     hideUnmatched,
@@ -694,6 +773,7 @@ export function App() {
     const theme = themeById(target.themeId);
     if (!theme && !target.nodeId) return;
     if (target.nodeId) {
+      setLensId(null);
       if (theme) {
         setDiseaseId(theme.diseaseId);
         setMechanismId(theme.mechanismId);
@@ -726,6 +806,7 @@ export function App() {
     setDiseaseId(snapshot.diseaseId);
     setMechanismId(snapshot.mechanismId);
     setFoodId(snapshot.foodId);
+    setLensId(snapshot.lensId);
     setLayout(snapshot.layout);
     setGraphView(snapshot.graphView);
     setHideUnmatched(snapshot.hideUnmatched);
@@ -744,6 +825,7 @@ export function App() {
       diseaseId: safeDisease,
       mechanismId: safeMechanism,
       foodId: safeFood,
+      lensId: safeLens,
       layout,
       graphView,
       hideUnmatched,
@@ -766,11 +848,12 @@ export function App() {
       setDiseaseId(snapshot.diseaseId);
       setMechanismId(snapshot.mechanismId);
       setFoodId(snapshot.foodId);
-        setLayout(snapshot.layout);
+      setLensId(snapshot.lensId);
+      setLayout(snapshot.layout);
       setGraphView(snapshot.graphView);
       setHideUnmatched(snapshot.hideUnmatched);
       setClickFocusId(null);
-    setSelection(snapshot.selection);
+      setSelection(snapshot.selection);
       setShellMenuOpen(false);
       setScreen('explore');
       return;
@@ -802,6 +885,7 @@ export function App() {
     setDiseaseId(snapshot.diseaseId);
     setMechanismId(snapshot.mechanismId);
     setFoodId(snapshot.foodId);
+    setLensId(snapshot.lensId);
     setLayout(snapshot.layout);
     setGraphView(snapshot.graphView);
     setHideUnmatched(snapshot.hideUnmatched);
@@ -821,6 +905,7 @@ export function App() {
     setDiseaseId(null);
     setMechanismId(null);
     setFoodId(null);
+    setLensId(null);
     setHideUnmatched(false);
     setLayout('hierarchy');
     setGraphView('flow');
@@ -879,6 +964,7 @@ export function App() {
     setDiseaseId(null);
     setMechanismId(null);
     setFoodId(null);
+    setLensId(null);
     setHideUnmatched(false);
     setLayout('hierarchy');
     setGraphView('flow');
@@ -911,7 +997,7 @@ export function App() {
   };
 
   const filterEmpty = domainView != null && isFocusEmpty(focusIds, exploreNodes.map((node) => node.id));
-  const showThemeEmpty = !safeDisease && !safeMechanism && !safeFood;
+  const showThemeEmpty = !safeDisease && !safeMechanism && !safeFood && !safeLens;
   const themeHintShown = themeHintVisible({
     noTheme: showThemeEmpty,
     filterEmpty,
@@ -1146,6 +1232,7 @@ export function App() {
         {(screen === 'home' || (screen === 'pattern' && !showVeganDietDetail)) && (
           <ThemeLobby
             onEnter={enterTheme}
+            onOpenLens={enterLens}
             onOpenCompare={openCompare}
             onOpenTwin={openTwin}
             highlightedPatterns={patterns}
@@ -1153,6 +1240,8 @@ export function App() {
             onReturnToGraph={returnToGraph}
             activeDomain={activeDomain}
             onReturnHealth={returnToHealthDomain}
+            graphNodes={graph?.nodes ?? []}
+            searchReady={graph != null}
           />
         )}
         {screen === 'twin' && <DietTwin onBack={goHome} onOpenIndicator={openTwinIndicator} />}
@@ -1278,7 +1367,7 @@ export function App() {
                 layout={layout}
                 graphView={graphView}
                 shownNodeIds={rendered.nodeIds}
-                shownLinks={rendered.links}
+                shownLinks={drawnLinks}
                 compact={mobile}
                 autoRotate={autoRotate}
                 anchorId={anchorId}
@@ -1334,7 +1423,9 @@ export function App() {
                     : visibleGraphStats(rendered.nodeIds.size, rendered.links.length)}
                 </p>
                 <p className="hud-note">
-                  {graphView === '3d' && layout === 'hierarchy'
+                  {graphView === '2d' && hierarchyPick && hierarchyPick.omittedBudget > 0
+                    ? HIERARCHY_BUDGET_NOTE
+                    : graphView === '3d' && layout === 'hierarchy'
                     ? '四块列板由近到远是膳食到健康。拖动可小幅转动，带子越宽表示书摘越多。'
                     : graphView === 'flow'
                       ? '颜色表示关联方向，带子越宽表示书摘越多。同列关联不画在通路上。'

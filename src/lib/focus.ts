@@ -23,12 +23,14 @@ export function focusedNodeIds(
   diseaseId: string | null,
   mechanismId: string | null,
   foodId: string | null = null,
+  lensId: string | null = null,
 ): ReadonlySet<string> | null {
-  if (!diseaseId && !mechanismId && !foodId) return null;
+  if (!diseaseId && !mechanismId && !foodId && !lensId) return null;
   const sets: Set<string>[] = [];
   if (diseaseId) sets.push(neighborhood(diseaseId, links));
   if (mechanismId) sets.push(neighborhood(mechanismId, links));
   if (foodId) sets.push(neighborhood(foodId, links));
+  if (lensId) sets.push(neighborhood(lensId, links));
   return sets.reduce((acc, set) => {
     const next = new Set<string>();
     for (const id of acc) {

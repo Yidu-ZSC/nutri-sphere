@@ -9,6 +9,10 @@ import {
   LOBBY_EDU_FOOTER,
   LOBBY_INTRO,
   LOBBY_KICKER,
+  LOBBY_OUTCOMES_SUMMARY,
+  LOBBY_RECOMMENDED_HEADING,
+  LOBBY_SEARCH_EMPTY,
+  LOBBY_SEARCH_PLACEHOLDER,
   LOBBY_TAGLINE,
   LOBBY_TITLE,
   THEME_CTA,
@@ -58,8 +62,12 @@ test('locked lobby and explore shell strings stay short and non-clinical', () =>
   assert.equal(LOBBY_TAGLINE, '了解饮食与健康主题在图书与公开资料里都做了哪些描述');
   assert.equal(
     LOBBY_INTRO,
-    '先选一个你想了解的问题，再看图书与公开资料里饮食与它常被怎么一起讨论。',
+    '输入想了解的食物、机制或健康主题，或从下面几项看资料里的讨论。',
   );
+  assert.equal(LOBBY_SEARCH_PLACEHOLDER, '输入想了解的概念');
+  assert.equal(LOBBY_SEARCH_EMPTY, '资料里还没有这个概念');
+  assert.equal(LOBBY_RECOMMENDED_HEADING, '先看这些');
+  assert.equal(LOBBY_OUTCOMES_SUMMARY, '按结局浏览');
   assert.equal(LOBBY_EDU_FOOTER, '下面说明图谱怎么读、证据怎么标。');
   assert.equal(LOBBY_INTRO.includes('不是医疗建议'), false);
   assert.equal(LOBBY_EDU_FOOTER.includes('不是医疗建议'), false);
@@ -97,8 +105,11 @@ test('lobby pillars place science and diet twin as peers above the full-width gr
     'className="lobby-twin"',
     '<DietTwinPortal onOpen={onOpenTwin} />',
     'className="lobby-intro"',
-    '常见健康主题',
+    'className="lobby-search"',
+    'data-testid="lobby-search"',
+    '{LOBBY_RECOMMENDED_HEADING}',
     '从食物/模式看',
+    '{LOBBY_OUTCOMES_SUMMARY}',
     '{VEGAN_DIET_SECTION_TITLE}',
     'className="mechanism-fold"',
   ];

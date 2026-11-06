@@ -103,7 +103,10 @@ test('lobby theme cards use the locked surface without retuning global radii', (
   assert.match(heading, /aria-hidden="true"/);
 
   const themeCard = lobby.slice(lobby.indexOf('function ThemeCard'), lobby.indexOf('function PatternCard'));
-  assert.match(themeCard, /<button[\s\S]*type="button"[\s\S]*className="theme-card"/);
+  assert.match(
+    themeCard,
+    /<button[\s\S]*type="button"[\s\S]*className=\{featured \? 'theme-card theme-card--featured' : 'theme-card'\}/,
+  );
   assert.match(themeCard, /aria-label=\{theme\.title\}/);
   assert.match(themeCard, /onClick=\{\(\) => onEnter\(theme\)\}/);
   assert.match(themeCard, /className="dir-top"/);

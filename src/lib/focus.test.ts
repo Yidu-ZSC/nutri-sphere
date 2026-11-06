@@ -66,6 +66,17 @@ test('neighborhood is one hop including the root', () => {
   assert.deepEqual([...ids].sort(), ['chronic_inflammation', 'glycation', 'liver_chronic']);
 });
 
+test('a lone lens keeps the node and its one-hop neighbors', () => {
+  const focus = focusedNodeIds(links, null, null, null, 'chronic_inflammation');
+  assert.deepEqual([...(focus ?? [])].sort(), ['chronic_inflammation', 'glycation', 'liver_chronic']);
+});
+
+test('a lens intersects with the other anchors when both are present', () => {
+  const focus = focusedNodeIds(links, 'liver_chronic', null, null, 'glycation');
+  assert.deepEqual([...(focus ?? [])].sort(), ['chronic_inflammation']);
+  assert.equal(focus?.has('mental_health'), false);
+});
+
 test('effectiveFocusIds with no click keeps filter focus', () => {
   const filter = focusedNodeIds(links, 'liver_chronic', null);
   assert.equal(effectiveFocusIds(filter, null, links), filter);
