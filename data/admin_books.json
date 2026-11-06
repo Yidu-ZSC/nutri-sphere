@@ -92,7 +92,12 @@
       "theme": "糖与代谢",
       "relevance": "high",
       "kb_file": "糖与代谢_戒糖.md",
-      "status": "index_only"
+      "status": "ingested",
+      "source_id": "quit_sugar",
+      "publisher": "中信出版集团",
+      "isbn": "9787521714463",
+      "cover_url": "https://cdn.weread.qq.com/weread/cover/39/YueWen_36968029/t6_YueWen_36968029.jpg",
+      "authors": "初夏之菡"
     },
     {
       "id": "you_are_what_you_eat",

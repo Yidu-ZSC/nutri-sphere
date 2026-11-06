@@ -23,6 +23,7 @@ const STAGE1_SOURCE_IDS = [
   'china_study',
   'you_are_what_you_eat',
   'know_your_gut',
+  'quit_sugar',
 ];
 
 /**
@@ -397,7 +398,7 @@ export function validateAdminBooks(payload, sourcesPayload) {
       errors.push(`admin_books.json 缺少已入库书目 id "${expected}"`);
     }
   }
-  // NS-076: +know_your_gut ingested (was index_only).
+  // NS-077: +quit_sugar ingested (was index_only). NS-076: +know_your_gut.
   if (books.length === 19) {
     const gut = books.find((b) => b && typeof b === 'object' && /** @type {any} */ (b).id === 'gut_brain');
     if (!gut || /** @type {any} */ (gut).status !== 'ingested' || /** @type {any} */ (gut).source_id !== 'gut_brain') {
@@ -427,8 +428,12 @@ export function validateAdminBooks(payload, sourcesPayload) {
     if (!kyg || /** @type {any} */ (kyg).status !== 'ingested' || /** @type {any} */ (kyg).source_id !== 'know_your_gut') {
       errors.push('admin_books.json know_your_gut 须为 ingested + source_id（NS-076）');
     }
-    if (ingested !== 7) {
-      errors.push(`admin_books.json NS-076 后应恰有 7 本 ingested（+know_your_gut），实为 ${ingested}`);
+    const qs = books.find((b) => b && typeof b === 'object' && /** @type {any} */ (b).id === 'quit_sugar');
+    if (!qs || /** @type {any} */ (qs).status !== 'ingested' || /** @type {any} */ (qs).source_id !== 'quit_sugar') {
+      errors.push('admin_books.json quit_sugar 须为 ingested + source_id（NS-077）');
+    }
+    if (ingested !== 8) {
+      errors.push(`admin_books.json NS-077 后应恰有 8 本 ingested（+quit_sugar），实为 ${ingested}`);
     }
   }
 
