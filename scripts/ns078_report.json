@@ -1,0 +1,942 @@
+{
+  "task": "TASK-NS-078",
+  "from_data_version": "2.5",
+  "to_data_version": "2.6",
+  "schema_version": "0.7",
+  "before": {
+    "nodes": 192,
+    "links": 927
+  },
+  "after": {
+    "nodes": 200,
+    "links": 1069
+  },
+  "new_nodes": [
+    "agricultural_diet",
+    "energy_surplus",
+    "hunter_gatherer_diet",
+    "metabolic_syndrome",
+    "mismatch_disease",
+    "physical_inactivity",
+    "stature_growth",
+    "visceral_adiposity"
+  ],
+  "new_node_count": 8,
+  "reuse_node_count": 66,
+  "append_candidates": 89,
+  "append_evidence_rows": 210,
+  "new_edges": 142,
+  "batch_internal_appends_flagged_new": 0,
+  "parallel_pairs_after": 0,
+  "body_story_top_level": 142,
+  "body_story_citing": 231,
+  "direction_new": {
+    "risk": 98,
+    "protective": 44
+  },
+  "type_counts_after": {
+    "diet_pattern": 9,
+    "food_category": 9,
+    "nutrient": 22,
+    "food": 25,
+    "compound": 18,
+    "metabolite": 6,
+    "mechanism": 50,
+    "disease": 55,
+    "biomarker": 6
+  },
+  "sources_registered": true,
+  "authors": "丹尼尔·利伯曼",
+  "append_hosts": [
+    {
+      "candidate_note_id": "bs_c05_p4",
+      "endpoints": "ultra_processed->obesity_risk",
+      "host_id": "lit_upf_outcomes_elizabeth_2020",
+      "host_source_id": "(lit)",
+      "host_relation": "超加工食品与多种健康结局的叙述性综述",
+      "candidate_relation": "超加工食品与多种健康结局的叙述性综述",
+      "existing_relation": null,
+      "evidences_appended": 12
+    },
+    {
+      "candidate_note_id": "bs_c05_p4",
+      "endpoints": "ultra_processed->chronic_disease",
+      "host_id": "yawye_c13_p2_chronic_disease",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "工业加工食品与精制主食普及与慢病流行相关",
+      "candidate_relation": "工业加工食品与精制主食普及与慢病流行相关",
+      "existing_relation": null,
+      "evidences_appended": 3
+    },
+    {
+      "candidate_note_id": "bs_c05_p4",
+      "endpoints": "obesity_risk->type2_diabetes",
+      "host_id": "cs_c15_p10_type2_diabetes",
+      "host_source_id": "china_study",
+      "host_relation": "肥胖与2型糖尿病风险相关",
+      "candidate_relation": "肥胖与2型糖尿病风险相关",
+      "existing_relation": null,
+      "evidences_appended": 11
+    },
+    {
+      "candidate_note_id": "bs_c07_p6",
+      "endpoints": "aerobic_exercise->metabolic_health",
+      "host_id": "hntd_ch29_sitting",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "较长每日久坐时间与较高死亡风险相关",
+      "candidate_relation": "较长每日久坐时间与较高死亡风险相关",
+      "existing_relation": null,
+      "evidences_appended": 3
+    },
+    {
+      "candidate_note_id": "bs_c07_p6",
+      "endpoints": "berries_fruits->metabolic_health",
+      "host_id": "hntd_ch19_fruit_diabetes",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "水果摄入量限制与糖尿病血糖控制比较相关",
+      "candidate_relation": "水果摄入量限制与糖尿病血糖控制比较相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c07_p6",
+      "endpoints": "vegetables_greens->metabolic_health",
+      "host_id": "hntd_ch22_leafy_longevity",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "较高绿叶菜摄入与较低慢性病及死亡风险相关",
+      "candidate_relation": "较高绿叶菜摄入与较低慢性病及死亡风险相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c07_p6",
+      "endpoints": "plant_based_diet->chronic_disease",
+      "host_id": "cs_c05_p3_chronic_disease",
+      "host_source_id": "china_study",
+      "host_relation": "以全食物植物为主的膳食模式与较低慢性病（富贵病）发生相关",
+      "candidate_relation": "以全食物植物为主的膳食模式与较低慢性病（富贵病）发生相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c07_p7",
+      "endpoints": "type2_diabetes->chronic_disease",
+      "host_id": "qs_c03_p7",
+      "host_source_id": "quit_sugar",
+      "host_relation": "糖尿病等慢病与中年后长期健康负担相关",
+      "candidate_relation": "糖尿病等慢病与中年后长期健康负担相关",
+      "existing_relation": null,
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "bs_c07_p8",
+      "endpoints": "added_sugar->obesity_risk",
+      "host_id": "yawye_c23_p5_obesity_risk",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "含酒精饮料等额外能量与腹部脂肪堆积相关",
+      "candidate_relation": "含酒精饮料等额外能量与腹部脂肪堆积相关",
+      "existing_relation": null,
+      "evidences_appended": 9
+    },
+    {
+      "candidate_note_id": "bs_c07_p8",
+      "endpoints": "refined_carbs->obesity_risk",
+      "host_id": "cs_c15_p32_obesity_risk",
+      "host_source_id": "china_study",
+      "host_relation": "精制碳水化合物摄入与肥胖风险相关",
+      "candidate_relation": "精制碳水化合物摄入与肥胖风险相关",
+      "existing_relation": null,
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "bs_c10_p4",
+      "endpoints": "obesity_risk->insulin_resistance",
+      "host_id": "qs_c50_p5",
+      "host_source_id": "quit_sugar",
+      "host_relation": "过量进食使细胞对抗过大能量流相关",
+      "candidate_relation": "过量进食使细胞对抗过大能量流相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c10_p4",
+      "endpoints": "ultra_processed->type2_diabetes",
+      "host_id": "hntd_ch06_child_prediabetes",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "儿童超重及相关饮食模式与糖尿病前期风险相关",
+      "candidate_relation": "儿童超重及相关饮食模式与糖尿病前期风险相关",
+      "existing_relation": null,
+      "evidences_appended": 7
+    },
+    {
+      "candidate_note_id": "bs_c10_p7",
+      "endpoints": "added_sugar->type2_diabetes",
+      "host_id": "qs_c03_p3",
+      "host_source_id": "quit_sugar",
+      "host_relation": "精制糖销售量上升与糖尿病流行在观察上相关",
+      "candidate_relation": "精制糖销售量上升与糖尿病流行在观察上相关",
+      "existing_relation": null,
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "bs_c10_p7",
+      "endpoints": "refined_carbs->type2_diabetes",
+      "host_id": "yawye_c04_p33_type2_diabetes",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "精制主食及粥类偏好与血糖及糖尿病相关",
+      "candidate_relation": "精制主食及粥类偏好与血糖及糖尿病相关",
+      "existing_relation": null,
+      "evidences_appended": 5
+    },
+    {
+      "candidate_note_id": "bs_c10_p7",
+      "endpoints": "dietary_fat->obesity_risk",
+      "host_id": "yawye_c39_p1_obesity_risk",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "脂类能量比例失衡与肥胖等相关",
+      "candidate_relation": "脂类能量比例失衡与肥胖等相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c19_p74",
+      "endpoints": "animal_foods->metabolic_health",
+      "host_id": "yawye_c71_p10_metabolic_health",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "适量鱼禽蛋肉与代谢健康相关",
+      "candidate_relation": "适量鱼禽蛋肉与代谢健康相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c27_p4",
+      "endpoints": "refined_carbs->oral_disease",
+      "host_id": "qs_c15_p4",
+      "host_source_id": "quit_sugar",
+      "host_relation": "快消化淀粉与蛀牙风险相关",
+      "candidate_relation": "快消化淀粉与蛀牙风险相关",
+      "existing_relation": null,
+      "evidences_appended": 5
+    },
+    {
+      "candidate_note_id": "bs_c27_p20",
+      "endpoints": "genetic_predisposition->type2_diabetes",
+      "host_id": "qs_c12_p6",
+      "host_source_id": "quit_sugar",
+      "host_relation": "糖尿病发生与基因易感性及生活方式综合相关",
+      "candidate_relation": "糖尿病发生与基因易感性及生活方式综合相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c27_p30",
+      "endpoints": "added_sugar->appetite_regulation",
+      "host_id": "kyg_c11_p142_appetite_regulation_2",
+      "host_source_id": "know_your_gut",
+      "host_relation": "添加糖与食欲调控相关的关联观察",
+      "candidate_relation": "添加糖与食欲调控相关的关联观察",
+      "existing_relation": null,
+      "evidences_appended": 3
+    },
+    {
+      "candidate_note_id": "bs_c27_p36",
+      "endpoints": "dietary_fiber->type2_diabetes",
+      "host_id": "cs_c16_p35_type2_diabetes",
+      "host_source_id": "china_study",
+      "host_relation": "高纤维膳食与较好血糖控制相关",
+      "candidate_relation": "高纤维膳食与较好血糖控制相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c27_p36",
+      "endpoints": "added_sugar->coronary_heart_disease",
+      "host_id": "qs_c06_p0",
+      "host_source_id": "quit_sugar",
+      "host_relation": "食用蔗糖作为冠心病风险因素曾被削弱的科学史讨论相关",
+      "candidate_relation": "食用蔗糖作为冠心病风险因素曾被削弱的科学史讨论相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c27_p37",
+      "endpoints": "saturated_fat->atherosclerosis",
+      "host_id": "hntd_ch01_ldl_risk",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "反式脂肪、饱和脂肪与膳食胆固醇摄入与较高LDL及动脉粥样硬化负荷相关",
+      "candidate_relation": "反式脂肪、饱和脂肪与膳食胆固醇摄入与较高LDL及动脉粥样硬化负荷相关",
+      "existing_relation": null,
+      "evidences_appended": 3
+    },
+    {
+      "candidate_note_id": "bs_c27_p43",
+      "endpoints": "added_sugar->oral_disease",
+      "host_id": "qs_c15_p3",
+      "host_source_id": "quit_sugar",
+      "host_relation": "高糖膳食与小学生及成年人蛀牙高患病率相关",
+      "candidate_relation": "高糖膳食与小学生及成年人蛀牙高患病率相关",
+      "existing_relation": null,
+      "evidences_appended": 5
+    },
+    {
+      "candidate_note_id": "bs_c27_p52",
+      "endpoints": "berries_fruits->vitamin_c",
+      "host_id": "yawye_c46_p6_vitamin_c",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "多种水果与维生素C供给相关",
+      "candidate_relation": "多种水果与维生素C供给相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c27_p53",
+      "endpoints": "oral_microbiome->oral_disease",
+      "host_id": "kyg_c09_p72_oral_disease",
+      "host_source_id": "know_your_gut",
+      "host_relation": "口腔菌群失调与龋病牙周病等相关",
+      "candidate_relation": "口腔菌群失调与龋病牙周病等相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c27_p59",
+      "endpoints": "ultra_processed->hypertension",
+      "host_id": "hntd_ch07_sodium_risk",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "高钠摄入及水果摄入不足与死亡伤残负担及血压相关风险相关",
+      "candidate_relation": "高钠摄入及水果摄入不足与死亡伤残负担及血压相关风险相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c27_p60",
+      "endpoints": "aerobic_exercise->hypertension",
+      "host_id": "hntd_ch29_exercise_benefits",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "规律运动与认知、血压、代谢及癌症负担相关",
+      "candidate_relation": "规律运动与认知、血压、代谢及癌症负担相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c27_p64",
+      "endpoints": "appetite_regulation->obesity_risk",
+      "host_id": "kyg_c11_p33_obesity_risk",
+      "host_source_id": "know_your_gut",
+      "host_relation": "食欲激素与迷走调控失衡与肥胖相关",
+      "candidate_relation": "食欲激素与迷走调控失衡与肥胖相关",
+      "existing_relation": null,
+      "evidences_appended": 3
+    },
+    {
+      "candidate_note_id": "bs_c27_p66",
+      "endpoints": "sugar_sweetened_beverages->obesity_risk",
+      "host_id": "qs_c09_p5",
+      "host_source_id": "quit_sugar",
+      "host_relation": "含游离糖液体食物与肥胖及代谢风险的证据相对确凿相关",
+      "candidate_relation": "含游离糖液体食物与肥胖及代谢风险的证据相对确凿相关",
+      "existing_relation": null,
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "bs_c27_p66",
+      "endpoints": "ultra_processed->appetite_regulation",
+      "host_id": "qs_c59_p6",
+      "host_source_id": "quit_sugar",
+      "host_relation": "加工食品打破对食物天然控制力与停不下来相关",
+      "candidate_relation": "加工食品打破对食物天然控制力与停不下来相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c29_p40",
+      "endpoints": "dietary_fiber->glycemic_stability",
+      "host_id": "avs_ch6_fiber_glucose",
+      "host_source_id": "amazing_veggie_soup",
+      "host_relation": "可溶性膳食纤维延缓糖类吸收，与抑制血糖骤升及防止胰岛素分泌过剩相关",
+      "candidate_relation": "可溶性膳食纤维延缓糖类吸收，与抑制血糖骤升及防止胰岛素分泌过剩相关",
+      "existing_relation": null,
+      "evidences_appended": 5
+    },
+    {
+      "candidate_note_id": "bs_c29_p40",
+      "endpoints": "aflatoxin->cancer_overall",
+      "host_id": "kyg_c08_p60_cancer_overall",
+      "host_source_id": "know_your_gut",
+      "host_relation": "黄曲霉毒素暴露与Ⅰ类致癌物相关风险叙述相关",
+      "candidate_relation": "黄曲霉毒素暴露与Ⅰ类致癌物相关风险叙述相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c29_p42",
+      "endpoints": "oral_disease->infectious_disease",
+      "host_id": "kyg_c09_p114_infectious_disease",
+      "host_source_id": "know_your_gut",
+      "host_relation": "龋病与感染相关的关联观察",
+      "candidate_relation": "龋病与感染相关的关联观察",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c29_p43",
+      "endpoints": "refined_carbs->glycemic_stability",
+      "host_id": "qs_c05_p9",
+      "host_source_id": "quit_sugar",
+      "host_relation": "精制谷物主食与零食中的糖和淀粉与血糖冲击相关",
+      "candidate_relation": "精制谷物主食与零食中的糖和淀粉与血糖冲击相关",
+      "existing_relation": null,
+      "evidences_appended": 3
+    },
+    {
+      "candidate_note_id": "bs_c29_p43",
+      "endpoints": "refined_carbs->insulin_resistance",
+      "host_id": "qs_c39_p11",
+      "host_source_id": "quit_sugar",
+      "host_relation": "快消化碳水迫使胰腺持续分泌胰岛素相关",
+      "candidate_relation": "快消化碳水迫使胰腺持续分泌胰岛素相关",
+      "existing_relation": null,
+      "evidences_appended": 5
+    },
+    {
+      "candidate_note_id": "bs_c29_p43",
+      "endpoints": "aerobic_exercise->type2_diabetes",
+      "host_id": "cs_c16_p56_type2_diabetes",
+      "host_source_id": "china_study",
+      "host_relation": "身体活动与较低2型糖尿病风险相关",
+      "candidate_relation": "身体活动与较低2型糖尿病风险相关",
+      "existing_relation": null,
+      "evidences_appended": 5
+    },
+    {
+      "candidate_note_id": "bs_c31_p45",
+      "endpoints": "ultra_processed->glycemic_stability",
+      "host_id": "qs_c52_p2",
+      "host_source_id": "quit_sugar",
+      "host_relation": "化学蓬松或发酵使面团多孔疏松更易消化相关",
+      "candidate_relation": "化学蓬松或发酵使面团多孔疏松更易消化相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c31_p80",
+      "endpoints": "psychological_stress->obesity_risk",
+      "host_id": "kyg_c11_p15_obesity_risk",
+      "host_source_id": "know_your_gut",
+      "host_relation": "压力相关进食改变与肥胖风险相关",
+      "candidate_relation": "压力相关进食改变与肥胖风险相关",
+      "existing_relation": null,
+      "evidences_appended": 3
+    },
+    {
+      "candidate_note_id": "bs_c31_p97",
+      "endpoints": "infectious_disease->chronic_disease",
+      "host_id": "yawye_c06_p5_chronic_disease",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "感染与外伤负担下降后慢病成为主要寿命限制因素的观察",
+      "candidate_relation": "感染与外伤负担下降后慢病成为主要寿命限制因素的观察",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c31_p97",
+      "endpoints": "cancer_overall->chronic_disease",
+      "host_id": "yawye_c126_p4_chronic_disease",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "上皮来源肿瘤占肿瘤总量大部分的组织分布观察",
+      "candidate_relation": "上皮来源肿瘤占肿瘤总量大部分的组织分布观察",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c31_p120",
+      "endpoints": "berries_fruits->chronic_disease",
+      "host_id": "yawye_c122_p1_chronic_disease",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "水果作为正餐成分与慢病风险相关",
+      "candidate_relation": "水果作为正餐成分与慢病风险相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p15",
+      "endpoints": "added_sugar->glycemic_stability",
+      "host_id": "qs_c05_p8",
+      "host_source_id": "quit_sugar",
+      "host_relation": "糖过度摄入与身体血糖调节跟不上饮食冲击相关",
+      "candidate_relation": "糖过度摄入与身体血糖调节跟不上饮食冲击相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p16",
+      "endpoints": "added_sugar->insulin_resistance",
+      "host_id": "qs_c39_p15",
+      "host_source_id": "quit_sugar",
+      "host_relation": "游离糖淀粉反复挑战与胰岛素抵抗相关",
+      "candidate_relation": "游离糖淀粉反复挑战与胰岛素抵抗相关",
+      "existing_relation": null,
+      "evidences_appended": 3
+    },
+    {
+      "candidate_note_id": "bs_c35_p16",
+      "endpoints": "fructose->fatty_liver",
+      "host_id": "gut_brain_06_fructose_liver",
+      "host_source_id": "gut_brain",
+      "host_relation": "高果糖负担与肝损伤、代谢紊乱相关",
+      "candidate_relation": "高果糖负担与肝损伤、代谢紊乱相关",
+      "existing_relation": null,
+      "evidences_appended": 6
+    },
+    {
+      "candidate_note_id": "bs_c35_p29",
+      "endpoints": "genetic_predisposition->obesity_risk",
+      "host_id": "cs_c15_p58_obesity_risk",
+      "host_source_id": "china_study",
+      "host_relation": "遗传易感性在营养环境作用下与肥胖风险相关",
+      "candidate_relation": "遗传易感性在营养环境作用下与肥胖风险相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c35_p40",
+      "endpoints": "insulin_resistance->obesity_risk",
+      "host_id": "qs_c39_p14",
+      "host_source_id": "quit_sugar",
+      "host_relation": "持续高血糖下脂肪细胞储存增加与肥胖相关",
+      "candidate_relation": "持续高血糖下脂肪细胞储存增加与肥胖相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p42",
+      "endpoints": "ultra_processed->added_sugar",
+      "host_id": "qs_c03_p12",
+      "host_source_id": "quit_sugar",
+      "host_relation": "高度加工食品与提纯蔗糖、果葡糖浆等游离糖富集相关",
+      "candidate_relation": "高度加工食品与提纯蔗糖、果葡糖浆等游离糖富集相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p42",
+      "endpoints": "berries_fruits->dietary_fiber",
+      "host_id": "yawye_c59_p8_dietary_fiber",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "水果可溶与不可溶纤维与肠道健康相关",
+      "candidate_relation": "水果可溶与不可溶纤维与肠道健康相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p43",
+      "endpoints": "dietary_fiber->appetite_regulation",
+      "host_id": "qs_c57_p1",
+      "host_source_id": "quit_sugar",
+      "host_relation": "蛋白质和膳食纤维带来更多饱腹感相关",
+      "candidate_relation": "蛋白质和膳食纤维带来更多饱腹感相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p43",
+      "endpoints": "berries_fruits->glycemic_stability",
+      "host_id": "hntd_ch19_berries_glycemic",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "与含糖饮料同食浆果时血糖波动较缓和相关",
+      "candidate_relation": "与含糖饮料同食浆果时血糖波动较缓和相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p43",
+      "endpoints": "dietary_fiber->obesity_risk",
+      "host_id": "cs_c13_p105_obesity_risk",
+      "host_source_id": "china_study",
+      "host_relation": "膳食纤维带来的饱腹感与较少热量摄入相关",
+      "candidate_relation": "膳食纤维带来的饱腹感与较少热量摄入相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p46",
+      "endpoints": "sugar_sweetened_beverages->fructose",
+      "host_id": "qs_c21_p1",
+      "host_source_id": "quit_sugar",
+      "host_relation": "果葡糖浆成为绝大多数甜饮料首选甜味剂相关",
+      "candidate_relation": "果葡糖浆成为绝大多数甜饮料首选甜味剂相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c35_p48",
+      "endpoints": "fructose->insulin_resistance",
+      "host_id": "gut_brain_06_fructose_ir",
+      "host_source_id": "gut_brain",
+      "host_relation": "大量非天然果糖与胰岛素抵抗、糖耐量受损相关",
+      "candidate_relation": "大量非天然果糖与胰岛素抵抗、糖耐量受损相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c35_p48",
+      "endpoints": "fructose->obesity_risk",
+      "host_id": "gut_brain_04_fructose_obesity",
+      "host_source_id": "gut_brain",
+      "host_relation": "加工果糖所致菌群变化与肥胖风险相关",
+      "candidate_relation": "加工果糖所致菌群变化与肥胖风险相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p51",
+      "endpoints": "omega3->cardiometabolic",
+      "host_id": "yawye_c38_p21_cardiometabolic",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "ω-3等多不饱和脂肪酸与心血管代谢相关",
+      "candidate_relation": "ω-3等多不饱和脂肪酸与心血管代谢相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c35_p51",
+      "endpoints": "olive_oil->cardiometabolic",
+      "host_id": "yawye_c38_p28_cardiometabolic",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "橄榄油等单不饱和脂肪酸来源与心血管相关",
+      "candidate_relation": "橄榄油等单不饱和脂肪酸来源与心血管相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p51",
+      "endpoints": "refined_carbs->metabolic_health",
+      "host_id": "qs_c05_p0",
+      "host_source_id": "quit_sugar",
+      "host_relation": "快消化碳水化合物过量与饮食不平衡相关的健康影响",
+      "candidate_relation": "快消化碳水化合物过量与饮食不平衡相关的健康影响",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p56",
+      "endpoints": "psychological_stress->appetite_regulation",
+      "host_id": "kyg_c11_p116_appetite_regulation",
+      "host_source_id": "know_your_gut",
+      "host_relation": "精神压力与食欲调控相关的关联观察",
+      "candidate_relation": "精神压力与食欲调控相关的关联观察",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p59",
+      "endpoints": "aerobic_exercise->obesity_risk",
+      "host_id": "cs_c15_p48_obesity_risk",
+      "host_source_id": "china_study",
+      "host_relation": "规律身体活动与较低体重及肥胖风险相关",
+      "candidate_relation": "规律身体活动与较低体重及肥胖风险相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c35_p61",
+      "endpoints": "gut_microbiome->obesity_risk",
+      "host_id": "gut_brain_04_micro_obesity",
+      "host_source_id": "gut_brain",
+      "host_relation": "厚壁菌/拟杆菌比值与肥胖生物标志及菌群移植观察相关",
+      "candidate_relation": "厚壁菌/拟杆菌比值与肥胖生物标志及菌群移植观察相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p61",
+      "endpoints": "gut_microbiome->metabolic_health",
+      "host_id": "kyg_c08_p29_metabolic_health",
+      "host_source_id": "know_your_gut",
+      "host_relation": "肠道菌群多样性与代谢健康相关的关联观察",
+      "candidate_relation": "肠道菌群多样性与代谢健康相关的关联观察",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p61",
+      "endpoints": "dietary_fiber->gut_microbiome",
+      "host_id": "lit_fiber_gi_gill_2021",
+      "host_source_id": "(lit)",
+      "host_relation": "膳食纤维与胃肠道健康的综述归纳",
+      "candidate_relation": "膳食纤维与胃肠道健康的综述归纳",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p69",
+      "endpoints": "omnivorous_balanced_diet->type2_diabetes",
+      "host_id": "yawye_c04_p69_type2_diabetes",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "荤素搭配与运动相结合的生活方式与血糖管理相关",
+      "candidate_relation": "荤素搭配与运动相结合的生活方式与血糖管理相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c35_p73",
+      "endpoints": "sugar_sweetened_beverages->type2_diabetes",
+      "host_id": "qs_c09_p5",
+      "host_source_id": "quit_sugar",
+      "host_relation": "含游离糖液体食物与2型糖尿病风险相关观察",
+      "candidate_relation": "含游离糖液体食物与2型糖尿病风险相关观察",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p79",
+      "endpoints": "dietary_fat->type2_diabetes",
+      "host_id": "cs_c16_p33_type2_diabetes",
+      "host_source_id": "china_study",
+      "host_relation": "高脂膳食与2型糖尿病风险相关",
+      "candidate_relation": "高脂膳食与2型糖尿病风险相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p86",
+      "endpoints": "blood_cholesterol->atherosclerosis",
+      "host_id": "yawye_c127_p11_atherosclerosis",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "低密度脂蛋白被氧化后与动脉粥样硬化斑块形成相关",
+      "candidate_relation": "低密度脂蛋白被氧化后与动脉粥样硬化斑块形成相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p86",
+      "endpoints": "atherosclerosis->coronary_heart_disease",
+      "host_id": "cs_c14_p16_coronary_heart_disease",
+      "host_source_id": "china_study",
+      "host_relation": "动脉粥样斑块形成与破裂参与冠心病发作",
+      "candidate_relation": "动脉粥样斑块形成与破裂参与冠心病发作",
+      "existing_relation": null,
+      "evidences_appended": 3
+    },
+    {
+      "candidate_note_id": "bs_c35_p86",
+      "endpoints": "atherosclerosis->stroke",
+      "host_id": "qs_c63_p1",
+      "host_source_id": "quit_sugar",
+      "host_relation": "血栓增大与致命中风风险相关",
+      "candidate_relation": "血栓增大与致命中风风险相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p94",
+      "endpoints": "aerobic_exercise->cardiometabolic",
+      "host_id": "hntd_ch29_endothelial",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "久坐与内皮功能及动脉舒张相关",
+      "candidate_relation": "久坐与内皮功能及动脉舒张相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c35_p96",
+      "endpoints": "dietary_fat->blood_cholesterol",
+      "host_id": "cs_c13_p91_blood_cholesterol",
+      "host_source_id": "china_study",
+      "host_relation": "膳食脂肪摄入与血胆固醇水平共变",
+      "candidate_relation": "膳食脂肪摄入与血胆固醇水平共变",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p96",
+      "endpoints": "dietary_fat->coronary_heart_disease",
+      "host_id": "cs_c14_p45_coronary_heart_disease",
+      "host_source_id": "china_study",
+      "host_relation": "膳食脂肪摄入与冠心病风险的人群关联观察",
+      "candidate_relation": "膳食脂肪摄入与冠心病风险的人群关联观察",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p97",
+      "endpoints": "saturated_fat->blood_cholesterol",
+      "host_id": "cs_c14_p36_blood_cholesterol",
+      "host_source_id": "china_study",
+      "host_relation": "饱和脂肪摄入与血胆固醇水平相关",
+      "candidate_relation": "饱和脂肪摄入与血胆固醇水平相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p99",
+      "endpoints": "nuts_seeds->cardiometabolic",
+      "host_id": "hntd_ch01_brazil_nuts",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "巴西坚果摄入与短期LDL胆固醇降低相关",
+      "candidate_relation": "巴西坚果摄入与短期LDL胆固醇降低相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p99",
+      "endpoints": "red_meat->cardiometabolic",
+      "host_id": "lit_redmeat_mortality_zheng_2019",
+      "host_source_id": "(lit)",
+      "host_relation": "红肉摄入变化与全因及心血管死亡风险的队列观察",
+      "candidate_relation": "红肉摄入变化与全因及心血管死亡风险的队列观察",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p100",
+      "endpoints": "blood_cholesterol->coronary_heart_disease",
+      "host_id": "cs_c13_p54_coronary_heart_disease",
+      "host_source_id": "china_study",
+      "host_relation": "较高血胆固醇水平与冠心病风险相关",
+      "candidate_relation": "较高血胆固醇水平与冠心病风险相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p102",
+      "endpoints": "refined_carbs->atherosclerosis",
+      "host_id": "qs_c63_p3",
+      "host_source_id": "quit_sugar",
+      "host_relation": "少吃快消化碳水多吃蔬果全谷与对抗糖化氧化相关",
+      "candidate_relation": "少吃快消化碳水多吃蔬果全谷与对抗糖化氧化相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p102",
+      "endpoints": "fructose->blood_cholesterol",
+      "host_id": "qs_c21_p5",
+      "host_source_id": "quit_sugar",
+      "host_relation": "果糖相关脂肪转运与低密度脂蛋白路径相关",
+      "candidate_relation": "果糖相关脂肪转运与低密度脂蛋白路径相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p104",
+      "endpoints": "psychological_stress->hypertension",
+      "host_id": "qs_c66_p4",
+      "host_source_id": "quit_sugar",
+      "host_relation": "负面情绪使血压升高并降低免疫力相关",
+      "candidate_relation": "负面情绪使血压升高并降低免疫力相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c35_p104",
+      "endpoints": "dietary_fiber->blood_cholesterol",
+      "host_id": "cs_c13_p114_blood_cholesterol",
+      "host_source_id": "china_study",
+      "host_relation": "膳食纤维摄入与较低血胆固醇水平相关",
+      "candidate_relation": "膳食纤维摄入与较低血胆固醇水平相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c37_p27",
+      "endpoints": "aerobic_exercise->osteoporosis",
+      "host_id": "cs_c19_p39_osteoporosis",
+      "host_source_id": "china_study",
+      "host_relation": "规律身体活动与较低骨质疏松风险相关",
+      "candidate_relation": "规律身体活动与较低骨质疏松风险相关",
+      "existing_relation": null,
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "bs_c37_p27",
+      "endpoints": "calcium->osteoporosis",
+      "host_id": "yawye_c49_p7_osteoporosis",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "膳食钙与骨矿化相关",
+      "candidate_relation": "膳食钙与骨矿化相关",
+      "existing_relation": null,
+      "evidences_appended": 5
+    },
+    {
+      "candidate_note_id": "bs_c37_p34",
+      "endpoints": "vitamin_d->osteoporosis",
+      "host_id": "cs_c20_p60_osteoporosis",
+      "host_source_id": "china_study",
+      "host_relation": "维生素D缺乏与骨骼生长和维持异常相关",
+      "candidate_relation": "维生素D缺乏与骨骼生长和维持异常相关",
+      "existing_relation": null,
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "bs_c37_p34",
+      "endpoints": "dairy->osteoporosis",
+      "host_id": "cs_c19_p22_osteoporosis",
+      "host_source_id": "china_study",
+      "host_relation": "乳制品与高钙摄入与髋骨骨折率的跨国关联观察",
+      "candidate_relation": "乳制品与高钙摄入与髋骨骨折率的跨国关联观察",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c37_p78",
+      "endpoints": "omnivorous_balanced_diet->metabolic_health",
+      "host_id": "yawye_c64_p14_metabolic_health",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "七大营养素平衡的膳食结构与代谢健康相关",
+      "candidate_relation": "七大营养素平衡的膳食结构与代谢健康相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c39_p1",
+      "endpoints": "processed_meat->cancer_overall",
+      "host_id": "cs_c12_p25_cancer_overall",
+      "host_source_id": "china_study",
+      "host_relation": "含亚硝酸盐的加工肉制品与癌症风险关注相关",
+      "candidate_relation": "含亚硝酸盐的加工肉制品与癌症风险关注相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c39_p8",
+      "endpoints": "alcohol->liver_chronic",
+      "host_id": "kyg_c12_p267_liver_chronic",
+      "host_source_id": "know_your_gut",
+      "host_relation": "酒精相关肠道菌群改变与肝损伤相关",
+      "candidate_relation": "酒精相关肠道菌群改变与肝损伤相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c41_p7",
+      "endpoints": "obesity_risk->digestive_cancer_risk",
+      "host_id": "hntd_ch04_gerd_esophagus",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "胃酸反流及相关因素与食道癌风险相关",
+      "candidate_relation": "胃酸反流及相关因素与食道癌风险相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c43_p6",
+      "endpoints": "refined_carbs->appetite_regulation",
+      "host_id": "qs_c39_p11",
+      "host_source_id": "quit_sugar",
+      "host_relation": "饥饿时先吃速溶麦片等快消化碳水与半小时后再饿相关",
+      "candidate_relation": "饥饿时先吃速溶麦片等快消化碳水与半小时后再饿相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "bs_c43_p6",
+      "endpoints": "nuts_seeds->metabolic_health",
+      "host_id": "hntd_ch25_nuts_longevity",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "经常食用坚果与较长寿命相关",
+      "candidate_relation": "经常食用坚果与较长寿命相关",
+      "existing_relation": null,
+      "evidences_appended": 1
+    }
+  ]
+}

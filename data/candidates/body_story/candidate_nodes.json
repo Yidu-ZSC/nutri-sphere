@@ -1,0 +1,197 @@
+{
+ "meta": {
+  "source_id": "body_story",
+  "source_title": "人体的故事",
+  "schema_align": "seed snapshot data 2.5 / schema 0.7",
+  "themes": [
+   "health"
+  ],
+  "note": "候选；同端点 append；勿直接改 seed；禁止 limitations；relation 为公共共享关系；入库须另开 TASK + 合并闸门",
+  "weread_link": "https://weread.qq.com/web/reader/15632be07169801d156a3c3",
+  "new_node_count": 8,
+  "reuse_node_count": 66
+ },
+ "new_nodes": [
+  {
+   "id": "agricultural_diet",
+   "domain": "health",
+   "type": "diet_pattern",
+   "label": "农业主食饮食 / 农耕饮食",
+   "group": "mixed",
+   "description": "以少数高产谷物、块根等淀粉主食为主、多样性较低的农耕膳食模式；叙述中与营养缺乏、龋齿、饥荒风险及身材变化相关。",
+   "aliases": [
+    "农耕饮食",
+    "农业饮食",
+    "主食作物饮食",
+    "谷类主食饮食",
+    "新石器时代饮食"
+   ]
+  },
+  {
+   "id": "energy_surplus",
+   "domain": "health",
+   "type": "mechanism",
+   "label": "能量过剩 / 能量正平衡",
+   "group": "risk",
+   "description": "长期摄入能量持续高于消耗的正能量平衡状态；叙述中与内脏脂肪、肥胖及相关代谢疾病相关。",
+   "aliases": [
+    "能量正平衡",
+    "热量过剩",
+    "能量盈余",
+    "正能量平衡"
+   ]
+  },
+  {
+   "id": "hunter_gatherer_diet",
+   "domain": "health",
+   "type": "diet_pattern",
+   "label": "狩猎采集饮食",
+   "group": "protective",
+   "description": "多样化的野生植物、块茎、坚果、种子与瘦肉等采集狩猎膳食；叙述中纤维较高、简单糖较低，相关代谢病较少见。",
+   "aliases": [
+    "采集狩猎饮食",
+    "旧石器饮食",
+    "觅食者饮食",
+    "原始人饮食相关模式"
+   ]
+  },
+  {
+   "id": "metabolic_syndrome",
+   "domain": "health",
+   "type": "disease",
+   "label": "代谢综合征",
+   "group": "risk",
+   "description": "高血压、高甘油三酯、高血糖、低HDL及腹型肥胖等聚集的代谢紊乱；叙述中与内脏脂肪及多种慢病风险相关。",
+   "aliases": [
+    "代谢症候群",
+    "富裕病综合征",
+    "X综合征"
+   ]
+  },
+  {
+   "id": "mismatch_disease",
+   "domain": "health",
+   "type": "disease",
+   "label": "失配性疾病",
+   "group": "risk",
+   "description": "因旧石器时代遗传与身体对现代饮食、活动与环境刺激适应不足或不良而产生或加剧的疾病类别；叙述中涵盖代谢、骨骼、口腔及部分感染相关问题。",
+   "aliases": [
+    "进化失配",
+    "失配性病",
+    "进化失配疾病",
+    "文明病相关失配"
+   ]
+  },
+  {
+   "id": "physical_inactivity",
+   "domain": "health",
+   "type": "mechanism",
+   "label": "体力活动不足 / 久坐少动",
+   "group": "risk",
+   "description": "日常体力活动显著低于进化期负荷的久坐或低活动状态；叙述中与肥胖、代谢病、骨质疏松及心血管风险相关。",
+   "aliases": [
+    "久坐",
+    "缺乏运动",
+    "体力活动缺乏",
+    "少动",
+    "静坐生活方式"
+   ]
+  },
+  {
+   "id": "stature_growth",
+   "domain": "health",
+   "type": "biomarker",
+   "label": "身高生长 / 身材发育",
+   "group": "mixed",
+   "description": "儿童青少年期线性生长与成年身高实现程度；叙述中受营养、感染与劳动能量分配影响，用作人群健康综合指标。",
+   "aliases": [
+    "身高",
+    "身材矮缩",
+    "线性生长",
+    "成年身高"
+   ]
+  },
+  {
+   "id": "visceral_adiposity",
+   "domain": "health",
+   "type": "disease",
+   "label": "内脏脂肪堆积",
+   "group": "risk",
+   "description": "腹部器官周围内脏脂肪过多；叙述中与代谢综合征、胰岛素抵抗、脂肪肝及心血管风险密切相关。",
+   "aliases": [
+    "内脏肥胖",
+    "腹型肥胖",
+    "中心性肥胖",
+    "内脏脂肪过多"
+   ]
+  }
+ ],
+ "reuse_nodes": [
+  "added_sugar",
+  "aerobic_exercise",
+  "aflatoxin",
+  "alcohol",
+  "animal_foods",
+  "appetite_regulation",
+  "atherosclerosis",
+  "berries_fruits",
+  "blood_cholesterol",
+  "breast_prostate_risk",
+  "calcium",
+  "cancer_overall",
+  "cardiometabolic",
+  "chronic_disease",
+  "coffee",
+  "cognitive_decline",
+  "constipation",
+  "coronary_heart_disease",
+  "dairy",
+  "diabetic_retinopathy",
+  "dietary_fat",
+  "dietary_fiber",
+  "digestive_cancer_risk",
+  "energy_vitality",
+  "fatty_liver",
+  "fructose",
+  "genetic_predisposition",
+  "glycemic_stability",
+  "good_sleep",
+  "gout_uric_acid",
+  "gut_microbiome",
+  "hypertension",
+  "infectious_disease",
+  "insulin_resistance",
+  "iodine",
+  "iron_status",
+  "irritable_bowel",
+  "kidney_disease",
+  "liver_chronic",
+  "mediterranean_diet",
+  "metabolic_health",
+  "nuts_seeds",
+  "obesity_risk",
+  "olive_oil",
+  "omega3",
+  "omnivorous_balanced_diet",
+  "oral_disease",
+  "oral_microbiome",
+  "osteoporosis",
+  "plant_based_diet",
+  "processed_meat",
+  "protein_deficiency",
+  "psychological_stress",
+  "red_meat",
+  "refined_carbs",
+  "saturated_fat",
+  "stroke",
+  "sugar_sweetened_beverages",
+  "type1_diabetes",
+  "type2_diabetes",
+  "ultra_processed",
+  "vegetables_greens",
+  "vitamin_b_complex",
+  "vitamin_c",
+  "vitamin_d",
+  "whole_grains"
+ ]
+}

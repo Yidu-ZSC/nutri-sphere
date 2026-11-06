@@ -24,6 +24,7 @@ const STAGE1_SOURCE_IDS = [
   'you_are_what_you_eat',
   'know_your_gut',
   'quit_sugar',
+  'body_story',
 ];
 
 /**
@@ -432,8 +433,12 @@ export function validateAdminBooks(payload, sourcesPayload) {
     if (!qs || /** @type {any} */ (qs).status !== 'ingested' || /** @type {any} */ (qs).source_id !== 'quit_sugar') {
       errors.push('admin_books.json quit_sugar 须为 ingested + source_id（NS-077）');
     }
-    if (ingested !== 8) {
-      errors.push(`admin_books.json NS-077 后应恰有 8 本 ingested（+quit_sugar），实为 ${ingested}`);
+    const bs = books.find((b) => b && typeof b === 'object' && /** @type {any} */ (b).id === 'body_story');
+    if (!bs || /** @type {any} */ (bs).status !== 'ingested' || /** @type {any} */ (bs).source_id !== 'body_story') {
+      errors.push('admin_books.json body_story 须为 ingested + source_id（NS-078）');
+    }
+    if (ingested !== 9) {
+      errors.push(`admin_books.json NS-078 后应恰有 9 本 ingested（+body_story），实为 ${ingested}`);
     }
   }
 
