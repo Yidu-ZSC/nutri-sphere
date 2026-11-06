@@ -461,7 +461,7 @@ export function App() {
   }, [safeDisease, safeFood, safeMechanism]);
 
   const flowSummary = useMemo(() => {
-    if (graphView !== 'flow' || !graph || !rendered) return null;
+    if ((graphView !== 'flow' && !(graphView === '3d' && layout === 'hierarchy')) || !graph || !rendered) return null;
     const nodes: FlowNodeInput[] = [];
     for (const node of graph.nodes) {
       if (!rendered.nodeIds.has(node.id)) continue;
@@ -478,7 +478,7 @@ export function App() {
     }));
     const pinIndex = selection?.kind === 'link' ? selection.index : null;
     return selectFlowBands(nodes, links, flowAnchorIds, pinIndex);
-  }, [flowAnchorIds, graph, graphView, rendered, selection]);
+  }, [flowAnchorIds, graph, graphView, layout, rendered, selection]);
 
   useEffect(() => {
     if (!graph || !rendered || !selection) return;
@@ -933,7 +933,7 @@ export function App() {
 
   const viewControls = exploring ? <LayoutToggle view={graphView} onChange={onGraphView} /> : null;
   const rotateControl =
-    exploring && graphView === '3d' ? (
+    exploring && graphView === '3d' && layout === 'force' ? (
       <button
         type="button"
         className="btn btn--ghost"
@@ -1323,16 +1323,22 @@ export function App() {
                 </div>
               )}
               <div className={mobile && !legendExpanded ? 'hud hud--legend-collapsed' : 'hud'}>
-                <Legend compact={mobile} flow={graphView === 'flow'} onExpandedChange={onLegendExpandedChange} />
+                <Legend
+                  compact={mobile}
+                  flow={graphView === 'flow' || (graphView === '3d' && layout === 'hierarchy')}
+                  onExpandedChange={onLegendExpandedChange}
+                />
                 <p className="counts" data-testid="graph-stats">
-                  {graphView === 'flow' && flowSummary
+                  {(graphView === 'flow' || (graphView === '3d' && layout === 'hierarchy')) && flowSummary
                     ? flowGraphStats(flowSummary.bands.length, flowSummary.omittedBudget, flowSummary.omittedSameColumn)
                     : visibleGraphStats(rendered.nodeIds.size, rendered.links.length)}
                 </p>
                 <p className="hud-note">
-                  {graphView === 'flow'
-                    ? '颜色表示关联方向，带子越宽表示书摘越多。同列关联不画在通路上。'
-                    : '颜色表示关联方向，线越粗表示强度越高。形状区分节点类型。'}
+                  {graphView === '3d' && layout === 'hierarchy'
+                    ? '四块列板由近到远是膳食到健康。拖动可小幅转动，带子越宽表示书摘越多。'
+                    : graphView === 'flow'
+                      ? '颜色表示关联方向，带子越宽表示书摘越多。同列关联不画在通路上。'
+                      : '颜色表示关联方向，线越粗表示强度越高。形状区分节点类型。'}
                 </p>
               </div>
               {themeHintShown && (
