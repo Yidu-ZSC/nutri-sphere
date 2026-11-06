@@ -9,7 +9,7 @@ import { themeById } from './themes.ts';
 const ID = /^[a-z0-9_]+$/;
 const THEME_ID = /^[a-z0-9_-]+$/;
 
-/** Home, explore, pattern detail, compare, or the diet twin screen. Distinct from `view`, which stays `2d` | `3d`. */
+/** Home, explore, pattern detail, compare, or the diet twin screen. Distinct from `view` (`flow` | `2d` | `3d`). */
 export type ScreenMode = 'home' | 'explore' | 'pattern' | 'compare' | 'twin' | 'source' | 'admin';
 
 export const ADMIN_SECTIONS = ['books', 'edges', 'nodes', 'candidates', 'validate', 'settings'] as const;
@@ -166,7 +166,7 @@ export function parseViewQuery(search: string): ParsedShare {
     adminSection: parseAdminSection(params.get('section')),
     edge: parseEdgeKey(params.get('edge')),
     layout: layout === 'hierarchy' || layout === 'force' ? layout : null,
-    view: view === '2d' || view === '3d' ? view : null,
+    view: view === 'flow' || view === '2d' || view === '3d' ? view : null,
     hideUnmatched: false,
     node: cleanId(params.get('node')),
     link: link && /^[a-z0-9_]+~[a-z0-9_]+$/.test(link) ? link : null,

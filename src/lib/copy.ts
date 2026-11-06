@@ -9,6 +9,14 @@ export function visibleGraphStats(nodeCount: number, linkCount: number): string 
   return `当前可见 ${nodeCount} 个概念 · ${linkCount} 条关联`;
 }
 
+/** Pathway HUD. Hidden edges stay in the data and in search; they are not drawn as bands. */
+export function flowGraphStats(bands: number, omittedBudget: number, omittedSameColumn: number): string {
+  const parts = [`通路上 ${bands} 条`];
+  if (omittedBudget > 0) parts.push(`另有 ${omittedBudget} 条跨列未画出`);
+  if (omittedSameColumn > 0) parts.push(`同列 ${omittedSameColumn} 条不在通路上`);
+  return parts.join(' · ');
+}
+
 export const DISCLAIMER_EN = 'Educational use only. Not medical advice.';
 
 const STRONG_TOKENS = ['免责声明', '不提供', '存在局限'] as const;

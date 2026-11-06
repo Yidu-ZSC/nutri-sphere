@@ -24,7 +24,8 @@ import { ThemeBar } from './components/ThemeBar';
 import { ThemeLobby } from './components/ThemeLobby';
 import { ThemeOptions, ThemeSwitcher } from './components/ThemeSwitcher';
 import { useMediaQuery } from './hooks/useMediaQuery';
-import { evidenceCounts, visibleGraphStats } from './lib/copy';
+import { evidenceCounts, flowGraphStats, visibleGraphStats } from './lib/copy';
+import { selectFlowBands, type FlowEdgeInput, type FlowNodeInput } from './lib/flowLayout';
 import {
   BACK_TO_LOBBY,
   CLEAR_CLICK_FOCUS,
@@ -101,7 +102,7 @@ export function App() {
   const [layout, setLayout] = useState<LayoutMode>(() => initialQuery.current.layout ?? 'hierarchy');
   const [graphView, setGraphView] = useState<GraphView>(() => {
     if (initialQuery.current.view) return initialQuery.current.view;
-    if (initialQuery.current.theme && resolveScreen(initialQuery.current) === 'explore') return '2d';
+    if (initialQuery.current.theme && resolveScreen(initialQuery.current) === 'explore') return 'flow';
     return readGraphView();
   });
   const [hideUnmatched, setHideUnmatched] = useState(() => initialQuery.current.hideUnmatched);
@@ -454,6 +455,31 @@ export function App() {
     };
   }, [domainView, focusIds, graph, hideUnmatched, selection]);
 
+  const flowAnchorIds = useMemo(() => {
+    const ids = [safeDisease, safeMechanism, safeFood];
+    return ids.filter((id): id is string => Boolean(id));
+  }, [safeDisease, safeFood, safeMechanism]);
+
+  const flowSummary = useMemo(() => {
+    if (graphView !== 'flow' || !graph || !rendered) return null;
+    const nodes: FlowNodeInput[] = [];
+    for (const node of graph.nodes) {
+      if (!rendered.nodeIds.has(node.id)) continue;
+      nodes.push({ id: node.id, label: node.label, type: node.type, group: node.group });
+    }
+    const links: FlowEdgeInput[] = rendered.links.map((link) => ({
+      source: link.source,
+      target: link.target,
+      graphIndex: link.graphIndex,
+      direction: link.direction,
+      strength: link.strength,
+      relation: link.relation,
+      evidenceCount: link.evidences?.length ?? 1,
+    }));
+    const pinIndex = selection?.kind === 'link' ? selection.index : null;
+    return selectFlowBands(nodes, links, flowAnchorIds, pinIndex);
+  }, [flowAnchorIds, graph, graphView, rendered, selection]);
+
   useEffect(() => {
     if (!graph || !rendered || !selection) return;
     if (selection.kind === 'node' && !rendered.nodeIds.has(selection.id)) {
@@ -598,7 +624,7 @@ export function App() {
     setMechanismId(theme.mechanismId);
     setFoodId(theme.foodId);
     setLayout('hierarchy');
-    setGraphView('2d');
+    setGraphView('flow');
     setHideUnmatched(true);
     setClickFocusId(null);
     setSelection(null);
@@ -680,7 +706,7 @@ export function App() {
         setHideUnmatched(false);
       }
       setLayout('hierarchy');
-      setGraphView('2d');
+      setGraphView('flow');
       selectNode(target.nodeId);
       setShellMenuOpen(false);
       setPatternId(null);
@@ -797,7 +823,7 @@ export function App() {
     setFoodId(null);
     setHideUnmatched(false);
     setLayout('hierarchy');
-    setGraphView('2d');
+    setGraphView('flow');
     setClickFocusId(null);
     setSelection({ kind: 'link', index });
     setShellMenuOpen(false);
@@ -855,7 +881,7 @@ export function App() {
     setFoodId(null);
     setHideUnmatched(false);
     setLayout('hierarchy');
-    setGraphView('2d');
+    setGraphView('flow');
     setClickFocusId(null);
     setSelection({ kind: 'node', id });
     setShellMenuOpen(false);
@@ -1256,6 +1282,7 @@ export function App() {
                 compact={mobile}
                 autoRotate={autoRotate}
                 anchorId={anchorId}
+                flowAnchorIds={flowAnchorIds}
                 onSelectNode={selectNode}
                 onSelectLink={selectLink}
                 onBackground={clearSelectionAndClickFocus}
@@ -1296,11 +1323,17 @@ export function App() {
                 </div>
               )}
               <div className={mobile && !legendExpanded ? 'hud hud--legend-collapsed' : 'hud'}>
-                <Legend compact={mobile} onExpandedChange={onLegendExpandedChange} />
+                <Legend compact={mobile} flow={graphView === 'flow'} onExpandedChange={onLegendExpandedChange} />
                 <p className="counts" data-testid="graph-stats">
-                  {visibleGraphStats(rendered.nodeIds.size, rendered.links.length)}
+                  {graphView === 'flow' && flowSummary
+                    ? flowGraphStats(flowSummary.bands.length, flowSummary.omittedBudget, flowSummary.omittedSameColumn)
+                    : visibleGraphStats(rendered.nodeIds.size, rendered.links.length)}
                 </p>
-                <p className="hud-note">颜色表示关联方向，线越粗表示强度越高。形状区分节点类型。</p>
+                <p className="hud-note">
+                  {graphView === 'flow'
+                    ? '颜色表示关联方向，带子越宽表示书摘越多。同列关联不画在通路上。'
+                    : '颜色表示关联方向，线越粗表示强度越高。形状区分节点类型。'}
+                </p>
               </div>
               {themeHintShown && (
                 <div className="empty-theme" role="status" data-testid="theme-empty">
