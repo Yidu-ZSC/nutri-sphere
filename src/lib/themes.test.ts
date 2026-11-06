@@ -22,9 +22,9 @@ test('explore themes still resolve on the aligned seed and avoid treatment wordi
     links: unknown[];
   };
   assert.equal(seed.meta.schema_version, '0.7');
-  assert.equal(seed.meta.data_version, '2.3');
-  assert.equal(seed.nodes.length, 173);
-  assert.equal(seed.links.length, 591);
+  assert.equal(seed.meta.data_version, '2.4');
+  assert.equal(seed.nodes.length, 185);
+  assert.equal(seed.links.length, 778);
   assert.ok(EXPLORE_THEMES.length >= 3);
   assert.equal(HIERARCHY_HINT.includes('防治'), false);
   assert.deepEqual(

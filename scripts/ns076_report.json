@@ -1,0 +1,374 @@
+{
+  "task": "TASK-NS-076",
+  "from_data_version": "2.3",
+  "to_data_version": "2.4",
+  "schema_version": "0.7",
+  "before": {
+    "nodes": 173,
+    "links": 591
+  },
+  "after": {
+    "nodes": 185,
+    "links": 778
+  },
+  "new_nodes": [
+    "alcohol",
+    "antibiotic_resistance",
+    "appendix",
+    "appetite_regulation",
+    "circulating_microbes",
+    "fecal_microbiota_transplant",
+    "halitosis",
+    "helicobacter_pylori",
+    "irritable_bowel",
+    "mycotoxins",
+    "oral_disease",
+    "oral_microbiome"
+  ],
+  "new_node_count": 12,
+  "append_candidates": 32,
+  "append_evidence_rows": 76,
+  "new_edges": 187,
+  "batch_internal_appends_flagged_new": 0,
+  "parallel_pairs_after": 0,
+  "know_your_gut_top_level": 187,
+  "know_your_gut_citing": 219,
+  "direction_new": {
+    "protective": 82,
+    "risk": 105
+  },
+  "type_counts_after": {
+    "diet_pattern": 5,
+    "food_category": 8,
+    "nutrient": 22,
+    "food": 25,
+    "compound": 18,
+    "metabolite": 6,
+    "mechanism": 48,
+    "disease": 48,
+    "biomarker": 5
+  },
+  "sources_updated": true,
+  "append_hosts": [
+    {
+      "candidate_note_id": "kyg_c06_p4_gut_microbiome",
+      "endpoints": "cesarean_birth->gut_microbiome",
+      "host_id": "gut_brain_01_csection_micro",
+      "host_source_id": "gut_brain",
+      "host_relation": "剖腹产婴儿初始菌群更接近皮肤菌群而非阴道乳酸杆菌主导",
+      "candidate_relation": "剖腹产分娩方式与新生儿肠道菌群定植差异相关",
+      "existing_relation": "剖腹产婴儿初始菌群更接近皮肤菌群而非阴道乳酸杆菌主导",
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "kyg_c06_p6_gut_microbiome",
+      "endpoints": "breastfeeding->gut_microbiome",
+      "host_id": "gut_brain_04_breast_micro",
+      "host_source_id": "gut_brain",
+      "host_relation": "母乳喂养与较高菌群多样性及部分疾病风险较低相关",
+      "candidate_relation": "母乳喂养与婴儿肠道菌群定植及多样性相关",
+      "existing_relation": "母乳喂养与较高菌群多样性及部分疾病风险较低相关",
+      "evidences_appended": 3
+    },
+    {
+      "candidate_note_id": "kyg_c06_p11_obesity_risk",
+      "endpoints": "gut_microbiome->obesity_risk",
+      "host_id": "gut_brain_04_micro_obesity",
+      "host_source_id": "gut_brain",
+      "host_relation": "厚壁菌/拟杆菌比值与肥胖生物标志及菌群移植观察相关",
+      "candidate_relation": "肠道菌群组成与脂肪储存及肥胖风险相关",
+      "existing_relation": "厚壁菌/拟杆菌比值与肥胖生物标志及菌群移植观察相关",
+      "evidences_appended": 3
+    },
+    {
+      "candidate_note_id": "kyg_c08_p49_gut_microbiome",
+      "endpoints": "fermented_foods->gut_microbiome",
+      "host_id": "gut_brain_08_ferment_micro",
+      "host_source_id": "gut_brain",
+      "host_relation": "作为带有微生物活动的食物例子",
+      "candidate_relation": "发酵食品微生物与肠道/食品微生态相关",
+      "existing_relation": "作为带有微生物活动的食物例子",
+      "evidences_appended": 3
+    },
+    {
+      "candidate_note_id": "kyg_c08_p92_gut_microbiome",
+      "endpoints": "antibiotics->gut_microbiome",
+      "host_id": "gut_brain_07_abx_micro",
+      "host_source_id": "gut_brain",
+      "host_relation": "抗生素迅速改变菌群多样性并偏向促肥胖菌群",
+      "candidate_relation": "抗生素暴露与肠道菌群组成改变相关",
+      "existing_relation": "抗生素迅速改变菌群多样性并偏向促肥胖菌群",
+      "evidences_appended": 5
+    },
+    {
+      "candidate_note_id": "kyg_c08_p108_probiotics",
+      "endpoints": "fermented_foods->probiotics",
+      "host_id": "gut_brain_08_ferment_pro",
+      "host_source_id": "gut_brain",
+      "host_relation": "泡菜、酸奶、开菲尔等发酵食物是益生菌天然来源",
+      "candidate_relation": "发酵食品与乳酸菌等活菌摄入相关",
+      "existing_relation": "泡菜、酸奶、开菲尔等发酵食物是益生菌天然来源",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "kyg_c08_p128_autism_spectrum",
+      "endpoints": "gut_microbiome->autism_spectrum",
+      "host_id": "gut_brain_05_micro_asd",
+      "host_source_id": "gut_brain",
+      "host_relation": "肠功能障碍、梭菌/丙酸与线粒体路径与自闭症谱系讨论相关",
+      "candidate_relation": "早期肠道菌群异常与自闭症谱系相关讨论相关",
+      "existing_relation": "肠功能障碍、梭菌/丙酸与线粒体路径与自闭症谱系讨论相关",
+      "evidences_appended": 8
+    },
+    {
+      "candidate_note_id": "kyg_c08_p152_immune_activation",
+      "endpoints": "gut_barrier_leak->immune_activation",
+      "host_id": "gut_brain_02_barrier_immune",
+      "host_source_id": "gut_brain",
+      "host_relation": "屏障受损后外来蛋白与微生物组分更易触发免疫",
+      "candidate_relation": "肠道屏障损伤与免疫过度激活相关的关联观察",
+      "existing_relation": "屏障受损后外来蛋白与微生物组分更易触发免疫",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "kyg_c09_p8_immune_balance",
+      "endpoints": "gut_microbiome->immune_balance",
+      "host_id": "gut_brain_01_micro_immune",
+      "host_source_id": "gut_brain",
+      "host_relation": "有益菌帮助免疫保持警戒而不进入持续防御",
+      "candidate_relation": "肠道菌群与免疫系统发育及平衡相关",
+      "existing_relation": "有益菌帮助免疫保持警戒而不进入持续防御",
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "kyg_c09_p28_gut_microbiome",
+      "endpoints": "dietary_fiber->gut_microbiome",
+      "host_id": "lit_fiber_gi_gill_2021",
+      "host_source_id": "(lit)",
+      "host_relation": "膳食纤维与胃肠道健康的综述归纳",
+      "candidate_relation": "膳食纤维与肠道菌群发酵底物供应相关",
+      "existing_relation": "膳食纤维与胃肠道健康的综述归纳",
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "kyg_c09_p28_scfa",
+      "endpoints": "dietary_fiber->scfa",
+      "host_id": "eat_to_heal_03_scfa",
+      "host_source_id": "eat_to_heal",
+      "host_relation": "益生元纤维经菌群发酵产生短链脂肪酸，参与抗炎、代谢与免疫相关过程",
+      "candidate_relation": "膳食纤维经菌群发酵与短链脂肪酸生成相关",
+      "existing_relation": "益生元纤维经菌群发酵产生短链脂肪酸，参与抗炎、代谢与免疫相关过程",
+      "evidences_appended": 3
+    },
+    {
+      "candidate_note_id": "kyg_c09_p54_immune_resilience",
+      "endpoints": "gut_microbiome->immune_resilience",
+      "host_id": "eat_to_heal_03_diversity",
+      "host_source_id": "eat_to_heal",
+      "host_relation": "菌群多样性是健康标志",
+      "candidate_relation": "肠道菌群多样性与免疫稳健相关的关联观察",
+      "existing_relation": "菌群多样性是健康标志",
+      "evidences_appended": 3
+    },
+    {
+      "candidate_note_id": "kyg_c09_p59_gut_microbiome_2",
+      "endpoints": "ultra_processed->gut_microbiome",
+      "host_id": "gut_brain_04_ultra_micro",
+      "host_source_id": "gut_brain",
+      "host_relation": "西化低纤维高糖高脂饮食与菌群重塑相关",
+      "candidate_relation": "超加工膳食模式与肠道微生态失调相关",
+      "existing_relation": "西化低纤维高糖高脂饮食与菌群重塑相关",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "kyg_c09_p122_parkinson_disease",
+      "endpoints": "coffee->parkinson_disease",
+      "host_id": "hntd_ch14_coffee",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "咖啡摄入与较低帕金森症风险相关观察",
+      "candidate_relation": "咖啡与帕金森症相关的关联观察",
+      "existing_relation": "咖啡摄入与较低帕金森症风险相关观察",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "kyg_c09_p170_gut_barrier_leak",
+      "endpoints": "gut_microbiome->gut_barrier_leak",
+      "host_id": "eat_to_heal_03_h2s",
+      "host_source_id": "eat_to_heal",
+      "host_relation": "产硫化氢细菌可破坏肠壁密封并与炎症性肠病相关",
+      "candidate_relation": "肠道菌群多样性与肠道屏障损伤相关的关联观察",
+      "existing_relation": "产硫化氢细菌可破坏肠壁密封并与炎症性肠病相关",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "kyg_c09_p195_digestive_cancer_risk",
+      "endpoints": "gut_microbiome->digestive_cancer_risk",
+      "host_id": "lit_microbiome_colon_okeefe_2016",
+      "host_source_id": "(lit)",
+      "host_relation": "膳食、微生物代谢物与结肠癌的综述讨论",
+      "candidate_relation": "肠道菌群多样性与消化系统肿瘤相关的关联观察",
+      "existing_relation": "膳食、微生物代谢物与结肠癌的综述讨论",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "kyg_c09_p197_gut_microbiome",
+      "endpoints": "animal_foods->gut_microbiome",
+      "host_id": "eat_to_heal_08_less_meat",
+      "host_source_id": "eat_to_heal",
+      "host_relation": "减少动物蛋白摄入与有利于微生物组相关",
+      "candidate_relation": "动物性食物与肠道菌群多样性相关的关联观察",
+      "existing_relation": "减少动物蛋白摄入与有利于微生物组相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "kyg_c09_p197_gut_comfort",
+      "endpoints": "dietary_fiber->gut_comfort",
+      "host_id": "yawye_c57_p9_gut_comfort",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "膳食纤维与肠道舒适相关",
+      "candidate_relation": "膳食纤维与肠道舒适相关的关联观察",
+      "existing_relation": "膳食纤维与肠道舒适相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "kyg_c09_p250_gut_barrier_integrity",
+      "endpoints": "probiotics->gut_barrier_integrity",
+      "host_id": "gut_brain_08_pro_barrier",
+      "host_source_id": "gut_brain",
+      "host_relation": "益生菌有助于维持肠壁完整性",
+      "candidate_relation": "益生菌与肠道屏障完整相关的关联观察",
+      "existing_relation": "益生菌有助于维持肠壁完整性",
+      "evidences_appended": 3
+    },
+    {
+      "candidate_note_id": "kyg_c09_p250_immune_resilience",
+      "endpoints": "probiotics->immune_resilience",
+      "host_id": "hntd_ch05_probiotics_cold",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "益生菌及早期菌群定植与呼吸道感染及过敏风险相关讨论",
+      "candidate_relation": "益生菌与免疫稳健相关的关联观察",
+      "existing_relation": "益生菌及早期菌群定植与呼吸道感染及过敏风险相关讨论",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "kyg_c09_p302_lps",
+      "endpoints": "gut_barrier_leak->lps",
+      "host_id": "gut_brain_02_lps_barrier",
+      "host_source_id": "gut_brain",
+      "host_relation": "紧密连接受损时脂多糖可进入血液循环",
+      "candidate_relation": "肠漏与脂多糖等细菌产物入血相关",
+      "existing_relation": "紧密连接受损时脂多糖可进入血液循环",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "kyg_c09_p302_neuroinflammation",
+      "endpoints": "lps->neuroinflammation",
+      "host_id": "gut_brain_02_lps_neuroinf",
+      "host_source_id": "gut_brain",
+      "host_relation": "LPS 相关炎症信号参与神经炎症过程",
+      "candidate_relation": "循环脂多糖等与神经炎症相关",
+      "existing_relation": "LPS 相关炎症信号参与神经炎症过程",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "kyg_c10_p35_mental_health",
+      "endpoints": "gut_brain_axis->mental_health",
+      "host_id": "gut_brain_01_axis_mental",
+      "host_source_id": "gut_brain",
+      "host_relation": "肠—脑轴双向调控与情绪状态相关",
+      "candidate_relation": "菌—肠—脑轴与情绪心理调节相关",
+      "existing_relation": "肠—脑轴双向调控与情绪状态相关",
+      "evidences_appended": 4
+    },
+    {
+      "candidate_note_id": "kyg_c10_p66_gut_brain_axis",
+      "endpoints": "gut_microbiome->gut_brain_axis",
+      "host_id": "gut_brain_01_axis",
+      "host_source_id": "gut_brain",
+      "host_relation": "肠道菌群经迷走神经等通路与大脑双向交流",
+      "candidate_relation": "肠道菌群多样性与肠—脑轴相关的关联观察",
+      "existing_relation": "肠道菌群经迷走神经等通路与大脑双向交流",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "kyg_c10_p69_ibd_related",
+      "endpoints": "gut_microbiome->ibd_related",
+      "host_id": "eat_to_heal_03_dysbiosis",
+      "host_source_id": "eat_to_heal",
+      "host_relation": "生态失调与代谢、IBD、癌症、神经精神等多类疾病相关",
+      "candidate_relation": "肠道菌群多样性与肠道炎症相关的关联观察",
+      "existing_relation": "生态失调与代谢、IBD、癌症、神经精神等多类疾病相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "kyg_c10_p74_gut_barrier_integrity",
+      "endpoints": "gut_microbiome->gut_barrier_integrity",
+      "host_id": "gut_brain_02_micro_barrier",
+      "host_source_id": "gut_brain",
+      "host_relation": "平衡的肠道菌群参与维持肠壁完整性、限制肠漏",
+      "candidate_relation": "肠道菌群多样性与肠道屏障完整相关的关联观察",
+      "existing_relation": "平衡的肠道菌群参与维持肠壁完整性、限制肠漏",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "kyg_c11_p44_obesity_risk",
+      "endpoints": "ultra_processed->obesity_risk",
+      "host_id": "lit_upf_outcomes_elizabeth_2020",
+      "host_source_id": "(lit)",
+      "host_relation": "超加工食品与多种健康结局的叙述性综述",
+      "candidate_relation": "超加工高糖高脂食物与过度进食及肥胖相关",
+      "existing_relation": "超加工食品与多种健康结局的叙述性综述",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "kyg_c11_p142_obesity_risk",
+      "endpoints": "added_sugar->obesity_risk",
+      "host_id": "yawye_c23_p5_obesity_risk",
+      "host_source_id": "you_are_what_you_eat",
+      "host_relation": "含酒精饮料等额外能量与腹部脂肪堆积相关",
+      "candidate_relation": "精制糖高能量低营养与肥胖及厌食挑食相关",
+      "existing_relation": "含酒精饮料等额外能量与腹部脂肪堆积相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "kyg_c11_p148_type2_diabetes",
+      "endpoints": "ultra_processed->type2_diabetes",
+      "host_id": "hntd_ch06_child_prediabetes",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "儿童超重及相关饮食模式与糖尿病前期风险相关",
+      "candidate_relation": "超加工食品与Ⅱ型糖尿病相关的关联观察",
+      "existing_relation": "儿童超重及相关饮食模式与糖尿病前期风险相关",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "kyg_c12_p33_blood_brain_barrier",
+      "endpoints": "gut_barrier_leak->blood_brain_barrier",
+      "host_id": "gut_brain_02_barrier_bbb",
+      "host_source_id": "gut_brain",
+      "host_relation": "肠道通透性增加可伴随血脑屏障通透性改变",
+      "candidate_relation": "肠道屏障损伤与血脑屏障完整性相关的关联观察",
+      "existing_relation": "肠道通透性增加可伴随血脑屏障通透性改变",
+      "evidences_appended": 1
+    },
+    {
+      "candidate_note_id": "kyg_c12_p147_chronic_inflammation",
+      "endpoints": "lps->chronic_inflammation",
+      "host_id": "gut_brain_02_lps_inflam",
+      "host_source_id": "gut_brain",
+      "host_relation": "入血 LPS 可触发强烈炎症反应",
+      "candidate_relation": "脂多糖 (LPS) 入血与慢性炎症相关的关联观察",
+      "existing_relation": "入血 LPS 可触发强烈炎症反应",
+      "evidences_appended": 2
+    },
+    {
+      "candidate_note_id": "kyg_c12_p208_parkinson_disease",
+      "endpoints": "environmental_pollutants->parkinson_disease",
+      "host_id": "hntd_ch14_berries",
+      "host_source_id": "how_not_to_die",
+      "host_relation": "饮食污染物滞留与便秘及帕金森症风险相关观察",
+      "candidate_relation": "农药等环境毒物与多巴胺能神经元损伤相关",
+      "existing_relation": "饮食污染物滞留与便秘及帕金森症风险相关观察",
+      "evidences_appended": 1
+    }
+  ]
+}

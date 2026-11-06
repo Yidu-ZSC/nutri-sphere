@@ -20,10 +20,11 @@
       "theme": "肠道菌群",
       "relevance": "high",
       "kb_file": "肠道菌群_晓肚知肠.md",
-      "status": "index_only",
+      "status": "ingested",
       "publisher": "清华大学出版社",
       "isbn": "9787302511601",
-      "cover_url": "https://cdn.weread.qq.com/weread/cover/35/YueWen_26793466/t6_YueWen_26793466.jpg"
+      "cover_url": "https://cdn.weread.qq.com/weread/cover/35/YueWen_26793466/t6_YueWen_26793466.jpg",
+      "source_id": "know_your_gut"
     },
     {
       "id": "gut_tune_all_diseases",

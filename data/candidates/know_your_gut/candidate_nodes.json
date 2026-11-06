@@ -1,0 +1,676 @@
+{
+ "meta": {
+  "source_id": "know_your_gut",
+  "source_title": "晓肚知肠",
+  "schema_align": "seed snapshot origin/main data 2.3 / schema 0.7",
+  "themes": [
+   "health"
+  ],
+  "note": "候选；同端点 append；勿直接改 seed；禁止 limitations；relation 为公共共享关系；入库须另开 TASK + Brent 合并闸门",
+  "weread_link": "https://weread.qq.com/web/reader/502329c07198d5fa5028e95",
+  "new_node_count": 12,
+  "reuse_node_count": 72
+ },
+ "new_nodes": [
+  {
+   "id": "alcohol",
+   "domain": "health",
+   "type": "food_category",
+   "label": "酒精 / 过量饮酒",
+   "group": "risk",
+   "description": "乙醇饮料摄入；叙述中与肠黏膜损伤、肠漏、血脑屏障通透及神经退行风险相关。",
+   "aliases": [
+    "饮酒",
+    "乙醇",
+    "喝酒"
+   ]
+  },
+  {
+   "id": "antibiotic_resistance",
+   "domain": "health",
+   "type": "mechanism",
+   "label": "抗生素耐药 / 超级细菌",
+   "group": "risk",
+   "description": "细菌通过突变与水平转移对抗生素产生耐药；滥用加速耐药基因蔓延并削弱感染控制能力。",
+   "aliases": [
+    "耐药菌",
+    "超级细菌",
+    "MRSA"
+   ]
+  },
+  {
+   "id": "appendix",
+   "domain": "health",
+   "type": "mechanism",
+   "label": "阑尾 / 肠道菌群备份库",
+   "group": "protective",
+   "description": "盲肠延伸的淋巴器官；叙述中作为有益菌储备与肠道菌群重建相关结构。",
+   "aliases": [
+    "阑尾炎",
+    "盲肠阑尾"
+   ]
+  },
+  {
+   "id": "appetite_regulation",
+   "domain": "health",
+   "type": "mechanism",
+   "label": "食欲调控（激素与迷走通路）",
+   "group": "mixed",
+   "description": "胃饥饿素、瘦素、肠肽及迷走神经等共同调节短期与长期食欲及进食行为的网络。",
+   "aliases": [
+    "食欲",
+    "胃饥饿素",
+    "瘦素",
+    "饱腹感"
+   ]
+  },
+  {
+   "id": "circulating_microbes",
+   "domain": "health",
+   "type": "mechanism",
+   "label": "血液循环中的微生物信号",
+   "group": "risk",
+   "description": "血液及组织中可检出的细菌、真菌或病毒成分及其产物；与亚健康、炎症及神经退行叙述相关。",
+   "aliases": [
+    "血液微生物",
+    "菌血症相关",
+    "血源性微生物"
+   ]
+  },
+  {
+   "id": "fecal_microbiota_transplant",
+   "domain": "health",
+   "type": "mechanism",
+   "label": "粪菌移植相关菌群重建",
+   "group": "mixed",
+   "description": "将供体肠道菌群移植至受体以重建微生态的干预叙述；用于耐药感染及若干行为/神经模型讨论。",
+   "aliases": [
+    "粪菌移植",
+    "FMT",
+    "粪便菌群移植"
+   ]
+  },
+  {
+   "id": "halitosis",
+   "domain": "health",
+   "type": "disease",
+   "label": "口臭 / 口腔异味",
+   "group": "risk",
+   "description": "以挥发性硫化物等为主的口气异常；多与口腔或消化道微生物代谢相关。",
+   "aliases": [
+    "口气",
+    "口腔异味"
+   ]
+  },
+  {
+   "id": "helicobacter_pylori",
+   "domain": "health",
+   "type": "mechanism",
+   "label": "幽门螺杆菌定植",
+   "group": "risk",
+   "description": "可在胃酸环境定植的螺旋杆菌；与胃炎、溃疡及胃癌风险等相关，亦有与胃外结局的讨论。",
+   "aliases": [
+    "幽门螺杆菌",
+    "Hp",
+    "HP"
+   ]
+  },
+  {
+   "id": "irritable_bowel",
+   "domain": "health",
+   "type": "disease",
+   "label": "肠易激综合征 (IBS)",
+   "group": "risk",
+   "description": "以腹痛与排便习惯改变为特征的功能性肠道问题；常伴焦虑抑郁等情绪相关叙述。",
+   "aliases": [
+    "IBS",
+    "肠易激"
+   ]
+  },
+  {
+   "id": "mycotoxins",
+   "domain": "health",
+   "type": "compound",
+   "label": "霉菌毒素（食品污染）",
+   "group": "risk",
+   "description": "霉菌在农产品中产生的有毒次级代谢产物；可引起肝肾神经损伤、免疫抑制乃至致癌相关风险。",
+   "aliases": [
+    "霉菌毒素",
+    "呕吐毒素",
+    "赭曲霉毒素"
+   ]
+  },
+  {
+   "id": "oral_disease",
+   "domain": "health",
+   "type": "disease",
+   "label": "龋病 / 牙周病等口腔疾病",
+   "group": "risk",
+   "description": "龋齿、牙龈炎、牙周炎及黏膜感染等与口腔菌群失调密切相关的口腔疾病。",
+   "aliases": [
+    "龋齿",
+    "牙周炎",
+    "牙龈炎",
+    "鹅口疮"
+   ]
+  },
+  {
+   "id": "oral_microbiome",
+   "domain": "health",
+   "type": "mechanism",
+   "label": "口腔菌群",
+   "group": "mixed",
+   "description": "口腔黏膜、牙齿与舌面等部位的共生微生物群落；紊乱与龋病、牙周病及若干全身健康结局相关。",
+   "aliases": [
+    "口腔微生物",
+    "口腔微生态"
+   ]
+  }
+ ],
+ "reuse_nodes": [
+  {
+   "id": "added_sugar",
+   "type": "food_category",
+   "label": "添加糖",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "aflatoxin",
+   "type": "compound",
+   "label": "黄曲霉毒素",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "animal_foods",
+   "type": "food_category",
+   "label": "动物性食物 / 动物蛋白",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "antibiotics",
+   "type": "compound",
+   "label": "抗生素暴露",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "artificial_sweeteners",
+   "type": "food_category",
+   "label": "人工甜味剂",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "atherosclerosis",
+   "type": "disease",
+   "label": "动脉粥样硬化",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "atopic_dermatitis",
+   "type": "disease",
+   "label": "特应性皮炎 / 过敏性皮炎",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "autism_spectrum",
+   "type": "disease",
+   "label": "自闭症谱系相关讨论",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "autoimmune",
+   "type": "disease",
+   "label": "自身免疫问题",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "autonomic_balance",
+   "type": "mechanism",
+   "label": "自主神经平衡",
+   "group": "neutral",
+   "domain": "health"
+  },
+  {
+   "id": "blood_brain_barrier",
+   "type": "mechanism",
+   "label": "血脑屏障完整性",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "blood_cholesterol",
+   "type": "biomarker",
+   "label": "血胆固醇",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "breastfeeding",
+   "type": "food",
+   "label": "母乳（喂养）",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "butyrate",
+   "type": "metabolite",
+   "label": "丁酸",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "cancer_overall",
+   "type": "disease",
+   "label": "癌症（总体）",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "cesarean_birth",
+   "type": "mechanism",
+   "label": "剖腹产相关早期定植",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "chronic_disease",
+   "type": "disease",
+   "label": "慢性病 / 富贵病",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "chronic_inflammation",
+   "type": "mechanism",
+   "label": "慢性炎症",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "coffee",
+   "type": "food",
+   "label": "咖啡",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "cognitive_clarity",
+   "type": "disease",
+   "label": "认知清晰",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "cognitive_decline",
+   "type": "disease",
+   "label": "认知障碍 / 阿尔茨海默病",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "constipation",
+   "type": "disease",
+   "label": "便秘",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "coronary_heart_disease",
+   "type": "disease",
+   "label": "冠心病 / 心脏病发作",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "dairy",
+   "type": "food_category",
+   "label": "乳制品",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "dietary_fiber",
+   "type": "nutrient",
+   "label": "膳食纤维 / 益生元",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "digestive_cancer_risk",
+   "type": "disease",
+   "label": "消化系统肿瘤",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "dna_damage",
+   "type": "mechanism",
+   "label": "DNA损伤",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "environmental_pollutants",
+   "type": "compound",
+   "label": "环境持久性污染物 / 饮食暴露",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "fatty_liver",
+   "type": "disease",
+   "label": "脂肪肝",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "fermented_foods",
+   "type": "food",
+   "label": "发酵食物",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "gastritis",
+   "type": "disease",
+   "label": "胃炎 / 胃黏膜病变",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "good_sleep",
+   "type": "disease",
+   "label": "睡眠良好",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "gut_barrier_integrity",
+   "type": "mechanism",
+   "label": "肠道屏障完整",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "gut_barrier_leak",
+   "type": "mechanism",
+   "label": "肠道屏障损伤 / 肠漏",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "gut_brain_axis",
+   "type": "mechanism",
+   "label": "肠—脑轴",
+   "group": "mixed",
+   "domain": "health"
+  },
+  {
+   "id": "gut_comfort",
+   "type": "disease",
+   "label": "肠道舒适",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "gut_microbiome",
+   "type": "mechanism",
+   "label": "肠道菌群多样性",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "hypertension",
+   "type": "disease",
+   "label": "高血压",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "ibd_related",
+   "type": "disease",
+   "label": "肠道炎症",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "immune_activation",
+   "type": "mechanism",
+   "label": "免疫过度激活",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "immune_balance",
+   "type": "mechanism",
+   "label": "免疫系统平衡",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "immune_resilience",
+   "type": "disease",
+   "label": "免疫稳健",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "infectious_disease",
+   "type": "disease",
+   "label": "感染 / 免疫相关感染负担",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "insulin_resistance",
+   "type": "mechanism",
+   "label": "胰岛素抵抗",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "kidney_disease",
+   "type": "disease",
+   "label": "慢性肾脏病",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "legumes",
+   "type": "food",
+   "label": "豆类",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "liver_chronic",
+   "type": "disease",
+   "label": "慢性肝炎进展",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "low_carb_diet",
+   "type": "diet_pattern",
+   "label": "低碳水高蛋白饮食 / 阿特金斯饮食",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "lps",
+   "type": "mechanism",
+   "label": "脂多糖 (LPS) 入血",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "lung_disease",
+   "type": "disease",
+   "label": "肺部疾病 / COPD 与哮喘相关",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "mental_health",
+   "type": "disease",
+   "label": "情绪低落",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "metabolic_health",
+   "type": "disease",
+   "label": "代谢健康",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "neuroinflammation",
+   "type": "mechanism",
+   "label": "神经炎症",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "nitric_oxide",
+   "type": "metabolite",
+   "label": "一氧化氮 (NO)",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "obesity_risk",
+   "type": "disease",
+   "label": "肥胖",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "omega3",
+   "type": "nutrient",
+   "label": "ω-3 多不饱和脂肪酸",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "osteoporosis",
+   "type": "disease",
+   "label": "骨质疏松 / 髋骨骨折",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "parkinson_disease",
+   "type": "disease",
+   "label": "帕金森症",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "probiotics",
+   "type": "food_category",
+   "label": "益生菌（发酵食物 / 活菌）",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "psychological_stress",
+   "type": "mechanism",
+   "label": "精神压力 / 心理应激",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "reactive_oxygen",
+   "type": "mechanism",
+   "label": "活性氧 / 氧化应激",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "refined_carbs",
+   "type": "food_category",
+   "label": "精制植物性主食",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "saturated_fat",
+   "type": "nutrient",
+   "label": "饱和脂肪",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "scfa",
+   "type": "metabolite",
+   "label": "短链脂肪酸 (SCFA)",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "stroke",
+   "type": "disease",
+   "label": "中风 / 脑卒中",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "type1_diabetes",
+   "type": "disease",
+   "label": "1型糖尿病",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "type2_diabetes",
+   "type": "disease",
+   "label": "Ⅱ型糖尿病",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "ultra_processed",
+   "type": "food_category",
+   "label": "超加工食品",
+   "group": "risk",
+   "domain": "health"
+  },
+  {
+   "id": "vitamin_b_complex",
+   "type": "nutrient",
+   "label": "维生素B族",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "vitamin_c",
+   "type": "nutrient",
+   "label": "维生素C",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "vitamin_d",
+   "type": "nutrient",
+   "label": "维生素D / 活性维生素D",
+   "group": "protective",
+   "domain": "health"
+  },
+  {
+   "id": "zinc",
+   "type": "nutrient",
+   "label": "锌",
+   "group": "protective",
+   "domain": "health"
+  }
+ ]
+}

@@ -25,7 +25,7 @@ const COLUMN = {
 };
 
 const THIN_SOURCE_IDS = new Set([
-  'know_your_gut',
+  // NS-076: know_your_gut fully ingested; no remaining thin sources.
 ]);
 
 const PROMOTE_GUT_BRAIN_IDS = ['gut_brain_02_coffee_poly', 'gut_brain_08_ferment_micro'];
@@ -45,19 +45,19 @@ const PROMOTE_DOIS = [
 test('aligned seed passes schema and referential checks', () => {
   const result = validateGraphFile();
   assert.equal(result.ok, true, result.errors.join('\n'));
-  assert.equal(result.counts.nodes, 173);
-  assert.equal(result.counts.links, 591);
+  assert.equal(result.counts.nodes, 185);
+  assert.equal(result.counts.links, 778);
 });
 
 const TECHNICAL_NODES = ['igf1_signaling', 'lps'];
 
-test('data 2.3 uses schema 0.7; NS-075 you_are_what_you_eat ingest; NS-072 no parallels; keeps books+lit', () => {
+test('data 2.4 uses schema 0.7; NS-076 know_your_gut ingest; NS-072 no parallels; keeps books+lit', () => {
   const data = readJson(ALIGNED_SEED);
   assert.equal(data.meta.schema_version, '0.7');
-  assert.equal(data.meta.data_version, '2.3');
+  assert.equal(data.meta.data_version, '2.4');
   assert.equal(data.meta.disclaimer, 'Educational / research use only. Not medical advice.');
-  assert.equal(data.nodes.length, 173);
-  assert.equal(data.links.length, 591);
+  assert.equal(data.nodes.length, 185);
+  assert.equal(data.links.length, 778);
   for (const node of data.nodes) {
     assert.equal(node.domain, 'health', node.id);
   }
@@ -80,8 +80,9 @@ test('data 2.3 uses schema 0.7; NS-075 you_are_what_you_eat ingest; NS-072 no pa
   assert.ok(data.meta.note.includes('NS-071'));
   assert.ok(data.meta.note.includes('NS-074'));
   assert.ok(data.meta.note.includes('NS-075'));
-  assert.ok(data.nodes.length >= 170 && data.nodes.length <= 180);
-  assert.ok(data.links.length >= 580 && data.links.length <= 610);
+  assert.ok(data.meta.note.includes('NS-076'));
+  assert.ok(data.nodes.length >= 180 && data.nodes.length <= 195);
+  assert.ok(data.links.length >= 760 && data.links.length <= 800);
 
   const thinLeft = data.links.filter((link) => THIN_SOURCE_IDS.has(link.source_id));
   assert.equal(thinLeft.length, 0);
@@ -95,6 +96,8 @@ test('data 2.3 uses schema 0.7; NS-075 you_are_what_you_eat ingest; NS-072 no pa
   assert.equal(chinaStudy.length, 123);
   const yawye = data.links.filter((link) => link.source_id === 'you_are_what_you_eat');
   assert.equal(yawye.length, 143);
+  const kyg = data.links.filter((link) => link.source_id === 'know_your_gut');
+  assert.equal(kyg.length, 187);
   const gutBrain = data.links.filter((link) => link.source_id === 'gut_brain');
   assert.ok(gutBrain.length >= 53, String(gutBrain.length));
   assert.equal(gutBrain.length, 55);
@@ -199,7 +202,7 @@ test('data 2.3 uses schema 0.7; NS-075 you_are_what_you_eat ingest; NS-072 no pa
   const bookIds = new Set(
     data.links.filter((link) => link.source_file !== 'literature').map((link) => link.source_id),
   );
-  assert.deepEqual([...bookIds].sort(), ['amazing_veggie_soup', 'china_study', 'eat_to_heal', 'gut_brain', 'how_not_to_die', 'you_are_what_you_eat']);
+  assert.deepEqual([...bookIds].sort(), ['amazing_veggie_soup', 'china_study', 'eat_to_heal', 'gut_brain', 'how_not_to_die', 'know_your_gut', 'you_are_what_you_eat']);
 
   const deepReader = data.links.filter((link) => link.audience === 'deep_reader');
   assert.ok(deepReader.some((link) => link.id === 'lit_microbiome_colon_okeefe_2016'));
@@ -215,9 +218,9 @@ test('data 2.3 uses schema 0.7; NS-075 you_are_what_you_eat ingest; NS-072 no pa
     if (!isDeep) assert.equal(link.audience, 'general', link.id ?? link.source);
   }
   const mechanisms = data.nodes.filter((node) => node.type === 'mechanism');
-  assert.equal(mechanisms.length, 41);
+  assert.equal(mechanisms.length, 48);
   const diseases = data.nodes.filter((node) => node.type === 'disease');
-  assert.equal(diseases.length, 45);
+  assert.equal(diseases.length, 48);
   assert.equal(diseases.filter((node) => node.group === 'protective').length, 8);
   assert.equal(biomarkers.length, 5);
   assert.deepEqual(
@@ -272,7 +275,7 @@ test('citation edges stay in range and are not book notes', () => {
     (link.evidences ?? []).filter((ev) => ev.citation),
   );
   assert.ok(citedEvidences.length >= 5 && citedEvidences.length <= 20, String(citedEvidences.length));
-  assert.equal(data.links.length, 591);
+  assert.equal(data.links.length, 778);
   assert.ok(cited.length >= 4 && cited.length <= citedEvidences.length, String(cited.length));
   // Top-level literature types (post-merge) plus nested observational evidences
   const observationalPmids = new Set(
@@ -540,11 +543,11 @@ test('top-level excerpt must mirror evidences[0]', () => {
 });
 
 
-test('admin_books.json passes catalog invariants after NS-075', () => {
+test('admin_books.json passes catalog invariants after NS-076', () => {
   const result = validateAdminBooks();
   assert.equal(result.ok, true, result.errors.join('\n'));
   assert.equal(result.counts.books, 19);
-  assert.equal(result.counts.ingested, 6);
+  assert.equal(result.counts.ingested, 7);
   const admin = readJson('data/admin_books.json');
   assert.equal(admin.schema_version, '1.2');
   for (const row of admin.books) {
@@ -569,6 +572,9 @@ test('admin_books.json passes catalog invariants after NS-075', () => {
   const yawyeBook = admin.books.find((b) => b.id === 'you_are_what_you_eat');
   assert.equal(yawyeBook.status, 'ingested');
   assert.equal(yawyeBook.source_id, 'you_are_what_you_eat');
+  const kygBook = admin.books.find((b) => b.id === 'know_your_gut');
+  assert.equal(kygBook.status, 'ingested');
+  assert.equal(kygBook.source_id, 'know_your_gut');
   for (const id of THIN_SOURCE_IDS) {
     const row = admin.books.find((b) => b.id === id);
     assert.ok(row, id);

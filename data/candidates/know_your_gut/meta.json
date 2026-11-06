@@ -1,0 +1,36 @@
+{
+  "source_id": "know_your_gut",
+  "source_title": "晓肚知肠",
+  "aligned_data_version": "2.4",
+  "aligned_schema_version": "0.7",
+  "candidate_count": 219,
+  "evidence_count": 367,
+  "append_count": 32,
+  "new_endpoint_pairs": 187,
+  "new_node_count": 12,
+  "reuse_node_count": 72,
+  "weread_link": "https://weread.qq.com/web/reader/502329c07198d5fa5028e95",
+  "note": "NS-076 全量入库样例同步；seed 已 ingested；只读候选包。",
+  "book_meta": {
+    "source_id": "know_your_gut",
+    "title": "晓肚知肠：肠菌的小心思",
+    "title_short": "晓肚知肠",
+    "authors": [
+      "段云峰"
+    ],
+    "publisher": "清华大学出版社",
+    "isbn": "9787302511601",
+    "publish_date": "2018-10-01",
+    "epub_date": "2018-10-09",
+    "epub_creator_field": "段云峰, SoBooKs.cc",
+    "weread_bookId": "26793466",
+    "readerLink": "https://weread.qq.com/web/reader/502329c07198d5fa5028e95",
+    "deepLink": "https://weread.qq.com/book-detail?type=1&v=502329c07198d5fa5028e95",
+    "cover": "https://cdn.weread.qq.com/weread/cover/35/YueWen_26793466/t6_YueWen_26793466.jpg",
+    "intro": "人体是个大江湖，肠菌相关研究如火如荼，我们可能一直以来都低估了微生物在身体健康中的重要性。《晓肚知肠：肠菌的小心思》从自然微生物世界讲起，结合当前最新的肠菌研究成果，为我们介绍了肠道微生物影响身体健康的原理。",
+    "newRating": 786,
+    "newRatingCount": 299,
+    "category": "医学健康-医学",
+    "note": "EPUB creator 字段含 SoBooKs.cc 水印；作者按段云峰。仅元数据+外链，未用划线作证据。"
+  }
+}
