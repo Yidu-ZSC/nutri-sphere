@@ -27,6 +27,7 @@ const STAGE1_SOURCE_IDS = [
   'body_story',
   'body_unlimited',
   'power_of_habit',
+  'flow',
 ];
 
 /**
@@ -447,8 +448,12 @@ export function validateAdminBooks(payload, sourcesPayload) {
     if (!poh || /** @type {any} */ (poh).status !== 'ingested' || /** @type {any} */ (poh).source_id !== 'power_of_habit') {
       errors.push('admin_books.json power_of_habit 须为 ingested + source_id（NS-080）');
     }
-    if (ingested !== 11) {
-      errors.push(`admin_books.json NS-080 后应恰有 11 本 ingested（+power_of_habit），实为 ${ingested}`);
+    const flw = books.find((b) => b && typeof b === 'object' && /** @type {any} */ (b).id === 'flow');
+    if (!flw || /** @type {any} */ (flw).status !== 'ingested' || /** @type {any} */ (flw).source_id !== 'flow') {
+      errors.push('admin_books.json flow 须为 ingested + source_id（NS-081）');
+    }
+    if (ingested !== 12) {
+      errors.push(`admin_books.json NS-081 后应恰有 12 本 ingested（+flow），实为 ${ingested}`);
     }
   }
 

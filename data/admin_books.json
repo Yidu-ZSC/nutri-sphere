@@ -204,7 +204,12 @@
       "theme": "零散",
       "relevance": "edge",
       "kb_file": "零散_心流_2796-2924.md",
-      "status": "index_only"
+      "status": "ingested",
+      "source_id": "flow",
+      "publisher": "中信出版集团",
+      "isbn": "9787508675534",
+      "cover_url": "https://wfqqreader-1252317822.image.myqcloud.com/cover/826/921826/t6_921826.jpg",
+      "authors": "米哈里·契克森米哈赖"
     }
   ]
 }

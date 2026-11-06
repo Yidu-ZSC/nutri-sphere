@@ -25,15 +25,15 @@ const THIN: string[] = [
   // NS-078: body_story fully ingested; no remaining thin sources.
 ];
 
-test('admin_books.json asserts 19 books with eleven ingested after NS-080', () => {
+test('admin_books.json asserts 19 books with twelve ingested after NS-081', () => {
   const payload = readJson('data/admin_books.json');
   const data = assertAdminBooks(payload);
   assert.equal(data.schema_version, '1.2');
   assert.equal(data.books.length, 19);
   const ingested = data.books.filter((book) => book.status === 'ingested');
-  assert.equal(ingested.length, 11);
-  assert.deepEqual(ingested.map((b) => b.id).sort(), ['amazing_veggie_soup', 'body_story', 'body_unlimited', 'china_study', 'eat_to_heal', 'gut_brain', 'how_not_to_die', 'know_your_gut', 'power_of_habit', 'quit_sugar', 'you_are_what_you_eat']);
-  for (const id of ['gut_brain', 'eat_to_heal', 'amazing_veggie_soup', 'how_not_to_die', 'china_study', 'you_are_what_you_eat', 'know_your_gut', 'quit_sugar', 'body_story', 'body_unlimited', 'power_of_habit']) {
+  assert.equal(ingested.length, 12);
+  assert.deepEqual(ingested.map((b) => b.id).sort(), ['amazing_veggie_soup', 'body_story', 'body_unlimited', 'china_study', 'eat_to_heal', 'flow', 'gut_brain', 'how_not_to_die', 'know_your_gut', 'power_of_habit', 'quit_sugar', 'you_are_what_you_eat']);
+  for (const id of ['gut_brain', 'eat_to_heal', 'amazing_veggie_soup', 'how_not_to_die', 'china_study', 'you_are_what_you_eat', 'know_your_gut', 'quit_sugar', 'body_story', 'body_unlimited', 'power_of_habit', 'flow']) {
     const book = data.books.find((row) => row.id === id);
     assert.equal(book?.status, 'ingested');
     assert.equal(book?.source_id, id);
@@ -87,7 +87,7 @@ test('admin filters theme / relevance / status', () => {
     relevance: 'all',
     status: 'ingested',
   });
-  assert.equal(ingested.length, 11);
+  assert.equal(ingested.length, 12);
   const gut = filterAndSortAdminBooks(data.books, {
     theme: '肠道菌群',
     relevance: 'all',
