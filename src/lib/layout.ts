@@ -4,7 +4,8 @@ import type { SimNode } from '../types/graph';
 export type LayoutMode = 'hierarchy' | 'force';
 
 /** diet/food → nutrient/compound/metabolite → mechanism → disease/outcome */
-export const COLUMN_X = [-117, -39, 39, 117] as const;
+/** Wider column centers in hierarchy so the 2D「层次」view has more air between lanes. */
+export const COLUMN_X = [-135, -45, 45, 135] as const;
 /** Room for a single-line label between rows on the flat pathway. */
 export const COLUMN_Y_GAP = 20;
 /** Narrower than the default 50° so the optional 3D view stays closer to a flat pathway. */
