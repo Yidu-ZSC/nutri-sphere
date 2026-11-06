@@ -1,4 +1,4 @@
-import { useState, type Ref } from 'react';
+import { useEffect, useRef, useState, type Ref } from 'react';
 import {
   DIET_TWIN_BASED_ON,
   DIET_TWIN_COPY,
@@ -34,6 +34,7 @@ import {
   type Meal,
   type RejectedRecord,
 } from '../lib/dietTwinStore';
+import { SHELL_TWIN_LABEL } from '../lib/exploreShell';
 
 type Draft = Partial<DietTwinAnswers>;
 type ListRange = 7 | 30;
@@ -288,13 +289,6 @@ export function DietTwinControls({
 
   return (
     <div className="twin-controls" data-testid="diet-twin-controls">
-      <section className="shell-rail-section twin-controls-edu" aria-label="饮食观察说明">
-        <p className="twin-edu-badge" data-testid="diet-twin-rail-edu-badge">
-          {TWIN_SHORT_BADGE}
-        </p>
-        <p className="twin-persistent">{DIET_TWIN_COPY.persistent}</p>
-      </section>
-
       <div className="segment twin-segment twin-mode" role="group" aria-label={DIET_TWIN_COPY.hypothesisTitle}>
         <button
           type="button"
@@ -558,7 +552,45 @@ function TwinSilhouette() {
   );
 }
 
-export function DietTwinCanvas({
+/** Animated top-right entry into the diet twin. Fixed to the shell by App. */
+export function DietTwinIcon({ onOpen }: { onOpen: () => void }) {
+  return (
+    <button
+      type="button"
+      className="twin-entry-icon"
+      data-testid="diet-twin-entry"
+      aria-label={SHELL_TWIN_LABEL}
+      title={SHELL_TWIN_LABEL}
+      onClick={onOpen}
+    >
+      <span className="twin-entry-glow" aria-hidden="true" />
+      <svg className="twin-entry-silhouette" viewBox="0 0 200 180" focusable="false" aria-hidden="true">
+        <circle className="twin-entry-ring" cx="100" cy="90" r="68" />
+        <circle className="twin-entry-core" cx="100" cy="90" r="56" />
+        <g className="twin-entry-figure">
+          <circle className="twin-entry-head" cx="100" cy="41" r="15.5" />
+          <path
+            className="twin-entry-body"
+            d="M100 57C88 60 80 66 78 76C80 94 83 110 89 122C93 129 107 129 111 122C117 110 120 94 122 76C120 66 112 60 100 57Z"
+          />
+          <g className="twin-entry-arm twin-entry-arm--left">
+            <path className="twin-entry-limb" d="M78 74C70 56 64 41 59 27" />
+          </g>
+          <g className="twin-entry-arm twin-entry-arm--right">
+            <path className="twin-entry-limb" d="M122 74C130 56 136 41 141 27" />
+          </g>
+          <path className="twin-entry-limb" d="M91 122C89 135 88 147 87 158" />
+          <path className="twin-entry-limb" d="M109 122C111 135 112 147 113 158" />
+        </g>
+        <circle className="twin-entry-dot" cx="100" cy="73" r="3.2" />
+        <circle className="twin-entry-dot" cx="100" cy="91" r="3.2" style={{ animationDelay: '0.5s' }} />
+        <circle className="twin-entry-dot" cx="100" cy="109" r="3.2" style={{ animationDelay: '1s' }} />
+      </svg>
+    </button>
+  );
+}
+
+function DietTwinStatus({
   controller,
   onOpenIndicator,
 }: {
@@ -568,77 +600,112 @@ export function DietTwinCanvas({
   const { snapshot } = controller;
 
   return (
-    <main className="twin-workspace" data-testid="diet-twin-screen">
-      <div className="twin-canvas">
-        <header className="twin-canvas-head">
-          <div className="twin-chrome-mark">
+    <section className="twin-status" data-testid="diet-twin-status" aria-label={DIET_TWIN_COPY.statusTitle}>
+      <section className="twin-figure-panel" aria-label="饮食孪生示意">
+        <TwinSilhouette />
+        <p className="twin-figure-note">教育示意 · 非个人生理测量</p>
+      </section>
+
+      <section
+        className="twin-section twin-bars twin-canvas-status"
+        data-testid="diet-twin-bars"
+        data-based-on={snapshot?.basedOn ?? 'empty'}
+        aria-label={DIET_TWIN_COPY.statusTitle}
+      >
+        <h2>{DIET_TWIN_COPY.statusTitle}</h2>
+        {snapshot ? (
+          <>
+            <p className="twin-hint" data-testid="diet-twin-based-on">
+              {DIET_TWIN_BASED_ON[snapshot.basedOn]}
+            </p>
+            {DIET_TWIN_INDICATORS.map((indicator) => {
+              const band = snapshotBand(snapshot, indicator.id);
+              return (
+                <button
+                  key={indicator.id}
+                  type="button"
+                  className="twin-bar"
+                  data-testid={`diet-twin-bar-${indicator.id}`}
+                  data-level={band}
+                  onClick={() => onOpenIndicator(indicator.id)}
+                >
+                  <span className="twin-bar-head">
+                    <span className="twin-bar-label">{indicator.label}</span>
+                    <span className="twin-bar-band" data-testid={`diet-twin-band-${indicator.id}`}>
+                      {bandLabel(band)}
+                    </span>
+                  </span>
+                  <span className="twin-track" aria-hidden="true">
+                    <span className="twin-fill" data-level={band} />
+                  </span>
+                  <span className="twin-bar-note">{DIET_TWIN_COPY.barNote}</span>
+                  <span className="twin-bar-caption" data-testid={`diet-twin-reading-${indicator.id}`}>
+                    {DIET_TWIN_READINGS[indicator.id]}
+                  </span>
+                  <span className="twin-bar-action">{DIET_TWIN_COPY.openGraph}</span>
+                </button>
+              );
+            })}
+          </>
+        ) : (
+          <p className="twin-hint" data-testid="diet-twin-guide">
+            {DIET_TWIN_COPY.guide}
+          </p>
+        )}
+      </section>
+    </section>
+  );
+}
+
+export function DietTwinModal({
+  controller,
+  onClose,
+  onOpenIndicator,
+}: {
+  controller: DietTwinController;
+  onClose: () => void;
+  onOpenIndicator: (indicator: TwinIndicatorId) => void;
+}) {
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    closeRef.current?.focus();
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        onClose();
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [onClose]);
+
+  return (
+    <div
+      className="twin-modal-layer"
+      data-testid="diet-twin-modal"
+      onClick={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <div className="twin-modal" role="dialog" aria-modal="true" aria-label={DIET_TWIN_COPY.title}>
+        <header className="twin-modal-head">
+          <div className="twin-modal-title">
             <p className="twin-edu-badge" data-testid="diet-twin-edu-badge">
               {TWIN_SHORT_BADGE}
             </p>
-            <p className="twin-persistent" data-testid="diet-twin-disclaimer">
-              {DIET_TWIN_COPY.persistent}
-            </p>
+            <h2>{DIET_TWIN_COPY.title}</h2>
+            <p className="twin-persistent">{DIET_TWIN_COPY.persistent}</p>
           </div>
-          <p className="kicker">{DIET_TWIN_COPY.badge}</p>
-          <h1>{DIET_TWIN_COPY.title}</h1>
-          <p>{DIET_TWIN_COPY.intro}</p>
+          <button ref={closeRef} type="button" className="btn btn--ghost" onClick={onClose}>
+            关闭
+          </button>
         </header>
-
-        <div className="twin-canvas-grid">
-          <section className="twin-figure-panel" aria-label="饮食孪生示意">
-            <TwinSilhouette />
-            <p className="twin-figure-note">教育示意 · 非个人生理测量</p>
-          </section>
-
-          <section
-            className="twin-section twin-bars twin-canvas-status"
-            data-testid="diet-twin-bars"
-            data-based-on={snapshot?.basedOn ?? 'empty'}
-            aria-label={DIET_TWIN_COPY.statusTitle}
-          >
-            <h2>{DIET_TWIN_COPY.statusTitle}</h2>
-            {snapshot ? (
-              <>
-                <p className="twin-hint" data-testid="diet-twin-based-on">
-                  {DIET_TWIN_BASED_ON[snapshot.basedOn]}
-                </p>
-                {DIET_TWIN_INDICATORS.map((indicator) => {
-                  const band = snapshotBand(snapshot, indicator.id);
-                  return (
-                    <button
-                      key={indicator.id}
-                      type="button"
-                      className="twin-bar"
-                      data-testid={`diet-twin-bar-${indicator.id}`}
-                      data-level={band}
-                      onClick={() => onOpenIndicator(indicator.id)}
-                    >
-                      <span className="twin-bar-head">
-                        <span className="twin-bar-label">{indicator.label}</span>
-                        <span className="twin-bar-band" data-testid={`diet-twin-band-${indicator.id}`}>
-                          {bandLabel(band)}
-                        </span>
-                      </span>
-                      <span className="twin-track" aria-hidden="true">
-                        <span className="twin-fill" data-level={band} />
-                      </span>
-                      <span className="twin-bar-note">{DIET_TWIN_COPY.barNote}</span>
-                      <span className="twin-bar-caption" data-testid={`diet-twin-reading-${indicator.id}`}>
-                        {DIET_TWIN_READINGS[indicator.id]}
-                      </span>
-                      <span className="twin-bar-action">{DIET_TWIN_COPY.openGraph}</span>
-                    </button>
-                  );
-                })}
-              </>
-            ) : (
-              <p className="twin-hint" data-testid="diet-twin-guide">
-                {DIET_TWIN_COPY.guide}
-              </p>
-            )}
-          </section>
+        <div className="twin-modal-body">
+          <DietTwinStatus controller={controller} onOpenIndicator={onOpenIndicator} />
+          <DietTwinControls controller={controller} />
         </div>
       </div>
-    </main>
+    </div>
   );
 }

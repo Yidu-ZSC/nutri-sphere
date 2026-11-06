@@ -111,13 +111,13 @@ test('layout places food to the left of disease and draws a curve', () => {
   assert.ok((layout.bands[0]?.width ?? 0) > 3);
 });
 
-test('framing fits a wide pathway and keeps a short one near the top', () => {
+test('framing fits a wide pathway and centers a short one', () => {
   const wide = frameFlowCamera(1600, 400, 800, 600);
   assert.ok(wide.k < 1);
   assert.ok(Math.abs(wide.x + (1600 * wide.k - 800) / 2) < 0.01);
   const short = frameFlowCamera(600, 200, 800, 600);
   assert.equal(short.k, 1);
-  assert.equal(short.y, 20);
+  assert.equal(short.y, (600 - 200) / 2);
 });
 
 test('zoom keeps the pointer anchor still and pan shifts the camera', () => {

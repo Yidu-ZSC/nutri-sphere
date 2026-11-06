@@ -10,8 +10,8 @@ html, body, #root {
 body {
   background: var(--bg);
   color: var(--text);
-  font-size: 13px;
-  line-height: 1.55;
+  font-size: 14px;
+  line-height: 1.6;
   font-family: var(--font);
   letter-spacing: 0.01em;
 }
@@ -19,6 +19,11 @@ body {
 button, input, select { font: inherit; color: inherit; }
 
 button { cursor: pointer; }
+
+/* Normalize heading weight: the app mixes explicit 500/600 with the browser
+   default 700 bold. Titles read at 600, card-level headings at 500 (overridden
+   per-component below). */
+h1, h2, h3, h4 { font-weight: 600; }
 
 :focus-visible {
   outline: 2px solid var(--accent);
@@ -35,6 +40,54 @@ button { cursor: pointer; }
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* Subtle, theme-aware scrollbars for the long scroll regions. */
+.shell-rail-tools,
+.drawer-body,
+.about,
+.admin-content,
+.admin-sidebar,
+.twin-canvas,
+.pattern-screen,
+.twin-records-history-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-hover) transparent;
+}
+
+.shell-rail-tools::-webkit-scrollbar,
+.drawer-body::-webkit-scrollbar,
+.about::-webkit-scrollbar,
+.admin-content::-webkit-scrollbar,
+.admin-sidebar::-webkit-scrollbar,
+.twin-canvas::-webkit-scrollbar,
+.pattern-screen::-webkit-scrollbar,
+.twin-records-history-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.shell-rail-tools::-webkit-scrollbar-thumb,
+.drawer-body::-webkit-scrollbar-thumb,
+.about::-webkit-scrollbar-thumb,
+.admin-content::-webkit-scrollbar-thumb,
+.admin-sidebar::-webkit-scrollbar-thumb,
+.twin-canvas::-webkit-scrollbar-thumb,
+.pattern-screen::-webkit-scrollbar-thumb,
+.twin-records-history-scroll::-webkit-scrollbar-thumb {
+  background: var(--border-hover);
+  border-radius: 99px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.shell-rail-tools::-webkit-scrollbar-thumb:hover,
+.drawer-body::-webkit-scrollbar-thumb:hover,
+.about::-webkit-scrollbar-thumb:hover,
+.twin-canvas::-webkit-scrollbar-thumb:hover,
+.pattern-screen::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+  background-clip: padding-box;
 }
 
 .app {
@@ -66,7 +119,7 @@ button { cursor: pointer; }
 
 .brand-title {
   margin: 0;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.03em;
 }
@@ -74,8 +127,8 @@ button { cursor: pointer; }
 .brand-sub {
   margin: 2px 0 0;
   color: var(--muted);
-  font-size: 11px;
-  line-height: 1.45;
+  font-size: 12px;
+  line-height: 1.5;
   max-width: 36em;
 }
 
@@ -111,9 +164,12 @@ button { cursor: pointer; }
   background: transparent;
   border-color: transparent;
   white-space: nowrap;
+  font-weight: 500;
+  transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease, box-shadow 140ms ease;
 }
 
 .btn:hover { background: var(--panel-hover); }
+.btn:active { transform: translateY(0.5px); }
 
 .btn--primary {
   background: var(--brand);
@@ -149,6 +205,7 @@ button { cursor: pointer; }
   font-size: 12px;
   font-weight: 500;
   color: var(--muted);
+  transition: background-color 140ms ease, color 140ms ease, box-shadow 140ms ease;
 }
 
 .segment button[aria-pressed="true"] {
@@ -488,6 +545,7 @@ button { cursor: pointer; }
   min-height: 36px;
   padding: 0 12px 0 14px;
   text-align: left;
+  transition: background-color 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
 }
 
 .chip[aria-pressed="true"] {
@@ -628,18 +686,8 @@ button { cursor: pointer; }
 .banner--error { border-color: rgba(248, 113, 113, 0.45); }
 
 .empty-filter {
-  background: var(--panel-solid);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-}
-
-.empty-filter {
   position: absolute;
   z-index: 5;
-}
-
-.empty-filter {
   top: 16px;
   left: 50%;
   transform: translateX(-50%);
@@ -647,6 +695,10 @@ button { cursor: pointer; }
   display: flex;
   align-items: center;
   gap: 12px;
+  background: var(--panel-solid);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
 }
 
 .empty-filter p, .empty-layperson p { margin: 0; }
@@ -682,19 +734,16 @@ button { cursor: pointer; }
 }
 
 .theme-menu {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 4px;
-}
-
-.theme-menu {
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
   z-index: 30;
   min-width: 148px;
   padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
   background: var(--panel-solid);
   border: 1px solid var(--line);
   border-radius: 12px;
@@ -713,6 +762,7 @@ button { cursor: pointer; }
   background: transparent;
   color: var(--text);
   text-align: left;
+  transition: background-color 140ms ease;
 }
 
 .theme-option:hover,
@@ -916,7 +966,7 @@ button { cursor: pointer; }
   gap: 6px;
   border-radius: var(--radius-pill);
   padding: 5px 12px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   line-height: 1.3;
   border: 1px solid var(--border-color);
@@ -957,8 +1007,8 @@ button { cursor: pointer; }
   gap: 4px;
   padding: 8px 10px;
   border-radius: 8px;
-  background: #142033;
-  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--accent-soft) 55%, var(--panel));
+  border: 1px solid var(--border-color);
 }
 
 .citation-block p { margin: 0; }
@@ -1794,7 +1844,8 @@ code {
   display: block;
   height: 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--panel-muted);
+  box-shadow: inset 0 0 0 1px var(--border-color);
   overflow: hidden;
 }
 
@@ -2005,7 +2056,7 @@ code {
 }
 
 .empty-theme-close:hover,
-.empty-theme-close:focus-visible { background: rgba(127, 127, 127, 0.18); }
+.empty-theme-close:focus-visible { background: var(--panel-hover); }
 
 .themes.is-flash {
   border-radius: var(--radius-panel, 8px);
@@ -2896,7 +2947,7 @@ code {
 
 .shell-rail-brand .brand-sub {
   max-width: 19em;
-  font-size: 10.5px;
+  font-size: 11px;
 }
 
 .shell-rail-brand--compact {
@@ -2917,6 +2968,7 @@ code {
   border-radius: var(--radius-btn);
   background: transparent;
   color: var(--muted);
+  transition: background-color 140ms ease, color 140ms ease, border-color 140ms ease;
 }
 
 .shell-rail-icon-btn:hover,
@@ -2957,9 +3009,10 @@ code {
   background: transparent;
   color: var(--muted);
   font: inherit;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   text-align: left;
+  transition: background-color 140ms ease, color 140ms ease, box-shadow 140ms ease;
 }
 
 .shell-rail-item:hover,
@@ -3004,7 +3057,7 @@ code {
 
 .shell-rail-heading {
   margin: 0;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--text);
 }
@@ -3112,28 +3165,31 @@ code {
   font: inherit;
   text-align: left;
   box-shadow: var(--shadow-card);
+  transition: border-color 140ms ease, background-color 140ms ease, transform 140ms ease, box-shadow 140ms ease;
 }
 
 .rail-recommendation:hover,
 .rail-recommendation:focus-visible {
   border-color: var(--border-hover);
   background: var(--panel-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-card);
 }
 
 .rail-recommendation strong {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .rail-recommendation > span:last-child {
   color: var(--muted);
-  font-size: 11px;
-  line-height: 1.45;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 .rail-recommendation-kicker {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -3253,7 +3309,7 @@ code {
   position: absolute;
   z-index: 7;
   top: var(--space-3);
-  right: var(--space-3);
+  right: calc(var(--space-3) + 56px);
   max-width: calc(100% - 24px);
   display: flex;
   flex-wrap: wrap;
@@ -3554,4 +3610,234 @@ code {
   .workspace--detail .graph-layout {
     display: flex;
   }
+}
+
+/* --------------------------------------------------------------------------
+   Diet twin: fixed top-right entry + modal (revives the NS-037 holographic icon)
+   -------------------------------------------------------------------------- */
+
+.twin-entry-icon {
+  position: fixed;
+  top: var(--space-3);
+  right: var(--space-3);
+  z-index: 30;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: var(--border);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 38%, color-mix(in srgb, var(--dir-protective) 14%, transparent), transparent 64%),
+    var(--panel);
+  box-shadow: var(--shadow-card);
+  color: var(--text);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.twin-entry-icon:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--dir-protective) 42%, var(--border-hover));
+  box-shadow: var(--shadow);
+}
+
+.twin-entry-glow {
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--dir-protective) 58%, transparent) 0%, transparent 70%);
+  opacity: 0.26;
+  pointer-events: none;
+  animation: twin-glow 3.4s ease-in-out infinite;
+}
+
+.twin-entry-silhouette {
+  position: relative;
+  width: 40px;
+  height: 36px;
+  overflow: visible;
+}
+
+.twin-entry-ring {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.7;
+  opacity: 0.5;
+  transform-box: view-box;
+  transform-origin: 100px 90px;
+  animation: twin-ring 6.4s ease-in-out infinite;
+}
+
+.twin-entry-core {
+  fill: none;
+  stroke: color-mix(in srgb, var(--dir-protective) 55%, transparent);
+  stroke-width: 1.1;
+  stroke-dasharray: 3 6;
+  stroke-linecap: round;
+  opacity: 0.8;
+  transform-box: view-box;
+  transform-origin: 100px 90px;
+  animation: twin-core 22s linear infinite;
+}
+
+.twin-entry-figure { color: var(--text); }
+
+.twin-entry-head,
+.twin-entry-body {
+  fill: currentColor;
+  stroke: color-mix(in srgb, var(--muted) 55%, transparent);
+  stroke-width: 1.4;
+  opacity: 0.9;
+}
+
+.twin-entry-limb {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 7.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.88;
+}
+
+.twin-entry-arm {
+  transform-box: view-box;
+  animation: twin-arm 3.6s ease-in-out infinite;
+}
+
+.twin-entry-arm--left { transform-origin: 78px 74px; }
+.twin-entry-arm--right {
+  transform-origin: 122px 74px;
+  animation-name: twin-arm-right;
+}
+
+.twin-entry-dot {
+  fill: var(--dir-protective);
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--dir-protective) 72%, transparent));
+  animation: twin-breathe 3.4s ease-in-out infinite;
+}
+
+@keyframes twin-arm {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(15deg); }
+}
+
+@keyframes twin-arm-right {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-15deg); }
+}
+
+@keyframes twin-ring {
+  0%, 100% { opacity: 0.34; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes twin-core {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes twin-breathe {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes twin-glow {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.34; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .twin-entry-ring,
+  .twin-entry-core,
+  .twin-entry-arm,
+  .twin-entry-dot,
+  .twin-entry-glow { animation: none; }
+}
+
+.twin-modal-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(24, 24, 27, 0.42);
+  backdrop-filter: blur(4px);
+}
+
+.twin-modal {
+  width: min(960px, 100%);
+  max-height: min(88dvh, 900px);
+  display: flex;
+  flex-direction: column;
+  background: var(--panel-solid);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.twin-modal-head {
+  flex: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--line);
+}
+
+.twin-modal-title { min-width: 0; }
+
+.twin-modal-title h2 {
+  margin: 8px 0 0;
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.twin-modal-title .twin-persistent {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  max-width: 48em;
+}
+
+.twin-modal-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: var(--space-5);
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.twin-status {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .twin-modal-layer { padding: 0; align-items: stretch; }
+  .twin-modal {
+    width: 100%;
+    height: 100dvh;
+    max-height: none;
+    border-radius: 0;
+    border: 0;
+  }
+  .twin-modal-head { padding: var(--space-3) var(--space-4); }
+  .twin-modal-body {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--space-4);
+  }
+  /* Keep the transient empty hint clear of the fixed twin entry. */
+  .empty-theme { right: calc(var(--space-2) + 56px); }
 }

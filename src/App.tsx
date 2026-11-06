@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DetailDrawer } from './components/DetailDrawer';
-import { DietTwinCanvas, DietTwinControls, useDietTwinController } from './components/DietTwin';
+import { DietTwinIcon, DietTwinModal, useDietTwinController } from './components/DietTwin';
 import { DisclaimerBar } from './components/DisclaimerBar';
 import { FilterPanel } from './components/FilterPanel';
 import { GraphCanvas } from './components/GraphCanvas';
@@ -23,7 +23,7 @@ import { DomainSwitcher } from './components/DomainSwitcher';
 import { ThemeBar } from './components/ThemeBar';
 import { ThemeSwitcher } from './components/ThemeSwitcher';
 import { Shell } from './components/Shell';
-import { ShellRail, type WorkspaceId } from './components/ShellRail';
+import { ShellRail } from './components/ShellRail';
 import { RailRecommendations } from './components/RailRecommendations';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import { evidenceCounts, flowGraphStats, visibleGraphStats } from './lib/copy';
@@ -170,7 +170,7 @@ export function App() {
   const [themeHintDismissed, setThemeHintDismissed] = useState(false);
   const [themeChipsFlash, setThemeChipsFlash] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [twinOpen, setTwinOpen] = useState(false);
   const [autoRotate, setAutoRotate] = useState(false);
   const [appTheme, setAppTheme] = useState<AppTheme>(() => readTheme());
   const [activeDomain, setActiveDomain] = useState<Domain>(() => initialQuery.current.domain);
@@ -183,7 +183,6 @@ export function App() {
   const railRef = useRef<HTMLElement>(null);
   const railTriggerRef = useRef<HTMLButtonElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const twinRecordRef = useRef<HTMLTextAreaElement>(null);
   const twin = useDietTwinController();
   const prevMobile = useRef(mobile);
 
@@ -278,6 +277,15 @@ export function App() {
     openTwinIndicator(indicator);
   }, [graph]);
 
+  // The twin is now a modal, not a workspace. Legacy `?screen=twin` deep links
+  // open the modal and land back on the graph.
+  useEffect(() => {
+    if (screen === 'twin') {
+      setTwinOpen(true);
+      setScreen('explore');
+    }
+  }, [screen]);
+
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return;
@@ -324,8 +332,6 @@ export function App() {
     const timer = window.setTimeout(() => {
       if (railFocusTarget.target === 'search') {
         searchInputRef.current?.focus();
-      } else if (railFocusTarget.target === 'record') {
-        twinRecordRef.current?.focus();
       } else {
         const root = document.querySelector<HTMLElement>('[data-testid="theme-chips"]');
         const target =
@@ -724,15 +730,12 @@ export function App() {
   };
 
   const openTwin = () => {
-    setClickFocusId(null);
-    setSelection(null);
-    setPatternId(null);
-    setPatternReturnSnapshot(null);
-    setScreen('twin');
+    setTwinOpen(true);
     setRailDrawerOpen(false);
   };
 
   const openTwinIndicator = (indicator: TwinIndicatorId) => {
+    setTwinOpen(false);
     if (!graph) {
       pendingTwin.current = indicator;
       return;
@@ -889,7 +892,6 @@ export function App() {
   };
 
   const graphWorkspace = screen === 'explore' || screen === 'pattern' || screen === 'source';
-  const activeWorkspace: WorkspaceId = screen === 'twin' ? 'twin' : 'explore';
   const showVeganDietDetail = screen === 'pattern' && isVeganDietHubPattern(patternId);
   const activeSource = sourceById(sources, sourceId);
   const showSourceDetail = screen === 'source' && activeSource != null && graph != null;
@@ -897,19 +899,6 @@ export function App() {
   const isAdmin = screen === 'admin';
   const showReadingLayer = showVeganDietDetail || showSourceDetail;
   const relatedPatternIds = patternsForTheme(themeForFilters(safeDisease, safeMechanism, safeFood)?.id);
-
-  const copyViewLink = () => {
-    const href = window.location.href;
-    const done = () => {
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1400);
-    };
-    if (navigator.clipboard?.writeText) {
-      void navigator.clipboard.writeText(href).then(done).catch(done);
-      return;
-    }
-    done();
-  };
 
   const filterEmpty = domainView != null && isFocusEmpty(focusIds, exploreNodes.map((node) => node.id));
   const showThemeEmpty = !safeDisease && !safeMechanism && !safeFood && !safeLens;
@@ -949,35 +938,9 @@ export function App() {
         旋转{autoRotate ? '开' : '关'}
       </button>
     ) : null;
-  const copyControl =
-    graphWorkspace && !showReadingLayer ? (
-      <button type="button" className="btn btn--ghost" onClick={copyViewLink}>
-        {copied ? '已复制' : '复制链接'}
-      </button>
-    ) : null;
-
   const focusSearch = () => {
     if (screen !== 'explore') setScreen('explore');
     openRail('search');
-  };
-
-  const selectWorkspace = (next: WorkspaceId) => {
-    if (next === 'twin') {
-      if (activeWorkspace === 'twin' && !mobile && railPresentation === 'collapsed') {
-        openRail('record');
-        return;
-      }
-      openTwin();
-      return;
-    }
-    if (screen !== 'explore') {
-      setPatternId(null);
-      setPatternReturnSnapshot(null);
-      setSourceId(null);
-      setSourceReturnSnapshot(null);
-      setScreen('explore');
-    }
-    setRailDrawerOpen(false);
   };
 
   const graphRailTools = (
@@ -1042,20 +1005,11 @@ export function App() {
     <ShellRail
       ref={railRef}
       variant={railVariant}
-      activeWorkspace={activeWorkspace}
       graphReady={graph != null}
       hidden={mobile && !railDrawerOpen}
-      tools={
-        activeWorkspace === 'explore' ? (
-          graphRailTools
-        ) : (
-          <DietTwinControls controller={twin} recordRef={twinRecordRef} />
-        )
-      }
+      tools={graphRailTools}
       footer={<ThemeSwitcher theme={appTheme} onChange={onAppTheme} />}
-      onWorkspace={selectWorkspace}
       onOpenSearch={focusSearch}
-      onOpenRecord={() => openRail('record')}
       onExpand={() => persistRailPreference('expanded')}
       onCollapse={() => persistRailPreference('collapsed')}
       onClose={() => setRailDrawerOpen(false)}
@@ -1150,11 +1104,9 @@ export function App() {
         rail={rail}
       >
         <div
-          className={`workspace ${
-            activeWorkspace === 'twin' ? 'workspace--twin' : 'workspace--graph'
-          }${selection && !showReadingLayer ? ' workspace--detail' : ''}${
-            domainEmpty ? ' workspace--domain-empty' : ''
-          }`}
+          className={`workspace workspace--graph${
+            selection && !showReadingLayer ? ' workspace--detail' : ''
+          }${domainEmpty ? ' workspace--domain-empty' : ''}`}
           data-testid="workspace"
         >
           {!showReadingLayer && (
@@ -1214,11 +1166,10 @@ export function App() {
                   appTheme={appTheme}
                 />
 
-                {(viewControls || rotateControl || copyControl) && (
+                {(viewControls || rotateControl) && (
                   <div className="canvas-hud-controls" data-testid="canvas-hud-controls">
                     {viewControls}
                     {rotateControl}
-                    {copyControl}
                   </div>
                 )}
 
@@ -1306,8 +1257,6 @@ export function App() {
             </div>
           )}
 
-          {screen === 'twin' && <DietTwinCanvas controller={twin} onOpenIndicator={openTwinIndicator} />}
-
           {showVeganDietDetail && (
             <div className="workspace-reading-layer" data-testid="pattern-reading-layer">
               <VeganDietDetail
@@ -1335,6 +1284,15 @@ export function App() {
           )}
         </div>
       </Shell>
+
+      <DietTwinIcon onOpen={openTwin} />
+      {twinOpen && (
+        <DietTwinModal
+          controller={twin}
+          onClose={() => setTwinOpen(false)}
+          onOpenIndicator={openTwinIndicator}
+        />
+      )}
 
       <DisclaimerBar
         meta={graph?.meta ?? null}
