@@ -3,6 +3,8 @@ import test from 'node:test';
 import {
   effectiveFocusIds,
   focusedNodeIds,
+  hasThemeHighlightContext,
+  resolveCanvasFocus,
   isFocusEmpty,
   linkIsBrightInFocus,
   linkIsFocused,
@@ -101,6 +103,26 @@ test('effectiveFocusIds ANDs click neighborhood with filter focus', () => {
   const focus = effectiveFocusIds(filter, 'chronic_inflammation', links);
   assert.deepEqual([...(focus ?? [])].sort(), ['chronic_inflammation', 'liver_chronic']);
   assert.equal(focus?.has('glycation'), false);
+});
+
+test('resolveCanvasFocus keeps theme bright set while locked', () => {
+  const filter = focusedNodeIds(links, 'liver_chronic', null);
+  const unlocked = resolveCanvasFocus(filter, 'chronic_inflammation', links, false, true);
+  assert.equal(unlocked.focusRoot, 'chronic_inflammation');
+  assert.equal(unlocked.brightIds?.has('glycation'), false);
+  const locked = resolveCanvasFocus(filter, 'chronic_inflammation', links, true, true);
+  assert.equal(locked.focusRoot, null);
+  assert.deepEqual([...(locked.brightIds ?? [])].sort(), [...(filter ?? [])].sort());
+});
+
+test('resolveCanvasFocus ignores lock without theme context', () => {
+  const focus = resolveCanvasFocus(null, 'chronic_inflammation', links, true, false);
+  assert.equal(focus.focusRoot, 'chronic_inflammation');
+});
+
+test('hasThemeHighlightContext is true when any anchor filter is set', () => {
+  assert.equal(hasThemeHighlightContext('liver_chronic', null, null, null), true);
+  assert.equal(hasThemeHighlightContext(null, null, null, null), false);
 });
 
 test('clearing click focus restores filter-only bright set', () => {

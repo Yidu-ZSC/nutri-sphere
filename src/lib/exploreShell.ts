@@ -73,6 +73,13 @@ export const FOCUS_HUD_EXPAND = '展开聚焦说明';
 
 export const FOCUS_HUD_COLLAPSE = '收起聚焦说明';
 
+/** Lock the active theme/lens highlight while browsing node and edge details. */
+export const THEME_HIGHLIGHT_LOCK_LABEL = '锁定主题高亮';
+
+export const THEME_HIGHLIGHT_LOCK_ON = '已锁定主题高亮';
+
+export const THEME_HIGHLIGHT_LOCK_OFF = '解除主题高亮锁定';
+
 /** Close label for the non-blocking 「先选择一个主题」 hint (TASK-NS-045). */
 export const THEME_HINT_CLOSE = '关闭';
 

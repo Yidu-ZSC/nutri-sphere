@@ -38,7 +38,7 @@ import {
   SHELL_SEARCH_LABEL,
   SHELL_VEGAN_ENTRY,
 } from './lib/exploreShell';
-import { effectiveFocusIds, focusedNodeIds, isFocusEmpty } from './lib/focus';
+import { focusedNodeIds, hasThemeHighlightContext, isFocusEmpty, resolveCanvasFocus } from './lib/focus';
 import {
   ENTRY_FOCUS_NONE,
   eligibleEntryFocusNodes,
@@ -171,6 +171,7 @@ export function App() {
   });
   const [selection, setSelection] = useState<Selection | null>(null);
   const [clickFocusId, setClickFocusId] = useState<string | null>(null);
+  const [themeHighlightLocked, setThemeHighlightLocked] = useState(false);
   /** TASK-NS-085: the right-rail focus chip starts expanded whenever focus appears. */
   const [focusChipOpen, setFocusChipOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
@@ -508,11 +509,28 @@ export function App() {
     [domainView, safeDisease, safeFood, safeLens, safeMechanism],
   );
 
-  /** Bright/dim only — click-focus dims outsiders; does not hard-hide nodes. */
-  const brightFocusIds = useMemo(
-    () => (domainView ? effectiveFocusIds(focusIds, clickFocusId, domainView.links) : null),
-    [clickFocusId, domainView, focusIds],
+  const themeHighlightContext = useMemo(
+    () => hasThemeHighlightContext(safeDisease, safeMechanism, safeFood, safeLens),
+    [safeDisease, safeFood, safeLens, safeMechanism],
   );
+
+  const canvasFocus = useMemo(
+    () =>
+      domainView
+        ? resolveCanvasFocus(
+            focusIds,
+            clickFocusId,
+            domainView.links,
+            themeHighlightLocked,
+            themeHighlightContext,
+          )
+        : { brightIds: null as ReadonlySet<string> | null, focusRoot: null as string | null },
+    [clickFocusId, domainView, focusIds, themeHighlightContext, themeHighlightLocked],
+  );
+
+  /** Bright/dim only — click-focus dims outsiders; does not hard-hide nodes. */
+  const brightFocusIds = canvasFocus.brightIds;
+  const canvasFocusRoot = canvasFocus.focusRoot;
 
   const clickFocusLabel = useMemo(() => {
     if (!graph || !clickFocusId) return null;
@@ -589,10 +607,12 @@ export function App() {
   const counts = useMemo(() => (graph ? evidenceCounts(graph.links) : {}), [graph]);
 
   const anchorId = useMemo(() => {
-    if (!graph || !selection) return safeLens ?? safeMechanism ?? safeDisease ?? safeFood;
+    const themeAnchor = safeLens ?? safeMechanism ?? safeDisease ?? safeFood;
+    if (themeHighlightLocked && themeHighlightContext && themeAnchor) return themeAnchor;
+    if (!graph || !selection) return themeAnchor;
     if (selection.kind === 'node') return selection.id;
-    return graph.links[selection.index]?.target ?? safeLens ?? safeMechanism ?? safeDisease ?? safeFood;
-  }, [graph, safeDisease, safeFood, safeLens, safeMechanism, selection]);
+    return graph.links[selection.index]?.target ?? themeAnchor;
+  }, [graph, safeDisease, safeFood, safeLens, safeMechanism, selection, themeHighlightContext, themeHighlightLocked]);
 
   const onQuery = useCallback((value: string) => setQuery(value), []);
 
@@ -610,6 +630,7 @@ export function App() {
 
   const clearFilters = () => {
     leaveLens();
+    setThemeHighlightLocked(false);
     setDiseaseId(null);
     setMechanismId(null);
     setFoodId(null);
@@ -649,10 +670,12 @@ export function App() {
   const onTheme = (theme: ExploreTheme | null) => {
     leaveLens();
     if (!theme) {
+      setThemeHighlightLocked(false);
       setDiseaseId(null);
       setMechanismId(null);
       setFoodId(null);
     } else {
+      setThemeHighlightLocked(true);
       setDiseaseId(theme.diseaseId);
       setMechanismId(theme.mechanismId);
       setFoodId(theme.foodId);
@@ -660,8 +683,20 @@ export function App() {
   };
 
   const selectNode = (id: string) => {
+    if (themeHighlightLocked && themeHighlightContext) {
+      setSelection({ kind: 'node', id });
+      return;
+    }
     setClickFocusId(id);
     setSelection({ kind: 'node', id });
+  };
+
+  const onThemeHighlightLockToggle = () => {
+    setThemeHighlightLocked((locked) => {
+      const next = !locked;
+      if (next) setClickFocusId(null);
+      return next;
+    });
   };
 
   const selectLink = (index: number) => {
@@ -680,6 +715,10 @@ export function App() {
    * and never opens the detail drawer.
    */
   const onFocusHudToggle = () => {
+    if (themeHighlightLocked && themeHighlightContext) {
+      if (clickFocusId != null) setFocusChipOpen((open) => !open);
+      return;
+    }
     if (clickFocusId != null) {
       setFocusChipOpen((open) => !open);
       return;
@@ -705,6 +744,7 @@ export function App() {
     setGraphView('flow');
     setHideUnmatched(true);
     setClickFocusId(null);
+    setThemeHighlightLocked(true);
     setSelection(null);
     setPatternId(null);
     setPatternReturnSnapshot(null);
@@ -721,7 +761,8 @@ export function App() {
     setLayout('hierarchy');
     setGraphView('flow');
     setHideUnmatched(true);
-    setClickFocusId(nodeId);
+    setClickFocusId(null);
+    setThemeHighlightLocked(true);
     setSelection({ kind: 'node', id: nodeId });
     setPatternId(null);
     setPatternReturnSnapshot(null);
@@ -946,6 +987,9 @@ export function App() {
         expanded={focusChipOpen}
         onToggle={onFocusHudToggle}
         onClear={clearClickFocus}
+        themeLockVisible={themeHighlightContext}
+        themeHighlightLocked={themeHighlightLocked}
+        onThemeLockToggle={onThemeHighlightLockToggle}
       />
     ) : null;
   const rotateControl =
@@ -1173,7 +1217,7 @@ export function App() {
                 <GraphCanvas
                   graph={graph}
                   focusIds={brightFocusIds}
-                  focusRoot={clickFocusId}
+                  focusRoot={canvasFocusRoot}
                   focusChipExpanded={Boolean(clickFocusId && clickFocusLabel && focusChipOpen)}
                   selection={selection}
                   layout={layout}

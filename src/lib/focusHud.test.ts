@@ -28,6 +28,7 @@ test('NS-085: focus toggle lives in the canvas HUD rail after the view toggle', 
   assert.match(hud, /aria-expanded=\{chipOpen\}/);
   assert.match(hud, /data-testid="click-focus-banner"/);
   assert.match(hud, /data-testid="clear-click-focus"/);
+  assert.match(hud, /data-testid="theme-highlight-lock"/);
   assert.match(hud, /<circle /);
   assert.match(hud, /<path /);
 });

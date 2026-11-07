@@ -7,7 +7,7 @@ export type LayoutMode = 'hierarchy' | 'force';
 /** Wider column centers in hierarchy so the 2D「层次」view has more air between lanes. */
 export const COLUMN_X = [-135, -45, 45, 135] as const;
 /** Compact/mobile hierarchy spreads the four lanes wider so header captions stop colliding. */
-export const COMPACT_COLUMN_SCALE = 1.3;
+export const COMPACT_COLUMN_SCALE = 1.52;
 /** Room for a single-line label between rows on the flat pathway. */
 export const COLUMN_Y_GAP = 20;
 /** Narrower than the default 50° so the optional 3D view stays closer to a flat pathway. */

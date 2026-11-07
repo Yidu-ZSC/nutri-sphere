@@ -60,6 +60,32 @@ export function effectiveFocusIds(
   return next;
 }
 
+export function hasThemeHighlightContext(
+  diseaseId: string | null,
+  mechanismId: string | null,
+  foodId: string | null,
+  lensId: string | null,
+): boolean {
+  return Boolean(diseaseId || mechanismId || foodId || lensId);
+}
+
+/** When the theme highlight is locked, clicks only open the drawer — bright set stays on the theme. */
+export function resolveCanvasFocus(
+  filterFocus: ReadonlySet<string> | null,
+  clickRoot: string | null,
+  links: readonly FocusLink[],
+  themeHighlightLocked: boolean,
+  hasThemeContext: boolean,
+): { brightIds: ReadonlySet<string> | null; focusRoot: string | null } {
+  if (themeHighlightLocked && hasThemeContext) {
+    return { brightIds: filterFocus, focusRoot: null };
+  }
+  return {
+    brightIds: effectiveFocusIds(filterFocus, clickRoot, links),
+    focusRoot: clickRoot,
+  };
+}
+
 export function isFocusEmpty(
   focus: ReadonlySet<string> | null,
   nodeIds: readonly string[],
