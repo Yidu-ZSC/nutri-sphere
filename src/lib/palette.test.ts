@@ -141,7 +141,7 @@ test('the rail owns search, themes, recommendations, and filters; the twin is a 
   assert.match(app, /data-testid="rail-vegan-detail"/);
   assert.match(recommendations, /onEnterTheme\(primaryTheme\)/);
 
-  assert.match(app, /<DietTwinIcon onOpen=\{openTwin\} \/>/);
+  assert.match(app, /<DietTwinIcon onOpen=\{openTwin\}/);
   assert.match(app, /<DietTwinModal[\s\S]*controller=\{twin\}/);
   assert.match(app, /onOpenIndicator=\{openTwinIndicator\}/);
   assert.match(twin, /data-testid="diet-twin-entry"/);

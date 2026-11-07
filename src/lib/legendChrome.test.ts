@@ -92,7 +92,8 @@ test('NS-082: canvas chrome is quiet and icon-led', () => {
   // Right-hand vertical view rail sits below the twin entry.
   const controls = css.match(/\.canvas-hud-controls\s*\{([^}]*)\}/)?.[1] ?? '';
   assert.match(controls, /flex-direction:\s*column/);
-  assert.match(controls, /top:\s*calc\(var\(--space-3\)\s*\+\s*56px\)/);
+  assert.match(controls, /top:\s*calc\(var\(--space-3\)\s*\+\s*48px\s*\+\s*6px\)/);
+  assert.match(css, /\.graph-canvas-stage \.twin-entry-icon\s*\{[^}]*position:\s*absolute/s);
   assert.match(controls, /right:\s*var\(--space-3\)/);
   assert.match(css, /\.layout-toggle\s*\{[^}]*flex-direction:\s*column/s);
 

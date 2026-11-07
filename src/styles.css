@@ -3419,7 +3419,7 @@ code {
 .canvas-hud-controls {
   position: absolute;
   z-index: 7;
-  top: calc(var(--space-3) + 56px);
+  top: calc(var(--space-3) + 48px + 6px);
   right: var(--space-3);
   max-width: calc(100% - 24px);
   display: flex;
@@ -3746,6 +3746,14 @@ code {
 /* --------------------------------------------------------------------------
    Diet twin: fixed top-right entry + modal (revives the NS-037 holographic icon)
    -------------------------------------------------------------------------- */
+
+/* Desktop explore: the entry rides on the canvas, stacked above the view rail. */
+.graph-canvas-stage .twin-entry-icon {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  z-index: 8;
+}
 
 .twin-entry-icon {
   position: fixed;

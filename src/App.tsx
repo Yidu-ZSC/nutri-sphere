@@ -975,6 +975,9 @@ export function App() {
 
   const filterEmpty = domainView != null && isFocusEmpty(focusIds, exploreNodes.map((node) => node.id));
 
+  const twinOnExploreCanvas =
+    !mobile && screen === 'explore' && graph != null && rendered != null && !domainEmpty && !showReadingLayer;
+
   const onAppTheme = useCallback((next: AppTheme) => {
     setAppTheme(next);
     applyTheme(next);
@@ -1240,6 +1243,8 @@ export function App() {
                   appTheme={appTheme}
                 />
 
+                {twinOnExploreCanvas && <DietTwinIcon onOpen={openTwin} />}
+
                 {(viewControls || rotateControl || focusControls) && (
                   <div className="canvas-hud-controls" data-testid="canvas-hud-controls">
                     {viewControls}
@@ -1321,7 +1326,7 @@ export function App() {
         </div>
       </Shell>
 
-      <DietTwinIcon onOpen={openTwin} />
+      {!twinOnExploreCanvas && <DietTwinIcon onOpen={openTwin} />}
       {twinOpen && (
         <DietTwinModal
           controller={twin}
