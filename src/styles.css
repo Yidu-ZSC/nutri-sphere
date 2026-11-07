@@ -512,6 +512,11 @@ h1, h2, h3, h4 { font-weight: 600; }
   stroke-linejoin: round;
 }
 
+.focus-hud-lock.is-locked {
+  color: var(--brand);
+  background: color-mix(in srgb, var(--brand) 12%, transparent);
+}
+
 .click-focus-banner {
   position: absolute;
   top: 0;
@@ -2212,7 +2217,7 @@ code {
   .legend { gap: 4px; padding: 6px 8px; }
   .legend--collapsed { padding: 4px 6px; }
   .legend--collapsed .legend-toggle {
-    justify-content: flex-end;
+    justify-content: flex-start;
     width: 100%;
     min-height: 28px;
     gap: 6px;
