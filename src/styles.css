@@ -214,7 +214,35 @@ h1, h2, h3, h4 { font-weight: 600; }
   box-shadow: 0 1px 2px rgba(24, 24, 27, 0.07);
 }
 
-.layout-toggle button { white-space: nowrap; }
+/* NS-082: a vertical icon rail on the right edge; text lives in aria-label. */
+.layout-toggle {
+  flex-direction: column;
+  padding: 4px;
+  border-radius: 14px;
+}
+
+.layout-toggle button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.layout-toggle button svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
 /* TASK-NS-063 · knowledge domain switcher (not appearance ThemeSwitcher) */
 .domain-switch {
@@ -588,6 +616,7 @@ h1, h2, h3, h4 { font-weight: 600; }
   background: var(--panel);
   border: var(--border);
   border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
   font-size: 12px;
   pointer-events: auto;
 }
@@ -618,10 +647,35 @@ h1, h2, h3, h4 { font-weight: 600; }
   gap: 4px;
 }
 
+/* NS-082: the compact legend grows upward from its chip as a card. */
 .legend-details {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  overflow: hidden;
+  transition: grid-template-rows 220ms ease, opacity 160ms ease;
+}
+
+.legend--expanded .legend-details {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+/* Compact chip: keep the toggle pinned at the bottom and grow the card above it. */
+.legend--collapsed,
+.legend--expanded { gap: 0; margin-bottom: 0; }
+.legend--collapsed .legend-toggle,
+.legend--expanded .legend-toggle { order: 2; }
+.legend--collapsed .legend-details,
+.legend--expanded .legend-details { order: 1; }
+
+.legend-details-inner {
   display: flex;
   flex-direction: column;
-  gap: inherit;
+  gap: 8px;
+  min-height: 0;
+  overflow: hidden;
+  padding-bottom: 8px;
 }
 
 .legend-block p {
@@ -671,9 +725,9 @@ h1, h2, h3, h4 { font-weight: 600; }
 .legend-line--mid { height: 4px; }
 .legend-line--high { height: 7px; }
 
-.counts, .hud-note, .muted { color: var(--muted); }
+.hud-note, .muted { color: var(--muted); }
 
-.counts, .hud-note { margin: 0; font-size: 12px; }
+.hud-note { margin: 0; font-size: 12px; }
 
 .banner {
   margin: 24px;
@@ -2010,63 +2064,31 @@ code {
   line-height: 1.5;
 }
 
-/* TASK-NS-045: small non-blocking hint bar, never over the canvas centre. */
+/* TASK-NS-082: mobile-only icon button; desktop keeps the rail persistently visible. */
 .rail-toggle {
   display: none;
-}
-
-.empty-theme {
-  position: absolute;
-  left: 50%;
-  top: var(--space-3);
-  z-index: 4;
-  max-width: calc(100% - 32px);
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: var(--space-2);
-  padding: 6px 6px 6px var(--space-3);
-  background: var(--panel);
-  border: var(--border);
-  border-radius: 999px;
-  box-shadow: var(--shadow);
-  font-size: 13px;
-  pointer-events: auto;
-}
-
-.empty-theme p { margin: 0; white-space: nowrap; }
-
-.empty-theme .btn { padding: 4px 12px; min-height: 0; font-size: 13px; }
-
-.empty-theme-close {
-  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 26px;
-  height: 26px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
   padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  color: var(--muted, inherit);
-  font-size: 16px;
-  line-height: 1;
-  cursor: pointer;
+  border-radius: var(--radius-btn);
 }
 
-.empty-theme-close:hover,
-.empty-theme-close:focus-visible { background: var(--panel-hover); }
+.rail-toggle-icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+}
 
 .themes.is-flash {
   border-radius: var(--radius-panel, 8px);
   box-shadow: 0 0 0 2px var(--accent, #6aa9ff);
   transition: box-shadow 0.2s ease;
-}
-
-@media (max-width: 720px) {
-  /* 右上角，避开左上角「打开导航」和底部图例。 */
-  .empty-theme { left: auto; right: var(--space-2); transform: none; }
 }
 
 .graph-canvas-stage .hud {
@@ -2097,7 +2119,8 @@ code {
     position: absolute;
     z-index: 7;
     top: var(--space-3);
-    left: var(--space-3);
+    right: calc(var(--space-3) + 56px);
+    left: auto;
   }
   .drawer-handle { display: block; padding: 8px 12px 0; touch-action: none; }
   .drawer-grip {
@@ -2148,7 +2171,12 @@ code {
     gap: 2px 8px;
   }
   .legend-block p { margin: 0; }
-  .hud { left: 8px; bottom: 8px; }
+  .hud,
+  .graph-canvas-stage .hud {
+    left: calc(8px + env(safe-area-inset-left));
+    bottom: calc(8px + env(safe-area-inset-bottom));
+  }
+  .legend-details-inner { gap: 4px; padding-bottom: 4px; }
   .hud-note { display: none; }
   .btn,
   .chip,
@@ -2182,7 +2210,7 @@ code {
   .hide-toggle {
     min-width: 44px;
   }
-  .layout-toggle button { padding: 0 12px; }
+  .layout-toggle button { padding: 0; width: 44px; height: 44px; }
   .header-actions .btn { padding: 0 12px; }
   .empty-filter {
     flex-direction: column;
@@ -2193,6 +2221,7 @@ code {
 
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; }
+  .legend-details { transition: none; }
   .pattern-item,
   .pattern-item:hover,
   .twin-bar,
@@ -3308,13 +3337,13 @@ code {
 .canvas-hud-controls {
   position: absolute;
   z-index: 7;
-  top: var(--space-3);
-  right: calc(var(--space-3) + 56px);
+  top: calc(var(--space-3) + 56px);
+  right: var(--space-3);
   max-width: calc(100% - 24px);
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
   gap: 6px;
 }
 
@@ -3582,7 +3611,8 @@ code {
     display: inline-flex;
     z-index: 8;
     top: var(--space-3);
-    left: var(--space-3);
+    right: calc(var(--space-3) + 56px);
+    left: auto;
   }
 
   .workspace--twin .twin-canvas {
@@ -3602,8 +3632,8 @@ code {
   }
 
   .canvas-hud-controls {
-    top: calc(var(--space-3) + 42px);
-    right: var(--space-2);
+    top: calc(var(--space-3) + 56px);
+    right: var(--space-3);
     max-width: calc(100% - 16px);
   }
 
@@ -3838,6 +3868,4 @@ code {
     grid-template-columns: minmax(0, 1fr);
     padding: var(--space-4);
   }
-  /* Keep the transient empty hint clear of the fixed twin entry. */
-  .empty-theme { right: calc(var(--space-2) + 56px); }
 }

@@ -26,22 +26,18 @@ import { Shell } from './components/Shell';
 import { ShellRail } from './components/ShellRail';
 import { RailRecommendations } from './components/RailRecommendations';
 import { useMediaQuery } from './hooks/useMediaQuery';
-import { evidenceCounts, flowGraphStats, visibleGraphStats } from './lib/copy';
-import { selectFlowBands, type FlowEdgeInput, type FlowNodeInput } from './lib/flowLayout';
+import { evidenceCounts } from './lib/copy';
+import { type FlowEdgeInput } from './lib/flowLayout';
 import { selectHierarchyLinks } from './lib/hierarchyBudget';
 import {
   CLEAR_CLICK_FOCUS,
   CLICK_FOCUS_PREFIX,
-  EXPLORE_EMPTY_ACTION,
   HIERARCHY_BUDGET_NOTE,
   LOBBY_SEARCH_EMPTY,
   LOBBY_SEARCH_PLACEHOLDER,
   RAIL_TOGGLE_LABEL,
   SHELL_SEARCH_LABEL,
   SHELL_VEGAN_ENTRY,
-  THEME_HINT_CLOSE,
-  themeHintVisible,
-  EXPLORE_EMPTY_COPY,
 } from './lib/exploreShell';
 import { effectiveFocusIds, focusedNodeIds, isFocusEmpty } from './lib/focus';
 import { readGraphView, writeGraphView, type GraphView } from './lib/graphView';
@@ -167,8 +163,6 @@ export function App() {
   });
   const [selection, setSelection] = useState<Selection | null>(null);
   const [clickFocusId, setClickFocusId] = useState<string | null>(null);
-  const [themeHintDismissed, setThemeHintDismissed] = useState(false);
-  const [themeChipsFlash, setThemeChipsFlash] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [twinOpen, setTwinOpen] = useState(false);
   const [autoRotate, setAutoRotate] = useState(false);
@@ -538,26 +532,6 @@ export function App() {
     return rendered.links.filter((link) => kept.has(link.graphIndex));
   }, [graphView, hierarchyPick, rendered]);
 
-  const flowSummary = useMemo(() => {
-    if ((graphView !== 'flow' && !(graphView === '3d' && layout === 'hierarchy')) || !graph || !rendered) return null;
-    const nodes: FlowNodeInput[] = [];
-    for (const node of graph.nodes) {
-      if (!rendered.nodeIds.has(node.id)) continue;
-      nodes.push({ id: node.id, label: node.label, type: node.type, group: node.group });
-    }
-    const links: FlowEdgeInput[] = rendered.links.map((link) => ({
-      source: link.source,
-      target: link.target,
-      graphIndex: link.graphIndex,
-      direction: link.direction,
-      strength: link.strength,
-      relation: link.relation,
-      evidenceCount: link.evidences?.length ?? 1,
-    }));
-    const pinIndex = selection?.kind === 'link' ? selection.index : null;
-    return selectFlowBands(nodes, links, flowAnchorIds, pinIndex);
-  }, [flowAnchorIds, graph, graphView, layout, rendered, selection]);
-
   useEffect(() => {
     if (!graph || !rendered || !selection) return;
     if (selection.kind === 'node' && !rendered.nodeIds.has(selection.id)) {
@@ -614,7 +588,6 @@ export function App() {
       setClickFocusId(null);
       setHideUnmatched(false);
       setQuery('');
-      setThemeHintDismissed(false);
       return next;
     });
   }, []);
@@ -633,12 +606,6 @@ export function App() {
     leaveLens();
     setMechanismId(id);
     if (id) setFoodId(null);
-  };
-
-  const chooseTheme = () => {
-    openRail('themes');
-    setThemeChipsFlash(true);
-    window.setTimeout(() => setThemeChipsFlash(false), 1200);
   };
 
   const onTheme = (theme: ExploreTheme | null) => {
@@ -901,19 +868,6 @@ export function App() {
   const relatedPatternIds = patternsForTheme(themeForFilters(safeDisease, safeMechanism, safeFood)?.id);
 
   const filterEmpty = domainView != null && isFocusEmpty(focusIds, exploreNodes.map((node) => node.id));
-  const showThemeEmpty = !safeDisease && !safeMechanism && !safeFood && !safeLens;
-  const themeHintShown = themeHintVisible({
-    noTheme: showThemeEmpty,
-    filterEmpty,
-    clickFocusId,
-    hasSelection: selection != null,
-    dismissed: themeHintDismissed,
-  });
-
-  // Dismissal lasts for this no-theme stretch; picking a theme re-arms it for next time.
-  useEffect(() => {
-    if (!showThemeEmpty) setThemeHintDismissed(false);
-  }, [showThemeEmpty]);
 
   const onAppTheme = useCallback((next: AppTheme) => {
     setAppTheme(next);
@@ -977,7 +931,6 @@ export function App() {
           hideUnmatched={hideUnmatched}
           onTheme={onTheme}
           onHideUnmatched={setHideUnmatched}
-          flash={themeChipsFlash}
         />
         <FilterPanel
           diseases={diseases}
@@ -1120,7 +1073,9 @@ export function App() {
               aria-label={RAIL_TOGGLE_LABEL}
               onClick={() => openRail()}
             >
-              {RAIL_TOGGLE_LABEL}
+              <svg className="rail-toggle-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+                <path d="M3.5 5.5h13M3.5 10h13M3.5 14.5h13" />
+              </svg>
             </button>
           )}
 
@@ -1196,11 +1151,6 @@ export function App() {
                     flow={graphView === 'flow' || (graphView === '3d' && layout === 'hierarchy')}
                     onExpandedChange={onLegendExpandedChange}
                   />
-                  <p className="counts" data-testid="graph-stats">
-                    {(graphView === 'flow' || (graphView === '3d' && layout === 'hierarchy')) && flowSummary
-                      ? flowGraphStats(flowSummary.bands.length, flowSummary.omittedBudget, flowSummary.omittedSameColumn)
-                      : visibleGraphStats(rendered.nodeIds.size, rendered.links.length)}
-                  </p>
                   <p className="hud-note">
                     {graphView === '2d' && hierarchyPick && hierarchyPick.omittedBudget > 0
                       ? HIERARCHY_BUDGET_NOTE
@@ -1212,23 +1162,6 @@ export function App() {
                   </p>
                 </div>
 
-                {!showReadingLayer && themeHintShown && (
-                  <div className="empty-theme" role="status" data-testid="theme-empty">
-                    <p>{EXPLORE_EMPTY_COPY}</p>
-                    <button type="button" className="btn btn--primary" data-testid="choose-theme" onClick={chooseTheme}>
-                      {EXPLORE_EMPTY_ACTION}
-                    </button>
-                    <button
-                      type="button"
-                      className="empty-theme-close"
-                      aria-label={THEME_HINT_CLOSE}
-                      data-testid="theme-empty-close"
-                      onClick={() => setThemeHintDismissed(true)}
-                    >
-                      ×
-                    </button>
-                  </div>
-                )}
                 {!showReadingLayer && filterEmpty && (
                   <div className="empty-filter" role="status">
                     <p>无匹配，清除过滤</p>
