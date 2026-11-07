@@ -1,12 +1,9 @@
 import {
-  CLEAR_CLICK_FOCUS,
-  CLICK_FOCUS_PREFIX,
   FOCUS_HUD_COLLAPSE,
   FOCUS_HUD_EXPAND,
   FOCUS_HUD_LABEL,
-  THEME_HIGHLIGHT_LOCK_LABEL,
-  THEME_HIGHLIGHT_LOCK_OFF,
-  THEME_HIGHLIGHT_LOCK_ON,
+  FOCUS_LOCK_LABEL,
+  FOCUS_LOCK_OFF,
 } from '../lib/exploreShell';
 
 interface FocusHudProps {
@@ -15,11 +12,9 @@ interface FocusHudProps {
   /** Whether the push-out chip is expanded. */
   expanded: boolean;
   onToggle: () => void;
-  onClear: () => void;
-  /** Theme / lens filter is active — show the highlight lock control. */
-  themeLockVisible: boolean;
-  themeHighlightLocked: boolean;
-  onThemeLockToggle: () => void;
+  /** Unified browse-focus lock; freezes the bright set while the drawer opens. */
+  highlightBrowseLocked: boolean;
+  onLockToggle: () => void;
 }
 
 function FocusIcon() {
@@ -44,23 +39,21 @@ function LockIcon({ locked }: { locked: boolean }) {
 }
 
 /**
- * TASK-NS-085: focus toggle card in the right view rail. The info chip is
- * absolutely positioned and pushes out to the left of the card, keeping the
- * top-left rail toggle and the top-right diet twin clear.
+ * TASK-NS-085 / NS-088: focus toggle card in the right view rail. The info chip
+ * pushes out to the left of the card and carries the unified browse-focus lock;
+ * the top-left rail toggle and the top-right diet twin stay clear.
  */
 export function FocusHud({
   focusLabel,
   expanded,
   onToggle,
-  onClear,
-  themeLockVisible,
-  themeHighlightLocked,
-  onThemeLockToggle,
+  highlightBrowseLocked,
+  onLockToggle,
 }: FocusHudProps) {
   const hasFocus = focusLabel != null;
   const chipOpen = hasFocus && expanded;
   const toggleLabel = !hasFocus ? FOCUS_HUD_LABEL : chipOpen ? FOCUS_HUD_COLLAPSE : FOCUS_HUD_EXPAND;
-  const lockLabel = themeHighlightLocked ? THEME_HIGHLIGHT_LOCK_ON : THEME_HIGHLIGHT_LOCK_LABEL;
+  const lockLabel = highlightBrowseLocked ? FOCUS_LOCK_OFF : FOCUS_LOCK_LABEL;
   return (
     <div className="focus-hud" data-testid="focus-hud">
       {hasFocus && (
@@ -69,33 +62,20 @@ export function FocusHud({
           data-testid="click-focus-banner"
           role="status"
         >
-          <span className="click-focus-label">
-            {CLICK_FOCUS_PREFIX}
-            {focusLabel}
-          </span>
+          <span className="click-focus-label">{focusLabel}</span>
           <button
             type="button"
-            className="btn btn--ghost click-focus-clear"
-            data-testid="clear-click-focus"
-            onClick={onClear}
+            className={`click-focus-lock${highlightBrowseLocked ? ' is-locked' : ''}`}
+            data-testid="focus-highlight-lock"
+            aria-label={lockLabel}
+            aria-pressed={highlightBrowseLocked}
+            onClick={onLockToggle}
           >
-            {CLEAR_CLICK_FOCUS}
+            <LockIcon locked={highlightBrowseLocked} />
           </button>
         </div>
       )}
       <div className="segment focus-hud-group" role="group" aria-label={FOCUS_HUD_LABEL}>
-        {themeLockVisible && (
-          <button
-            type="button"
-            className={`focus-hud-lock${themeHighlightLocked ? ' is-locked' : ''}`}
-            data-testid="theme-highlight-lock"
-            aria-label={themeHighlightLocked ? THEME_HIGHLIGHT_LOCK_OFF : lockLabel}
-            aria-pressed={themeHighlightLocked}
-            onClick={onThemeLockToggle}
-          >
-            <LockIcon locked={themeHighlightLocked} />
-          </button>
-        )}
         <button
           type="button"
           className="focus-hud-toggle"

@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { CLEAR_CLICK_FOCUS, CLICK_FOCUS_PREFIX, FOCUS_HUD_LABEL } from './exploreShell.ts';
+import { FOCUS_HUD_LABEL, FOCUS_LOCK_LABEL, FOCUS_LOCK_OFF } from './exploreShell.ts';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const read = (file: string) => fs.readFileSync(path.join(root, file), 'utf8');
@@ -27,19 +27,31 @@ test('NS-085: focus toggle lives in the canvas HUD rail after the view toggle', 
   assert.match(hud, /aria-pressed=\{hasFocus\}/);
   assert.match(hud, /aria-expanded=\{chipOpen\}/);
   assert.match(hud, /data-testid="click-focus-banner"/);
-  assert.match(hud, /data-testid="clear-click-focus"/);
-  assert.match(hud, /data-testid="theme-highlight-lock"/);
+  assert.match(hud, /data-testid="focus-highlight-lock"/);
   assert.match(hud, /<circle /);
   assert.match(hud, /<path /);
 });
 
-test('NS-085: visible focus copy is unchanged', () => {
-  assert.equal(CLICK_FOCUS_PREFIX, '已聚焦：');
-  assert.equal(CLEAR_CLICK_FOCUS, '清除聚焦');
+test('NS-088: the chip shows only the bare label and a banner lock', () => {
   assert.equal(FOCUS_HUD_LABEL, '聚焦');
+  assert.equal(FOCUS_LOCK_LABEL, '锁定浏览聚焦');
+  assert.equal(FOCUS_LOCK_OFF, '解除浏览聚焦锁定');
+
   const hud = read('src/components/FocusHud.tsx');
-  assert.match(hud, /\{CLICK_FOCUS_PREFIX\}/);
-  assert.match(hud, /\{CLEAR_CLICK_FOCUS\}/);
+  assert.match(hud, /\{focusLabel\}/);
+  // The prefix and the old text clear button are gone; the lock lives on the chip.
+  assert.doesNotMatch(hud, /已聚焦：/);
+  assert.doesNotMatch(hud, /清除聚焦/);
+  assert.doesNotMatch(hud, /clear-click-focus/);
+  assert.doesNotMatch(hud, /theme-highlight-lock/);
+});
+
+test('NS-088: the lock is on the chip and no rail lock button remains', () => {
+  const hud = read('src/components/FocusHud.tsx');
+  const banner = hud.match(/className=\{`click-focus-banner[\s\S]*?<\/div>/)?.[0] ?? '';
+  assert.match(banner, /data-testid="focus-highlight-lock"/);
+  assert.match(banner, /aria-pressed=\{highlightBrowseLocked\}/);
+  assert.ok(banner.includes('<LockIcon locked={highlightBrowseLocked} />'));
 });
 
 test('NS-085: chip pushes out from the right rail instead of sitting across the top', () => {
@@ -73,6 +85,14 @@ test('NS-085: chip pushes out from the right rail instead of sitting across the 
 
   // NS-083 stays put.
   assert.match(mobile, /\.rail-toggle\s*\{[^}]*left:\s*var\(--space-3\)/s);
+});
+
+test('NS-088: chip lock styles replace the old rail lock styles', () => {
+  const css = read('src/styles.css');
+  assert.match(css, /\.click-focus-lock\s*\{/);
+  assert.match(css, /\.click-focus-lock\.is-locked\s*\{/);
+  assert.equal(/\.focus-hud-lock\.is-locked\s*\{/.test(css), false);
+  assert.equal(/\.click-focus-clear\s*\{/.test(css), false);
 });
 
 test('NS-085: the push-out transition is disabled under reduced motion', () => {
