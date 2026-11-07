@@ -2119,8 +2119,8 @@ code {
     position: absolute;
     z-index: 7;
     top: var(--space-3);
-    right: calc(var(--space-3) + 56px);
-    left: auto;
+    left: var(--space-3);
+    right: auto;
   }
   .drawer-handle { display: block; padding: 8px 12px 0; touch-action: none; }
   .drawer-grip {
@@ -3611,8 +3611,8 @@ code {
     display: inline-flex;
     z-index: 8;
     top: var(--space-3);
-    right: calc(var(--space-3) + 56px);
-    left: auto;
+    left: var(--space-3);
+    right: auto;
   }
 
   .workspace--twin .twin-canvas {
