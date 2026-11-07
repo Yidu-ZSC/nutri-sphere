@@ -3368,6 +3368,7 @@ code {
 }
 
 .graph-layout {
+  position: relative;
   flex: 1;
   min-width: 0;
   min-height: 0;
@@ -3693,6 +3694,25 @@ code {
 
   .workspace--detail .graph-layout {
     display: flex;
+  }
+
+  /* NS-087: the explore detail drawer becomes a floating card over the canvas.
+     It sits above the right view/focus rail (z-index 7) and rail toggle (8),
+     but below the shell nav drawer (59/60) and the diet twin entry (30). */
+  .workspace--detail .drawer {
+    --detail-drawer-inset-top: calc(var(--space-3) + 56px + 44px + 6px);
+    --detail-drawer-inset-right: calc(var(--space-3) + 56px);
+    position: absolute;
+    z-index: 28;
+    top: var(--detail-drawer-inset-top);
+    left: var(--space-3);
+    right: var(--detail-drawer-inset-right);
+    bottom: calc(var(--space-3) + env(safe-area-inset-bottom));
+    width: auto;
+    height: auto;
+    border: var(--border);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-card);
   }
 }
 
