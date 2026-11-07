@@ -102,7 +102,9 @@ test('locked shell copy stays short, local, and non-clinical', () => {
   assert.match(recommendations, /data-testid="lobby-recommended-grid"/);
   assert.match(app, /placeholder=\{LOBBY_SEARCH_PLACEHOLDER\}/);
   assert.match(app, /emptyText=\{LOBBY_SEARCH_EMPTY\}/);
-  assert.match(app, /EXPLORE_EMPTY_COPY/);
+  // NS-082 retired the 「先选择一个主题」 hint: themes are chosen from the rail.
+  assert.equal(app.includes('EXPLORE_EMPTY_COPY'), false);
+  assert.equal(app.includes('data-testid="theme-empty"'), false);
   assert.match(bar, /\{LOBBY_EDU_FOOTER\}/);
   assert.equal(bar.includes('不是医疗建议'), false);
   assert.equal(bar.includes(RETIRED_LOBBY_DISCLAIMER), false);

@@ -154,11 +154,11 @@ export function Legend({ compact = false, flow = false, onExpandedChange }: Lege
           ))}
         </span>
       </button>
-      {expanded && (
-        <div id="legend-details" className="legend-details">
+      <div id="legend-details" className="legend-details" aria-hidden={!expanded}>
+        <div className="legend-details-inner">
           <LegendBlocks flow={flow} />
         </div>
-      )}
+      </div>
     </div>
   );
 }
