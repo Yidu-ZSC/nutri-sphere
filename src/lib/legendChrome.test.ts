@@ -97,8 +97,8 @@ test('NS-082: canvas chrome is quiet and icon-led', () => {
   assert.match(css, /\.layout-toggle\s*\{[^}]*flex-direction:\s*column/s);
 
   const mobile = css.slice(css.indexOf('@media (max-width: 768px)'));
-  assert.match(mobile, /\.rail-toggle\s*\{[^}]*right:\s*calc\(var\(--space-3\)\s*\+\s*56px\)/s);
-  assert.equal(/\.rail-toggle\s*\{[^}]*left:\s*var\(--space-3\)/s.test(mobile), false);
+  assert.match(mobile, /\.rail-toggle\s*\{[^}]*left:\s*var\(--space-3\)/s);
+  assert.equal(/\.rail-toggle\s*\{[^}]*right:\s*calc\(var\(--space-3\)\s*\+\s*56px\)/s.test(mobile), false);
   assert.match(mobile, /\.hud,\s*\.graph-canvas-stage \.hud\s*\{[^}]*left:\s*calc\(8px\s*\+\s*env\(safe-area-inset-left\)\)/s);
 });
 
