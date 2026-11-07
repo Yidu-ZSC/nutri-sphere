@@ -1,6 +1,14 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { effectiveFocusIds, focusedNodeIds, isFocusEmpty, linkIsFocused, neighborhood } from './focus.ts';
+import {
+  effectiveFocusIds,
+  focusedNodeIds,
+  isFocusEmpty,
+  linkIsBrightInFocus,
+  linkIsFocused,
+  linkIsRootIncident,
+  neighborhood,
+} from './focus.ts';
 
 const links = [
   { source: 'chronic_inflammation', target: 'liver_chronic' },
@@ -101,4 +109,29 @@ test('clearing click focus restores filter-only bright set', () => {
   assert.equal(withClick?.has('glycation'), false);
   const cleared = effectiveFocusIds(filter, null, links);
   assert.deepEqual([...(cleared ?? [])].sort(), [...(filter ?? [])].sort());
+});
+
+test('root incident edges are exactly the in+out edges of the browsing root', () => {
+  const rootLinks = [
+    { source: 'root', target: 'a' },
+    { source: 'b', target: 'root' },
+    { source: 'a', target: 'b' },
+    { source: 'c', target: 'd' },
+  ];
+  assert.equal(linkIsRootIncident(rootLinks[0]!, 'root'), true);
+  assert.equal(linkIsRootIncident(rootLinks[1]!, 'root'), true);
+  assert.equal(linkIsRootIncident(rootLinks[2]!, 'root'), false);
+  assert.equal(linkIsRootIncident(rootLinks[3]!, 'root'), false);
+  assert.equal(linkIsRootIncident(rootLinks[0]!, null), false);
+});
+
+test('neighbor—neighbor edges stay dim while root incident edges stay bright', () => {
+  const root = 'root';
+  const focus = new Set(['root', 'a', 'b']);
+  assert.equal(linkIsBrightInFocus({ source: 'root', target: 'a' }, root, focus), true);
+  assert.equal(linkIsBrightInFocus({ source: 'b', target: 'root' }, root, focus), true);
+  assert.equal(linkIsBrightInFocus({ source: 'a', target: 'b' }, root, focus), false);
+  // Without a root, fall back to the induced-subgraph rule.
+  assert.equal(linkIsBrightInFocus({ source: 'a', target: 'b' }, null, focus), true);
+  assert.equal(linkIsBrightInFocus({ source: 'a', target: 'b' }, null, null), true);
 });

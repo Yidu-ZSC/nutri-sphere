@@ -75,3 +75,27 @@ export function linkIsFocused(
   if (focus == null) return true;
   return focus.has(link.source) && focus.has(link.target);
 }
+
+/**
+ * Bright-edge rule for a browsing root (TASK-NS-084). When a root is present the
+ * bright edges are exactly the root's incident edges (in + out), so neighbor—neighbor
+ * edges stay in the dimmed background. Without a root it falls back to the induced
+ * subgraph used by filter focus.
+ */
+export function linkIsRootIncident(
+  link: FocusLink,
+  root: string | null,
+): boolean {
+  if (root == null) return false;
+  return link.source === root || link.target === root;
+}
+
+/** Root-aware bright-edge test: root incident edges win, otherwise the induced subgraph. */
+export function linkIsBrightInFocus(
+  link: FocusLink,
+  root: string | null,
+  focus: ReadonlySet<string> | null,
+): boolean {
+  if (root != null) return linkIsRootIncident(link, root);
+  return linkIsFocused(link, focus);
+}

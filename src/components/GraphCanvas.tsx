@@ -6,6 +6,7 @@ import type { GraphData, GraphLink, Selection, SimNode } from '../types/graph';
 import { canvasStageForTheme } from '../lib/canvasStage';
 import type { AppTheme } from '../lib/themePreference';
 import type { LayoutMode } from '../lib/layout';
+import { entryFocusInsets } from '../lib/entryFocus';
 import { FlowCanvas } from './FlowCanvas';
 import { FlowSlabScene } from './FlowSlabScene';
 import { GraphScene2D } from './GraphScene2D';
@@ -15,12 +16,14 @@ import { pickFramedNode, type DrawLink } from './graphShared';
 interface GraphCanvasProps {
   graph: GraphData;
   focusIds: ReadonlySet<string> | null;
+  focusRoot: string | null;
   selection: Selection | null;
   layout: LayoutMode;
   graphView: GraphView;
   shownNodeIds: ReadonlySet<string>;
   shownLinks: readonly (GraphLink & { graphIndex: number })[];
   compact: boolean;
+  legendExpanded: boolean;
   autoRotate: boolean;
   anchorId: string | null;
   flowAnchorIds: readonly string[];
@@ -33,12 +36,14 @@ interface GraphCanvasProps {
 export function GraphCanvas({
   graph,
   focusIds,
+  focusRoot,
   selection,
   layout,
   graphView,
   shownNodeIds,
   shownLinks,
   compact,
+  legendExpanded,
   autoRotate,
   anchorId,
   flowAnchorIds,
@@ -76,6 +81,17 @@ export function GraphCanvas({
     [anchorId, simData.nodes],
   );
   const homeColumn = framedNode && anchorId ? columnIndex(framedNode.type) : LABEL_HOME_COLUMN;
+
+  const insets = useMemo(
+    () =>
+      entryFocusInsets({
+        mobile: compact,
+        legendExpanded,
+        focusBanner: focusRoot != null,
+        detailOverlay: selection != null && (compact || size.w <= 1024),
+      }),
+    [compact, focusRoot, legendExpanded, selection, size.w],
+  );
 
   useEffect(() => {
     try {
@@ -115,8 +131,10 @@ export function GraphCanvas({
     nodes: simData.nodes,
     links: simData.links,
     focusIds,
+    focusRoot,
+    insets,
     selection,
-      layout,
+    layout,
     compact,
     anchorId,
     framedNode,
@@ -158,6 +176,8 @@ export function GraphCanvas({
           pinIndex={selection?.kind === 'link' ? selection.index : null}
           selection={selection}
           focusIds={focusIds}
+          focusRoot={focusRoot}
+          insets={insets}
           canvasStage={canvasStage}
           onSelectNode={onSelectNode}
           onSelectLink={onSelectLink}
@@ -175,6 +195,8 @@ export function GraphCanvas({
           pinIndex={selection?.kind === 'link' ? selection.index : null}
           selection={selection}
           focusIds={focusIds}
+          focusRoot={focusRoot}
+          insets={insets}
           canvasStage={canvasStage}
           onSelectNode={onSelectNode}
           onSelectLink={onSelectLink}

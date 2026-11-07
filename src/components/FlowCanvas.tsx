@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from 'react';
 import {
   frameFlowCamera,
+  frameFlowFocus,
   layoutFlow,
   panFlowCamera,
   selectFlowBands,
@@ -9,7 +10,8 @@ import {
   type FlowEdgeInput,
   type FlowNodeInput,
 } from '../lib/flowLayout';
-import { colorWithAlpha, semanticColor } from '../lib/palette';
+import { FLOW_DIM_BAND, FLOW_DIM_LABEL, FLOW_DIM_NODE, colorWithAlpha, semanticColor } from '../lib/palette';
+import type { HudInsets } from '../lib/entryFocus';
 import type { CanvasStage } from '../lib/canvasStage';
 import type { GraphLink, GraphNode, Selection } from '../types/graph';
 
@@ -22,6 +24,8 @@ interface FlowCanvasProps {
   pinIndex: number | null;
   selection: Selection | null;
   focusIds: ReadonlySet<string> | null;
+  focusRoot: string | null;
+  insets: HudInsets;
   canvasStage: CanvasStage;
   onSelectNode: (id: string) => void;
   onSelectLink: (index: number) => void;
@@ -65,6 +69,8 @@ export function FlowCanvas({
   pinIndex,
   selection,
   focusIds,
+  focusRoot,
+  insets,
   canvasStage,
   onSelectNode,
   onSelectLink,
@@ -72,10 +78,10 @@ export function FlowCanvas({
 }: FlowCanvasProps) {
   const picture = useMemo(() => {
     const inputNodes = flowNodes(nodes);
-    const picked = selectFlowBands(inputNodes, flowEdges(links), anchors, pinIndex);
+    const picked = selectFlowBands(inputNodes, flowEdges(links), anchors, pinIndex, undefined, undefined, focusRoot);
     const laid = layoutFlow(inputNodes, picked.bands, width);
     return { picked, laid };
-  }, [anchors, links, nodes, pinIndex, width]);
+  }, [anchors, focusRoot, links, nodes, pinIndex, width]);
 
   const labels = useMemo(() => new Map(nodes.map((node) => [node.id, node.label])), [nodes]);
   const { laid } = picture;
@@ -95,10 +101,12 @@ export function FlowCanvas({
   const frameKey = `${laid.width}x${laid.height}@${width}x${height}`;
 
   useEffect(() => {
-    const next = frameFlowCamera(laid.width, laid.height, width, height);
+    const next = focusRoot != null
+      ? frameFlowFocus(laid.nodes, focusIds, width, height, insets)
+      : frameFlowCamera(laid.width, laid.height, width, height);
     cameraRef.current = next;
     setCamera(next);
-  }, [frameKey, height, laid.height, laid.width, width]);
+  }, [focusIds, focusRoot, frameKey, height, insets, laid.height, laid.nodes, laid.width, width]);
 
   useEffect(() => {
     const element = viewportRef.current;
@@ -173,10 +181,13 @@ export function FlowCanvas({
     const selected = selection?.kind === 'link' && selection.index === edge.graphIndex;
     if (selected) return 0.95;
     if (selection?.kind === 'node') {
-      return edge.source === selection.id || edge.target === selection.id ? 0.9 : 0.18;
+      return edge.source === selection.id || edge.target === selection.id ? 0.9 : FLOW_DIM_BAND;
     }
     if (selection?.kind === 'link') return 0.2;
-    if (focusIds && !(focusIds.has(edge.source) && focusIds.has(edge.target))) return 0.16;
+    if (focusRoot != null) {
+      return edge.source === focusRoot || edge.target === focusRoot ? 0.72 : FLOW_DIM_BAND;
+    }
+    if (focusIds && !(focusIds.has(edge.source) && focusIds.has(edge.target))) return FLOW_DIM_BAND;
     return 0.72;
   };
 
@@ -253,6 +264,7 @@ export function FlowCanvas({
           })}
           {laid.nodes.map((node) => {
             const selected = selection?.kind === 'node' && selection.id === node.id;
+            const bright = focusIds == null || focusIds.has(node.id) || selected;
             return (
               <g
                 key={node.id}
@@ -283,9 +295,10 @@ export function FlowCanvas({
                   fill={canvasStage.columnPlate}
                   stroke={selected ? canvasStage.nodeStrokeSelected : canvasStage.columnPlateStroke}
                   strokeWidth={selected ? 1.6 : 1}
+                  opacity={bright ? 1 : FLOW_DIM_NODE}
                 />
-                <circle cx={12} cy={node.h / 2} r={3.5} fill={semanticColor(node.group)} />
-                <text x={22} y={node.h / 2 + 4} fill={canvasStage.columnText} fontSize="12">
+                <circle cx={12} cy={node.h / 2} r={3.5} fill={semanticColor(node.group)} opacity={bright ? 1 : FLOW_DIM_NODE} />
+                <text x={22} y={node.h / 2 + 4} fill={canvasStage.columnText} fontSize="12" opacity={bright ? 1 : FLOW_DIM_LABEL}>
                   {shortLabel(node.label, node.w)}
                 </text>
                 <title>{node.label}</title>

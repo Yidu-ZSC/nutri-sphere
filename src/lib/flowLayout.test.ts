@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
+  FLOW_BAND_BUDGET,
+  FLOW_PER_NODE_CAP,
   frameFlowCamera,
+  frameFlowFocus,
   layoutFlow,
   panFlowCamera,
   selectFlowBands,
@@ -128,4 +131,67 @@ test('zoom keeps the pointer anchor still and pan shifts the camera', () => {
   assert.equal(zoomed.y, 80 - (80 - 30) * 2);
   assert.deepEqual(panFlowCamera(zoomed, 12, -4), { x: zoomed.x + 12, y: zoomed.y - 4, k: 2 });
   assert.equal(zoomFlowCamera(start, 0, 0, 20).k, 3.5);
+});
+
+test('focus mode preserves the root same-column mechanism edge', () => {
+  const picked = selectFlowBands(
+    nodes,
+    [edge('microbe', 'inflammation', 1), edge('sugar', 'obesity', 0)],
+    [],
+    null,
+    FLOW_BAND_BUDGET,
+    FLOW_PER_NODE_CAP,
+    'microbe',
+  );
+  assert.deepEqual(
+    picked.bands.map((band) => band.graphIndex).sort((a, b) => a - b),
+    [0, 1],
+  );
+  assert.equal(picked.omittedSameColumn, 0);
+});
+
+test('focus mode keeps every root incident edge past budget and per-node cap', () => {
+  const focusNodes: FlowNodeInput[] = [
+    { id: 'root', label: '根', type: 'mechanism', group: 'risk' },
+    { id: 'm2', label: '机制二', type: 'mechanism', group: 'risk' },
+    { id: 'f1', label: '食', type: 'food', group: 'neutral' },
+    { id: 'f2', label: '食二', type: 'food', group: 'neutral' },
+    { id: 'f3', label: '食三', type: 'food', group: 'neutral' },
+    { id: 'd1', label: '病', type: 'disease', group: 'risk' },
+  ];
+  const incident = [
+    edge('root', 'f1', 0),
+    edge('root', 'f2', 1),
+    edge('root', 'f3', 2),
+    edge('root', 'd1', 3),
+    edge('root', 'm2', 4),
+    edge('f1', 'm2', 5),
+  ];
+  const picked = selectFlowBands(focusNodes, incident, [], null, 3, 1, 'root');
+  const rootEdges = picked.bands.filter((band) => band.source === 'root' || band.target === 'root');
+  assert.equal(rootEdges.length, 5);
+  assert.equal(picked.bands.some((band) => band.graphIndex === 4), true);
+
+  const plain = selectFlowBands(focusNodes, incident, [], null, 3, 1);
+  assert.equal(plain.bands.some((band) => band.graphIndex === 4), false);
+});
+
+test('focus framing fits only the bright nodes and reacts to HUD insets', () => {
+  const laid = layoutFlow(
+    nodes,
+    [edge('sugar', 'obesity', 0), edge('fiber', 'microbe', 1)],
+    880,
+  );
+  const all = frameFlowFocus(laid.nodes, null, 800, 600);
+  const focused = frameFlowFocus(laid.nodes, new Set(['sugar', 'obesity']), 800, 600);
+  const crowded = frameFlowFocus(
+    laid.nodes,
+    new Set(['sugar', 'obesity']),
+    800,
+    600,
+    { top: 120, right: 60, bottom: 120, left: 60 },
+  );
+  assert.ok(focused.k >= all.k);
+  assert.ok(crowded.k <= focused.k);
+  assert.ok(crowded.k >= 0.4);
 });

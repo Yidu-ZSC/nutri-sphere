@@ -36,6 +36,8 @@ export interface ParsedShare {
   hideUnmatched: boolean;
   node: string | null;
   link: string | null;
+  /** Browsing focus root (TASK-NS-084). Never opens the detail drawer; never sets hide. */
+  focus: string | null;
 }
 
 export interface ShareState {
@@ -59,6 +61,7 @@ export interface ShareState {
   hideUnmatched: boolean;
   node: string | null;
   link: string | null;
+  focus?: string | null;
 }
 
 function cleanId(value: string | null): string | null {
@@ -175,6 +178,7 @@ export function parseViewQuery(search: string): ParsedShare {
     hideUnmatched: false,
     node: cleanId(params.get('node')),
     link: link && /^[a-z0-9_]+~[a-z0-9_]+$/.test(link) ? link : null,
+    focus: cleanId(params.get('focus')),
   };
   parsed.hideUnmatched = resolveHideUnmatched(params.get('hide'), parsed);
   if (parsed.screen === 'compare') {
@@ -256,6 +260,7 @@ export function serializeViewQuery(state: ShareState): string {
     params.set('hide', state.hideUnmatched ? '1' : '0');
     if (state.node) params.set('node', state.node);
     else if (state.link) params.set('link', state.link);
+    if (state.focus && !state.node) params.set('focus', state.focus);
   } else if (state.patterns.length > 0) {
     if (state.theme) params.set('theme', state.theme);
   }
