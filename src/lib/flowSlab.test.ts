@@ -54,3 +54,17 @@ test('home camera looks from the front-right and stays inside the turn limit', (
   assert.ok(home.position.x > home.target.x);
   assert.ok(home.minDistance < home.maxDistance);
 });
+
+test('focus home frames only the bright nodes and honors HUD insets', () => {
+  const layout = layoutSlabs(nodes, [edge('sugar', 'obesity', 1), edge('fiber', 'microbe', 2)], 880);
+  const all = slabCameraHome(layout, 1000, 640);
+  const focused = slabCameraHome(layout, 1000, 640, new Set(['sugar', 'obesity']));
+  const crowded = slabCameraHome(layout, 1000, 640, new Set(['sugar', 'obesity']), {
+    top: 20,
+    right: 360,
+    bottom: 20,
+    left: 360,
+  });
+  assert.ok(focused.minDistance <= all.minDistance);
+  assert.ok(crowded.minDistance > focused.minDistance);
+});

@@ -615,6 +615,41 @@ test('admin screen round-trips list and book detail; invalid book id stripped at
   assert.equal(parseViewQuery('?screen=admin&edge=bad').edge, null);
 });
 
+test('focus round-trips as a browsing focus and never defaults hide on', () => {
+  const parsed = parseViewQuery('?focus=glycation');
+  assert.equal(parsed.focus, 'glycation');
+  assert.equal(parsed.hideUnmatched, false);
+  assert.equal(resolveScreen(parsed), 'explore');
+
+  const query = serializeViewQuery(
+    shareState({
+      screen: 'explore',
+      hideUnmatched: false,
+      focus: 'glycation',
+    }),
+  );
+  assert.match(query, /focus=glycation/);
+  assert.match(query, /hide=0/);
+  assert.equal(parseViewQuery(query).focus, 'glycation');
+  assert.equal(parseViewQuery(query).hideUnmatched, false);
+});
+
+test('focus is omitted from the serialized query when node wins or focus is absent', () => {
+  const withNode = serializeViewQuery(
+    shareState({
+      screen: 'explore',
+      hideUnmatched: false,
+      node: 'soy',
+      focus: 'glycation',
+    }),
+  );
+  assert.equal(withNode.includes('focus='), false);
+  assert.match(withNode, /node=soy/);
+
+  const bare = serializeViewQuery(shareState({ screen: 'explore', hideUnmatched: false }));
+  assert.equal(bare.includes('focus='), false);
+});
+
 test('domain query defaults to health; illegal → health; omits health on serialize', () => {
   assert.equal(parseViewQuery('').domain, 'health');
   assert.equal(parseViewQuery('?domain=nutrition').domain, 'health');

@@ -149,8 +149,15 @@ export function layoutSlabs(
 }
 
 /** A front-three-quarter view, close enough to read the column labels. */
-export function slabCameraHome(layout: SlabLayout, viewWidth = 1000, viewHeight = 640): SlabCameraHome {
-  const nodes = layout.nodes;
+export function slabCameraHome(
+  layout: SlabLayout,
+  viewWidth = 1000,
+  viewHeight = 640,
+  focusIds: ReadonlySet<string> | null = null,
+  insets: { top?: number; right?: number; bottom?: number; left?: number } = {},
+): SlabCameraHome {
+  const focused = focusIds ? layout.nodes.filter((node) => focusIds.has(node.id)) : layout.nodes;
+  const nodes = focused.length > 0 ? focused : layout.nodes;
   if (nodes.length === 0) {
     return {
       target: { x: 0, y: 0, z: 0 },
@@ -181,7 +188,9 @@ export function slabCameraHome(layout: SlabLayout, viewWidth = 1000, viewHeight 
   };
   const spanX = Math.max(maxX - minX, 12);
   const spanY = Math.max(maxY - minY, 12);
-  const aspect = Math.max(viewWidth, 1) / Math.max(viewHeight, 1);
+  const usableW = Math.max(viewWidth - (insets.left ?? 0) - (insets.right ?? 0), 1);
+  const usableH = Math.max(viewHeight - (insets.top ?? 0) - (insets.bottom ?? 0), 1);
+  const aspect = Math.max(usableW, 1) / Math.max(usableH, 1);
   const tan = Math.tan(((32 * Math.PI) / 180) / 2);
   const distance = Math.max(spanX / (2 * tan * aspect), spanY / (2 * tan)) * 1.55;
   const polar = Math.PI / 2 - SLAB_PITCH;

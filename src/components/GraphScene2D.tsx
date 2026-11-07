@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react';
 import ForceGraph2D, { type ForceGraphMethods } from 'react-force-graph-2d';
 import { COLUMN_Y_GAP, frameGraph2d, columnIndex } from '../lib/layout';
+import { brightNodes, frameBright2d } from '../lib/entryFocus';
 import { particleCount, styledLinkWidth } from '../lib/linkStyle';
 import { labelShouldShow } from '../lib/nodeStyle';
 import { colorWithAlpha, DIM_2D_LINK, semanticColor } from '../lib/palette';
@@ -57,11 +58,11 @@ export function GraphScene2D(props: SceneCommonProps) {
     paintGraphNodeHit(ctx, describe(node), color);
   };
 
-  const frameKey = `${props.layout}|${props.compact ? 'compact' : 'full'}|${props.size.w}x${props.size.h}|${props.visibleKey}|${props.compact ? props.anchorId ?? '' : ''}`;
+  const frameKey = `${props.layout}|${props.compact ? 'compact' : 'full'}|${props.size.w}x${props.size.h}|${props.visibleKey}|${props.focusRoot ?? ''}|${props.compact ? props.anchorId ?? '' : ''}`;
 
   useEffect(() => {
     if (props.nodes.length === 0 || props.size.w === 0 || props.size.h === 0) return;
-    if (!props.compact && props.layout === 'force') return;
+    if (!props.compact && props.layout === 'force' && props.focusRoot == null) return;
     let attempts = 0;
     let applied = 0;
     let raf = 0;
@@ -71,7 +72,13 @@ export function GraphScene2D(props: SceneCommonProps) {
         if (attempts++ < 40) raf = requestAnimationFrame(tick);
         return;
       }
-      if (props.compact) {
+      if (props.focusRoot != null) {
+        const bright = brightNodes(props.nodes, props.focusIds);
+        if (bright.length === 0) return;
+        const shot = frameBright2d(bright, props.size.w, props.size.h, props.insets);
+        api.centerAt(shot.x, shot.y, 0);
+        api.zoom(Math.max(shot.k, 0.2), 0);
+      } else if (props.compact) {
         const target = props.framedNode;
         if (!target || target.x == null || target.y == null) {
           if (attempts++ < 40) raf = requestAnimationFrame(tick);
@@ -88,7 +95,7 @@ export function GraphScene2D(props: SceneCommonProps) {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [frameKey, props.compact, props.framedNode, props.layout, props.nodes, props.size.h, props.size.w]);
+  }, [frameKey, props.compact, props.focusIds, props.focusRoot, props.framedNode, props.insets, props.layout, props.nodes, props.size.h, props.size.w]);
 
   useEffect(() => {
     let frame = 0;
@@ -147,7 +154,7 @@ export function GraphScene2D(props: SceneCommonProps) {
         const typed = link as DrawLink;
         const color = semanticColor(typed.direction);
         const canonical = props.graph.links[typed.graphIndex];
-        const bright = canonical ? linkIsBright(canonical, typed.graphIndex, props.selection, props.focusIds) : false;
+        const bright = canonical ? linkIsBright(canonical, typed.graphIndex, props.selection, props.focusIds, props.focusRoot) : false;
         return bright ? colorWithAlpha(color, 0.92) : colorWithAlpha(color, DIM_2D_LINK);
       }}
       linkWidth={(link) => {
@@ -162,7 +169,7 @@ export function GraphScene2D(props: SceneCommonProps) {
         return particleCount({
           coarse: props.coarse,
           selected: props.selection?.kind === 'link' && props.selection.index === typed.graphIndex,
-          focused: canonical ? linkIsBright(canonical, typed.graphIndex, null, props.focusIds) : false,
+          focused: canonical ? linkIsBright(canonical, typed.graphIndex, null, props.focusIds, props.focusRoot) : false,
           filtered: props.focusIds != null,
         });
       }}
@@ -177,6 +184,14 @@ export function GraphScene2D(props: SceneCommonProps) {
       }}
       onEngineStop={() => {
         if (layoutRef.current !== 'force' || compactRef.current) return;
+        if (props.focusRoot != null) {
+          const bright = brightNodes(props.nodes, props.focusIds);
+          if (bright.length === 0) return;
+          const shot = frameBright2d(bright, props.size.w, props.size.h, props.insets);
+          fgRef.current?.centerAt(shot.x, shot.y, 0);
+          fgRef.current?.zoom(Math.max(shot.k, 0.2), 0);
+          return;
+        }
         fgRef.current?.zoomToFit(600, 72);
       }}
       minZoom={0.15}

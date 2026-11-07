@@ -11,6 +11,7 @@ import {
   framingDistance,
 } from '../lib/layout';
 import { LINK_OPACITY_3D, LINK_PARTICLE_WIDTH_3D, particleCount, styledLinkWidth } from '../lib/linkStyle';
+import { brightNodes, frameBright3d } from '../lib/entryFocus';
 import { labelShouldShow, labelTextHeight, nodeScale, shapeKindForType } from '../lib/nodeStyle';
 import { colorWithAlpha, semanticColor, DIM_3D_LABEL, DIM_3D_LINK, DIM_3D_NODE } from '../lib/palette';
 import type { SimNode } from '../types/graph';
@@ -288,11 +289,11 @@ export function GraphScene3D(props: GraphScene3DProps) {
     };
   }, [props.layout, props.nodes, props.links]);
 
-  const frameKey = `${props.layout}|${props.compact ? 'compact' : 'full'}|${props.size.w}x${props.size.h}|${props.visibleKey}|${props.anchorId ?? ''}`;
+  const frameKey = `${props.layout}|${props.compact ? 'compact' : 'full'}|${props.size.w}x${props.size.h}|${props.visibleKey}|${props.focusRoot ?? ''}|${props.anchorId ?? ''}`;
 
   useEffect(() => {
     if (props.nodes.length === 0 || props.size.w === 0 || props.size.h === 0) return;
-    if (!props.compact && props.layout === 'force') return;
+    if (!props.compact && props.layout === 'force' && props.focusRoot == null) return;
     const token = ++fitToken.current;
     let attempts = 0;
     let raf = 0;
@@ -306,6 +307,14 @@ export function GraphScene3D(props: GraphScene3DProps) {
       flattenCamera(api);
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const duration = reduce ? 0 : 680;
+      if (props.focusRoot != null) {
+        const bright = brightNodes(props.nodes, props.focusIds);
+        if (bright.length === 0) return;
+        const shot = frameBright3d(bright, props.size.w, props.size.h, props.insets, EXPLORE_FOV);
+        api.cameraPosition({ x: shot.x, y: shot.y, z: shot.z }, { x: shot.x, y: shot.y, z: 0 }, duration);
+        framedKey.current = frameKey;
+        return;
+      }
       if (props.compact) {
         const target = props.framedNode;
         if (!target || target.x == null || target.y == null) return;
@@ -327,7 +336,7 @@ export function GraphScene3D(props: GraphScene3DProps) {
       fitToken.current += 1;
       cancelAnimationFrame(raf);
     };
-  }, [frameKey, props.compact, props.framedNode, props.layout, props.nodes, props.size.h, props.size.w]);
+  }, [frameKey, props.compact, props.focusIds, props.focusRoot, props.framedNode, props.insets, props.layout, props.nodes, props.size.h, props.size.w]);
 
   const selectionKey =
     props.selection == null
@@ -338,6 +347,7 @@ export function GraphScene3D(props: GraphScene3DProps) {
 
   useEffect(() => {
     if (!selectionKey || props.compact) return;
+    if (props.focusRoot != null) return;
     pauseTemporarily();
     let frame = 0;
     let tries = 0;
@@ -375,7 +385,7 @@ export function GraphScene3D(props: GraphScene3DProps) {
     };
     frame = requestAnimationFrame(go);
     return () => cancelAnimationFrame(frame);
-  }, [pauseTemporarily, props.compact, props.links, props.nodes, selectionKey]);
+  }, [pauseTemporarily, props.compact, props.focusRoot, props.links, props.nodes, selectionKey]);
 
   return (
     <ForceGraph3D
@@ -401,7 +411,7 @@ export function GraphScene3D(props: GraphScene3DProps) {
         const typed = link as DrawLink;
         const color = semanticColor(typed.direction);
         const canonical = props.graph.links[typed.graphIndex];
-        const bright = canonical ? linkIsBright(canonical, typed.graphIndex, props.selection, props.focusIds) : false;
+        const bright = canonical ? linkIsBright(canonical, typed.graphIndex, props.selection, props.focusIds, props.focusRoot) : false;
         return bright ? color : colorWithAlpha(color, DIM_3D_LINK);
       }}
       linkWidth={(link) => {
@@ -421,7 +431,7 @@ export function GraphScene3D(props: GraphScene3DProps) {
         return particleCount({
           coarse: props.coarse,
           selected: props.selection?.kind === 'link' && props.selection.index === typed.graphIndex,
-          focused: canonical ? linkIsBright(canonical, typed.graphIndex, null, props.focusIds) : false,
+          focused: canonical ? linkIsBright(canonical, typed.graphIndex, null, props.focusIds, props.focusRoot) : false,
           filtered: props.focusIds != null,
         });
       }}
@@ -432,6 +442,13 @@ export function GraphScene3D(props: GraphScene3DProps) {
       onBackgroundClick={props.onBackground}
       onEngineStop={() => {
         if (layoutRef.current !== 'force' || compactRef.current) return;
+        if (props.focusRoot != null) {
+          const bright = brightNodes(props.nodes, props.focusIds);
+          if (bright.length === 0) return;
+          const shot = frameBright3d(bright, props.size.w, props.size.h, props.insets, EXPLORE_FOV);
+          fgRef.current?.cameraPosition({ x: shot.x, y: shot.y, z: shot.z }, { x: shot.x, y: shot.y, z: 0 }, 0);
+          return;
+        }
         if (framedKey.current === frameKey) return;
         framedKey.current = frameKey;
         fgRef.current?.zoomToFit(600, 64);

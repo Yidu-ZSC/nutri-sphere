@@ -37,3 +37,11 @@ export const DIM_2D_LINK = 0.06;
 export const DIM_3D_NODE = 0.06;
 export const DIM_3D_LABEL = 0.08;
 export const DIM_3D_LINK = 0.05;
+
+/**
+ * Pathway (flow / slab) dimming for nodes and labels when a browsing focus is active.
+ * New constants live beside the locked 2D/3D values; the 2D/3D constants stay untouched.
+ */
+export const FLOW_DIM_NODE = 0.2;
+export const FLOW_DIM_LABEL = 0.24;
+export const FLOW_DIM_BAND = 0.16;

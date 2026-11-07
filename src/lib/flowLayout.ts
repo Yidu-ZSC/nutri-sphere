@@ -33,6 +33,11 @@ export interface FlowBandPick {
  * Same-column edges are counted and left out of the picture.
  * Over budget, anchor-touching edges and stronger / better-evidenced edges win.
  * A pinned link is kept when it crosses columns.
+ *
+ * In focus mode (`focusRoot` set) every incident edge of the root is preserved
+ * first — including same-column mechanism edges and past the 36-budget / per-node
+ * cap — so the browsing focus can honestly show the whole one-hop neighborhood.
+ * Non-root edges keep the full-graph rules unchanged.
  */
 export function selectFlowBands(
   nodes: readonly FlowNodeInput[],
@@ -41,11 +46,17 @@ export function selectFlowBands(
   pinIndex: number | null,
   budget = FLOW_BAND_BUDGET,
   perNode = FLOW_PER_NODE_CAP,
+  focusRoot: string | null = null,
 ): FlowBandPick {
   const columnOf = new Map(nodes.map((node) => [node.id, columnIndex(node.type)]));
+  const rootBands: FlowEdgeInput[] = [];
   const cross: FlowEdgeInput[] = [];
   let omittedSameColumn = 0;
   for (const link of links) {
+    if (focusRoot != null && (link.source === focusRoot || link.target === focusRoot)) {
+      rootBands.push(link);
+      continue;
+    }
     const sourceColumn = columnOf.get(link.source);
     const targetColumn = columnOf.get(link.target);
     if (sourceColumn == null || targetColumn == null || sourceColumn === targetColumn) {
@@ -59,11 +70,11 @@ export function selectFlowBands(
   const ranked = [...cross].sort(
     (a, b) => edgePriority(b, anchorSet) - edgePriority(a, anchorSet) || a.graphIndex - b.graphIndex,
   );
-  let kept: FlowEdgeInput[];
+  let keptCross: FlowEdgeInput[];
   if (ranked.length <= budget) {
-    kept = ranked;
+    keptCross = ranked;
   } else {
-    kept = [];
+    keptCross = [];
     const used = new Map<string, number>();
     const deferred: FlowEdgeInput[] = [];
     for (const link of ranked) {
@@ -73,31 +84,32 @@ export function selectFlowBands(
         deferred.push(link);
         continue;
       }
-      kept.push(link);
+      keptCross.push(link);
       used.set(link.source, sourceCount + 1);
       used.set(link.target, targetCount + 1);
-      if (kept.length >= budget) break;
+      if (keptCross.length >= budget) break;
     }
-    if (kept.length < budget) {
+    if (keptCross.length < budget) {
       for (const link of deferred) {
-        kept.push(link);
-        if (kept.length >= budget) break;
+        keptCross.push(link);
+        if (keptCross.length >= budget) break;
       }
     }
   }
 
-  if (pinIndex != null && !kept.some((link) => link.graphIndex === pinIndex)) {
+  if (pinIndex != null && !keptCross.some((link) => link.graphIndex === pinIndex)) {
     const pinned = cross.find((link) => link.graphIndex === pinIndex);
     if (pinned) {
-      if (kept.length >= budget && budget > 0) kept = kept.slice(0, budget - 1);
-      kept = [...kept, pinned];
+      if (keptCross.length >= budget && budget > 0) keptCross = keptCross.slice(0, budget - 1);
+      keptCross = [...keptCross, pinned];
     }
   }
 
+  const rootSorted = [...rootBands].sort((a, b) => a.graphIndex - b.graphIndex);
   return {
-    bands: kept,
+    bands: [...rootSorted, ...keptCross],
     omittedSameColumn,
-    omittedBudget: Math.max(cross.length - kept.length, 0),
+    omittedBudget: Math.max(cross.length - keptCross.length, 0),
   };
 }
 
@@ -333,4 +345,46 @@ export function zoomFlowCamera(
 
 export function panFlowCamera(camera: FlowCamera, dx: number, dy: number): FlowCamera {
   return { x: camera.x + dx, y: camera.y + dy, k: camera.k };
+}
+
+/**
+ * Fit the bright (focused) pathway nodes into the HUD-safe viewport. Unlike the
+ * whole-layout `frameFlowCamera`, this may zoom in past 1× so a small one-hop
+ * neighborhood stays readable, and it accounts for the focus banner / legend / rail.
+ */
+export function frameFlowFocus(
+  nodes: readonly PlacedFlowNode[],
+  focusIds: ReadonlySet<string> | null,
+  viewWidth: number,
+  viewHeight: number,
+  insets: { top?: number; right?: number; bottom?: number; left?: number } = {},
+): FlowCamera {
+  const bright = focusIds ? nodes.filter((node) => focusIds.has(node.id)) : nodes;
+  const list = bright.length > 0 ? bright : nodes;
+  if (list.length === 0) return { x: 0, y: 0, k: 1 };
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+  for (const node of list) {
+    minX = Math.min(minX, node.x);
+    minY = Math.min(minY, node.y);
+    maxX = Math.max(maxX, node.x + node.w);
+    maxY = Math.max(maxY, node.y + node.h);
+  }
+  const pad = 20;
+  const left = insets.left ?? pad;
+  const right = insets.right ?? pad;
+  const top = insets.top ?? pad;
+  const bottom = insets.bottom ?? pad;
+  const usableW = Math.max(viewWidth - left - right, 1);
+  const usableH = Math.max(viewHeight - top - bottom, 1);
+  const spanX = Math.max(maxX - minX, 1);
+  const spanY = Math.max(maxY - minY, 1);
+  const k = clampZoom(Math.min(usableW / spanX, usableH / spanY));
+  return {
+    k,
+    x: left + (usableW - spanX * k) / 2 - minX * k,
+    y: top + (usableH - spanY * k) / 2 - minY * k,
+  };
 }

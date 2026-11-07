@@ -40,6 +40,13 @@ import {
   SHELL_VEGAN_ENTRY,
 } from './lib/exploreShell';
 import { effectiveFocusIds, focusedNodeIds, isFocusEmpty } from './lib/focus';
+import {
+  ENTRY_FOCUS_NONE,
+  eligibleEntryFocusNodes,
+  readEntryFocusStorage,
+  resolveEntryFocusRoot,
+  writeEntryFocusStorage,
+} from './lib/entryFocus';
 import { readGraphView, writeGraphView, type GraphView } from './lib/graphView';
 import { twinExploreTarget, type TwinIndicatorId } from './lib/dietTwin';
 import {
@@ -84,6 +91,7 @@ interface ExploreSnapshot {
   graphView: GraphView;
   hideUnmatched: boolean;
   selection: Selection | null;
+  clickFocusId: string | null;
 }
 
 type LoadState =
@@ -218,6 +226,25 @@ export function App() {
           setMechanismId(mechanism);
           setFoodId(food);
           setLensId(validLens);
+
+          if (resolveScreen(parsed) === 'explore') {
+            const hasFilterContext = Boolean(disease || mechanism || food || validLens);
+            const domainGraph = filterGraphByDomain(graph, parsed.domain);
+            const eligible = eligibleEntryFocusNodes(domainGraph.nodes, domainGraph.links);
+            const resolution = resolveEntryFocusRoot({
+              hasFilterContext,
+              selection: nextSelection,
+              urlFocus: parsed.focus,
+              storedFocus: readEntryFocusStorage(),
+              eligible,
+              validNodeIds: domainGraph.nodeIds,
+            });
+            if (resolution.drewRandom && resolution.focusRoot) {
+              writeEntryFocusStorage(resolution.focusRoot);
+            }
+            setClickFocusId(resolution.focusRoot);
+          }
+
           setSelection(nextSelection);
           if (parsed.screen === 'source') {
             const known = sourceById(sourcesData, parsed.source);
@@ -418,6 +445,8 @@ export function App() {
     if (screen === 'explore' && !graph) return;
     const exploring = screen === 'explore' && graph != null;
     const link = exploring && selection?.kind === 'link' ? graph.links[selection.index] : undefined;
+    const hasAnchor = Boolean(safeLens || safeDisease || safeMechanism || safeFood);
+    const focusForUrl = exploring && !hasAnchor && selection == null && clickFocusId ? clickFocusId : null;
     const next = serializeViewQuery({
       screen,
       domain: activeDomain,
@@ -446,6 +475,7 @@ export function App() {
             ? adminNodeId
             : null,
       link: link ? linkKey(link.source, link.target) : null,
+      focus: focusForUrl,
     });
     const target = `${window.location.pathname}${next}${window.location.hash}`;
     const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
@@ -468,6 +498,7 @@ export function App() {
     screen,
     selection,
     sourceId,
+    clickFocusId,
   ]);
 
   const focusIds = useMemo(
@@ -632,10 +663,11 @@ export function App() {
 
   const clearClickFocus = () => {
     setClickFocusId(null);
+    const hasAnchor = Boolean(safeLens || safeDisease || safeMechanism || safeFood);
+    if (!hasAnchor) writeEntryFocusStorage(ENTRY_FOCUS_NONE);
   };
 
-  const clearSelectionAndClickFocus = () => {
-    setClickFocusId(null);
+  const clearSelection = () => {
     setSelection(null);
   };
 
@@ -685,6 +717,7 @@ export function App() {
     graphView,
     hideUnmatched,
     selection,
+    clickFocusId,
   });
 
   const openVeganDietDetail = () => {
@@ -748,7 +781,7 @@ export function App() {
     setLayout(snapshot.layout);
     setGraphView(snapshot.graphView);
     setHideUnmatched(snapshot.hideUnmatched);
-    setClickFocusId(null);
+    setClickFocusId(snapshot.clickFocusId);
     setSelection(snapshot.selection);
     setScreen('explore');
   };
@@ -780,7 +813,7 @@ export function App() {
     setLayout(snapshot.layout);
     setGraphView(snapshot.graphView);
     setHideUnmatched(snapshot.hideUnmatched);
-    setClickFocusId(null);
+    setClickFocusId(snapshot.clickFocusId);
     setSelection(snapshot.selection);
     setScreen('explore');
   };
@@ -1106,18 +1139,20 @@ export function App() {
                 <GraphCanvas
                   graph={graph}
                   focusIds={brightFocusIds}
+                  focusRoot={clickFocusId}
                   selection={selection}
                   layout={layout}
                   graphView={graphView}
                   shownNodeIds={rendered.nodeIds}
                   shownLinks={drawnLinks}
                   compact={mobile}
+                  legendExpanded={legendExpanded}
                   autoRotate={autoRotate}
                   anchorId={anchorId}
                   flowAnchorIds={flowAnchorIds}
                   onSelectNode={selectNode}
                   onSelectLink={selectLink}
-                  onBackground={clearSelectionAndClickFocus}
+                  onBackground={clearSelection}
                   appTheme={appTheme}
                 />
 

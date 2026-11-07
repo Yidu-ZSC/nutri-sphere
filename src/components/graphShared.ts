@@ -1,4 +1,5 @@
-import { linkIsFocused } from '../lib/focus';
+import { linkIsBrightInFocus } from '../lib/focus';
+import type { HudInsets } from '../lib/entryFocus';
 import { LABEL_HOME_COLUMN, columnIndex, type LayoutMode } from '../lib/layout';
 import type { CanvasStage } from '../lib/canvasStage';
 import type { GraphData, Selection, SimLink, SimNode } from '../types/graph';
@@ -10,6 +11,9 @@ export interface SceneCommonProps {
   nodes: SimNode[];
   links: DrawLink[];
   focusIds: ReadonlySet<string> | null;
+  /** Browsing focus root (TASK-NS-084). Distinct from `selection`; never opens the drawer. */
+  focusRoot: string | null;
+  insets: HudInsets;
   selection: Selection | null;
   layout: LayoutMode;
   compact: boolean;
@@ -51,9 +55,10 @@ export function linkIsBright(
   index: number,
   selection: Selection | null,
   focusIds: ReadonlySet<string> | null,
+  focusRoot: string | null = null,
 ): boolean {
   if (selection?.kind === 'link' && selection.index === index) return true;
-  return linkIsFocused(link, focusIds);
+  return linkIsBrightInFocus(link, focusRoot, focusIds);
 }
 
 export function pickFramedNode(nodes: readonly SimNode[], anchorId: string | null): SimNode | undefined {
