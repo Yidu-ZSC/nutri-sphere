@@ -145,28 +145,33 @@ export interface HudInsets {
 export interface EntryFocusViewport {
   mobile: boolean;
   legendExpanded: boolean;
-  focusBanner: boolean;
+  /** The focus chip pushes out to the left of the right view rail (TASK-NS-085). */
+  focusChip: boolean;
   /** Detail drawer overlays the canvas (mobile sheet or <=1024 side overlay). */
   detailOverlay: boolean;
 }
 
+/** Width reserved on the right while the focus chip is expanded. */
+export const FOCUS_CHIP_INSET = 200;
+
 /**
  * Approximate HUD pixel budgets so the bright one-hop region stays clear of the
- * rail toggle, diet twin, view rail, legend, focus banner, and overlay drawer.
+ * rail toggle, diet twin, view rail, legend, focus chip, and overlay drawer.
  * The desktop nav rail and non-overlay drawer shrink the measured canvas instead.
  */
 export function entryFocusInsets(v: EntryFocusViewport): HudInsets {
+  const chip = v.focusChip ? FOCUS_CHIP_INSET : 0;
   if (v.mobile) {
     return {
-      top: 56 + (v.focusBanner ? 64 : 0),
-      right: 60,
+      top: 56,
+      right: 60 + chip,
       bottom: (v.legendExpanded ? 148 : 72) + (v.detailOverlay ? 128 : 0),
       left: 60,
     };
   }
   return {
-    top: v.focusBanner ? 72 : 28,
-    right: v.detailOverlay ? 400 : 72,
+    top: 28,
+    right: (v.detailOverlay ? 400 : 72) + chip,
     bottom: v.legendExpanded ? 148 : 48,
     left: 16,
   };

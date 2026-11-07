@@ -3,6 +3,7 @@ import { DetailDrawer } from './components/DetailDrawer';
 import { DietTwinIcon, DietTwinModal, useDietTwinController } from './components/DietTwin';
 import { DisclaimerBar } from './components/DisclaimerBar';
 import { FilterPanel } from './components/FilterPanel';
+import { FocusHud } from './components/FocusHud';
 import { GraphCanvas } from './components/GraphCanvas';
 import { LayoutToggle } from './components/LayoutToggle';
 import { Legend } from './components/Legend';
@@ -30,8 +31,6 @@ import { evidenceCounts } from './lib/copy';
 import { type FlowEdgeInput } from './lib/flowLayout';
 import { selectHierarchyLinks } from './lib/hierarchyBudget';
 import {
-  CLEAR_CLICK_FOCUS,
-  CLICK_FOCUS_PREFIX,
   HIERARCHY_BUDGET_NOTE,
   LOBBY_SEARCH_EMPTY,
   LOBBY_SEARCH_PLACEHOLDER,
@@ -43,6 +42,7 @@ import { effectiveFocusIds, focusedNodeIds, isFocusEmpty } from './lib/focus';
 import {
   ENTRY_FOCUS_NONE,
   eligibleEntryFocusNodes,
+  pickEntryFocusRoot,
   readEntryFocusStorage,
   resolveEntryFocusRoot,
   writeEntryFocusStorage,
@@ -171,6 +171,8 @@ export function App() {
   });
   const [selection, setSelection] = useState<Selection | null>(null);
   const [clickFocusId, setClickFocusId] = useState<string | null>(null);
+  /** TASK-NS-085: the right-rail focus chip starts expanded whenever focus appears. */
+  const [focusChipOpen, setFocusChipOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [twinOpen, setTwinOpen] = useState(false);
   const [autoRotate, setAutoRotate] = useState(false);
@@ -517,6 +519,11 @@ export function App() {
     return graph.nodes.find((node) => node.id === clickFocusId)?.label ?? null;
   }, [clickFocusId, graph]);
 
+  // A newly applied focus opens the chip; clearing it collapses the chip.
+  useEffect(() => {
+    setFocusChipOpen(clickFocusId != null);
+  }, [clickFocusId]);
+
   const rendered = useMemo(() => {
     if (!graph || !domainView) return null;
     const pinned = selectionPinIds(selection, graph.links, hideUnmatched, focusIds);
@@ -665,6 +672,24 @@ export function App() {
     setClickFocusId(null);
     const hasAnchor = Boolean(safeLens || safeDisease || safeMechanism || safeFood);
     if (!hasAnchor) writeEntryFocusStorage(ENTRY_FOCUS_NONE);
+  };
+
+  /**
+   * TASK-NS-085: with a focus, the toggle only collapses/expands the chip.
+   * Without one it draws a fresh eligible mechanism (lifting a stored `__none__`)
+   * and never opens the detail drawer.
+   */
+  const onFocusHudToggle = () => {
+    if (clickFocusId != null) {
+      setFocusChipOpen((open) => !open);
+      return;
+    }
+    if (!domainView) return;
+    const next = pickEntryFocusRoot(eligibleEntryFocusNodes(domainView.nodes, domainView.links));
+    if (next == null) return;
+    writeEntryFocusStorage(next);
+    setClickFocusId(next);
+    setFocusChipOpen(true);
   };
 
   const clearSelection = () => {
@@ -914,6 +939,15 @@ export function App() {
   }, []);
 
   const viewControls = graphWorkspace && !showReadingLayer ? <LayoutToggle view={graphView} onChange={onGraphView} /> : null;
+  const focusControls =
+    graphWorkspace && !showReadingLayer ? (
+      <FocusHud
+        focusLabel={clickFocusLabel}
+        expanded={focusChipOpen}
+        onToggle={onFocusHudToggle}
+        onClear={clearClickFocus}
+      />
+    ) : null;
   const rotateControl =
     graphWorkspace && !showReadingLayer && graphView === '3d' && layout === 'force' ? (
       <button
@@ -1140,6 +1174,7 @@ export function App() {
                   graph={graph}
                   focusIds={brightFocusIds}
                   focusRoot={clickFocusId}
+                  focusChipExpanded={Boolean(clickFocusId && clickFocusLabel && focusChipOpen)}
                   selection={selection}
                   layout={layout}
                   graphView={graphView}
@@ -1156,27 +1191,11 @@ export function App() {
                   appTheme={appTheme}
                 />
 
-                {(viewControls || rotateControl) && (
+                {(viewControls || rotateControl || focusControls) && (
                   <div className="canvas-hud-controls" data-testid="canvas-hud-controls">
                     {viewControls}
                     {rotateControl}
-                  </div>
-                )}
-
-                {clickFocusId && clickFocusLabel && (
-                  <div className="click-focus-banner" data-testid="click-focus-banner" role="status">
-                    <span className="click-focus-label">
-                      {CLICK_FOCUS_PREFIX}
-                      {clickFocusLabel}
-                    </span>
-                    <button
-                      type="button"
-                      className="btn btn--ghost"
-                      data-testid="clear-click-focus"
-                      onClick={clearClickFocus}
-                    >
-                      {CLEAR_CLICK_FOCUS}
-                    </button>
+                    {focusControls}
                   </div>
                 )}
 

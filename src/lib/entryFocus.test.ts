@@ -151,18 +151,25 @@ test('a valid url focus outranks a stored __none__ sentinel', () => {
   );
 });
 
-test('HUD insets react to mobile, legend, banner, and detail overlay', () => {
-  const desktop = entryFocusInsets({ mobile: false, legendExpanded: false, focusBanner: false, detailOverlay: false });
-  const banner = entryFocusInsets({ mobile: false, legendExpanded: false, focusBanner: true, detailOverlay: false });
-  const legend = entryFocusInsets({ mobile: false, legendExpanded: true, focusBanner: false, detailOverlay: false });
-  const overlay = entryFocusInsets({ mobile: false, legendExpanded: false, focusBanner: false, detailOverlay: true });
-  const mobile = entryFocusInsets({ mobile: true, legendExpanded: false, focusBanner: false, detailOverlay: false });
-  assert.ok(banner.top > desktop.top);
+test('HUD insets react to mobile, legend, chip, and detail overlay', () => {
+  const desktop = entryFocusInsets({ mobile: false, legendExpanded: false, focusChip: false, detailOverlay: false });
+  const chip = entryFocusInsets({ mobile: false, legendExpanded: false, focusChip: true, detailOverlay: false });
+  const legend = entryFocusInsets({ mobile: false, legendExpanded: true, focusChip: false, detailOverlay: false });
+  const overlay = entryFocusInsets({ mobile: false, legendExpanded: false, focusChip: false, detailOverlay: true });
+  const mobile = entryFocusInsets({ mobile: true, legendExpanded: false, focusChip: false, detailOverlay: false });
+  const mobileChip = entryFocusInsets({ mobile: true, legendExpanded: false, focusChip: true, detailOverlay: false });
+
+  // TASK-NS-085: the chip pushes out from the right rail, never from the top.
+  assert.ok(chip.right > desktop.right);
+  assert.equal(chip.top, desktop.top);
+  assert.ok(mobileChip.right > mobile.right);
+  assert.equal(mobileChip.top, mobile.top);
+
   assert.ok(legend.bottom > desktop.bottom);
   assert.ok(overlay.right > desktop.right);
   assert.ok(mobile.top > desktop.top);
   assert.ok(mobile.left > desktop.left);
-  for (const insets of [desktop, banner, legend, overlay, mobile]) {
+  for (const insets of [desktop, chip, legend, overlay, mobile, mobileChip]) {
     assert.ok(insets.top >= 0 && insets.right >= 0 && insets.bottom >= 0 && insets.left >= 0);
   }
 });

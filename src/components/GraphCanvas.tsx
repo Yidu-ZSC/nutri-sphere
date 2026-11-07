@@ -17,6 +17,8 @@ interface GraphCanvasProps {
   graph: GraphData;
   focusIds: ReadonlySet<string> | null;
   focusRoot: string | null;
+  /** The right-rail focus chip is expanded; widen the HUD-safe right inset. */
+  focusChipExpanded: boolean;
   selection: Selection | null;
   layout: LayoutMode;
   graphView: GraphView;
@@ -37,6 +39,7 @@ export function GraphCanvas({
   graph,
   focusIds,
   focusRoot,
+  focusChipExpanded,
   selection,
   layout,
   graphView,
@@ -87,10 +90,10 @@ export function GraphCanvas({
       entryFocusInsets({
         mobile: compact,
         legendExpanded,
-        focusBanner: focusRoot != null,
+        focusChip: focusChipExpanded,
         detailOverlay: selection != null && (compact || size.w <= 1024),
       }),
-    [compact, focusRoot, legendExpanded, selection, size.w],
+    [compact, focusChipExpanded, legendExpanded, selection, size.w],
   );
 
   useEffect(() => {

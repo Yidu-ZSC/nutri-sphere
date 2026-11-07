@@ -65,6 +65,14 @@ export const CLICK_FOCUS_PREFIX = '已聚焦：';
 
 export const CLEAR_CLICK_FOCUS = '清除聚焦';
 
+/** Accessible name for the focus toggle in the right view rail (TASK-NS-085). */
+export const FOCUS_HUD_LABEL = '聚焦';
+
+/** Accessible hints for the push-out chip; the visible copy stays above. */
+export const FOCUS_HUD_EXPAND = '展开聚焦说明';
+
+export const FOCUS_HUD_COLLAPSE = '收起聚焦说明';
+
 /** Close label for the non-blocking 「先选择一个主题」 hint (TASK-NS-045). */
 export const THEME_HINT_CLOSE = '关闭';
 
