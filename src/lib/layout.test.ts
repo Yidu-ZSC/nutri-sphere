@@ -43,6 +43,23 @@ test('hierarchy pins a column and spreads rows', () => {
   assert.ok((byId.m1?.x ?? 0) < (byId.d1?.x ?? 0));
 });
 
+test('compact hierarchy spreads lanes wider and keeps desktop columns unchanged', () => {
+  const desktop = [
+    node('f1', 'food', '甲'),
+    node('n1', 'nutrient', '乙'),
+    node('m1', 'mechanism', '丙'),
+    node('d1', 'disease', '丁'),
+  ];
+  const mobile = desktop.map((item) => ({ ...item }));
+  applyLayout(desktop, 'hierarchy');
+  applyLayout(mobile, 'hierarchy', true);
+  const desktopGap = (desktop.find((item) => item.type === 'mechanism')?.x ?? 0) - (desktop.find((item) => item.type === 'food')?.x ?? 0);
+  const mobileGap = (mobile.find((item) => item.type === 'mechanism')?.x ?? 0) - (mobile.find((item) => item.type === 'food')?.x ?? 0);
+  assert.ok(mobileGap > desktopGap);
+  assert.equal(desktop.find((item) => item.type === 'mechanism')?.x, 45);
+  assert.equal(desktop.find((item) => item.type === 'food')?.x, -135);
+});
+
 test('hierarchy stays on one plane', () => {
   const nodes = [node('a', 'food', '甲'), node('b', 'food', '乙'), node('c', 'food', '丙')];
   applyLayout(nodes, 'hierarchy');

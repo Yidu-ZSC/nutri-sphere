@@ -75,8 +75,9 @@ export function labelShouldShow(options: {
     if (!options.compact) return true;
     return insideLabelWindow(options);
   }
+  // Compact 2D keeps every rendered node labelled so the focused neighborhood
+  // never reads as an empty, half-labelled graph (NS-086).
+  if (options.compact) return true;
   if (!options.bright) return false;
-  if (!options.compact) return true;
-  if (options.column !== options.homeColumn) return false;
-  return insideLabelWindow(options);
+  return true;
 }

@@ -95,8 +95,8 @@ function fittedFont(ctx: CanvasRenderingContext2D, text: string, preferred: numb
   return Math.max(3.05, preferred * (MAX_LABEL_WIDTH / width));
 }
 
-function measureLabel(ctx: CanvasRenderingContext2D, node: PaintedNode): LabelBox | null {
-  if (!node.showLabel) return null;
+function measureLabel(ctx: CanvasRenderingContext2D, node: PaintedNode, force = false): LabelBox | null {
+  if (!force && !node.showLabel) return null;
   const fontPx = fittedFont(ctx, node.label, node.selected ? FONT * 1.12 : FONT);
   ctx.font = `600 ${fontPx}px ${LABEL_FONT}`;
   const lines = [node.label];
@@ -149,12 +149,23 @@ export function paintGraphNode(
   ctx.restore();
 }
 
-export function paintGraphNodeHit(ctx: CanvasRenderingContext2D, node: PaintedNode, color: string) {
+export function paintGraphNodeHit(
+  ctx: CanvasRenderingContext2D,
+  node: PaintedNode,
+  color: string,
+  globalScale = 1,
+  coarse = false,
+) {
+  const scale = Math.max(globalScale, 0.001);
+  // Touch devices get a minimum ~44px target; the visual shape is otherwise tiny.
+  const minScreenRadius = coarse ? 22 : 6;
+  const radius = Math.max(nodeRadius(node.degree, node.type, node.selected), minScreenRadius / scale);
   ctx.save();
   ctx.fillStyle = color;
-  traceShape(ctx, shapeKindForType(node.type), node.x, node.y, nodeRadius(node.degree, node.type, node.selected));
+  traceShape(ctx, shapeKindForType(node.type), node.x, node.y, radius);
   ctx.fill();
-  const box = measureLabel(ctx, node);
+  // Keep the name plate tappable even when its label is visually hidden.
+  const box = measureLabel(ctx, node, true);
   if (box) ctx.fillRect(box.x, box.y, box.w, box.h);
   ctx.restore();
 }
@@ -164,13 +175,17 @@ export function paintColumnCaptions(
   nodes: readonly { x?: number; y?: number; type: string }[],
   globalScale: number,
   stage: CanvasStage,
+  compact = false,
 ) {
   const placed = nodes.filter((node) => node.y != null);
   if (placed.length === 0) return;
   const scale = Math.max(globalScale, 0.001);
   const headerY = Math.min(...placed.map((node) => node.y ?? 0)) - 26;
+  // Compact pills are narrower so the four lanes stay separated on a phone.
+  const fontPx = compact ? 11 : 13;
+  const padXPx = compact ? 6 : 8;
   ctx.save();
-  ctx.font = `600 ${13 / scale}px ${LABEL_FONT}`;
+  ctx.font = `600 ${fontPx / scale}px ${LABEL_FONT}`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'bottom';
   COLUMN_CAPTIONS.forEach((caption, column) => {
@@ -178,7 +193,7 @@ export function paintColumnCaptions(
     if (group.length === 0) return;
     const x = group.reduce((sum, node) => sum + (node.x ?? 0), 0) / group.length;
     const width = ctx.measureText(caption).width;
-    const padX = 8 / scale;
+    const padX = padXPx / scale;
     const textH = 16 / scale;
     const boxW = width + padX * 2;
     const boxH = textH + 5 / scale;
