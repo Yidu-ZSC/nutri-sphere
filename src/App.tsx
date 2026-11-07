@@ -38,9 +38,8 @@ import {
   SHELL_SEARCH_LABEL,
   SHELL_VEGAN_ENTRY,
 } from './lib/exploreShell';
-import { focusedNodeIds, hasThemeHighlightContext, isFocusEmpty, resolveCanvasFocus } from './lib/focus';
+import { focusedNodeIds, isFocusEmpty, resolveCanvasFocus } from './lib/focus';
 import {
-  ENTRY_FOCUS_NONE,
   eligibleEntryFocusNodes,
   pickEntryFocusRoot,
   readEntryFocusStorage,
@@ -171,7 +170,10 @@ export function App() {
   });
   const [selection, setSelection] = useState<Selection | null>(null);
   const [clickFocusId, setClickFocusId] = useState<string | null>(null);
-  const [themeHighlightLocked, setThemeHighlightLocked] = useState(false);
+  /** Unified browse-focus lock; freezes the bright set while node/edge details open (TASK-NS-088). */
+  const [highlightBrowseLocked, setHighlightBrowseLocked] = useState(false);
+  /** Snapshotted browse root while locked; null means the theme/lens filter branch. */
+  const [lockedFocusRoot, setLockedFocusRoot] = useState<string | null>(null);
   /** TASK-NS-085: the right-rail focus chip starts expanded whenever focus appears. */
   const [focusChipOpen, setFocusChipOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
@@ -509,11 +511,6 @@ export function App() {
     [domainView, safeDisease, safeFood, safeLens, safeMechanism],
   );
 
-  const themeHighlightContext = useMemo(
-    () => hasThemeHighlightContext(safeDisease, safeMechanism, safeFood, safeLens),
-    [safeDisease, safeFood, safeLens, safeMechanism],
-  );
-
   const canvasFocus = useMemo(
     () =>
       domainView
@@ -521,26 +518,30 @@ export function App() {
             focusIds,
             clickFocusId,
             domainView.links,
-            themeHighlightLocked,
-            themeHighlightContext,
+            highlightBrowseLocked,
+            lockedFocusRoot,
           )
         : { brightIds: null as ReadonlySet<string> | null, focusRoot: null as string | null },
-    [clickFocusId, domainView, focusIds, themeHighlightContext, themeHighlightLocked],
+    [clickFocusId, domainView, focusIds, highlightBrowseLocked, lockedFocusRoot],
   );
 
   /** Bright/dim only — click-focus dims outsiders; does not hard-hide nodes. */
   const brightFocusIds = canvasFocus.brightIds;
   const canvasFocusRoot = canvasFocus.focusRoot;
 
-  const clickFocusLabel = useMemo(() => {
-    if (!graph || !clickFocusId) return null;
-    return graph.nodes.find((node) => node.id === clickFocusId)?.label ?? null;
-  }, [clickFocusId, graph]);
+  /** Chip label: the focused node, or the theme/lens anchor when no click focus is set. */
+  const focusLabel = useMemo(() => {
+    if (!graph) return null;
+    const id = clickFocusId ?? safeLens ?? safeMechanism ?? safeDisease ?? safeFood;
+    if (!id) return null;
+    return graph.nodes.find((node) => node.id === id)?.label ?? null;
+  }, [clickFocusId, graph, safeDisease, safeFood, safeLens, safeMechanism]);
 
-  // A newly applied focus opens the chip; clearing it collapses the chip.
+  // A newly applied focus opens the chip only while browsing is unlocked.
+  // When locked, the chip expands/collapses only via the focus (crosshair) icon.
   useEffect(() => {
-    setFocusChipOpen(clickFocusId != null);
-  }, [clickFocusId]);
+    if (clickFocusId != null && !highlightBrowseLocked) setFocusChipOpen(true);
+  }, [clickFocusId, highlightBrowseLocked]);
 
   const rendered = useMemo(() => {
     if (!graph || !domainView) return null;
@@ -608,11 +609,15 @@ export function App() {
 
   const anchorId = useMemo(() => {
     const themeAnchor = safeLens ?? safeMechanism ?? safeDisease ?? safeFood;
-    if (themeHighlightLocked && themeHighlightContext && themeAnchor) return themeAnchor;
+    // While locked, the camera anchor stays frozen and does not follow selection.
+    if (highlightBrowseLocked) {
+      if (lockedFocusRoot != null) return lockedFocusRoot;
+      return themeAnchor;
+    }
     if (!graph || !selection) return themeAnchor;
     if (selection.kind === 'node') return selection.id;
     return graph.links[selection.index]?.target ?? themeAnchor;
-  }, [graph, safeDisease, safeFood, safeLens, safeMechanism, selection, themeHighlightContext, themeHighlightLocked]);
+  }, [graph, highlightBrowseLocked, lockedFocusRoot, safeDisease, safeFood, safeLens, safeMechanism, selection]);
 
   const onQuery = useCallback((value: string) => setQuery(value), []);
 
@@ -630,7 +635,8 @@ export function App() {
 
   const clearFilters = () => {
     leaveLens();
-    setThemeHighlightLocked(false);
+    setHighlightBrowseLocked(false);
+    setLockedFocusRoot(null);
     setDiseaseId(null);
     setMechanismId(null);
     setFoodId(null);
@@ -645,6 +651,8 @@ export function App() {
       setLensId(null);
       setSelection(null);
       setClickFocusId(null);
+      setHighlightBrowseLocked(false);
+      setLockedFocusRoot(null);
       setHideUnmatched(false);
       setQuery('');
       return next;
@@ -670,12 +678,16 @@ export function App() {
   const onTheme = (theme: ExploreTheme | null) => {
     leaveLens();
     if (!theme) {
-      setThemeHighlightLocked(false);
+      setHighlightBrowseLocked(false);
+      setLockedFocusRoot(null);
       setDiseaseId(null);
       setMechanismId(null);
       setFoodId(null);
     } else {
-      setThemeHighlightLocked(true);
+      setClickFocusId(null);
+      setLockedFocusRoot(null);
+      setHighlightBrowseLocked(true);
+      setFocusChipOpen(false);
       setDiseaseId(theme.diseaseId);
       setMechanismId(theme.mechanismId);
       setFoodId(theme.foodId);
@@ -683,7 +695,8 @@ export function App() {
   };
 
   const selectNode = (id: string) => {
-    if (themeHighlightLocked && themeHighlightContext) {
+    // Locked: tapping a node only opens the drawer — the browse root stays frozen.
+    if (highlightBrowseLocked) {
       setSelection({ kind: 'node', id });
       return;
     }
@@ -691,35 +704,25 @@ export function App() {
     setSelection({ kind: 'node', id });
   };
 
-  const onThemeHighlightLockToggle = () => {
-    setThemeHighlightLocked((locked) => {
-      const next = !locked;
-      if (next) setClickFocusId(null);
-      return next;
-    });
+  const onHighlightBrowseLockToggle = () => {
+    const next = !highlightBrowseLocked;
+    // Locking snapshots the current browse root (prefer the click focus); it does
+    // not clear clickFocusId. Unlocking frees browsing without clearing the focus.
+    setLockedFocusRoot(next ? clickFocusId : null);
+    setHighlightBrowseLocked(next);
   };
 
   const selectLink = (index: number) => {
     setSelection({ kind: 'link', index });
   };
 
-  const clearClickFocus = () => {
-    setClickFocusId(null);
-    const hasAnchor = Boolean(safeLens || safeDisease || safeMechanism || safeFood);
-    if (!hasAnchor) writeEntryFocusStorage(ENTRY_FOCUS_NONE);
-  };
-
   /**
-   * TASK-NS-085: with a focus, the toggle only collapses/expands the chip.
-   * Without one it draws a fresh eligible mechanism (lifting a stored `__none__`)
-   * and never opens the detail drawer.
+   * TASK-NS-085 / NS-088: with any chip label (click focus or theme/lens anchor),
+   * the focus icon only collapses/expands the chip. Without one it draws a fresh
+   * eligible mechanism (lifting a stored `__none__`) and never opens the drawer.
    */
   const onFocusHudToggle = () => {
-    if (themeHighlightLocked && themeHighlightContext) {
-      if (clickFocusId != null) setFocusChipOpen((open) => !open);
-      return;
-    }
-    if (clickFocusId != null) {
+    if (focusLabel != null) {
       setFocusChipOpen((open) => !open);
       return;
     }
@@ -744,7 +747,9 @@ export function App() {
     setGraphView('flow');
     setHideUnmatched(true);
     setClickFocusId(null);
-    setThemeHighlightLocked(true);
+    setLockedFocusRoot(null);
+    setHighlightBrowseLocked(true);
+    setFocusChipOpen(false);
     setSelection(null);
     setPatternId(null);
     setPatternReturnSnapshot(null);
@@ -762,7 +767,9 @@ export function App() {
     setGraphView('flow');
     setHideUnmatched(true);
     setClickFocusId(null);
-    setThemeHighlightLocked(true);
+    setLockedFocusRoot(null);
+    setHighlightBrowseLocked(true);
+    setFocusChipOpen(false);
     setSelection({ kind: 'node', id: nodeId });
     setPatternId(null);
     setPatternReturnSnapshot(null);
@@ -983,13 +990,11 @@ export function App() {
   const focusControls =
     graphWorkspace && !showReadingLayer ? (
       <FocusHud
-        focusLabel={clickFocusLabel}
+        focusLabel={focusLabel}
         expanded={focusChipOpen}
         onToggle={onFocusHudToggle}
-        onClear={clearClickFocus}
-        themeLockVisible={themeHighlightContext}
-        themeHighlightLocked={themeHighlightLocked}
-        onThemeLockToggle={onThemeHighlightLockToggle}
+        highlightBrowseLocked={highlightBrowseLocked}
+        onLockToggle={onHighlightBrowseLockToggle}
       />
     ) : null;
   const rotateControl =
@@ -1218,7 +1223,7 @@ export function App() {
                   graph={graph}
                   focusIds={brightFocusIds}
                   focusRoot={canvasFocusRoot}
-                  focusChipExpanded={Boolean(clickFocusId && clickFocusLabel && focusChipOpen)}
+                  focusChipExpanded={Boolean(focusLabel && focusChipOpen)}
                   selection={selection}
                   layout={layout}
                   graphView={graphView}

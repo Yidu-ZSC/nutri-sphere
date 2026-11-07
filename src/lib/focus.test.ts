@@ -105,18 +105,32 @@ test('effectiveFocusIds ANDs click neighborhood with filter focus', () => {
   assert.equal(focus?.has('glycation'), false);
 });
 
-test('resolveCanvasFocus keeps theme bright set while locked', () => {
+test('resolveCanvasFocus keeps the filter bright set while locked with no snapshot', () => {
   const filter = focusedNodeIds(links, 'liver_chronic', null);
-  const unlocked = resolveCanvasFocus(filter, 'chronic_inflammation', links, false, true);
+  const unlocked = resolveCanvasFocus(filter, 'chronic_inflammation', links, false, null);
   assert.equal(unlocked.focusRoot, 'chronic_inflammation');
   assert.equal(unlocked.brightIds?.has('glycation'), false);
-  const locked = resolveCanvasFocus(filter, 'chronic_inflammation', links, true, true);
+  const locked = resolveCanvasFocus(filter, 'chronic_inflammation', links, true, null);
   assert.equal(locked.focusRoot, null);
   assert.deepEqual([...(locked.brightIds ?? [])].sort(), [...(filter ?? [])].sort());
 });
 
-test('resolveCanvasFocus ignores lock without theme context', () => {
-  const focus = resolveCanvasFocus(null, 'chronic_inflammation', links, true, false);
+test('resolveCanvasFocus freezes a snapshotted click root while locked', () => {
+  const filter = focusedNodeIds(links, 'liver_chronic', null);
+  const locked = resolveCanvasFocus(filter, 'glycation', links, true, 'chronic_inflammation');
+  assert.equal(locked.focusRoot, 'chronic_inflammation');
+  assert.deepEqual([...(locked.brightIds ?? [])].sort(), ['chronic_inflammation', 'liver_chronic']);
+  assert.equal(locked.brightIds?.has('glycation'), false);
+});
+
+test('resolveCanvasFocus locked root without a filter uses its own neighborhood', () => {
+  const locked = resolveCanvasFocus(null, null, links, true, 'chronic_inflammation');
+  assert.equal(locked.focusRoot, 'chronic_inflammation');
+  assert.deepEqual([...(locked.brightIds ?? [])].sort(), ['chronic_inflammation', 'glycation', 'liver_chronic']);
+});
+
+test('resolveCanvasFocus ignores the snapshot while unlocked', () => {
+  const focus = resolveCanvasFocus(null, 'chronic_inflammation', links, false, 'glycation');
   assert.equal(focus.focusRoot, 'chronic_inflammation');
 });
 

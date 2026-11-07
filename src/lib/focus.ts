@@ -69,15 +69,24 @@ export function hasThemeHighlightContext(
   return Boolean(diseaseId || mechanismId || foodId || lensId);
 }
 
-/** When the theme highlight is locked, clicks only open the drawer — bright set stays on the theme. */
+/**
+ * When the browse focus is locked, clicks only open the drawer — the bright set
+ * stays on the snapshotted root (or the theme/lens filter when no root was set).
+ */
 export function resolveCanvasFocus(
   filterFocus: ReadonlySet<string> | null,
   clickRoot: string | null,
   links: readonly FocusLink[],
-  themeHighlightLocked: boolean,
-  hasThemeContext: boolean,
+  locked: boolean,
+  lockedFocusRoot: string | null,
 ): { brightIds: ReadonlySet<string> | null; focusRoot: string | null } {
-  if (themeHighlightLocked && hasThemeContext) {
+  if (locked) {
+    if (lockedFocusRoot != null) {
+      return {
+        brightIds: effectiveFocusIds(filterFocus, lockedFocusRoot, links),
+        focusRoot: lockedFocusRoot,
+      };
+    }
     return { brightIds: filterFocus, focusRoot: null };
   }
   return {

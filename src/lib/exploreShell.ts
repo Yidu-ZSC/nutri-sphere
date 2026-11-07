@@ -60,11 +60,6 @@ export const EXPLORE_EMPTY_COPY = '先选择一个主题';
 
 export const EXPLORE_EMPTY_ACTION = SHELL_OPEN_NAV;
 
-/** Click-focus chrome: shown while a node one-hop focus is active. */
-export const CLICK_FOCUS_PREFIX = '已聚焦：';
-
-export const CLEAR_CLICK_FOCUS = '清除聚焦';
-
 /** Accessible name for the focus toggle in the right view rail (TASK-NS-085). */
 export const FOCUS_HUD_LABEL = '聚焦';
 
@@ -73,12 +68,14 @@ export const FOCUS_HUD_EXPAND = '展开聚焦说明';
 
 export const FOCUS_HUD_COLLAPSE = '收起聚焦说明';
 
-/** Lock the active theme/lens highlight while browsing node and edge details. */
-export const THEME_HIGHLIGHT_LOCK_LABEL = '锁定主题高亮';
+/**
+ * Unified browse-focus lock on the push-out chip (TASK-NS-088). While locked,
+ * tapping nodes/edges only opens the drawer; the bright set and chip stay frozen.
+ * Unlocking never clears the focus on its own.
+ */
+export const FOCUS_LOCK_LABEL = '锁定浏览聚焦';
 
-export const THEME_HIGHLIGHT_LOCK_ON = '已锁定主题高亮';
-
-export const THEME_HIGHLIGHT_LOCK_OFF = '解除主题高亮锁定';
+export const FOCUS_LOCK_OFF = '解除浏览聚焦锁定';
 
 /** Close label for the non-blocking 「先选择一个主题」 hint (TASK-NS-045). */
 export const THEME_HINT_CLOSE = '关闭';
