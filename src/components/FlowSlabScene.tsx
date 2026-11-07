@@ -17,6 +17,7 @@ import { selectFlowBands, type FlowEdgeInput, type FlowNodeInput } from '../lib/
 import type { HudInsets } from '../lib/entryFocus';
 import type { CanvasStage } from '../lib/canvasStage';
 import type { GraphLink, GraphNode, Selection } from '../types/graph';
+import { linkIsInteractable, nodeIsInteractable } from './graphShared';
 
 interface FlowSlabSceneProps {
   nodes: readonly GraphNode[];
@@ -33,6 +34,7 @@ interface FlowSlabSceneProps {
   onSelectNode: (id: string) => void;
   onSelectLink: (index: number) => void;
   onBackground: () => void;
+  highlightBrowseLocked: boolean;
 }
 
 function flowNodes(nodes: readonly GraphNode[]): FlowNodeInput[] {
@@ -119,6 +121,7 @@ export function FlowSlabScene({
   onSelectNode,
   onSelectLink,
   onBackground,
+  highlightBrowseLocked,
 }: FlowSlabSceneProps) {
   const hostRef = useRef<HTMLDivElement>(null);
   const picture = useMemo(() => {
@@ -134,12 +137,14 @@ export function FlowSlabScene({
   const selectNodeRef = useRef(onSelectNode);
   const selectLinkRef = useRef(onSelectLink);
   const backgroundRef = useRef(onBackground);
+  const lockedRef = useRef(highlightBrowseLocked);
   selectionRef.current = selection;
   focusRef.current = focusIds;
   focusRootRef.current = focusRoot;
   selectNodeRef.current = onSelectNode;
   selectLinkRef.current = onSelectLink;
   backgroundRef.current = onBackground;
+  lockedRef.current = highlightBrowseLocked;
 
   const focusKey = focusIds ? [...focusIds].sort().join('|') : '';
   const selectionKey = selection == null ? '' : selection.kind === 'node' ? `n:${selection.id}` : `l:${selection.index}`;
@@ -330,9 +335,30 @@ export function FlowSlabScene({
       if (moved) return;
       const hit = pick(event);
       const data = hit?.object.userData as { kind?: string; id?: string; index?: number } | undefined;
-      if (data?.kind === 'node' && data.id) selectNodeRef.current(data.id);
-      else if (data?.kind === 'band' && data.index != null) selectLinkRef.current(data.index);
-      else backgroundRef.current();
+      if (data?.kind === 'node' && data.id) {
+        if (
+          !nodeIsInteractable(data.id, lockedRef.current, selectionRef.current, links, focusRef.current)
+        ) {
+          return;
+        }
+        selectNodeRef.current(data.id);
+      } else if (data?.kind === 'band' && data.index != null) {
+        const edge = links[data.index];
+        if (
+          !edge ||
+          !linkIsInteractable(
+            edge,
+            data.index,
+            lockedRef.current,
+            selectionRef.current,
+            focusRef.current,
+            focusRootRef.current,
+          )
+        ) {
+          return;
+        }
+        selectLinkRef.current(data.index);
+      } else backgroundRef.current();
     };
     const onDoubleClick = (event: MouseEvent) => {
       const hit = pick(event as unknown as PointerEvent);

@@ -28,6 +28,8 @@ export interface SceneCommonProps {
   onSelectNode: (id: string) => void;
   onSelectLink: (index: number) => void;
   onBackground: () => void;
+  /** Locked browse: dim nodes/edges are not clickable. */
+  highlightBrowseLocked: boolean;
 }
 
 export function nodeIsSelected(id: string, selection: Selection | null, links: GraphData['links']): boolean {
@@ -49,6 +51,8 @@ export function nodeIsBright(
   if (focusIds == null) return true;
   return focusIds.has(id);
 }
+
+export { linkIsInteractable, nodeIsInteractable } from '../lib/focus';
 
 export function linkIsBright(
   link: { source: string; target: string },

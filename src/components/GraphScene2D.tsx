@@ -6,7 +6,15 @@ import { particleCount, styledLinkWidth } from '../lib/linkStyle';
 import { labelShouldShow } from '../lib/nodeStyle';
 import { colorWithAlpha, DIM_2D_LINK, semanticColor } from '../lib/palette';
 import type { SimNode } from '../types/graph';
-import { linkIsBright, nodeIsBright, nodeIsSelected, type DrawLink, type SceneCommonProps } from './graphShared';
+import {
+  linkIsBright,
+  linkIsInteractable,
+  nodeIsBright,
+  nodeIsInteractable,
+  nodeIsSelected,
+  type DrawLink,
+  type SceneCommonProps,
+} from './graphShared';
 import { paintColumnCaptions, paintGraphNode, paintGraphNodeHit, type PaintedNode } from './paintNode2d';
 
 type GraphApi = ForceGraphMethods<SimNode, DrawLink>;
@@ -55,7 +63,19 @@ export function GraphScene2D(props: SceneCommonProps) {
   };
 
   const nodePointerAreaPaint = (node: SimNode, color: string, ctx: CanvasRenderingContext2D, globalScale: number) => {
-    paintGraphNodeHit(ctx, describe(node), color, globalScale, props.coarse);
+    const painted = describe(node);
+    if (
+      !nodeIsInteractable(
+        node.id,
+        props.highlightBrowseLocked,
+        props.selection,
+        props.graph.links,
+        props.focusIds,
+      )
+    ) {
+      return;
+    }
+    paintGraphNodeHit(ctx, painted, color, globalScale, props.coarse);
   };
 
   const frameKey = `${props.layout}|${props.compact ? 'compact' : 'full'}|${props.size.w}x${props.size.h}|${props.visibleKey}|${props.focusRoot ?? ''}|${props.compact ? props.anchorId ?? '' : ''}`;
@@ -175,8 +195,33 @@ export function GraphScene2D(props: SceneCommonProps) {
       }}
       linkDirectionalParticleWidth={2.2}
       linkDirectionalParticleSpeed={0.006}
-      onNodeClick={(node) => props.onSelectNode((node as SimNode).id)}
-      onLinkClick={(link) => props.onSelectLink((link as DrawLink).graphIndex)}
+      onNodeClick={(node) => {
+        const id = (node as SimNode).id;
+        if (
+          !nodeIsInteractable(id, props.highlightBrowseLocked, props.selection, props.graph.links, props.focusIds)
+        ) {
+          return;
+        }
+        props.onSelectNode(id);
+      }}
+      onLinkClick={(link) => {
+        const typed = link as DrawLink;
+        const canonical = props.graph.links[typed.graphIndex];
+        if (
+          !canonical ||
+          !linkIsInteractable(
+            canonical,
+            typed.graphIndex,
+            props.highlightBrowseLocked,
+            props.selection,
+            props.focusIds,
+            props.focusRoot,
+          )
+        ) {
+          return;
+        }
+        props.onSelectLink(typed.graphIndex);
+      }}
       onBackgroundClick={props.onBackground}
       onRenderFramePost={(ctx, globalScale) => {
         if (layoutRef.current !== 'hierarchy') return;

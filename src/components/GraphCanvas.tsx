@@ -32,6 +32,7 @@ interface GraphCanvasProps {
   onSelectNode: (id: string) => void;
   onSelectLink: (index: number) => void;
   onBackground: () => void;
+  highlightBrowseLocked: boolean;
   appTheme: AppTheme;
 }
 
@@ -53,6 +54,7 @@ export function GraphCanvas({
   onSelectNode,
   onSelectLink,
   onBackground,
+  highlightBrowseLocked,
   appTheme,
 }: GraphCanvasProps) {
   const canvasStage = useMemo(() => canvasStageForTheme(appTheme), [appTheme]);
@@ -150,6 +152,7 @@ export function GraphCanvas({
     onSelectLink,
     onBackground,
     canvasStage,
+    highlightBrowseLocked,
   };
 
   const ready = size.w > 0 && size.h > 0 && simData.nodes.length > 0;
@@ -185,6 +188,7 @@ export function GraphCanvas({
           onSelectNode={onSelectNode}
           onSelectLink={onSelectLink}
           onBackground={onBackground}
+          highlightBrowseLocked={highlightBrowseLocked}
         />
       )}
       {ready && graphView === '2d' && <GraphScene2D {...scene} />}
@@ -204,6 +208,7 @@ export function GraphCanvas({
           onSelectNode={onSelectNode}
           onSelectLink={onSelectLink}
           onBackground={onBackground}
+          highlightBrowseLocked={highlightBrowseLocked}
         />
       )}
       {ready && graphView === '3d' && webgl && layout === 'force' && (

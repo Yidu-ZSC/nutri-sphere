@@ -134,3 +134,33 @@ export function linkIsBrightInFocus(
   if (root != null) return linkIsRootIncident(link, root);
   return linkIsFocused(link, focus);
 }
+
+export function nodeIsInteractable(
+  id: string,
+  browseLocked: boolean,
+  selection: { kind: 'node'; id: string } | { kind: 'link'; index: number } | null,
+  links: readonly FocusLink[],
+  focusIds: ReadonlySet<string> | null,
+): boolean {
+  if (!browseLocked) return true;
+  if (selection?.kind === 'node' && selection.id === id) return true;
+  if (selection?.kind === 'link') {
+    const link = links[selection.index];
+    if (link && (link.source === id || link.target === id)) return true;
+  }
+  if (focusIds == null) return true;
+  return focusIds.has(id);
+}
+
+export function linkIsInteractable(
+  link: FocusLink,
+  index: number,
+  browseLocked: boolean,
+  selection: { kind: 'node'; id: string } | { kind: 'link'; index: number } | null,
+  focusIds: ReadonlySet<string> | null,
+  focusRoot: string | null,
+): boolean {
+  if (!browseLocked) return true;
+  if (selection?.kind === 'link' && selection.index === index) return true;
+  return linkIsBrightInFocus(link, focusRoot, focusIds);
+}

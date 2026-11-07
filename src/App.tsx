@@ -4,6 +4,7 @@ import { DietTwinIcon, DietTwinModal, useDietTwinController } from './components
 import { DisclaimerBar } from './components/DisclaimerBar';
 import { FilterPanel } from './components/FilterPanel';
 import { FocusHud } from './components/FocusHud';
+import { linkIsInteractable, nodeIsInteractable } from './components/graphShared';
 import { GraphCanvas } from './components/GraphCanvas';
 import { LayoutToggle } from './components/LayoutToggle';
 import { Legend } from './components/Legend';
@@ -695,6 +696,12 @@ export function App() {
   };
 
   const selectNode = (id: string) => {
+    if (
+      graph &&
+      !nodeIsInteractable(id, highlightBrowseLocked, selection, graph.links, brightFocusIds)
+    ) {
+      return;
+    }
     // Locked: tapping a node only opens the drawer — the browse root stays frozen.
     if (highlightBrowseLocked) {
       setSelection({ kind: 'node', id });
@@ -713,6 +720,14 @@ export function App() {
   };
 
   const selectLink = (index: number) => {
+    if (!graph) return;
+    const link = graph.links[index];
+    if (
+      !link ||
+      !linkIsInteractable(link, index, highlightBrowseLocked, selection, brightFocusIds, canvasFocusRoot)
+    ) {
+      return;
+    }
     setSelection({ kind: 'link', index });
   };
 
@@ -1240,6 +1255,7 @@ export function App() {
                   onSelectNode={selectNode}
                   onSelectLink={selectLink}
                   onBackground={clearSelection}
+                  highlightBrowseLocked={highlightBrowseLocked}
                   appTheme={appTheme}
                 />
 

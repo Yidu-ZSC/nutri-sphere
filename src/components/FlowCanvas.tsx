@@ -14,6 +14,7 @@ import { FLOW_DIM_BAND, FLOW_DIM_LABEL, FLOW_DIM_NODE, colorWithAlpha, semanticC
 import type { HudInsets } from '../lib/entryFocus';
 import type { CanvasStage } from '../lib/canvasStage';
 import type { GraphLink, GraphNode, Selection } from '../types/graph';
+import { linkIsInteractable, nodeIsInteractable } from './graphShared';
 
 interface FlowCanvasProps {
   nodes: readonly GraphNode[];
@@ -30,6 +31,7 @@ interface FlowCanvasProps {
   onSelectNode: (id: string) => void;
   onSelectLink: (index: number) => void;
   onBackground: () => void;
+  highlightBrowseLocked: boolean;
 }
 
 function flowNodes(nodes: readonly GraphNode[]): FlowNodeInput[] {
@@ -75,6 +77,7 @@ export function FlowCanvas({
   onSelectNode,
   onSelectLink,
   onBackground,
+  highlightBrowseLocked,
 }: FlowCanvasProps) {
   const picture = useMemo(() => {
     const inputNodes = flowNodes(nodes);
@@ -233,8 +236,19 @@ export function FlowCanvas({
             const sourceLabel = labels.get(band.edge.source) ?? band.edge.source;
             const targetLabel = labels.get(band.edge.target) ?? band.edge.target;
             const title = `${sourceLabel} → ${targetLabel}。${band.edge.relation}`;
+            const edgeLink = links.find((item) => item.graphIndex === band.edge.graphIndex);
+            const bandHit =
+              edgeLink &&
+              linkIsInteractable(
+                edgeLink,
+                band.edge.graphIndex,
+                highlightBrowseLocked,
+                selection,
+                focusIds,
+                focusRoot,
+              );
             return (
-              <g key={band.edge.graphIndex}>
+              <g key={band.edge.graphIndex} style={{ pointerEvents: bandHit ? 'auto' : 'none' }}>
                 <path
                   d={band.d}
                   fill="none"
@@ -245,7 +259,7 @@ export function FlowCanvas({
                   data-index={band.edge.graphIndex}
                   onClick={(event) => {
                     event.stopPropagation();
-                    if (ignoreSuppressed()) return;
+                    if (ignoreSuppressed() || !bandHit) return;
                     onSelectLink(band.edge.graphIndex);
                   }}
                 >
@@ -265,6 +279,7 @@ export function FlowCanvas({
           {laid.nodes.map((node) => {
             const selected = selection?.kind === 'node' && selection.id === node.id;
             const bright = focusIds == null || focusIds.has(node.id) || selected;
+            const nodeHit = nodeIsInteractable(node.id, highlightBrowseLocked, selection, links, focusIds);
             return (
               <g
                 key={node.id}
@@ -272,9 +287,10 @@ export function FlowCanvas({
                 data-testid="flow-node"
                 data-node={node.id}
                 transform={`translate(${node.x} ${node.y})`}
+                style={{ pointerEvents: nodeHit ? 'auto' : 'none' }}
                 onClick={(event) => {
                   event.stopPropagation();
-                  if (ignoreSuppressed()) return;
+                  if (ignoreSuppressed() || !nodeHit) return;
                   onSelectNode(node.id);
                 }}
                 onKeyDown={(event) => {

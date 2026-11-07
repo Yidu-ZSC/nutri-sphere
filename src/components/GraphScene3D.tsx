@@ -16,7 +16,15 @@ import { labelShouldShow, labelTextHeight, nodeScale, shapeKindForType } from '.
 import { colorWithAlpha, semanticColor, DIM_3D_LABEL, DIM_3D_LINK, DIM_3D_NODE } from '../lib/palette';
 import type { SimNode } from '../types/graph';
 import { geometryFor } from './nodeGeometry';
-import { linkIsBright, nodeIsBright, nodeIsSelected, type DrawLink, type SceneCommonProps } from './graphShared';
+import {
+  linkIsBright,
+  linkIsInteractable,
+  nodeIsBright,
+  nodeIsInteractable,
+  nodeIsSelected,
+  type DrawLink,
+  type SceneCommonProps,
+} from './graphShared';
 
 const IDLE_RESUME_MS = 12_000;
 
@@ -437,8 +445,33 @@ export function GraphScene3D(props: GraphScene3DProps) {
       }}
       linkDirectionalParticleWidth={LINK_PARTICLE_WIDTH_3D}
       linkDirectionalParticleSpeed={0.006}
-      onNodeClick={(node) => props.onSelectNode((node as SimNode).id)}
-      onLinkClick={(link) => props.onSelectLink((link as DrawLink).graphIndex)}
+      onNodeClick={(node) => {
+        const id = (node as SimNode).id;
+        if (
+          !nodeIsInteractable(id, props.highlightBrowseLocked, props.selection, props.graph.links, props.focusIds)
+        ) {
+          return;
+        }
+        props.onSelectNode(id);
+      }}
+      onLinkClick={(link) => {
+        const typed = link as DrawLink;
+        const canonical = props.graph.links[typed.graphIndex];
+        if (
+          !canonical ||
+          !linkIsInteractable(
+            canonical,
+            typed.graphIndex,
+            props.highlightBrowseLocked,
+            props.selection,
+            props.focusIds,
+            props.focusRoot,
+          )
+        ) {
+          return;
+        }
+        props.onSelectLink(typed.graphIndex);
+      }}
       onBackgroundClick={props.onBackground}
       onEngineStop={() => {
         if (layoutRef.current !== 'force' || compactRef.current) return;

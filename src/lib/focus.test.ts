@@ -8,8 +8,10 @@ import {
   isFocusEmpty,
   linkIsBrightInFocus,
   linkIsFocused,
+  linkIsInteractable,
   linkIsRootIncident,
   neighborhood,
+  nodeIsInteractable,
 } from './focus.ts';
 
 const links = [
@@ -17,6 +19,19 @@ const links = [
   { source: 'glycation', target: 'chronic_inflammation' },
   { source: 'gut_microbiome', target: 'mental_health' },
 ];
+
+test('locked browse only allows bright nodes and edges to be hit', () => {
+  const bright = new Set(['a', 'b', 'c']);
+  const chain = [
+    { source: 'a', target: 'b' },
+    { source: 'b', target: 'c' },
+    { source: 'c', target: 'd' },
+  ];
+  assert.equal(nodeIsInteractable('d', true, null, chain, bright), false);
+  assert.equal(nodeIsInteractable('b', true, null, chain, bright), true);
+  assert.equal(linkIsInteractable(chain[2]!, 2, true, null, bright, null), false);
+  assert.equal(linkIsInteractable(chain[0]!, 0, true, null, bright, null), true);
+});
 
 test('no filters leave the full graph visible', () => {
   assert.equal(focusedNodeIds(links, null, null), null);
