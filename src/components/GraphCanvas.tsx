@@ -73,11 +73,11 @@ export function GraphCanvas({
     const nodes: SimNode[] = graph.nodes
       .filter((node) => shownNodeIds.has(node.id))
       .map((node) => ({ ...node }));
-    placeNodes(nodes, layout, graphView);
+    placeNodes(nodes, layout, graphView, compact);
     const links: DrawLink[] = shownLinks.map((link) => ({ ...link }));
     applyLinkCurvature(links, nodes);
     return { nodes, links };
-  }, [graph.nodes, graphView, layout, shownLinks, shownNodeIds]);
+  }, [compact, graph.nodes, graphView, layout, shownLinks, shownNodeIds]);
 
   const framedNode = useMemo(
     () => pickFramedNode(simData.nodes, anchorId),

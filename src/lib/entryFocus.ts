@@ -193,9 +193,10 @@ export function frameBright2d(
   width: number,
   height: number,
   insets: HudInsets,
+  compact = false,
 ): { x: number; y: number; k: number } {
   if (nodes.length === 0) return { x: 0, y: 0, k: 0.5 };
-  return frameGraph2d(nodes, width, height, insets);
+  return frameGraph2d(nodes, width, height, insets, compact);
 }
 
 /** 3D camera distance/center that frames the bright region inside the HUD-safe viewport. */

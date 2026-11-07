@@ -6,6 +6,8 @@ export type LayoutMode = 'hierarchy' | 'force';
 /** diet/food → nutrient/compound/metabolite → mechanism → disease/outcome */
 /** Wider column centers in hierarchy so the 2D「层次」view has more air between lanes. */
 export const COLUMN_X = [-135, -45, 45, 135] as const;
+/** Compact/mobile hierarchy spreads the four lanes wider so header captions stop colliding. */
+export const COMPACT_COLUMN_SCALE = 1.3;
 /** Room for a single-line label between rows on the flat pathway. */
 export const COLUMN_Y_GAP = 20;
 /** Narrower than the default 50° so the optional 3D view stays closer to a flat pathway. */
@@ -50,7 +52,7 @@ function unpin(node: SimNode) {
  * Hierarchy pins each node to a type column. Force mode keeps a column-seeded
  * start, then lets the simulation move unpinned nodes.
  */
-export function applyLayout(nodes: SimNode[], mode: LayoutMode): void {
+export function applyLayout(nodes: SimNode[], mode: LayoutMode, compact = false): void {
   const columns: SimNode[][] = [[], [], [], []];
   for (const node of nodes) {
     const column = columnIndex(node.type);
@@ -60,7 +62,7 @@ export function applyLayout(nodes: SimNode[], mode: LayoutMode): void {
   columns.forEach((list, column) => {
     list.sort((a, b) => a.label.localeCompare(b.label, 'zh') || a.id.localeCompare(b.id));
     const mid = (list.length - 1) / 2;
-    const x = (COLUMN_X[column] ?? 0) * (mode === 'hierarchy' ? 1 : 0.34);
+    const x = (COLUMN_X[column] ?? 0) * (mode === 'hierarchy' ? (compact ? COMPACT_COLUMN_SCALE : 1) : 0.34);
     list.forEach((node, index) => {
       const y = (mid - index) * (mode === 'hierarchy' ? COLUMN_Y_GAP : 12);
       // Hierarchy stays on one plane. Depth jitter is what made columns occlude each other.
@@ -83,8 +85,8 @@ export function applyLayout(nodes: SimNode[], mode: LayoutMode): void {
  * Hierarchy Y is up (3D). Canvas Y is down, so the 2D view flips Y and remembers
  * the layout-space value for label windows.
  */
-export function placeNodes(nodes: SimNode[], mode: LayoutMode, view: GraphView): void {
-  applyLayout(nodes, mode);
+export function placeNodes(nodes: SimNode[], mode: LayoutMode, view: GraphView, compact = false): void {
+  applyLayout(nodes, mode, compact);
   for (const node of nodes) {
     node.layoutY = node.y;
     if (view === '2d' && node.y != null) {
@@ -133,10 +135,13 @@ export function frameGraph2d(
   width: number,
   height: number,
   insets: { top?: number; right?: number; bottom?: number; left?: number } = {},
+  compact = false,
 ): { x: number; y: number; k: number } {
   const xs = nodes.map((node) => node.x ?? 0);
   const ys = nodes.map((node) => node.y ?? 0);
-  const labelPadX = 34;
+  // Mobile HUD insets already reserve generous screen margins, so a smaller
+  // world-space pad gives the four columns more of the (narrow) viewport width.
+  const labelPadX = compact ? 14 : 34;
   const labelPadTop = 40;
   const labelPadBottom = 16;
   const minX = Math.min(...xs) - labelPadX;

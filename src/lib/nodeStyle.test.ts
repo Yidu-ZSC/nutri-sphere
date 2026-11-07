@@ -45,13 +45,17 @@ test('3d explore keeps idle labels on the mechanism column', () => {
   );
 });
 
-test('compact screens hide labels outside the home column', () => {
+test('compact 2d labels every rendered node regardless of column or window', () => {
   assert.equal(
     labelShouldShow({ compact: true, bright: true, selected: false, column: 0, homeColumn: 2 }),
-    false,
+    true,
   );
   assert.equal(
     labelShouldShow({ compact: true, bright: true, selected: false, column: 2, homeColumn: 2 }),
+    true,
+  );
+  assert.equal(
+    labelShouldShow({ compact: true, bright: false, selected: false, column: 3, homeColumn: 2 }),
     true,
   );
   assert.equal(
@@ -73,6 +77,6 @@ test('compact screens hide labels outside the home column', () => {
       focusY: 0,
       yWindow: 40,
     }),
-    false,
+    true,
   );
 });

@@ -119,7 +119,10 @@ test('NS-051 CSS: muted tokens, HUD 180/280, compact rail targets', () => {
   const mobileIdx = css.indexOf('@media (max-width: 768px)');
   assert.ok(mobileIdx >= 0);
   const mobile = css.slice(mobileIdx);
-  assert.match(mobile, /\.graph-canvas-stage\s+\.hud\.hud--legend-collapsed\s*\{[^}]*max-width:\s*180px/);
+  assert.match(mobile, /\.graph-canvas-stage\s+\.hud\.hud--legend-collapsed\s*\{[^}]*max-width:\s*128px/);
+  assert.match(mobile, /\.legend--collapsed\s*\{[^}]*padding:\s*4px\s+6px/s);
+  assert.match(mobile, /\.legend--collapsed \.legend-toggle\s*\{[^}]*justify-content:\s*flex-end/s);
+  assert.match(mobile, /\.legend--collapsed \.legend-toggle\s*\{[^}]*min-height:\s*28px/s);
   assert.match(
     mobile,
     /\.graph-canvas-stage\s+\.hud:not\(\.hud--legend-collapsed\)\s*\{[^}]*max-width:\s*min\(280px,\s*calc\(100%\s*-\s*16px\)\)/,

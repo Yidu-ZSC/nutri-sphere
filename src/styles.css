@@ -2205,11 +2205,18 @@ code {
     font: inherit;
   }
   .hud { max-width: calc(100% - 16px); }
-  .graph-canvas-stage .hud.hud--legend-collapsed { max-width: 180px; }
+  .graph-canvas-stage .hud.hud--legend-collapsed { max-width: 128px; }
   .graph-canvas-stage .hud:not(.hud--legend-collapsed) { max-width: min(280px, calc(100% - 16px)); }
   .hide-label-long { display: none; }
   .hide-label-short { display: inline; }
   .legend { gap: 4px; padding: 6px 8px; }
+  .legend--collapsed { padding: 4px 6px; }
+  .legend--collapsed .legend-toggle {
+    justify-content: flex-end;
+    width: 100%;
+    min-height: 28px;
+    gap: 6px;
+  }
   .legend-block {
     display: flex;
     flex-wrap: wrap;

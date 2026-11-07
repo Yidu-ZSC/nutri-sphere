@@ -54,8 +54,8 @@ export function GraphScene2D(props: SceneCommonProps) {
     paintGraphNode(ctx, describe(node), globalScale, stageRef.current);
   };
 
-  const nodePointerAreaPaint = (node: SimNode, color: string, ctx: CanvasRenderingContext2D) => {
-    paintGraphNodeHit(ctx, describe(node), color);
+  const nodePointerAreaPaint = (node: SimNode, color: string, ctx: CanvasRenderingContext2D, globalScale: number) => {
+    paintGraphNodeHit(ctx, describe(node), color, globalScale, props.coarse);
   };
 
   const frameKey = `${props.layout}|${props.compact ? 'compact' : 'full'}|${props.size.w}x${props.size.h}|${props.visibleKey}|${props.focusRoot ?? ''}|${props.compact ? props.anchorId ?? '' : ''}`;
@@ -75,7 +75,7 @@ export function GraphScene2D(props: SceneCommonProps) {
       if (props.focusRoot != null) {
         const bright = brightNodes(props.nodes, props.focusIds);
         if (bright.length === 0) return;
-        const shot = frameBright2d(bright, props.size.w, props.size.h, props.insets);
+        const shot = frameBright2d(bright, props.size.w, props.size.h, props.insets, props.compact);
         api.centerAt(shot.x, shot.y, 0);
         api.zoom(Math.max(shot.k, 0.2), 0);
       } else if (props.compact) {
@@ -149,7 +149,7 @@ export function GraphScene2D(props: SceneCommonProps) {
       nodePointerAreaPaint={nodePointerAreaPaint}
       nodeColor={() => 'rgba(0,0,0,0)'}
       linkCurvature={(link) => (link as DrawLink).curvature ?? 0}
-      linkHoverPrecision={8}
+      linkHoverPrecision={props.coarse ? 16 : 8}
       linkColor={(link) => {
         const typed = link as DrawLink;
         const color = semanticColor(typed.direction);
@@ -180,14 +180,14 @@ export function GraphScene2D(props: SceneCommonProps) {
       onBackgroundClick={props.onBackground}
       onRenderFramePost={(ctx, globalScale) => {
         if (layoutRef.current !== 'hierarchy') return;
-        paintColumnCaptions(ctx, props.nodes, globalScale, stageRef.current);
+        paintColumnCaptions(ctx, props.nodes, globalScale, stageRef.current, compactRef.current);
       }}
       onEngineStop={() => {
         if (layoutRef.current !== 'force' || compactRef.current) return;
         if (props.focusRoot != null) {
           const bright = brightNodes(props.nodes, props.focusIds);
           if (bright.length === 0) return;
-          const shot = frameBright2d(bright, props.size.w, props.size.h, props.insets);
+          const shot = frameBright2d(bright, props.size.w, props.size.h, props.insets, compactRef.current);
           fgRef.current?.centerAt(shot.x, shot.y, 0);
           fgRef.current?.zoom(Math.max(shot.k, 0.2), 0);
           return;
