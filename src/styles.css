@@ -479,25 +479,72 @@ h1, h2, h3, h4 { font-weight: 600; }
 }
 
 
+/* TASK-NS-085: focus toggle card in the right view rail; the chip pushes out left. */
+.focus-hud {
+  position: relative;
+  display: flex;
+}
+
+.focus-hud-group {
+  padding: 4px;
+  border-radius: 14px;
+}
+
+.focus-hud-group button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0;
+  border-radius: 10px;
+}
+
+.focus-hud-group button svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .click-focus-banner {
   position: absolute;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 4;
+  top: 0;
+  right: calc(100% + 6px);
+  z-index: 1;
+  box-sizing: border-box;
+  height: 48px;
+  max-width: min(240px, calc(100vw - 130px));
   display: flex;
   align-items: center;
-  gap: 10px;
-  max-width: min(420px, calc(100% - 24px));
-  padding: 8px 10px 8px 12px;
+  gap: 8px;
+  padding: 0 6px 0 14px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 14px;
   background: var(--panel);
   box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(14px);
+  pointer-events: none;
+  transition: opacity 200ms ease, transform 200ms ease, visibility 0s linear 200ms;
+}
+
+.click-focus-banner.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
   pointer-events: auto;
+  transition: opacity 200ms ease, transform 200ms ease, visibility 0s;
 }
 
 .click-focus-label {
+  min-width: 0;
   font-size: 13px;
   font-weight: 600;
   color: var(--text);
@@ -506,14 +553,13 @@ h1, h2, h3, h4 { font-weight: 600; }
   text-overflow: ellipsis;
 }
 
-@media (max-width: 768px) {
-  .click-focus-banner {
-    left: 12px;
-    right: 12px;
-    transform: none;
-    max-width: none;
-    border-radius: 12px;
-  }
+.click-focus-clear {
+  flex: none;
+  height: 34px;
+  min-height: 34px;
+  padding: 0 10px;
+  font-size: 12px;
+  border-radius: 10px;
 }
 
 .hud {
@@ -2222,6 +2268,7 @@ code {
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; }
   .legend-details { transition: none; }
+  .click-focus-banner { transition: none; }
   .pattern-item,
   .pattern-item:hover,
   .twin-bar,
